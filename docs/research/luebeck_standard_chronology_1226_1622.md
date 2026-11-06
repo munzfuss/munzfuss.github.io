@@ -238,6 +238,15 @@ fine), between 1392 (penny 0,254 g) and 1403 (0,952 g). Hans' Skilling of c. 149
 
 ## §4. Discrepancies — resolved and remaining
 
+> ⚠ **Luxdorph 1765, Table I «Lybsk Mynt» (s. 649) — a second series kept beside ours (2026-11-06).** Taken
+> «*fornemmelig af Notitia rei nummariæ hos Leibnitz*», it gives the fine mark as 1325 49 ß 9½, 1350 60 ß 9⅗
+> (starred uncertain), 1390 78 ß, 1403 89 ß 7⅕, 1424 112 ß, 1461 172 ß, against this chronology's 47 ß 5
+> (1323/25), 3 ℳ 9 ß 11 (1350), 4 ℳ 7 ß / 4-12 (1387 / 1392), 5 ℳ 1 ß 11 (1403), 7 ℳ 7 ß (1424) and the
+> planned 11-10-7 (1461), all from Jesse / HR. 1411 (5-12-4) and 1450 (160 ß) agree. For 1403 and 1424
+> Luxdorph's own computations (s. 700, 706) agree with ours and not with his table; 1461 is a silver price
+> in his table, a planned fine mark here. Origin of his figures: Leibniz's Notitia — not traced further.
+> Details: `luxdorph_1765_mynteudregning.md` Part II §3.
+
 | Point | Resolution |
 |---|---|
 | 1379: 152 / 12-lot (HR reading, Grautoff) vs 176 / 13½ | **Jesse: 176 / 13½** (J S. 80, S. 194 n. 332 — Münzbuch 1375 «3¾ mr. 2 ß 2 Witten», the 152 reading «kommt zu falschen Ergebnissen»); a 1379 Witten assayed 798 ‰ ≈ 12¾ lot (J S. 88). The HR text as printed («3 mark unde 32 penninghe», ed. «Lies: 13?») stays quoted ⚠ |

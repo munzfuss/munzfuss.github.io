@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1936 active, 4481 retired.
+# 1931 active, 4486 retired.
 
 id: danish_realm
 classes:
@@ -198,13 +198,21 @@ classes:
   - id: c-01a90515
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-epomg-10
+    label: unified-dk-numista-348708
     legacy_id: unified-metallanalyser-2016-1-g10-lund-kopparsterling
     split_into:
       - c-0b5c934a
     members:
       - dk-galster-epomg-10
+      - dk-galster-epomg-14
+      - dk-galster-epomg-15
+      - dk-galster-epomg-7
+      - dk-numista-348708
+      - dk-numista-476049
       - lindahl-1955-lund-kobbersterling
+      - lindahl-1955-naestved-kobbersterling
+      - lindahl-1955-odense-kobbersterling
+      - lindahl-1955-randers-kobbersterling
       - metallanalyser-2016-1-g10-lund-kopparsterling
   - id: c-01b02563
     status: active
@@ -3817,6 +3825,7 @@ classes:
       - dk-numista-301177
       - kmk-152265
       - kmk-292781
+      - kmk-371287
   - id: c-1f7156dd
     status: active
     created: '2026-10-22'
@@ -12256,13 +12265,6 @@ classes:
       - kmk-190279
       - kmk-190280
       - kmk-276912
-  - id: c-6f18dcfc
-    status: active
-    created: '2026-10-25'
-    label: unified-dk-galster-epomg-15
-    members:
-      - dk-galster-epomg-15
-      - lindahl-1955-randers-kobbersterling
   - id: c-6f37ca9a
     status: active
     created: '2026-10-22'
@@ -15938,13 +15940,6 @@ classes:
       - kmk-152259
       - kmk-408038
       - ngc-1064798
-  - id: c-7ba89ef7
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-303699
-    legacy_id: unified-dk-numista-303699
-    members:
-      - dk-numista-303699
   - id: c-7ba8dc33
     status: active
     created: '2026-10-22'
@@ -17106,15 +17101,6 @@ classes:
       - kmk-276623
       - kmk-276624
       - kmk-276973
-  - id: c-8f3b9eaf
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-476049
-    legacy_id: unified-dk-numista-476049
-    members:
-      - dk-galster-epomg-14
-      - dk-numista-476049
-      - lindahl-1955-odense-kobbersterling
   - id: c-8f75b235
     status: active
     created: '2026-10-22'
@@ -24234,10 +24220,11 @@ classes:
   - id: c-df58ec36
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-bajg-20
+    label: unified-dk-numista-303699
     legacy_id: unified-metallanalyser-2016-1-g20-malmo-hvid
     members:
       - dk-galster-bajg-20
+      - dk-numista-303699
       - lindahl-1955-malmoe-hvid
       - metallanalyser-2016-1-g20-malmo-hvid
   - id: c-df59cf8a
@@ -26930,15 +26917,6 @@ classes:
     legacy_id: unified-ngc-1069327
     members:
       - ngc-1069327
-  - id: c-ea17009c
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-348708
-    legacy_id: unified-dk-numista-348708
-    members:
-      - dk-galster-epomg-7
-      - dk-numista-348708
-      - lindahl-1955-naestved-kobbersterling
   - id: c-ea1de913
     status: active
     created: '2026-10-22'
@@ -27745,12 +27723,6 @@ classes:
     legacy_id: unified-dk-hede-c5h108
     members:
       - dk-hede-c5h108
-  - id: c-f6a01032
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-371287
-    members:
-      - kmk-371287
   - id: c-f6a6219e
     status: active
     created: '2026-10-22'
@@ -46579,6 +46551,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149041
+  - id: c-6f18dcfc
+    status: retired
+    created: '2026-10-25'
+    label: unified-dk-galster-epomg-15
+    merged_into: c-01a90515
+    retired: '2026-11-06'
+    members:
+      - dk-galster-epomg-15
+      - lindahl-1955-randers-kobbersterling
   - id: c-6f1c6b3e
     status: retired
     created: '2026-11-05'
@@ -48631,6 +48612,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-417205
+  - id: c-7ba89ef7
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-303699
+    legacy_id: unified-dk-numista-303699
+    merged_into: c-df58ec36
+    retired: '2026-11-06'
+    members:
+      - dk-numista-303699
   - id: c-7bb0dd89
     status: retired
     created: '2026-10-22'
@@ -51827,6 +51817,17 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-78450
+  - id: c-8f3b9eaf
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-476049
+    legacy_id: unified-dk-numista-476049
+    merged_into: c-01a90515
+    retired: '2026-11-06'
+    members:
+      - dk-galster-epomg-14
+      - dk-numista-476049
+      - lindahl-1955-odense-kobbersterling
   - id: c-8f454b49
     status: retired
     created: '2026-10-22'
@@ -67385,6 +67386,17 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149930
+  - id: c-ea17009c
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-348708
+    legacy_id: unified-dk-numista-348708
+    merged_into: c-01a90515
+    retired: '2026-11-06'
+    members:
+      - dk-galster-epomg-7
+      - dk-numista-348708
+      - lindahl-1955-naestved-kobbersterling
   - id: c-ea17f67f
     status: retired
     created: '2026-10-22'
@@ -69280,6 +69292,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-274052
+  - id: c-f6a01032
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-371287
+    merged_into: c-1eba9f4e
+    retired: '2026-11-06'
+    members:
+      - kmk-371287
   - id: c-f6bafba8
     status: retired
     created: '2026-10-22'

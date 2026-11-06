@@ -21,7 +21,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from .common import HR_SENTINEL, MINT_ALTERNATIVE, MINT_WORD, SPEC_PATTERNS
+from .common import HR_SENTINEL, MINT_ALTERNATIVE, MINT_WORD, SPEC_PATTERNS, parse_extra_specs, parse_schou_find_table
 
 # Forgery-year parenthetical: «(1508 er falsk)» — danskmoent.dk flags a
 # year whose only surviving specimens are forgeries (no genuine striking
@@ -541,7 +541,60 @@ def _parse_specs(text: str) -> dict:
             specs["mintage"] = int(mm.group(1).replace(".", ""))
         except ValueError:
             pass
+    parse_extra_specs(text, specs)
+    find_table = parse_schou_find_table(text)
+    if find_table:
+        specs["schou_find_table"] = find_table
     return specs
+
+
+# Spec table with one COLUMN per year and no «:» after the labels
+# (norge/nc2g172, Galster 172 — the only page of this shape, 2026-11-05):
+#   « 1531 \n 1532 \n\n Bruttovægt \n 6,72g \n 6,45g \n\n Finhed \n 0,875 \n
+#     0,970-0,980 \n\n Finvægt \n 5,86g \n 6,26-6,32g »
+# `SPEC_PATTERNS` need «Bruttovægt:» and so read nothing here; without this
+# the page's weights and finenesses never reached the seed.
+_YEAR_COL_HEAD_RE = re.compile(r"((?:^[ \t]*1[3-6]\d{2}[ \t]*\n)+)\s*\n?[ \t]*Bruttov.gt[ \t]*\n",
+                               re.MULTILINE)
+_NUM = r"\d+[,.]\d+"
+
+
+def _parse_year_column_specs(text: str) -> list[dict]:
+    m = _YEAR_COL_HEAD_RE.search(text)
+    if not m:
+        return []
+    years = re.findall(r"1[3-6]\d{2}", m.group(1))
+    rest = text[m.end():]
+
+    def column(label_re: str | None, body: str) -> tuple[list[str], str]:
+        if label_re:
+            lm = re.match(r"\s*" + label_re + r"[ \t]*\n", body)
+            if not lm:
+                return [], body
+            body = body[lm.end():]
+        vals = []
+        for _ in years:
+            vm = re.match(r"\s*(" + _NUM + r"(?:\s*-\s*" + _NUM + r")?)\s*g?[ \t]*\n", body)
+            if not vm:
+                return [], body
+            vals.append(vm.group(1))
+            body = body[vm.end():]
+        return vals, body
+
+    def nums(s: str) -> list[float]:
+        return [float(x.replace(",", ".")) for x in re.findall(_NUM, s)]
+
+    brutto, rest = column(None, rest)
+    finhed, rest = column(r"Finhed", rest)
+    if not brutto:
+        return []
+    out = []
+    for i, y in enumerate(years):
+        row = {"year": y, "bruttovaegt_g": nums(brutto[i])}
+        if finhed:
+            row["finhed"] = nums(finhed[i])
+        out.append(row)
+    return out
 
 
 def _parse_litteratur(text: str) -> list[str]:
@@ -863,6 +916,9 @@ def parse_page(html_path: Path, text: str, galster_override: str | None = None) 
         if merged:
             refs["schou"] = merged[0] if len(merged) == 1 else merged
     specs = _parse_specs(text)
+    per_year = _parse_year_column_specs(text)
+    if per_year and not any(k in specs for k in ("bruttovaegt_g", "finhed")):
+        specs["per_year"] = per_year
     litt = _parse_litteratur(text)
     inscription = _parse_inscription(text)
 

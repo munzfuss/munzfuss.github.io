@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-10-26T15:30:38Z'
+generated_at: '2026-11-05T17:04:17Z'
 entity: christian_ii_reconquest
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -32,18 +32,28 @@ coins:
       galster_volume: c2g
     metal: silver
     fineness:
+      - value: 0.875
+        source: danskmoent.dk (Galster 172), 1531
+      - value: 0.97
+        source: danskmoent.dk (Galster 172), 1532
+      - value: 0.98
+        source: danskmoent.dk (Galster 172), 1532
     weight_rough_g:
+      - value: 6.72
+        source: danskmoent.dk (Galster 172), 1531
+      - value: 6.45
+        source: danskmoent.dk (Galster 172), 1532
     issuing_entity: christian_ii_reconquest
     verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    fineness_verified: true
+    weight_rough_verified: true
     mint_verified: false
     sources:
       - type: literature
         url: https://www.danskmoent.dk/norge/nc2g172.htm
         ref: Galster 172 (c2g) — danskmoent.dk norge_nc2g172.htm
     sub_realm: norway
-    metal_verified: false
+    metal_verified: true
     uncertainty:
       metal:
         - kind: inferred

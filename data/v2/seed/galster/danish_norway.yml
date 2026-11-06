@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-11-02T14:24:31Z'
+generated_at: '2026-11-05T17:55:07Z'
 entity: danish_norway
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -936,7 +936,7 @@ coins:
     issuing_entity: danish_norway
     verified: false
     fineness_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -957,6 +957,12 @@ coins:
           source: galster
           as_printed: u. år
           value: 1513-1523
+    weight_range_g:
+      - min: 1.7
+        max: 2.17
+        approx: false
+        source: danskmoent.dk (Galster 164)
+        url: https://www.danskmoent.dk/norge/nc2g164.htm
   - id: dk-galster-c2g-165
     fuss: seed_unsorted
     phase: galster
@@ -982,7 +988,7 @@ coins:
     issuing_entity: danish_norway
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -1002,6 +1008,12 @@ coins:
           how: reign
           source: galster
           value: 1513-1523
+    weight_range_g:
+      - min: 0.6
+        max: 1.18
+        approx: false
+        source: danskmoent.dk (Galster 165)
+        url: https://www.danskmoent.dk/norge/nc2g165.htm
   - id: dk-galster-f1g-170
     fuss: seed_unsorted
     phase: galster
@@ -1027,7 +1039,7 @@ coins:
     issuing_entity: danish_norway
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -1048,6 +1060,12 @@ coins:
           source: galster
           as_printed: u. år
           value: 1523-1533
+    weight_range_g:
+      - min: 1.58
+        max: 2.17
+        approx: false
+        source: danskmoent.dk (Galster 170)
+        url: https://www.danskmoent.dk/norge/nf1g170.htm
   - id: dk-galster-f1g-171
     fuss: seed_unsorted
     phase: galster
@@ -1070,7 +1088,7 @@ coins:
       galster_volume: f1g
     metal: billon
     fineness:
-    weight_rough_g:
+    weight_rough_g: 0.73
     issuing_entity: danish_norway
     verified: false
     fineness_verified: false
@@ -1083,6 +1101,11 @@ coins:
     sub_realm: norway
     metal_verified: false
     uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '0.73'
       metal:
         - kind: inferred
           how: from_name

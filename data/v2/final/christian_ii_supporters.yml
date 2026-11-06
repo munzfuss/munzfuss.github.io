@@ -154,6 +154,9 @@ coins:
         - seed: dk-galster-c2g-91
           source: galster
           years: '1535'
+        - seed: kmk-132277
+          source: kmk
+          years: '1535'
       uncertain:
         - seed: dk-bruun-4149
           source: bruun
@@ -166,6 +169,18 @@ coins:
           as_printed: ND (1535)
           value: '1535'
           seed: dk-bruun-4149
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1535'
+          seed: kmk-132277
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-132277
       metal:
         - kind: inferred
           how: from_name
@@ -215,6 +230,10 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g91.htm
         ref: Galster 91 (c2g) — danskmoent.dk chr_c2g91.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/132277
+        ref: KMM 132277 (Inv. FP 9623.28)
+        display: false
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -378,6 +397,7 @@ coins:
           value: '3.35'
           seed: dk-galster-c2g-85
     mint:
+      - Güstow
       - Güstrow
       - Mecklenburg
     catalog:
@@ -385,8 +405,11 @@ coins:
       schou: 18-36
       sieg: '1'
       galster_volume: c2g
+      others:
+        - B# 33
+        - B# 36b
     metal: billon
-    metal_verified: false
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -404,6 +427,14 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g85.htm
         ref: Galster 85 (c2g) — danskmoent.dk chr_c2g85.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156732
+        ref: KMM 156732 (Inv. RP 372.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156733
+        ref: KMM 156733 (Inv. RP 373.1)
+        display: false
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -694,46 +725,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Firskilling
-    ruler: Christian 2
-    issuing_entity: christian_ii_supporters
-    id: c-9ec49a24
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    uncertainty:
-      mint:
-        - kind: hedged
-          how: alternatives
-          source: kmk
-          as_printed: Malmø/København
-          value: Malmø, København
-          seed: kmk-132277
-    mint:
-      - Kopenhagen
-      - Malmø
-    catalog:
-      galster: '91'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/132277
-        ref: KMM 132277 (Inv. FP 9623.28)
-    verification_note: &id001
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-9ec49a24
-    label: unified-kmk-132277
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 4 Skilling
     ruler: Christian 2
     issuing_entity: christian_ii_supporters
@@ -762,68 +753,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156731
         ref: KMM 156731 (Inv. RP 371.1)
-    verification_note: *id001
+    verification_note: &id001
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - c-9dd8075b
     label: unified-kmk-156730
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    ruler: Christian 2
-    issuing_entity: christian_ii_supporters
-    id: c-93f47815
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    mint: Güstow
-    catalog:
-      schou: '18'
-      others:
-        - B# 33
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156732
-        ref: KMM 156732 (Inv. RP 372.1)
-    verification_note: *id001
-    composed_of:
-      - c-93f47815
-    label: unified-kmk-156732
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    ruler: Christian 2
-    issuing_entity: christian_ii_supporters
-    id: c-f3f9287b
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    mint: Güstow
-    catalog:
-      schou: '34'
-      others:
-        - B# 36b
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156733
-        ref: KMM 156733 (Inv. RP 373.1)
-    verification_note: *id001
-    composed_of:
-      - c-f3f9287b
-    label: unified-kmk-156733
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk

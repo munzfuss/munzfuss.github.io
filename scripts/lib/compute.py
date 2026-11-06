@@ -35,7 +35,7 @@ def _fin_authority_map() -> dict[str, int]:
         return {}
 
 
-from .weight_range import range_pairs  # noqa: E402
+from .weight_range import range_pairs, UI_KEY_MARK  # noqa: E402
 
 
 def normalise_field(v) -> list[tuple[float, str | None]]:
@@ -73,6 +73,17 @@ def normalise_field(v) -> list[tuple[float, str | None]]:
             return []
         return [(v.value, getattr(v, "source", None))]
     return []
+
+
+def normalise_specimens(v) -> list[str | None]:
+    """`FieldValue.specimen` of each reading `normalise_field` returns, in the
+    same order (None where the reading names no specimen)."""
+    if isinstance(v, list):
+        return [getattr(fv, "specimen", None)
+                for fv in v if getattr(fv, "display", True) is not False]
+    if hasattr(v, "value") and getattr(v, "display", True) is not False:
+        return [getattr(v, "specimen", None)]
+    return [None] * len(normalise_field(v))
 
 
 def marker_reasons(v) -> dict[str, tuple[str, object]]:
@@ -1398,8 +1409,16 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     # → single (value, None) reading; list form → one entry per source.
     # A catalogue's type range counts as two readings, lower + upper bound
     # (curator 2026-10-21); a single figure as one (lib/weight_range).
-    weight_pairs   = normalise_field(coin.weight_rough_g) + range_pairs(coin.weight_range_g)
+    weight_pairs   = normalise_field(coin.weight_rough_g)
+    n_specimen_w   = len(weight_pairs)   # indices from here on are range bounds
+    weight_pairs  += range_pairs(coin.weight_range_g)
     fineness_pairs = normalise_field(coin.fineness)
+    # The specimen each reading belongs to (FieldValue.specimen — set by the
+    # merger only where two members share a source label); a range bound
+    # names none.
+    weight_specs   = normalise_specimens(coin.weight_rough_g)
+    weight_specs  += [None] * (len(weight_pairs) - len(weight_specs))
+    fineness_specs = normalise_specimens(coin.fineness)
     diameter_pairs = normalise_field(coin.diameter_mm)
 
     # Per-source markers — the readings themselves compute as normal.
@@ -1434,24 +1453,63 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     # This removes the spurious cross-source Feingewicht that the naive
     # weight[0]×fineness[0] primary produced when weight[0]'s source had
     # its own fineness (e.g. galster-weight wrongly × hede-fineness).
+    # A weight-range bound is labelled «<source> (\x1elower\x1e…)»
+    # (lib/weight_range.range_pairs); it is the same source's reading, so
+    # its token is the bare source label (curator 2026-11-05: Lindahl's and
+    # Galster's 0,21-0,37 g pair with their own 0-0,212 fineness, not with
+    # another source's specimen).
     def _toks(src):
-        return {t.strip() for t in (src or "").split("\n") if t.strip()}
+        return {t.split(" (" + UI_KEY_MARK, 1)[0].strip()
+                for t in (src or "").split("\n") if t.strip()}
 
-    def _fineness_for(w_src):
+    # A weight and a fineness are ONE source's coherent reading when their
+    # labels share a token AND they name the same specimen (or either names
+    # none). The specimen is what keeps two Numista types, which both read
+    # «numista», from being crossed (curator 2026-11-05, Galster 172).
+    def _same_spec(a, b):
+        return a is None or b is None or a == b
+
+    def _fin_idx_for(w_src, w_spec=None) -> list[int]:
+        """Indices of every fineness reading coherent with this weight."""
         wt = _toks(w_src)
-        if wt:
-            for fv, fsrc in fineness_pairs:
-                if fsrc and wt & _toks(fsrc):
-                    return fv, fsrc
-        return None, None
+        if not wt:
+            return []
+        return [j for j, (fv, fsrc) in enumerate(fineness_pairs)
+                if fsrc and wt & _toks(fsrc) and _same_spec(w_spec, fineness_specs[j])]
 
-    def _weight_for(f_src):
+    def _w_idx_for(f_src, f_spec=None) -> list[int]:
         ft = _toks(f_src)
-        if ft:
-            for wv, wsrc in weight_pairs:
-                if wsrc and ft & _toks(wsrc):
-                    return wv, wsrc
-        return None, None
+        if not ft:
+            return []
+        return [i for i, (wv, wsrc) in enumerate(weight_pairs)
+                if wsrc and ft & _toks(wsrc) and _same_spec(f_spec, weight_specs[i])]
+
+    def _fineness_for(w_src, w_spec=None):
+        js = _fin_idx_for(w_src, w_spec)
+        return fineness_pairs[js[0]] if js else (None, None)
+
+    def _weight_for(f_src, f_spec=None):
+        iss = _w_idx_for(f_src, f_spec)
+        return weight_pairs[iss[0]] if iss else (None, None)
+
+    def _extra_fins(i_w) -> list[int]:
+        """A weight that is the ONLY weight of its source/specimen pairs with
+        EVERY fineness of it — a printed fineness range gives a fine weight at
+        both bounds (curator 2026-11-05: Galster 172's 1532 column 6,45 g ×
+        0,970-0,980). Returns the indices beyond the first. With several
+        weights in one group the first fineness alone stays, as before."""
+        w_src, w_spec = weight_pairs[i_w][1], weight_specs[i_w]
+        js = _fin_idx_for(w_src, w_spec)
+        if len(js) < 2:
+            return []
+        # A bound of a printed weight RANGE is a statement about the type,
+        # like the source's fineness range: each bound pairs with every
+        # fineness of the source, so the fine weight spans both ranges.
+        if i_w >= n_specimen_w:
+            return js[1:]
+        if any(_w_idx_for(fineness_pairs[j][1], fineness_specs[j]) != [i_w] for j in js):
+            return []
+        return js[1:]
 
     def _fin_authority(src):
         """Authority score of a fineness reading's source (higher = better).
@@ -1486,7 +1544,8 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         fallback_f, fallback_f_src = _fb[0], _fb[1]
     else:
         fallback_f, fallback_f_src = None, None
-    _own_pf, _own_pf_src = _fineness_for(cc.primary_weight_source)
+    _own_pf, _own_pf_src = (_fineness_for(cc.primary_weight_source, weight_specs[0])
+                            if weight_pairs else (None, None))
     if _own_pf is not None:
         primary_f_used, primary_f_used_src = _own_pf, _own_pf_src
     else:
@@ -1665,11 +1724,28 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         seen_f_srcs.add(primary_f_used_src)
     seen_alt_srcs: set[str] = set()
 
+    def _extra_fin_alts(i_w):
+        """One alt per further fineness of a single-weight group (B1)."""
+        w, w_src = weight_pairs[i_w]
+        for j in _extra_fins(i_w):
+            fv, f_src = fineness_pairs[j]
+            ca = ComputedAlt(source=w_src or "")
+            ca.weight_rough_g = w
+            ca.fineness = fv
+            ca.diameter_mm = _diameter_for(w_src)
+            _fill_alt_derived(ca, w, fv)
+            ca.derived_source = _derived_label(w_src, f_src)
+            ca.fin_source = f_src
+            cc.alts.append(ca)
+
+    if weight_pairs and _own_pf is not None:
+        _extra_fin_alts(0)
+
     # (a) non-primary weight readings — own-source fineness or fallback
-    for w, w_src in weight_pairs[1:]:
+    for i_w, (w, w_src) in enumerate(weight_pairs[1:], start=1):
         ca = ComputedAlt(source=w_src or "")
         ca.weight_rough_g = w
-        own_f, own_f_src = _fineness_for(w_src)
+        own_f, own_f_src = _fineness_for(w_src, weight_specs[i_w])
         if own_f is not None:
             ca.fineness = own_f
             f_used, f_used_src = own_f, own_f_src
@@ -1682,16 +1758,18 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         ca.derived_source = _derived_label(w_src, f_used_src)
         ca.fin_source = f_used_src
         cc.alts.append(ca)
+        if own_f is not None:
+            _extra_fin_alts(i_w)
         if w_src:
             seen_alt_srcs.add(w_src)
 
     # (b) fineness-only sources — published a fineness but NO weight of
     #     their own, and not already consumed by an own-pair above →
     #     pair with the primary weight (a genuine cross-source reading).
-    for fv, f_src in fineness_pairs:
+    for j_f, (fv, f_src) in enumerate(fineness_pairs):
         if not f_src or f_src in seen_f_srcs:
             continue
-        if _weight_for(f_src)[0] is not None:
+        if _weight_for(f_src, fineness_specs[j_f])[0] is not None:
             continue
         ca = ComputedAlt(source=f_src)
         ca.fineness = fv

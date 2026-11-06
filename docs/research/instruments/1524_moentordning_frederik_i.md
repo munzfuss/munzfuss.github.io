@@ -31,6 +31,7 @@
 | Original | Rigsarkivet: Udkast of the Rigsraad's letter; «Kongens Brev» with marginal additions («Extra literas signatas …»); Fr. I's Registranter | | not seen |
 | **Reproduction — act text** | **Wilcke, J.**, *Renæssancens Mønt- og Pengeforhold 1481–1588* (1950), Andet Kapitel, **s. 180–183**: the Rigsraad's letter printed in full in its orthography, with the Kongebrev's variants in four notes; then the Kongebrev summarised («Vi Fr. gjøre alle vitterligt …») with its grid in parentheses | prints (Rigsraad); summarises (Kongebrev) | `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-2.pdf`, PDF pp. 35–38; text `pages/wilcke_7-2.txt` |
 | Recomputation | Wilcke 7-2 **s. 187**, table «Mønt · Aar · Stkr. paa 1 M brutto · Lødighed · Tusinddele · Dele af Sølvgylden · Bruttovægt · Finvægt · Metalværdi og Navneværdi i Kr. 1875 · Købekraft» covering Husum 1514–22, Lejr ß, the 25/2 1524 grid, the «Efter 25/2» grid, and the Klipping recoinage sorts | Wilcke's conversion at 233,855 g | PDF p. 42; OCR garbled — read from the rendered page image (scratchpad `w72_p187-42.png`, 2026-10-13) |
+| **Edition — Kongebrev full text** (added 2026-11-05) | **Andersen, Aage (ed.)**, *Den danske Rigslovgivning 1523–1558* (2015), **nr. 10, s. 90–91**: «Den udvalgte kong Frederik (1.)s åbne brev om mønten», text after Fr. I.s registre (RA Danske Kancelli B 11 f. 297r–99r, a copy of the late 1520s / early 1530s); A (Malmø) lost, B (Ribe) known only from the heading; note quotes Kock's letter of 6 May 1530 (Norges gl. Love IV, 1, 273 nr. 125). Nr. 9 (s. 86 ff.) is the Rigsraad's letter | prints | corpus `rigslovgivning-1523-1558`, `scripts/cache/rigslovgivning/andersen_2015_rigslovgivning_1523_1558.extract.txt` |
 | Retelling + recomputation | Galster, *Danmarks Mønter* (galkult): quotes the Klipping clauses of the Rigsraad's letter; summarises both grids; table of the second at 230 g | | `scripts/cache/danskmoent/galster/galster_galkult.htm` |
 | Retelling | Grinder-Hansen, «Christian II's klippinge» (danskmoent artikler_kghklipp): the 10 Aug 1523 attempt, its revocation, the 25 Feb 1524 letter; which Klipping sorts survive (Galster 42a, 42b) | | `scripts/cache/danskmoent/galster/artikler_kghklipp.htm` |
 
@@ -129,7 +130,7 @@ Møntmesteren give til Slagskat en halv Ort Guld af hver vegen Mark Sølv …*»
 | Klipping sort 1 → 14-penning | silver | — | Kongens Brev: 3 lod 6 gren | 14 pendinge |
 | sort 2 → 6-penning | silver | — | Kongens Brev: 2 lod 3 gren | 6 pendinge |
 | sort 3 → 1 Hvid (Kongens Brev: 3 pendinge) | silver | — | — | |
-| sort 4 → 3 pendinge (Kongens Brev: small penninge) | silver | 900 | 2 lod | |
+| sort 4 → 3 pendinge (Kongens Brev: small penninge) | silver | ⚠ **900 or 960** — two readings: Wilcke s. 183 text «*ixc stycker*» (900), his own table s. 187 «*900 ell. 960*»; Andersen 2015 B-text «*ixc lx stycker*» (960); Luxdorph 1760 II. Tavle 960. Both kept (2026-11-06); the manuscript would settle it | 2 lod | |
 | Fee | | | | 6 gylden of the new coin per 100 weighed marks |
 | Pyx | | | | 2 pieces per 100 weighed marks |
 | Remedium (Kongens Brev) | | | | 1 quintin |
@@ -169,7 +170,7 @@ Rough g = 233,855 / n; ‰: karat/24, lod/16 (1 lod = 18 gren; «5 lod 2 gren» 
 | Hvid 300/M 4 lod | 0,780 | 250 | **0,195** | 0,195 | 0,19 |
 | 14-penning, 3 lod 6 gren | ? | 208,3 | — | «ca. 0,20» metal value | |
 | 6-penning, 2 lod 3 gren | ? | 135,4 | — | | |
-| small penninge 900/M 2 lod | 0,260 | 125 | **0,032** | 0,259 / 0,032 (900 or 960) | |
+| small penninge ⚠ 900 / 960 per M, 2 lod | 0,260 / 0,244 | 125 | **0,032 / 0,030** | 0,259 / 0,032 (Wilcke: «900 ell. 960») | |
 
 All our figures agree with Wilcke's table to the third decimal. Fine silver per unit of
 account from the Kongebrev: 2 Mark = 18,602 g, so 1 rhinsk Gylden (= 2½ Mark, Galster) =
@@ -290,11 +291,67 @@ data under `8_gylden_fod` (§8.3).
    «(6 ß)», i.e. a Mark of 12 Skilling — against the 16 ß Mark of 1513/1514. Galster: «2½
    Mark skulde svare til en rhinsk Gylden». Which Skilling is meant (the 4-Hvid ß at 96/M?)
    is not stated in the summary; needs the full Kongebrev (Registranter).
+   **Answered 2026-11-05 from the full text** (Rigslovgivning 1523–1558 nr. 10, s. 91,
+   l. 10–20): the act names its silver sorts «*stycket paa ii marck danske … xi*», «*styckett
+   paa en marck dansk … xxii*», «*stycke paa ĵ marck danske … xliiii*» (ĵ = ½, as in the Nobel's «xxiiiĵ» = 23½; read from
+   the page image), «*stycker paa iiii ß
+   danske … lxxviii*» (all 14 lod), «*fyre huider skellinge … v lod, ii grenne … lxxxxvi*»,
+   «*danske hwiide … iiii lodt … iiic*». No «12 ß» and no tariff of the mark in ß anywhere in
+   the text: Wilcke's «(12 ß)» is his own label. Recomputed at 233,855 g (ours): 1 Mark piece
+   9,301 g fine = 11,95 × the 4-Hvid ß (0,778 g) = 47,7 × the Hvid (0,195 g). So Wilcke's
+   «12 ß» counts in 4-Hvid Skillinge, and the Mark dansk of 1524 = 48 Hvide — the same Mark as
+   under Hans («*M dansk à 16 ß à 3 Hvide*», Wilcke 7-2 s. 149) and in the 1523 valuation
+   («*12 af dem [hele ß à 4 Hvide] for en dansk M*»). Gylden = 2½ Mark: Galster, and Kock's
+   letter of 6 May 1530 in the edition's note («*ti gylden a to en halv mark*») — the same
+   rate as late Hans and as the 1534–36 war accounts (Wilcke 7-3 s. 238). Mark dansk : Mark
+   lybsk by silver ≈ 0,595 (9,301 g against 8 × the Lübeck 2 ß 1522–30, 1,952–1,958 g, Wilcke
+   7-2 s. 185–186) ≈ 3 : 5, as in 1534 («*3/5 af en Mark Lybsk*», 7-3 s. 238).
 5. **4-Skilling count: 78 (Wilcke, Kongebrev summary) vs 88 (Galster's table).** Galster's
    2,61 g rough at 230 g gives 88/M; Wilcke's summary says 78 and his table 78 (3,0 g rough).
    One of the two misreads the register — unverified; hypothesis: Galster's 88 is a slip
    (his fine weight 2,29 g at 875 ‰ would make the 4 ß lighter than ¼ of the Mark piece).
    Settled by the Registranter.
+   **⚠ 2026-11-05: the register copy reads «lxxviii» (78)** (Rigslovgivning nr. 10, s. 91,
+   l. 16) — Wilcke reproduces the register. But 78 is internally inconsistent: at 78/M the
+   4 ß danske carries 2,623 g fine, i.e. the Mark piece = 14,18 ß; at 88/M it is 2,325 g =
+   exactly ¼ of the Mark piece (16,0 ß per Mark, ß of 3 Hvide). The earlier hypothesis above
+   was wrong: Galster's 2,29 g at 230 g IS ¼ of his own Mark piece. Whether 78 is a slip in
+   the register copy (B 11 is a copy of the late 1520s / early 1530s, A is lost) or the act
+   indeed set an over-weight 4 ß is not decidable from the text; specimen weights of the
+   1524 4 ß danske would settle it.
+   **Third witness, 2026-11-05: Schive 1865 s. 148** (page image read) gives «*Fireskillinger,
+   14lödige, 88 Stykker paa Marken; et Stykke skulde veie 46,454 Æs med 40,727 Æs fiint Sölv*»,
+   «efter Jörgen Kocks Opgave til Esge Bilde og den yngre Anordning af 1524», and follows «den
+   Pag. 8 hos Lüxdorph … vedføiede Tabel» (n. 3) — Lüxdorph 1760 compiled his tables from the
+   Kancelli registers and original accounts (Wilcke 7-3 s. 240). Schive's own figures check
+   against 88: on his 4096-Æs mark the Tomark (11/M) is 372,34 Æs, the Firehvide (96) 42⅔, the
+   Hvid (300) 13,653; 4096/88 = 46,545 Æs × 0,875 = **40,727** fine — his fine weight is exactly
+   the 88/M value (his printed 46,454 transposes digits). So the line splits: **88** Lüxdorph →
+   Schive → Galster 1936; **78** Wilcke 1950 and Andersen 2015 (Fr. I.s registre, B 11). Kock's
+   1530 report (edition note to nr. 10) names only 1 M, 2 M and 44 «otteskilling» per mark —
+   no 4 ß.
+   **Lüxdorph read 2026-11-05** (Skrifter … Kiøbenhavnske Selskab VIII, 1760, «Anmærkninger over
+   adskillige Mynte Anordninger …»; archive.org `skriftersomudide08kiob`, page images checked):
+   fold-out «II. Tavle» (ad pag. 8), 1524 «Malmöe og Riibe»: To-Markstykker 14 lod 11, Markstykker 22,
+   Halv Markstykker 44, **Fireskillinger 14 lod 88** (fine mark 100 4/7), Fire hvide Skilling 5 1/9 lod 96,
+   Hvide 4 lod 300, Smaa-Penninge 2 lod 960; the four 14-lod sorts all give 10 2/35 Gylden per fine mark,
+   which 78 would not. Text s. 10: «*To Marker, Marker, halve Marker, og fire Skilling Stykker i Sølv 14
+   lødig og 11. 22. 44. 88. Stykker paa Marken*». His source for this letter: «*et seenere Brev som findes
+   i Register over alle Lande No. 3. fol. 297*» — the same folio as Andersen's «Fr. I.s registre, RA
+   Danske Kancelli B 11 f. 297r» (hypothesis, not checked: one and the same register volume). So the
+   disagreement is two READINGS of one register entry — Lüxdorph «88» (1760), Wilcke and Andersen
+   «lxxviii» (78). The system favours 88 (every 14-lod sort in exact proportion; Schive's and Galster's
+   figures follow Lüxdorph). Settled only by the manuscript: RA Danske Kancelli B 11 f. 297v (image).
+   **Manuscript read 2026-11-06** (Arkivalieronline, «Frederik 1.s Danske Registre [nr. 2] (1523–1533)»,
+   spread f. 297v / 298r = AO image 61122458; copies in `scripts/cache/rigsarkivet/danske_kancelli_b11/`):
+   «*stycker paa iiii ß danske / aff samme korn, och skrade l xx viij stycker paa hwer wegenn marck*» —
+   one l, two looped x (the same x as in «xxij» and the single x of «xliiii» on the page), then a small
+   «viij»: **78**, read so independently by a subagent and by hand. Erslev & Mollerup 1879 (Kong Frederik
+   den Førstes danske Registranter s. 42, ref. «III, 297») also print 78. ⚠ **Both values kept:** 78 is
+   what the register copy says (Erslev & Mollerup 1879, Wilcke 1950, Andersen 2015, the image); 88 is
+   Luxdorph's figure (1760, followed by Schive 1865 and Galster 1936) and the one that keeps the 4 ß
+   at ¼ of the Mark piece. Whether Luxdorph corrected the register or saw another copy (the lost
+   original «Kongens Brev», A: «tabt») is not known. Open.
 6. **The Ribe letter.** «Et lignende fik Møntmesteren i Riibe» — the Ribe mintmaster is
    not named in Wilcke's summary; Ernst's Ribe study (`ernst-1948-ribe-*`) should give him.
 

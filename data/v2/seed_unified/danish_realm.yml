@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8563 per-source seed entries.
-# Output: 1936 unified entries (one per physical coin).
+# Output: 1931 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -694,6 +694,11 @@ coins:
     weight_range_g:
       - min: 1.87
         max: 2.38
+        approx: false
+        source: danskmoent.dk (Galster 18)
+        url: https://www.danskmoent.dk/bajg18.htm
+      - min: 1.87
+        max: 2.38
         source: Lindahl 1955 (NNÅ 1955), s. 85
     diameter_mm:
       - value: 24.0
@@ -1049,6 +1054,12 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 31
       - value: 2.66
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 53
+    weight_range_g:
+      - min: 1.96
+        max: 2.95
+        approx: false
+        source: danskmoent.dk (Galster 29)
+        url: https://www.danskmoent.dk/fr/hg29.htm
     year_alts:
       - value: 1512-1515
         source: kmk
@@ -1336,6 +1347,13 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 102
       - value: 0.375
         source: galster
+        specimen: dk-galster-c2g-39a
+      - value: 0.375
+        source: galster
+        specimen: dk-galster-c2g-39b
+      - value: 0.375
+        source: galster
+        specimen: dk-galster-c2g-39c
       - value: 0.375
         source: numista
       - value: 0.3971
@@ -2056,8 +2074,8 @@ coins:
       - min: 1.64
         max: 2.2
         approx: false
-        source: danskmoent.dk fr/f1g62.htm
-        url: https://www.danskmoent.dk/gif/f1_g62.gif
+        source: danskmoent.dk (Galster 62)
+        url: https://www.danskmoent.dk/fr/f1g62.htm
     diameter_mm:
       - value: 24.0
         source: danskmoent.dk fr/f1g62.htm
@@ -11408,558 +11426,6 @@ coins:
       - dk-galster-bajg-17
       - lindahl-1955-lund-soesling-christopher
       - metallanalyser-2016-1-g17-lund-sosling
-  - id: c-df58ec36
-    class_id: c-df58ec36
-    label: unified-dk-galster-bajg-20
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1444
-    year_last: 1444
-    year_label: '1444'
-    ruler: Christoffer III
-    mint: Malmø
-    catalog:
-      galster:
-        - '20'
-        - 20A
-        - 20B
-      sieg: '2'
-      galster_volume: galster1972-christoffer3
-      others:
-        - Jesse# 703
-      jesse: '703'
-    metal: silver_billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.0066
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 144
-      - value: 0.2842
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 143
-      - value: 0.2846
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 142
-      - value: 0.294
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 141
-      - value: 0.2963
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 140
-      - value: 0.3072
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 139
-      - value: 0.3148
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 138
-      - value: 0.3182
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 137
-      - value: 0.3188
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 136
-      - value: 0.3192
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 135
-      - value: 0.3289
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 134
-      - value: 0.332
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 133
-      - value: 0.3502
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 132
-      - value: 0.3517
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 131
-      - value: 0.3551
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 130
-      - value: 0.3552
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 129
-      - value: 0.3558
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 128
-      - value: 0.3563
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 127
-      - value: 0.3593
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 126
-      - value: 0.3657
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 125
-      - value: 0.3659
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 124
-      - value: 0.3682
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 123
-      - value: 0.37
-        source: Lindahl 1955 (NNÅ 1955), s. 86
-      - value: 0.3752
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 122
-      - value: 0.3808
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 121
-      - value: 0.3816
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 120
-      - value: 0.3822
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 119
-      - value: 0.3832
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 118
-      - value: 0.3844
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 117
-      - value: 0.3874
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 116
-      - value: 0.3894
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 115
-      - value: 0.3905
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 114
-      - value: 0.3917
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 113
-      - value: 0.393
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 112
-      - value: 0.4
-        source: Lindahl 1955 (NNÅ 1955), s. 86
-      - value: 0.401
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 111
-      - value: 0.4045
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 110
-      - value: 0.4082
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 109
-      - value: 0.4121
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 108
-      - value: 0.4145
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 107
-      - value: 0.4186
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 106
-      - value: 0.4207
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 105
-      - value: 0.4233
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 104
-      - value: 0.4269
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 103
-      - value: 0.4277
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 102
-      - value: 0.4332
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 101
-      - value: 0.4335
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 100
-      - value: 0.4343
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 99
-      - value: 0.4408
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 98
-      - value: 0.4424
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 97
-      - value: 0.4455
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 96
-      - value: 0.4467
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 95
-      - value: 0.4506
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 94
-      - value: 0.4526
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 93
-      - value: 0.4654
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 92
-      - value: 0.4759
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 91
-      - value: 0.4796
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 90
-      - value: 0.4892
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 89
-      - value: 0.4934
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 88
-      - value: 0.501
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 87
-      - value: 0.5013
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 86
-      - value: 0.5146
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 85
-      - value: 0.5215
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 84
-      - value: 0.5222
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 83
-      - value: 0.5232
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 82
-      - value: 0.5517
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 81
-      - value: 0.5565
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 80
-      - value: 0.5609
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 79
-      - value: 0.5981
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 78
-    weight_rough_g:
-      - value: 0.58
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 108
-      - value: 0.59
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 87
-      - value: 0.6
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 82
-      - value: 0.65
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 116
-      - value: 0.65
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 133
-      - value: 0.65
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 97
-      - value: 0.67
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 110
-      - value: 0.7
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 125
-      - value: 0.71
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 130
-      - value: 0.72
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 107
-      - value: 0.72
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 129
-      - value: 0.73
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 120
-      - value: 0.75
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 101
-      - value: 0.75
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 121
-      - value: 0.75
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 126
-      - value: 0.75
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 92
-      - value: 0.75
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 96
-      - value: 0.76
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 132
-      - value: 0.77
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 109
-      - value: 0.77
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 91
-      - value: 0.79
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 106
-      - value: 0.79
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 111
-      - value: 0.79
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 113
-      - value: 0.79
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 80
-      - value: 0.79
-        source: galster
-      - value: 0.8
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 118
-      - value: 0.8
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 127
-      - value: 0.8
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 89
-      - value: 0.81
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 141
-      - value: 0.81
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 142
-      - value: 0.82
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 100
-      - value: 0.82
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 143
-      - value: 0.82
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 78
-      - value: 0.82
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 93
-      - value: 0.83
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 102
-      - value: 0.83
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 105
-      - value: 0.83
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 135
-      - value: 0.83
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 137
-      - value: 0.83
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 88
-      - value: 0.84
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 139
-      - value: 0.84
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 85
-      - value: 0.85
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 134
-      - value: 0.86
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 90
-      - value: 0.86
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 98
-      - value: 0.87
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 131
-      - value: 0.88
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 117
-      - value: 0.88
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 138
-      - value: 0.88
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 79
-      - value: 0.89
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 112
-      - value: 0.89
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 94
-      - value: 0.9
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 119
-      - value: 0.9
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 128
-      - value: 0.9
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 95
-      - value: 0.91
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 104
-      - value: 0.93
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 144
-      - value: 0.94
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 122
-      - value: 0.94
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 123
-      - value: 0.94
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 83
-      - value: 0.95
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 124
-      - value: 0.96
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 114
-      - value: 0.98
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 136
-      - value: 0.98
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 99
-      - value: 0.99
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 81
-      - value: 1.0
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 115
-      - value: 1.0
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 84
-      - value: 1.04
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 140
-      - value: 1.05
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 103
-      - value: 1.06
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 86
-    weight_range_g:
-      - min: 0.48
-        max: 1.06
-        source: Lindahl 1955 (NNÅ 1955), s. 86
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: galster
-          as_printed: u.år
-          value: 1440-1448
-          seed: dk-galster-bajg-20
-        - kind: hedged
-          how: after
-          source: lindahl
-          as_printed: efter 1444
-          value: '1444'
-          seed: lindahl-1955-malmoe-hvid
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Hvid
-          value: billon
-          seed: dk-galster-bajg-20
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/bajg20.htm
-        ref: Galster 20 (bajg) — danskmoent.dk bajg20.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 86
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 78, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 79, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 80, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 81, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 82, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 83, Appendix (XRF); DACIE ring
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 84, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 85, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 86, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 87, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 88, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 89, Appendix (XRF); ?
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 90, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 91, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 92, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 93, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 94, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 95, Appendix (XRF); DACI..
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 96, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 97, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 98, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 99, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 100, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 101, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 102, Appendix (XRF); ?
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 103, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 104, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 105, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 106, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 107, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 108, Appendix (XRF); DACI..
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 109, Appendix (XRF); ?
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 110, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 111, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 112, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 113, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 114, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 115, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 116, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 117, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 118, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 119, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 120, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 121, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 122, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 123, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 124, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 125, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 126, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 127, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 128, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 129, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 130, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 131, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 132, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 133, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 134, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 135, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 136, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 137, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 138, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 139, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 140, Appendix (XRF); DACI
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 141, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 142, Appendix (XRF); DACIE
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 143, Appendix (XRF); DSN
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 144, Appendix (XRF); DSN
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-bajg-20
-      - lindahl-1955-malmoe-hvid
-      - metallanalyser-2016-1-g20-malmo-hvid
   - id: c-8287f6ac
     class_id: c-8287f6ac
     label: unified-dk-galster-c2g-40
@@ -12191,121 +11657,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-c3g-132
-  - id: c-01a90515
-    class_id: c-01a90515
-    label: unified-dk-galster-epomg-10
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Lund
-    catalog:
-      galster: '10'
-      others:
-        - Fritze Lindahl# 34-41
-        - Jesse# 697
-        - Jesse# 698
-      galster_volume: galster1972-erik7
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.0042
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
-      - value: 0.0043
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
-      - value: 0.0045
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
-      - value: 0.0048
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
-      - value: 0.0052
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
-    weight_rough_g:
-      - value: 0.56
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
-      - value: 0.84
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
-      - value: 0.86
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
-      - value: 0.91
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
-      - value: 1.37
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-10
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-lund-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-10
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg10.htm
-        ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-10
-      - lindahl-1955-lund-kobbersterling
-      - metallanalyser-2016-1-g10-lund-kopparsterling
   - id: c-29707f67
     class_id: c-29707f67
     label: unified-dk-galster-epomg-12
@@ -12452,74 +11803,6 @@ coins:
       - metallanalyser-2016-1-g12-lund-lebard
       - metallanalyser-2016-1-g8-12-nastved-lund-lebard
       - metallanalyser-2016-1-g8-nastved-lebard
-  - id: c-6f18dcfc
-    class_id: c-6f18dcfc
-    label: unified-dk-galster-epomg-15
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Randers
-    catalog:
-      galster: '15'
-      others:
-        - Fritze Lindahl# 54-58
-        - Jesse# 697
-        - Jesse# 698
-      galster_volume: galster1972-erik7
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-15
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-randers-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-15
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg15.htm
-        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-15
-      - lindahl-1955-randers-kobbersterling
   - id: c-e1012e0e
     class_id: c-e1012e0e
     label: unified-dk-galster-epomg-3
@@ -12777,11 +12060,16 @@ coins:
     metal: silver
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: true
     weight_range_g:
+      - min: 6.75
+        max: 7.19
+        approx: false
+        source: danskmoent.dk (Galster 52)
+        url: https://www.danskmoent.dk/fr/f1g52.htm
       - min: 7.0
         max:
         approx: true
@@ -12797,12 +12085,6 @@ coins:
           source: galster
           as_printed: 1/4 Sølvgylden
           value: silver
-          seed: dk-galster-f1g-52
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '7.0'
           seed: dk-galster-f1g-52
     sources:
       - type: literature
@@ -12941,8 +12223,8 @@ coins:
       - min: 1.83
         max: 2.34
         approx: false
-        source: danskmoent.dk 14pennin.htm
-        url: https://www.danskmoent.dk/gif/f1_g56.gif
+        source: danskmoent.dk (Galster 56)
+        url: https://www.danskmoent.dk/fr/f1g56.htm
     diameter_mm:
       - value: 23.0
         source: danskmoent.dk 14pennin.htm
@@ -12985,18 +12267,21 @@ coins:
       others:
         - JSJ# 210
     metal: billon
-    metal_verified: false
-    fineness_verified: false
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: true
+    fineness:
+      - value: 0.14
+        source: galster
     weight_range_g:
       - min: 1.5
         max: 2.37
         approx: false
-        source: danskmoent.dk fr/f1g57.htm
-        url: https://www.danskmoent.dk/gif/f1_g57.gif
+        source: danskmoent.dk (Galster 57)
+        url: https://www.danskmoent.dk/fr/f1g57.htm
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g57.htm
@@ -13244,8 +12529,8 @@ coins:
       - min: 1.83
         max: 2.28
         approx: false
-        source: danskmoent.dk fr/f1g64.htm
-        url: https://www.danskmoent.dk/gif/f1_g64.gif
+        source: danskmoent.dk (Galster 64)
+        url: https://www.danskmoent.dk/fr/f1g64.htm
     diameter_mm:
       - value: 18.0
         source: danskmoent.dk fr/f1g64.htm
@@ -13287,11 +12572,16 @@ coins:
     metal: billon
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: true
     weight_range_g:
+      - min: 1.57
+        max: 1.7
+        approx: false
+        source: danskmoent.dk (Galster 65)
+        url: https://www.danskmoent.dk/fr/f1g65.htm
       - min: 1.65
         max:
         approx: true
@@ -13307,12 +12597,6 @@ coins:
           source: galster
           as_printed: 14 Penning
           value: billon
-          seed: dk-galster-f1g-65
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '1.65'
           seed: dk-galster-f1g-65
     sources:
       - type: literature
@@ -14734,6 +14018,12 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 44
       - value: 3.13
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 49
+    weight_range_g:
+      - min: 2.34
+        max: 2.59
+        approx: false
+        source: danskmoent.dk (Galster 35)
+        url: https://www.danskmoent.dk/fr/hg35.htm
     uncertainty:
       year:
         - kind: inferred
@@ -16038,11 +15328,17 @@ coins:
     fineness:
       - value: 0.25
         source: hede
+        specimen: dk-hede-c3h6a
+      - value: 0.25
+        source: hede
+        specimen: dk-hede-c3h6b
     weight_rough_g:
       - value: 1.982
         source: hede
+        specimen: dk-hede-c3h6b
       - value: 2.206
         source: hede
+        specimen: dk-hede-c3h6a
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h6.htm
@@ -16368,9 +15664,17 @@ coins:
     fineness:
       - value: 0.437
         source: hede
+        specimen: dk-hede-c4h100a
+      - value: 0.437
+        source: hede
+        specimen: dk-hede-c4h100b
     weight_rough_g:
       - value: 2.249
         source: hede
+        specimen: dk-hede-c4h100a
+      - value: 2.249
+        source: hede
+        specimen: dk-hede-c4h100b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h100.htm
@@ -16538,6 +15842,22 @@ coins:
     fineness:
       - value: 0.093
         source: hede
+        specimen: dk-hede-c4h102a
+      - value: 0.093
+        source: hede
+        specimen: dk-hede-c4h102b
+      - value: 0.093
+        source: hede
+        specimen: dk-hede-c4h102c
+      - value: 0.093
+        source: hede
+        specimen: dk-hede-c4h102d
+      - value: 0.093
+        source: hede
+        specimen: dk-hede-c4h102e
+      - value: 0.093
+        source: hede
+        specimen: dk-hede-c4h102f
       - value: 0.093
         source: ngc
       - value: 0.093
@@ -16545,6 +15865,22 @@ coins:
     weight_rough_g:
       - value: 0.564
         source: hede
+        specimen: dk-hede-c4h102a
+      - value: 0.564
+        source: hede
+        specimen: dk-hede-c4h102b
+      - value: 0.564
+        source: hede
+        specimen: dk-hede-c4h102c
+      - value: 0.564
+        source: hede
+        specimen: dk-hede-c4h102d
+      - value: 0.564
+        source: hede
+        specimen: dk-hede-c4h102e
+      - value: 0.564
+        source: hede
+        specimen: dk-hede-c4h102f
       - value: 0.564
         source: ngc
       - value: 0.564
@@ -16694,21 +16030,46 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h105a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h105b
       - value: 0.859
         source: ngc
+        specimen: ngc-1049972
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1054860
       - value: 0.859
         source: numismaster
+        specimen: denmark-numismaster-117945
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65345
       - value: 0.859
         source: numista
+        specimen: dk-numista-109280
+      - value: 0.859
+        source: numista
+        specimen: dk-numista-109282
       - value: 0.86
         source: ucoin
+        specimen: dk-tid-163406
+      - value: 0.86
+        source: ucoin
+        specimen: dk-tid-163407
     weight_rough_g:
       - value: 36.99
         source: kmk
       - value: 37.36
         source: numista
+        specimen: dk-numista-109280
       - value: 37.36
         source: ucoin
+        specimen: dk-tid-163406
+      - value: 37.36
+        source: ucoin
+        specimen: dk-tid-163407
       - value: 37.4
         source: bruun
       - value: 37.5
@@ -16717,21 +16078,40 @@ coins:
         source: bruun
       - value: 37.816
         source: numista
+        specimen: dk-numista-109282
       - value: 37.819
         source: hede
+        specimen: dk-hede-c4h105a
+      - value: 37.819
+        source: hede
+        specimen: dk-hede-c4h105b
       - value: 37.819
         source: ngc
+        specimen: ngc-1049972
+      - value: 37.819
+        source: ngc
+        specimen: ngc-1054860
       - value: 37.819
         source: numismaster
+        specimen: denmark-numismaster-117945
+      - value: 37.819
+        source: numismaster
+        specimen: denmark-numismaster-65345
       - value: 37.85
         source: bruun
     diameter_mm:
       - value: 45.6
         source: numista
+        specimen: dk-numista-109282
       - value: 46.0
         source: numista
+        specimen: dk-numista-109280
       - value: 46.0
         source: ucoin
+        specimen: dk-tid-163406
+      - value: 46.0
+        source: ucoin
+        specimen: dk-tid-163407
     sources:
       - type: literature
         url: https://numismaster.com/MC_117945
@@ -16869,14 +16249,46 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h106a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h106b
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h106c
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h106d
       - value: 0.859
         source: ngc
+        specimen: ngc-1049865
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1054252
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1069031
       - value: 0.859
         source: numismaster
+        specimen: denmark-numismaster-117943
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65229
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65230
       - value: 0.859
         source: numista
+        specimen: dk-numista-70513
+      - value: 0.859
+        source: numista
+        specimen: dk-numista-80227
       - value: 0.86
         source: ucoin
+        specimen: dk-tid-163060
+      - value: 0.86
+        source: ucoin
+        specimen: dk-tid-163061
     weight_rough_g:
       - value: 17.14
         source: kmk
@@ -16974,12 +16386,22 @@ coins:
         source: kmk
       - value: 18.766
         source: ngc
+        specimen: ngc-1054252
+      - value: 18.766
+        source: ngc
+        specimen: ngc-1069031
       - value: 18.766
         source: numismaster
+        specimen: denmark-numismaster-117943
+      - value: 18.766
+        source: numismaster
+        specimen: denmark-numismaster-65229
       - value: 18.766
         source: numista
+        specimen: dk-numista-80227
       - value: 18.77
         source: ucoin
+        specimen: dk-tid-163060
       - value: 18.78
         source: kmk
       - value: 18.79
@@ -16998,16 +16420,30 @@ coins:
         source: kmk
       - value: 18.909
         source: hede
+        specimen: dk-hede-c4h106a
+      - value: 18.909
+        source: hede
+        specimen: dk-hede-c4h106b
+      - value: 18.909
+        source: hede
+        specimen: dk-hede-c4h106c
+      - value: 18.909
+        source: hede
+        specimen: dk-hede-c4h106d
       - value: 18.909
         source: ngc
+        specimen: ngc-1049865
       - value: 18.909
         source: numismaster
+        specimen: denmark-numismaster-65230
       - value: 18.91
         source: kmk
       - value: 18.91
         source: numista
+        specimen: dk-numista-70513
       - value: 18.91
         source: ucoin
+        specimen: dk-tid-163061
       - value: 18.93
         source: kmk
       - value: 18.95
@@ -17019,10 +16455,16 @@ coins:
     diameter_mm:
       - value: 39.55
         source: numista
+        specimen: dk-numista-70513
       - value: 40.0
         source: numista
+        specimen: dk-numista-80227
       - value: 40.0
         source: ucoin
+        specimen: dk-tid-163060
+      - value: 40.0
+        source: ucoin
+        specimen: dk-tid-163061
     sources:
       - type: literature
         url: https://numismaster.com/MC_117943
@@ -17733,14 +17175,37 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h107a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h107b
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h107c
       - value: 0.859
         source: ngc
+        specimen: ngc-1050025
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1069029
       - value: 0.859
         source: numismaster
+        specimen: denmark-numismaster-65212
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65214
       - value: 0.859
         source: numista
+        specimen: dk-numista-109271
+      - value: 0.859
+        source: numista
+        specimen: dk-numista-109273
       - value: 0.86
         source: ucoin
+        specimen: dk-tid-163048
+      - value: 0.86
+        source: ucoin
+        specimen: dk-tid-163056
     weight_rough_g:
       - value: 8.67
         source: kmk
@@ -17786,14 +17251,25 @@ coins:
         source: kmk
       - value: 9.3
         source: ucoin
+        specimen: dk-tid-163048
       - value: 9.301
         source: hede
+        specimen: dk-hede-c4h107a
+      - value: 9.301
+        source: hede
+        specimen: dk-hede-c4h107b
+      - value: 9.301
+        source: hede
+        specimen: dk-hede-c4h107c
       - value: 9.301
         source: ngc
+        specimen: ngc-1050025
       - value: 9.301
         source: numismaster
+        specimen: denmark-numismaster-65212
       - value: 9.301
         source: numista
+        specimen: dk-numista-109271
       - value: 9.33
         source: kmk
       - value: 9.34
@@ -17804,23 +17280,31 @@ coins:
         source: bruun
       - value: 9.455
         source: ngc
+        specimen: ngc-1069029
       - value: 9.455
         source: numismaster
+        specimen: denmark-numismaster-65214
       - value: 9.455
         source: numista
+        specimen: dk-numista-109273
       - value: 9.46
         source: ucoin
+        specimen: dk-tid-163056
     diameter_mm:
       - value: 32.0
         source: ikmk
       - value: 32.0
         source: numista
+        specimen: dk-numista-109271
       - value: 32.0
         source: ucoin
+        specimen: dk-tid-163048
       - value: 33.0
         source: ucoin
+        specimen: dk-tid-163056
       - value: 33.21
         source: numista
+        specimen: dk-numista-109273
     sources:
       - type: literature
         url: https://numismaster.com/MC_65212
@@ -18352,6 +17836,10 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h110a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h110b
       - value: 0.859
         source: ngc
       - value: 0.859
@@ -18365,6 +17853,10 @@ coins:
         source: ucoin
       - value: 3.15
         source: hede
+        specimen: dk-hede-c4h110a
+      - value: 3.15
+        source: hede
+        specimen: dk-hede-c4h110b
     diameter_mm:
       - value: 25.0
         source: ucoin
@@ -18446,6 +17938,16 @@ coins:
         source: ucoin
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h111a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h111b
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h111c
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h111d
       - value: 0.859
         source: numista
     weight_rough_g:
@@ -18461,6 +17963,16 @@ coins:
         source: numista
       - value: 1.575
         source: hede
+        specimen: dk-hede-c4h111a
+      - value: 1.575
+        source: hede
+        specimen: dk-hede-c4h111b
+      - value: 1.575
+        source: hede
+        specimen: dk-hede-c4h111c
+      - value: 1.575
+        source: hede
+        specimen: dk-hede-c4h111d
     diameter_mm:
       - value: 19.85
         source: numista
@@ -18534,6 +18046,10 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h112a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h112b
       - value: 0.859
         source: ngc
       - value: 0.859
@@ -18545,6 +18061,10 @@ coins:
     weight_rough_g:
       - value: 0.787
         source: hede
+        specimen: dk-hede-c4h112a
+      - value: 0.787
+        source: hede
+        specimen: dk-hede-c4h112b
       - value: 0.787
         source: ngc
       - value: 0.787
@@ -18680,6 +18200,19 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h114a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h114b
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h114c
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h114d
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h114e
       - value: 0.859
         source: ngc
       - value: 0.859
@@ -18689,6 +18222,19 @@ coins:
         source: kmk
       - value: 2.101
         source: hede
+        specimen: dk-hede-c4h114a
+      - value: 2.101
+        source: hede
+        specimen: dk-hede-c4h114b
+      - value: 2.101
+        source: hede
+        specimen: dk-hede-c4h114c
+      - value: 2.101
+        source: hede
+        specimen: dk-hede-c4h114d
+      - value: 2.101
+        source: hede
+        specimen: dk-hede-c4h114e
     sources:
       - type: literature
         url: https://numismaster.com/MC_65122
@@ -18776,6 +18322,16 @@ coins:
         source: numismaster
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h115a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h115b
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h115c
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h115d
       - value: 0.859
         source: numista
       - value: 0.86
@@ -18785,6 +18341,16 @@ coins:
         source: ucoin
       - value: 1.051
         source: hede
+        specimen: dk-hede-c4h115a
+      - value: 1.051
+        source: hede
+        specimen: dk-hede-c4h115b
+      - value: 1.051
+        source: hede
+        specimen: dk-hede-c4h115c
+      - value: 1.051
+        source: hede
+        specimen: dk-hede-c4h115d
       - value: 1.051
         source: numista
       - value: 1.462
@@ -18868,6 +18434,10 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h116a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h116b
       - value: 0.859
         source: ngc
       - value: 0.859
@@ -18879,6 +18449,10 @@ coins:
     weight_rough_g:
       - value: 0.525
         source: hede
+        specimen: dk-hede-c4h116a
+      - value: 0.525
+        source: hede
+        specimen: dk-hede-c4h116b
       - value: 0.525
         source: ngc
       - value: 0.525
@@ -18955,17 +18529,41 @@ coins:
     fineness:
       - value: 0.859
         source: hede
+        specimen: dk-hede-c4h117a
+      - value: 0.859
+        source: hede
+        specimen: dk-hede-c4h117b
       - value: 0.859
         source: ngc
+        specimen: ngc-1050283
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1069012
       - value: 0.859
         source: numismaster
+        specimen: denmark-numismaster-65041
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65043
     weight_rough_g:
       - value: 0.525
         source: hede
+        specimen: dk-hede-c4h117a
+      - value: 0.525
+        source: hede
+        specimen: dk-hede-c4h117b
       - value: 0.525
         source: ngc
+        specimen: ngc-1050283
+      - value: 0.525
+        source: ngc
+        specimen: ngc-1069012
       - value: 0.525
         source: numismaster
+        specimen: denmark-numismaster-65041
+      - value: 0.525
+        source: numismaster
+        specimen: denmark-numismaster-65043
     sources:
       - type: literature
         url: https://numismaster.com/MC_65041
@@ -19031,10 +18629,22 @@ coins:
     fineness:
       - value: 0.312
         source: hede
+        specimen: dk-hede-c4h118a
+      - value: 0.312
+        source: hede
+        specimen: dk-hede-c4h118b
       - value: 0.312
         source: ngc
+        specimen: ngc-1049881
+      - value: 0.312
+        source: ngc
+        specimen: ngc-1049981
       - value: 0.312
         source: numismaster
+        specimen: denmark-numismaster-65012
+      - value: 0.312
+        source: numismaster
+        specimen: denmark-numismaster-65013
       - value: 0.312
         source: ucoin
     weight_rough_g:
@@ -19042,12 +18652,24 @@ coins:
         source: numista
       - value: 0.523
         source: hede
+        specimen: dk-hede-c4h118a
+      - value: 0.523
+        source: hede
+        specimen: dk-hede-c4h118b
       - value: 0.53
         source: ucoin
       - value: 0.532
         source: ngc
+        specimen: ngc-1049881
+      - value: 0.532
+        source: ngc
+        specimen: ngc-1049981
       - value: 0.532
         source: numismaster
+        specimen: denmark-numismaster-65012
+      - value: 0.532
+        source: numismaster
+        specimen: denmark-numismaster-65013
     diameter_mm:
       - value: 13.5
         source: ucoin
@@ -19152,6 +18774,16 @@ coins:
     fineness:
       - value: 0.312
         source: hede
+        specimen: dk-hede-c4h119a
+      - value: 0.312
+        source: hede
+        specimen: dk-hede-c4h119b
+      - value: 0.312
+        source: hede
+        specimen: dk-hede-c4h119c
+      - value: 0.312
+        source: hede
+        specimen: dk-hede-c4h119d
       - value: 0.312
         source: ngc
       - value: 0.312
@@ -19167,6 +18799,16 @@ coins:
         source: kmk
       - value: 0.523
         source: hede
+        specimen: dk-hede-c4h119a
+      - value: 0.523
+        source: hede
+        specimen: dk-hede-c4h119b
+      - value: 0.523
+        source: hede
+        specimen: dk-hede-c4h119c
+      - value: 0.523
+        source: hede
+        specimen: dk-hede-c4h119d
       - value: 0.53
         source: ucoin
       - value: 0.532
@@ -22602,6 +22244,10 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+        specimen: dk-hede-c4h134a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-c4h134b
       - value: 0.281
         source: ngc
       - value: 0.281
@@ -22653,6 +22299,10 @@ coins:
         source: kmk
       - value: 1.299
         source: hede
+        specimen: dk-hede-c4h134a
+      - value: 1.299
+        source: hede
+        specimen: dk-hede-c4h134b
       - value: 1.299
         source: ngc
       - value: 1.299
@@ -25429,6 +25079,10 @@ coins:
     fineness:
       - value: 0.781
         source: hede
+        specimen: dk-hede-c4h139a
+      - value: 0.781
+        source: hede
+        specimen: dk-hede-c4h139b
       - value: 0.781
         source: numista
       - value: 0.781
@@ -25474,6 +25128,10 @@ coins:
         source: ucoin
       - value: 1.771
         source: hede
+        specimen: dk-hede-c4h139a
+      - value: 1.771
+        source: hede
+        specimen: dk-hede-c4h139b
       - value: 1.771
         source: numista
       - value: 1.78
@@ -26801,6 +26459,10 @@ coins:
     fineness:
       - value: 0.781
         source: hede
+        specimen: dk-hede-c4h140a
+      - value: 0.781
+        source: hede
+        specimen: dk-hede-c4h140b
       - value: 0.781
         source: numista
       - value: 0.781
@@ -26830,6 +26492,10 @@ coins:
         source: ucoin
       - value: 1.771
         source: hede
+        specimen: dk-hede-c4h140a
+      - value: 1.771
+        source: hede
+        specimen: dk-hede-c4h140b
       - value: 1.771
         source: numista
     diameter_mm:
@@ -28104,6 +27770,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-c4h144a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c4h144b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -28115,6 +27785,10 @@ coins:
         source: ucoin
       - value: 0.292
         source: hede
+        specimen: dk-hede-c4h144a
+      - value: 0.292
+        source: hede
+        specimen: dk-hede-c4h144b
       - value: 0.292
         source: ngc
       - value: 0.292
@@ -28668,8 +28342,16 @@ coins:
         source: hede
       - value: 0.25
         source: ngc
+        specimen: ngc-1050581
+      - value: 0.25
+        source: ngc
+        specimen: ngc-1060727
       - value: 0.25
         source: numismaster
+        specimen: denmark-numismaster-165372
+      - value: 0.25
+        source: numismaster
+        specimen: denmark-numismaster-65097
       - value: 0.25
         source: numista
       - value: 0.25
@@ -28681,8 +28363,16 @@ coins:
         source: hede
       - value: 1.949
         source: ngc
+        specimen: ngc-1050581
+      - value: 1.949
+        source: ngc
+        specimen: ngc-1060727
       - value: 1.949
         source: numismaster
+        specimen: denmark-numismaster-165372
+      - value: 1.949
+        source: numismaster
+        specimen: denmark-numismaster-65097
       - value: 1.95
         source: numista
       - value: 1.95
@@ -33971,6 +33661,10 @@ coins:
     fineness:
       - value: 0.833
         source: hede
+        specimen: dk-hede-c4h23a
+      - value: 0.833
+        source: hede
+        specimen: dk-hede-c4h23b
       - value: 0.833
         source: ngc
       - value: 0.833
@@ -33998,6 +33692,10 @@ coins:
         source: ucoin
       - value: 8.994
         source: hede
+        specimen: dk-hede-c4h23a
+      - value: 8.994
+        source: hede
+        specimen: dk-hede-c4h23b
       - value: 8.994
         source: ngc
       - value: 8.994
@@ -34119,10 +33817,22 @@ coins:
     fineness:
       - value: 0.833
         source: hede
+        specimen: dk-hede-c4h24a
+      - value: 0.833
+        source: hede
+        specimen: dk-hede-c4h24b
       - value: 0.833
         source: ngc
+        specimen: ngc-1050249
+      - value: 0.833
+        source: ngc
+        specimen: ngc-1050842
       - value: 0.833
         source: numismaster
+        specimen: denmark-numismaster-65608
+      - value: 0.833
+        source: numismaster
+        specimen: denmark-numismaster-65609
     weight_rough_g:
       - value: 4.38
         source: bruun
@@ -34130,15 +33840,29 @@ coins:
         source: bruun
       - value: 4.497
         source: hede
+        specimen: dk-hede-c4h24a
+      - value: 4.497
+        source: hede
+        specimen: dk-hede-c4h24b
       - value: 4.497
         source: ngc
+        specimen: ngc-1050249
+      - value: 4.497
+        source: ngc
+        specimen: ngc-1050842
       - value: 4.497
         source: numismaster
+        specimen: denmark-numismaster-65608
+      - value: 4.497
+        source: numismaster
+        specimen: denmark-numismaster-65609
     diameter_mm:
       - value: 24.0
         source: ngc
+        specimen: ngc-1050842
       - value: 28.0
         source: ngc
+        specimen: ngc-1050249
     sources:
       - type: literature
         url: https://numismaster.com/MC_65608
@@ -34242,6 +33966,13 @@ coins:
     fineness:
       - value: 0.917
         source: hede
+        specimen: dk-hede-c4h25a
+      - value: 0.917
+        source: hede
+        specimen: dk-hede-c4h25b
+      - value: 0.917
+        source: hede
+        specimen: dk-hede-c4h25c
       - value: 0.917
         source: ngc
       - value: 0.917
@@ -34255,6 +33986,13 @@ coins:
         source: bruun
       - value: 5.996
         source: hede
+        specimen: dk-hede-c4h25a
+      - value: 5.996
+        source: hede
+        specimen: dk-hede-c4h25b
+      - value: 5.996
+        source: hede
+        specimen: dk-hede-c4h25c
       - value: 5.996
         source: ngc
       - value: 5.996
@@ -34377,6 +34115,10 @@ coins:
     fineness:
       - value: 0.917
         source: hede
+        specimen: dk-hede-c4h25d
+      - value: 0.917
+        source: hede
+        specimen: dk-hede-c4h25e
       - value: 0.917
         source: ngc
       - value: 0.917
@@ -34396,6 +34138,10 @@ coins:
         source: bruun
       - value: 5.996
         source: hede
+        specimen: dk-hede-c4h25d
+      - value: 5.996
+        source: hede
+        specimen: dk-hede-c4h25e
       - value: 5.996
         source: ngc
       - value: 5.996
@@ -34476,9 +34222,17 @@ coins:
     fineness:
       - value: 0.917
         source: hede
+        specimen: dk-hede-c4h26a
+      - value: 0.917
+        source: hede
+        specimen: dk-hede-c4h26b
     weight_rough_g:
       - value: 2.973
         source: hede
+        specimen: dk-hede-c4h26a
+      - value: 2.973
+        source: hede
+        specimen: dk-hede-c4h26b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h26.htm
@@ -36842,17 +36596,20 @@ coins:
         source: numismaster
       - value: 0.875
         source: numista
+        specimen: dk-numista-142901
       - value: 0.875
         source: ucoin
       - value: 0.888
         source: hede
       - value: 0.888
         source: numista
+        specimen: dk-numista-199010
     weight_rough_g:
       - value: 28.07
         source: bruun
       - value: 28.37
         source: numista
+        specimen: dk-numista-142901
       - value: 28.53
         source: bruun
       - value: 28.6
@@ -36871,6 +36628,7 @@ coins:
         source: bruun
       - value: 29.15
         source: numista
+        specimen: dk-numista-199010
       - value: 29.23
         source: ucoin
       - value: 29.232
@@ -36884,8 +36642,10 @@ coins:
         source: ucoin
       - value: 40.63
         source: numista
+        specimen: dk-numista-142901
       - value: 40.86
         source: numista
+        specimen: dk-numista-199010
     sources:
       - type: literature
         url: https://numismaster.com/MC_65403
@@ -37093,12 +36853,28 @@ coins:
         source: hede
       - value: 0.875
         source: ngc
+        specimen: ngc-1050161
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050693
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65405
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65412
       - value: 0.875
         source: numista
+        specimen: dk-numista-110876
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-82678
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-97357
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-97358
     weight_rough_g:
       - value: 27.97
         source: bruun
@@ -37114,23 +36890,43 @@ coins:
         source: bruun
       - value: 29.23
         source: ucoin
+        specimen: dk-tid-97357
+      - value: 29.23
+        source: ucoin
+        specimen: dk-tid-97358
       - value: 29.232
         source: hede
       - value: 29.232
         source: ngc
+        specimen: ngc-1050161
+      - value: 29.232
+        source: ngc
+        specimen: ngc-1050693
       - value: 29.232
         source: numismaster
+        specimen: denmark-numismaster-65405
+      - value: 29.232
+        source: numismaster
+        specimen: denmark-numismaster-65412
       - value: 29.232
         source: numista
+        specimen: dk-numista-110876
+      - value: 29.232
+        source: numista
+        specimen: dk-numista-82678
     diameter_mm:
       - value: 42.0
         source: ucoin
+        specimen: dk-tid-97357
       - value: 42.9
         source: numista
+        specimen: dk-numista-110876
       - value: 43.5
         source: ucoin
+        specimen: dk-tid-97358
       - value: 43.85
         source: numista
+        specimen: dk-numista-82678
     sources:
       - type: literature
         url: https://numismaster.com/MC_65405
@@ -37278,6 +37074,13 @@ coins:
         source: ucoin
       - value: 0.881
         source: hede
+        specimen: dk-hede-c4h56a
+      - value: 0.881
+        source: hede
+        specimen: dk-hede-c4h56b
+      - value: 0.881
+        source: hede
+        specimen: dk-hede-c4h56c
       - value: 0.881
         source: numista
       - value: 0.888
@@ -37301,6 +37104,13 @@ coins:
         source: ucoin
       - value: 58.464
         source: hede
+        specimen: dk-hede-c4h56a
+      - value: 58.464
+        source: hede
+        specimen: dk-hede-c4h56b
+      - value: 58.464
+        source: hede
+        specimen: dk-hede-c4h56c
       - value: 58.464
         source: ngc
       - value: 58.464
@@ -37646,8 +37456,19 @@ coins:
         source: numista
       - value: 0.88
         source: ucoin
+        specimen: dk-tid-170135
+      - value: 0.88
+        source: ucoin
+        specimen: dk-tid-97347
       - value: 0.881
         source: hede
+        specimen: dk-hede-c4h59a
+      - value: 0.881
+        source: hede
+        specimen: dk-hede-c4h59b
+      - value: 0.881
+        source: hede
+        specimen: dk-hede-c4h59c
       - value: 0.881
         source: ngc
       - value: 0.881
@@ -37663,6 +37484,13 @@ coins:
         source: bruun
       - value: 14.616
         source: hede
+        specimen: dk-hede-c4h59a
+      - value: 14.616
+        source: hede
+        specimen: dk-hede-c4h59b
+      - value: 14.616
+        source: hede
+        specimen: dk-hede-c4h59c
       - value: 14.616
         source: ngc
       - value: 14.616
@@ -37671,11 +37499,19 @@ coins:
         source: numista
       - value: 14.62
         source: ucoin
+        specimen: dk-tid-170135
+      - value: 14.62
+        source: ucoin
+        specimen: dk-tid-97347
     diameter_mm:
       - value: 35.37
         source: numista
       - value: 35.37
         source: ucoin
+        specimen: dk-tid-170135
+      - value: 35.37
+        source: ucoin
+        specimen: dk-tid-97347
     sources:
       - type: literature
         url: https://numismaster.com/MC_65388
@@ -38711,20 +38547,28 @@ coins:
     fineness:
       - value: 0.593
         source: ngc
+        specimen: ngc-1050069
       - value: 0.593
         source: numismaster
+        specimen: denmark-numismaster-65151
       - value: 0.593
         source: numista
+        specimen: dk-numista-55303
       - value: 0.593
         source: ucoin
+        specimen: dk-tid-163043
       - value: 0.888
         source: ngc
+        specimen: ngc-1050090
       - value: 0.888
         source: numismaster
+        specimen: denmark-numismaster-65152
       - value: 0.888
         source: numista
+        specimen: dk-numista-55302
       - value: 0.888
         source: ucoin
+        specimen: dk-tid-163044
     weight_rough_g:
       - value: 5.3
         source: kmk
@@ -38734,12 +38578,16 @@ coins:
         source: kmk
       - value: 6.15
         source: ucoin
+        specimen: dk-tid-163044
       - value: 6.154
         source: ngc
+        specimen: ngc-1050090
       - value: 6.154
         source: numismaster
+        specimen: denmark-numismaster-65152
       - value: 6.154
         source: numista
+        specimen: dk-numista-55302
       - value: 6.39
         source: kmk
       - value: 8.3
@@ -38756,23 +38604,31 @@ coins:
         source: kmk
       - value: 9.41
         source: ucoin
+        specimen: dk-tid-163043
       - value: 9.411
         source: ngc
+        specimen: ngc-1050069
       - value: 9.411
         source: numismaster
+        specimen: denmark-numismaster-65151
       - value: 9.411
         source: numista
+        specimen: dk-numista-55303
       - value: 9.53
         source: kmk
     diameter_mm:
       - value: 29.0
         source: numista
+        specimen: dk-numista-55302
       - value: 29.0
         source: ucoin
+        specimen: dk-tid-163044
       - value: 30.0
         source: ucoin
+        specimen: dk-tid-163043
       - value: 30.2
         source: numista
+        specimen: dk-numista-55303
     sources:
       - type: literature
         url: https://numismaster.com/MC_65151
@@ -39001,9 +38857,17 @@ coins:
     fineness:
       - value: 0.296
         source: hede
+        specimen: dk-hede-c4h79a
+      - value: 0.296
+        source: hede
+        specimen: dk-hede-c4h79b
     weight_rough_g:
       - value: 2.088
         source: hede
+        specimen: dk-hede-c4h79a
+      - value: 2.088
+        source: hede
+        specimen: dk-hede-c4h79b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h79.htm
@@ -39057,9 +38921,17 @@ coins:
     fineness:
       - value: 0.296
         source: hede
+        specimen: dk-hede-c4h79c
+      - value: 0.296
+        source: hede
+        specimen: dk-hede-c4h79d
     weight_rough_g:
       - value: 2.088
         source: hede
+        specimen: dk-hede-c4h79c
+      - value: 2.088
+        source: hede
+        specimen: dk-hede-c4h79d
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h79.htm
@@ -39146,6 +39018,22 @@ coins:
         source: ucoin
       - value: 0.171
         source: hede
+        specimen: dk-hede-c4h80a
+      - value: 0.171
+        source: hede
+        specimen: dk-hede-c4h80b
+      - value: 0.171
+        source: hede
+        specimen: dk-hede-c4h80c
+      - value: 0.171
+        source: hede
+        specimen: dk-hede-c4h80d
+      - value: 0.171
+        source: hede
+        specimen: dk-hede-c4h80e
+      - value: 0.171
+        source: hede
+        specimen: dk-hede-c4h80f
       - value: 0.171
         source: ngc
       - value: 0.171
@@ -39155,6 +39043,22 @@ coins:
         source: ucoin
       - value: 1.602
         source: hede
+        specimen: dk-hede-c4h80a
+      - value: 1.602
+        source: hede
+        specimen: dk-hede-c4h80b
+      - value: 1.602
+        source: hede
+        specimen: dk-hede-c4h80c
+      - value: 1.602
+        source: hede
+        specimen: dk-hede-c4h80d
+      - value: 1.602
+        source: hede
+        specimen: dk-hede-c4h80e
+      - value: 1.602
+        source: hede
+        specimen: dk-hede-c4h80f
       - value: 1.602
         source: ngc
       - value: 1.602
@@ -40285,12 +40189,28 @@ coins:
     fineness:
       - value: 0.888
         source: hede
+        specimen: dk-hede-c4h92a
+      - value: 0.888
+        source: hede
+        specimen: dk-hede-c4h92b
       - value: 0.888
         source: ngc
+        specimen: ngc-1050585
+      - value: 0.888
+        source: ngc
+        specimen: ngc-1059950
       - value: 0.888
         source: numismaster
+        specimen: denmark-numismaster-65153
+      - value: 0.888
+        source: numismaster
+        specimen: denmark-numismaster-65155
       - value: 0.888
         source: numista
+        specimen: dk-numista-80763
+      - value: 0.888
+        source: numista
+        specimen: dk-numista-80765
       - value: 0.888
         source: ucoin
     weight_rough_g:
@@ -40300,14 +40220,28 @@ coins:
         source: ucoin
       - value: 6.154
         source: hede
+        specimen: dk-hede-c4h92a
+      - value: 6.154
+        source: hede
+        specimen: dk-hede-c4h92b
       - value: 6.154
         source: ngc
+        specimen: ngc-1050585
+      - value: 6.154
+        source: ngc
+        specimen: ngc-1059950
       - value: 6.154
         source: numismaster
+        specimen: denmark-numismaster-65153
+      - value: 6.154
+        source: numismaster
+        specimen: denmark-numismaster-65155
       - value: 6.154
         source: numista
+        specimen: dk-numista-80763
       - value: 6.18
         source: numista
+        specimen: dk-numista-80765
       - value: 6.22
         source: kmk
       - value: 6.51
@@ -40317,8 +40251,10 @@ coins:
         source: ucoin
       - value: 29.22
         source: numista
+        specimen: dk-numista-80763
       - value: 30.0
         source: numista
+        specimen: dk-numista-80765
     sources:
       - type: literature
         url: https://numismaster.com/MC_65153
@@ -40415,12 +40351,28 @@ coins:
         source: hede
       - value: 0.888
         source: ngc
+        specimen: ngc-1049936
+      - value: 0.888
+        source: ngc
+        specimen: ngc-1062437
       - value: 0.888
         source: numismaster
+        specimen: denmark-numismaster-204166
+      - value: 0.888
+        source: numismaster
+        specimen: denmark-numismaster-65115
       - value: 0.888
         source: numista
+        specimen: dk-numista-15669
+      - value: 0.888
+        source: numista
+        specimen: dk-numista-71974
       - value: 0.888
         source: ucoin
+        specimen: dk-tid-163031
+      - value: 0.888
+        source: ucoin
+        specimen: dk-tid-163034
     weight_rough_g:
       - value: 1.78
         source: kmk
@@ -40472,14 +40424,30 @@ coins:
         source: kmk
       - value: 2.92
         source: ucoin
+        specimen: dk-tid-163031
+      - value: 2.92
+        source: ucoin
+        specimen: dk-tid-163034
       - value: 2.923
         source: hede
       - value: 2.923
         source: ngc
+        specimen: ngc-1049936
+      - value: 2.923
+        source: ngc
+        specimen: ngc-1062437
       - value: 2.923
         source: numismaster
+        specimen: denmark-numismaster-204166
+      - value: 2.923
+        source: numismaster
+        specimen: denmark-numismaster-65115
       - value: 2.923
         source: numista
+        specimen: dk-numista-15669
+      - value: 2.923
+        source: numista
+        specimen: dk-numista-71974
       - value: 2.93
         source: kmk
       - value: 2.94
@@ -40509,8 +40477,16 @@ coins:
     diameter_mm:
       - value: 25.0
         source: numista
+        specimen: dk-numista-15669
+      - value: 25.0
+        source: numista
+        specimen: dk-numista-71974
       - value: 25.0
         source: ucoin
+        specimen: dk-tid-163031
+      - value: 25.0
+        source: ucoin
+        specimen: dk-tid-163034
     sources:
       - type: literature
         url: https://numismaster.com/MC_204166
@@ -41085,6 +41061,10 @@ coins:
     fineness:
       - value: 0.888
         source: hede
+        specimen: dk-hede-c4h95a
+      - value: 0.888
+        source: hede
+        specimen: dk-hede-c4h95b
       - value: 0.888
         source: ngc
       - value: 0.888
@@ -41164,6 +41144,10 @@ coins:
         source: ucoin
       - value: 6.154
         source: hede
+        specimen: dk-hede-c4h95a
+      - value: 6.154
+        source: hede
+        specimen: dk-hede-c4h95b
       - value: 6.154
         source: ngc
       - value: 6.154
@@ -41949,6 +41933,16 @@ coins:
     fineness:
       - value: 0.593
         source: hede
+        specimen: dk-hede-c4h99a
+      - value: 0.593
+        source: hede
+        specimen: dk-hede-c4h99b
+      - value: 0.593
+        source: hede
+        specimen: dk-hede-c4h99c
+      - value: 0.593
+        source: hede
+        specimen: dk-hede-c4h99d
       - value: 0.593
         source: ngc
       - value: 0.593
@@ -42152,6 +42146,16 @@ coins:
         source: ucoin
       - value: 8.661
         source: hede
+        specimen: dk-hede-c4h99a
+      - value: 8.661
+        source: hede
+        specimen: dk-hede-c4h99b
+      - value: 8.661
+        source: hede
+        specimen: dk-hede-c4h99c
+      - value: 8.661
+        source: hede
+        specimen: dk-hede-c4h99d
       - value: 8.661
         source: ngc
       - value: 8.661
@@ -45146,11 +45150,19 @@ coins:
     fineness:
       - value: 0.833
         source: hede
+        specimen: dk-hede-c5h107a
+      - value: 0.833
+        source: hede
+        specimen: dk-hede-c5h107b
       - value: 0.833
         source: numista
     weight_rough_g:
       - value: 4.497
         source: hede
+        specimen: dk-hede-c5h107a
+      - value: 4.497
+        source: hede
+        specimen: dk-hede-c5h107b
       - value: 4.497
         source: numista
     diameter_mm:
@@ -47121,8 +47133,16 @@ coins:
         source: hede
       - value: 0.979
         source: ngc
+        specimen: ngc-1050970
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1069075
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-65881
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65882
       - value: 0.979
         source: numista
       - value: 0.98
@@ -47132,8 +47152,16 @@ coins:
         source: bruun
       - value: 6.98
         source: ngc
+        specimen: ngc-1050970
+      - value: 6.98
+        source: ngc
+        specimen: ngc-1069075
       - value: 6.98
         source: numismaster
+        specimen: denmark-numismaster-65881
+      - value: 6.98
+        source: numismaster
+        specimen: denmark-numismaster-65882
       - value: 6.98
         source: numista
       - value: 6.98
@@ -47486,10 +47514,25 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-c5h31a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h31b
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h31c
       - value: 0.979
         source: ngc
+        specimen: ngc-1050271
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1050900
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-65791
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65793
     weight_rough_g:
       - value: 3.44
         source: bruun
@@ -47501,10 +47544,25 @@ coins:
         source: kmk
       - value: 3.49
         source: hede
+        specimen: dk-hede-c5h31a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-c5h31b
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-c5h31c
       - value: 3.49
         source: ngc
+        specimen: ngc-1050271
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1050900
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-65791
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-65793
     sources:
       - type: literature
         url: https://numismaster.com/MC_65791
@@ -50484,38 +50542,82 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-c5h67a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-c5h67b
       - value: 0.671
         source: ngc
+        specimen: ngc-1049966
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050642
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-65299
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65306
       - value: 0.671
         source: numista
+        specimen: dk-numista-112662
+      - value: 0.671
+        source: numista
+        specimen: dk-numista-112663
       - value: 0.671
         source: ucoin
+        specimen: dk-tid-97308
+      - value: 0.671
+        source: ucoin
+        specimen: dk-tid-97314
     weight_rough_g:
       - value: 22.16
         source: bruun
       - value: 22.27
         source: ucoin
+        specimen: dk-tid-97308
+      - value: 22.27
+        source: ucoin
+        specimen: dk-tid-97314
       - value: 22.272
         source: hede
+        specimen: dk-hede-c5h67a
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-c5h67b
       - value: 22.272
         source: ngc
+        specimen: ngc-1049966
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1050642
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-65299
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65306
       - value: 22.272
         source: numista
+        specimen: dk-numista-112662
+      - value: 22.272
+        source: numista
+        specimen: dk-numista-112663
       - value: 22.432
         source: kmk
     diameter_mm:
       - value: 40.0
         source: ucoin
+        specimen: dk-tid-97308
       - value: 40.6
         source: ucoin
+        specimen: dk-tid-97314
       - value: 40.65
         source: numista
+        specimen: dk-numista-112663
       - value: 40.76
         source: numista
+        specimen: dk-numista-112662
     sources:
       - type: literature
         url: https://numismaster.com/MC_65299
@@ -52669,10 +52771,34 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-c5h90a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-c5h90b
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-c5h90c
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-c5h94
       - value: 0.671
         source: ngc
+        specimen: ngc-1049969
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050645
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1069037
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-65319
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65321
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65325
       - value: 0.671
         source: numista
       - value: 0.671
@@ -52686,10 +52812,34 @@ coins:
         source: ucoin
       - value: 22.272
         source: hede
+        specimen: dk-hede-c5h90a
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-c5h90b
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-c5h90c
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-c5h94
       - value: 22.272
         source: ngc
+        specimen: ngc-1049969
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1050645
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1069037
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-65319
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65321
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65325
       - value: 22.37
         source: bruun
       - value: 22.68
@@ -53049,6 +53199,10 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-c5h95a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-c5h95b
       - value: 0.671
         source: ngc
       - value: 0.671
@@ -53060,6 +53214,10 @@ coins:
     weight_rough_g:
       - value: 5.568
         source: hede
+        specimen: dk-hede-c5h95a
+      - value: 5.568
+        source: hede
+        specimen: dk-hede-c5h95b
       - value: 5.568
         source: ngc
       - value: 5.568
@@ -53410,6 +53568,16 @@ coins:
     fineness:
       - value: 0.833
         source: hede
+        specimen: dk-hede-c5h99a
+      - value: 0.833
+        source: hede
+        specimen: dk-hede-c5h99b
+      - value: 0.833
+        source: hede
+        specimen: dk-hede-c5h99c
+      - value: 0.833
+        source: hede
+        specimen: dk-hede-c5h99d
       - value: 0.833
         source: ngc
       - value: 0.833
@@ -53423,6 +53591,16 @@ coins:
         source: bruun
       - value: 17.988
         source: hede
+        specimen: dk-hede-c5h99a
+      - value: 17.988
+        source: hede
+        specimen: dk-hede-c5h99b
+      - value: 17.988
+        source: hede
+        specimen: dk-hede-c5h99c
+      - value: 17.988
+        source: hede
+        specimen: dk-hede-c5h99d
       - value: 17.988
         source: ngc
       - value: 17.988
@@ -53986,6 +54164,10 @@ coins:
     fineness:
       - value: 0.562
         source: hede
+        specimen: dk-hede-c6h6a
+      - value: 0.562
+        source: hede
+        specimen: dk-hede-c6h6b
       - value: 0.562
         source: ngc
       - value: 0.562
@@ -53999,6 +54181,10 @@ coins:
         source: ucoin
       - value: 9.171
         source: hede
+        specimen: dk-hede-c6h6a
+      - value: 9.171
+        source: hede
+        specimen: dk-hede-c6h6b
       - value: 9.171
         source: ngc
       - value: 9.171
@@ -54085,6 +54271,10 @@ coins:
     fineness:
       - value: 0.562
         source: hede
+        specimen: dk-hede-c6h7a
+      - value: 0.562
+        source: hede
+        specimen: dk-hede-c6h7b
       - value: 0.562
         source: ngc
       - value: 0.562
@@ -54100,6 +54290,10 @@ coins:
         source: ucoin
       - value: 9.171
         source: hede
+        specimen: dk-hede-c6h7a
+      - value: 9.171
+        source: hede
+        specimen: dk-hede-c6h7b
       - value: 9.171
         source: ngc
       - value: 9.171
@@ -55354,8 +55548,22 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-c8h3a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3d
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3e
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3f
       - value: 0.875
         source: ngc
+        specimen: ngc-1050425
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66082
       - value: 0.875
         source: numismaster
       - value: 0.875
@@ -55371,8 +55579,22 @@ coins:
         source: ucoin
       - value: 28.893
         source: hede
+        specimen: dk-hede-c8h3a
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3d
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3e
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3f
       - value: 28.893
         source: ngc
+        specimen: ngc-1050425
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66082
       - value: 28.893
         source: numismaster
       - value: 28.9
@@ -57200,10 +57422,22 @@ coins:
     fineness:
       - value: 0.896
         source: hede
+        specimen: dk-hede-c9h1a
+      - value: 0.896
+        source: hede
+        specimen: dk-hede-c9h1b
       - value: 0.896
         source: ngc
+        specimen: ngc-1050507
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1069095
       - value: 0.896
         source: numismaster
+        specimen: denmark-numismaster-66112
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66113
       - value: 0.896
         source: numista
     weight_rough_g:
@@ -57213,10 +57447,22 @@ coins:
         source: bruun
       - value: 13.284
         source: hede
+        specimen: dk-hede-c9h1a
+      - value: 13.284
+        source: hede
+        specimen: dk-hede-c9h1b
       - value: 13.284
         source: ngc
+        specimen: ngc-1050507
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1069095
       - value: 13.284
         source: numismaster
+        specimen: denmark-numismaster-66112
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66113
       - value: 13.284
         source: numista
       - value: 13.29
@@ -61356,10 +61602,37 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-f3h108a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h108b
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h109
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h110a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h110b
       - value: 0.671
         source: ngc
+        specimen: ngc-1049859
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1049860
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050150
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-65179
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65180
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65181
       - value: 0.671
         source: numista
       - value: 0.671
@@ -61367,10 +61640,37 @@ coins:
     weight_rough_g:
       - value: 11.136
         source: hede
+        specimen: dk-hede-f3h108a
+      - value: 11.136
+        source: hede
+        specimen: dk-hede-f3h108b
+      - value: 11.136
+        source: hede
+        specimen: dk-hede-f3h109
+      - value: 11.136
+        source: hede
+        specimen: dk-hede-f3h110a
+      - value: 11.136
+        source: hede
+        specimen: dk-hede-f3h110b
       - value: 11.136
         source: ngc
+        specimen: ngc-1049859
+      - value: 11.136
+        source: ngc
+        specimen: ngc-1049860
+      - value: 11.136
+        source: ngc
+        specimen: ngc-1050150
       - value: 11.136
         source: numismaster
+        specimen: denmark-numismaster-65179
+      - value: 11.136
+        source: numismaster
+        specimen: denmark-numismaster-65180
+      - value: 11.136
+        source: numismaster
+        specimen: denmark-numismaster-65181
       - value: 11.136
         source: numista
       - value: 11.14
@@ -61695,9 +61995,17 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-f3h112a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h112b
     weight_rough_g:
       - value: 22.272
         source: hede
+        specimen: dk-hede-f3h112a
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-f3h112b
       - value: 22.41
         source: bruun
     sources:
@@ -61816,6 +62124,13 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-f3h113a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h113b
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h113c
       - value: 0.671
         source: ngc
       - value: 0.671
@@ -62013,6 +62328,13 @@ coins:
         source: ucoin
       - value: 22.272
         source: hede
+        specimen: dk-hede-f3h113a
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-f3h113b
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-f3h113c
       - value: 22.272
         source: ngc
       - value: 22.272
@@ -62845,9 +63167,17 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-f3h114a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h114b
     weight_rough_g:
       - value: 22.272
         source: hede
+        specimen: dk-hede-f3h114a
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-f3h114b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h114.htm
@@ -63095,9 +63425,17 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-f3h117a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h117b
     weight_rough_g:
       - value: 22.272
         source: hede
+        specimen: dk-hede-f3h117a
+      - value: 22.272
+        source: hede
+        specimen: dk-hede-f3h117b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h117.htm
@@ -63412,10 +63750,22 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-f3h121a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h121b
       - value: 0.671
         source: ngc
+        specimen: ngc-1050089
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1069023
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-65128
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65129
       - value: 0.671
         source: numista
       - value: 0.671
@@ -63427,21 +63777,35 @@ coins:
         source: ucoin
       - value: 2.784
         source: hede
+        specimen: dk-hede-f3h121a
+      - value: 2.784
+        source: hede
+        specimen: dk-hede-f3h121b
       - value: 2.784
         source: ngc
+        specimen: ngc-1050089
+      - value: 2.784
+        source: ngc
+        specimen: ngc-1069023
       - value: 2.784
         source: numismaster
+        specimen: denmark-numismaster-65128
+      - value: 2.784
+        source: numismaster
+        specimen: denmark-numismaster-65129
       - value: 2.93
         source: bruun
     diameter_mm:
       - value: 21.0
         source: ngc
+        specimen: ngc-1050089
       - value: 21.0
         source: ucoin
       - value: 21.23
         source: numista
       - value: 23.0
         source: ngc
+        specimen: ngc-1069023
     sources:
       - type: literature
         url: https://numismaster.com/MC_65128
@@ -63525,6 +63889,13 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+        specimen: dk-hede-f3h122a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h122b
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h122c
       - value: 0.857
         source: ucoin
       - value: 0.859
@@ -63558,6 +63929,13 @@ coins:
         source: numista
       - value: 1.218
         source: hede
+        specimen: dk-hede-f3h122a
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h122b
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h122c
     diameter_mm:
       - value: 17.62
         source: numista
@@ -72959,6 +73337,13 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+        specimen: dk-hede-f3h126a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h126b
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h126c
       - value: 0.281
         source: ngc
       - value: 0.281
@@ -72988,6 +73373,13 @@ coins:
         source: kmk
       - value: 1.218
         source: hede
+        specimen: dk-hede-f3h126a
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h126b
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h126c
       - value: 1.299
         source: ngc
       - value: 1.299
@@ -73461,6 +73853,10 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+        specimen: dk-hede-f3h130a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h130b
       - value: 0.281
         source: ngc
       - value: 0.281
@@ -73478,6 +73874,10 @@ coins:
         source: kmk
       - value: 1.218
         source: hede
+        specimen: dk-hede-f3h130a
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h130b
       - value: 1.23
         source: kmk
       - value: 1.24
@@ -73906,6 +74306,10 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+        specimen: dk-hede-f3h133a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h133b
     weight_rough_g:
       - value: 1.077
         source: kmk
@@ -73917,6 +74321,10 @@ coins:
         source: numista
       - value: 1.218
         source: hede
+        specimen: dk-hede-f3h133a
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h133b
       - value: 1.242
         source: kmk
       - value: 1.244
@@ -74014,6 +74422,13 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+        specimen: dk-hede-f3h134a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h134b
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h134c
       - value: 0.281
         source: ngc
       - value: 0.281
@@ -74025,6 +74440,13 @@ coins:
     weight_rough_g:
       - value: 1.218
         source: hede
+        specimen: dk-hede-f3h134a
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h134b
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h134c
       - value: 1.218
         source: numista
       - value: 1.28
@@ -74141,9 +74563,17 @@ coins:
     fineness:
       - value: 0.156
         source: hede
+        specimen: dk-hede-f3h135a
+      - value: 0.156
+        source: hede
+        specimen: dk-hede-f3h135b
     weight_rough_g:
       - value: 0.913
         source: hede
+        specimen: dk-hede-f3h135a
+      - value: 0.913
+        source: hede
+        specimen: dk-hede-f3h135b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h135.htm
@@ -74189,9 +74619,17 @@ coins:
     fineness:
       - value: 0.437
         source: hede
+        specimen: dk-hede-f3h136a
+      - value: 0.437
+        source: hede
+        specimen: dk-hede-f3h136b
     weight_rough_g:
       - value: 1.856
         source: hede
+        specimen: dk-hede-f3h136a
+      - value: 1.856
+        source: hede
+        specimen: dk-hede-f3h136b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h136.htm
@@ -74300,6 +74738,16 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+        specimen: dk-hede-f3h138a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h138b
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h138c
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h138d
     weight_rough_g:
       - value: 0.831
         source: kmk
@@ -74323,6 +74771,16 @@ coins:
         source: kmk
       - value: 1.218
         source: hede
+        specimen: dk-hede-f3h138a
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h138b
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h138c
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h138d
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h138.htm
@@ -74984,9 +75442,17 @@ coins:
     fineness:
       - value: 0.156
         source: hede
+        specimen: dk-hede-f3h141a
+      - value: 0.156
+        source: hede
+        specimen: dk-hede-f3h141b
     weight_rough_g:
       - value: 0.913
         source: hede
+        specimen: dk-hede-f3h141a
+      - value: 0.913
+        source: hede
+        specimen: dk-hede-f3h141b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h141.htm
@@ -75052,6 +75518,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f3h15a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f3h15b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -75069,6 +75539,10 @@ coins:
         source: bruun
       - value: 1.745
         source: hede
+        specimen: dk-hede-f3h15a
+      - value: 1.745
+        source: hede
+        specimen: dk-hede-f3h15b
       - value: 1.745
         source: ngc
       - value: 1.745
@@ -75939,8 +76413,16 @@ coins:
     fineness:
       - value: 0.979
         source: ngc
+        specimen: ngc-1050355
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1050851
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-65767
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65768
       - value: 0.98
         source: ucoin
     weight_rough_g:
@@ -75950,8 +76432,16 @@ coins:
         source: bruun
       - value: 3.49
         source: ngc
+        specimen: ngc-1050355
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1050851
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-65767
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-65768
       - value: 3.49
         source: ucoin
     sources:
@@ -76082,6 +76572,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f3h26a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f3h26b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -76095,6 +76589,10 @@ coins:
         source: bruun
       - value: 3.49
         source: hede
+        specimen: dk-hede-f3h26a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-f3h26b
       - value: 3.49
         source: ngc
       - value: 3.49
@@ -77280,10 +77778,25 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f3h40a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f3h40b
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f3h40c
       - value: 0.979
         source: ngc
+        specimen: ngc-1050215
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1069056
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-65681
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65683
       - value: 0.979
         source: numista
       - value: 0.98
@@ -77297,10 +77810,25 @@ coins:
         source: ucoin
       - value: 0.873
         source: hede
+        specimen: dk-hede-f3h40a
+      - value: 0.873
+        source: hede
+        specimen: dk-hede-f3h40b
+      - value: 0.873
+        source: hede
+        specimen: dk-hede-f3h40c
       - value: 0.873
         source: ngc
+        specimen: ngc-1050215
+      - value: 0.873
+        source: ngc
+        specimen: ngc-1069056
       - value: 0.873
         source: numismaster
+        specimen: denmark-numismaster-65681
+      - value: 0.873
+        source: numismaster
+        specimen: denmark-numismaster-65683
       - value: 0.9
         source: bruun
       - value: 0.96
@@ -77578,8 +78106,16 @@ coins:
     fineness:
       - value: 0.917
         source: ngc
+        specimen: ngc-1050085
+      - value: 0.917
+        source: ngc
+        specimen: ngc-1050728
       - value: 0.917
         source: numismaster
+        specimen: denmark-numismaster-65599
+      - value: 0.917
+        source: numismaster
+        specimen: denmark-numismaster-65600
     weight_rough_g:
       - value: 2.973
         source: ngc
@@ -78515,6 +79051,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f3h54a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f3h54b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -78530,6 +79070,10 @@ coins:
         source: bruun
       - value: 28.775
         source: hede
+        specimen: dk-hede-f3h54a
+      - value: 28.775
+        source: hede
+        specimen: dk-hede-f3h54b
       - value: 28.775
         source: ngc
       - value: 28.775
@@ -79061,6 +79605,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f3h5a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f3h5b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -79070,6 +79618,10 @@ coins:
         source: bruun
       - value: 3.49
         source: hede
+        specimen: dk-hede-f3h5a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-f3h5b
       - value: 3.49
         source: ngc
       - value: 3.49
@@ -79668,6 +80220,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f3h66a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f3h66b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -79683,6 +80239,10 @@ coins:
         source: ikmk
       - value: 28.775
         source: hede
+        specimen: dk-hede-f3h66a
+      - value: 28.775
+        source: hede
+        specimen: dk-hede-f3h66b
       - value: 28.775
         source: ngc
       - value: 28.775
@@ -80327,6 +80887,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f3h73a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f3h73b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -80340,6 +80904,10 @@ coins:
         source: ikmk
       - value: 28.775
         source: hede
+        specimen: dk-hede-f3h73a
+      - value: 28.775
+        source: hede
+        specimen: dk-hede-f3h73b
       - value: 28.775
         source: ngc
       - value: 28.775
@@ -80705,6 +81273,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f3h78a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f3h78b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -80714,6 +81286,10 @@ coins:
         source: bruun
       - value: 28.775
         source: hede
+        specimen: dk-hede-f3h78a
+      - value: 28.775
+        source: hede
+        specimen: dk-hede-f3h78b
       - value: 28.775
         source: ngc
       - value: 28.775
@@ -80796,6 +81372,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f3h79a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f3h79b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -80807,6 +81387,10 @@ coins:
         source: bruun
       - value: 57.55
         source: hede
+        specimen: dk-hede-f3h79a
+      - value: 57.55
+        source: hede
+        specimen: dk-hede-f3h79b
       - value: 57.55
         source: ngc
       - value: 57.55
@@ -81765,8 +82349,22 @@ coins:
         source: hede
       - value: 0.671
         source: ngc
+        specimen: ngc-1049962
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050097
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1059714
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-165534
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65272
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65273
       - value: 0.671
         source: numista
       - value: 0.671
@@ -81840,8 +82438,22 @@ coins:
         source: hede
       - value: 22.272
         source: ngc
+        specimen: ngc-1049962
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1050097
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1059714
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-165534
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65272
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65273
       - value: 22.274
         source: kmk
       - value: 22.377
@@ -82360,8 +82972,22 @@ coins:
         source: hede
       - value: 0.671
         source: ngc
+        specimen: ngc-1050028
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050098
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1060169
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-65274
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65275
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65276
     weight_rough_g:
       - value: 21.53
         source: bruun
@@ -82371,8 +82997,22 @@ coins:
         source: hede
       - value: 22.272
         source: ngc
+        specimen: ngc-1050028
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1050098
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1060169
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-65274
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65275
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65276
     sources:
       - type: literature
         url: https://numismaster.com/MC_65274
@@ -82761,8 +83401,16 @@ coins:
         source: hede
       - value: 0.671
         source: ngc
+        specimen: ngc-1059990
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1060170
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-165542
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65278
       - value: 0.671
         source: numista
     weight_rough_g:
@@ -82814,8 +83462,16 @@ coins:
         source: hede
       - value: 22.272
         source: ngc
+        specimen: ngc-1059990
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1060170
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-165542
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65278
       - value: 22.272
         source: numista
       - value: 22.35
@@ -83089,6 +83745,10 @@ coins:
     fineness:
       - value: 0.671
         source: hede
+        specimen: dk-hede-f3h97a
+      - value: 0.671
+        source: hede
+        specimen: dk-hede-f3h97b
       - value: 0.671
         source: ngc
       - value: 0.671
@@ -83096,6 +83756,10 @@ coins:
     weight_rough_g:
       - value: 11.136
         source: hede
+        specimen: dk-hede-f3h97a
+      - value: 11.136
+        source: hede
+        specimen: dk-hede-f3h97b
       - value: 11.136
         source: ngc
       - value: 11.136
@@ -87691,8 +88355,22 @@ coins:
         source: hede
       - value: 0.979
         source: ngc
+        specimen: ngc-1050335
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1057318
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1060347
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-138051
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65907
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65908
       - value: 0.98
         source: ucoin
     weight_rough_g:
@@ -87704,8 +88382,22 @@ coins:
         source: hede
       - value: 6.981
         source: ngc
+        specimen: ngc-1050335
+      - value: 6.981
+        source: ngc
+        specimen: ngc-1057318
+      - value: 6.981
+        source: ngc
+        specimen: ngc-1060347
       - value: 6.981
         source: numismaster
+        specimen: denmark-numismaster-138051
+      - value: 6.981
+        source: numismaster
+        specimen: denmark-numismaster-65907
+      - value: 6.981
+        source: numismaster
+        specimen: denmark-numismaster-65908
     diameter_mm:
       - value: 25.7
         source: ucoin
@@ -89685,6 +90377,10 @@ coins:
     fineness:
       - value: 0.833
         source: hede
+        specimen: dk-hede-f5h33a
+      - value: 0.833
+        source: hede
+        specimen: dk-hede-f5h33b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -89694,6 +90390,10 @@ coins:
         source: bruun
       - value: 26.983
         source: hede
+        specimen: dk-hede-f5h33a
+      - value: 26.983
+        source: hede
+        specimen: dk-hede-f5h33b
       - value: 27.17
         source: bruun
       - value: 28.893
@@ -89779,16 +90479,34 @@ coins:
     fineness:
       - value: 0.562
         source: hede
+        specimen: dk-hede-f5h34a
+      - value: 0.562
+        source: hede
+        specimen: dk-hede-f5h34b
       - value: 0.562
         source: ngc
+        specimen: ngc-1050383
+      - value: 0.562
+        source: ngc
+        specimen: ngc-1069025
       - value: 0.562
         source: numismaster
+        specimen: denmark-numismaster-65140
+      - value: 0.562
+        source: numismaster
+        specimen: denmark-numismaster-65141
       - value: 0.562
         source: numista
+        specimen: dk-numista-90476
+      - value: 0.562
+        source: numista
+        specimen: dk-numista-90477
       - value: 0.562
         source: ucoin
+        specimen: dk-tid-90640
       - value: 0.563
         source: ucoin
+        specimen: dk-tid-79087
     weight_rough_g:
       - value: 9.03
         source: kmk
@@ -89796,25 +90514,49 @@ coins:
         source: kmk
       - value: 9.17
         source: ucoin
+        specimen: dk-tid-79087
+      - value: 9.17
+        source: ucoin
+        specimen: dk-tid-90640
       - value: 9.171
         source: hede
+        specimen: dk-hede-f5h34a
+      - value: 9.171
+        source: hede
+        specimen: dk-hede-f5h34b
       - value: 9.171
         source: ngc
+        specimen: ngc-1050383
+      - value: 9.171
+        source: ngc
+        specimen: ngc-1069025
       - value: 9.171
         source: numismaster
+        specimen: denmark-numismaster-65140
+      - value: 9.171
+        source: numismaster
+        specimen: denmark-numismaster-65141
       - value: 9.171
         source: numista
+        specimen: dk-numista-90476
+      - value: 9.171
+        source: numista
+        specimen: dk-numista-90477
       - value: 9.22
         source: bruun
     diameter_mm:
       - value: 29.12
         source: numista
+        specimen: dk-numista-90476
       - value: 29.6
         source: numista
+        specimen: dk-numista-90477
       - value: 30.4
         source: ucoin
+        specimen: dk-tid-90640
       - value: 30.6
         source: ucoin
+        specimen: dk-tid-79087
     sources:
       - type: literature
         url: https://numismaster.com/MC_65140
@@ -90274,25 +91016,75 @@ coins:
     fineness:
       - value: 0.562
         source: hede
+        specimen: dk-hede-f5h38a
+      - value: 0.562
+        source: hede
+        specimen: dk-hede-f5h38b
+      - value: 0.562
+        source: hede
+        specimen: dk-hede-f5h38c
       - value: 0.562
         source: ngc
+        specimen: ngc-1048385
+      - value: 0.562
+        source: ngc
+        specimen: ngc-1048767
+      - value: 0.562
+        source: ngc
+        specimen: ngc-1048907
       - value: 0.562
         source: numismaster
+        specimen: denmark-numismaster-58060
+      - value: 0.562
+        source: numismaster
+        specimen: denmark-numismaster-58061
+      - value: 0.562
+        source: numismaster
+        specimen: denmark-numismaster-58062
       - value: 0.563
         source: ucoin
+        specimen: dk-tid-79082
+      - value: 0.563
+        source: ucoin
+        specimen: dk-tid-79083
       - value: 0.592
         source: numista
     weight_rough_g:
       - value: 3.057
         source: hede
+        specimen: dk-hede-f5h38a
+      - value: 3.057
+        source: hede
+        specimen: dk-hede-f5h38b
+      - value: 3.057
+        source: hede
+        specimen: dk-hede-f5h38c
       - value: 3.057
         source: ngc
+        specimen: ngc-1048385
+      - value: 3.057
+        source: ngc
+        specimen: ngc-1048767
+      - value: 3.057
+        source: ngc
+        specimen: ngc-1048907
       - value: 3.057
         source: numismaster
+        specimen: denmark-numismaster-58060
+      - value: 3.057
+        source: numismaster
+        specimen: denmark-numismaster-58061
+      - value: 3.057
+        source: numismaster
+        specimen: denmark-numismaster-58062
       - value: 3.06
         source: numista
       - value: 3.06
         source: ucoin
+        specimen: dk-tid-79082
+      - value: 3.06
+        source: ucoin
+        specimen: dk-tid-79083
       - value: 3.24
         source: bruun
     diameter_mm:
@@ -90300,6 +91092,10 @@ coins:
         source: numista
       - value: 21.0
         source: ucoin
+        specimen: dk-tid-79082
+      - value: 21.0
+        source: ucoin
+        specimen: dk-tid-79083
     sources:
       - type: literature
         url: https://numismaster.com/MC_58060
@@ -91416,6 +92212,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f6h24a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h24b
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -91425,6 +92225,10 @@ coins:
     weight_rough_g:
       - value: 14.447
         source: hede
+        specimen: dk-hede-f6h24a
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h24b
       - value: 14.447
         source: ngc
       - value: 14.447
@@ -91509,6 +92313,10 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f6h26a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26d
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -91520,6 +92328,10 @@ coins:
         source: ucoin
       - value: 28.893
         source: hede
+        specimen: dk-hede-f6h26a
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26d
       - value: 28.893
         source: ngc
       - value: 28.893
@@ -91745,8 +92557,16 @@ coins:
         source: hede
       - value: 0.875
         source: ngc
+        specimen: ngc-1051048
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1060680
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66051
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66055
       - value: 0.875
         source: ucoin
     weight_rough_g:
@@ -91756,8 +92576,16 @@ coins:
         source: hede
       - value: 14.447
         source: ngc
+        specimen: ngc-1051048
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1060680
       - value: 14.447
         source: numismaster
+        specimen: denmark-numismaster-66051
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66055
       - value: 14.5
         source: ucoin
     diameter_mm:
@@ -93826,10 +94654,14 @@ coins:
     fineness:
       - value: 0.239
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 78
+      - value: 0.245
+        source: danskmoent.dk (Galster 31), Schou 125
       - value: 0.2464
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 77
       - value: 0.2479
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 75
+      - value: 0.26
+        source: danskmoent.dk (Galster 31), Schou 125
       - value: 0.2621
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 73
       - value: 0.2672
@@ -93840,6 +94672,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 69
       - value: 0.2798
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 66
+      - value: 0.28
+        source: danskmoent.dk (Galster 31), Schou 153
       - value: 0.2804
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 65
       - value: 0.319
@@ -94782,7 +95616,7 @@ coins:
     year_verified: false
     fineness:
       - value: 0.606
-        source: galster
+        source: danskmoent.dk (Galster 4)
       - value: 0.629
         source: Lindahl 1955 (NNÅ 1955), s. 78
       - value: 0.6591
@@ -94803,6 +95637,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3
       - value: 0.857
         source: Lindahl 1955 (NNÅ 1955), s. 78
+      - value: 0.857
+        source: danskmoent.dk (Galster 4)
     weight_rough_g:
       - value: 0.52
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12
@@ -94823,6 +95659,11 @@ coins:
       - value: 0.72
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4
     weight_range_g:
+      - min: 0.5
+        max: 1.0
+        approx: false
+        source: danskmoent.dk (Galster 4)
+        url: https://www.danskmoent.dk/epomg4.htm
       - min: 0.5
         max: 1.0
         source: Lindahl 1955 (NNÅ 1955), s. 78
@@ -97392,6 +98233,8 @@ coins:
     verified: false
     year_verified: true
     weight_rough_g:
+      - value: 0.33
+        source: kmk
       - value: 1.88
         source: numista
       - value: 1.98
@@ -97433,6 +98276,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/292781
         ref: KMM 292781 (Inv. FP 6952.37)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/371287
+        ref: KMM 371287 (Inv. FP 3967.6)
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-f1g-63
@@ -97440,6 +98286,7 @@ coins:
       - dk-numista-301177
       - kmk-152265
       - kmk-292781
+      - kmk-371287
   - id: c-f8df9416
     class_id: c-f8df9416
     label: unified-dk-numista-301375
@@ -97556,59 +98403,581 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-302280
-  - id: c-7ba89ef7
-    class_id: c-7ba89ef7
+  - id: c-df58ec36
+    class_id: c-df58ec36
     label: unified-dk-numista-303699
     fuss: seed_unsorted
     phase: numista
     kind: scheide
     nominal: 1 Hvid
-    year_first: 1440
-    year_last: 1448
-    year_ranges:
-      -   - 1440
-          - 1448
-    year_label: 1440-1448
-    _year_demoted: true
+    year_first: 1444
+    year_last: 1444
+    year_label: '1444'
     ruler: Christoffer III
     nominal_equiv: 4 Penning
     mint: Malmø
     catalog:
       numista: '303699'
       sieg:
-        - '1'
         - '2'
-    metal: silver
+        - '2.1'
+      galster:
+        - '20'
+        - 20A
+        - 20B
+      galster_volume: galster1972-christoffer3
+      others:
+        - Jesse# 703
+      jesse: '703'
+    metal: silver_billon
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: false
+    fineness:
+      - value: 0.0066
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 144
+      - value: 0.2842
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 143
+      - value: 0.2846
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 142
+      - value: 0.294
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 141
+      - value: 0.2963
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 140
+      - value: 0.3072
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 139
+      - value: 0.3148
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 138
+      - value: 0.3182
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 137
+      - value: 0.3188
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 136
+      - value: 0.3192
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 135
+      - value: 0.3289
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 134
+      - value: 0.332
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 133
+      - value: 0.3502
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 132
+      - value: 0.3517
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 131
+      - value: 0.3551
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 130
+      - value: 0.3552
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 129
+      - value: 0.3558
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 128
+      - value: 0.3563
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 127
+      - value: 0.3593
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 126
+      - value: 0.3657
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 125
+      - value: 0.3659
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 124
+      - value: 0.3682
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 123
+      - value: 0.37
+        source: Lindahl 1955 (NNÅ 1955), s. 86
+      - value: 0.3752
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 122
+      - value: 0.3808
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 121
+      - value: 0.3816
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 120
+      - value: 0.3822
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 119
+      - value: 0.3832
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 118
+      - value: 0.3844
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 117
+      - value: 0.3874
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 116
+      - value: 0.3894
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 115
+      - value: 0.3905
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 114
+      - value: 0.3917
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 113
+      - value: 0.393
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 112
+      - value: 0.4
+        source: Lindahl 1955 (NNÅ 1955), s. 86
+      - value: 0.401
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 111
+      - value: 0.4045
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 110
+      - value: 0.4082
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 109
+      - value: 0.4121
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 108
+      - value: 0.4145
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 107
+      - value: 0.4186
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 106
+      - value: 0.4207
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 105
+      - value: 0.4233
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 104
+      - value: 0.4269
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 103
+      - value: 0.4277
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 102
+      - value: 0.4332
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 101
+      - value: 0.4335
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 100
+      - value: 0.4343
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 99
+      - value: 0.4408
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 98
+      - value: 0.4424
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 97
+      - value: 0.4455
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 96
+      - value: 0.4467
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 95
+      - value: 0.4506
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 94
+      - value: 0.4526
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 93
+      - value: 0.4654
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 92
+      - value: 0.4759
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 91
+      - value: 0.4796
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 90
+      - value: 0.4892
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 89
+      - value: 0.4934
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 88
+      - value: 0.501
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 87
+      - value: 0.5013
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 86
+      - value: 0.5146
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 85
+      - value: 0.5215
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 84
+      - value: 0.5222
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 83
+      - value: 0.5232
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 82
+      - value: 0.5517
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 81
+      - value: 0.5565
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 80
+      - value: 0.5609
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 79
+      - value: 0.5981
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 78
     weight_rough_g:
+      - value: 0.58
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 108
+      - value: 0.59
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 87
+      - value: 0.6
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 82
+      - value: 0.65
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 116
+      - value: 0.65
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 133
+      - value: 0.65
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 97
+      - value: 0.67
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 110
+      - value: 0.7
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 125
+      - value: 0.71
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 130
+      - value: 0.72
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 107
+      - value: 0.72
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 129
+      - value: 0.73
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 120
+      - value: 0.75
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 101
+      - value: 0.75
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 121
+      - value: 0.75
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 126
+      - value: 0.75
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 92
+      - value: 0.75
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 96
       - value: 0.75
         source: numista
+      - value: 0.76
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 132
+      - value: 0.77
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 109
+      - value: 0.77
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 91
+      - value: 0.79
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 106
+      - value: 0.79
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 111
+      - value: 0.79
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 113
+      - value: 0.79
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 80
+      - value: 0.79
+        source: galster
+      - value: 0.8
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 118
+      - value: 0.8
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 127
+      - value: 0.8
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 89
+      - value: 0.81
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 141
+      - value: 0.81
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 142
+      - value: 0.82
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 100
+      - value: 0.82
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 143
+      - value: 0.82
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 78
+      - value: 0.82
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 93
+      - value: 0.83
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 102
+      - value: 0.83
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 105
+      - value: 0.83
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 135
+      - value: 0.83
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 137
+      - value: 0.83
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 88
+      - value: 0.84
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 139
+      - value: 0.84
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 85
+      - value: 0.85
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 134
+      - value: 0.86
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 90
+      - value: 0.86
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 98
+      - value: 0.87
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 131
+      - value: 0.88
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 117
+      - value: 0.88
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 138
+      - value: 0.88
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 79
+      - value: 0.89
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 112
+      - value: 0.89
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 94
+      - value: 0.9
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 119
+      - value: 0.9
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 128
+      - value: 0.9
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 95
+      - value: 0.91
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 104
+      - value: 0.93
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 144
+      - value: 0.94
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 122
+      - value: 0.94
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 123
+      - value: 0.94
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 83
+      - value: 0.95
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 124
+      - value: 0.96
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 114
+      - value: 0.98
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 136
+      - value: 0.98
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 99
+      - value: 0.99
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 81
+      - value: 1.0
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 115
+      - value: 1.0
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 84
+      - value: 1.04
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 140
+      - value: 1.05
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 103
+      - value: 1.06
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 86
+    weight_range_g:
+      - min: 0.48
+        max: 1.06
+        source: Lindahl 1955 (NNÅ 1955), s. 86
     diameter_mm:
       - value: 17.2
         source: numista
     uncertainty:
       year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1440-1448
+          seed: dk-galster-bajg-20
         - kind: hedged
           how: span
           source: numista
           value: 1440-1448
           seed: dk-numista-303699
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter 1444
+          value: '1444'
+          seed: lindahl-1955-malmoe-hvid
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-bajg-20
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/bajg20.htm
+        ref: Galster 20 (bajg) — danskmoent.dk bajg20.htm
       - type: literature
         url: https://en.numista.com/303699
         ref: Numista N#303699 — 1 Hvid - Christopher of Bavaria (Malmo) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 86
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 78, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 79, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 80, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 81, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 82, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 83, Appendix (XRF); DACIE ring
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 84, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 85, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 86, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 87, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 88, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 89, Appendix (XRF); ?
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 90, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 91, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 92, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 93, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 94, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 95, Appendix (XRF); DACI..
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 96, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 97, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 98, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 99, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 100, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 101, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 102, Appendix (XRF); ?
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 103, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 104, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 105, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 106, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 107, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 108, Appendix (XRF); DACI..
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 109, Appendix (XRF); ?
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 110, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 111, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 112, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 113, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 114, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 115, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 116, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 117, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 118, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 119, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 120, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 121, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 122, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 123, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 124, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 125, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 126, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 127, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 128, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 129, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 130, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 131, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 132, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 133, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 134, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 135, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 136, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 137, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 138, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 139, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 140, Appendix (XRF); DACI
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 141, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 142, Appendix (XRF); DACIE
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 143, Appendix (XRF); DSN
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 144, Appendix (XRF); DSN
     note:
       de: 4 Pennings (Rechnungs-Äquivalent)
       en: 4 Pennings (accounting equivalent)
       uk: 4 Pennings (розрахунковий еквівалент)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-bajg-20
       - dk-numista-303699
+      - lindahl-1955-malmoe-hvid
+      - metallanalyser-2016-1-g20-malmo-hvid
   - id: c-892e7d26
     class_id: c-892e7d26
     label: unified-dk-numista-308265
@@ -97719,8 +99088,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-344370
-  - id: c-ea17009c
-    class_id: c-ea17009c
+  - id: c-01a90515
+    class_id: c-01a90515
     label: unified-dk-numista-348708
     fuss: seed_unsorted
     phase: numista
@@ -97731,31 +99100,87 @@ coins:
     year_label: '1422'
     ruler: Erik VII
     nominal_equiv: 3 Penning
-    mint: Næstved
+    mint:
+      - Lund
+      - Næstved
+      - Odense
+      - Randers
     catalog:
-      numista: '348708'
+      numista:
+        - '348708'
+        - '476049'
       sieg: '9.2'
-      galster: '7'
+      galster:
+        - '7'
+        - '10'
+        - '14'
+        - '15'
       others:
+        - Fritze Lindahl# 34-41
+        - Fritze Lindahl# 54-58
         - Fritze Lindahl# 42-49
         - Jesse# 697
         - Jesse# 698
+        - Fritze Lindahl# 50-53
       galster_volume: galster1972-erik7
       jesse:
         - '697'
         - '698'
     metal: copper
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.0042
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
+      - value: 0.0043
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
+      - value: 0.0045
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
+      - value: 0.0048
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
+      - value: 0.0052
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
     weight_rough_g:
+      - value: 0.56
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
       - value: 0.8
         source: numista
+      - value: 0.84
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
+      - value: 0.86
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
+      - value: 0.91
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
+      - value: 1.05
+        source: numista
+      - value: 1.37
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
     weight_range_g:
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 10)
+        url: https://www.danskmoent.dk/epomg10.htm
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 14)
+        url: https://www.danskmoent.dk/epomg14.htm
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 15)
+        url: https://www.danskmoent.dk/epomg15.htm
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 7)
+        url: https://www.danskmoent.dk/epomg7.htm
       - min: 0.75
         max: 1.33
         source: Lindahl 1955 (NNÅ 1955), s. 80
@@ -97772,6 +99197,24 @@ coins:
           source: galster
           as_printed: ca. 1422
           value: '1422'
+          seed: dk-galster-epomg-10
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-14
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-15
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
           seed: dk-galster-epomg-7
         - kind: hedged
           how: span
@@ -97779,12 +99222,53 @@ coins:
           value: 1397-1439
           seed: dk-numista-348708
         - kind: hedged
+          how: span
+          source: numista
+          value: 1397-1439
+          seed: dk-numista-476049
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-lund-kobbersterling
+        - kind: hedged
           how: circa
           source: lindahl
           as_printed: ca. 1422
           value: '1422'
           seed: lindahl-1955-naestved-kobbersterling
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-odense-kobbersterling
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-randers-kobbersterling
       metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-10
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-14
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-15
         - kind: inferred
           how: from_name
           source: galster
@@ -97793,23 +99277,76 @@ coins:
           seed: dk-galster-epomg-7
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg10.htm
+        ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
+      - type: literature
+        url: https://www.danskmoent.dk/epomg14.htm
+        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
+      - type: literature
+        url: https://www.danskmoent.dk/epomg15.htm
+        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
+      - type: literature
         url: https://www.danskmoent.dk/epomg7.htm
         ref: Galster 7 (epomg) — danskmoent.dk epomg7.htm
       - type: literature
         url: https://en.numista.com/348708
         ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
       - type: literature
+        url: https://en.numista.com/476049
+        ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
+      - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44, Appendix (XRF)
     note:
       de: 3 Pennings (Rechnungs-Äquivalent)
       en: 3 Pennings (accounting equivalent)
       uk: 3 Pennings (розрахунковий еквівалент)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-epomg-10
+      - dk-galster-epomg-14
+      - dk-galster-epomg-15
       - dk-galster-epomg-7
       - dk-numista-348708
+      - dk-numista-476049
+      - lindahl-1955-lund-kobbersterling
       - lindahl-1955-naestved-kobbersterling
+      - lindahl-1955-odense-kobbersterling
+      - lindahl-1955-randers-kobbersterling
+      - metallanalyser-2016-1-g10-lund-kopparsterling
   - id: c-43b64c09
     class_id: c-43b64c09
     label: unified-dk-numista-355730
@@ -98836,6 +100373,10 @@ coins:
     verified: false
     year_verified: false
     fineness:
+      - value: 0.0
+        source: Lindahl 1955 (NNÅ 1955), s. 79
+      - value: 0.0
+        source: danskmoent.dk (Galster 5)
       - value: 0.0047
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37
       - value: 0.0051
@@ -98846,6 +100387,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
       - value: 0.212
         source: Lindahl 1955 (NNÅ 1955), s. 79
+      - value: 0.212
+        source: danskmoent.dk (Galster 5)
       - value: 0.2378
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
       - value: 0.2996
@@ -98942,6 +100485,11 @@ coins:
       - value: 0.41
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
     weight_range_g:
+      - min: 0.21
+        max: 0.37
+        approx: false
+        source: danskmoent.dk (Galster 5)
+        url: https://www.danskmoent.dk/epomg5.htm
       - min: 0.21
         max: 0.37
         source: Lindahl 1955 (NNÅ 1955), s. 79
@@ -99105,90 +100653,6 @@ coins:
         fra Næstved og Lund? (efter ca. 1405, før 1424)»[/i].\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]: Ribes mønter var de eneste i riget [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i].\n\
         [b]Stefke 1995[/b]: [i]«Eine Variantengruppe der seit Ende 1424 geprägten \"Lebarden\"-Hohlpfennige»[/i] (overs.: «En variantgruppe af de «lebard»-hulpenninge, der blev præget fra slutningen af
         1424»).\nHeraf kan perioden 1403–1424 udledes: begyndelsen efter Märcher, slutningen efter Lindahl."
-  - id: c-8f3b9eaf
-    class_id: c-8f3b9eaf
-    label: unified-dk-numista-476049
-    fuss: seed_unsorted
-    phase: numista
-    kind: scheide
-    nominal: 1 Sterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    nominal_equiv: 3 Penning
-    mint: Odense
-    catalog:
-      numista: '476049'
-      sieg: '9.2'
-      galster: '14'
-      galster_volume: galster1972-erik7
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 50-53
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 1.05
-        source: numista
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-14
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1397-1439
-          seed: dk-numista-476049
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-odense-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-14
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg14.htm
-        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
-      - type: literature
-        url: https://en.numista.com/476049
-        ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-14
-      - dk-numista-476049
-      - lindahl-1955-odense-kobbersterling
   - id: c-32d9665d
     class_id: c-32d9665d
     label: unified-dk-numista-476659
@@ -99344,13 +100808,19 @@ coins:
     fineness:
       - value: 0.437
         source: galster
+        specimen: dk-galster-c3g-92a
       - value: 0.437
         source: numista
       - value: 0.5
         source: galster
+        specimen: dk-galster-c3g-92
     weight_rough_g:
       - value: 14.38
         source: galster
+        specimen: dk-galster-c3g-92
+      - value: 14.38
+        source: galster
+        specimen: dk-galster-c3g-92a
       - value: 14.38
         source: numista
     uncertainty:
@@ -99748,6 +101218,12 @@ coins:
           source: galster
           as_printed: 1 Sølvgylden
           value: silver
+          seed: dk-galster-f1g-47
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '28.5'
           seed: dk-galster-f1g-47
     sources:
       - type: literature
@@ -100568,7 +102044,7 @@ coins:
     year_verified: false
     fineness:
       - value: 0.5
-        source: galster
+        source: danskmoent.dk (Galster 9)
       - value: 0.5202
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
       - value: 0.5215
@@ -100577,6 +102053,8 @@ coins:
         source: Lindahl 1955 (NNÅ 1955), s. 78
       - value: 0.54
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20
+      - value: 0.56
+        source: danskmoent.dk (Galster 9)
       - value: 0.5788
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19
       - value: 0.5878
@@ -100634,6 +102112,11 @@ coins:
       - value: 0.89
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
     weight_range_g:
+      - min: 0.5
+        max: 1.0
+        approx: false
+        source: danskmoent.dk (Galster 9)
+        url: https://www.danskmoent.dk/epomg9.htm
       - min: 0.5
         max: 1.0
         source: Lindahl 1955 (NNÅ 1955), s. 78
@@ -123091,35 +124574,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-371120
-  - id: c-f6a01032
-    class_id: c-f6a01032
-    label: unified-kmk-371287
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1524
-    year_last: 1528
-    year_ranges:
-      -   - 1524
-          - 1528
-    year_label: 1524-1528
-    ruler: Frederik I
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.33
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/371287
-        ref: KMM 371287 (Inv. FP 3967.6)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-371287
   - id: c-cdeb43f6
     class_id: c-cdeb43f6
     label: unified-kmk-371849
@@ -128920,11 +130374,19 @@ coins:
     fineness:
       - value: 0.171
         source: ngc
+        specimen: ngc-1049880
+      - value: 0.171
+        source: ngc
+        specimen: ngc-64998
       - value: 0.171
         source: numismaster
     weight_rough_g:
       - value: 1.602
         source: ngc
+        specimen: ngc-1049880
+      - value: 1.602
+        source: ngc
+        specimen: ngc-64998
       - value: 1.602
         source: numismaster
     sources:
@@ -130299,10 +131761,25 @@ coins:
     fineness:
       - value: 0.671
         source: ngc
+        specimen: ngc-1050029
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1059991
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-165545
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-165547
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65279
       - value: 0.671
         source: numista
+        specimen: dk-numista-111287
+      - value: 0.671
+        source: numista
+        specimen: dk-numista-111289
     weight_rough_g:
       - value: 21.31
         source: kmk
@@ -130370,10 +131847,25 @@ coins:
         source: kmk
       - value: 22.272
         source: ngc
+        specimen: ngc-1050029
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1059991
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-165545
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-165547
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65279
       - value: 22.272
         source: numista
+        specimen: dk-numista-111287
+      - value: 22.272
+        source: numista
+        specimen: dk-numista-111289
       - value: 22.278
         source: kmk
       - value: 22.302
@@ -130383,8 +131875,10 @@ coins:
     diameter_mm:
       - value: 42.05
         source: numista
+        specimen: dk-numista-111289
       - value: 42.5
         source: numista
+        specimen: dk-numista-111287
     sources:
       - type: literature
         url: https://numismaster.com/MC_165545
@@ -135232,8 +136726,16 @@ coins:
     fineness:
       - value: 0.671
         source: ngc
+        specimen: ngc-1050639
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1059884
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-165548
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65277
       - value: 0.671
         source: numista
     weight_rough_g:
@@ -135253,8 +136755,16 @@ coins:
         source: kmk
       - value: 22.272
         source: ngc
+        specimen: ngc-1050639
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1059884
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-165548
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65277
       - value: 22.272
         source: numista
       - value: 22.5
@@ -136623,9 +138133,17 @@ coins:
     fineness:
       - value: 0.875
         source: ngc
+        specimen: ngc-1051027
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66083
     weight_rough_g:
       - value: 28.893
         source: ngc
+        specimen: ngc-1051027
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66083
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.2-1840-1847-cuid-1051027-duid-1238342
@@ -140280,8 +141798,16 @@ coins:
     fineness:
       - value: 0.671
         source: ngc
+        specimen: ngc-1059715
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1070538
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-165551
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-165553
       - value: 0.671
         source: numista
     weight_rough_g:
@@ -140385,8 +141911,16 @@ coins:
         source: kmk
       - value: 22.272
         source: ngc
+        specimen: ngc-1059715
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1070538
       - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-165551
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-165553
       - value: 22.272
         source: numista
       - value: 22.284

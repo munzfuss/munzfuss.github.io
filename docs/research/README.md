@@ -59,6 +59,11 @@ Every new dossier gets a row here in the same commit (`tests/test_research_index
 | [`luebischer_muenzfuss_plan.md`](luebischer_muenzfuss_plan.md) | work plan for the lübischer Münzfuß card |
 | [`hans_silver_1481_1513.md`](hans_silver_1481_1513.md) | Hans' silver and billon: standard, sources, data |
 | [`hans_rates_1481_1513.md`](hans_rates_1481_1513.md) | Gulden / Lübeck money / Hvid / Skilling rates 1481–1513 and the silver they imply |
+| [`denomination_ratio_chains_1403_1625.md`](denomination_ratio_chains_1403_1625.md) | the chain smallest → largest denomination as the acts SET it, 1403–1625; non-integer links and change points; which denominations were in one system |
+| [`danish_small_coin_lines_1497_1660.md`](danish_small_coin_lines_1497_1660.md) | Hvid / Skilling / Mark / Gylden-Daler formula lines 1497–1660, continuity after 1541, the Danish : Lübeck tie, end-point candidates for the Lybsk Møntfod |
+| [`luxdorph_1765_mynteudregning.md`](luxdorph_1765_mynteudregning.md) | Luxdorph 1765: the 14th-c. and Erik VII coin reckoning, the 1403 Hanseatic recess and the 1424 agreement (Queen Philippa) as printed, the 1764 assays of 12th–13th-c. coins; compared with our dossiers |
+| [`luxdorph_1760_mynte_anordninger.md`](luxdorph_1760_mynte_anordninger.md) | Luxdorph 1760: the three tables of the ordinances of Christian II, Frederik I (incl. Norway 1524–27) and Christian III to 1540, transcribed from the page images and compared with our dossiers (88 Fireskillinger 1524, 960 Smaa-Penninge, Bergen 126) |
+| [`christian_ii_partisans_coinage_1525_1536.md`](christian_ii_partisans_coinage_1525_1536.md) | coins in Christian II's name: Norby Landskrona 1525, Norway 1531–32, the Count's Feud 1534–36 (Kunzel; reckoning; placement) |
 | [`eriksson_2017_assays.md`](eriksson_2017_assays.md) | XRF assays 1448–1523 (Eriksson; Heljeback 1400–1448 noted) matched to our data |
 | [`sh_ducal_zone_husum_1514.md`](sh_ducal_zone_husum_1514.md) | Schleswig-Holstein ducal silver 1474–1547 |
 | [`wilcke_1514_1541_specs.md`](wilcke_1514_1541_specs.md) | Wilcke 1950's ordinance specifications 1514–1541 |

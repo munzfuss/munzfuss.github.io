@@ -197,6 +197,16 @@ attributes to the 1514 Møntordning** — see §8.
 | Sjælland 1515 | 24 ß = 1 rhinsk Gylden; 6 old Danish Hvide = 1 ß; goldsmiths' silver ≥ 15 lod, 1 quintin remedium |
 | Norway 1514 | Cologne weight; silver ≥ 15 lod with 1 quintin remedium; only full-weight gold current in Germany |
 
+**The Mark in 1514 (added 2026-11-05).** The Møntordning does not name a Mark. Curator
+(2026-11-05): it was then a unit of account, counted from the Hvid. Recomputed from the grid
+(ours): Hvid 0,332 g fine (72 Hvide = 23,904 g, Wilcke s. 154) → Mark of 48 Hvide = 16 ß of
+3 Hvide = 15,94 g; the Gylden = 72 Hvide = **1½ Mark = 24 ß**. That is the Lübeck count of the
+same years (Hamburg 1515–19: Thaler = 1½ M = 24 ß l.), and Wilcke reads 1514 as the moment
+«*da dansk og lybsk M og ß var ens*» («коли данська й любекська марка й скілінг були
+однакові»), Wilcke 1919 s. 54. By silver the hvid-mark (15,94 g) sits c. 10 % under the
+Lübeck Mark piece of 1515 (17,64 g fine, Wilcke 1950 7-2 s. 185) — the Danish coin a little
+worse than its Lübeck model.
+
 Wilcke's point about the complex: the old Korshvid was moved from 4 to 5 to 6 per Skilling
 within a year (96 → 120 → 144 Hvide per Gylden), which he reads as a «møntteknisk
 Skatteoppebørsel» on the holders of the old Hvide (s. 158).

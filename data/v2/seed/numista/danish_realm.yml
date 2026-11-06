@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-10-09T16:00:12Z'
+generated_at: '2026-11-05T15:05:31Z'
 entity: danish_realm
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -333,8 +333,8 @@ coins:
     catalog:
       numista: '303699'
       sieg:
-        - '1'
         - '2'
+        - '2.1'
     metal: silver
     issuing_entity: danish_realm
     verified: false
@@ -2685,7 +2685,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '278811'
-      sieg: '15'
+      sieg:
+        - '15'
+        - '15.1'
     metal: silver
     fineness: 0.843
     weight_rough_g: 9.6
@@ -2722,7 +2724,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '108004'
-      sieg: '15'
+      sieg:
+        - '15'
+        - '15.2'
     metal: silver
     fineness: 0.649
     weight_rough_g: 9.744
@@ -3490,7 +3494,9 @@ coins:
     mint:
     catalog:
       numista: '142133'
-      sieg: '154'
+      sieg:
+        - '154'
+        - '154.2'
       fr: '32'
     metal: gold
     fineness: 0.972
