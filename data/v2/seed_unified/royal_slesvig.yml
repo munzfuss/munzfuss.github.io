@@ -2,8 +2,8 @@
 # Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
-# Input: 139 per-source seed entries.
-# Output: 63 unified entries (one per physical coin).
+# Input: 140 per-source seed entries.
+# Output: 61 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13,32 +13,6 @@
 id: royal_slesvig
 generated_at: '2026-11-06'
 coins:
-  - id: c-d317065a
-    class_id: c-d317065a
-    label: unified-denmark-numismaster-65630
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Portugaløser
-    year_first: 1592
-    year_last: 1592
-    year_label: '1592'
-    mint: Haderslev
-    catalog:
-      fr: '62.2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65630
-        ref: NumisMaster
-    issuing_entity: royal_slesvig
-    composed_of:
-      - denmark-numismaster-65630
   - id: c-7c72fcb2
     class_id: c-7c72fcb2
     label: unified-dk-bruun-14708
@@ -1898,13 +1872,13 @@ coins:
     composed_of:
       - dk-hede-c3h25
       - kmk-81475
-  - id: c-1549b255
-    class_id: c-1549b255
+  - id: c-149b0114
+    class_id: c-149b0114
     label: unified-dk-hede-c4h1
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: ½ Portugaløser
+    nominal: 1 Portugaløser
     year_first: 1591
     year_last: 1592
     year_ranges:
@@ -1912,9 +1886,16 @@ coins:
           - 1592
     year_label: 1591-1592
     ruler: Christian IV
-    mint: Haderslev
+    mintmaster: Andreas Metzner
+    mint:
+      - Haderslev
+      - Kopenhagen
+      - Odense
     catalog:
-      hede: '1'
+      hede:
+        - '1'
+        - 5A
+        - 5B
       hede_volume: c4h
       schou:
         - 1-5
@@ -1922,23 +1903,86 @@ coins:
       sieg:
         - '5'
         - '6'
+        - '8'
         - '158'
         - '159'
+      bruun_collection_id: '4595'
+      others:
+        - Harck# 2.1
+        - B# 1169
+        - B# 1170
+      numista: '469294'
+      fr:
+        - '62'
+        - '62.1'
+        - '62.2'
     metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 34.61
+        source: bruun
+      - value: 34.88
+        source: hede
+      - value: 35.0
+        source: hede
+      - value: 35.0
+        source: numista
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 35g'
+          value: '35.0'
+          seed: dk-hede-c4h1
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65629
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65630
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13076, p. 38
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h1.htm
         ref: danskmoent.dk (Hede c4h1)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h5.htm
+        ref: danskmoent.dk (Hede c4h5A)
+      - type: literature
+        url: https://en.numista.com/469294
+        ref: Numista N#469294 — 10 Ducats - Christian IV 1591-1592
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/136991
+        ref: KMM 136991 (Inv. RP 11.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/136992
+        ref: KMM 136992 (Inv. RP 12.1)
     note:
       de: 1 Og
       en: 1 Og
       uk: 1 Og
       da: 1 Og
-    issuing_entity: royal_slesvig
+    issuing_entity:
+      - danish_realm
+      - royal_slesvig
     composed_of:
+      - denmark-numismaster-65629
+      - denmark-numismaster-65630
+      - dk-bruun-4595
       - dk-hede-c4h1
+      - dk-hede-c4h5a
+      - dk-hede-c4h5b
+      - dk-numista-469294
+      - kmk-136991
+      - kmk-136992
   - id: c-e533c3c7
     class_id: c-e533c3c7
     label: unified-dk-hede-c4h2
@@ -1966,6 +2010,7 @@ coins:
         - '160'
       schou:
         - '1'
+        - '5'
         - '6'
       bruun_collection_id:
         - '4597'
@@ -1988,6 +2033,8 @@ coins:
     verified: false
     weight_rough_g:
       - value: 17.0
+        source: hede
+      - value: 17.0
         source: numista
       - value: 17.32
         source: bruun
@@ -1995,6 +2042,22 @@ coins:
         source: bruun
       - value: 17.38
         source: numista
+      - value: 17.5
+        source: hede
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 17g'
+          value: '17.0'
+          seed: dk-hede-c4h2
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 17,5g'
+          value: '17.5'
+          seed: dk-hede-c4h6
     sources:
       - type: literature
         url: https://numismaster.com/MC_65627
@@ -2012,6 +2075,9 @@ coins:
         url: https://www.danskmoent.dk/c4hede.htm
         ref: danskmoent.dk overview c4hede (Hede c4h2 — Tiefenseite fehlt)
       - type: literature
+        url: https://www.danskmoent.dk/chr/c4h1.htm
+        ref: danskmoent.dk (Hede c4h2)
+      - type: literature
         url: https://www.danskmoent.dk/chr/c4h6.htm
         ref: danskmoent.dk (Hede c4h6)
       - type: literature
@@ -2024,15 +2090,6 @@ coins:
       de: 5 Ducats
       en: 5 Ducats
       uk: 5 Ducats
-    verification_note:
-      de: 'Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
-        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
-      en: 'Only the overview-table row of c4hede.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
-        Hede 1971 and Galster 1965. Index note: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
-      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c4hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
-        1965. Коментар з індексу: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
-      da: 'Kun oversigtsrækken hos c4hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
-        1965. Bemærkning i indekset: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
     issuing_entity: royal_slesvig
     composed_of:
       - denmark-numismaster-65627
@@ -2090,6 +2147,8 @@ coins:
         source: numismaster
         specimen: denmark-numismaster-65625
     weight_rough_g:
+      - value: 8.58
+        source: hede
       - value: 8.661
         source: numismaster
         specimen: denmark-numismaster-65623
@@ -2100,6 +2159,14 @@ coins:
         source: bruun
       - value: 8.75
         source: numista
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,58g'
+          value: '8.58'
+          seed: dk-hede-c4h3
     sources:
       - type: literature
         url: https://numismaster.com/MC_65623
@@ -2165,97 +2232,9 @@ coins:
     composed_of:
       - denmark-numismaster-65634
       - dk-hede-c4h4
-  - id: c-149b0114
-    class_id: c-149b0114
-    label: unified-dk-hede-c4h5a
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Portugaløser
-    year_first: 1591
-    year_last: 1592
-    year_ranges:
-      -   - 1591
-          - 1592
-    year_label: 1591-1592
-    ruler: Christian IV
-    mintmaster: Andreas Metzner
-    mint:
-      - Haderslev
-      - Kopenhagen
-      - Odense
-    catalog:
-      hede:
-        - '1'
-        - 5A
-        - 5B
-      hede_volume: c4h
-      schou:
-        - '3'
-        - '4'
-      sieg:
-        - '8'
-        - '159'
-      bruun_collection_id: '4595'
-      others:
-        - Harck# 2.1
-        - B# 1169
-        - B# 1170
-      numista: '469294'
-      fr:
-        - '62'
-        - '62.1'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 34.61
-        source: bruun
-      - value: 34.88
-        source: hede
-      - value: 35.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65629
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13076, p. 38
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h5.htm
-        ref: danskmoent.dk (Hede c4h5A)
-      - type: literature
-        url: https://en.numista.com/469294
-        ref: Numista N#469294 — 10 Ducats - Christian IV 1591-1592
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/136991
-        ref: KMM 136991 (Inv. RP 11.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/136992
-        ref: KMM 136992 (Inv. RP 12.1)
-    note:
-      de: 10 Ducats
-      en: 10 Ducats
-      uk: 10 Ducats
-    issuing_entity:
-      - danish_realm
-      - royal_slesvig
-    composed_of:
-      - denmark-numismaster-65629
-      - dk-bruun-4595
-      - dk-hede-c4h5a
-      - dk-hede-c4h5b
-      - dk-numista-469294
-      - kmk-136991
-      - kmk-136992
   - id: c-9a84665f
     class_id: c-9a84665f
-    label: unified-dk-hede-c4h7
+    label: unified-dk-hede-c4h7a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -2271,7 +2250,7 @@ coins:
     mint: Haderslev
     catalog:
       hede:
-        - '7'
+        - 7A
         - 7B
       hede_volume: c4h
       schou:
@@ -2299,8 +2278,24 @@ coins:
     weight_rough_g:
       - value: 8.661
         source: numismaster
+      - value: 8.7
+        source: hede
       - value: 8.75
         source: bruun
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,7g'
+          value: '8.7'
+          seed: dk-hede-c4h7a
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,7g'
+          value: '8.7'
+          seed: dk-hede-c4h7b
     sources:
       - type: literature
         url: https://numismaster.com/MC_65624
@@ -2310,7 +2305,7 @@ coins:
         ref: Bruun Part I, lot 1011, p. 21
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h7.htm
-        ref: danskmoent.dk (Hede c4h7)
+        ref: danskmoent.dk (Hede c4h7A)
     note:
       de: 2½ Ducats
       en: 2½ Ducats
@@ -2319,7 +2314,8 @@ coins:
     composed_of:
       - denmark-numismaster-65624
       - dk-bruun-4601
-      - dk-hede-c4h7
+      - dk-hede-c4h7a
+      - dk-hede-c4h7b
   - id: c-5249d174
     class_id: c-5249d174
     label: unified-dk-hede-c4h8a

@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 63 active, 12 retired.
+# 61 active, 14 retired.
 
 id: royal_slesvig
 classes:
@@ -45,23 +45,18 @@ classes:
   - id: c-149b0114
     status: active
     created: '2026-10-22'
-    label: unified-dk-hede-c4h5a
+    label: unified-dk-hede-c4h1
     legacy_id: unified-dk-hede-c4h5a
     members:
       - denmark-numismaster-65629
+      - denmark-numismaster-65630
       - dk-bruun-4595
+      - dk-hede-c4h1
       - dk-hede-c4h5a
       - dk-hede-c4h5b
       - dk-numista-469294
       - kmk-136991
       - kmk-136992
-  - id: c-1549b255
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-c4h1
-    legacy_id: unified-dk-hede-c4h1
-    members:
-      - dk-hede-c4h1
   - id: c-1728e8b0
     status: active
     created: '2026-10-22'
@@ -341,12 +336,13 @@ classes:
   - id: c-9a84665f
     status: active
     created: '2026-10-22'
-    label: unified-dk-hede-c4h7
+    label: unified-dk-hede-c4h7a
     legacy_id: unified-dk-hede-c4h7
     members:
       - denmark-numismaster-65624
       - dk-bruun-4601
-      - dk-hede-c4h7
+      - dk-hede-c4h7a
+      - dk-hede-c4h7b
   - id: c-9adc3aa0
     status: active
     created: '2026-10-22'
@@ -446,13 +442,6 @@ classes:
     legacy_id: unified-dk-galster-f1g-127
     members:
       - dk-galster-f1g-127
-  - id: c-d317065a
-    status: active
-    created: '2026-10-22'
-    label: unified-denmark-numismaster-65630
-    legacy_id: unified-denmark-numismaster-65630
-    members:
-      - denmark-numismaster-65630
   - id: c-d3719c75
     status: active
     created: '2026-10-22'
@@ -559,6 +548,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-345235
+  - id: c-1549b255
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-c4h1
+    legacy_id: unified-dk-hede-c4h1
+    merged_into: c-149b0114
+    retired: '2026-11-06'
+    members:
+      - dk-hede-c4h1
   - id: c-181f6e84
     status: retired
     created: '2026-10-22'
@@ -612,6 +610,15 @@ classes:
     retired: '2026-11-04'
     members:
       - dk-hede-f2h32
+  - id: c-d317065a
+    status: retired
+    created: '2026-10-22'
+    label: unified-denmark-numismaster-65630
+    legacy_id: unified-denmark-numismaster-65630
+    merged_into: c-149b0114
+    retired: '2026-11-06'
+    members:
+      - denmark-numismaster-65630
   - id: c-e02516e9
     status: retired
     created: '2026-10-22'

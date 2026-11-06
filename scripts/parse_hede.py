@@ -130,7 +130,11 @@ _BRUTTO_RE = re.compile(
     # published: every page satisfies the invariant with ≤1% deviation
     # (rounding noise). 0 pages have both Bruttovægt AND a separate
     # Vægt (no within-page ambiguity to resolve).
-    r"(?:Bruttovægt|\bVægt)" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
+    #
+    # «Bruttovægt: ca. 35g» (c4h1, c4h3, c4h6, c4h7, c4h19, c4h74, c4h75):
+    # Hede's own «ca.» — the weight is read and the reservation kept
+    # (`bruttovægt_circa`, the printed text), not dropped.
+    r"(?:Bruttovægt|\bVægt)" + _SEP + _YEAR_PREFIX + r"(?:ca\.?\s*)?([\d,\.]+)\s*g",
     re.IGNORECASE,
 )
 
@@ -903,8 +907,12 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                 guldafslag_run = False
                 denom_label = (m.group(1) + " " + m.group(2) + (m.group(3) or "")).strip()
                 current_denom = _normalise_label(denom_label)
-        # Find Hede ref anywhere in this line
-        hm = HEDE_REF_RE.search(line_s)
+        # Find Hede ref in this line. A parenthesised attribution «(Hede 62,
+        # Schou 42 …)» names the coin of the line; a bare mention before it
+        # is a comparison («Som Hede 61B (Hede 62 …)», c5h61), so the
+        # parenthesised one wins when both are present.
+        hm = (re.search(r"\(\s*" + _HEDE_ANCHOR + r"(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)", line_s)
+              or HEDE_REF_RE.search(line_s))
         if hm:
             guldafslag_run = False  # real coin attribution resumes
             if current_denom:
@@ -1065,8 +1073,27 @@ def _extract_specs(text: str, basename: str = "") -> dict:
             # multi-nominal splits.
             if key in hede_to_nominal and basename not in _INVERTED_TAG_PAGES:
                 spec = {**spec, "nominal": hede_to_nominal[key]}
+            elif basename not in _INVERTED_TAG_PAGES:
+                # A table block labelled with the bare number («Hede 61»)
+                # whose description lists the letters («Hede 61A … 61C»):
+                # take the nominal when every letter of that number agrees.
+                kb = re.match(r"^(\d+)", key)
+                if kb:
+                    noms = {n for hk, n in hede_to_nominal.items()
+                            if re.match(r"^(\d+)", hk) and re.match(r"^(\d+)", hk).group(1) == kb.group(1)
+                            and len(n.split()) <= 3}
+                    if len(noms) == 1:
+                        spec = {**spec, "nominal": noms.pop()}
             if per_hede_refs:
                 spec = {**spec, "catalog_refs": per_hede_refs}
+            # The first block under a number is its own spec; a later block
+            # attributed to the same number by the look-back is a repeat
+            # further down the page (f3h68: the unlabelled 1-Speciedaler block
+            # after the table overwrote «Hede 63», the 3 Speciedaler).
+            # A block introduced by a later ordinance («Ved forordning … nedsat
+            # til», c4h100) is the reduced spec and still replaces the first.
+            if key in by_hede and not _PERIOD_VARIANT_RE.search(text[max(0, pos - 400): pos]):
+                continue
             by_hede[key] = spec
         elif primary and primary not in by_hede:
             if primary in hede_to_nominal:
@@ -1455,6 +1482,8 @@ def _spec_from_around(text: str, brutto_pos: int) -> dict:
         v = _parse_decimal(m.group(1))
         if v is not None:
             spec["bruttovægt_g"] = v
+            if re.search(r"\bca\.?\s*[\d]", m.group(0)):
+                spec["bruttovægt_circa"] = re.sub(r"\s+", " ", m.group(0)).strip()
     if (m := _FINHED_RE.search(window)):
         v = _parse_decimal(m.group(1))
         if v is not None:

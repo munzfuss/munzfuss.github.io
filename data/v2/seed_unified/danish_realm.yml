@@ -2,8 +2,8 @@
 # Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8532 per-source seed entries.
-# Output: 1897 unified entries (one per physical coin).
+# Input: 8533 per-source seed entries.
+# Output: 1894 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4481,97 +4481,6 @@ coins:
       - dk-numista-111083
       - dk-tid-97518
       - ngc-1050895
-  - id: c-2c5ecd38
-    class_id: c-2c5ecd38
-    label: unified-dk-bruun-6030
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Krone
-    year_first: 1651
-    year_last: 1651
-    year_label: '1651'
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '183'
-      bruun_collection_id:
-        - '6030'
-        - '6031'
-      sieg: '43'
-      schou:
-        - '13'
-        - '14'
-      hede: '85'
-      bruun_part: I
-      bruun_lot_no: 1060
-      bruun_page: 100
-      others:
-        - Aagaard# 1.1 (51-3/51-3)
-        - Aagaard# 1.3 (51-4/51-5)
-      dav: EC II 3566
-      numista: '111157'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.859
-        source: ngc
-      - value: 0.859
-        source: numismaster
-      - value: 0.859
-        source: numista
-      - value: 0.86
-        source: ucoin
-    weight_rough_g:
-      - value: 37.08
-        source: bruun
-      - value: 37.52
-        source: bruun
-      - value: 37.819
-        source: ngc
-      - value: 37.819
-        source: numismaster
-      - value: 37.819
-        source: numista
-      - value: 37.82
-        source: ucoin
-    diameter_mm:
-      - value: 40.4
-        source: numista
-      - value: 40.4
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65349
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1060, p. 76
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14129, p. 54
-      - type: literature
-        url: https://en.numista.com/111157
-        ref: Numista N#111157 — 2 Krone - Frederik III Full motto; clockwise
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-kroner-1651/?tid=97324
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-183-1651-cuid-1060174-duid-1237080
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65349
-      - dk-bruun-6030
-      - dk-bruun-6031
-      - dk-numista-111157
-      - dk-tid-97324
-      - ngc-1060174
   - id: c-c50795d4
     class_id: c-c50795d4
     label: unified-dk-bruun-6082
@@ -4671,69 +4580,6 @@ coins:
       - denmark-numismaster-65539
       - dk-bruun-6089
       - ngc-1050779
-  - id: c-f56488c5
-    class_id: c-f56488c5
-    label: unified-dk-bruun-6091
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Krone (8 Mark)
-    year_first: 1653
-    year_last: 1653
-    year_label: '1653'
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '195'
-      hede: '88'
-      sieg: '45'
-      bruun_collection_id: '6091'
-      schou: '28'
-      others:
-        - Aagaard# 15
-      dav: '3568'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: ucoin
-    weight_rough_g:
-      - value: 44.54
-        source: ucoin
-      - value: 44.544
-        source: ngc
-      - value: 44.544
-        source: numismaster
-      - value: 44.67
-        source: bruun
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65350
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14130, p. 54
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-kroner-1653/?tid=97325
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-195-1653-cuid-1050102-duid-1237081
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65350
-      - dk-bruun-6091
-      - dk-tid-97325
-      - ngc-1050102
   - id: c-d68688db
     class_id: c-d68688db
     label: unified-dk-bruun-6174
@@ -4775,75 +4621,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-6174
-  - id: c-3ea43393
-    class_id: c-3ea43393
-    label: unified-dk-bruun-6180
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Krone
-    year_first: 1655
-    year_last: 1655
-    year_label: '1655'
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '210'
-      bruun_collection_id: '6180'
-      sieg: '50'
-      schou: '15'
-      hede: '96'
-      bruun_part: II
-      bruun_lot_no: 13135
-      bruun_page: 99
-      others:
-        - Aagaard# 48.1
-      dav: '3573'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: ucoin
-    weight_rough_g:
-      - value: 44.54
-        source: ucoin
-      - value: 44.544
-        source: ngc
-      - value: 44.544
-        source: numismaster
-      - value: 44.64
-        source: bruun
-    diameter_mm:
-      - value: 40.3
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65352
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13135, p. 73
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-kroner-1655/?tid=97327
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-210-1655-cuid-1050685-duid-1237083
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65352
-      - dk-bruun-6180
-      - dk-tid-97327
-      - ngc-1050685
   - id: c-87d3fffe
     class_id: c-87d3fffe
     label: unified-dk-bruun-6273
@@ -6095,6 +5872,44 @@ coins:
       - dk-bruun-6777
       - dk-bruun-6822
       - ngc-1060337
+  - id: c-c6399b1c
+    class_id: c-c6399b1c
+    label: unified-dk-bruun-6757
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Danish East India Company
+    year_first: 1671
+    year_last: 1671
+    year_label: '1671'
+    ruler: Christian V
+    mint: Kopenhagen
+    catalog:
+      km: '319'
+      bruun_collection_id: '6757'
+      sieg: '61'
+      schou: '4'
+      hede: '64'
+      bruun_part: I
+      bruun_lot_no: 1100
+      bruun_page: 149
+      dav: '408'
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 57.99
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1100, p. 125
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-bruun-6757
   - id: c-d24d46f8
     class_id: c-d24d46f8
     label: unified-dk-bruun-6760
@@ -32919,6 +32734,46 @@ coins:
       - dk-bruun-4746
       - dk-hede-c4h18
       - ngc-1050844
+  - id: c-12438b8b
+    class_id: c-12438b8b
+    label: unified-dk-hede-c4h19
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Sovereign
+    year_first: 1608
+    year_last: 1608
+    year_label: '1608'
+    ruler: Christian IV
+    mint: Helsingør
+    catalog:
+      hede: '19'
+      hede_volume: c4h
+      schou: '1'
+      sieg: '150'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 10.0
+        source: hede
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 10,0g'
+          value: '10.0'
+          seed: dk-hede-c4h19
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h19.htm
+        ref: danskmoent.dk (Hede c4h19)
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-hede-c4h19
   - id: c-38b86424
     class_id: c-38b86424
     label: unified-dk-hede-c4h20
@@ -38590,8 +38445,18 @@ coins:
         source: bruun
       - value: 2.98
         source: bruun
+      - value: 3.0
+        source: hede
       - value: 3.2
         source: bruun
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: Vægt ca. 3 g
+          value: '3.0'
+          seed: dk-hede-c4h74
     sources:
       - type: literature
         url: https://numismaster.com/MC_64982
@@ -38659,6 +38524,16 @@ coins:
     weight_rough_g:
       - value: 1.39
         source: bruun
+      - value: 1.5
+        source: hede
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: Vægt ca. 1,5 g
+          value: '1.5'
+          seed: dk-hede-c4h75
     sources:
       - type: literature
         url: https://numismaster.com/MC_64980
@@ -50369,39 +50244,68 @@ coins:
       - dk-numista-214327
       - dk-tid-97370
       - ngc-1050720
-  - id: c-9368d97b
-    class_id: c-9368d97b
+  - id: c-da26210f
+    class_id: c-da26210f
     label: unified-dk-hede-c5h62
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Speciedaler
+    nominal: 2 Speciedaler
     year_first: 1670
     year_last: 1670
     year_label: '1670'
     ruler: Christian V
     mint: Kopenhagen
     catalog:
+      km: '324'
       hede: '62'
       hede_volume: c5h
       schou: '42'
       sieg: '59'
+      dav: EC II 3629A
+      numista: '577419'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     fineness:
       - value: 0.875
         source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
+        source: numista
     weight_rough_g:
       - value: 57.55
         source: hede
+      - value: 57.55
+        source: ngc
+      - value: 57.55
+        source: numismaster
+      - value: 57.85
+        source: numista
+    diameter_mm:
+      - value: 42.0
+        source: numista
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65564
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h61.htm
         ref: danskmoent.dk (Hede c5h62)
+      - type: literature
+        url: https://en.numista.com/577419
+        ref: Numista N#577419 — 2 Speciedaler - Christian V
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-324-cuid-1069045-duid-1237826
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 9.288
@@ -50409,7 +50313,10 @@ coins:
       basis: fin
       unit_raw: speciedalere
     composed_of:
+      - denmark-numismaster-65564
       - dk-hede-c5h62
+      - dk-numista-577419
+      - ngc-1069045
   - id: c-aaba5b52
     class_id: c-aaba5b52
     label: unified-dk-hede-c5h63
@@ -50514,50 +50421,56 @@ coins:
       - kmk-492889
       - kmk-561608
       - ngc-1050508
-  - id: c-c6399b1c
-    class_id: c-c6399b1c
+  - id: c-478402a3
+    class_id: c-478402a3
     label: unified-dk-hede-c5h64
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Speciedaler
+    nominal: 2 Speciedaler
     year_first: 1671
     year_last: 1671
     year_label: '1671'
     ruler: Christian V
     mint: Kopenhagen
     catalog:
-      km: '319'
+      km: '363'
       hede: '64'
       hede_volume: c5h
       schou: '4'
       sieg: '61'
-      bruun_collection_id: '6757'
-      bruun_part: I
-      bruun_lot_no: 1100
-      bruun_page: 149
       dav: '408'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.875
         source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
     weight_rough_g:
+      - value: 57.55
+        source: ngc
+      - value: 57.55
+        source: numismaster
       - value: 57.786
         source: hede
-      - value: 57.99
-        source: bruun
     sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1100, p. 125
+      - type: literature
+        url: https://numismaster.com/MC_66307
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h63.htm
         ref: danskmoent.dk (Hede c5h64)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-363-1671-cuid-1050474-duid-1238494
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 9.25
@@ -50565,8 +50478,9 @@ coins:
       basis: fin
       unit_raw: speciedalere
     composed_of:
-      - dk-bruun-6757
+      - denmark-numismaster-66307
       - dk-hede-c5h64
+      - ngc-1050474
   - id: c-366ca5c7
     class_id: c-366ca5c7
     label: unified-dk-hede-c5h65
@@ -61616,7 +61530,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_first: 1666
     year_last: 1666
     year_label: '1666'
@@ -80944,7 +80858,7 @@ coins:
       - value: 0.875
         source: hede
     weight_rough_g:
-      - value: 28.775
+      - value: 86.325
         source: hede
     sources:
       - type: literature
@@ -82428,39 +82342,95 @@ coins:
       - kmk-275549
       - kmk-276865
       - ngc-1050027
-  - id: c-91e22f12
-    class_id: c-91e22f12
+  - id: c-2c5ecd38
+    class_id: c-2c5ecd38
     label: unified-dk-hede-f3h85
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_first: 1651
     year_last: 1651
     year_label: '1651'
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
+      km: '183'
       hede: '85'
       hede_volume: f3h
       schou: 12-14
       sieg: '43'
+      bruun_collection_id:
+        - '6030'
+        - '6031'
+      bruun_part: I
+      bruun_lot_no: 1060
+      bruun_page: 100
+      others:
+        - Aagaard# 1.1 (51-3/51-3)
+        - Aagaard# 1.3 (51-4/51-5)
+      dav: EC II 3566
+      numista: '111157'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.859
         source: hede
+      - value: 0.859
+        source: ngc
+      - value: 0.859
+        source: numismaster
+      - value: 0.859
+        source: numista
+      - value: 0.86
+        source: ucoin
     weight_rough_g:
+      - value: 37.08
+        source: bruun
+      - value: 37.52
+        source: bruun
       - value: 37.819
         source: hede
+      - value: 37.819
+        source: ngc
+      - value: 37.819
+        source: numismaster
+      - value: 37.819
+        source: numista
+      - value: 37.82
+        source: ucoin
+    diameter_mm:
+      - value: 40.4
+        source: numista
+      - value: 40.4
+        source: ucoin
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65349
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1060, p. 76
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14129, p. 54
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h84.htm
         ref: danskmoent.dk (Hede f3h85)
+      - type: literature
+        url: https://en.numista.com/111157
+        ref: Numista N#111157 — 2 Krone - Frederik III Full motto; clockwise
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-kroner-1651/?tid=97324
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-183-1651-cuid-1060174-duid-1237080
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 9.518
@@ -82468,7 +82438,13 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-65349
+      - dk-bruun-6030
+      - dk-bruun-6031
       - dk-hede-f3h85
+      - dk-numista-111157
+      - dk-tid-97324
+      - ngc-1060174
   - id: c-201c1518
     class_id: c-201c1518
     label: unified-dk-hede-f3h86
@@ -82911,39 +82887,76 @@ coins:
       - ngc-1049962
       - ngc-1050097
       - ngc-1059714
-  - id: c-93f8df7c
-    class_id: c-93f8df7c
+  - id: c-f56488c5
+    class_id: c-f56488c5
     label: unified-dk-hede-f3h88
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_first: 1651
-    year_last: 1651
-    year_label: '1651'
+    year_last: 1653
+    year_ranges:
+      -   - 1651
+          - 1651
+      -   - 1653
+          - 1653
+    year_label: 1651, 1653
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
+      km: '195'
       hede: '88'
       hede_volume: f3h
       schou: '28'
       sieg: '45'
+      bruun_collection_id: '6091'
+      others:
+        - Aagaard# 15
+      dav: '3568'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.671
         source: hede
+      - value: 0.671
+        source: ngc
+      - value: 0.671
+        source: numismaster
+      - value: 0.671
+        source: ucoin
     weight_rough_g:
+      - value: 44.54
+        source: ucoin
       - value: 44.544
         source: hede
+      - value: 44.544
+        source: ngc
+      - value: 44.544
+        source: numismaster
+      - value: 44.67
+        source: bruun
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65350
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14130, p. 54
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h87.htm
         ref: danskmoent.dk (Hede f3h88)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-kroner-1653/?tid=97325
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-195-1653-cuid-1050102-duid-1237081
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 10.418
@@ -82951,7 +82964,11 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-65350
+      - dk-bruun-6091
       - dk-hede-f3h88
+      - dk-tid-97325
+      - ngc-1050102
   - id: c-56f59604
     class_id: c-56f59604
     label: unified-dk-hede-f3h89
@@ -83918,39 +83935,77 @@ coins:
       - kmk-740773
       - ngc-1059990
       - ngc-1060170
-  - id: c-6ba9f038
-    class_id: c-6ba9f038
+  - id: c-3ea43393
+    class_id: c-3ea43393
     label: unified-dk-hede-f3h96
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_first: 1655
     year_last: 1655
     year_label: '1655'
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
+      km: '210'
       hede: '96'
       hede_volume: f3h
       schou: '15'
       sieg: '50'
+      bruun_collection_id: '6180'
+      bruun_part: II
+      bruun_lot_no: 13135
+      bruun_page: 99
+      others:
+        - Aagaard# 48.1
+      dav: '3573'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.671
         source: hede
+      - value: 0.671
+        source: ngc
+      - value: 0.671
+        source: numismaster
+      - value: 0.671
+        source: ucoin
     weight_rough_g:
+      - value: 44.54
+        source: ucoin
       - value: 44.544
         source: hede
+      - value: 44.544
+        source: ngc
+      - value: 44.544
+        source: numismaster
+      - value: 44.64
+        source: bruun
+    diameter_mm:
+      - value: 40.3
+        source: ucoin
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65352
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13135, p. 73
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h95.htm
         ref: danskmoent.dk (Hede f3h96)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-kroner-1655/?tid=97327
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-210-1655-cuid-1050685-duid-1237083
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 10.418
@@ -83958,7 +84013,11 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-65352
+      - dk-bruun-6180
       - dk-hede-f3h96
+      - dk-tid-97327
+      - ngc-1050685
   - id: c-2d64a59c
     class_id: c-2d64a59c
     label: unified-dk-hede-f3h97a
@@ -134876,47 +134935,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050473
-  - id: c-478402a3
-    class_id: c-478402a3
-    label: unified-ngc-1050474
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Speciedaler
-    year_first: 1671
-    year_last: 1671
-    year_label: '1671'
-    catalog:
-      km: '363'
-      dav: '408'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 57.55
-        source: ngc
-      - value: 57.55
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66307
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-363-1671-cuid-1050474-duid-1238494
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-66307
-      - ngc-1050474
   - id: c-34f6fb23
     class_id: c-34f6fb23
     label: unified-ngc-1050475
@@ -144002,62 +144020,6 @@ coins:
     composed_of:
       - denmark-numismaster-65505
       - ngc-1069043
-  - id: c-da26210f
-    class_id: c-da26210f
-    label: unified-ngc-1069045
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Speciedaler
-    year_first: 1670
-    year_last: 1670
-    year_label: '1670'
-    ruler: Christian V
-    catalog:
-      km: '324'
-      dav: EC II 3629A
-      numista: '577419'
-      hede: '62'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 57.55
-        source: ngc
-      - value: 57.55
-        source: numismaster
-      - value: 57.85
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65564
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/577419
-        ref: Numista N#577419 — 2 Speciedaler - Christian V
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-324-cuid-1069045-duid-1237826
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65564
-      - dk-numista-577419
-      - ngc-1069045
   - id: c-fb4bf421
     class_id: c-fb4bf421
     label: unified-ngc-1069052

@@ -2762,6 +2762,20 @@ coins:
       -   - 1591
           - 1593
     year_label: 1591-1593
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 17g'
+          value: '17.0'
+          seed: dk-hede-c4h2
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 17,5g'
+          value: '17.5'
+          seed: dk-hede-c4h6
     mint: Haderslev
     catalog:
       hede:
@@ -2777,6 +2791,7 @@ coins:
         - '4600'
       schou:
         - '1'
+        - '5'
         - '6'
       numista:
         - '423686'
@@ -2796,6 +2811,8 @@ coins:
     verified: false
     weight_rough_g:
       - value: 17.0
+        source: hede
+      - value: 17.0
         source: numista
       - value: 17.32
         source: bruun
@@ -2803,6 +2820,8 @@ coins:
         source: bruun
       - value: 17.38
         source: numista
+      - value: 17.5
+        source: hede
     sources:
       - type: literature
         url: https://numismaster.com/MC_65627
@@ -2828,6 +2847,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h6.htm
         ref: danskmoent.dk (Hede c4h6)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h1.htm
+        ref: danskmoent.dk (Hede c4h2)
     note:
       de: 5 Ducats
       en: 5 Ducats
@@ -3162,6 +3184,14 @@ coins:
       -   - 1591
           - 1592
     year_label: 1591-1592
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 35g'
+          value: '35.0'
+          seed: dk-hede-c4h1
     mint:
       - Haderslev
       - Kopenhagen
@@ -3205,6 +3235,8 @@ coins:
       - value: 34.88
         source: hede
       - value: 35.0
+        source: hede
+      - value: 35.0
         source: numista
     sources:
       - type: literature
@@ -3226,12 +3258,15 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/136991
         ref: KMM 136991 (Inv. RP 11.1)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/136992
         ref: KMM 136992 (Inv. RP 12.1)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156723
         ref: KMM 156723 (Inv. KP 1800.4)
+        display: false
       - type: literature
         url: https://numismaster.com/MC_65630
         ref: NumisMaster
@@ -3250,8 +3285,6 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - c-149b0114
-      - c-1549b255
-      - c-d317065a
     label: unified-dk-hede-c4h5a
     origin: promoted
   - fuss: reichsdukatenfuss
@@ -3609,6 +3642,14 @@ coins:
       -   - 1592
           - 1593
     year_label: 1592-1593
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,58g'
+          value: '8.58'
+          seed: dk-hede-c4h3
     mint: Haderslev
     catalog:
       hede: '3'
@@ -3641,6 +3682,8 @@ coins:
         source: numismaster
         specimen: denmark-numismaster-65625
     weight_rough_g:
+      - value: 8.58
+        source: hede
       - value: 8.661
         source: numismaster
         specimen: denmark-numismaster-65623
@@ -3695,10 +3738,24 @@ coins:
       -   - 1592
           - 1593
     year_label: 1592-1593
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,7g'
+          value: '8.7'
+          seed: dk-hede-c4h7a
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,7g'
+          value: '8.7'
+          seed: dk-hede-c4h7b
     mint: Haderslev
     catalog:
       hede:
-        - '7'
+        - 7A
         - 7B
       hede_volume: c4h
       schou:
@@ -3726,6 +3783,8 @@ coins:
     weight_rough_g:
       - value: 8.661
         source: numismaster
+      - value: 8.7
+        source: hede
       - value: 8.75
         source: bruun
     sources:

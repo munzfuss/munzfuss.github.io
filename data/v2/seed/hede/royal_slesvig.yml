@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-04T14:11:26Z'
+generated_at: '2026-11-06T16:00:53Z'
 entity: royal_slesvig
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -779,7 +779,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: ½ Portugaløser
+    nominal: 1 Portugaløser
     year_label: 1591–1592
     year_first: 1591
     year_last: 1592
@@ -815,6 +815,16 @@ coins:
       en: 1 Og
       uk: 1 Og
       da: 1 Og
+    weight_rough_g: 35.0
+    metal_verified: true
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 35g'
+          value: '35.0'
+    weight_rough_verified: false
   - id: dk-hede-c4h2
     fuss: seed_unsorted
     phase: hede
@@ -832,24 +842,33 @@ coins:
       hede: '2'
       hede_volume: c4h
       sieg: '5'
+      schou:
+        - '5'
+        - '6'
     metal: gold
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede.htm
         ref: danskmoent.dk overview c4hede (Hede c4h2 — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h1.htm
+        ref: danskmoent.dk (Hede c4h2)
     issuing_entity: royal_slesvig
     verified: false
     metal_verified: true
     mint_verified: true
-    verification_note:
-      de: 'Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
-        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
-      en: 'Only the overview-table row of c4hede.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
-        Hede 1971 and Galster 1965. Index note: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
-      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c4hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
-        1965. Коментар з індексу: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
-      da: 'Kun oversigtsrækken hos c4hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
-        1965. Bemærkning i indekset: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
+    _source_note:
+      da: 'Forside: Korset gennembryder omskriften. Bagside: midterste våbenskjold Ditmarsken (Hede 1, Schou hhv. 1-5 og 2, Sieg 6) 1/2 Portugaløser (15)91 (Unik), (15)92 (Unik). Som Hede 1. (Hede 2, Schou
+        hhv. 6 og 5, Sieg 5) Slået af Andreas Metzner . Hans møntmestermærke var en halvmåne:'
+    weight_rough_g: 17.0
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 17g'
+          value: '17.0'
+    weight_rough_verified: false
   - id: dk-hede-c4h8a
     fuss: seed_unsorted
     phase: hede
@@ -908,6 +927,16 @@ coins:
     mint_verified: true
     _source_note:
       da: 'Forside: Portugaløserkors, Bagside: Delmenhorsts rytter i inderste skjold. Lille blanket (Hede 3, Schou 7, Sieg 2) Slået af Andreas Metzner . Hans møntmestermærke var en halvmåne: . Det viste'
+    weight_rough_g: 8.58
+    metal_verified: true
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,58g'
+          value: '8.58'
+    weight_rough_verified: false
   - id: dk-hede-c4h4
     fuss: seed_unsorted
     phase: hede
@@ -967,7 +996,53 @@ coins:
     _source_note:
       da: 'Forside: Portugaløserkors, gennembryder ikke omskriften. Bagside: delskjoldet med de tre kroner i venstre side. Midterste våbenskjold Oldenborg og Delmenhorst (Hede 6, Schou hhv 6 og 1, Sieg
         7) Slået af Andreas Metzner . Hans møntmestermærke var en halvmåne: . Det viste'
-  - id: dk-hede-c4h7
+    weight_rough_g: 17.5
+    metal_verified: true
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 17,5g'
+          value: '17.5'
+    weight_rough_verified: false
+  - id: dk-hede-c4h7a
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: ¼ Portugaløser
+    year_label: '1592'
+    year_first: 1592
+    year_last: 1592
+    ruler: Christian IV.
+    mint: Haderslev
+    catalog:
+      hede: 7A
+      hede_volume: c4h
+      schou: '9'
+      sieg: '3'
+    metal: gold
+    weight_rough_g: 8.7
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h7.htm
+        ref: danskmoent.dk (Hede c4h7A)
+    issuing_entity: royal_slesvig
+    verified: false
+    weight_rough_verified: false
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,7g'
+          value: '8.7'
+    metal_verified: true
+    mint_verified: true
+    _source_note:
+      da: 'Forside: Portugaløserkors; bagside: delt våbenskjold A) (15)92 (Unik); Lille blanket (29mm; Hede 7A, Schou 9, Sieg 3) B) (15)92 (Unik), (15)93 (RRR); Stor blanket (36mm, Hede 7B, Schou hhv. 8
+        og 2, Sieg 3) Slået af Andreas Metzner . Hans møntmestermærke var en halvmåne:'
+  - id: dk-hede-c4h7b
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -981,20 +1056,29 @@ coins:
     ruler: Christian IV.
     mint: Haderslev
     catalog:
-      hede: '7'
+      hede: 7B
       hede_volume: c4h
       schou:
         - '2'
         - '8'
-        - '9'
       sieg: '3'
     metal: gold
+    weight_rough_g: 8.7
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h7.htm
-        ref: danskmoent.dk (Hede c4h7)
+        ref: danskmoent.dk (Hede c4h7B)
     issuing_entity: royal_slesvig
     verified: false
+    weight_rough_verified: false
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 8,7g'
+          value: '8.7'
+    metal_verified: true
     mint_verified: true
     _source_note:
       da: 'Forside: Portugaløserkors; bagside: delt våbenskjold A) (15)92 (Unik); Lille blanket (29mm; Hede 7A, Schou 9, Sieg 3) B) (15)92 (Unik), (15)93 (RRR); Stor blanket (36mm, Hede 7B, Schou hhv. 8

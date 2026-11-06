@@ -21557,6 +21557,14 @@ coins:
       -   - 1623
           - 1625
     year_label: 1603, 1623-1625
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: Vægt ca. 3 g
+          value: '3.0'
+          seed: dk-hede-c4h74
     mint: Kopenhagen
     catalog:
       km: '15'
@@ -21592,6 +21600,8 @@ coins:
         source: bruun
       - value: 2.98
         source: bruun
+      - value: 3.0
+        source: hede
       - value: 3.2
         source: bruun
     sources:
@@ -21610,6 +21620,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/137200
         ref: KMM 137200 (Inv. RP 59.1)
+        display: false
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-15-16z3-16z7-cuid-1052601-duid-1239826
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -22681,7 +22692,6 @@ coins:
       unit_raw: daler
     composed_of:
       - c-2c5ecd38
-      - c-91e22f12
     label: km-183-fr-iii-1651
     origin: foundation
     v1_home_location: denmark
@@ -103982,85 +103992,6 @@ coins:
       - c-46b4c6d7
     label: unified-dk-hede-c5h61
     origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Christian V.
-    issuing_entity: danish_realm
-    id: c-9368d97b
-    year_first: 1670
-    year_last: 1670
-    year_label: '1670'
-    year_verified: true
-    mint: Kopenhagen
-    catalog:
-      km: '324'
-      hede: '62'
-      hede_volume: c5h
-      schou: '42'
-      sieg: '59'
-      numista: '577419'
-      dav: EC II 3629A
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 57.55
-        source: hede
-      - value: 57.55
-        source: ngc
-      - value: 57.55
-        source: numismaster
-      - value: 57.85
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h61.htm
-        ref: danskmoent.dk (Hede c5h62)
-      - type: literature
-        url: https://en.numista.com/577419
-        ref: Numista N#577419 — 2 Speciedaler - Christian V
-      - type: literature
-        url: https://numismaster.com/MC_65564
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1670/?tid=97383
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-324-cuid-1069045-duid-1237826
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 9.288
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
-      - c-9368d97b
-      - c-da26210f
-    label: unified-dk-hede-c5h62
-    origin: promoted
   - fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -104184,7 +104115,6 @@ coins:
     catalog:
       km: '319'
       hede: '64'
-      hede_volume: c5h
       schou: '4'
       sieg: '61'
       bruun_collection_id: '6757'
@@ -104198,21 +104128,13 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    fineness:
-      - value: 0.875
-        source: hede
     weight_rough_g:
-      - value: 57.786
-        source: hede
       - value: 57.99
         source: bruun
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1100, p. 125
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h63.htm
-        ref: danskmoent.dk (Hede c5h64)
     note:
       de: 2 Speciedaler 1671 · Sonderprägung der Dänischen Ostindien-Kompanie aus überseeischem Silber · Bruun-Specimen.
       en: 2 Speciedaler 1671 · special issue of the Danish East India Company struck from overseas silver · Bruun specimen.
@@ -105222,7 +105144,7 @@ coins:
       - value: 0.875
         source: hede
     weight_rough_g:
-      - value: 28.775
+      - value: 86.325
         source: hede
     sources:
       - type: literature
@@ -106712,7 +106634,6 @@ coins:
       unit_raw: daler
     composed_of:
       - c-3ea43393
-      - c-6ba9f038
     label: unified-dk-bruun-6180
     origin: promoted
   - fuss: reichsdukatenfuss
@@ -142965,90 +142886,6 @@ coins:
       - c-fc7b122b
     label: unified-dk-hede-f3h106
     origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 4 Mark
-    ruler: Frederik III.
-    issuing_entity: danish_realm
-    id: c-93f8df7c
-    year_first: 1651
-    year_last: 1653
-    year_ranges:
-      -   - 1651
-          - 1651
-      -   - 1653
-          - 1653
-    year_label: 1651, 1653
-    mint: Kopenhagen
-    catalog:
-      km: '195'
-      hede: '88'
-      hede_volume: f3h
-      schou: '28'
-      sieg: '45'
-      bruun_collection_id: '6091'
-      others:
-        - Aagaard# 15
-      dav: '3568'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: hede
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: ucoin
-    weight_rough_g:
-      - value: 44.54
-        source: ucoin
-      - value: 44.544
-        source: hede
-      - value: 44.544
-        source: ngc
-      - value: 44.544
-        source: numismaster
-      - value: 44.67
-        source: bruun
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h87.htm
-        ref: danskmoent.dk (Hede f3h88)
-      - type: literature
-        url: https://numismaster.com/MC_65350
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14130, p. 54
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-kroner-1653/?tid=97325
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-195-1653-cuid-1050102-duid-1237081
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 10.418
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - c-93f8df7c
-      - c-f56488c5
-    label: unified-dk-hede-f3h88
-    origin: promoted
   - fuss: sovereign_fod
     phase: I
     kind: kurant
@@ -153702,26 +153539,34 @@ coins:
       - c-8abfd07e
     label: unified-ngc-1050473
     origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
+  - fuss: 9_25_thaler
+    phase: I
     kind: kurant
     nominal: 2 Speciedaler
     issuing_entity: danish_realm
     id: c-478402a3
+    ruler: Christian V
     year_first: 1671
     year_last: 1671
     year_label: '1671'
+    mint: Kopenhagen
     catalog:
       km: '363'
       dav: '408'
+      hede: '64'
+      hede_volume: c5h
+      schou: '4'
+      sieg: '61'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
+      - value: 0.875
+        source: hede
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -153731,6 +153576,8 @@ coins:
         source: ngc
       - value: 57.55
         source: numismaster
+      - value: 57.786
+        source: hede
     sources:
       - type: literature
         url: https://numismaster.com/MC_66307
@@ -153738,15 +153585,24 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-363-1671-cuid-1050474-duid-1238494
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h63.htm
+        ref: danskmoent.dk (Hede c5h64)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
       da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
+    hede_muentzfuss_yield:
+      value: 9.25
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
     composed_of:
       - c-478402a3
     label: unified-ngc-1050474
     origin: promoted
+    fraction: '2'
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
@@ -171168,6 +171024,14 @@ coins:
       -   - 1625
           - 1625
     year_label: 1603, 1623, 1625
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: Vægt ca. 1,5 g
+          value: '1.5'
+          seed: dk-hede-c4h75
     mint: Kopenhagen
     catalog:
       km: '14'
@@ -171195,6 +171059,8 @@ coins:
     weight_rough_g:
       - value: 1.39
         source: bruun
+      - value: 1.5
+        source: hede
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-2-speciedaler-km-14-16z3-16z7-cuid-1063136-duid-1239821
@@ -171211,6 +171077,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/137201
         ref: KMM 137201 (Inv. RP 60.1)
+        display: false
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-4-solidi-km-14-1603-cuid-1050279-duid-1236438
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -178406,6 +178273,197 @@ coins:
     composed_of:
       - c-20719157
     label: unified-dk-hede-c4h64d
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Sovereign
+    ruler: Christian IV
+    issuing_entity: danish_realm
+    id: c-12438b8b
+    year_first: 1608
+    year_last: 1608
+    year_label: '1608'
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 10,0g'
+          value: '10.0'
+          seed: dk-hede-c4h19
+    mint: Helsingør
+    catalog:
+      hede: '19'
+      hede_volume: c4h
+      schou: '1'
+      sieg: '150'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 10.0
+        source: hede
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h19.htm
+        ref: danskmoent.dk (Hede c4h19)
+    composed_of:
+      - c-12438b8b
+    label: unified-dk-hede-c4h19
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Speciedaler
+    ruler: Christian V
+    issuing_entity: danish_realm
+    id: c-da26210f
+    year_first: 1670
+    year_last: 1670
+    year_label: '1670'
+    year_verified: true
+    mint: Kopenhagen
+    catalog:
+      km: '324'
+      hede: '62'
+      hede_volume: c5h
+      schou: '42'
+      sieg: '59'
+      dav: EC II 3629A
+      numista: '577419'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 57.55
+        source: hede
+      - value: 57.55
+        source: ngc
+      - value: 57.55
+        source: numismaster
+      - value: 57.85
+        source: numista
+    diameter_mm:
+      - value: 42.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65564
+        ref: NumisMaster
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h61.htm
+        ref: danskmoent.dk (Hede c5h62)
+      - type: literature
+        url: https://en.numista.com/577419
+        ref: Numista N#577419 — 2 Speciedaler - Christian V
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-324-cuid-1069045-duid-1237826
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1670/?tid=97383
+        ref: ucoin
+    hede_muentzfuss_yield:
+      value: 9.288
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
+    composed_of:
+      - c-da26210f
+    label: unified-dk-hede-c5h62
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 8 Mark
+    ruler: Frederik III
+    issuing_entity: danish_realm
+    id: c-f56488c5
+    year_first: 1651
+    year_last: 1653
+    year_ranges:
+      -   - 1651
+          - 1651
+      -   - 1653
+          - 1653
+    year_label: 1651, 1653
+    mint: Kopenhagen
+    catalog:
+      km: '195'
+      hede: '88'
+      hede_volume: f3h
+      schou: '28'
+      sieg: '45'
+      bruun_collection_id: '6091'
+      others:
+        - Aagaard# 15
+      dav: '3568'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.671
+        source: hede
+      - value: 0.671
+        source: ngc
+      - value: 0.671
+        source: numismaster
+      - value: 0.671
+        source: ucoin
+    weight_rough_g:
+      - value: 44.54
+        source: ucoin
+      - value: 44.544
+        source: hede
+      - value: 44.544
+        source: ngc
+      - value: 44.544
+        source: numismaster
+      - value: 44.67
+        source: bruun
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65350
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14130, p. 54
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h87.htm
+        ref: danskmoent.dk (Hede f3h88)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-kroner-1653/?tid=97325
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-195-1653-cuid-1050102-duid-1237081
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    hede_muentzfuss_yield:
+      value: 10.418
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
+    composed_of:
+      - c-f56488c5
+    label: unified-dk-hede-f3h88
     origin: promoted
   - fuss: 9_25_thaler
     phase: I

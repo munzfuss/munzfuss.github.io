@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-06T15:12:41Z'
+generated_at: '2026-11-06T16:00:51Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -3457,6 +3457,16 @@ coins:
     _source_note:
       da: 'Forside: elefant, bagsideindskrift: VIII SOLIDI. Møntmærke trekløver: . (Hede 74, Schou 8-9, Sieg 55) Der har fra gammel tid været tvivl om formålet med 4 og 8 solidi 1603. Hede skriver (side
         25): "Nr. 74 og 75 er ikke slået til omsætningen, men antagelig i anledning af hyldningen i Hamborg, måske som kastemønt." Denne opfattelse imødegås af Jørgen Sømod (se'
+    weight_rough_g: 3.0
+    metal_verified: true
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: Vægt ca. 3 g
+          value: '3.0'
+    weight_rough_verified: false
   - id: dk-hede-c4h75
     fuss: seed_unsorted
     phase: hede
@@ -3483,6 +3493,16 @@ coins:
     _source_note:
       da: 'Forside: elefant, bagsideindskrift: IIII SOLIDI. Møntmærke trekløver: . (Hede 75, Schou 10-12, Sieg 54) Der har fra gammel tid været tvivl om formålet med 4 og 8 solidi 1603. Hede skriver (side
         25): "Nr. 74 og 75 er ikke slået til omsætningen, men antagelig i anledning af hyldningen i Hamborg, måske som kastemønt." Denne opfattelse imødegås af Jørgen Sømod (se'
+    weight_rough_g: 1.5
+    metal_verified: true
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: Vægt ca. 1,5 g
+          value: '1.5'
+    weight_rough_verified: false
   - id: dk-hede-c4h79a
     fuss: seed_unsorted
     phase: hede
@@ -4297,6 +4317,41 @@ coins:
     _source_note:
       da: 'Forside: stående portræt, bagside våbenskjolde (Hede 18, Schou 2, Sieg 147) Det viste'
     year_last: 1608
+  - id: dk-hede-c4h19
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Sovereign
+    year_label: '1608'
+    year_first: 1608
+    year_last: 1608
+    ruler: Christian IV.
+    mint: Helsingør
+    catalog:
+      hede: '19'
+      hede_volume: c4h
+      schou: '1'
+      sieg: '150'
+    metal: silver
+    weight_rough_g: 10.0
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h19.htm
+        ref: danskmoent.dk (Hede c4h19)
+    issuing_entity: danish_realm
+    verified: false
+    weight_rough_verified: false
+    uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: hede
+          as_printed: 'Bruttovægt: ca. 10,0g'
+          value: '10.0'
+    metal_verified: true
+    mint_verified: true
+    _source_note:
+      da: 'Forside: stående portræt, bagside våbenskjolde (Hede 19, Schou 1, Sieg 150) Prøvemønt efter engelsk forbillede. Det viste'
   - id: dk-hede-c4h53ab
     fuss: seed_unsorted
     phase: hede
@@ -10149,67 +10204,6 @@ coins:
       - [1650, 1650]
     _source_note:
       da: 'Forside: indadbuet våbenskjold, bagside: værdiangivelse (Hede 125, Schou hhv. 43-44, 59-63 og 47-49, Sieg 5)'
-  - id: dk-hede-f3h131
-    fuss: seed_unsorted
-    phase: hede
-    kind: scheide
-    nominal: 1 Skilling
-    year_label: '1648-1670'
-    year_verified: false
-    year_first: 1648
-    year_last: 1670
-    ruler: Frederik III.
-    mint: Kopenhagen
-    catalog:
-      hede: '131'
-      hede_volume: f3h
-      schou:
-        - 35-42
-        - '47'
-        - 77-81
-        - 81-95
-        - 116-118
-      sieg:
-        - '5'
-        - '6.1'
-        - '6.2'
-        - '7'
-        - '8.1'
-        - '8.2'
-        - '8.3'
-        - '9.1'
-        - '9.2'
-        - '1650'
-        - '1655'
-    metal: billon
-    fineness: 0.156
-    weight_rough_g: 0.913
-    hede_muentzfuss_yield:
-      value: 17.066
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h131.htm
-        ref: danskmoent.dk (Hede f3h131)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: true
-    _source_note:
-      da: 'Forside: våbenskjold, bagside: værdiangivelse samt møntmester Heinrich Köhlers mærke: (en glødehage) A) Ovalt skjold med bøjleformede forsiringer ved siderne 1652; 4-delt skjoldforsiring (knop
-        over skjoldets sidebøjler; Hede 131, Schou 39, Sieg 6.1) 1652, 1653; 3-delt skjoldforsiring (uden knop over skjoldets sidebøjler; Hede 131, Schou 35-42, Sieg 6.2) B) Indadbuet skjold uden forsiringer
-        på halvkors. Øvre skjoldrand hvælvet 1652 (Hede 131, Schou 47, Sieg 7) 1653 (Hede 131, Schou 116-118, Sieg 7) 1654 (S) (Hede 131, Schou 81, 84 Sieg 7) C) 1654, 1655; Indadbuet skjold med/uden halvkors
-        1652…'
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: hede
-          value: 1648-1670
   - id: dk-hede-f3h2
     fuss: seed_unsorted
     phase: hede
@@ -10705,6 +10699,67 @@ coins:
       da: 'Forside: portræt, bagside: dansk våbenskjold med krans af provinsvåbner. Stemplerne er skåret af Hans zum Busch . 1 Speciedaler A) 1649, 1650, 1651 (RRR): 11 provinsvåben om indadbuet dansk våbenskjold:
         (Hede 50A, Schou hhv. 9-16, 9-16 og 4, Sieg 69) B) 1649: 13 provinsvåben om ovalt dansk våbenskjold: (Hede 50B, Schou 17-18, Sieg 69) 2 Speciedaler 1649 (RR), 1650 (RRR); Som Hede 50A (Hede 51,
         Schou hhv 4 og 4-5, Sieg 70) 1 Speciedaler Hede 50AB'
+  - id: dk-hede-f3h131
+    fuss: seed_unsorted
+    phase: hede
+    kind: scheide
+    nominal: 1 Skilling
+    year_label: '1648-1670'
+    year_verified: false
+    year_first: 1648
+    year_last: 1670
+    ruler: Frederik III.
+    mint: Kopenhagen
+    catalog:
+      hede: '131'
+      hede_volume: f3h
+      schou:
+        - 35-42
+        - '47'
+        - 77-81
+        - 81-95
+        - 116-118
+      sieg:
+        - '5'
+        - '6.1'
+        - '6.2'
+        - '7'
+        - '8.1'
+        - '8.2'
+        - '8.3'
+        - '9.1'
+        - '9.2'
+        - '1650'
+        - '1655'
+    metal: billon
+    fineness: 0.156
+    weight_rough_g: 0.913
+    hede_muentzfuss_yield:
+      value: 17.066
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h131.htm
+        ref: danskmoent.dk (Hede f3h131)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    _source_note:
+      da: 'Forside: våbenskjold, bagside: værdiangivelse samt møntmester Heinrich Köhlers mærke: (en glødehage) A) Ovalt skjold med bøjleformede forsiringer ved siderne 1652; 4-delt skjoldforsiring (knop
+        over skjoldets sidebøjler; Hede 131, Schou 39, Sieg 6.1) 1652, 1653; 3-delt skjoldforsiring (uden knop over skjoldets sidebøjler; Hede 131, Schou 35-42, Sieg 6.2) B) Indadbuet skjold uden forsiringer
+        på halvkors. Øvre skjoldrand hvælvet 1652 (Hede 131, Schou 47, Sieg 7) 1653 (Hede 131, Schou 116-118, Sieg 7) 1654 (S) (Hede 131, Schou 81, 84 Sieg 7) C) 1654, 1655; Indadbuet skjold med/uden halvkors
+        1652…'
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1648-1670
   - id: dk-hede-f3h126a
     fuss: seed_unsorted
     phase: hede
@@ -10966,7 +11021,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_label: '1651'
     year_first: 1651
     ruler: Frederik III.
@@ -11038,7 +11093,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_label: '1651'
     year_first: 1651
     ruler: Frederik III.
@@ -11891,7 +11946,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_label: '1655'
     year_first: 1655
     ruler: Frederik III.
@@ -14189,7 +14244,7 @@ coins:
       sieg: '88'
     metal: silver
     fineness: 0.875
-    weight_rough_g: 28.775
+    weight_rough_g: 86.325
     hede_muentzfuss_yield:
       value: 9.288
       unit: speciedaler
@@ -14353,7 +14408,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 8 Mark
     year_label: '1666'
     year_first: 1666
     ruler: Frederik III.
@@ -16627,7 +16682,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Speciedaler
+    nominal: 2 Speciedaler
     year_label: '1670'
     year_first: 1670
     ruler: Christian V.
@@ -16879,7 +16934,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Speciedaler
+    nominal: 2 Speciedaler
     year_label: '1671'
     year_first: 1671
     ruler: Christian V.
