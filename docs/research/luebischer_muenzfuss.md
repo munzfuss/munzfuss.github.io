@@ -2034,6 +2034,7 @@ continues Hans' 1512 formula; the Hvid stays in Hans' own spread to 1541 and end
 Joachimsdaler = 3 Mark). End-point candidates (a) 1514, (b) 1537–41, (d) c. 1619 — **curator decision
 pending**; with (b) the Count's Feud coins (`christian_ii_partisans_coinage_1525_1536.md`) fall inside
 this card.
+**Curator 2026-11-06 — PROVISIONAL:** the end-point is taken conditionally as (b) 1537–1541 («поки що приймаємо що умовно „так“»). It is a preliminary estimate, to be decided more precisely later; **later analyses must not rest on it.**
 
 ## §4. Instruments
 
