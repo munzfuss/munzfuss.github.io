@@ -116,7 +116,7 @@ lower for the same pieces per mark.
 | 1410, 1411, 1418 | same rating of Danish coin kept | Danish coin 9¾-lot (1410) | — | — | J S. 100 |
 | **1411** | **Rezess Hamburg–Lüneburg–Lübeck** — last Rezess with precise Witten rules (Berlin) | Witten 208 / 12-lot mark; 1 ß = 3 Witten = 12 Pf | 0,843 (Pf 0,211) | 5,78 | B |
 | Jul 1423 | four towns resolve a common Sechsling | — | — | — | J S. 101 |
-| **8 Oct 1424** | **Danish–Hanseatic Rezess** (Queen Philippa) | Sechsling 168 / 11¾-lot mark (1,35 g); Hohlpfennig 696 / 7½-lot mark (0,33 g); Hanseatic Witten keep 4 Pf | Sechsling 1,04; Hohlpfennig 0,16 | — | J S. 102 |
+| **8 Oct 1424** | **Danish–Hanseatic Rezess** (Queen Philippa) | Sechsling 168 / **11¼**-lot mark (1,35 g); Hohlpfennig 696 / **7¼**-lot mark (0,33 g); Hanseatic Witten keep 4 Pf | Sechsling **0,979**; Hohlpfennig 0,152 [C, 233,856 g] | — | J S. 102 (page image: «*11¼ Lot … 7¼lötigem Silber*»); Luxdorph 1765 s. 703 «*eluen loet, vnde en quentyn*». ⚠ corrected 2026-11-05 from «11¾ / 7½», a misreading of Jesse's OCR |
 | Oct 1425 | Rostock, Stralsund, Greifswald join the 1424 Rezess; Witten 3 = 2 Sechslinge | — | — | — | J S. 103 |
 
 ## §3a. The Lübeck standard 1379–1506 from the recess texts — primary series (2026-10-27)
@@ -137,7 +137,7 @@ recess says «12 lod lodighes sulvers na dem stale», which the editor reckons a
 | 29 Sep 1411 | Münzrecess (I 6, S. 39) | Lübeck, Hamburg, Lüneburg | Witten 208 (52 Wurf, white), 12-lot; no Hohlgeld, small Scherf allowed | 0,843 | 0,211 | 5 ℳ 12 ß 5⅓ Pf (editor) | — |
 | 5 Aug 1422 | Münzrecess (I 7 Nr. 527, S. 333–334) | Lübeck, Hamburg, Lüneburg, Wismar | Hohlpfennig 780 (4 ℳ 1 ß white), 8-lot; Witten, Sechslinge, Dreilinge kept at their value | 0,150 | 0,150 | 8 ℳ 2 ß (editor) | silver «vor sovedehalve marke» (6½ ℳ) |
 | 16 Jul 1423 | Recess § 12 (I 7, S. 417) | Lübeck, Hamburg, Lüneburg, Wismar | Sechsling 168 (42 Wurf after blanching; 41½ black), 12-lot | 1,044 | 0,174 | 7 (editor) | silver 6½ ℳ |
-| 8 Oct 1424 | Danish–Hanseatic Münzrezess (I 7, editor summary; J S. 102) | 4 towns + Queen Philippa | Sechsling 168, 11¾-lot; Hohlpfennig 3 ℳ 10 ß per 7¼-lot mark | 1,022; 0,152 | 0,170 | 7 ℳ 7 ß 6 Pf; Hohlpf. 8 (editor) | — |
+| 8 Oct 1424 | Danish–Hanseatic Münzrezess (I 7, editor summary; J S. 102; Luxdorph 1765 s. 703–705) | 4 towns + Queen Philippa | Sechsling 168, **11¼**-lot (⚠ was «11¾», corrected 2026-11-05); Hohlpfennig 3 ℳ 10 ß per 7¼-lot mark | **0,979**; 0,152 | 0,170 | 7 ℳ 7 ß 6 Pf; Hohlpf. 8 (editor) | — |
 | 9 Oct 1425 | Münzvertrag (I 7, S. 605–606) | Rostock, Stralsund, Greifswald join 1424 | Sechslinge as 1424; Witten 3 = 2 Sechslinge | — | — | — | — |
 | **18 Sep 1432** | **Recess (II 1 Nr. 148, S. 99–100)** | Lübeck, Hamburg, Wismar, Lüneburg | **first Schilling**: 92 per mark, 10-lot «na proven der Capellen», may be halved into 6-Pf pieces; Hohlpfennig 3 ℳ 14 ß, 7-lot; remedy 1 quentin fine | 1,589 | 0,132 | 9,20 [C] | — |
 | 16 May 1439 | Münzrecess (II 2 Nr. 302, S. 237–238) | Lübeck, Hamburg, Wismar, Lüneburg | Schilling 96 per mark (10-lot); quotas: Lübeck, Hamburg 1800, Wismar, Lüneburg 1200 marks a year | 1,523 | 0,127 | 9 ℳ 9 ß 7 Pf (editor) | 15-lot silver ≤ 9 ℳ |

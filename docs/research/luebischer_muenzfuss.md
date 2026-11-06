@@ -1720,6 +1720,11 @@ royal approval c. 1412–13 (Märcher, *Denar til daler* 2018 s. 378); Galster �
 myntsystem*» (L11). Numista 426966 (9,85 g) is this piece: excluded as `off_strike` (§9 item 3), curator
 2026-10-26 (the 2026-07-17 reason «before 1514» no longer held once the card starts c. 1400). Weights
 differ by source: 9,55 / 9,6 / 9,85 g.
+⚠ **Luxdorph's own figure is 23½ til 23⅔ Karat, not 23¾** (Luxdorph 1765 s. 635, page image read
+2026-11-05: «*saavidt Provesteenen kand viise, 23½ til 23⅔ Karat, og vejer 2688 Richtpfennig*»; his
+«24 360/497 Stykker paa den fine Mark» is computed from 23⅔). Lindahl n. 11 quotes him as «23½ til
+23¾». Luxdorph's «228½ Eß» does not match his 2688 Richtpfennig (= 9,59 g). See
+`luxdorph_1765_mynteudregning.md`.
 
 ### §3.11 When Denmark took up the Lübeck / Wendish system — the narrowest datable window (2026-10-27, curator question, ANALYSIS)
 
