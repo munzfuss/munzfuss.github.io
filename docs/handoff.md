@@ -47,9 +47,8 @@
   dry-run refusals 112 → 92), c0236b8 (Hede c4h61 read per coin: 1/2/3 Speciedaler, «hhv.» weights; cache
   d4d04d3 in the harvest repo), a5aa0ca (Hede seed `scope_note` no longer carries the absolute
   MUNZFUSS_HARVEST_DIR path; parse_hede tests for an overview before reusing a sidecar, stale c3hede.json
-  removed in harvest ab26c98). **Open:** the pointer bump to ab26c98 is STAGED but not committed (the bare
-  commit is blocked for Claude) — run `git commit -m "data: scripts/cache pointer to ab26c98 (Hede c4h61
-  per-coin specs, stale c3hede sidecar removed)"` in this worktree.
+  removed in harvest ab26c98), c6742b9 (cache pointer ab26c98, committed by the curator). Push the
+  harvest repo before the project.
 - **Next (curator 2026-11-05):** nominal normalisation for the Hede-base rule (toskilling = 2 skilling,
   krone-skilling = kroneskilling, gold krone = krone, «; …» tails, «?», «-lybsk» / norsk / kurant qualifiers,
   penny/penning, «1/2 sk»), measured with an `HEDE_BASE=1` dry-run before switching anything on.
