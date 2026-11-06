@@ -825,13 +825,47 @@ def _catalog(src):
     # convention is not uniformly uppercase, so those are left untouched.
     if others:
         out["others"] = others
+    web_tn = src.get("_raadata_typenumber")
+    if web_tn:
+        _union_web_typenumber(out, _catalog({"typeNumber": web_tn}),
+                              skip_galster=src.get("id") in _KMM_GALSTER_ERRATA)
     errata = _KMM_GALSTER_ERRATA.get(src.get("id"))
     if errata:
         out["galster"] = errata[1]
     elif out.get("galster"):
-        out["galster"] = out["galster"].upper()
+        g = out["galster"]
+        out["galster"] = [x.upper() for x in g] if isinstance(g, list) else g.upper()
     # §DB: union any web-rådata refs the ES typeNumber didn't carry.
     return _merge_raadata_catalog(out, src)
+
+
+def _union_web_typenumber(out: dict, web: dict, skip_galster: bool = False) -> None:
+    """UNION the catalogue parsed from the object page's Typenummer into the
+    one parsed from the ES typeNumber. A register only the web gives is added;
+    a register both give with different values keeps BOTH (list, ES first) —
+    the disagreement stays visible, neither side is preferred (data-
+    accumulation principle). Case-insensitive comparison of indices."""
+    def as_list(v):
+        return list(v) if isinstance(v, list) else ([v] if v not in (None, "") else [])
+    for key, val in web.items():
+        if key == "galster" and skip_galster:
+            continue
+        cur = as_list(out.get(key))
+        seen = {str(x).lower() for x in cur}
+        for v in as_list(val):
+            if str(v).lower() not in seen:
+                cur.append(v)
+                seen.add(str(v).lower())
+        if not cur:
+            continue
+        if key != "others":
+            # «Hede 71» beside «Hede 71A» is one reading at two granularities
+            # (CLAUDE.md §9.4: the sub-letter is a variant of the base) — keep
+            # the more specific one; only genuinely different numbers stay a list.
+            specific = {re.match(r"^(\d+)[A-Za-z]$", str(x)).group(1)
+                        for x in cur if re.match(r"^\d+[A-Za-z]$", str(x))}
+            cur = [x for x in cur if str(x) not in specific]
+        out[key] = cur if (key == "others" or len(cur) > 1) else cur[0]
 
 
 def _merge_raadata_catalog(out: dict, src: dict) -> dict:
@@ -1150,6 +1184,19 @@ def _enrich_from_raadata(src: dict) -> dict:
                  and isinstance(k.get("term"), str) and k["term"].strip()]
         if terms:
             src["typeNumber"] = "; ".join(terms)
+    else:
+        # The ES typeNumber is present, but the object page may carry a newer
+        # classification the ES snapshot lacks: kmk-417187 ES «4ᵦ men som B. 33»
+        # vs web «Galster 85;Schou 28(?)», kmk-662149 «G. 88(?)» vs «Galster
+        # 88;Schou 9» — 78 objects whose web term adds a register the ES one
+        # does not give (2026-11-06). Stash it; _catalog UNIONs it, keeping both
+        # values where the two disagree (curator 2026-11-06: take them too).
+        terms = [k.get("term") for k in (rd.get("klassifikationer") or [])
+                 if isinstance(k, dict) and k.get("system") == "Typenummer"
+                 and isinstance(k.get("term"), str) and k["term"].strip()]
+        web_tn = "; ".join(terms)
+        if web_tn and web_tn.strip() != src["typeNumber"].strip():
+            src["_raadata_typenumber"] = web_tn
     # nominal — ES `nominal` empty, the web page's description line names it.
     if not (src.get("nominal") or "").strip():
         nom = _raadata_nominal(rd.get("beskrivelser"))

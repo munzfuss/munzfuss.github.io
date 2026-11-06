@@ -1154,7 +1154,11 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         # reason, and nothing absorbs it. Match on the vanished id itself or on
         # any of its members, since an exclusion names a SEED id (§9b) while the
         # final that disappears is keyed by its unified id.
-        hit = ({cid} | set(was.get("composed_of") or [])) & set(excluded)
+        # The class id itself may have been re-minted by the run (c-c0bc2687 →
+        # c-c0bc2687-2 when the excluded seed is isolated, 2026-11-06), so the
+        # seed_unified bridge in _excluded_ids misses it: also match the head
+        # seed the vanished class stands for.
+        hit = ({cid, _head_seed(cid)} | set(was.get("composed_of") or [])) & set(excluded)
         if hit:
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— curator exclusion: {', '.join(sorted(hit))}")

@@ -262,9 +262,14 @@ _SECTION_BOUNDARY_RE = re.compile(
     # standard label) and `Vægt` (the shorter form used on Norge sub-
     # catalogue pages + many older Danish pages — see `_BRUTTO_RE`).
     r"\b(?:Bruttov[æa]gt|V[æa]gt|Finhed|Finv[æa]gt|Marken\s+fin|"
-    r"Litteratur|Eksemplar(?:er)?\s+fra|M[øo]ntmesterm[æa]rke|"
-    r"M[øo]ntmester(?:\b|:)|Tilbage\s+til)",
-    re.IGNORECASE,
+    r"Litteratur|Eksemplar(?:er)?\s+fra|Tilbage\s+til)"
+    # «Møntmester» heads a section only at the start of a line. Inside the
+    # description it is an ordinary word — f3h131 «bagside: værdiangivelse
+    # samt møntmester / Heinrich Köhlers mærke» — and as a boundary there it
+    # closed the year zone before the A)-D) year lines: the page lost every
+    # year (curator 2026-11-06).
+    r"|^[ \t]*M[øo]ntmester(?:m[æa]rke|\b|:)",
+    re.IGNORECASE | re.MULTILINE,
 )
 # Hede convention for «century-abbreviated» dating: «(15)46» means
 # 1546, «(15)63» means 1563, «(16)29» means 1629. Used heavily on
@@ -352,6 +357,13 @@ _NON_MINT_YEAR_PATTERNS = [
     re.compile(
         r"\b(?:NNUM|Numismatisk\s+Rapport|Hede\s+1971|Wilcke\s+\d+)\b"
         r"[^.]{0,60}?\b(\d{4})\b",
+        re.IGNORECASE,
+    ),
+    # A year the page names as a forgery or a die error, not a mint year —
+    # c5h74 «2-skillinger med årstallet 1678 er falske», «En variant med
+    # årstal 1861 er naturligvis en fejl for 1681». (2026-11-06)
+    re.compile(
+        r"\b(?:med\s+)?årstal(?:let)?\s+(\d{4})(?=[^.]{0,40}\b(?:falsk|fejl)\w*)",
         re.IGNORECASE,
     ),
 ]
@@ -1779,6 +1791,50 @@ _LETTER_GROUP_BLOCK_RE = re.compile(
 _LETTER_GROUP_REFS_RE = re.compile(r"\(([^()]+)\)\s*$")
 
 
+def _extract_design_groups(text: str, page_hede: str) -> dict | None:
+    """A)/B)/C) groups whose reference parentheses all carry the page's BARE
+    Hede number — f3h131: «A) Ovalt skjold … 1652; 4-delt skjoldforsiring
+    (… Hede 131, Schou 39, Sieg 6.1)», «B) Indadbuet skjold … 1652 (Hede 131,
+    Schou 47, Sieg 7) / 1653 (…) / 1654 (S) (…)». Hede gives these design
+    groups no letter of their own, so they are not `by_letter` sub-variants
+    (no «131A» exists); they are kept as `design_groups` — per group the
+    design text, its years (every line of the group) and its references —
+    and their years make the page's year list. (2026-11-06)"""
+    blocks = list(_LETTER_GROUP_BLOCK_RE.finditer(text))
+    if len(blocks) < 2:
+        return None
+    anchor_re = re.compile(_HEDE_ANCHOR + rf"{re.escape(page_hede)}(?![\dA-Za-z])",
+                           re.IGNORECASE)
+    out: dict[str, dict] = {}
+    for m in blocks:
+        letter, body = m.group(1), m.group(2).strip()
+        ref_parens = [p for p in re.finditer(r"\(([^()]+)\)", body)
+                      if anchor_re.search(p.group(1))]
+        if not ref_parens:
+            return None
+        refs: dict[str, list[str]] = {}
+        for p in ref_parens:
+            for k, vals in _extract_refs(p.group(1)).items():
+                for v in vals:
+                    if v not in refs.setdefault(k, []):
+                        refs[k].append(v)
+        stripped = body
+        for p in reversed(ref_parens):
+            stripped = stripped[:p.start()] + " " + stripped[p.end():]
+        # Line by line: a rarity «(S)» belongs to its own line only — joined,
+        # «1652\n1653\n1654 (S)» read as one block and spread the S to all three.
+        seen_y: dict[int, dict] = {}
+        for line in stripped.splitlines():
+            for y in _extract_years(line):
+                if 1450 <= y["year"] <= 1950:
+                    seen_y.setdefault(y["year"], y)
+        years = list(seen_y.values())
+        design = re.split(r"\d{4}", body, maxsplit=1)[0].strip(" ;,\n")
+        out[letter] = {"design": re.sub(r"\s+", " ", design) or None,
+                       "years": years, "catalog_refs": refs}
+    return out if len(out) >= 2 else None
+
+
 def _extract_letter_groups(text: str, page_hede: str) -> dict | None:
     """Detect Hede letter-grouped sub-variants on a page whose specs
     block is shared. Returns a dict keyed by letter («A», «B», …) with
@@ -1959,6 +2015,17 @@ def parse_one(html: str, basename: str) -> dict:
         bm = re.match(r"^n?[cf]\d+h([\d]+)", basename)
         if bm:
             letter_groups = _extract_letter_groups(text, bm.group(1))
+            if not letter_groups and "default" in specs:
+                design_groups = _extract_design_groups(text, bm.group(1))
+                if design_groups:
+                    out["design_groups"] = design_groups
+                    merged: dict[int, dict] = {}
+                    for g in design_groups.values():
+                        for y in g["years"]:
+                            merged.setdefault(y["year"], y)
+                    for y in out.get("years") or []:
+                        merged.setdefault(y["year"], y)
+                    out["years"] = [merged[k] for k in sorted(merged)]
             if letter_groups:
                 if "default" in specs:
                     out["by_letter"] = letter_groups
