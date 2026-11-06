@@ -73,8 +73,8 @@ class I18nTextOptional(_StrictBase):
 
 
 class YearMark(_StrictBase):
-    """A curation mark on a seed's own year, ruler or mint (see Coin.year_mark,
-    Coin.ruler_mark, Coin.mint_mark)."""
+    """A curation mark on a seed's own year, ruler, mint or nominal (see
+    Coin.year_mark, Coin.ruler_mark, Coin.mint_mark, Coin.nominal_mark)."""
     kind: Literal["suspect", "erroneous", "approximate"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
@@ -1077,6 +1077,17 @@ class Coin(_StrictBase):
     # A penning equivalent the cataloguer wrote into the nominal («(= 3
     # Pennings)»); not on the coin (§1), so the note shows it instead.
     nominal_equiv: str | None = None
+    # The nominal-column analogue of ruler_mark / ruler_alts. A curation mark
+    # on the nominal a source PRINTED, written on that source's seed. An
+    # «erroneous» mark is presentational: `seed_merge.apply_nominal_mark`
+    # moves the printed nominal into `nominal_mark.value` and clears it on the
+    # seed, so it takes part in no matching and never becomes the class's
+    # nominal; the page shows it, muted with «(!)», beside the real nominal
+    # via `nominal_alts`. Founding case (curator 2026-11-06): danskmoent's
+    # page for Hede 59 (Christian V) heads «1 Dukat»; its image caption, the
+    # Hede overview row and Hede's own article name the coin a 2 Dukat.
+    nominal_mark: "YearMark | None" = None
+    nominal_alts: "list[YearAlt] | None" = None
     # year_label / year_first are REQUIRED for classified coins, but OPTIONAL for
     # `fuss == seed_unsorted` — undated KMM museum specimens (no year, no KM) are
     # legitimately yearless and never render; enforced by `_check_year_required`.

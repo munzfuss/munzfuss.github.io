@@ -1126,7 +1126,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # by (value, source). The merger emits them from the seeds' `year_mark` /
     # `ruler_mark`; the final never carries one the current members do not, so
     # a mark removed on the seed disappears here on the next absorb.
-    for _fld in ("year_alts", "ruler_alts", "mint_alts"):
+    for _fld in ("year_alts", "ruler_alts", "mint_alts", "nominal_alts"):
         _alts: list[dict] = []
         _alt_seen: set[tuple[str, str]] = set()
         for _m in members:

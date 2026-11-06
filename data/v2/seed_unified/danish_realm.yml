@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8529 per-source seed entries.
-# Output: 1882 unified entries (one per physical coin).
+# Output: 1881 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6887,86 +6887,6 @@ coins:
       - denmark-numismaster-65204
       - dk-bruun-7219
       - ngc-1060166
-  - id: c-31d410f0
-    class_id: c-31d410f0
-    label: unified-dk-bruun-7240
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Ducats
-    year_first: 1699
-    year_last: 1699
-    year_label: '1699'
-    ruler: Christian V
-    mint: Kopenhagen
-    catalog:
-      km: '460'
-      bruun_collection_id: '7240'
-      sieg: '126'
-      schou: '7'
-      hede: '59'
-      others:
-        - JS# 533
-      numista: '502760'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 6.89
-        source: numista
-      - value: 6.91
-        source: bruun
-      - value: 6.98
-        source: ngc
-      - value: 6.98
-        source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1670-99)
-          value: 1670-1699
-          seed: dk-bruun-7240
-        - kind: hedged
-          how: span
-          source: bruun
-          value: 1670-1699
-          seed: dk-bruun-7240
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1670-1699
-          seed: dk-numista-502760
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65892
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1121, p. 147
-      - type: literature
-        url: https://en.numista.com/502760
-        ref: Numista N#502760 — 2 Ducats - Christian V
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-460-1699-cuid-1050374-duid-1238143
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65892
-      - dk-bruun-7240
-      - dk-numista-502760
-      - ngc-1050374
   - id: c-9f36bcce
     class_id: c-9f36bcce
     label: unified-dk-bruun-7242
@@ -49909,54 +49829,118 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-c5h58
-  - id: c-c6ce2bf4
-    class_id: c-c6ce2bf4
+  - id: c-31d410f0
+    class_id: c-31d410f0
     label: unified-dk-hede-c5h59
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Dukat
-    year_first: 1670
+    nominal: 2 Ducats
+    year_first: 1699
     year_last: 1699
-    year_ranges:
-      -   - 1670
-          - 1699
-    year_label: 1670-1699
-    _year_demoted: true
+    year_label: '1699'
     ruler: Christian V
+    mint: Kopenhagen
     catalog:
+      km: '460'
       hede: '59'
       hede_volume: c5h
       schou: '7'
       sieg: '126'
+      bruun_collection_id: '7240'
+      others:
+        - JS# 533
+      numista: '502760'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    mint_verified: false
+    diameter_mm_verified: false
+    mint_verified: true
     verified: false
-    year_verified: false
+    year_verified: true
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
     weight_rough_g:
+      - value: 6.89
+        source: numista
+      - value: 6.91
+        source: bruun
+      - value: 6.98
+        source: ngc
+      - value: 6.98
+        source: numismaster
       - value: 6.981
         source: hede
     uncertainty:
       year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670-99)
+          value: 1670-1699
+          seed: dk-bruun-7240
+        - kind: hedged
+          how: span
+          source: bruun
+          value: 1670-1699
+          seed: dk-bruun-7240
         - kind: inferred
           how: reign
           source: hede
           as_printed: u. år
           value: 1670-1699
           seed: dk-hede-c5h59
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1670-1699
+          seed: dk-numista-502760
+    nominal_alts:
+      - value: 1 Dukat
+        source: hede
+        kind: erroneous
+        reason:
+          de: "Die Seite nennt zwei verschiedene Nominale.\n[b]danskmoent.dk (Hede 59)[/b]: Überschrift [i]«1 Dukat, u. år»[/i] (Übers.: «1 Dukat, ohne Jahr»); Bildunterschrift [i]«2 Dukat (H:59)»[/i],
+            [i]«6,981 gr»[/i]; Literatur [i]«Hede: Christian V dobbeltdukat uden år, Schou 7»[/i] (Übers.: «Hede: Doppeldukat Christians V. ohne Jahr, Schou 7»).\n[b]danskmoent.dk (Hede, Christian 5.)[/b],
+            Übersicht: [i]«2 Dukat»[/i].\n[b]Bruun Part I, lot 1121, S. 147[/b]: [i]«Gold Medallic 2 Ducats»[/i] (Übers.: «Medaillenartige 2 Dukaten in Gold»)."
+          en: "The page gives two different denominations.\n[b]danskmoent.dk (Hede 59)[/b]: heading [i]«1 Dukat, u. år»[/i] (transl.: «1 Ducat, undated»); image caption [i]«2 Dukat (H:59)»[/i], [i]«6,981
+            gr»[/i]; literature [i]«Hede: Christian V dobbeltdukat uden år, Schou 7»[/i] (transl.: «Hede: Christian V double ducat, undated, Schou 7»).\n[b]danskmoent.dk (Hede, Christian 5.)[/b], overview:
+            [i]«2 Dukat»[/i] (transl.: «2 Ducats»).\n[b]Bruun Part I, lot 1121, p. 147[/b]: [i]«Gold Medallic 2 Ducats»[/i]."
+          uk: "Сторінка подає два різні номінали.\n[b]danskmoent.dk (Hede 59)[/b]: заголовок [i]«1 Dukat, u. år»[/i] (перекл.: «1 дукат, без року»); підпис до зображення [i]«2 Dukat (H:59)»[/i], [i]«6,981
+            gr»[/i]; література [i]«Hede: Christian V dobbeltdukat uden år, Schou 7»[/i] (перекл.: «Hede: подвійний дукат Christian V без року, Schou 7»).\n[b]danskmoent.dk (Hede, Christian 5.)[/b], огляд:
+            [i]«2 Dukat»[/i] (перекл.: «2 дукати»).\n[b]Bruun Part I, lot 1121, с. 147[/b]: [i]«Gold Medallic 2 Ducats»[/i] (перекл.: «золоті медальні 2 дукати»)."
+          da: "Siden angiver to forskellige nominaler.\n[b]danskmoent.dk (Hede 59)[/b]: overskrift [i]«1 Dukat, u. år»[/i]; billedtekst [i]«2 Dukat (H:59)»[/i], [i]«6,981 gr»[/i]; litteratur [i]«Hede: Christian
+            V dobbeltdukat uden år, Schou 7»[/i].\n[b]danskmoent.dk (Hede, Christian 5.)[/b], oversigt: [i]«2 Dukat»[/i].\n[b]Bruun Part I, lot 1121, s. 147[/b]: [i]«Gold Medallic 2 Ducats»[/i] (overs.:
+            «medaljeagtige 2 dukater i guld»)."
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65892
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1121, p. 147
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h59.htm
         ref: danskmoent.dk (Hede c5h59)
+      - type: literature
+        url: https://en.numista.com/502760
+        ref: Numista N#502760 — 2 Ducats - Christian V
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-460-1699-cuid-1050374-duid-1238143
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65892
+      - dk-bruun-7240
       - dk-hede-c5h59
+      - dk-numista-502760
+      - ngc-1050374
   - id: c-40990dd2
     class_id: c-40990dd2
     label: unified-dk-hede-c5h6

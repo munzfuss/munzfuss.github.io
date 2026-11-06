@@ -40,7 +40,7 @@ OWN_ALWAYS = frozenset({
     "kind", "_curation_holds", "note", "_weights_thinned", "_entity_routing_hint",
     "_migration_note", "_migration_dup_origin_id", "v1_home_location", "promoted_to",
     "mintmasters", "verification_note", "fraction", "catalog_alts", "catalog_unverified",
-    "ruler_alts", "mint_alts", "year_alts", "weight_range_g", "hede_muentzfuss_yield",
+    "ruler_alts", "mint_alts", "year_alts", "nominal_alts", "weight_range_g", "hede_muentzfuss_yield",
 })
 FOUNDATION_OWN = frozenset({"nominal", "ruler", "mintmaster", "issuing_entity",
                             "year_is_reign_span", "inscription_obv", "inscription_rev"})

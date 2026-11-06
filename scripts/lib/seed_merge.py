@@ -91,6 +91,8 @@ CURATED_FIELDS = frozenset({
     "ruler_mark",
     # Same for the mint (schema Coin.mint_mark → mint_alts).
     "mint_mark",
+    # Same for the nominal (schema Coin.nominal_mark → nominal_alts).
+    "nominal_mark",
     # Marks on catalogue numbers (schema CatalogMark → catalog_alts /
     # catalog_unverified on the class).
     "catalog_marks",
@@ -168,6 +170,29 @@ def apply_mint_mark(entry) -> None:
         mark["value"] = ", ".join(printed) if isinstance(printed, list) else str(printed)
     if printed is not None:
         entry["mint"] = None
+
+
+def apply_nominal_mark(entry) -> None:
+    """Neutralise a nominal the curator marked «erroneous» (schema
+    Coin.nominal_mark) — the nominal-column analogue of `apply_ruler_mark`.
+
+    The printed nominal moves into `nominal_mark.value` (shown as a
+    `nominal_alts` entry with «(!)») and `nominal` is cleared, so the
+    merger's nominal matching and the class's nominal never use it; the
+    class takes its nominal from the other members (curator 2026-11-06,
+    founding case dk-hede-c5h59: «1 Dukat» on a 2 Dukat). A nominal that a
+    `_source_errata` already replaced is kept. Idempotent. A «suspect» mark
+    changes nothing here."""
+    mark = entry.get("nominal_mark")
+    if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
+        return
+    printed = entry.get("nominal")
+    if printed is None:
+        return
+    if not mark.get("value"):
+        mark["value"] = str(printed)
+    if str(mark["value"]) == str(printed):
+        entry["nominal"] = None
 
 
 def apply_ruler_mark(entry) -> None:
@@ -855,6 +880,7 @@ def merge_seed(
             apply_source_errata(c)
             apply_mint_mark(c)
             apply_ruler_mark(c)
+            apply_nominal_mark(c)
             apply_catalog_marks(c)
 
     return out, stats

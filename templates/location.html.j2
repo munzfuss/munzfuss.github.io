@@ -175,7 +175,7 @@
 {%- endif -%}
 {%- set _rcls = (_rw ~ (' msr-sh' if coin.msr_short_n else ''))|trim -%}
 <tr{% if _rcls %} class="{{ _rcls }}"{% endif %}>
-  <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{%- set _nu = umark(coin.raw, 'nominal') if not coin.raw.nominal_verified else none -%}{{ uopen(_nu) }}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}{{ uq(_nu) }}{% endif %}</td>
+  <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{%- set _nu = umark(coin.raw, 'nominal') if not coin.raw.nominal_verified else none -%}{{ uopen(_nu) }}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}{{ uq(_nu) }}{% endif %}{%- for a in coin.raw.nominal_alts or [] if a.value != coin.raw.nominal %} <span class="nominal-alt">{{ a.value|nominal_nbsp|safe }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
@@ -484,7 +484,7 @@
    are dropped entirely. Fine-weight column is also omitted (always zero for copper). #}
 {%- macro coin_row_copper(coin) %}
 <tr class="rw-cp">
-  <td class="c-nom">{%- set _nu = umark(coin.raw, 'nominal') if not coin.raw.nominal_verified else none -%}{{ uopen(_nu) }}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}{{ uq(_nu) }}{% endif %}</td>
+  <td class="c-nom">{%- set _nu = umark(coin.raw, 'nominal') if not coin.raw.nominal_verified else none -%}{{ uopen(_nu) }}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}{{ uq(_nu) }}{% endif %}{%- for a in coin.raw.nominal_alts or [] if a.value != coin.raw.nominal %} <span class="nominal-alt">{{ a.value|nominal_nbsp|safe }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
