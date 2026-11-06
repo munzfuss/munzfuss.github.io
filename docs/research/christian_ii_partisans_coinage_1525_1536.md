@@ -61,7 +61,7 @@
   - Albrecht VII's contract with Moritz Schacht, Güstrow, 28 March 1535: «*der dänischen Münz halben … inn
     nahmen unsers hern, Khenig Christierns … gelt machen, der da zehen stuck ein gulden gelten*»;
     «*Münzen dänischer Währung, d.h. Vierskillinge*»: 63½ per mark, 4½ lot, 281,25 ‰, 3,683 g, 1,036 g fine;
-    117 610 pieces, c. 433 kg rough / 122 kg fine silver. = Galster 85.
+    117 610 pieces, c. 433 kg rough / 122 kg fine silver. = Galster 85. Full write-up: `instruments/1535_guestrow_vertrag.md`.
   - Rostock 1536: «*für 15 seiner dänischen Doppelschillinge (Vierskillinge) 24 Schilling lübisch*».
   - Joint declaration of Albrecht and Christoph, Copenhagen 10 March 1536: the coin of «*Koppenhagen und
     elbogen*» «*beschwerung getragen*»; both promise to redeem it — the only monetary act of that side.
@@ -102,7 +102,7 @@ scheide.
 | Question | Would be settled by |
 |---|---|
 | Galster 89 / 90: danskmoent «Ungersk gylden» vs Galster 1936 «*2 rh. Gylden*» (Fig. 112–114) | Galster 1972 or the KMM objects KP 2085 |
-| Galster 84 (Beutepfennig) — a presentation piece under CLAUDE.md §9? | curator |
+| ~~Galster 84 (Beutepfennig) — a presentation piece under CLAUDE.md §9?~~ Settled 2026-11-06: kept as a coin, `8_5_gylden_fod` B (1536), by weight | curator |
 | KMM 694936 / 417187 «1 Skilling» (legend IMMERITI CACERIS; «4ß men som B. 33») — Galster 85 by legend, no index | an index or image |
 | KMM 331643 2 Skilling 1536 without index or image | an image |
 | Galster 174 vs Galster 1972 «Sechsling»; KMM 684215 1,63 g against the 174A off-strike 3,10 g | Galster 1972 |
