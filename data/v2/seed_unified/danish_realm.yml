@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8563 per-source seed entries.
-# Output: 1930 unified entries (one per physical coin).
+# Output: 1915 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -27808,42 +27808,51 @@ coins:
       unit_raw: daler
     composed_of:
       - dk-hede-c4h145
-  - id: c-6c381daa
-    class_id: c-6c381daa
+  - id: c-d5e2c731
+    class_id: c-d5e2c731
     label: unified-dk-hede-c4h146
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 20 Skilling
-    year_first: 1626
+    year_first: 1644
     year_last: 1644
-    year_ranges:
-      -   - 1626
-          - 1626
-      -   - 1644
-          - 1644
-    year_label: 1626, 1644
+    year_label: '1644'
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
+      km: PnA8
       hede: '146'
       hede_volume: c4h
       sieg: '79'
+      schou:
+        - '58'
+        - '59'
     metal: silver
     metal_verified: true
+    fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.072
+      - value: 8.07
+        source: kmk
+      - value: 8.32
         source: kmk
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
         ref: danskmoent.dk overview c4hede2 (Hede c4h146 — Tiefenseite fehlt)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275639
-        ref: KMM 275639 (Inv. FP 4227.417)
+        url: https://samlinger.natmus.dk/KMM/object/576000
+        ref: KMM 576000 (Inv. RP 1253.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/576001
+        ref: KMM 576001 (Inv. RP 1254.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-20-skilling-km-pna8-1644-cuid-1051057-duid-1238502
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c4hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Hebræermønt . Prøvemønt. Wilcke II s. 82ff . Aagaard: Num. Rap. 62»'
@@ -27856,43 +27865,40 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-c4h146
-      - kmk-275639
-  - id: c-2f1e8020
-    class_id: c-2f1e8020
+      - kmk-576000
+      - kmk-576001
+      - ngc-1051057
+  - id: c-023a9d78
+    class_id: c-023a9d78
     label: unified-dk-hede-c4h147
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 20 Skilling
-    year_first: 1626
+    year_first: 1644
     year_last: 1644
-    year_ranges:
-      -   - 1626
-          - 1626
-      -   - 1644
-          - 1644
-    year_label: 1626, 1644
+    year_label: '1644'
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
+      km: PnB8
       hede: '147'
       hede_volume: c4h
       sieg: '80'
     metal: silver
     metal_verified: true
-    weight_rough_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
-    weight_rough_g:
-      - value: 0.987
-        source: kmk
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
         ref: danskmoent.dk overview c4hede2 (Hede c4h147 — Tiefenseite fehlt)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275638
-        ref: KMM 275638 (Inv. FP 4227.418)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-20-skilling-km-pnb8-1644-cuid-1051149-duid-1238503
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c4hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Hebræermønt . Prøvemønt. Aagaard: Num. Rap. 62 Wilcke II s. 82ff»'
@@ -27905,7 +27911,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-c4h147
-      - kmk-275638
+      - ngc-1051149
   - id: c-9b27ddba
     class_id: c-9b27ddba
     label: unified-dk-hede-c4h148
@@ -28406,18 +28412,16 @@ coins:
     phase: hede
     kind: scheide
     nominal: 2 Skilling
-    year_first: 1626
+    year_first: 1641
     year_last: 1648
     year_ranges:
-      -   - 1626
-          - 1626
       -   - 1641
           - 1641
       -   - 1644
           - 1645
       -   - 1648
           - 1648
-    year_label: 1626, 1641, 1644-1645, 1648
+    year_label: 1641, 1644-1645, 1648
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
@@ -28540,8 +28544,6 @@ coins:
       - value: 0.94
         source: kmk
       - value: 0.95
-        source: kmk
-      - value: 0.953
         source: kmk
       - value: 0.96
         source: kmk
@@ -31901,9 +31903,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/275590
         ref: KMM 275590 (Inv. FP 4227.472)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275634
-        ref: KMM 275634 (Inv. FP 4227.422)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276868
         ref: KMM 276868 (Inv. FP 4227.491)
       - type: museum
@@ -33115,7 +33114,6 @@ coins:
       - kmk-275588
       - kmk-275589
       - kmk-275590
-      - kmk-275634
       - kmk-276868
       - kmk-276869
       - kmk-277059
@@ -109302,35 +109300,23 @@ coins:
     kind: kurant
     nominal: 1 Lybsk søsling
     year_first: 1624
-    year_last: 1629
-    year_ranges:
-      -   - 1624
-          - 1624
-      -   - 1629
-          - 1629
-    year_label: 1624, 1629
+    year_last: 1624
+    year_label: '1624'
     ruler: Christian IV
     catalog:
       hede: '171'
     metal: silver
     metal_verified: true
-    weight_rough_verified: true
+    weight_rough_verified: false
     mint_verified: false
     verified: false
-    weight_rough_g:
-      - value: 1.216
-        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152241
         ref: KMM 152241 (Inv. FP 3574.53)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275616
-        ref: KMM 275616 (Inv. FP 4227.442)
     issuing_entity: danish_realm
     composed_of:
       - kmk-152241
-      - kmk-275616
   - id: c-0a43ed18
     class_id: c-0a43ed18
     label: unified-kmk-152264
@@ -111484,14 +111470,12 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 4 Skilling
-    year_first: 1626
+    year_first: 1644
     year_last: 1645
     year_ranges:
-      -   - 1626
-          - 1626
       -   - 1644
           - 1645
-    year_label: 1626, 1644-1645
+    year_label: 1644-1645
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
@@ -111505,8 +111489,6 @@ coins:
       - value: 0.86
         source: kmk
       - value: 1.08
-        source: kmk
-      - value: 1.088
         source: kmk
       - value: 1.26
         source: kmk
@@ -111604,9 +111586,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/275604
         ref: KMM 275604 (Inv. FP 4227.456)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275635
-        ref: KMM 275635 (Inv. FP 4227.421)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276870
         ref: KMM 276870 (Inv. FP 4227.469)
       - type: museum
@@ -111637,7 +111616,6 @@ coins:
       - kmk-275601
       - kmk-275603
       - kmk-275604
-      - kmk-275635
       - kmk-276870
       - kmk-345418
       - kmk-352990
@@ -117248,14 +117226,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 8 Skilling
-    year_first: 1625
+    year_first: 1630
     year_last: 1630
-    year_ranges:
-      -   - 1625
-          - 1625
-      -   - 1630
-          - 1630
-    year_label: 1625, 1630
+    year_label: '1630'
     ruler: Christian IV
     catalog:
       hede: '141'
@@ -117266,21 +117239,15 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 1.038
-        source: kmk
       - value: 1.95
         source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190559
         ref: KMM 190559 (Inv. FP 3108.725)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275643
-        ref: KMM 275643 (Inv. FP 4227.412)
     issuing_entity: danish_realm
     composed_of:
       - kmk-190559
-      - kmk-275643
   - id: c-40fc5761
     class_id: c-40fc5761
     label: unified-kmk-190568
@@ -117805,9 +117772,87 @@ coins:
       hede: '174'
     metal: silver
     metal_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 0.86
+        source: kmk
+      - value: 0.89
+        source: kmk
+      - value: 0.947
+        source: kmk
+      - value: 0.949
+        source: kmk
+    catalog_alts:
+      - register: hede
+        value: '165'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275622 (FP 4227.436)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 165»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 165)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275622 (FP 4227.436)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 165»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 165)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275622 (FP 4227.436)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 165»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 165)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275622 (FP 4227.436)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 165»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 165)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+      - register: hede
+        value: '162'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275624 (FP 4227.433)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 162»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 162)[/b]: 1/8 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275624 (FP 4227.433)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 162»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 162)[/b]: 1/8 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275624 (FP 4227.433)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 162»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 162)[/b]: 1/8 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275624 (FP 4227.433)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 162»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 162)[/b]: 1/8 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+      - register: hede
+        value: '159'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275627 (FP 4227.430)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 159»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 159)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275627 (FP 4227.430)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 159»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 159)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275627 (FP 4227.430)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 159»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 159)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275627 (FP 4227.430)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 159»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 159)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+      - register: hede
+        value: '156'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275630 (FP 4227.427)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 156»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 156)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275630 (FP 4227.427)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 156»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 156)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275630 (FP 4227.427)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 156»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 156)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275630 (FP 4227.427)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 156»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 156)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/193175
@@ -117851,11 +117896,27 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/193177
         ref: KMM 193177 (Inv. FP 3108.3107)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275622
+        ref: KMM 275622 (Inv. FP 4227.436)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275624
+        ref: KMM 275624 (Inv. FP 4227.433)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275627
+        ref: KMM 275627 (Inv. FP 4227.430)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275630
+        ref: KMM 275630 (Inv. FP 4227.427)
     issuing_entity: danish_realm
     composed_of:
       - kmk-193175
       - kmk-193176
       - kmk-193177
+      - kmk-275622
+      - kmk-275624
+      - kmk-275627
+      - kmk-275630
   - id: c-757fa24c
     class_id: c-757fa24c
     label: unified-kmk-194603
@@ -118434,8 +118495,6 @@ coins:
     year_last: 1629
     year_label: '1629'
     ruler: Christian IV
-    catalog:
-      hede: '173'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118444,6 +118503,22 @@ coins:
     weight_rough_g:
       - value: 0.813
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '173'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275614 (FP 4227.444)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 173»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 173)[/b]: 1 Mark, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275614 (FP 4227.444)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 173»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 173)[/b]: 1 Mark, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275614 (FP 4227.444)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 173»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 173)[/b]: 1 Mark, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275614 (FP 4227.444)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 173»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 173)[/b]: 1 Mark, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275614
@@ -118462,36 +118537,6 @@ coins:
     year_last: 1629
     year_label: '1629'
     ruler: Christian IV
-    catalog:
-      hede: '172'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.992
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275615
-        ref: KMM 275615 (Inv. FP 4227.443)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275615
-  - id: c-787c50c6
-    class_id: c-787c50c6
-    label: unified-kmk-275617
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1629
-    year_last: 1629
-    year_label: '1629'
-    ruler: Christian IV
-    catalog:
-      hede: '170'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118500,16 +118545,101 @@ coins:
     weight_rough_g:
       - value: 0.968
         source: kmk
+      - value: 0.992
+        source: kmk
+      - value: 0.998
+        source: kmk
+      - value: 1.041
+        source: kmk
+    catalog_alts:
+      - register: hede
+        value: '172'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275615 (FP 4227.443)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 172»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 172)[/b]: 6 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275615 (FP 4227.443)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 172»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 172)[/b]: 6 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275615 (FP 4227.443)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 172»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 172)[/b]: 6 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275615 (FP 4227.443)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 172»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 172)[/b]: 6 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+      - register: hede
+        value: '170'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275617 (FP 4227.441)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 170»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 170)[/b]: 3 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275617 (FP 4227.441)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 170»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 170)[/b]: 3 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275617 (FP 4227.441)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 170»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 170)[/b]: 3 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275617 (FP 4227.441)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 170»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 170)[/b]: 3 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+      - register: hede
+        value: '169'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275618 (FP 4227.440)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 169»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 169)[/b]: 1 Denning, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275618 (FP 4227.440)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 169»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 169)[/b]: 1 Denning, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275618 (FP 4227.440)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 169»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 169)[/b]: 1 Denning, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275618 (FP 4227.440)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 169»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 169)[/b]: 1 Denning, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '167'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275620 (FP 4227.438)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 167»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 167)[/b]: 4 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275620 (FP 4227.438)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 167»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 167)[/b]: 4 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275620 (FP 4227.438)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 167»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 167)[/b]: 4 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275620 (FP 4227.438)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 167»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 167)[/b]: 4 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275615
+        ref: KMM 275615 (Inv. FP 4227.443)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275617
         ref: KMM 275617 (Inv. FP 4227.441)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275618
+        ref: KMM 275618 (Inv. FP 4227.440)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275620
+        ref: KMM 275620 (Inv. FP 4227.438)
     issuing_entity: danish_realm
     composed_of:
+      - kmk-275615
       - kmk-275617
-  - id: c-4bc8606d
-    class_id: c-4bc8606d
-    label: unified-kmk-275618
+      - kmk-275618
+      - kmk-275620
+  - id: c-34edc959
+    class_id: c-34edc959
+    label: unified-kmk-275616
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -118518,23 +118648,39 @@ coins:
     year_last: 1629
     year_label: '1629'
     ruler: Christian IV
-    catalog:
-      hede: '169'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 0.998
+      - value: 1.216
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '171'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275616 (FP 4227.442)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 171»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 171)[/b]: 1 Søsling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275616 (FP 4227.442)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 171»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 171)[/b]: 1 Søsling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275616 (FP 4227.442)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 171»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 171)[/b]: 1 Søsling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275616 (FP 4227.442)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 171»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 171)[/b]: 1 Søsling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275618
-        ref: KMM 275618 (Inv. FP 4227.440)
+        url: https://samlinger.natmus.dk/KMM/object/275616
+        ref: KMM 275616 (Inv. FP 4227.442)
     issuing_entity: danish_realm
     composed_of:
-      - kmk-275618
+      - kmk-275616
   - id: c-184bfc4e
     class_id: c-184bfc4e
     label: unified-kmk-275619
@@ -118546,8 +118692,6 @@ coins:
     year_last: 1629
     year_label: '1629'
     ruler: Christian IV
-    catalog:
-      hede: '168'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118556,6 +118700,24 @@ coins:
     weight_rough_g:
       - value: 1.111
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '168'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275619 (FP 4227.439)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 168»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 168)[/b]: 2 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275619 (FP 4227.439)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 168»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 168)[/b]: 2 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275619 (FP 4227.439)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 168»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 168)[/b]: 2 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275619 (FP 4227.439)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 168»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 168)[/b]: 2 Skilling lybsk, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275619
@@ -118563,34 +118725,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-275619
-  - id: c-53fda0bc
-    class_id: c-53fda0bc
-    label: unified-kmk-275620
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1629
-    year_last: 1629
-    year_label: '1629'
-    ruler: Christian IV
-    catalog:
-      hede: '167'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.041
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275620
-        ref: KMM 275620 (Inv. FP 4227.438)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275620
   - id: c-80da8885
     class_id: c-80da8885
     label: unified-kmk-275621
@@ -118602,8 +118736,6 @@ coins:
     year_last: 1629
     year_label: '1629'
     ruler: Christian IV
-    catalog:
-      hede: '166'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118612,6 +118744,24 @@ coins:
     weight_rough_g:
       - value: 0.72
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '166'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275621 (FP 4227.437)[/b]: [i]«2 skilling»[/i], 1629, Typnummer [i]«Hede 166»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 166)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275621 (FP 4227.437)[/b]: [i]«2 skilling»[/i], 1629, type number [i]«Hede 166»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 166)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275621 (FP 4227.437)[/b]: [i]«2 skilling»[/i], 1629, номер типу [i]«Hede 166»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 166)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275621 (FP 4227.437)[/b]: [i]«2 skilling»[/i], 1629, typenummer [i]«Hede 166»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 166)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275621
@@ -118619,36 +118769,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-275621
-  - id: c-4ffc5a97
-    class_id: c-4ffc5a97
-    label: unified-kmk-275622
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV
-    catalog:
-      hede: '165'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.86
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275622
-        ref: KMM 275622 (Inv. FP 4227.436)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275622
-  - id: c-b5db11f4
-    class_id: c-b5db11f4
+  - id: c-687bfd05
+    class_id: c-687bfd05
     label: unified-kmk-275623
     fuss: seed_unsorted
     phase: kmk
@@ -118658,64 +118780,6 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    catalog:
-      hede: '163'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.022
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275623
-        ref: KMM 275623 (Inv. FP 4227.434)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275623
-  - id: c-4ca64f56
-    class_id: c-4ca64f56
-    label: unified-kmk-275624
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV
-    catalog:
-      hede: '162'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.949
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275624
-        ref: KMM 275624 (Inv. FP 4227.433)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275624
-  - id: c-687bfd05
-    class_id: c-687bfd05
-    label: unified-kmk-275625
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV
-    catalog:
-      hede: '161'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118724,12 +118788,53 @@ coins:
     weight_rough_g:
       - value: 1.012
         source: kmk
+      - value: 1.022
+        source: kmk
+    catalog_alts:
+      - register: hede
+        value: '163'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275623 (FP 4227.434)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 163»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 163)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275623 (FP 4227.434)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 163»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 163)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275623 (FP 4227.434)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 163»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 163)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275623 (FP 4227.434)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 163»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 163)[/b]: 1 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+      - register: hede
+        value: '161'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275625 (FP 4227.432)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 161»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 161)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275625 (FP 4227.432)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 161»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 161)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275625 (FP 4227.432)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 161»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 161)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275625 (FP 4227.432)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 161»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 161)[/b]: 1/4 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275623
+        ref: KMM 275623 (Inv. FP 4227.434)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275625
         ref: KMM 275625 (Inv. FP 4227.432)
     issuing_entity: danish_realm
     composed_of:
+      - kmk-275623
       - kmk-275625
   - id: c-d46bf8af
     class_id: c-d46bf8af
@@ -118742,8 +118847,6 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    catalog:
-      hede: '160'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118752,6 +118855,24 @@ coins:
     weight_rough_g:
       - value: 1.112
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '160'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275626 (FP 4227.431)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 160»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 160)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275626 (FP 4227.431)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 160»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 160)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275626 (FP 4227.431)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 160»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 160)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275626 (FP 4227.431)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 160»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 160)[/b]: 1/2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275626
@@ -118759,34 +118880,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-275626
-  - id: c-aff310cf
-    class_id: c-aff310cf
-    label: unified-kmk-275627
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV
-    catalog:
-      hede: '159'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.947
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275627
-        ref: KMM 275627 (Inv. FP 4227.430)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275627
   - id: c-92ecad41
     class_id: c-92ecad41
     label: unified-kmk-275628
@@ -118798,8 +118891,6 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    catalog:
-      hede: '158'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118808,6 +118899,24 @@ coins:
     weight_rough_g:
       - value: 0.847
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '158'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275628 (FP 4227.429)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 158»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 158)[/b]: 3 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275628 (FP 4227.429)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 158»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 158)[/b]: 3 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275628 (FP 4227.429)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 158»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 158)[/b]: 3 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275628 (FP 4227.429)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 158»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 158)[/b]: 3 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275628
@@ -118826,8 +118935,6 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    catalog:
-      hede: '157'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118836,6 +118943,24 @@ coins:
     weight_rough_g:
       - value: 0.787
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '157'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275629 (FP 4227.428)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 157»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 157)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275629 (FP 4227.428)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 157»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 157)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275629 (FP 4227.428)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 157»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 157)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275629 (FP 4227.428)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 157»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 157)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275629
@@ -118843,36 +118968,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-275629
-  - id: c-ea1de913
-    class_id: c-ea1de913
-    label: unified-kmk-275630
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV
-    catalog:
-      hede: '156'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.89
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275630
-        ref: KMM 275630 (Inv. FP 4227.427)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275630
-  - id: c-3aaa4576
-    class_id: c-3aaa4576
+  - id: c-0d83958b
+    class_id: c-0d83958b
     label: unified-kmk-275631
     fuss: seed_unsorted
     phase: kmk
@@ -118882,36 +118979,6 @@ coins:
     year_last: 1626
     year_label: '1626'
     ruler: Christian IV
-    catalog:
-      hede: '155'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.979
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275631
-        ref: KMM 275631 (Inv. FP 4227.426)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275631
-  - id: c-29830a09
-    class_id: c-29830a09
-    label: unified-kmk-275632
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1626
-    year_last: 1626
-    year_label: '1626'
-    ruler: Christian IV
-    catalog:
-      hede: '154'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118920,13 +118987,137 @@ coins:
     weight_rough_g:
       - value: 0.939
         source: kmk
+      - value: 0.953
+        source: kmk
+      - value: 0.968
+        source: kmk
+      - value: 0.979
+        source: kmk
+      - value: 0.987
+        source: kmk
+      - value: 1.016
+        source: kmk
+    catalog_alts:
+      - register: hede
+        value: '155'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275631 (FP 4227.426)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 155»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 155)[/b]: 1/2 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275631 (FP 4227.426)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 155»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 155)[/b]: 1/2 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275631 (FP 4227.426)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 155»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 155)[/b]: 1/2 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275631 (FP 4227.426)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 155»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 155)[/b]: 1/2 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '154'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275632 (FP 4227.425)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 154»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 154)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275632 (FP 4227.425)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 154»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 154)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275632 (FP 4227.425)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 154»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 154)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275632 (FP 4227.425)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 154»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 154)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '151'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275634 (FP 4227.422)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 151»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 151)[/b]: 2 Skilling, København, 1644–1648.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275634 (FP 4227.422)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 151»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 151)[/b]: 2 Skilling, København, 1644–1648.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København,
+            [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275634 (FP 4227.422)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 151»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 151)[/b]: 2 Skilling, København, 1644–1648.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275634 (FP 4227.422)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 151»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 151)[/b]: 2 Skilling, København, 1644–1648.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+      - register: hede
+        value: '149'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275636 (FP 4227.420)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 149»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 149)[/b]: 1 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275636 (FP 4227.420)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 149»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 149)[/b]: 1 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275636 (FP 4227.420)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 149»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 149)[/b]: 1 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275636 (FP 4227.420)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 149»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 149)[/b]: 1 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '148'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275637 (FP 4227.419)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 148»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 148)[/b]: 2 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275637 (FP 4227.419)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 148»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 148)[/b]: 2 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275637 (FP 4227.419)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 148»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 148)[/b]: 2 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275637 (FP 4227.419)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 148»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 148)[/b]: 2 Mark, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '147'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275638 (FP 4227.418)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 147»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 147)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275638 (FP 4227.418)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 147»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 147)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275638 (FP 4227.418)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 147»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 147)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275638 (FP 4227.418)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 147»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 147)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275631
+        ref: KMM 275631 (Inv. FP 4227.426)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275632
         ref: KMM 275632 (Inv. FP 4227.425)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275634
+        ref: KMM 275634 (Inv. FP 4227.422)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275636
+        ref: KMM 275636 (Inv. FP 4227.420)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275637
+        ref: KMM 275637 (Inv. FP 4227.419)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275638
+        ref: KMM 275638 (Inv. FP 4227.418)
     issuing_entity: danish_realm
     composed_of:
+      - kmk-275631
       - kmk-275632
+      - kmk-275634
+      - kmk-275636
+      - kmk-275637
+      - kmk-275638
   - id: c-c0c01bcf
     class_id: c-c0c01bcf
     label: unified-kmk-275633
@@ -118938,8 +119129,6 @@ coins:
     year_last: 1626
     year_label: '1626'
     ruler: Christian IV
-    catalog:
-      hede: '152'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -118948,6 +119137,22 @@ coins:
     weight_rough_g:
       - value: 0.718
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '152'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275633 (FP 4227.423)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 152»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 152)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275633 (FP 4227.423)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 152»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 152)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275633 (FP 4227.423)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 152»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 152)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275633 (FP 4227.423)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 152»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 152)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275633
@@ -118955,65 +119160,9 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-275633
-  - id: c-0d83958b
-    class_id: c-0d83958b
-    label: unified-kmk-275636
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1626
-    year_last: 1626
-    year_label: '1626'
-    ruler: Christian IV
-    catalog:
-      hede: '149'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.968
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275636
-        ref: KMM 275636 (Inv. FP 4227.420)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275636
-  - id: c-b721156c
-    class_id: c-b721156c
-    label: unified-kmk-275637
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1626
-    year_last: 1626
-    year_label: '1626'
-    ruler: Christian IV
-    catalog:
-      hede: '148'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.016
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275637
-        ref: KMM 275637 (Inv. FP 4227.419)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275637
   - id: c-11707c8b
     class_id: c-11707c8b
-    label: unified-kmk-275640
+    label: unified-kmk-275635
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -119022,22 +119171,79 @@ coins:
     year_last: 1626
     year_label: '1626'
     ruler: Christian IV
-    catalog:
-      hede: '145'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 1.072
+        source: kmk
       - value: 1.075
         source: kmk
+      - value: 1.088
+        source: kmk
+    catalog_alts:
+      - register: hede
+        value: '150'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275635 (FP 4227.421)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 150»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 150)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275635 (FP 4227.421)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 150»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 150)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275635 (FP 4227.421)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 150»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 150)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275635 (FP 4227.421)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 150»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 150)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '146'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275639 (FP 4227.417)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 146»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 146)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275639 (FP 4227.417)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 146»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 146)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275639 (FP 4227.417)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 146»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 146)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275639 (FP 4227.417)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 146»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 146)[/b]: 20 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '145'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275640 (FP 4227.416)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 145»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 145)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275640 (FP 4227.416)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 145»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 145)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275640 (FP 4227.416)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 145»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 145)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275640 (FP 4227.416)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 145»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 145)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275635
+        ref: KMM 275635 (Inv. FP 4227.421)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275639
+        ref: KMM 275639 (Inv. FP 4227.417)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275640
         ref: KMM 275640 (Inv. FP 4227.416)
     issuing_entity: danish_realm
     composed_of:
+      - kmk-275635
+      - kmk-275639
       - kmk-275640
   - id: c-b7c04c1b
     class_id: c-b7c04c1b
@@ -119050,8 +119256,6 @@ coins:
     year_last: 1626
     year_label: '1626'
     ruler: Christian IV
-    catalog:
-      hede: '144'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -119060,6 +119264,24 @@ coins:
     weight_rough_g:
       - value: 0.853
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '144'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275641 (FP 4227.415)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 144»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 144)[/b]: 1 Skilling (hulpenning), København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København,
+            [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275641 (FP 4227.415)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 144»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 144)[/b]: 1 Skilling (hulpenning), København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København,
+            [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275641 (FP 4227.415)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 144»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 144)[/b]: 1 Skilling (hulpenning), København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275641 (FP 4227.415)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 144»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 144)[/b]: 1 Skilling (hulpenning), København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275641
@@ -119078,51 +119300,102 @@ coins:
     year_last: 1625
     year_label: '1625'
     ruler: Christian IV
-    catalog:
-      hede: '143'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 1.02
+        source: kmk
+      - value: 1.029
+        source: kmk
+      - value: 1.038
+        source: kmk
       - value: 1.083
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '143'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275642 (FP 4227.414)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 143»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 143)[/b]: 2 Skilling, København, 1630, 1632.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275642 (FP 4227.414)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 143»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 143)[/b]: 2 Skilling, København, 1630, 1632.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København,
+            [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275642 (FP 4227.414)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 143»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 143)[/b]: 2 Skilling, København, 1630, 1632.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275642 (FP 4227.414)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 143»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 143)[/b]: 2 Skilling, København, 1630, 1632.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+      - register: hede
+        value: '141'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275643 (FP 4227.412)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 141»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 141)[/b]: 8 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275643 (FP 4227.412)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 141»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 141)[/b]: 8 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275643 (FP 4227.412)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 141»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 141)[/b]: 8 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275643 (FP 4227.412)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 141»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 141)[/b]: 8 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '140'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275644 (FP 4227.411)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 140»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 140)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275644 (FP 4227.411)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 140»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 140)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275644 (FP 4227.411)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 140»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 140)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275644 (FP 4227.411)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 140»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 140)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '137'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275647 (FP 4227.408)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 137»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 137)[/b]: 1 Hvid, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275647 (FP 4227.408)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 137»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 137)[/b]: 1 Hvid, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275647 (FP 4227.408)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 137»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 137)[/b]: 1 Hvid, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275647 (FP 4227.408)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 137»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 137)[/b]: 1 Hvid, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275642
         ref: KMM 275642 (Inv. FP 4227.414)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275642
-  - id: c-562763a8
-    class_id: c-562763a8
-    label: unified-kmk-275644
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Christian IV
-    catalog:
-      hede: '140'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.029
-        source: kmk
-    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275643
+        ref: KMM 275643 (Inv. FP 4227.412)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275644
         ref: KMM 275644 (Inv. FP 4227.411)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275647
+        ref: KMM 275647 (Inv. FP 4227.408)
     issuing_entity: danish_realm
     composed_of:
+      - kmk-275642
+      - kmk-275643
       - kmk-275644
+      - kmk-275647
   - id: c-2bc2aa0d
     class_id: c-2bc2aa0d
     label: unified-kmk-275645
@@ -119134,8 +119407,6 @@ coins:
     year_last: 1625
     year_label: '1625'
     ruler: Christian IV
-    catalog:
-      hede: '139'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -119144,6 +119415,22 @@ coins:
     weight_rough_g:
       - value: 0.843
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '139'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275645 (FP 4227.410)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 139»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 139)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275645 (FP 4227.410)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 139»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 139)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275645 (FP 4227.410)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 139»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 139)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275645 (FP 4227.410)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 139»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 139)[/b]: 6 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275645
@@ -119162,8 +119449,6 @@ coins:
     year_last: 1625
     year_label: '1625'
     ruler: Christian IV
-    catalog:
-      hede: '138'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -119172,6 +119457,24 @@ coins:
     weight_rough_g:
       - value: 1.228
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '138'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275646 (FP 4227.409)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 138»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 138)[/b]: 16 Skilling, Frederiksborg Slot.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275646 (FP 4227.409)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 138»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 138)[/b]: 16 Skilling, Frederiksborg Slot.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København,
+            [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275646 (FP 4227.409)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 138»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 138)[/b]: 16 Skilling, Frederiksborg Slot.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275646 (FP 4227.409)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 138»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 138)[/b]: 16 Skilling, Frederiksborg Slot.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275646
@@ -119179,34 +119482,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-275646
-  - id: c-c840fbca
-    class_id: c-c840fbca
-    label: unified-kmk-275647
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Christian IV
-    catalog:
-      hede: '137'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.02
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275647
-        ref: KMM 275647 (Inv. FP 4227.408)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-275647
   - id: c-ed0617ea
     class_id: c-ed0617ea
     label: unified-kmk-275648
@@ -119218,8 +119493,6 @@ coins:
     year_last: 1625
     year_label: '1625'
     ruler: Christian IV
-    catalog:
-      hede: '136'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -119228,6 +119501,22 @@ coins:
     weight_rough_g:
       - value: 0.922
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '136'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275648 (FP 4227.407)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 136»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 136)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275648 (FP 4227.407)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 136»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 136)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275648 (FP 4227.407)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 136»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 136)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275648 (FP 4227.407)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 136»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 136)[/b]: 1 Søsling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275648
@@ -119235,8 +119524,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-275648
-  - id: c-e29c1200
-    class_id: c-e29c1200
+  - id: c-0c7f607a
+    class_id: c-0c7f607a
     label: unified-kmk-275649
     fuss: seed_unsorted
     phase: kmk
@@ -119246,8 +119535,6 @@ coins:
     year_last: 1625
     year_label: '1625'
     ruler: Christian IV
-    catalog:
-      hede: '135'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -119256,13 +119543,50 @@ coins:
     weight_rough_g:
       - value: 1.142
         source: kmk
+      - value: 1.145
+        source: kmk
+    catalog_alts:
+      - register: hede
+        value: '135'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 275649 (FP 4227.406)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 135»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 135)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 275649 (FP 4227.406)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 135»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 135)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 275649 (FP 4227.406)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 135»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 135)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 275649 (FP 4227.406)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 135»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 135)[/b]: 1 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+      - register: hede
+        value: '142'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 276875 (FP 4227.413)[/b]: [i]«2 skilling»[/i], 1625, Typnummer [i]«Hede 142»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 142)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 276875 (FP 4227.413)[/b]: [i]«2 skilling»[/i], 1625, type number [i]«Hede 142»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 142)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 276875 (FP 4227.413)[/b]: [i]«2 skilling»[/i], 1625, номер типу [i]«Hede 142»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 142)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 276875 (FP 4227.413)[/b]: [i]«2 skilling»[/i], 1625, typenummer [i]«Hede 142»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 142)[/b]: 4 Skilling, København.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275649
         ref: KMM 275649 (Inv. FP 4227.406)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276875
+        ref: KMM 276875 (Inv. FP 4227.413)
     issuing_entity: danish_realm
     composed_of:
       - kmk-275649
+      - kmk-276875
   - id: c-66b48177
     class_id: c-66b48177
     label: unified-kmk-275995
@@ -121634,8 +121958,6 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    catalog:
-      hede: '164'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -121644,6 +121966,24 @@ coins:
     weight_rough_g:
       - value: 0.955
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '164'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 276873 (FP 4227.435)[/b]: [i]«2 skilling»[/i], 1627, Typnummer [i]«Hede 164»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 164)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 276873 (FP 4227.435)[/b]: [i]«2 skilling»[/i], 1627, type number [i]«Hede 164»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 164)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A)
+            1624-1627»[/i], [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 276873 (FP 4227.435)[/b]: [i]«2 skilling»[/i], 1627, номер типу [i]«Hede 164»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 164)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 276873 (FP 4227.435)[/b]: [i]«2 skilling»[/i], 1627, typenummer [i]«Hede 164»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 164)[/b]: 2 Speciedaler, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B)
+            1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276873
@@ -121662,8 +122002,6 @@ coins:
     year_last: 1626
     year_label: '1626'
     ruler: Christian IV
-    catalog:
-      hede: '153'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -121672,6 +122010,22 @@ coins:
     weight_rough_g:
       - value: 0.568
         source: kmk
+    catalog_alts:
+      - register: hede
+        value: '153'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer gehört nicht zur Münze dieses Datensatzes.\n[b]KMM 276874 (FP 4227.424)[/b]: [i]«2 skilling»[/i], 1626, Typnummer [i]«Hede 153»[/i]; in den Datensätzen FP 4227.405–.444 steigt
+            die Typnummer mit jeder Inventarnummer um eins (Hede 134–173).\n[b]danskmoent.dk (Hede 153)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          en: "The type number does not belong to the coin of this record.\n[b]KMM 276874 (FP 4227.424)[/b]: [i]«2 skilling»[/i], 1626, type number [i]«Hede 153»[/i]; in the records FP 4227.405–.444 the
+            type number rises by one with each inventory number (Hede 134–173).\n[b]danskmoent.dk (Hede 153)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i],
+            [i]«B) 1629»[/i]."
+          uk: "Номер типу не належить монеті цього запису.\n[b]KMM 276874 (FP 4227.424)[/b]: [i]«2 skilling»[/i], 1626, номер типу [i]«Hede 153»[/i]; у записах FP 4227.405–.444 номер типу зростає на одиницю
+            з кожним інвентарним номером (Hede 134–173).\n[b]danskmoent.dk (Hede 153)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
+          da: "Typenummeret hører ikke til denne posts mønt.\n[b]KMM 276874 (FP 4227.424)[/b]: [i]«2 skilling»[/i], 1626, typenummer [i]«Hede 153»[/i]; i posterne FP 4227.405–.444 stiger typenummeret med
+            én for hvert inventarnummer (Hede 134–173).\n[b]danskmoent.dk (Hede 153)[/b]: 1 Dukat, Glückstadt.\n[b]danskmoent.dk (Hede 134)[/b]: 2 Skilling, København, [i]«A) 1624-1627»[/i], [i]«B) 1629»[/i]."
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276874
@@ -121679,34 +122033,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-276874
-  - id: c-0c7f607a
-    class_id: c-0c7f607a
-    label: unified-kmk-276875
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Christian IV
-    catalog:
-      hede: '142'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.145
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276875
-        ref: KMM 276875 (Inv. FP 4227.413)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-276875
   - id: c-efcdc2e6
     class_id: c-efcdc2e6
     label: unified-kmk-276963
@@ -138321,50 +138647,6 @@ coins:
     composed_of:
       - dk-tid-132806
       - ngc-1051053
-  - id: c-d5e2c731
-    class_id: c-d5e2c731
-    label: unified-ngc-1051057
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 20 Skilling
-    year_first: 1644
-    year_last: 1644
-    year_label: '1644'
-    ruler: Christian IV
-    catalog:
-      km: PnA8
-      hede: '146'
-      schou:
-        - '58'
-        - '59'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 8.07
-        source: kmk
-      - value: 8.32
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/576000
-        ref: KMM 576000 (Inv. RP 1253.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/576001
-        ref: KMM 576001 (Inv. RP 1254.1)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-20-skilling-km-pna8-1644-cuid-1051057-duid-1238502
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-576000
-      - kmk-576001
-      - ngc-1051057
   - id: c-6d9096c8
     class_id: c-6d9096c8
     label: unified-ngc-1051058
@@ -138417,32 +138699,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1051059
-  - id: c-023a9d78
-    class_id: c-023a9d78
-    label: unified-ngc-1051149
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 20 Skilling
-    year_first: 1644
-    year_last: 1644
-    year_label: '1644'
-    catalog:
-      km: PnB8
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-20-skilling-km-pnb8-1644-cuid-1051149-duid-1238503
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1051149
   - id: c-62b59bcb
     class_id: c-62b59bcb
     label: unified-ngc-1051153
