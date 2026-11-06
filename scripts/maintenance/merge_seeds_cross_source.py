@@ -2333,7 +2333,10 @@ _NOMINAL_SPECIAL_RE = re.compile(
 #   forfalskning?» keeps its forgery word for `_NOMINAL_SPECIAL_RE`, which runs
 #   on the raw class nominal first);
 # - a trailing «?» is the source's own doubt: the name stays, marked uncertain;
-# - a name that is only digits («1», «1624», «0») or only «?» names nothing;
+# - a name that is only digits or only «?» is not a name, and is not let
+#   through: the one live case is a Hede page title for three coins cut to
+#   «1» («1, 2 og 3 speciedaler», Hede 61); KMM's year-for-nominal records
+#   («1624», «1525») are all scope-dropped stubs;
 # - Danish number words fused with «skilling» are the number («toskilling»);
 # - a mint name inside the nominal is not part of it («dukat kobenhavn»);
 # - qualifiers of the unit — lybsk, norsk, dansk(e), kurant, rigsmont,
@@ -2370,6 +2373,11 @@ def _hede_base_nominal_key(n: str):
     s = s.replace("krone-skilling", "kroneskilling")
     s = re.sub(r"\bgold\s*krone\b|\bgoldkrone\b", "krone", s)
     s = re.sub(r"\bpenny\b|\bpence\b", "penning", s)
+    # Sechsling is the German name of the søsling: Hede prints «søsling lybsk»
+    # for Hede 150, 171 and 178, Numista «Sechsling» for the same numbers
+    # (313339, 313335, 301740). KMM's «Sechling» (275562, Hede 178A) and
+    # «Secholing» (149115, Schou 108) are slips of the same word.
+    s = re.sub(r"\bsech(?:s|o)?ling\b", "sosling", s)
     s = re.sub(r"(\w)\s*d'or\b", r"\1dor", s)
     s = _SKILLING_WORD_RE.sub(lambda m: f"{_SKILLING_NUMBER_WORDS[m.group(1)]} skilling", s)
     # «N rigsbankskilling rigsbanktegn» = «rigsbanktegn for N skilling»; a bare
@@ -2423,7 +2431,7 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
         return None
     ka, kb = _hede_base_nominal_key(na), _hede_base_nominal_key(nb)
     if ka is None or kb is None:
-        return "no name"
+        return None
     if (set(ka[0].split()) & _NOMINAL_METAL_WORDS) != (set(kb[0].split()) & _NOMINAL_METAL_WORDS):
         return None
     # A dual name («speciedaler / 3 mark») is left to the dual-name test below.

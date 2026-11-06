@@ -92,7 +92,12 @@ class Spelling(unittest.TestCase):
 
     def test_doubt_and_empty_names(self):
         self.assertEqual(self.eq("2 skilling?", "2 skilling"), "uncertain")
-        self.assertEqual(self.eq("2 speciedaler", "1"), "no name")
+        self.assertIsNone(self.eq("2 speciedaler", "1"))
+
+    def test_sechsling_is_sosling(self):
+        self.assertEqual(self.eq("sechsling", "sosling lybsk"), "spelling")
+        self.assertEqual(self.eq("sechling", "sosling"), "spelling")
+        self.assertEqual(self.eq("secholing", "sechsling"), "spelling")
 
     def test_other_strikes_stay_apart(self):
         self.assertIsNone(self.eq("16 skilling", "gold 16 skilling"))
