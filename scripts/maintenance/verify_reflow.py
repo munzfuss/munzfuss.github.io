@@ -691,6 +691,11 @@ def _scope_dropped_index(base: str) -> dict:
         idx["seeds"] |= ids
         if not ids:
             continue
+        # A dropped KMM seed's own object number is its id (kmk-<n>), so its
+        # citation (…/KMM/object/<n>) is excused even when the seed no longer
+        # exists at `base` — the case once the scope rule itself is committed
+        # and a later re-flow moves the class into a rebuilt Fuß (2026-11-06).
+        idx["kmm"] |= {i[4:] for i in ids if str(i).startswith("kmk-")}
         rels = subprocess.run(["git", "ls-tree", "-r", "--name-only", base, f"data/v2/seed/{src}/"],
                               capture_output=True, text=True, cwd=ROOT).stdout.split()
         for rel in rels:
@@ -1149,7 +1154,11 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         # reason, and nothing absorbs it. Match on the vanished id itself or on
         # any of its members, since an exclusion names a SEED id (§9b) while the
         # final that disappears is keyed by its unified id.
-        hit = ({cid} | set(was.get("composed_of") or [])) & set(excluded)
+        # The class id itself may have been re-minted by the run (c-c0bc2687 →
+        # c-c0bc2687-2 when the excluded seed is isolated, 2026-11-06), so the
+        # seed_unified bridge in _excluded_ids misses it: also match the head
+        # seed the vanished class stands for.
+        hit = ({cid, _head_seed(cid)} | set(was.get("composed_of") or [])) & set(excluded)
         if hit:
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— curator exclusion: {', '.join(sorted(hit))}")
@@ -1460,8 +1469,11 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 if gone and f == "sources":
                     _mx = _member_excluded_kmm_any() | ((_SCOPE_IDX or {}).get("kmm") or set())
                     if _mx:
+                        # A KMM citation may carry no url, only its label
+                        # «KMM <n> (Inv. …)» (c-48545e33, KMM 403023).
                         member_gone = {v for v in gone
-                                       if any(f"/KMM/object/{n}\"" in v for n in _mx)}
+                                       if any(f"/KMM/object/{n}\"" in v
+                                              or f"\"KMM {n} (" in v for n in _mx)}
                         if member_gone:
                             retractions.extend(
                                 f"{cid}.{f}: {v[:70]} (member exclusion)"

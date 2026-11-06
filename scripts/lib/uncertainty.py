@@ -110,7 +110,8 @@ def held_standard_fineness(entry: dict, holds) -> dict | None:
         # not the curator's anchor.
         vals = [r.get("value") if isinstance(r, dict) else r for r in fin
                 if not (isinstance(r, dict) and (r.get("erroneous") or r.get("suspect")
-                                                 or r.get("template")))]
+                                                 or r.get("template")
+                                                 or r.get("approximate")))]
         if not vals:
             return None
         first = vals[0]

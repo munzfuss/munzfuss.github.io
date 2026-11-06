@@ -109,6 +109,8 @@ needs a further criterion:
 - **(c) the end of the Lübeck tie** — none: the ratio is fixed at least to Christian IV.
 - **(d) c. 1619** — the last Hvid, the end of the line from which the Mark was counted.
 
+**Curator 2026-11-06 — PROVISIONAL:** the end-point is taken conditionally as (b) 1537–1541 («поки що приймаємо що умовно „так“»). It is a preliminary estimate, to be decided more precisely later; **later analyses must not rest on it.**
+
 ## 7. Open questions
 
 | Question | Would be settled by |

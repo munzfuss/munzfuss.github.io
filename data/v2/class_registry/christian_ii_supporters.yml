@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 14 active, 16 retired.
+# 11 active, 20 retired.
 
 id: christian_ii_supporters
 classes:
@@ -12,16 +12,14 @@ classes:
     created: '2026-10-22'
     label: unified-dk-galster-c2g-85
     legacy_id: unified-dk-galster-c2g-85
+    split_into:
+      - c-ee673d08
     members:
       - dk-galster-c2g-85
+      - kmk-150191
+      - kmk-150192
       - kmk-156732
       - kmk-156733
-  - id: c-111fa6ac
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-417187
-    legacy_id: unified-kmk-417187
-    members:
       - kmk-417187
   - id: c-146a7e98
     status: active
@@ -39,21 +37,14 @@ classes:
       - dk-bruun-4149
       - dk-galster-c2g-91
       - kmk-132277
+      - kmk-156730
+      - kmk-156731
   - id: c-29c7d651
     status: active
     created: '2026-11-05'
     label: unified-dk-galster-c2g-88
     members:
       - dk-galster-c2g-88
-  - id: c-5218adac
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-156734
-    legacy_id: unified-dk-galster-c2g-88
-    split_into:
-      - c-29c7d651
-    members:
-      - kmk-156734
       - kmk-156735
   - id: c-664cca8f
     status: active
@@ -87,14 +78,7 @@ classes:
     members:
       - dk-bruun-4147
       - dk-galster-c2g-87
-  - id: c-9dd8075b
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-156730
-    legacy_id: unified-kmk-156730
-    members:
-      - kmk-156730
-      - kmk-156731
+      - kmk-156734
   - id: c-b38f6baa
     status: active
     created: '2026-10-22'
@@ -103,13 +87,6 @@ classes:
     members:
       - dk-galster-c2g-83
       - kmk-156729
-  - id: c-d9b1339d
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-galster-c2g-86
-    legacy_id: unified-dk-galster-c2g-86
-    members:
-      - dk-galster-c2g-86
   - id: c-ddefc984
     status: active
     created: '2026-10-22'
@@ -117,6 +94,13 @@ classes:
     legacy_id: unified-dk-galster-c2g-82
     members:
       - dk-galster-c2g-82
+  - id: c-ee673d08
+    status: active
+    created: '2026-11-06'
+    label: unified-dk-galster-c2g-86
+    members:
+      - dk-galster-c2g-86
+      - kmk-150193
   - id: c-0c9e74a9
     status: retired
     created: '2026-10-22'
@@ -125,6 +109,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-417186
+  - id: c-111fa6ac
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-417187
+    legacy_id: unified-kmk-417187
+    merged_into: c-02d2cd23
+    retired: '2026-11-06'
+    members:
+      - kmk-417187
   - id: c-3fdac63e
     status: retired
     created: '2026-10-22'
@@ -149,6 +142,18 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-317776
+  - id: c-5218adac
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-156734
+    legacy_id: unified-dk-galster-c2g-88
+    merged_into: c-85449902
+    split_into:
+      - c-29c7d651
+    retired: '2026-11-06'
+    members:
+      - kmk-156734
+      - kmk-156735
   - id: c-6334074e
     status: retired
     created: '2026-10-22'
@@ -190,6 +195,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-292368
+  - id: c-9dd8075b
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-156730
+    legacy_id: unified-kmk-156730
+    merged_into: c-21c98e53
+    retired: '2026-11-06'
+    members:
+      - kmk-156730
+      - kmk-156731
   - id: c-9ec49a24
     status: retired
     created: '2026-10-22'
@@ -216,6 +231,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-132586
+  - id: c-d9b1339d
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-galster-c2g-86
+    legacy_id: unified-dk-galster-c2g-86
+    merged_into: c-02d2cd23
+    retired: '2026-11-06'
+    members:
+      - dk-galster-c2g-86
   - id: c-de441a83
     status: retired
     created: '2026-10-22'

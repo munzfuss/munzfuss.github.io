@@ -825,13 +825,47 @@ def _catalog(src):
     # convention is not uniformly uppercase, so those are left untouched.
     if others:
         out["others"] = others
+    web_tn = src.get("_raadata_typenumber")
+    if web_tn:
+        _union_web_typenumber(out, _catalog({"typeNumber": web_tn}),
+                              skip_galster=src.get("id") in _KMM_GALSTER_ERRATA)
     errata = _KMM_GALSTER_ERRATA.get(src.get("id"))
     if errata:
         out["galster"] = errata[1]
     elif out.get("galster"):
-        out["galster"] = out["galster"].upper()
+        g = out["galster"]
+        out["galster"] = [x.upper() for x in g] if isinstance(g, list) else g.upper()
     # §DB: union any web-rådata refs the ES typeNumber didn't carry.
     return _merge_raadata_catalog(out, src)
+
+
+def _union_web_typenumber(out: dict, web: dict, skip_galster: bool = False) -> None:
+    """UNION the catalogue parsed from the object page's Typenummer into the
+    one parsed from the ES typeNumber. A register only the web gives is added;
+    a register both give with different values keeps BOTH (list, ES first) —
+    the disagreement stays visible, neither side is preferred (data-
+    accumulation principle). Case-insensitive comparison of indices."""
+    def as_list(v):
+        return list(v) if isinstance(v, list) else ([v] if v not in (None, "") else [])
+    for key, val in web.items():
+        if key == "galster" and skip_galster:
+            continue
+        cur = as_list(out.get(key))
+        seen = {str(x).lower() for x in cur}
+        for v in as_list(val):
+            if str(v).lower() not in seen:
+                cur.append(v)
+                seen.add(str(v).lower())
+        if not cur:
+            continue
+        if key != "others":
+            # «Hede 71» beside «Hede 71A» is one reading at two granularities
+            # (CLAUDE.md §9.4: the sub-letter is a variant of the base) — keep
+            # the more specific one; only genuinely different numbers stay a list.
+            specific = {re.match(r"^(\d+)[A-Za-z]$", str(x)).group(1)
+                        for x in cur if re.match(r"^\d+[A-Za-z]$", str(x))}
+            cur = [x for x in cur if str(x) not in specific]
+        out[key] = cur if (key == "others" or len(cur) > 1) else cur[0]
 
 
 def _merge_raadata_catalog(out: dict, src: dict) -> dict:
@@ -1150,6 +1184,19 @@ def _enrich_from_raadata(src: dict) -> dict:
                  and isinstance(k.get("term"), str) and k["term"].strip()]
         if terms:
             src["typeNumber"] = "; ".join(terms)
+    else:
+        # The ES typeNumber is present, but the object page may carry a newer
+        # classification the ES snapshot lacks: kmk-417187 ES «4ᵦ men som B. 33»
+        # vs web «Galster 85;Schou 28(?)», kmk-662149 «G. 88(?)» vs «Galster
+        # 88;Schou 9» — 78 objects whose web term adds a register the ES one
+        # does not give (2026-11-06). Stash it; _catalog UNIONs it, keeping both
+        # values where the two disagree (curator 2026-11-06: take them too).
+        terms = [k.get("term") for k in (rd.get("klassifikationer") or [])
+                 if isinstance(k, dict) and k.get("system") == "Typenummer"
+                 and isinstance(k.get("term"), str) and k["term"].strip()]
+        web_tn = "; ".join(terms)
+        if web_tn and web_tn.strip() != src["typeNumber"].strip():
+            src["_raadata_typenumber"] = web_tn
     # nominal — ES `nominal` empty, the web page's description line names it.
     if not (src.get("nominal") or "").strip():
         nom = _raadata_nominal(rd.get("beskrivelser"))
@@ -1279,19 +1326,37 @@ _STUB_DROPPED: dict[str, str] = {}
 # the stub rule does not count it as an index (curator 2026-11-06, the FP 4227
 # run whose «Hede 135-173» rise with the inventory number).
 _ERRONEOUS_MARKS: dict[str, set] | None = None
+# The full `catalog_marks` of every marked record, from the seeds AND from
+# `_scope_dropped/kmk.yml`. A record the stub rule keeps out of the seed
+# leaves the seed with its marks; the scope file carries them, so the next
+# run still knows the number is marked (otherwise the record would come back
+# unmarked and be dropped again on the run after — a flip-flop).
+_MARKS_FULL: dict[str, list] = {}
 
 
 def _erroneous_marks() -> dict[str, set]:
     global _ERRONEOUS_MARKS
     if _ERRONEOUS_MARKS is None:
         import yaml
-        out: dict[str, set] = {}
+        full: dict[str, list] = {}
+        sd = PROJECT_ROOT / "data" / "v2" / "_scope_dropped" / "kmk.yml"
+        if sd.exists():
+            for sid, mks in ((yaml.safe_load(sd.read_text("utf-8")) or {})
+                             .get("catalog_marks") or {}).items():
+                if mks:
+                    full[str(sid)] = list(mks)
         for p in sorted((PROJECT_ROOT / "data" / "v2" / "seed" / "kmk").glob("*.yml")):
             for c in (yaml.safe_load(p.read_text("utf-8")) or {}).get("coins") or []:
-                for mk in c.get("catalog_marks") or []:
-                    if isinstance(mk, dict) and mk.get("kind") == "erroneous" and mk.get("register"):
-                        out.setdefault(str(c.get("id")), set()).add(
-                            (mk["register"], str(mk.get("value")).strip()))
+                if c.get("catalog_marks"):
+                    full[str(c.get("id"))] = list(c["catalog_marks"])
+        out: dict[str, set] = {}
+        for sid, mks in full.items():
+            for mk in mks:
+                if isinstance(mk, dict) and mk.get("kind") == "erroneous" and mk.get("register"):
+                    out.setdefault(sid, set()).add(
+                        (mk["register"], str(mk.get("value")).strip()))
+        _MARKS_FULL.clear()
+        _MARKS_FULL.update(full)
         _ERRONEOUS_MARKS = out
     return _ERRONEOUS_MARKS
 
@@ -1471,6 +1536,9 @@ def build_entry(src) -> dict | None:
     if _cat:
         _STUB_DROPPED[entry["id"]] = _cat
         return None
+    # A record back in scope takes its marks back from the scope file.
+    if not entry.get("catalog_marks") and _MARKS_FULL.get(entry["id"]):
+        entry["catalog_marks"] = _MARKS_FULL[entry["id"]]
     return {k: v for k, v in entry.items() if v is not None}
 
 
@@ -1540,7 +1608,6 @@ def _write_scope_dropped() -> None:
     """data/v2/_scope_dropped/kmk.yml — every KMM record the stub rule keeps
     out of the seed, with its category. Machine-written on each full run;
     verify_reflow reads it to tell a deliberate scope drop from data loss."""
-    from lib.yaml_io import dump_v2_canonical
     out = PROJECT_ROOT / "data" / "v2" / "_scope_dropped" / "kmk.yml"
     out.parent.mkdir(parents=True, exist_ok=True)
     payload = {
@@ -1549,12 +1616,21 @@ def _write_scope_dropped() -> None:
                  "image; or a weight with no image and no catalogue index."),
         "dropped": {k: _STUB_DROPPED[k] for k in sorted(_STUB_DROPPED)},
     }
-    out.write_text(dump_v2_canonical(payload))
+    _erroneous_marks()
+    kept = {k: _MARKS_FULL[k] for k in sorted(_STUB_DROPPED) if _MARKS_FULL.get(k)}
+    if kept:
+        payload["catalog_marks"] = kept
+    # The file's own serializer (yaml_io family), so a re-read and re-save
+    # does not reformat it (pre-commit Check 9).
+    from lib import yaml_io
+    with open(out, "w") as f:
+        yaml_io.make_yaml(out).dump(payload, f)
 
 
 def build_seed(dry_run: bool, limit: int | None,
                no_thin: bool = False) -> int:
     files = sorted(p for p in KMK_CACHE.glob("[0-9]*.json"))
+    _erroneous_marks()  # load marks (seeds + scope file) before any entry
     entries: list[dict] = []
     scanned = skipped = 0
     for p in files:

@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 229 active, 224 retired.
+# 228 active, 226 retired.
 
 id: gottorp_duchy
 classes:
@@ -134,6 +134,8 @@ classes:
     created: '2026-10-22'
     label: unified-ngc-1186485
     legacy_id: unified-ngc-1186485
+    split_into:
+      - c-c0bc2687-2
     members:
       - dk-numista-312875
       - ngc-1186485
@@ -356,6 +358,7 @@ classes:
     label: unified-ngc-167317
     legacy_id: unified-ngc-167317
     members:
+      - kmk-167319
       - ngc-167317
       - schleswig_holstein-numismaster-167317
   - id: c-3ef1e6c2
@@ -1559,13 +1562,6 @@ classes:
       - dk-numista-85360
       - ngc-1189704
       - schleswig_holstein-numismaster-167344
-  - id: c-bd02b39e
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-167319
-    legacy_id: unified-kmk-167319
-    members:
-      - kmk-167319
   - id: c-bd2bb3c0
     status: active
     created: '2026-10-22'
@@ -1597,11 +1593,10 @@ classes:
     legacy_id: unified-kmk-624297
     members:
       - kmk-624297
-  - id: c-c0bc2687
+  - id: c-c0bc2687-2
     status: active
-    created: '2026-10-22'
+    created: '2026-11-06'
     label: unified-kmk-167318
-    legacy_id: unified-kmk-167318
     members:
       - kmk-167318
   - id: c-c0d79f06
@@ -3474,6 +3469,15 @@ classes:
     members:
       - kmk-687803
       - kmk-687806
+  - id: c-bd02b39e
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-167319
+    legacy_id: unified-kmk-167319
+    merged_into: c-3e9676c7
+    retired: '2026-11-06'
+    members:
+      - kmk-167319
   - id: c-bd1f2e33
     status: retired
     created: '2026-10-22'
@@ -3490,6 +3494,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-123250
+  - id: c-c0bc2687
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-167318
+    legacy_id: unified-kmk-167318
+    merged_into: c-16daf3a6
+    retired: '2026-11-06'
+    members:
+      - kmk-167318
   - id: c-c0ee14e5
     status: retired
     created: '2026-10-22'

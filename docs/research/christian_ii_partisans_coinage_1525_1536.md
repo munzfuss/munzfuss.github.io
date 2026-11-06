@@ -95,6 +95,8 @@ with Christian III's war coin in `8_daler_fod` phase 0 (current home of the latt
 placed beside Christian III's war coin: 2 Mark Klipping kurant (as Galster 92 / 97 there), 4 ß and Hvid
 scheide.
 
+**Curator 2026-11-06 — PROVISIONAL:** the end-point is taken conditionally as (b) 1537–1541 («поки що приймаємо що умовно „так“»). It is a preliminary estimate, to be decided more precisely later; **later analyses must not rest on it.** Under it the Count's Feud coins fall inside the Lybsk Møntfod; their classification is still to be done.
+
 ## 6. Open questions
 
 | Question | Would be settled by |

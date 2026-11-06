@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-06T16:00:51Z'
+generated_at: '2026-11-06T17:10:11Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -10704,10 +10704,9 @@ coins:
     phase: hede
     kind: scheide
     nominal: 1 Skilling
-    year_label: '1648-1670'
-    year_verified: false
-    year_first: 1648
-    year_last: 1670
+    year_label: '1650, 1652–1655'
+    year_first: 1650
+    year_last: 1655
     ruler: Frederik III.
     mint: Kopenhagen
     catalog:
@@ -10754,12 +10753,12 @@ coins:
         over skjoldets sidebøjler; Hede 131, Schou 39, Sieg 6.1) 1652, 1653; 3-delt skjoldforsiring (uden knop over skjoldets sidebøjler; Hede 131, Schou 35-42, Sieg 6.2) B) Indadbuet skjold uden forsiringer
         på halvkors. Øvre skjoldrand hvælvet 1652 (Hede 131, Schou 47, Sieg 7) 1653 (Hede 131, Schou 116-118, Sieg 7) 1654 (S) (Hede 131, Schou 81, 84 Sieg 7) C) 1654, 1655; Indadbuet skjold med/uden halvkors
         1652…'
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: hede
-          value: 1648-1670
+    year_ranges:
+      - [1650, 1650]
+      - [1652, 1652]
+      - [1653, 1653]
+      - [1654, 1654]
+      - [1655, 1655]
   - id: dk-hede-f3h126a
     fuss: seed_unsorted
     phase: hede
@@ -12688,7 +12687,7 @@ coins:
     phase: hede
     kind: kurant
     nominal: ¼ Dukat
-    year_label: '1660'
+    year_label: '1660, 1664'
     year_first: 1660
     ruler: Frederik III.
     mint: Kopenhagen
@@ -12715,7 +12714,10 @@ coins:
     _source_note:
       da: "Forside: portræt, bagside: kronede F'er 1660; Møntmestermærke glødehage: (Heinrich Köhler) (Hede 19A, Schou 6, Sieg 101) 1664 (R); Møntmestermærke kløver: (Caspar Herbach) (Hede 19B, Schou 13,
         Sieg 101)"
-    year_last: 1660
+    year_last: 1664
+    year_ranges:
+      - [1660, 1660]
+      - [1664, 1664]
   - id: dk-hede-f3h134n
     fuss: seed_unsorted
     phase: hede
@@ -17429,9 +17431,9 @@ coins:
     phase: hede
     kind: scheide
     nominal: 2 Skilling
-    year_label: 1676–1677
+    year_label: 1676–1677, 1680–1681
     year_first: 1676
-    year_last: 1677
+    year_last: 1681
     ruler: Christian V.
     mint: Kopenhagen
     catalog:
@@ -17467,6 +17469,8 @@ coins:
     year_ranges:
       - [1676, 1676]
       - [1677, 1677]
+      - [1680, 1680]
+      - [1681, 1681]
     _source_note:
       da: 'Forside: våbenskjold, bagside: værdiangivelse 1676, 1677: Møntmestermærke: (= Gotfred Krüger ; Hede 74A, Schou hhv. 20-22 og 31-47, Sieg 7) 1680, 1681: Møntmestermærke: GS (= Gregorius Sesemann;
         Hede 74B, Schou hhv. 33-42 og 40-49, Sieg 8) 2-skillinger med årstallet 1678 er falske. En variant med årstal 1861 er naturligvis en fejl for 1681 (Sieg 8.2)'

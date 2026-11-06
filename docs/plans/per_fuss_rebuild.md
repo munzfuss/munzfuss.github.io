@@ -235,6 +235,20 @@ form, main showed «1 Gros» etc.).
 
 Earlier plan for this extension: Curator direction 2026-10-24: the Hvid line follows its own standard from the start of the Lübeck system in Denmark, c. 1400 (found in another session), so the Fuß is not cut at 1481; the Skilling and Søsling of 1468–1513 belong to the Lübeck 11½- and 13-mark systems and did not affect the Hvid — they are to become separate Fuß later (not in this session). Needs first a phase (or phases) before 1481 on the Denmark page and the card text, sourced from `docs/research/luebischer_muenzfuss.md`; then the seed_unsorted candidates (Hans, Rigsrådet, 1400–1481, coins with a ruler but no years or the reverse — survey 2026-10-24).
 
+Promoted 2026-11-06 (curator «так»): the Count's Feud war coin 1534–1536 to a new period
+III «Grevens Fejde» (1534–1540) — Christian III's side, 20 classes moved from `8_daler_fod`
+phase 0 (seeds dk-galster-c3g-92 / 92b / 93–100 / 104–109 / 132, kmk-150154, kmk-156759; the
+Joachimsdaler 1537 stay), and Christian II's side, 7 classes from `christian_ii_supporters`
+`seed_unsorted` (Galster 82, 83, 85, 86, 87, 88, 91). Reason: Danish Mark / Hvid reckoning on
+both sides of the war, no executed grid; the end of the Fuß at 1537–1541 is a PROVISIONAL
+curator estimate (`docs/research/christian_ii_partisans_coinage_1525_1536.md`,
+`danish_small_coin_lines_1497_1660.md`). Compared with main: the 110 existing finals «no
+difference», 27 new ones; the moved classes drop the citations of KMM stubs the scope rule had
+already removed (verify_reflow taught to excuse a dropped KMM seed by its id, also when the
+citation has only the label). Three Christian III classes whose only seeds were scope-dropped
+KMM stubs (KMM 150153, 150155, 673522) were not moved. The phase description (period III) and
+the shortened `8_daler_fod` phase 0 text are still to be written.
+
 Fixed 2026-10-24 (curator «роби»): Bruun's Swedish catalogues reached
 `catalog.others` with the builder's lower-case field names («delzanno#»,
 «lott#», «sm#», «hagander#», «appelgren#», «malmer#»). The Bruun builder now

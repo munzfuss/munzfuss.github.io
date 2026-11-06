@@ -6956,6 +6956,8 @@ coins:
     year_last: 1597
     year_label: '1597'
     mint: Gottorp
+    catalog:
+      lange: '309'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -7054,6 +7056,8 @@ coins:
     year_last: 1600
     year_label: '1600'
     mint: Gottorp
+    catalog:
+      lange: 310B
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -7066,70 +7070,6 @@ coins:
     composed_of:
       - c-61cb5979
     label: unified-kmk-167315
-    origin: promoted
-    _entity_routing_hint:
-      rule_id: gottorp_ducal_lineage
-      matched_on:
-        ruler_lineage: johan adolf
-      would_route_to: gottorp_duchy
-      active: false
-      agrees_with_active: true
-      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1/64 Thaler
-    ruler: Johan Adolf
-    issuing_entity: gottorp_duchy
-    id: c-c0bc2687
-    year_first: 1594
-    year_last: 1594
-    year_label: '1594'
-    mint: Gottorp
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167318
-        ref: KMM 167318 (Inv. FP 1892.22)
-    verification_note: *id001
-    composed_of:
-      - c-c0bc2687
-    label: unified-kmk-167318
-    origin: promoted
-    _entity_routing_hint:
-      rule_id: gottorp_ducal_lineage
-      matched_on:
-        ruler_lineage: johan adolf
-      would_route_to: gottorp_duchy
-      active: false
-      agrees_with_active: true
-      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1/64 Thaler
-    ruler: Johan Adolf
-    issuing_entity: gottorp_duchy
-    id: c-bd02b39e
-    year_first: 1593
-    year_last: 1593
-    year_label: '1593'
-    mint: Gottorp
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167319
-        ref: KMM 167319 (Inv. FP 1892.21)
-    verification_note: *id001
-    composed_of:
-      - c-bd02b39e
-    label: unified-kmk-167319
     origin: promoted
     _entity_routing_hint:
       rule_id: gottorp_ducal_lineage
@@ -11597,6 +11537,7 @@ coins:
           how: reign
           source: ruler_reigns
           value: '1593'
+    mint: Gottorp
     catalog:
       mb: '5'
       lange: '306'
@@ -11605,7 +11546,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: false
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     sources:
       - type: literature
@@ -11614,6 +11555,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_167317
         ref: NumisMaster
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167319
+        ref: KMM 167319 (Inv. FP 1892.21)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -11623,6 +11567,14 @@ coins:
       - c-3e9676c7
     label: unified-ngc-167317
     origin: promoted
+    _entity_routing_hint:
+      rule_id: gottorp_ducal_lineage
+      matched_on:
+        ruler_lineage: johan adolf
+      would_route_to: gottorp_duchy
+      active: false
+      agrees_with_active: true
+      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
   - fuss: 9_thaler
     phase: I
     kind: kurant

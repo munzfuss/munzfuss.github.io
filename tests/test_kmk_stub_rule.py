@@ -60,6 +60,34 @@ class StubRule(unittest.TestCase):
         finally:
             bk._ERRONEOUS_MARKS = saved
 
+    def test_marks_of_a_dropped_record_survive_in_the_scope_file(self):
+        """A marked record dropped by the rule leaves the seed with its mark;
+        the scope file must carry the mark, or the next run counts the
+        number again and the record flips back in, unmarked."""
+        import tempfile, yaml
+        mark = [{"register": "hede", "value": "135", "kind": "erroneous", "reason": {"en": "x"}}]
+        saved = (bk.PROJECT_ROOT, bk._ERRONEOUS_MARKS, dict(bk._MARKS_FULL), dict(bk._STUB_DROPPED))
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "data" / "v2" / "seed" / "kmk").mkdir(parents=True)
+            (root / "data" / "v2" / "_scope_dropped").mkdir(parents=True)
+            (root / "data" / "v2" / "_scope_dropped" / "kmk.yml").write_text(
+                yaml.safe_dump({"dropped": {"kmk-1": "weight_no_image_no_index"},
+                                "catalog_marks": {"kmk-1": mark}}))
+            try:
+                bk.PROJECT_ROOT, bk._ERRONEOUS_MARKS = root, None
+                bk._STUB_DROPPED.clear()
+                self.assertEqual(self.cat(False, weight_rough_g=1.1, catalog={"hede": "135"}),
+                                 "weight_no_image_no_index")
+                bk._STUB_DROPPED["kmk-1"] = "weight_no_image_no_index"
+                bk._write_scope_dropped()
+                out = yaml.safe_load((root / "data" / "v2" / "_scope_dropped" / "kmk.yml").read_text())
+                self.assertEqual(out["catalog_marks"]["kmk-1"], mark)
+            finally:
+                bk.PROJECT_ROOT, bk._ERRONEOUS_MARKS = saved[0], saved[1]
+                bk._MARKS_FULL.clear(); bk._MARKS_FULL.update(saved[2])
+                bk._STUB_DROPPED.clear(); bk._STUB_DROPPED.update(saved[3])
+
     def test_image_stays(self):
         self.assertIsNone(self.cat(True))
 

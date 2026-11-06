@@ -2,7 +2,7 @@
 name: reading-marker
 description: >-
   Put, change, or remove a curation mark on one measured reading (weight, fineness, diameter) in
-  the V2 pipeline — «(!)» erroneous, «(*)» suspect, «(§)» template — so that it survives every
+  the V2 pipeline — «(!)» erroneous, «(*)» suspect, «(§)» template, «(~)» approximate — so that it survives every
   re-flow and renders with the right tooltip. Use when a reading contradicts its type, a source
   value is shown to be wrong, a published figure is the standard's computed target rather than a
   weighing or assay, or an existing mark's reason needs rewording. Trigger phrases: «познач як
@@ -27,6 +27,9 @@ and pre-commit Check 10 all read that one list.
   standard value, a demonstrable misprint) → **erroneous (!)**.
 - The source says the weighed piece is a **fragment** (an appendix's «f
   fragment») → **fragment (f)**.
+- The source gives the value as an **approximation** («ca.», «omkring», «~») or it is
+  known only roughly → **approximate (~)** (curator 2026-11-06). Also a valid `kind`
+  for `year_mark` / `ruler_mark` / `mint_mark`.
 - A source prints the standard's **target** value — beside the type as if it
   were a specimen figure, or simply as the standard's value (e.g. Galster's
   14,375 g / .979 for the Nobel) → **template (§)**. A target WE assign because
@@ -53,9 +56,10 @@ and pre-commit Check 10 all read that one list.
 | `erroneous` | (!) | struck through | **excluded** | excluded | never dropped |
 | `suspect` | (*) | struck through | kept | kept | never dropped |
 | `template` | (§) | normal | kept (Δ ≈ 0 by construction) | kept | never dropped |
+| `approximate` | (~) | normal (muted sign) | kept | kept | never dropped |
 | `fragment` | (f) | struck through (muted) | kept | kept | never dropped |
 
-Precedence in one display group: erroneous > suspect > fragment > template. The tooltip
+Precedence in one display group: erroneous > suspect > fragment > template > approximate. The tooltip
 opens with a generic bold headline per kind («Помилкове / Підозріле / Шаблонне
 значення.»), rendered by `assets/app.js` — do NOT repeat it in the reason.
 
