@@ -804,6 +804,75 @@ def _page_basename(cm) -> str | None:
     return base
 
 
+# Hede pages that list ONE type struck in several values under lettered
+# numbers without saying which letter is which value (curator 2026-11-06,
+# «Ділити»). The Breddaler, c4h63: «(Hede 63A-F …) Slået af Hans Flemming i
+# værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere»; c4h64: «(Hede 64A-D …)
+# Slået af Schwabe i værdierne 1, 1-1/2, 2 og 3 speciedalere». One seed per
+# letter; the value of a letter is taken from the sources that print that
+# letter with its value (Bruun lots, Numista types, the page's own photo
+# caption for 63A) and marked as such (`other_source`, «[ ]» on the page).
+# A letter no source pairs with a value keeps the page's own word,
+# «Breddaler». The page-wide Schou / Sieg ranges stay off the letters: Hede
+# does not say which number belongs to which letter.
+_MULTI_VALUE_PAGES: dict[str, dict[str, tuple[str | None, list[tuple[str, str]]]]] = {
+    "c4h63": {
+        "63A": ("6 Speciedaler", [
+            ("danskmoent.dk (Hede 63)", "Det afbildede, unikke eksemplar af 6 speciedaler"),
+            ("Numista 568548", "6 Speciedaler - Christian IV")]),
+        "63B": ("4 Speciedaler", [
+            ("Bruun Part IV, lot 17061", "4 Speciedaler … Hede-63B"),
+            ("Numista 568172", "4 Speciedaler - Christian IV")]),
+        "63C": ("3 Speciedaler", [("Bruun Part II, lot 13123", "3 Speciedaler … Hede-63C")]),
+        "63D": ("2 Speciedaler", [("Bruun Part I, lot 1052", "2 Speciedaler … Hede-63D")]),
+        "63E": ("1½ Speciedaler", [("Bruun Part V, lot 14127", "1 1/2 Speciedaler … Hede-63E")]),
+        "63F": (None, []),
+    },
+    "c4h64": {
+        "64A": (None, []),
+        "64B": ("2 Speciedaler", [
+            ("Bruun Part I, lot 1053", "2 Speciedaler … Hede-64B"),
+            ("Bruun Part IV, lot 17062", "2 Speciedaler … Hede- 64B")]),
+        "64C": ("1½ Speciedaler", [("Bruun Part II, lot 13124", "1 1/2 Speciedaler … Hede-64C")]),
+        "64D": (None, []),
+    },
+}
+
+
+def _split_multi_value_pages(coins: list) -> tuple[int, set[str]]:
+    """Replace the one seed of each `_MULTI_VALUE_PAGES` page by one seed per
+    letter. Returns (pages split, ids of the page seeds now gone)."""
+    import copy
+    from lib import uncertainty as unc
+    gone: set[str] = set()
+    out: list = []
+    for c in coins:
+        page = c.get("id", "").removeprefix("dk-hede-")
+        letters = _MULTI_VALUE_PAGES.get(page)
+        if not letters:
+            out.append(c)
+            continue
+        gone.add(c["id"])
+        vol = (c.get("catalog") or {}).get("hede_volume")
+        for letter, (nominal, attest) in letters.items():
+            lc = copy.deepcopy(c)
+            lc["id"] = f"dk-hede-{vol}{letter.lower()}"
+            cat = CommentedMap()
+            cat["hede"] = letter
+            cat["hede_volume"] = vol
+            lc["catalog"] = cat
+            lc["nominal"] = nominal or "Breddaler"
+            if nominal:
+                lc["nominal_verified"] = False
+                for src, printed in attest:
+                    unc.add(lc, "nominal", "other_source", src,
+                            as_printed=printed, value=nominal)
+            out.append(lc)
+    n = len(gone)
+    coins[:] = out
+    return n, gone
+
+
 def _apply_page_specimen_tables(coins: list) -> int:
     """Add the specimen weights printed in an image on the coin's OWN page
     (lib.danskmoent_specimen_tables; curator 2026-11-04 — Nöbbe 1938's
@@ -1678,6 +1747,11 @@ def main() -> int:
         else:
             stats["skipped_no_specs"] += 1
             continue
+
+    n_split, split_ids = _split_multi_value_pages(coins)
+    if n_split:
+        print(f"  multi-value Hede pages split per letter: {n_split} page(s)")
+    zinc_drop_ids |= split_ids
 
     n_tab = _apply_page_specimen_tables(coins)
     if n_tab:

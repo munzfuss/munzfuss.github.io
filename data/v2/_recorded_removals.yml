@@ -4958,3 +4958,21 @@ removals:
   - seed: kmk-275635
     kind: declassify
     reason: 'Curator 2026-11-06 («Так, познач»): KMM FP 4227.421 prints «2 skilling», «Hede 150» in the FP 4227.406-.444 run whose type numbers rise by one with each inventory number (Hede 135-173); the coin is the 2 Skilling Hede 134. Its Hede number is marked erroneous (catalog_marks), so the record leaves km-133-1-chr-iv-1645 (4 Skilling, Hede 150), which it had joined only through that number, and stands unsorted until its own class is decided.'
+  - seed: dk-hede-c4h64c
+    kind: field
+    field: schou
+    dropped:
+      - 18-28
+    reason: 'Curator 2026-11-06 («Так, прибери»): Hede prints this range for the whole page, all values together («Hede 64A-D, Schou 18-28, Sieg 103-106»); it does not say which number belongs to which letter. The page seed (dk-hede-c4h64) is now split per letter (build_hede_denmark_seed._MULTI_VALUE_PAGES) and the range stays off the single-value coins.'
+  - seed: dk-hede-c4h64c
+    kind: field
+    field: sieg
+    dropped:
+      - 103-106
+    reason: 'Curator 2026-11-06 («Так, прибери»): Hede prints this range for the whole page, all values together («Hede 64A-D, Schou 18-28, Sieg 103-106»); it does not say which number belongs to which letter. The page seed (dk-hede-c4h64) is now split per letter (build_hede_denmark_seed._MULTI_VALUE_PAGES) and the range stays off the single-value coins.'
+  - seed: dk-hede-c4h63d
+    kind: field
+    field: sieg
+    dropped:
+      - 97-102
+    reason: 'Curator 2026-11-06 («Так, прибери»): Hede prints this range for the whole page, all values together («Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102»); it does not say which number belongs to which letter. The page seed (dk-hede-c4h63) is now split per letter (build_hede_denmark_seed._MULTI_VALUE_PAGES) and the range stays off the single-value coins.'

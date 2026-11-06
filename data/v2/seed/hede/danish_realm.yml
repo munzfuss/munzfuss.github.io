@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-06T11:18:23Z'
+generated_at: '2026-11-06T15:12:41Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -2026,26 +2026,38 @@ coins:
           how: reign
           source: hede
           value: 1588-1648
-  - id: dk-hede-c4h63
+  - id: dk-hede-c4h63a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Breddaler
+    nominal: 6 Speciedaler
     year_label: 1588-1648
     year_first: 1588
     year_last: 1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: danskmoent.dk (Hede 63)
+          as_printed: Det afbildede, unikke eksemplar af 6 speciedaler
+          value: 6 Speciedaler
+        - kind: inferred
+          how: other_source
+          source: Numista 568548
+          as_printed: 6 Speciedaler - Christian IV
+          value: 6 Speciedaler
     ruler: Christian IV.
     mint: Kopenhagen
     catalog:
-      hede: '63'
+      hede: 63A
       hede_volume: c4h
-      schou:
-        - 15-17
-        - 20-21
-        - 26-27
-        - '29'
-      sieg: 97-102
     metal: silver
     sources:
       - type: literature
@@ -2057,6 +2069,16 @@ coins:
     _source_note:
       da: 'Forside: kongen til hest, bagside: våbenskjold (Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102). Slået af Hans Flemming i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere. Det afbildede,
         unikke'
+    nominal_verified: false
+  - id: dk-hede-c4h63b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 4 Speciedaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
     uncertainty:
       year:
         - kind: inferred
@@ -2064,7 +2086,152 @@ coins:
           source: hede
           as_printed: u.år
           value: 1588-1648
-  - id: dk-hede-c4h64
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: Bruun Part IV, lot 17061
+          as_printed: 4 Speciedaler … Hede-63B
+          value: 4 Speciedaler
+        - kind: inferred
+          how: other_source
+          source: Numista 568172
+          as_printed: 4 Speciedaler - Christian IV
+          value: 4 Speciedaler
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 63B
+      hede_volume: c4h
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h63.htm
+        ref: danskmoent.dk (Hede c4h63)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: kongen til hest, bagside: våbenskjold (Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102). Slået af Hans Flemming i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere. Det afbildede,
+        unikke'
+    nominal_verified: false
+  - id: dk-hede-c4h63c
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 3 Speciedaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: Bruun Part II, lot 13123
+          as_printed: 3 Speciedaler … Hede-63C
+          value: 3 Speciedaler
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 63C
+      hede_volume: c4h
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h63.htm
+        ref: danskmoent.dk (Hede c4h63)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: kongen til hest, bagside: våbenskjold (Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102). Slået af Hans Flemming i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere. Det afbildede,
+        unikke'
+    nominal_verified: false
+  - id: dk-hede-c4h63d
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Speciedaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: Bruun Part I, lot 1052
+          as_printed: 2 Speciedaler … Hede-63D
+          value: 2 Speciedaler
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 63D
+      hede_volume: c4h
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h63.htm
+        ref: danskmoent.dk (Hede c4h63)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: kongen til hest, bagside: våbenskjold (Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102). Slået af Hans Flemming i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere. Det afbildede,
+        unikke'
+    nominal_verified: false
+  - id: dk-hede-c4h63e
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1½ Speciedaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: Bruun Part V, lot 14127
+          as_printed: 1 1/2 Speciedaler … Hede-63E
+          value: 1½ Speciedaler
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 63E
+      hede_volume: c4h
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h63.htm
+        ref: danskmoent.dk (Hede c4h63)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: kongen til hest, bagside: våbenskjold (Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102). Slået af Hans Flemming i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere. Det afbildede,
+        unikke'
+    nominal_verified: false
+  - id: dk-hede-c4h63f
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -2073,13 +2240,50 @@ coins:
     year_first: 1588
     year_last: 1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
     ruler: Christian IV.
     mint: Kopenhagen
     catalog:
-      hede: '64'
+      hede: 63F
       hede_volume: c4h
-      schou: 18-28
-      sieg: 103-106
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h63.htm
+        ref: danskmoent.dk (Hede c4h63)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: kongen til hest, bagside: våbenskjold (Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102). Slået af Hans Flemming i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere. Det afbildede,
+        unikke'
+  - id: dk-hede-c4h64a
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Breddaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1588-1648
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 64A
+      hede_volume: c4h
     metal: silver
     sources:
       - type: literature
@@ -2092,6 +2296,15 @@ coins:
       da: 'Forside: brystbillede, bagside: kongen til hest (Hede 64A-D, Schou 18-28, Sieg 103-106). Slået af Schwabe i værdierne 1, 1-1/2, 2 og 3 speciedalere. Formålet med breddalerne er ikke klart. Vægten
         er usikker og de har næppe været almindeligt anvendt. I Hedes katalog (side 23) foreslås det, at breddalerne kan være slået som kapitalanlæg for rigmænd for på denne måde at bevare sølvet i landet.
         Stempelskærerinitialerne HB på Hede 63 og 64 dækker over en nu ukendt stempelskærer, mens initialerne IH på nr. 64 antages at stå for Isaac Henniges, stempelskærer i Hildesheim'
+  - id: dk-hede-c4h64b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Speciedaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
     uncertainty:
       year:
         - kind: inferred
@@ -2099,6 +2312,108 @@ coins:
           source: hede
           as_printed: u. år
           value: 1588-1648
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: Bruun Part I, lot 1053
+          as_printed: 2 Speciedaler … Hede-64B
+          value: 2 Speciedaler
+        - kind: inferred
+          how: other_source
+          source: Bruun Part IV, lot 17062
+          as_printed: 2 Speciedaler … Hede- 64B
+          value: 2 Speciedaler
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 64B
+      hede_volume: c4h
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h64.htm
+        ref: danskmoent.dk (Hede c4h64)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: brystbillede, bagside: kongen til hest (Hede 64A-D, Schou 18-28, Sieg 103-106). Slået af Schwabe i værdierne 1, 1-1/2, 2 og 3 speciedalere. Formålet med breddalerne er ikke klart. Vægten
+        er usikker og de har næppe været almindeligt anvendt. I Hedes katalog (side 23) foreslås det, at breddalerne kan være slået som kapitalanlæg for rigmænd for på denne måde at bevare sølvet i landet.
+        Stempelskærerinitialerne HB på Hede 63 og 64 dækker over en nu ukendt stempelskærer, mens initialerne IH på nr. 64 antages at stå for Isaac Henniges, stempelskærer i Hildesheim'
+    nominal_verified: false
+  - id: dk-hede-c4h64c
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1½ Speciedaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1588-1648
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: Bruun Part II, lot 13124
+          as_printed: 1 1/2 Speciedaler … Hede-64C
+          value: 1½ Speciedaler
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 64C
+      hede_volume: c4h
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h64.htm
+        ref: danskmoent.dk (Hede c4h64)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: brystbillede, bagside: kongen til hest (Hede 64A-D, Schou 18-28, Sieg 103-106). Slået af Schwabe i værdierne 1, 1-1/2, 2 og 3 speciedalere. Formålet med breddalerne er ikke klart. Vægten
+        er usikker og de har næppe været almindeligt anvendt. I Hedes katalog (side 23) foreslås det, at breddalerne kan være slået som kapitalanlæg for rigmænd for på denne måde at bevare sølvet i landet.
+        Stempelskærerinitialerne HB på Hede 63 og 64 dækker over en nu ukendt stempelskærer, mens initialerne IH på nr. 64 antages at stå for Isaac Henniges, stempelskærer i Hildesheim'
+    nominal_verified: false
+  - id: dk-hede-c4h64d
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Breddaler
+    year_label: 1588-1648
+    year_first: 1588
+    year_last: 1648
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1588-1648
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: 64D
+      hede_volume: c4h
+    metal: silver
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h64.htm
+        ref: danskmoent.dk (Hede c4h64)
+    issuing_entity: danish_realm
+    verified: false
+    mint_verified: true
+    _source_note:
+      da: 'Forside: brystbillede, bagside: kongen til hest (Hede 64A-D, Schou 18-28, Sieg 103-106). Slået af Schwabe i værdierne 1, 1-1/2, 2 og 3 speciedalere. Formålet med breddalerne er ikke klart. Vægten
+        er usikker og de har næppe været almindeligt anvendt. I Hedes katalog (side 23) foreslås det, at breddalerne kan være slået som kapitalanlæg for rigmænd for på denne måde at bevare sølvet i landet.
+        Stempelskærerinitialerne HB på Hede 63 og 64 dækker over en nu ukendt stempelskærer, mens initialerne IH på nr. 64 antages at stå for Isaac Henniges, stempelskærer i Hildesheim'
   - id: dk-hede-c4h43
     fuss: seed_unsorted
     phase: hede

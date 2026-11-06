@@ -918,6 +918,17 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
         if _section:
             key = f"{key}/{_section}"
         hede_vals = _split_multi(hede)
+        if (scope in ("christian iv", "c4h")) and hede_vals:
+            # Hede numbers whose letters are VALUES, not variants of one
+            # coin (the Breddaler: Hede 63A-F «i værdierne 1, 1-1/2, 2, 3, 4
+            # og 6 speciedalere», 64A-D «1, 1-1/2, 2 og 3»; curator
+            # 2026-11-06). A colon keeps the letter from being read as a
+            # sub-variant suffix (`_CHAIN_CORE_RE`), so 63D and 63F differ.
+            hede_vals = [
+                (f"{m.group(1)}:{m.group(2).upper()}"
+                 if (m := re.match(r"^(\d+)([A-Za-z])$", v.strip()))
+                 and m.group(1) in _HEDE_LETTER_IS_VALUE_C4 else v)
+                for v in hede_vals]
         refs[key] = "|".join(sorted(hede_vals)) if hede_vals else str(hede).strip()
 
     # Per-publication catalog identifiers — each is unique within its own
@@ -1332,6 +1343,10 @@ def _unifies(refs_z: dict, refs_x: dict, refs_y: dict, keys: list[str]) -> bool:
 # `_catalog_chain_consistent`'s two value patterns, compiled once (it runs
 # ~25 M times in a full merge; `re.match` with a pattern string pays the
 # re-module cache lookup on every call).
+# Christian IV Hede numbers whose sub-letters name different values (see
+# `_catalog_refs`); the seed builder splits the same pages per letter
+# (`build_hede_denmark_seed._MULTI_VALUE_PAGES`).
+_HEDE_LETTER_IS_VALUE_C4 = frozenset({"63", "64"})
 _CHAIN_CORE_RE = re.compile(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$")
 _CHAIN_DOTNUM_RE = re.compile(r"^(\d+)\.\d+$")
 
