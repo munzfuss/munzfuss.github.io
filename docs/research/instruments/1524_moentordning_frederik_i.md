@@ -342,6 +342,16 @@ data under `8_gylden_fod` (§8.3).
    disagreement is two READINGS of one register entry — Lüxdorph «88» (1760), Wilcke and Andersen
    «lxxviii» (78). The system favours 88 (every 14-lod sort in exact proportion; Schive's and Galster's
    figures follow Lüxdorph). Settled only by the manuscript: RA Danske Kancelli B 11 f. 297v (image).
+   **Manuscript read 2026-11-06** (Arkivalieronline, «Frederik 1.s Danske Registre [nr. 2] (1523–1533)»,
+   spread f. 297v / 298r = AO image 61122458; copies in `scripts/cache/rigsarkivet/danske_kancelli_b11/`):
+   «*stycker paa iiii ß danske / aff samme korn, och skrade l xx viij stycker paa hwer wegenn marck*» —
+   one l, two looped x (the same x as in «xxij» and the single x of «xliiii» on the page), then a small
+   «viij»: **78**, read so independently by a subagent and by hand. Erslev & Mollerup 1879 (Kong Frederik
+   den Førstes danske Registranter s. 42, ref. «III, 297») also print 78. ⚠ **Both values kept:** 78 is
+   what the register copy says (Erslev & Mollerup 1879, Wilcke 1950, Andersen 2015, the image); 88 is
+   Luxdorph's figure (1760, followed by Schive 1865 and Galster 1936) and the one that keeps the 4 ß
+   at ¼ of the Mark piece. Whether Luxdorph corrected the register or saw another copy (the lost
+   original «Kongens Brev», A: «tabt») is not known. Open.
 6. **The Ribe letter.** «Et lignende fik Møntmesteren i Riibe» — the Ribe mintmaster is
    not named in Wilcke's summary; Ernst's Ribe study (`ernst-1948-ribe-*`) should give him.
 
