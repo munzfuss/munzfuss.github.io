@@ -4253,77 +4253,6 @@ coins:
       - dk-tid-101246
       - kmk-137179
       - ngc-1069072
-  - id: c-e5109ae8
-    class_id: c-e5109ae8
-    label: unified-dk-bruun-5847
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Speciedaler
-    year_first: 1607
-    year_last: 1614
-    year_ranges:
-      -   - 1607
-          - 1614
-    year_label: 1607-1614
-    ruler: Christian IV
-    mintmaster: Nicolaus Schwabe
-    mint: Kopenhagen
-    catalog:
-      km: '154'
-      bruun_collection_id: '5847'
-      sieg: '119.1'
-      schou: '22'
-      hede: 64B
-      others:
-        - Harck# 6.13.1
-        - Dav-LS# 533
-      dav: 3537A
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 57.58
-        source: bruun
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1607-1614
-          seed: denmark-numismaster-65516
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1611)
-          value: '1611'
-          seed: dk-bruun-5847
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1607-14) Rare
-          value: 1607-1614
-          seed: ngc-1060266
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65516
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17062, p. 27
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-1-2-speciedaler-km-154-1607-14-cuid-1060266-duid-1237537
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65516
-      - dk-bruun-5847
-      - ngc-1060266
   - id: c-b3869cf5
     class_id: c-b3869cf5
     label: unified-dk-bruun-5983
@@ -37867,20 +37796,28 @@ coins:
     year_last: 1611
     year_label: '1611'
     ruler: Christian IV
+    mintmaster: Nicolaus Schwabe
     nominal_verified: false
     mint: Kopenhagen
     catalog:
       km: '148'
       hede: 64B
       hede_volume: c4h
-      bruun_collection_id: '5849'
-      sieg: '119.3'
-      schou: '24'
+      bruun_collection_id:
+        - '5847'
+        - '5849'
+      sieg:
+        - '119.1'
+        - '119.3'
+      schou:
+        - '22'
+        - '24'
+      others:
+        - Harck# 6.13.1
+        - Dav-LS# 533
       bruun_part: I
       bruun_lot_no: 1053
       bruun_page: 92
-      others:
-        - Dav-LS# 533
       dav: EC II 3538B
       numista: '200434'
     metal: silver
@@ -37896,10 +37833,10 @@ coins:
         - seed: dk-numista-200434
           source: numista
           years: '1611'
-        - seed: dk-tid-163073
-          source: ucoin
-          years: '1611'
       uncertain:
+        - seed: dk-bruun-5847
+          source: bruun
+          years: '1611'
         - seed: dk-bruun-5849
           source: bruun
           years: '1611'
@@ -37916,22 +37853,18 @@ coins:
         source: numismaster
       - value: 0.888
         source: numista
-      - value: 0.888
-        source: ucoin
     weight_rough_g:
+      - value: 57.58
+        source: bruun
       - value: 58.0
         source: bruun
       - value: 58.464
         source: ngc
       - value: 58.464
         source: numismaster
-      - value: 58.56
-        source: ucoin
       - value: 58.61
         source: numista
     diameter_mm:
-      - value: 51.0
-        source: ucoin
       - value: 51.3
         source: numista
     uncertainty:
@@ -37941,6 +37874,12 @@ coins:
           source: numismaster
           value: '1611'
           seed: denmark-numismaster-65537
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1611)
+          value: '1611'
+          seed: dk-bruun-5847
         - kind: hedged
           how: circa
           source: bruun
@@ -37972,10 +37911,30 @@ coins:
           as_printed: 2 Speciedaler … Hede- 64B
           value: 2 Speciedaler
           seed: dk-hede-c4h64b
+    catalog_alts:
+      - register: km
+        value: '154'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die KM-Nummer gehört zu einem anderen Nominal.\n[b]Bruun Part IV, lot 17062[/b]: [i]«2 Speciedaler … Dav-LS533; KM-154; Hede- 64B»[/i], [i]«Weight: 57.58 gms»[/i] (Übers.: «Gewicht: 57,58
+            g»).\n[b]Bruun Part I, lot 1053[/b]: [i]«2 Speciedaler … KM- 148; Dav-LS533; Hede-64B»[/i], [i]«Weight: 58.00 gms»[/i] (Übers.: «Gewicht: 58,00 g»).\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2
+            Speciedaler … KM-154; Hede-64C»[/i], [i]«Weight: 48.80 gms»[/i] (Übers.: «Gewicht: 48,80 g»)."
+          en: "The KM number belongs to another denomination.\n[b]Bruun Part IV, lot 17062[/b]: [i]«2 Speciedaler … Dav-LS533; KM-154; Hede- 64B»[/i], [i]«Weight: 57.58 gms»[/i].\n[b]Bruun Part I, lot 1053[/b]:
+            [i]«2 Speciedaler … KM- 148; Dav-LS533; Hede-64B»[/i], [i]«Weight: 58.00 gms»[/i].\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler … KM-154; Hede-64C»[/i], [i]«Weight: 48.80 gms»[/i]."
+          uk: "Номер KM належить іншому номіналу.\n[b]Bruun Part IV, lot 17062[/b]: [i]«2 Speciedaler … Dav-LS533; KM-154; Hede- 64B»[/i], [i]«Weight: 57.58 gms»[/i] (перекл.: «вага: 57,58 г»).\n[b]Bruun
+            Part I, lot 1053[/b]: [i]«2 Speciedaler … KM- 148; Dav-LS533; Hede-64B»[/i], [i]«Weight: 58.00 gms»[/i] (перекл.: «вага: 58,00 г»).\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler …
+            KM-154; Hede-64C»[/i], [i]«Weight: 48.80 gms»[/i] (перекл.: «вага: 48,80 г»)."
+          da: "KM-nummeret hører til et andet nominal.\n[b]Bruun Part IV, lot 17062[/b]: [i]«2 Speciedaler … Dav-LS533; KM-154; Hede- 64B»[/i], [i]«Weight: 57.58 gms»[/i] (overs.: «vægt: 57,58 g»).\n[b]Bruun
+            Part I, lot 1053[/b]: [i]«2 Speciedaler … KM- 148; Dav-LS533; Hede-64B»[/i], [i]«Weight: 58.00 gms»[/i] (overs.: «vægt: 58,00 g»).\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler … KM-154;
+            Hede-64C»[/i], [i]«Weight: 48.80 gms»[/i] (overs.: «vægt: 48,80 g»)."
     sources:
       - type: literature
         url: https://numismaster.com/MC_65537
         ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17062, p. 27
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1053, p. 68
@@ -37985,19 +37944,16 @@ coins:
       - type: literature
         url: https://en.numista.com/200434
         ref: Numista N#200434 — 2 Speciedaler "Breddaler" - Christian IV
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1611/?tid=163073
-        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-148-ca1611-cuid-1060267-duid-1237552
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-65537
+      - dk-bruun-5847
       - dk-bruun-5849
       - dk-hede-c4h64b
       - dk-numista-200434
-      - dk-tid-163073
       - ngc-1060267
   - id: c-200467fc
     class_id: c-200467fc
@@ -38006,9 +37962,12 @@ coins:
     phase: hede
     kind: kurant
     nominal: 1½ Speciedaler
-    year_first: 1611
-    year_last: 1611
-    year_label: '1611'
+    year_first: 1607
+    year_last: 1614
+    year_ranges:
+      -   - 1607
+          - 1614
+    year_label: 1607-1614
     ruler: Christian IV
     mintmaster: Nicolaus Schwabe
     nominal_verified: false
@@ -38022,10 +37981,12 @@ coins:
       schou: '28'
       others:
         - Dav-LS# 540
+      dav: 3537A
     metal: silver
-    metal_verified: false
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: false
@@ -38034,6 +37995,11 @@ coins:
         source: bruun
     uncertainty:
       year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65516
         - kind: hedged
           how: attributed
           source: bruun
@@ -38046,6 +38012,12 @@ coins:
           as_printed: u. år
           value: 1588-1648
           seed: dk-hede-c4h64c
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14) Rare
+          value: 1607-1614
+          seed: ngc-1060266
       nominal:
         - kind: inferred
           how: other_source
@@ -38054,16 +38026,24 @@ coins:
           value: 1½ Speciedaler
           seed: dk-hede-c4h64c
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65516
+        ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13124, p. 66
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h64.htm
         ref: danskmoent.dk (Hede c4h64)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-1-2-speciedaler-km-154-1607-14-cuid-1060266-duid-1237537
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65516
       - dk-bruun-5850
       - dk-hede-c4h64c
+      - ngc-1060266
   - id: c-20719157
     class_id: c-20719157
     label: unified-dk-hede-c4h64d
@@ -102936,6 +102916,47 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-163067
+  - id: c-5c32ab0b
+    class_id: c-5c32ab0b
+    label: unified-dk-tid-163073
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 2 Speciedaler
+    year_first: 1611
+    year_last: 1611
+    year_label: '1611'
+    ruler: Christian IV
+    mint: Kopenhagen
+    catalog:
+      km: '148'
+      bruun_collection_id: '5849'
+      bruun_part: I
+      bruun_lot_no: 1053
+      bruun_page: 92
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ucoin
+    weight_rough_g:
+      - value: 58.56
+        source: ucoin
+    diameter_mm:
+      - value: 51.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1611/?tid=163073
+        ref: ucoin
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-tid-163073
   - id: c-a8f6da34
     class_id: c-a8f6da34
     label: unified-dk-tid-70718

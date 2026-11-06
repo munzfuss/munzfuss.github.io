@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1897 active, 4524 retired.
+# 1897 active, 4525 retired.
 
 id: danish_realm
 classes:
@@ -3856,8 +3856,10 @@ classes:
     label: unified-dk-hede-c4h64c
     legacy_id: unified-dk-hede-c4h64
     members:
+      - denmark-numismaster-65516
       - dk-bruun-5850
       - dk-hede-c4h64c
+      - ngc-1060266
   - id: c-201c1518
     status: active
     created: '2026-10-22'
@@ -10522,6 +10524,12 @@ classes:
     legacy_id: unified-ngc-1050035
     members:
       - ngc-1050035
+  - id: c-5c32ab0b
+    status: active
+    created: '2026-11-06'
+    label: unified-dk-tid-163073
+    members:
+      - dk-tid-163073
   - id: c-5c46e92f
     status: active
     created: '2026-10-22'
@@ -20944,12 +20952,14 @@ classes:
     created: '2026-10-22'
     label: unified-dk-hede-c4h64b
     legacy_id: unified-dk-bruun-5849
+    split_into:
+      - c-5c32ab0b
     members:
       - denmark-numismaster-65537
+      - dk-bruun-5847
       - dk-bruun-5849
       - dk-hede-c4h64b
       - dk-numista-200434
-      - dk-tid-163073
       - ngc-1060267
   - id: c-ba9197d0
     status: active
@@ -26315,15 +26325,6 @@ classes:
     legacy_id: unified-kmk-122229
     members:
       - kmk-122229
-  - id: c-e5109ae8
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-5847
-    legacy_id: unified-dk-bruun-5847
-    members:
-      - denmark-numismaster-65516
-      - dk-bruun-5847
-      - ngc-1060266
   - id: c-e535ebeb
     status: active
     created: '2026-10-22'
@@ -66795,6 +66796,17 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-317657
+  - id: c-e5109ae8
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-5847
+    legacy_id: unified-dk-bruun-5847
+    merged_into: c-200467fc
+    retired: '2026-11-06'
+    members:
+      - denmark-numismaster-65516
+      - dk-bruun-5847
+      - ngc-1060266
   - id: c-e511ea5d
     status: retired
     created: '2026-10-22'
