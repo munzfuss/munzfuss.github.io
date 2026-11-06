@@ -115,6 +115,10 @@ class Spelling(unittest.TestCase):
             self.assertTrue(self.eq("1/8 reichsdaler", "6 skilling lybsk").startswith("source a"))
             self.assertTrue(self.eq("sosling lybsk", "6 pfennig").startswith("source b"))
             self.assertTrue(self.eq("1/6 speciedaler", "10 skilling").startswith("source c"))
+            m._collect_declared_nominal_equiv([
+                {"id": "d", "nominal": "2 Skilling Lybsk = 4 Skilling Dansk"}])
+            self.assertTrue(self.eq("2 skilling lybsk", "4 skilling dansk").startswith("source d"))
+            self.assertIsNone(self.eq("4 skilling", "2 skilling"))
         finally:
             m._DECLARED_NOMINAL_EQUIV.clear()
             m._DECLARED_NOMINAL_EQUIV.update(saved)

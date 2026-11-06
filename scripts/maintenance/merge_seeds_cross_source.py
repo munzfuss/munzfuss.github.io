@@ -2442,13 +2442,23 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
         if how:
             return "uncertain" if (ka[2] or kb[2]) else how
 
-    def like(x: str, y: str) -> bool:
+    def like(x: str, y: str, strict: bool = False) -> bool:
         """One name, raw or after the spelling fold (a declared pair is
-        written in the source's spelling: «6 Skilling Lybsk»)."""
+        written in the source's spelling: «6 Skilling Lybsk»). `x` is the
+        class name, `y` the declared one. `strict`: the declaration names the
+        same unit on both sides and only the qualifier tells them apart
+        («2 Skilling Lybsk = 4 Skilling Dansk») — then the qualifier IS the
+        information, and the class name must carry the declared one. A pair of
+        different units («1/6 Speciedaler / 10 Schilling … Courant») keeps
+        the soft qualifier rule."""
         if _nominal_like(x, y):
             return True
         kx, ky = _hede_base_nominal_key(x), _hede_base_nominal_key(y)
-        return bool(kx and ky and _hede_base_keys_match(kx, ky))
+        if not (kx and ky):
+            return False
+        if strict and not ky[1] <= kx[1]:
+            return False
+        return bool(_hede_base_keys_match(kx, ky))
 
     # A dual name kept whole by the normaliser («speciedaler / 3 mark»): either
     # of its names stands for the coin.
@@ -2463,7 +2473,10 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
         if len(pair) != 2:
             continue
         a, b = tuple(pair)
-        if (like(na, a) and like(nb, b)) or (like(na, b) and like(nb, a)):
+        ka_, kb_ = _hede_base_nominal_key(a), _hede_base_nominal_key(b)
+        strict = bool(ka_ and kb_ and ka_[0].split()[-1] == kb_[0].split()[-1])
+        if (like(na, a, strict) and like(nb, b, strict)) or \
+                (like(na, b, strict) and like(nb, a, strict)):
             return f"source {src}"
     return None
 
