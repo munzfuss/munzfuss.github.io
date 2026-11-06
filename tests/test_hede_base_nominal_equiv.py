@@ -103,6 +103,22 @@ class Spelling(unittest.TestCase):
         self.assertIsNone(self.eq("16 skilling", "gold 16 skilling"))
         self.assertIsNone(self.eq("2 skilling; samtidig forfalskning?", "2 skilling"))
 
+    def test_declared_pair_in_source_spelling(self):
+        saved = dict(m._DECLARED_NOMINAL_EQUIV)
+        try:
+            m._DECLARED_NOMINAL_EQUIV.clear()
+            m._collect_declared_nominal_equiv([
+                {"id": "a", "nominal": "⅛ Reichsdaler (6 Skilling Lybsk)"},
+                {"id": "b", "nominal": "1 Sechsling = 6 Pfennig"},
+                {"id": "c", "nominal": "1/6 Speciedaler/10 Schilling Schleswig-holsteinischer Courant"},
+            ])
+            self.assertTrue(self.eq("1/8 reichsdaler", "6 skilling lybsk").startswith("source a"))
+            self.assertTrue(self.eq("sosling lybsk", "6 pfennig").startswith("source b"))
+            self.assertTrue(self.eq("1/6 speciedaler", "10 skilling").startswith("source c"))
+        finally:
+            m._DECLARED_NOMINAL_EQUIV.clear()
+            m._DECLARED_NOMINAL_EQUIV.update(saved)
+
     def test_real_differences_stay(self):
         self.assertIsNone(self.eq("skilling", "2 skilling"))
         self.assertIsNone(self.eq("1/2 skilling", "2 skilling"))

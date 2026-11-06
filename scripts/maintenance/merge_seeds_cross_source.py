@@ -2340,8 +2340,9 @@ _NOMINAL_SPECIAL_RE = re.compile(
 # - Danish number words fused with «skilling» are the number («toskilling»);
 # - a mint name inside the nominal is not part of it («dukat kobenhavn»);
 # - qualifiers of the unit — lybsk, norsk, dansk(e), kurant, rigsmont,
-#   hebraeisk, rigsbank(tegn) — are kept as a set beside the core name, so word
-#   order does not matter («lybsk blaffert» = «blaffert lybsk») and a bare name
+#   hebraeisk, rigsbank(tegn), schleswig-holsteinisch(er) — are kept as a set
+#   beside the core name, so word order does not matter
+#   («lybsk blaffert» = «blaffert lybsk») and a bare name
 #   matches a qualified one («sosling» ~ «sosling lybsk»; curator: not a strict
 #   red flag), while two DIFFERENT qualifiers still conflict (norsk vs lybsk).
 _SKILLING_NUMBER_WORDS = {
@@ -2355,6 +2356,7 @@ _NOMINAL_QUALIFIERS = {
     "dansk": "dansk", "danske": "dansk", "kurant": "kurant", "courant": "kurant",
     "rigsmont": "rigsmont", "hebraeisk": "hebraeisk",
     "rigsbanktegn": "rigsbank", "rigbanktegn": "rigsbank",
+    "schleswig-holsteinischer": "sh", "schleswig-holsteinisch": "sh",
 }
 _NOMINAL_MINT_WORDS = frozenset({
     "kobenhavn", "altona", "gluckstadt", "kongsberg", "christiania", "helsingor",
@@ -2439,22 +2441,29 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
         how = _hede_base_keys_match(ka, kb)
         if how:
             return "uncertain" if (ka[2] or kb[2]) else how
-        na, nb = ka[0], kb[0]
+
+    def like(x: str, y: str) -> bool:
+        """One name, raw or after the spelling fold (a declared pair is
+        written in the source's spelling: «6 Skilling Lybsk»)."""
+        if _nominal_like(x, y):
+            return True
+        kx, ky = _hede_base_nominal_key(x), _hede_base_nominal_key(y)
+        return bool(kx and ky and _hede_base_keys_match(kx, ky))
+
     # A dual name kept whole by the normaliser («speciedaler / 3 mark»): either
     # of its names stands for the coin.
     pa = [x.strip() for x in _NOMINAL_GLOSS_SPLIT.split(na) if x and x.strip()]
     pb = [x.strip() for x in _NOMINAL_GLOSS_SPLIT.split(nb) if x and x.strip()]
     if len(pa) > 1 or len(pb) > 1:
-        if any(x == y for x in pa for y in pb):
+        if any(x == y or like(x, y) for x in pa for y in pb):
             return "dual name"
-    if _nominal_wildcard_match(na, nb):
+    if _nominal_wildcard_match(ka[0], kb[0]):
         return "wildcard"
     for pair, src in _DECLARED_NOMINAL_EQUIV.items():
         if len(pair) != 2:
             continue
         a, b = tuple(pair)
-        if (_nominal_like(na, a) and _nominal_like(nb, b)) or \
-                (_nominal_like(na, b) and _nominal_like(nb, a)):
+        if (like(na, a) and like(nb, b)) or (like(na, b) and like(nb, a)):
             return f"source {src}"
     return None
 
