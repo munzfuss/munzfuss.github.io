@@ -1,6 +1,6 @@
 status: seed
 source: KMM (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-11-05T16:31:07Z'
+generated_at: '2026-11-06T14:12:45Z'
 entity: royal_slesvig
 scope_note: KMM Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -117,6 +117,8 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139673
         ref: KMM 139673 (Inv. KP 1715.46)
+    catalog:
+      hede: 21B
   - id: kmk-411793
     fuss: seed_unsorted
     phase: kmk
@@ -138,7 +140,8 @@ coins:
     weight_rough_g: 0.85
     weight_rough_verified: true
     catalog:
-      hede: '21'
+      hede: '21A'
+      schou: '16'
     verified: false
     sources:
       - type: museum
@@ -221,7 +224,9 @@ coins:
           - 1551
     weight_rough_verified: false
     catalog:
-      hede: '22'
+      hede:
+        - 21A
+        - '22'
     verified: false
     sources:
       - type: museum

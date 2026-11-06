@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 580 active, 1209 retired.
+# 579 active, 1210 retired.
 
 id: danish_norway
 classes:
@@ -918,13 +918,6 @@ classes:
     legacy_id: unified-dk-numista-118905
     members:
       - dk-numista-118905
-  - id: c-2baee3ac
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-139717
-    legacy_id: unified-kmk-139717
-    members:
-      - kmk-139717
   - id: c-2bfeab78
     status: active
     created: '2026-10-22'
@@ -4871,6 +4864,7 @@ classes:
     members:
       - dk-galster-f1g-168
       - dk-numista-444429
+      - kmk-139717
   - id: c-98650919
     status: active
     created: '2026-10-22'
@@ -9000,6 +8994,15 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-424489
+  - id: c-2baee3ac
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-139717
+    legacy_id: unified-kmk-139717
+    merged_into: c-9841ffbf
+    retired: '2026-11-06'
+    members:
+      - kmk-139717
   - id: c-2bbbf904
     status: retired
     created: '2026-10-22'

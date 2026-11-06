@@ -275,6 +275,8 @@ merges:
       - ngc-1048393                   # home: danish_realm  (NGC, km 631.2, 1778-1783)
       - ngc-1048766                   # home: danish_realm  (NGC, km 631.1, 1778-1782)
       - ngc-1068827                   # home: danish_realm  (NGC, km 631.3, 1784-1785)
+      - kmk-148192                    # home: royal_holstein (KMM KP 1656.2121, object page «H 33; Schou 6», Altona 1779; added 2026-11-06)
+      - kmk-148195                    # home: royal_holstein (KMM KP 1656.2118, object page «H 33; Schou 11», Altona 1778; added 2026-11-06)
     reason: |
       One coin — Christian VII «2 Skilling», Hede 33 (sub-variants 33A/33B/33C),
       KM 631 (.1/.2/.3), struck 1778-1785 at Altona AND Kopenhagen. Was
@@ -298,6 +300,9 @@ merges:
       c7h33a/c7h33c foundation (11⅓-Thaler-Fuß, phase I) + their
       classification_decisions assignments. Curator merge 2026-06-15, target
       corrected danish_realm→royal_holstein 2026-06-16 (Serhii).
+      KMM 148192 and 148195 added 2026-11-06: their object pages classify
+      them «H 33» (the ES typeNumber carried Schou only); Christian 7, 2 skilling,
+      Altona 1778/1779. Curator 2026-11-06 («підтверджую»).
 
   - target_entity: royal_holstein
     members:
@@ -1722,6 +1727,7 @@ merges:
       - kmk-699209          # home: danish_realm   (KMM, H. 104)
       - kmk-699217          # home: danish_realm   (KMM, H. 104)
       - dk-numista-416350   # home: royal_holstein (Numista N#416350, «SIEG# 10, Hede# 104»)
+      - kmk-137196          # home: danish_realm   (KMM KP 635.9, object page «Hede 104;Sieg 166.1;Schou 85»; added 2026-11-06)
     reason: |
       One coin — Christian IV Denning with Russian text, Hede 104 / Sieg 10.
       §9.4 key: Hede 104 (with Sieg 10 on the Numista record). The mint is
@@ -1732,6 +1738,12 @@ merges:
       to København. Both mints are kept with their sources, so the coin homes to
       royal_holstein (Glückstadt) and renders on both pages via the overlap.
       Curator merge 2026-10-09 (Serhii).
+      KMM 137196 added 2026-11-06: its object page classifies it «Hede
+      104;Sieg 166.1;Schou 85» (Schou 85 lies outside Hede 169's Schou 80-84);
+      the photo shows the kopek-type rider with «M». Its Sieg 166.1 against
+      Sieg 10 is kept as given (Sieg editions renumber, SOURCES §13.12). The
+      Hede 104 entry on danskmoent has no image. Curator 2026-11-06 (KMM 137196
+      = Numista 416350).
 
   - target_entity: royal_holstein
     members:
@@ -2420,3 +2432,37 @@ merges:
       (danskmoent.dk/chr/c3g105.htm); KMM nominal «2 skilling», typeNumber «G 105». The record belongs to the Galster 105 class in
       danish_realm, not to the Christian II party. KMM's ruler kept and marked
       erroneous (!) via ruler_mark on the seed (no erratum).
+  - target_entity: christian_ii_supporters
+    issuing_entity: christian_ii_supporters   # override the mint-derived stamp (KMM place Malmø)
+    members:
+      - dk-galster-c2g-85         # home: christian_ii_supporters (Galster 85, 4 Skilling Güstrow 1535)
+      - kmk-317776                # home: christian_ii_supporters
+      - kmk-570055                # home: christian_ii_supporters
+      - kmk-156732                # home: christian_ii_supporters
+      - kmk-156733                # home: christian_ii_supporters
+      - kmk-417187                # home: christian_ii_supporters
+      - kmk-150191                # home: danish_realm (KMM KP 1656.?, «Grevefejden», object page «Galster 85;Schou 24»)
+      - kmk-150192                # home: danish_realm (KMM, «Grevefejden», object page «Galster 85;Schou 22»)
+    reason: |
+      Galster 85, 4 Skilling struck at Güstrow 1535 by Albrecht VII in
+      Christian II's name (Schou 18-36, Sieg 1). KMM 150191 and 150192 carry
+      the authority «Grevefejden» and the place Malmø, so the builder routed
+      them to danish_realm; their object pages classify them «Galster 85;Schou
+      24» / «Galster 85;Schou 22» (both inside Schou 18-36) and the photos show
+      the legend …HOLS… CARC… (IMMERITI · CARCERIS · APVD · HOLSATAS).
+      issuing_entity is overridden: a Count's Feud coin in Christian II's name,
+      not the Danish crown's. The per-entity G85 merge in
+      merge_decisions/christian_ii_supporters.yml lists the same class.
+      Curator (Serhii) 2026-11-06 (c2g85 = KMM 150191 = 150192).
+  - target_entity: christian_ii_supporters
+    issuing_entity: christian_ii_supporters   # override the mint-derived stamp (Malmø)
+    members:
+      - dk-galster-c2g-86         # home: christian_ii_supporters (Galster 86, 4 Skilling Malmø 1535)
+      - kmk-150193                # home: danish_realm (KMM, «Grevefejden», object page «Galster 85/86;Schou 13»)
+    reason: |
+      Galster 86, 4 Skilling Malmø 1535, year written XXXV (Schou 13-17,
+      Sieg 7). KMM 150193's object page reads «Galster 85/86;Schou 13»;
+      Schou 13 lies in Galster 86's Schou 13-17 and outside Galster 85's
+      18-36, and the photo shows a …DACI legend, not Galster 85's IMMERITI
+      CARCERIS. issuing_entity is overridden as for Galster 85.
+      Curator (Serhii) 2026-11-06 (KMM 150193 = c2g86).

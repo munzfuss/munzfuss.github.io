@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 549 per-source seed entries.
-# Output: 229 unified entries (one per physical coin).
+# Output: 228 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3315,6 +3315,8 @@ coins:
     year_label: '1597'
     ruler: Johan Adolf
     mint: Gottorp
+    catalog:
+      lange: '309'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -3410,6 +3412,8 @@ coins:
     year_label: '1600'
     ruler: Johan Adolf
     mint: Gottorp
+    catalog:
+      lange: 310B
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -3429,8 +3433,8 @@ coins:
       active: false
       agrees_with_active: true
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
-  - id: c-c0bc2687
-    class_id: c-c0bc2687
+  - id: c-c0bc2687-2
+    class_id: c-c0bc2687-2
     label: unified-kmk-167318
     fuss: seed_unsorted
     phase: kmk
@@ -3441,6 +3445,8 @@ coins:
     year_label: '1594'
     ruler: Johan Adolf
     mint: Gottorp
+    catalog:
+      lange: '307'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -3452,37 +3458,6 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-167318
-    _entity_routing_hint:
-      rule_id: gottorp_ducal_lineage
-      matched_on:
-        ruler_lineage: johan adolf
-      would_route_to: gottorp_duchy
-      active: false
-      agrees_with_active: true
-      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
-  - id: c-bd02b39e
-    class_id: c-bd02b39e
-    label: unified-kmk-167319
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1/64 Thaler
-    year_first: 1593
-    year_last: 1593
-    year_label: '1593'
-    ruler: Johan Adolf
-    mint: Gottorp
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167319
-        ref: KMM 167319 (Inv. FP 1892.21)
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-167319
     _entity_routing_hint:
       rule_id: gottorp_ducal_lineage
       matched_on:
@@ -9928,6 +9903,7 @@ coins:
     year_last: 1593
     year_label: '1593'
     ruler: Johann Adolf
+    mint: Gottorp
     catalog:
       mb: '5'
       lange: '306'
@@ -9936,9 +9912,12 @@ coins:
     fineness_verified: false
     weight_rough_verified: false
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167319
+        ref: KMM 167319 (Inv. FP 1892.21)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-64-thaler-mb-5-1593-cuid-167317-duid-379986
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -9947,8 +9926,17 @@ coins:
         ref: NumisMaster
     issuing_entity: gottorp_duchy
     composed_of:
+      - kmk-167319
       - ngc-167317
       - schleswig_holstein-numismaster-167317
+    _entity_routing_hint:
+      rule_id: gottorp_ducal_lineage
+      matched_on:
+        ruler_lineage: johan adolf
+      would_route_to: gottorp_duchy
+      active: false
+      agrees_with_active: true
+      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
   - id: c-c3b3a1d7
     class_id: c-c3b3a1d7
     label: unified-ngc-167333

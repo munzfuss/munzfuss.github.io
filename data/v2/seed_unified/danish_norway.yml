@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2740 per-source seed entries.
-# Output: 580 unified entries (one per physical coin).
+# Output: 579 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -33024,6 +33024,8 @@ coins:
     weight_rough_g:
       - value: 1.44
         source: galster
+      - value: 1.44
+        source: kmk
       - value: 2.05
         source: numista
     diameter_mm:
@@ -33044,10 +33046,14 @@ coins:
       - type: literature
         url: https://en.numista.com/444429
         ref: Numista N#444429 — 1 Skilling - Frederik I (Oslo)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139717
+        ref: KMM 139717 (Inv. KP 1715.420)
     issuing_entity: danish_norway
     composed_of:
       - dk-galster-f1g-168
       - dk-numista-444429
+      - kmk-139717
   - id: c-9481a9fb
     class_id: c-9481a9fb
     label: unified-dk-numista-444482
@@ -34762,34 +34768,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-139632
-  - id: c-2baee3ac
-    class_id: c-2baee3ac
-    label: unified-kmk-139717
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1531
-    year_last: 1531
-    year_label: '1531'
-    ruler: Frederik I
-    mint: Christiania
-    catalog:
-      schou: '6'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.44
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139717
-        ref: KMM 139717 (Inv. KP 1715.420)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-139717
   - id: c-f7a7e992
     class_id: c-f7a7e992
     label: unified-kmk-139745
@@ -35146,6 +35124,7 @@ coins:
     mint: Bergen
     catalog:
       schou: '17'
+      hede: 21A
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true

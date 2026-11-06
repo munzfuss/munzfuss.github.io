@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1930 active, 4487 retired.
+# 1918 active, 4502 retired.
 
 id: danish_realm
 classes:
@@ -630,6 +630,12 @@ classes:
       - dk-numista-5254
       - dk-tid-49468
       - ngc-1045638
+  - id: c-062ba407
+    status: active
+    created: '2026-11-06'
+    label: unified-kmk-643055
+    members:
+      - kmk-643055
   - id: c-0677f384
     status: active
     created: '2026-10-22'
@@ -652,12 +658,6 @@ classes:
       - kmk-137164
       - kmk-137165
       - ngc-1050788
-  - id: c-068a2f9f
-    status: active
-    created: '2026-11-03'
-    label: unified-kmk-693086
-    members:
-      - kmk-693086
   - id: c-06aa5a45
     status: active
     created: '2026-10-22'
@@ -3833,13 +3833,6 @@ classes:
       - kmk-139730
       - kmk-292821
       - ngc-1069038
-  - id: c-1fc92d94
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-150192
-    legacy_id: unified-kmk-150192
-    members:
-      - kmk-150192
   - id: c-1fcc3e8e
     status: active
     created: '2026-10-22'
@@ -3873,6 +3866,7 @@ classes:
       - kmk-155948
       - kmk-158128
       - kmk-167338
+      - kmk-167343
       - kmk-167344
       - kmk-190275
       - kmk-291516
@@ -3923,13 +3917,6 @@ classes:
     legacy_id: unified-kmk-37639
     members:
       - kmk-37639
-  - id: c-20676b26
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-139318
-    legacy_id: unified-kmk-139318
-    members:
-      - kmk-139318
   - id: c-207d195b
     status: active
     created: '2026-10-22'
@@ -5132,6 +5119,7 @@ classes:
     legacy_id: unified-dk-galster-f1g-77
     members:
       - dk-galster-f1g-77
+      - kmk-274314
   - id: c-2e103220
     status: active
     created: '2026-11-03'
@@ -5274,13 +5262,6 @@ classes:
     legacy_id: unified-kmk-122249
     members:
       - kmk-122249
-  - id: c-2ff70fe7
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-350001
-    legacy_id: unified-kmk-350001
-    members:
-      - kmk-350001
   - id: c-301adabc
     status: active
     created: '2026-10-22'
@@ -5585,12 +5566,6 @@ classes:
     legacy_id: unified-dk-hede-c7h24
     members:
       - dk-hede-c7h24
-  - id: c-305a8a05
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-139316
-    members:
-      - kmk-139316
   - id: c-30a2d648
     status: active
     created: '2026-10-22'
@@ -6589,13 +6564,6 @@ classes:
     members:
       - kmk-190599
       - kmk-591523
-  - id: c-3d405a53
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-150193
-    legacy_id: unified-kmk-150193
-    members:
-      - kmk-150193
   - id: c-3d4833d4
     status: active
     created: '2026-10-22'
@@ -9923,13 +9891,6 @@ classes:
     legacy_id: unified-kmk-156529
     members:
       - kmk-156529
-  - id: c-53c977b9
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-274314
-    legacy_id: unified-kmk-274314
-    members:
-      - kmk-274314
   - id: c-53e86109
     status: active
     created: '2026-10-22'
@@ -10157,12 +10118,6 @@ classes:
       - dk-hede-f3h89
       - dk-tid-99090
       - ngc-1059954
-  - id: c-56f9760e
-    status: active
-    created: '2026-11-03'
-    label: unified-kmk-643788
-    members:
-      - kmk-643788
   - id: c-57168929
     status: active
     created: '2026-10-22'
@@ -10318,12 +10273,6 @@ classes:
     legacy_id: unified-kmk-591621
     members:
       - kmk-591621
-  - id: c-59252f30
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-167343
-    members:
-      - kmk-167343
   - id: c-593faafc
     status: active
     created: '2026-10-22'
@@ -10595,7 +10544,9 @@ classes:
       - dk-numista-143575
       - ikmk-18206590
       - kmk-136087
+      - kmk-139316
       - kmk-139317
+      - kmk-139318
       - kmk-292783
       - kmk-302715
       - kmk-303085
@@ -10782,6 +10733,7 @@ classes:
       - kmk-327810
       - kmk-328518
       - kmk-332026
+      - kmk-350001
       - kmk-368279
       - kmk-369348
       - kmk-371971
@@ -11940,6 +11892,7 @@ classes:
     label: unified-dk-numista-152921
     legacy_id: unified-dk-numista-152921
     split_into:
+      - c-062ba407
       - c-0cd60640
       - c-41d11c16
       - c-51ab8514
@@ -11966,7 +11919,6 @@ classes:
       - kmk-334301
       - kmk-355004
       - kmk-533323
-      - kmk-643055
       - kmk-643056
       - kmk-643057
       - kmk-643058
@@ -15443,13 +15395,14 @@ classes:
     created: '2026-10-22'
     label: unified-dk-bruun-7774
     legacy_id: unified-dk-bruun-7774
+    split_into:
+      - c-80cf9144
     members:
       - denmark-numismaster-85807
       - dk-bruun-7774
-      - kmk-160392
+      - kmk-148205
       - kmk-160394
       - kmk-292893
-      - kmk-308027
       - ngc-1052647
   - id: c-74ea6ced
     status: active
@@ -16211,6 +16164,12 @@ classes:
       - kmk-190281
       - kmk-277002
       - kmk-277011
+  - id: c-80cf9144
+    status: active
+    created: '2026-11-06'
+    label: unified-kmk-160392
+    members:
+      - kmk-160392
   - id: c-80da8885
     status: active
     created: '2026-10-22'
@@ -18104,13 +18063,6 @@ classes:
     legacy_id: unified-dk-numista-474251
     members:
       - kmk-156764
-  - id: c-9ba1f273
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-137196
-    legacy_id: unified-kmk-137196
-    members:
-      - kmk-137196
   - id: c-9c1951bc
     status: active
     created: '2026-10-22'
@@ -19537,16 +19489,6 @@ classes:
       - denmark-numismaster-65019
       - dk-tid-96448
       - ngc-1069010
-  - id: c-aaa76bba
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-143431
-    legacy_id: unified-dk-hede-f3h131
-    split_into:
-      - c-068a2f9f
-      - c-56f9760e
-    members:
-      - dk-numista-143431
   - id: c-aaba5b52
     status: active
     created: '2026-10-22'
@@ -23027,6 +22969,7 @@ classes:
     members:
       - dk-galster-c3g-99
       - dk-numista-152059
+      - kmk-139698
   - id: c-cfdfd8dc
     status: active
     created: '2026-10-22'
@@ -27161,13 +27104,6 @@ classes:
     legacy_id: unified-dk-hede-c4h113
     members:
       - dk-hede-c4h113
-  - id: c-ee8d01d9
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-150191
-    legacy_id: unified-kmk-150191
-    members:
-      - kmk-150191
   - id: c-eede639c
     status: active
     created: '2026-10-22'
@@ -27251,13 +27187,6 @@ classes:
       - dk-numista-343093
       - dk-tid-94316
       - ngc-1069067
-  - id: c-f0671baa
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-139698
-    legacy_id: unified-kmk-139698
-    members:
-      - kmk-139698
   - id: c-f0bc6713
     status: active
     created: '2026-10-22'
@@ -27309,13 +27238,6 @@ classes:
     legacy_id: unified-dk-hede-c5h58
     members:
       - dk-hede-c5h58
-  - id: c-f1215206
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-148205
-    legacy_id: unified-kmk-148205
-    members:
-      - kmk-148205
   - id: c-f15e3505
     status: active
     created: '2026-10-22'
@@ -27584,8 +27506,10 @@ classes:
     legacy_id: unified-kmk-131769
     split_into:
       - c-395dcb86
+      - c-6a44e719
     members:
       - dk-hede-f3h131
+      - dk-numista-143431
       - kmk-157851
       - kmk-157852
       - kmk-157853
@@ -27602,6 +27526,8 @@ classes:
       - kmk-201425
       - kmk-279206
       - kmk-429768
+      - kmk-643788
+      - kmk-693086
       - kmk-693100
   - id: c-f479c0e7
     status: active
@@ -29426,6 +29352,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-367681
+  - id: c-068a2f9f
+    status: retired
+    created: '2026-11-03'
+    label: unified-kmk-693086
+    merged_into: c-f457db84
+    retired: '2026-11-06'
+    members:
+      - kmk-693086
   - id: c-06a755f9
     status: retired
     created: '2026-10-22'
@@ -33409,6 +33343,17 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-340766
+  - id: c-1fc92d94
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-150191
+    legacy_id: unified-kmk-150192
+    merged_into: c-02d2cd23
+    retired: '2026-11-06'
+    members:
+      - kmk-150191
+      - kmk-150192
+      - kmk-150193
   - id: c-1fca35b8
     status: retired
     created: '2026-10-22'
@@ -33535,6 +33480,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149811
+  - id: c-20676b26
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-139318
+    legacy_id: unified-kmk-139318
+    merged_into: c-5be595df
+    retired: '2026-11-06'
+    members:
+      - kmk-139318
   - id: c-206c0dd1
     status: retired
     created: '2026-10-22'
@@ -35982,6 +35936,15 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-687812
+  - id: c-2ff70fe7
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-350001
+    legacy_id: unified-kmk-350001
+    merged_into: c-5dc0f6c9
+    retired: '2026-11-06'
+    members:
+      - kmk-350001
   - id: c-2ffaab46
     status: retired
     created: '2026-10-22'
@@ -36171,6 +36134,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-168278
+  - id: c-305a8a05
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-139316
+    merged_into: c-5be595df
+    retired: '2026-11-06'
+    members:
+      - kmk-139316
   - id: c-3061c4d5
     status: retired
     created: '2026-10-22'
@@ -38133,6 +38104,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-266468
+  - id: c-3d405a53
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-150193
+    legacy_id: unified-kmk-150193
+    merged_into: c-1fc92d94
+    retired: '2026-11-06'
+    members:
+      - kmk-150193
   - id: c-3d4064f6
     status: retired
     created: '2026-11-05'
@@ -42168,6 +42148,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149883
+  - id: c-53c977b9
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-274314
+    legacy_id: unified-kmk-274314
+    merged_into: c-2d943783
+    retired: '2026-11-06'
+    members:
+      - kmk-274314
   - id: c-53dc4257
     status: retired
     created: '2026-10-22'
@@ -42706,6 +42695,14 @@ classes:
       - kmk-740379
       - kmk-740380
       - kmk-740381
+  - id: c-56f9760e
+    status: retired
+    created: '2026-11-03'
+    label: unified-kmk-643788
+    merged_into: c-f457db84
+    retired: '2026-11-06'
+    members:
+      - kmk-643788
   - id: c-57247799
     status: retired
     created: '2026-10-22'
@@ -42959,6 +42956,14 @@ classes:
       - kmk-424579
       - kmk-424580
       - kmk-424581
+  - id: c-59252f30
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-167343
+    merged_into: c-1ffe8df2
+    retired: '2026-11-06'
+    members:
+      - kmk-167343
   - id: c-593e4320
     status: retired
     created: '2026-10-22'
@@ -45813,6 +45818,22 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-424791
+  - id: c-6a44e719
+    status: retired
+    created: '2026-11-06'
+    label: unified-kmk-157851
+    merged_into: c-f457db84
+    retired: '2026-11-06'
+    members:
+      - kmk-157851
+      - kmk-157852
+      - kmk-157855
+      - kmk-157856
+      - kmk-157857
+      - kmk-157859
+      - kmk-157860
+      - kmk-201425
+      - kmk-693100
   - id: c-6a49b52a
     status: retired
     created: '2026-11-05'
@@ -53730,6 +53751,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-148625
+  - id: c-9ba1f273
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-137196
+    legacy_id: unified-kmk-137196
+    merged_into: c-758acbdb
+    retired: '2026-11-06'
+    members:
+      - kmk-137196
   - id: c-9ba20513
     status: retired
     created: '2026-10-22'
@@ -57111,6 +57141,18 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-159444
+  - id: c-aaa76bba
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-143431
+    legacy_id: unified-dk-hede-f3h131
+    merged_into: c-f457db84
+    split_into:
+      - c-068a2f9f
+      - c-56f9760e
+    retired: '2026-11-06'
+    members:
+      - dk-numista-143431
   - id: c-aad09288
     status: retired
     created: '2026-10-22'
@@ -68188,6 +68230,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-428081
+  - id: c-ee8d01d9
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-150191
+    legacy_id: unified-kmk-150191
+    merged_into: c-1fc92d94
+    retired: '2026-11-06'
+    members:
+      - kmk-150191
   - id: c-ee994135
     status: retired
     created: '2026-11-05'
@@ -68364,6 +68415,15 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-715905
+  - id: c-f0671baa
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-139698
+    legacy_id: unified-kmk-139698
+    merged_into: c-cfdf4fba
+    retired: '2026-11-06'
+    members:
+      - kmk-139698
   - id: c-f0873757
     status: retired
     created: '2026-10-22'
@@ -68462,6 +68522,15 @@ classes:
     members:
       - kmk-276689
       - kmk-740688
+  - id: c-f1215206
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-148205
+    legacy_id: unified-kmk-148205
+    merged_into: c-74e69da0
+    retired: '2026-11-06'
+    members:
+      - kmk-148205
   - id: c-f157b78e
     status: retired
     created: '2026-10-22'
