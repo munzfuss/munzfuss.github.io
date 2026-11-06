@@ -691,6 +691,11 @@ def _scope_dropped_index(base: str) -> dict:
         idx["seeds"] |= ids
         if not ids:
             continue
+        # A dropped KMM seed's own object number is its id (kmk-<n>), so its
+        # citation (…/KMM/object/<n>) is excused even when the seed no longer
+        # exists at `base` — the case once the scope rule itself is committed
+        # and a later re-flow moves the class into a rebuilt Fuß (2026-11-06).
+        idx["kmm"] |= {i[4:] for i in ids if str(i).startswith("kmk-")}
         rels = subprocess.run(["git", "ls-tree", "-r", "--name-only", base, f"data/v2/seed/{src}/"],
                               capture_output=True, text=True, cwd=ROOT).stdout.split()
         for rel in rels:
@@ -1460,8 +1465,11 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 if gone and f == "sources":
                     _mx = _member_excluded_kmm_any() | ((_SCOPE_IDX or {}).get("kmm") or set())
                     if _mx:
+                        # A KMM citation may carry no url, only its label
+                        # «KMM <n> (Inv. …)» (c-48545e33, KMM 403023).
                         member_gone = {v for v in gone
-                                       if any(f"/KMM/object/{n}\"" in v for n in _mx)}
+                                       if any(f"/KMM/object/{n}\"" in v
+                                              or f"\"KMM {n} (" in v for n in _mx)}
                         if member_gone:
                             retractions.extend(
                                 f"{cid}.{f}: {v[:70]} (member exclusion)"
