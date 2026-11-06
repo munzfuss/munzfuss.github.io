@@ -3371,7 +3371,7 @@ def _collect_marked_alts(members: list[dict], key: str, label_field: str) -> lis
             continue
         kind = mark.get("kind")
         reason = mark.get("reason")
-        if kind not in ("suspect", "erroneous") or not isinstance(reason, dict):
+        if kind not in ("suspect", "erroneous", "approximate") or not isinstance(reason, dict):
             continue
         src = _source_label_of(m)
         k = (str(label), src)

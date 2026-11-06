@@ -116,7 +116,7 @@ def marker_reasons(v) -> dict[str, tuple[str, object]]:
         src = getattr(fv, "source", None)
         if not src:
             continue
-        for kind in ("erroneous", "suspect", "fragment", "template"):
+        for kind in ("erroneous", "suspect", "fragment", "template", "approximate"):
             why = getattr(fv, kind, None)
             if why is not None:
                 out[src] = (kind, why)

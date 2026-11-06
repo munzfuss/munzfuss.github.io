@@ -2562,6 +2562,11 @@ tr.msr-sh .msr-cut { display: none; }
    sign in a muted colour says it is not a whole coin's weight. */
 .fragment-mark { color: var(--text-muted); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); }
+/* (~) .approximate-mark — the source gives the value as an approximation. Not
+   struck through: the number stands, it is only not exact (curator 2026-11-06).
+   (The `.approximate` value class gets no rule on purpose.) */
+.approximate-mark { color: var(--text-muted); cursor: help; font-weight: 600;
+                  font-family: var(--font-sans); }
 /* The Δ percentage line (.sd-pct) is inline-block, so an ancestor's line-through
    does not reach it (atomic inline boxes are not decorated by their parents) —
    re-apply it explicitly when the Δ badge itself is marked. */

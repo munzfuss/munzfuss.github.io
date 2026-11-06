@@ -75,7 +75,7 @@ class I18nTextOptional(_StrictBase):
 class YearMark(_StrictBase):
     """A curation mark on a seed's own year, ruler or mint (see Coin.year_mark,
     Coin.ruler_mark, Coin.mint_mark)."""
-    kind: Literal["suspect", "erroneous"]
+    kind: Literal["suspect", "erroneous", "approximate"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
     # The year the source printed, when a curator `_source_errata` has replaced
@@ -90,7 +90,7 @@ class YearAlt(_StrictBase):
     Coin.ruler_alts, Coin.mint_alts)."""
     value: str = Field(..., min_length=1)
     source: str = Field(..., min_length=1)
-    kind: Literal["suspect", "erroneous"]
+    kind: Literal["suspect", "erroneous", "approximate"]
     reason: I18nText
 
 
@@ -294,6 +294,13 @@ class FieldValue(_StrictBase):
     # its own sign, so it is never read as the «(*)» of a doubtful figure
     # (curator 2026-10-26). Like `suspect`, it stays in the arithmetic.
     fragment: I18nText | None = None
+    # `approximate` marks a reading the source gives as an approximation
+    # («ca.», «omkring», «~») or one known only roughly. Nothing is wrong or
+    # doubtful about it: it is NOT struck through, it computes like any other
+    # reading and renders «(~)» (curator 2026-11-06, added for future use; no
+    # coin carries it yet). Lowest precedence: erroneous > suspect > fragment >
+    # template > approximate. The reason is reader-facing prose (§0z).
+    approximate: I18nText | None = None
 
 
 class FinenessTrace(_StrictBase):

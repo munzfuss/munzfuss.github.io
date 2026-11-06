@@ -39,6 +39,8 @@
       (!)  erroneous  — the reading has been shown to be wrong
       (§)  template   — the reading is the standard's computed target, not a
                         measurement (NOT struck through)
+      (~)  approximate — the source gives the value as an approximation
+                        (NOT struck through)
 
     `marks` is {source: (kind, reason)}. At most ONE mark is emitted per value:
     a group merges the sources that agree on a figure, so two catalogues
@@ -49,8 +51,8 @@
     below (erroneous outranks suspect within a group), split out so the block
     that carries the numeric value can be struck through while `mark()` still
     emits the «(*)»/«(!)» sign beside it. -#}
-{%- set mrank = {'template': 1, 'fragment': 2, 'suspect': 3, 'erroneous': 4} -%}
-{%- set msign = {'template': '(§)', 'fragment': '(f)', 'suspect': '(*)', 'erroneous': '(!)'} -%}
+{%- set mrank = {'approximate': 0, 'template': 1, 'fragment': 2, 'suspect': 3, 'erroneous': 4} -%}
+{%- set msign = {'approximate': '(~)', 'template': '(§)', 'fragment': '(f)', 'suspect': '(*)', 'erroneous': '(!)'} -%}
 {%- macro mkind(sources, marks) -%}
   {%- set ns = namespace(kind='') -%}
   {%- if marks and sources -%}
