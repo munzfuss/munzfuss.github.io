@@ -2408,6 +2408,46 @@ def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> 
     )
 
 
+V2_SCOPE_DROPPED = ROOT / "data" / "v2" / "_scope_dropped"
+_SCOPE_DROPPED_IDS: set[str] | None = None
+_KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
+
+
+def _scope_dropped_ids() -> set[str]:
+    """Seed ids a source builder's scope rule keeps out of the corpus
+    (`data/v2/_scope_dropped/<src>.yml`, `dropped:` keys — the KMM stub rule,
+    curator 2026-11-05)."""
+    global _SCOPE_DROPPED_IDS
+    if _SCOPE_DROPPED_IDS is None:
+        ids: set[str] = set()
+        for p in sorted(V2_SCOPE_DROPPED.glob("*.yml")) if V2_SCOPE_DROPPED.exists() else []:
+            ids |= set((_load_yaml(p).get("dropped") or {}).keys())
+        _SCOPE_DROPPED_IDS = ids
+    return _SCOPE_DROPPED_IDS
+
+
+def _is_scope_dropped_final(fe: dict, live_unified_ids: set, live_ids: set) -> bool:
+    """A final no live seed reaches whose EVERY source is a KMM object the scope
+    rule dropped — the coin existed only through those records, so it leaves
+    with them, curated or not (curator 2026-11-06: 356 such finals had stayed,
+    e.g. KMM 150153 / 150155 / 673522 under 8_daler_fod, because the vanished-
+    backing drop spares any final with a real Fuß). A final with any other
+    source (danskmoent, Bruun, a live KMM record …) is never matched here."""
+    if _final_has_live_backing(fe, live_unified_ids, live_ids):
+        return False
+    srcs = fe.get("sources") or []
+    if not srcs:
+        return False
+    dropped = _scope_dropped_ids()
+    if not dropped:
+        return False
+    for s in srcs:
+        m = _KMM_OBJECT_RE.search(str((s or {}).get("url") or ""))
+        if not m or f"kmk-{m.group(1)}" not in dropped:
+            return False
+    return True
+
+
 _CROSS_ENTITY_DOC: dict | None = None
 
 
@@ -4348,6 +4388,7 @@ def process_entity(entity_id: str) -> dict:
     _live_ids = _live_unified_ids | _live_seed_ids
 
     stale_dropped_ids: set[str] = set()
+    scope_dropped_final_ids: set[str] = set()
     _kept_after_stale: list[dict] = []
     shell_dropped: set[str] = set()
     shell_kept_curated: list[str] = []
@@ -4358,6 +4399,10 @@ def process_entity(entity_id: str) -> dict:
     for e in enriched_entries:
         if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(e.get("id")))
+            continue
+        if _is_scope_dropped_final(e, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(e.get("id")))
+            scope_dropped_final_ids.add(str(e.get("id")))
             continue
         _eid = str(e.get("id"))
         # A V1 foundation the curator let go as an empty duplicate (2026-10-23).
@@ -4392,6 +4437,9 @@ def process_entity(entity_id: str) -> dict:
         print(f"  [{entity_id}] stale finals dropped: "
               f"{len(stale_dropped_ids)} entries (backing seed_unified gone, "
               f"no curation): {sorted(stale_dropped_ids)[:8]}")
+    if scope_dropped_final_ids:
+        print(f"  [{entity_id}] of which every source a scope-dropped KMM record: "
+              f"{len(scope_dropped_final_ids)}: {sorted(scope_dropped_final_ids)[:8]}")
 
     # MONOTONIC-ABSORB GUARD (TODO §CH). A coin already on the page must
     # not silently vanish from final just because a new source (IKMK, …)
@@ -4442,6 +4490,10 @@ def process_entity(entity_id: str) -> dict:
         # the explicit filter; both feed `stale_dropped_ids` for the stat.
         if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(fid))
+            continue
+        if _is_scope_dropped_final(fc, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(fid))
+            scope_dropped_final_ids.add(str(fid))
             continue
         if ((_is_promoted(fc) and str(fid) not in _live_unified_ids
                 and _seed_of(str(fid)) in _shell_removals())

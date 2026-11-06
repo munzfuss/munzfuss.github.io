@@ -1176,6 +1176,16 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— source scope rule (all {len(_members)} seed(s) dropped)")
             continue
+        # The same, for a final whose seeds were already gone at `base` (a
+        # self-referential composed_of): every source is a KMM object the scope
+        # rule dropped — absorb's `_is_scope_dropped_final` (curator 2026-11-06).
+        _kmm_sd = (_SCOPE_IDX or {}).get("kmm") or set()
+        _srcs = [str((s or {}).get("url") or "") for s in (was.get("sources") or [])]
+        _objs = [re.search(r"/KMM/object/(\d+)", u) for u in _srcs]
+        if _kmm_sd and _srcs and all(o and o.group(1) in _kmm_sd for o in _objs):
+            dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
+                           f"— source scope rule (every source a dropped KMM record)")
+            continue
         _ed_hosts = _empty_duplicate_removals().get(cid)
         if _ed_hosts:
             _home = _coin_home_index()
