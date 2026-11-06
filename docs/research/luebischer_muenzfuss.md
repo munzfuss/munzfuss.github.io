@@ -1626,6 +1626,12 @@ harvested and seeded (Galster 1-23), with Bruun lots 3712, 3725, 3757, 3763, 377
 
 ### §3.11 Erik VII's Kobbersterling (Galster 7, 10, 14, 15) and Gros (Galster 13, 16) — part of the Lybsk set? (2026-10-25, curator question, ANALYSIS)
 
+> ⚠ **Date of Erik's copper coin — two datings kept (2026-11-06).** This section dates it c. 1422 – Whitsun
+> 1423 (Bunge V 958 via Hauberg 1886 s. 170). Luxdorph 1765 (s. 666–678) cites Cornerus «ad ann. 1425» and
+> Messenius 1425 (after the Jerusalem journey), and doubts his own order of events. Luxdorph also prints
+> the Rigsraad's complaint (Hvitfeldt p. 823) «*Kaaber holdt 9 Lod Sølff*» and Gram's hoard of 1735 «*alle
+> samtlige 9-lødige*» for Erik's coin. Not resolved; see `luxdorph_1765_mynteudregning.md` Part II.
+
 **Four types, one issue.** One coinage of c. 1422 at four mints — Lund, Næstved, Odense, Randers —
 «*Kong Eriks Kobbermynter vare fra alle fire Stæder af samme Typ, kun forskjellige ved deres Myntsteders
 Navne*» (Hauberg 1886 s. 170); Galster numbers them 7 (Næstved), 10 (Lund), 14 (Odense), 15 (Randers),
