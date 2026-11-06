@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 143 active, 31 retired.
+# 137 active, 37 retired.
 
 id: grafschaft_oldenburg
 classes:
@@ -56,12 +56,6 @@ classes:
     legacy_id: unified-dk-numista-58977
     members:
       - dk-numista-58977
-  - id: c-0d6e24ea
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-290968
-    members:
-      - kmk-290968
   - id: c-0dbf86c9
     status: active
     created: '2026-10-22'
@@ -146,17 +140,6 @@ classes:
     legacy_id: unified-dk-numista-339292
     members:
       - dk-numista-339292
-  - id: c-1d6db09a
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-290966
-    legacy_id: unified-kmk-290963
-    split_into:
-      - c-0d6e24ea
-      - c-e5358297
-    members:
-      - kmk-290966
-      - kmk-290970
   - id: c-202ccb4f
     status: active
     created: '2026-10-22'
@@ -193,12 +176,6 @@ classes:
     members:
       - dk-numista-270890
       - tid-tid-85862
-  - id: c-25686b2a
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-290980
-    members:
-      - kmk-290980
   - id: c-28791421
     status: active
     created: '2026-10-22'
@@ -778,12 +755,6 @@ classes:
     legacy_id: unified-dk-numista-434649
     members:
       - dk-numista-434649
-  - id: c-b81b0840
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-290979
-    members:
-      - kmk-290979
   - id: c-bb1c85dd
     status: active
     created: '2026-10-22'
@@ -905,17 +876,6 @@ classes:
     legacy_id: unified-tid-tid-85873
     members:
       - tid-tid-85873
-  - id: c-d55cad25
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-290978
-    legacy_id: unified-kmk-290973
-    split_into:
-      - c-25686b2a
-      - c-b81b0840
-    members:
-      - kmk-290978
-      - kmk-290981
   - id: c-d6516f2f
     status: active
     created: '2026-10-22'
@@ -966,12 +926,6 @@ classes:
     legacy_id: unified-dk-numista-271078
     members:
       - dk-numista-271078
-  - id: c-e5358297
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-290969
-    members:
-      - kmk-290969
   - id: c-ec31d158
     status: active
     created: '2026-10-22'
@@ -1060,6 +1014,25 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-290988
+  - id: c-0d6e24ea
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-290968
+    retired: '2026-11-06'
+    members:
+      - kmk-290968
+  - id: c-1d6db09a
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-290966
+    legacy_id: unified-kmk-290963
+    split_into:
+      - c-0d6e24ea
+      - c-e5358297
+    retired: '2026-11-06'
+    members:
+      - kmk-290966
+      - kmk-290970
   - id: c-1f1bf46d
     status: retired
     created: '2026-10-22'
@@ -1068,6 +1041,13 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-415788
+  - id: c-25686b2a
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-290980
+    retired: '2026-11-06'
+    members:
+      - kmk-290980
   - id: c-29d268f9
     status: retired
     created: '2026-10-22'
@@ -1220,6 +1200,13 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-415792
+  - id: c-b81b0840
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-290979
+    retired: '2026-11-06'
+    members:
+      - kmk-290979
   - id: c-c6ed7a81
     status: retired
     created: '2026-10-22'
@@ -1244,6 +1231,18 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-415795
+  - id: c-d55cad25
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-290978
+    legacy_id: unified-kmk-290973
+    split_into:
+      - c-25686b2a
+      - c-b81b0840
+    retired: '2026-11-06'
+    members:
+      - kmk-290978
+      - kmk-290981
   - id: c-d665da78
     status: retired
     created: '2026-10-22'
@@ -1260,6 +1259,13 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-290984
+  - id: c-e5358297
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-290969
+    retired: '2026-11-06'
+    members:
+      - kmk-290969
   - id: c-e9ab7b75
     status: retired
     created: '2026-10-22'

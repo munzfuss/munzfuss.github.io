@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 19 active, 182 retired.
+# 16 active, 185 retired.
 
 id: norway
 classes:
@@ -44,26 +44,6 @@ classes:
     legacy_id: unified-dk-bruun-11073
     members:
       - dk-bruun-11073
-  - id: c-698d7f6d
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-290930
-    members:
-      - kmk-290930
-  - id: c-73614e0b
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-290927
-    legacy_id: unified-kmk-290924
-    split_into:
-      - c-698d7f6d
-      - c-cb15d0b6
-    members:
-      - kmk-290927
-      - kmk-290931
-      - kmk-290932
-      - kmk-290933
-      - kmk-290934
   - id: c-7e3e65bd
     status: active
     created: '2026-10-22'
@@ -122,12 +102,6 @@ classes:
     legacy_id: unified-dk-bruun-pt5-15117
     members:
       - dk-bruun-pt5-15117
-  - id: c-cb15d0b6
-    status: active
-    created: '2026-11-05'
-    label: unified-kmk-290928
-    members:
-      - kmk-290928
   - id: c-d32c82f5
     status: active
     created: '2026-10-22'
@@ -791,6 +765,13 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-185084
+  - id: c-698d7f6d
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-290930
+    retired: '2026-11-06'
+    members:
+      - kmk-290930
   - id: c-69b316ea
     status: retired
     created: '2026-10-22'
@@ -847,6 +828,21 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-185077
+  - id: c-73614e0b
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-290927
+    legacy_id: unified-kmk-290924
+    split_into:
+      - c-698d7f6d
+      - c-cb15d0b6
+    retired: '2026-11-06'
+    members:
+      - kmk-290927
+      - kmk-290931
+      - kmk-290932
+      - kmk-290933
+      - kmk-290934
   - id: c-76d57dbb
     status: retired
     created: '2026-10-22'
@@ -1279,6 +1275,13 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-290941
+  - id: c-cb15d0b6
+    status: retired
+    created: '2026-11-05'
+    label: unified-kmk-290928
+    retired: '2026-11-06'
+    members:
+      - kmk-290928
   - id: c-cbebbe9e
     status: retired
     created: '2026-10-22'
