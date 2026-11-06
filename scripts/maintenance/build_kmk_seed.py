@@ -1273,6 +1273,42 @@ def _kmm_has_image(rid) -> bool | None:
 _STUB_DROPPED: dict[str, str] = {}
 
 
+# Catalogue numbers the curator marked erroneous «(!)» on a KMM seed
+# (`catalog_marks`, kind erroneous): {seed id: {(register, value)}}. Such a
+# number is KMM's print, kept and shown, but it does not identify the coin, so
+# the stub rule does not count it as an index (curator 2026-11-06, the FP 4227
+# run whose «Hede 135-173» rise with the inventory number).
+_ERRONEOUS_MARKS: dict[str, set] | None = None
+
+
+def _erroneous_marks() -> dict[str, set]:
+    global _ERRONEOUS_MARKS
+    if _ERRONEOUS_MARKS is None:
+        import yaml
+        out: dict[str, set] = {}
+        for p in sorted((PROJECT_ROOT / "data" / "v2" / "seed" / "kmk").glob("*.yml")):
+            for c in (yaml.safe_load(p.read_text("utf-8")) or {}).get("coins") or []:
+                for mk in c.get("catalog_marks") or []:
+                    if isinstance(mk, dict) and mk.get("kind") == "erroneous" and mk.get("register"):
+                        out.setdefault(str(c.get("id")), set()).add(
+                            (mk["register"], str(mk.get("value")).strip()))
+        _ERRONEOUS_MARKS = out
+    return _ERRONEOUS_MARKS
+
+
+def _counted_index(entry: dict) -> bool:
+    """A catalogue number that identifies the coin: not a register the rule
+    ignores, not one the curator marked erroneous on this record."""
+    marked = _erroneous_marks().get(str(entry.get("id")), set())
+    for k, v in (entry.get("catalog") or {}).items():
+        if k in _STUB_IGNORED_CATALOG or not v:
+            continue
+        vals = v if isinstance(v, (list, tuple)) else [v]
+        if any((k, str(x).strip()) not in marked for x in vals if x not in (None, "")):
+            return True
+    return False
+
+
 def _kmm_stub_category(entry: dict) -> str | None:
     if entry.get("forgery_flag") or _FORGERY_RE.search(str(entry.get("nominal") or "")):
         return "forgery"
@@ -1281,8 +1317,7 @@ def _kmm_stub_category(entry: dict) -> str | None:
         return None
     if not entry.get("weight_rough_g"):
         return "no_weight_no_image"
-    cat = entry.get("catalog") or {}
-    if not any(v for k, v in cat.items() if k not in _STUB_IGNORED_CATALOG):
+    if not _counted_index(entry):
         return "weight_no_image_no_index"
     return None
 

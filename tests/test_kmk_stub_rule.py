@@ -49,6 +49,17 @@ class StubRule(unittest.TestCase):
         self.assertEqual(self.cat(False, weight_rough_g=0.4, catalog={"hede_volume": "c4h"}),
                          "weight_no_image_no_index")
 
+    def test_index_marked_erroneous_is_not_an_index(self):
+        saved = bk._ERRONEOUS_MARKS
+        bk._ERRONEOUS_MARKS = {"kmk-1": {("hede", "135")}}
+        try:
+            self.assertEqual(self.cat(False, weight_rough_g=1.1, catalog={"hede": "135"}),
+                             "weight_no_image_no_index")
+            self.assertIsNone(self.cat(False, weight_rough_g=1.1,
+                                       catalog={"hede": "135", "schou": "52"}))
+        finally:
+            bk._ERRONEOUS_MARKS = saved
+
     def test_image_stays(self):
         self.assertIsNone(self.cat(True))
 
