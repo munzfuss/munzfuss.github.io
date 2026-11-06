@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8529 per-source seed entries.
-# Output: 1881 unified entries (one per physical coin).
+# Output: 1879 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -5525,76 +5525,6 @@ coins:
       - dk-bruun-6578
       - dk-bruun-6579
       - ngc-1050111
-  - id: c-13234715
-    class_id: c-13234715
-    label: unified-dk-bruun-6642
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Speciedaler
-    year_first: 1668
-    year_last: 1668
-    year_label: '1668'
-    ruler: Frederik III
-    mintmaster: Frederik Caspar Herbach (FCH)
-    mint: Kopenhagen
-    catalog:
-      km: '233'
-      bruun_collection_id: '6642'
-      sieg: '93'
-      schou: '8'
-      hede: '77'
-      bruun_part: I
-      bruun_lot_no: 1090
-      bruun_page: 136
-      others:
-        - Aagaard# 109.1
-      dav: B3557
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 57.55
-        source: ucoin
-      - value: 57.56
-        source: bruun
-      - value: 86.325
-        source: ngc
-      - value: 86.325
-        source: numismaster
-    diameter_mm:
-      - value: 44.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65578
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1090, p. 112
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1668/?tid=173653
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-3-speciedaler-km-233-1668-cuid-1050299-duid-1237838
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65578
-      - dk-bruun-6642
-      - dk-tid-173653
-      - ngc-1050299
   - id: c-3688707d
     class_id: c-3688707d
     label: unified-dk-bruun-6695
@@ -7195,78 +7125,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-7296
-  - id: c-d6e62d72
-    class_id: c-d6e62d72
-    label: unified-dk-bruun-7300
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1700
-    year_last: 1700
-    year_label: '1700'
-    ruler: Frederik IV
-    mintmaster: Christian Wineke, the Elder
-    mint: Kopenhagen
-    catalog:
-      km: '471'
-      hede: '5'
-      sieg: '39'
-      bruun_collection_id:
-        - '7300'
-        - '7302'
-      schou: '3'
-      others:
-        - Kold# 150b
-      bruun_part: III
-      bruun_lot_no: 11262
-      bruun_page: 133
-      fr: '230'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.98
-        source: ucoin
-    weight_rough_g:
-      - value: 3.47
-        source: bruun
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-      - value: 3.49
-        source: ucoin
-    diameter_mm:
-      - value: 20.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65806
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17112, p. 58
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dukat-1700/?tid=94307
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-471-1700-cuid-1050902-duid-1238044
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65806
-      - dk-bruun-7300
-      - dk-tid-94307
-      - ngc-1050902
   - id: c-d7102cb2
     class_id: c-d7102cb2
     label: unified-dk-bruun-7333
@@ -81340,30 +81198,94 @@ coins:
       - dk-numista-268890
       - dk-tid-170108
       - ngc-1050075
-  - id: c-2a231508
-    class_id: c-2a231508
+  - id: c-13234715
+    class_id: c-13234715
     label: unified-dk-hede-f3h77
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 3 Speciedaler
+    nominal: 2 Speciedaler
     year_first: 1667
-    year_last: 1667
-    year_label: '1667'
+    year_last: 1668
+    year_ranges:
+      -   - 1667
+          - 1668
+    year_label: 1667-1668
     ruler: Frederik III
+    mintmaster: Frederik Caspar Herbach (FCH)
     mint: Kopenhagen
     catalog:
+      km: '233'
       hede: '77'
       hede_volume: f3h
       sieg: '93'
+      bruun_collection_id: '6642'
+      schou: '8'
+      bruun_part: I
+      bruun_lot_no: 1090
+      bruun_page: 136
+      others:
+        - Aagaard# 109.1
+      dav: B3557
     metal: silver
     metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
+        source: ucoin
+    weight_rough_g:
+      - value: 57.55
+        source: ucoin
+      - value: 57.56
+        source: bruun
+      - value: 86.325
+        source: ngc
+      - value: 86.325
+        source: numismaster
+    diameter_mm:
+      - value: 44.0
+        source: ucoin
+    nominal_alts:
+      - value: 3 Speciedaler
+        source: hede
+        kind: erroneous
+        reason:
+          de: "Das Nominal passt nicht zum Gewicht des einzigen bekannten Exemplars.\n[b]danskmoent.dk (Hede, Frederik 3.)[/b], Übersicht, Hede 77: [i]«3 Speciedaler»[/i], [i]«1667»[/i].\n[b]Bruun Part
+            I, lot 1090, S. 112[/b]: [i]«2 Speciedaler, 1668 … Hede-77; Sieg-93»[/i]; [i]«Weight: 57.56 gms … the only known example of this majestic Double Speciedaler»[/i] (Übers.: «Gewicht: 57,56 g …
+            das einzige bekannte Exemplar dieses majestätischen doppelten Speciedalers»).\nErrechnet aus 1 Speciedaler zu 28,775 g: 2 Speciedaler 57,55 g, 3 Speciedaler 86,325 g."
+          en: "The denomination does not fit the weight of the only known specimen.\n[b]danskmoent.dk (Hede, Frederik 3.)[/b], overview, Hede 77: [i]«3 Speciedaler»[/i], [i]«1667»[/i].\n[b]Bruun Part I,
+            lot 1090, p. 112[/b]: [i]«2 Speciedaler, 1668 … Hede-77; Sieg-93»[/i]; [i]«Weight: 57.56 gms … the only known example of this majestic Double Speciedaler»[/i].\nAs computed from 1 Speciedaler
+            at 28.775 g: 2 Speciedaler 57.55 g, 3 Speciedaler 86.325 g."
+          uk: "Номінал не відповідає вазі єдиного відомого екземпляра.\n[b]danskmoent.dk (Hede, Frederik 3.)[/b], огляд, Hede 77: [i]«3 Speciedaler»[/i], [i]«1667»[/i].\n[b]Bruun Part I, lot 1090, с. 112[/b]:
+            [i]«2 Speciedaler, 1668 … Hede-77; Sieg-93»[/i]; [i]«Weight: 57.56 gms … the only known example of this majestic Double Speciedaler»[/i] (перекл.: «вага: 57,56 г … єдиний відомий екземпляр цього
+            величного подвійного speciedaler»).\nОбчислено з 1 Speciedaler по 28,775 г: 2 Speciedaler — 57,55 г, 3 Speciedaler — 86,325 г."
+          da: "Nominalen passer ikke til vægten af det eneste kendte eksemplar.\n[b]danskmoent.dk (Hede, Frederik 3.)[/b], oversigt, Hede 77: [i]«3 Speciedaler»[/i], [i]«1667»[/i].\n[b]Bruun Part I, lot
+            1090, s. 112[/b]: [i]«2 Speciedaler, 1668 … Hede-77; Sieg-93»[/i]; [i]«Weight: 57.56 gms … the only known example of this majestic Double Speciedaler»[/i] (overs.: «vægt: 57,56 g … det eneste
+            kendte eksemplar af denne majestætiske dobbelte speciedaler»).\nBeregnet ud fra 1 speciedaler à 28,775 g: 2 speciedaler 57,55 g, 3 speciedaler 86,325 g."
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65578
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1090, p. 112
       - type: literature
         url: https://www.danskmoent.dk/f3hede1.htm
         ref: danskmoent.dk overview f3hede1 (Hede f3h77 — Tiefenseite fehlt)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1668/?tid=173653
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-3-speciedaler-km-233-1668-cuid-1050299-duid-1237838
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: Nur die Übersichtsreihe von f3hede1.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben 
         Hede 1971 und Galster 1965 zu entnehmen.
@@ -81375,7 +81297,11 @@ coins:
         Galster 1965.
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65578
+      - dk-bruun-6642
       - dk-hede-f3h77
+      - dk-tid-173653
+      - ngc-1050299
   - id: c-1db1134b
     class_id: c-1db1134b
     label: unified-dk-hede-f3h78a
@@ -88264,6 +88190,7 @@ coins:
     year_last: 1700
     year_label: '1700'
     ruler: Frederik IV
+    mintmaster: Christian Wineke, the Elder
     mint: Kopenhagen
     catalog:
       km: '471'
@@ -88271,37 +88198,80 @@ coins:
       hede_volume: f4h
       schou: 3-4
       sieg: '39'
-      bruun_collection_id: '7302'
+      bruun_collection_id:
+        - '7300'
+        - '7302'
+      others:
+        - Kold# 150b
+        - Kold# 151
+        - B# 19
       bruun_part: III
       bruun_lot_no: 11262
       bruun_page: 133
-      others:
-        - Kold# 151
-        - B# 19
       numista: '341250'
       fr: '230'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
       - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+      - value: 0.979
         source: numista
+      - value: 0.98
+        source: ucoin
     weight_rough_g:
       - value: 3.42
         source: bruun
       - value: 3.45
         source: numista
+      - value: 3.47
+        source: bruun
       - value: 3.48
         source: kmk
       - value: 3.49
         source: hede
+      - value: 3.49
+        source: ngc
+      - value: 3.49
+        source: numismaster
+      - value: 3.49
+        source: ucoin
+    diameter_mm:
+      - value: 20.0
+        source: ucoin
+    catalog_alts:
+      - register: hede
+        value: '5'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]Bruun Part IV, lot 17112, S. 58[/b]: [i]«Ducat, 1700 … KM-471; Hede-5; Sieg-39; Schou-3»[/i] (Übers.: «Dukat, 1700 …»).\n[b]danskmoent.dk
+            (Hede, Frederik 4.)[/b], Übersicht, Hede 5: [i]«4 Dukat»[/i], [i]«U.år (1699)»[/i] (Übers.: «ohne Jahr (1699)»), Sieg 38.\n[b]danskmoent.dk (Hede 6)[/b]: [i]«1 Dukat Hede 6, Schou 3-4, sølvafslag
+            3a, Sieg 39»[/i] (Übers.: «1 Dukat Hede 6, Schou 3-4, Silberabschlag 3a, Sieg 39»), 1700."
+          en: "The Hede number does not belong to this coin.\n[b]Bruun Part IV, lot 17112, p. 58[/b]: [i]«Ducat, 1700 … KM-471; Hede-5; Sieg-39; Schou-3»[/i].\n[b]danskmoent.dk (Hede, Frederik 4.)[/b],
+            overview, Hede 5: [i]«4 Dukat»[/i], [i]«U.år (1699)»[/i] (transl.: «undated (1699)»), Sieg 38.\n[b]danskmoent.dk (Hede 6)[/b]: [i]«1 Dukat Hede 6, Schou 3-4, sølvafslag 3a, Sieg 39»[/i] (transl.:
+            «1 Ducat Hede 6, Schou 3-4, silver off-strike 3a, Sieg 39»), 1700."
+          uk: "Номер Hede не належить цій монеті.\n[b]Bruun Part IV, lot 17112, с. 58[/b]: [i]«Ducat, 1700 … KM-471; Hede-5; Sieg-39; Schou-3»[/i] (перекл.: «дукат, 1700 …»).\n[b]danskmoent.dk (Hede, Frederik
+            4.)[/b], огляд, Hede 5: [i]«4 Dukat»[/i], [i]«U.år (1699)»[/i] (перекл.: «без року (1699)»), Sieg 38.\n[b]danskmoent.dk (Hede 6)[/b]: [i]«1 Dukat Hede 6, Schou 3-4, sølvafslag 3a, Sieg 39»[/i]
+            (перекл.: «1 дукат Hede 6, Schou 3-4, срібний відбиток 3a, Sieg 39»), 1700."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]Bruun Part IV, lot 17112, s. 58[/b]: [i]«Ducat, 1700 … KM-471; Hede-5; Sieg-39; Schou-3»[/i] (overs.: «dukat, 1700 …»).\n[b]danskmoent.dk (Hede,
+            Frederik 4.)[/b], oversigt, Hede 5: [i]«4 Dukat»[/i], [i]«U.år (1699)»[/i], Sieg 38.\n[b]danskmoent.dk (Hede 6)[/b]: [i]«1 Dukat Hede 6, Schou 3-4, sølvafslag 3a, Sieg 39»[/i], 1700."
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65806
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17112, p. 58
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11262, p. 115
@@ -88311,15 +88281,25 @@ coins:
       - type: literature
         url: https://en.numista.com/341250
         ref: Numista N#341250 — Ducat - Frederick IV
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dukat-1700/?tid=94307
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/201993
         ref: KMM 201993 (Inv. RP 540.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-471-1700-cuid-1050902-duid-1238044
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65806
+      - dk-bruun-7300
       - dk-bruun-7302
       - dk-hede-f4h6
       - dk-numista-341250
+      - dk-tid-94307
       - kmk-201993
+      - ngc-1050902
   - id: c-d7b7b71e
     class_id: c-d7b7b71e
     label: unified-dk-hede-f4h7

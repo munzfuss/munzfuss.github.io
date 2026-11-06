@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2740 per-source seed entries.
-# Output: 579 unified entries (one per physical coin).
+# Output: 578 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -16618,38 +16618,94 @@ coins:
       - dk-numista-98995
       - dk-tid-143753
       - ngc-1097803
-  - id: c-a55b62f3
-    class_id: c-a55b62f3
+  - id: c-3d71bb8f
+    class_id: c-3d71bb8f
     label: unified-dk-hede-nc5h53
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 2 Skilling
+    nominal: 4 Skilling
     year_first: 1677
     year_last: 1677
     year_label: '1677'
     ruler: Christian V
     mint: Christiania
     catalog:
+      km: '136'
       hede: '53'
       hede_volume: nc5h
       schou: '28'
+      numista: '99117'
+      others:
+        - Rønning# 100
+        - AAJT# 126
+      skaare: '589'
     metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.125
         source: hede
+      - value: 0.125
+        source: ngc
+      - value: 0.125
+        source: numismaster
+      - value: 0.125
+        source: numista
+      - value: 0.125
+        source: ucoin
     weight_rough_g:
       - value: 5.846
         source: hede
+      - value: 5.85
+        source: ngc
+      - value: 5.85
+        source: numismaster
+      - value: 5.85
+        source: numista
+      - value: 5.85
+        source: ucoin
+    diameter_mm:
+      - value: 22.0
+        source: numista
+    nominal_alts:
+      - value: 2 Skilling
+        source: hede
+        kind: erroneous
+        reason:
+          de: "Die Seite nennt zwei verschiedene Nominale.\n[b]danskmoent.dk (Hede Norge 53)[/b]: Überschrift [i]«2 Skilling 1677, Christiania»[/i]; Umschrift der abgebildeten Münze [i]«IIII SKILLING DANSKE
+            1677»[/i] (Übers.: «IIII Skilling dänisch 1677»); [i]«Bruttovægt: 5,846g»[/i].\n[b]danskmoent.dk (Hede Norge 54)[/b]: [i]«2 Skilling 1677, Christiania»[/i]; [i]«Bruttovægt: 2,783g»[/i].\n[b]danskmoent.dk
+            (Hede, Christian 5.)[/b], Übersicht: Norge 53 [i]«4 Skilling»[/i], Norge 54 [i]«2 Skilling»[/i].\n[b]Numista 99117[/b]: [i]«4 Skilling»[/i], KM 136, Hede 53."
+          en: "The page gives two different denominations.\n[b]danskmoent.dk (Hede Norge 53)[/b]: heading [i]«2 Skilling 1677, Christiania»[/i]; legend of the coin shown [i]«IIII SKILLING DANSKE 1677»[/i]
+            (transl.: «IIII Skilling Danish 1677»); [i]«Bruttovægt: 5,846g»[/i].\n[b]danskmoent.dk (Hede Norge 54)[/b]: [i]«2 Skilling 1677, Christiania»[/i]; [i]«Bruttovægt: 2,783g»[/i].\n[b]danskmoent.dk
+            (Hede, Christian 5.)[/b], overview: Norge 53 [i]«4 Skilling»[/i], Norge 54 [i]«2 Skilling»[/i].\n[b]Numista 99117[/b]: [i]«4 Skilling»[/i], KM 136, Hede 53."
+          uk: "Сторінка подає два різні номінали.\n[b]danskmoent.dk (Hede Norge 53)[/b]: заголовок [i]«2 Skilling 1677, Christiania»[/i] (перекл.: «2 скілінги 1677, Christiania»); легенда на зображенні
+            монети [i]«IIII SKILLING DANSKE 1677»[/i] (перекл.: «IIII скілінги данські 1677»); [i]«Bruttovægt: 5,846g»[/i].\n[b]danskmoent.dk (Hede Norge 54)[/b]: [i]«2 Skilling 1677, Christiania»[/i];
+            [i]«Bruttovægt: 2,783g»[/i].\n[b]danskmoent.dk (Hede, Christian 5.)[/b], огляд: Norge 53 [i]«4 Skilling»[/i], Norge 54 [i]«2 Skilling»[/i].\n[b]Numista 99117[/b]: [i]«4 Skilling»[/i], KM 136,
+            Hede 53."
+          da: "Siden angiver to forskellige nominaler.\n[b]danskmoent.dk (Hede Norge 53)[/b]: overskrift [i]«2 Skilling 1677, Christiania»[/i]; omskrift på den afbildede mønt [i]«IIII SKILLING DANSKE 1677»[/i];
+            [i]«Bruttovægt: 5,846g»[/i].\n[b]danskmoent.dk (Hede Norge 54)[/b]: [i]«2 Skilling 1677, Christiania»[/i]; [i]«Bruttovægt: 2,783g»[/i].\n[b]danskmoent.dk (Hede, Christian 5.)[/b], oversigt:
+            Norge 53 [i]«4 Skilling»[/i], Norge 54 [i]«2 Skilling»[/i].\n[b]Numista 99117[/b]: [i]«4 Skilling»[/i], KM 136, Hede 53."
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_110621
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h53.htm
         ref: danskmoent.dk (Hede nc5h53)
+      - type: literature
+        url: https://en.numista.com/99117
+        ref: Numista N#99117 — 4 Skilling - Christian V (Christiania; Grenailletype) - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-4-skilling-1677/?tid=143940
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-136-1677-cuid-1114098-duid-1448159
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
       value: 13.333
@@ -16657,7 +16713,11 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-110621
       - dk-hede-nc5h53
+      - dk-numista-99117
+      - dk-tid-143940
+      - ngc-1114098
   - id: c-cd84f2de
     class_id: c-cd84f2de
     label: unified-dk-hede-nc5h54
@@ -44849,72 +44909,6 @@ coins:
       - denmark-numismaster-110601
       - dk-numista-99007
       - ngc-1114096
-  - id: c-3d71bb8f
-    class_id: c-3d71bb8f
-    label: unified-ngc-1114098
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1677
-    year_last: 1677
-    year_label: '1677'
-    ruler: Christian V
-    catalog:
-      km: '136'
-      numista: '99117'
-      hede: '53'
-      others:
-        - Rønning# 100
-        - AAJT# 126
-      skaare: '589'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.125
-        source: ngc
-      - value: 0.125
-        source: numismaster
-      - value: 0.125
-        source: numista
-      - value: 0.125
-        source: ucoin
-    weight_rough_g:
-      - value: 5.85
-        source: ngc
-      - value: 5.85
-        source: numismaster
-      - value: 5.85
-        source: numista
-      - value: 5.85
-        source: ucoin
-    diameter_mm:
-      - value: 22.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110621
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/99117
-        ref: Numista N#99117 — 4 Skilling - Christian V (Christiania; Grenailletype) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-4-skilling-1677/?tid=143940
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-136-1677-cuid-1114098-duid-1448159
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110621
-      - dk-numista-99117
-      - dk-tid-143940
-      - ngc-1114098
   - id: c-add75c5b
     class_id: c-add75c5b
     label: unified-ngc-1114106
