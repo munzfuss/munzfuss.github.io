@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-02T13:02:40Z'
+generated_at: '2026-11-06T11:18:23Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -7917,30 +7917,39 @@ coins:
       hede: 60ab
       hede_volume: c4h
       sieg: '120'
+      schou:
+        - '16'
+        - '17'
     metal: silver
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede.htm
         ref: danskmoent.dk overview c4hede (Hede c4h60ab — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h61.htm
+        ref: danskmoent.dk (Hede c4h60AB)
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     mint_verified: true
-    verification_note:
-      de: 'Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
-        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «60A: Provinsskjoldene indadbuede 60B: Provinsskjoldene ligesidede.»'
-      en: 'Only the overview-table row of c4hede.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
-        Hede 1971 and Galster 1965. Index note: «60A: Provinsskjoldene indadbuede 60B: Provinsskjoldene ligesidede.»'
-      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c4hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
-        1965. Коментар з індексу: «60A: Provinsskjoldene indadbuede 60B: Provinsskjoldene ligesidede.»'
-      da: 'Kun oversigtsrækken hos c4hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
-        1965. Bemærkning i indekset: «60A: Provinsskjoldene indadbuede 60B: Provinsskjoldene ligesidede.»'
     year_last: 1624
+    fineness: 0.881
+    _source_note:
+      da: 'Forside: brystbillede, bagside: provinsvåben 1 Speciedaler A) (RRR) Skjoldene indadbuede (Hede 60A, Schou 16, Sieg 120) B) (Unik) Skjoldene ligesidede (Hede 60B, Schou 17, Sieg 120) 2 Speciedaler
+        A) (RR) Skjoldene indadbuede (Hede 61A, Schou 8, Sieg 121) B) (RRR) Skjoldene ligesidede (Hede 61B, Schou 9, Sieg 121) 3 Speciedaler A) (RRR) Skjoldene indadbuede (Hede 62, Schou 5, Sieg 122)'
+    fineness_verified: true
+    weight_rough_g: 29.232
+    hede_muentzfuss_yield:
+      value: 9.071
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
+    weight_rough_verified: true
   - id: dk-hede-c4h61
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1, 2 Og 3 Speciedaler
+    nominal: 2 Speciedaler
     year_label: '1624'
     year_first: 1624
     year_last: 1624
@@ -7950,15 +7959,9 @@ coins:
       hede: '61'
       hede_volume: c4h
       schou:
-        - '5'
         - '8'
         - '9'
-        - '16'
-        - '17'
-      sieg:
-        - '120'
-        - '121'
-        - '122'
+      sieg: '121'
     metal: silver
     sources:
       - type: literature
@@ -7970,6 +7973,16 @@ coins:
     _source_note:
       da: 'Forside: brystbillede, bagside: provinsvåben 1 Speciedaler A) (RRR) Skjoldene indadbuede (Hede 60A, Schou 16, Sieg 120) B) (Unik) Skjoldene ligesidede (Hede 60B, Schou 17, Sieg 120) 2 Speciedaler
         A) (RR) Skjoldene indadbuede (Hede 61A, Schou 8, Sieg 121) B) (RRR) Skjoldene ligesidede (Hede 61B, Schou 9, Sieg 121) 3 Speciedaler A) (RRR) Skjoldene indadbuede (Hede 62, Schou 5, Sieg 122)'
+    fineness: 0.881
+    fineness_verified: true
+    weight_rough_g: 58.464
+    metal_verified: true
+    hede_muentzfuss_yield:
+      value: 9.071
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
+    weight_rough_verified: true
   - id: dk-hede-c4h62
     fuss: seed_unsorted
     phase: hede
@@ -7983,25 +7996,32 @@ coins:
       hede: '62'
       hede_volume: c4h
       sieg: '122'
+      schou: '5'
     metal: silver
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede.htm
         ref: danskmoent.dk overview c4hede (Hede c4h62 — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h61.htm
+        ref: danskmoent.dk (Hede c4h62)
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     mint_verified: true
-    verification_note:
-      de: 'Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
-        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Provinsskjoldene indadbuede»'
-      en: 'Only the overview-table row of c4hede.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
-        Hede 1971 and Galster 1965. Index note: «Provinsskjoldene indadbuede»'
-      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c4hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
-        1965. Коментар з індексу: «Provinsskjoldene indadbuede»'
-      da: 'Kun oversigtsrækken hos c4hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
-        1965. Bemærkning i indekset: «Provinsskjoldene indadbuede»'
     year_last: 1624
+    fineness: 0.881
+    _source_note:
+      da: 'Forside: brystbillede, bagside: provinsvåben 1 Speciedaler A) (RRR) Skjoldene indadbuede (Hede 60A, Schou 16, Sieg 120) B) (Unik) Skjoldene ligesidede (Hede 60B, Schou 17, Sieg 120) 2 Speciedaler
+        A) (RR) Skjoldene indadbuede (Hede 61A, Schou 8, Sieg 121) B) (RRR) Skjoldene ligesidede (Hede 61B, Schou 9, Sieg 121) 3 Speciedaler A) (RRR) Skjoldene indadbuede (Hede 62, Schou 5, Sieg 122)'
+    fineness_verified: true
+    weight_rough_g: 87.696
+    hede_muentzfuss_yield:
+      value: 9.071
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
+    weight_rough_verified: true
   - id: dk-hede-c4h138
     fuss: seed_unsorted
     phase: hede

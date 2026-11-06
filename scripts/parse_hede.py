@@ -705,6 +705,78 @@ def _extract_litteratur(text: str) -> list[str]:
     return items
 
 
+# One spec block for several coins, values «respectively» in label order
+# (c4h61: «1, 2 og 3 speciedaler» — «Bruttovægt hhv.: 29,232g, 58,464g,
+# 87,696g … Finvægt hhv.: …»). The page lists each coin as a label line
+# («2 Speciedaler») followed by its letter variants «(Hede 61A, Schou 8,
+# Sieg 121)». The overview c4hede.htm links Hede 60AB, 61AB and 62 all to
+# this page, so each coin is the page's own entry, not a cross-reference.
+_HHV_LIST_RE = r"\s+hhv\.?\s*:\s*((?:[\d,\.]+\s*g?\s*(?:,|og)?\s*)+)"
+_BRUTTO_HHV_RE = re.compile(r"Bruttovægt" + _HHV_LIST_RE, re.IGNORECASE)
+_FINVAEGT_HHV_RE = re.compile(r"Finvægt" + _HHV_LIST_RE, re.IGNORECASE)
+_HHV_LABEL_RE = re.compile(r"^\s*(\d+(?:/\d+)?)\s+([A-Za-zæøåÆØÅ]+)\s*$")
+_HHV_REF_RE = re.compile(r"\(Hede\s+(\d+)([A-Z]?)\s*,([^)]*)\)")
+
+
+def _hhv_values(s: str) -> list[float]:
+    return [v for v in (_parse_decimal(x) for x in re.findall(r"\d+,\d+|\d+\.\d+|\d+", s))
+            if v is not None]
+
+
+def _extract_hhv_specs(text: str, basename: str) -> dict | None:
+    mb = _BRUTTO_HHV_RE.search(text)
+    if not mb:
+        return None
+    weights = _hhv_values(mb.group(1))
+    groups: list[dict] = []
+    for line in text[:mb.start()].split("\n"):
+        lm = _HHV_LABEL_RE.match(line)
+        if lm:
+            groups.append({"nominal": f"{lm.group(1)} {lm.group(2).lower()}",
+                           "bases": [], "letters": [], "Schou": [], "Sieg": []})
+            continue
+        for rm in _HHV_REF_RE.finditer(line):
+            if not groups:
+                continue
+            g = groups[-1]
+            if rm.group(1) not in g["bases"]:
+                g["bases"].append(rm.group(1))
+            if rm.group(2):
+                g["letters"].append(rm.group(2))
+            for reg in ("Schou", "Sieg"):
+                for v in re.findall(reg + r"\s+([\d][\w\-\.]*)", rm.group(3)):
+                    if v not in g[reg]:
+                        g[reg].append(v)
+    groups = [g for g in groups if g["bases"]]
+    if len(groups) < 2 or len(groups) != len(weights) or any(len(g["bases"]) != 1 for g in groups):
+        return None
+    tail = text[mb.start(): mb.start() + 600]
+    fin_m = _FINHED_RE.search(tail)
+    finhed = _parse_decimal(fin_m.group(1)) if fin_m else None
+    fv_m = _FINVAEGT_HHV_RE.search(tail)
+    fine_ws = _hhv_values(fv_m.group(1)) if fv_m else []
+    marken = _spec_from_around(text, mb.start()).get("marken_fin_udbragt_til")
+    primary = (re.match(r"^n?[cf]\d+h([\dA-Za-z]+)$", basename) or [None, ""])[1]
+    out: dict[str, dict] = {}
+    for i, g in enumerate(groups):
+        base = g["bases"][0]
+        # The page's own number keeps its bare key (seed id dk-hede-c4h61);
+        # a sibling coin gets the overview's composite key (60AB, 62).
+        key = base if base == primary else base + "".join(sorted(set(g["letters"])))
+        spec: dict = {"bruttovægt_g": weights[i], "nominal": g["nominal"]}
+        if finhed is not None:
+            spec["finhed"] = finhed
+        if len(fine_ws) == len(groups):
+            spec["finvægt_g"] = fine_ws[i]
+        if marken:
+            spec["marken_fin_udbragt_til"] = marken
+        refs = {r: g[r] for r in ("Schou", "Sieg") if g[r]}
+        if refs:
+            spec["catalog_refs"] = refs
+        out[key] = spec
+    return out
+
+
 def _extract_specs(text: str, basename: str = "") -> dict:
     """Parse the spec block. When multiple spec blocks appear (multi-
     entry pages like f3h62 covering Hede 61, 62AB, 63, 64), return
@@ -730,6 +802,9 @@ def _extract_specs(text: str, basename: str = "") -> dict:
     table-cell spec block match its immediately preceding denomination
     label against the map.
     """
+    hhv = _extract_hhv_specs(text, basename)
+    if hhv:
+        return {"by_hede": hhv}
     bruttos = list(_BRUTTO_RE.finditer(text))
     if not bruttos:
         return {}
