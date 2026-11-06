@@ -45,11 +45,11 @@
   record the stub rule dropped — a stale citation left from before the stub rule, not yet removed.
 - **Shipped 2026-11-06 (later):** 5d1aa48 + f710ef9 (Hede-base nominal normalisation, Sechsling = søsling;
   dry-run refusals 112 → 92), c0236b8 (Hede c4h61 read per coin: 1/2/3 Speciedaler, «hhv.» weights; cache
-  d4d04d3 in the harvest repo). **Open:** the pointer bump to d4d04d3 is STAGED but not committed (the bare
-  commit is blocked for Claude) — run `git commit -m "data: scripts/cache pointer to d4d04d3 (Hede c4h61
-  per-coin specs)"` in this worktree. Also open: `build_hede_denmark_seed` writes the absolute
-  MUNZFUSS_HARVEST_DIR path into `scope_note` (reverted by hand in c0236b8); the parser re-adds an
-  overview `c3hede` entry to `_parsed_index.json` on a full run (dropped by hand in d4d04d3).
+  d4d04d3 in the harvest repo), a5aa0ca (Hede seed `scope_note` no longer carries the absolute
+  MUNZFUSS_HARVEST_DIR path; parse_hede tests for an overview before reusing a sidecar, stale c3hede.json
+  removed in harvest ab26c98). **Open:** the pointer bump to ab26c98 is STAGED but not committed (the bare
+  commit is blocked for Claude) — run `git commit -m "data: scripts/cache pointer to ab26c98 (Hede c4h61
+  per-coin specs, stale c3hede sidecar removed)"` in this worktree.
 - **Next (curator 2026-11-05):** nominal normalisation for the Hede-base rule (toskilling = 2 skilling,
   krone-skilling = kroneskilling, gold krone = krone, «; …» tails, «?», «-lybsk» / norsk / kurant qualifiers,
   penny/penning, «1/2 sk»), measured with an `HEDE_BASE=1` dry-run before switching anything on.
