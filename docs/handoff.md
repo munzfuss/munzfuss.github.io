@@ -40,9 +40,9 @@
   finals = branch + coins where the two differ. verify_reflow vs HEAD 0 losses.
 - **Note:** the five KMM records main relocated with a `ruler_mark` (572914, 572915, 707672, 132586, 562736) are
   stubs (no weight, no image) and dropped by the stub rule; main's cross-entity entries for them are spent.
-- **Open — kmk-266605** (square silver piece, Frederik III 1648, 7.22 g, no nominal/index): the merger joins it to
-  class c-75cb40be (Hede 47 / KM 161) on ruler + year + weight alone. Final km-161-fr-iii-1648 is kept as before
-  it; seed_unified carries the union. Curator: `no_merges` or approve.
+- **Closed — kmk-266605** joins Hede 47 (1bd5e1c, curator «Так, зливай» on the merge-candidate table: the only
+  square silver coronation coin of 1648 at that weight). Final km-161-fr-iii-1648 still cites KMM 149338, a
+  record the stub rule dropped — a stale citation left from before the stub rule, not yet removed.
 - **Next (curator 2026-11-05):** nominal normalisation for the Hede-base rule (toskilling = 2 skilling,
   krone-skilling = kroneskilling, gold krone = krone, «; …» tails, «?», «-lybsk» / norsk / kurant qualifiers,
   penny/penning, «1/2 sk»), measured with an `HEDE_BASE=1` dry-run before switching anything on.
