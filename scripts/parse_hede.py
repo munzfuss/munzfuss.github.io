@@ -2452,13 +2452,17 @@ def main() -> int:
         if _cands:
             review[basename] = _cands
         json_path = f.with_suffix(".json")
+        html = f.read_text(encoding="utf-8", errors="replace")
+        # Overview test BEFORE the cached-sidecar shortcut: a sidecar parsed
+        # before the overview test existed (c3hede.json) would otherwise enter
+        # the aggregate index on every run, and the seed builder reads an
+        # index key «c3hede» as a page owning Hede number «ede».
+        if _looks_like_overview(html):
+            overviews += 1
+            continue
         if json_path.exists() and not args.force:
             skipped += 1
             parsed_files.append(json_path)
-            continue
-        html = f.read_text(encoding="utf-8", errors="replace")
-        if _looks_like_overview(html):
-            overviews += 1
             continue
         try:
             entry = parse_one(html, basename)

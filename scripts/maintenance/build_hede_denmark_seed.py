@@ -1697,9 +1697,12 @@ def main() -> int:
         c.get("catalog", {}).get("hede", ""),
     ))
     merge_stats = None  # Reported per-entity by write_v2_seed
+    # The logical cache path, not wherever this run found it: with
+    # MUNZFUSS_HARVEST_DIR (a worktree reading the main checkout's cache) the
+    # real path is absolute and machine-specific, and it leaked into every seed.
     scope_note = (
         "Hede 1971 seed via danskmoent.dk parser cache "
-        f"({HEDE_CACHE.relative_to(PROJECT) if HEDE_CACHE.is_relative_to(PROJECT) else HEDE_CACHE}). "
+        "(scripts/cache/hede). "
         f"Scope: {year_from} <= year_first <= {year_to}. Per-entry "
         "curation: fuss/phase/fraction/issuing_entity/kind/note/"
         "*_verified flags survive regen; `_curation_holds: {field: "
