@@ -27,20 +27,33 @@
   know scope-dropped records), 2b96f63 (full KMM re-seed: 16 024 → 7 358 KMM seeds, 15 043 records dropped; Hede
   Norge 71 group +28, Hede 119B/C merge, two classification keys re-keyed). The reviewed builder drift (stale bare
   Hede bases etc.) landed with it.
-- **Open — cache pointer:** the data rests on KMM pages fetched 2026-11-05 that are NOT yet committed in the
-  harvest repo (main checkout `scripts/cache/kmk/web/`). Session «Докачати сторінки KMM для 23 тис. записів»
-  (local_1d10c7e6…) fetches the remaining ~21 000 pages and commits them in the cache repo; then bump the
-  `scripts/cache` pointer here, re-seed KMM once more (more stubs drop), re-flow, commit.
+- **Shipped 2026-11-06 (local, unpushed):** 911d4a6 (Hede-base rule, opt-in `HEDE_BASE=1`, with source-declared
+  nominal equivalences; default OFF), 93641ad (kmk-167058 page-incoherent; the stub rule ignores photographs of
+  another object), 20c25e0 (KMM re-seed on every cached object page: 32 763 records scope-dropped, 832 KMM-only
+  finals gone), e12f630 (cache pointer 55f974d), d347753 (merge of LOCAL main 5928ad3, pointer now 226dbaec).
+  The branch now contains main: «дрібні правки» can fast-forward main to it. Push the harvest repo (4 unpushed
+  commits incl. 55f974d / b59e1da) BEFORE the project.
+- **How d347753 was re-flowed (reuse for the next merge):** generated layers (final / seed_unified /
+  class_registry) restarted from the BRANCH side, not main — the branch's class registry carries the
+  `split_into` history the carried classifications need; starting from main's registry declassified kmk-427535,
+  kmk-131169 and renamed c-302a2460. Base re-flow = branch tip in a scratch worktree, work re-flow = merged tree;
+  finals = branch + coins where the two differ. verify_reflow vs HEAD 0 losses.
+- **Note:** the five KMM records main relocated with a `ruler_mark` (572914, 572915, 707672, 132586, 562736) are
+  stubs (no weight, no image) and dropped by the stub rule; main's cross-entity entries for them are spent.
+- **Open — kmk-266605** (square silver piece, Frederik III 1648, 7.22 g, no nominal/index): the merger joins it to
+  class c-75cb40be (Hede 47 / KM 161) on ruler + year + weight alone. Final km-161-fr-iii-1648 is kept as before
+  it; seed_unified carries the union. Curator: `no_merges` or approve.
+- **Next (curator 2026-11-05):** nominal normalisation for the Hede-base rule (toskilling = 2 skilling,
+  krone-skilling = kroneskilling, gold krone = krone, «; …» tails, «?», «-lybsk» / norsk / kurant qualifiers,
+  penny/penning, «1/2 sk»), measured with an `HEDE_BASE=1` dry-run before switching anything on.
 - **Open — HEAD finals are not a fixed point of absorb:** a merger+absorb of clean HEAD changes 14 final files
   (medieval year ranges 1259-1360 emptied → verify_reflow blocks; KMM citation `display: False` flags). c773198 and
   2b96f63 took only the touched coins from the re-flow (structural transplant, never text blocks — YAML anchors).
 - **Open — union-find over-merge:** the merger joins classes through a third record even when two members are a
   pairwise `no_match` on distinct catalogue bases (Galster 45 vs 69). Curator chose a no_merges for now.
-- **In progress (uncommitted):** Hede-base rule in `merge_seeds_cross_source.py` (step 3b, `HEDE_BASE`, full-group
-  check). Curator chose «exclude only the conflicting class» (with care: unsure records must not migrate), plus
-  nominal-noise handling for the rule («?», «; …» tails, digit-only nominals, «sk», bare vs norsk/lybsk soft;
-  forgery classes stay out; Hede prints «12 Skilling (1/8 Speciedaler)» — keep Hede's parenthetical as an
-  alternative nominal). Re-measure refusals after the KMM stub drop. `promoted_near_peers` in
+- **Hede-base rule, still open:** the «exclude only the conflicting class» mode is not implemented (with care:
+  unsure records must not migrate); real conflicts (2 vs 1 skilling, portugaløser vs speciedaler, metal) to be
+  reviewed one by one. Last dry-run: 248 groups joined, 119 refused. `promoted_near_peers` in
   classification_decisions/danish_realm lists the fragments the rule should rejoin.
 
 ## 2026-11-03 — Reign gate, classification carry, weight-gate corrections (D53; branch claude/relaxed-mendeleev-72593f)
