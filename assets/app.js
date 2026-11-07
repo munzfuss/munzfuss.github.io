@@ -473,10 +473,10 @@
   // Built from text nodes, never innerHTML — tooltip text is data.
   // Every marker tooltip opens with a bold headline naming the marker kind;
   var MARK_HEAD = {
-    uk: {approximate: "Приблизне значення.", template: "Цільове значення стандарту.", fragment: "Фрагмент.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення.", hedged: "Джерело подає значення непевно.", inferred: "Виведене значення.", derived: "Обчислено з виведеного значення."},
-    de: {approximate: "Ungefährer Wert.", template: "Sollwert des Münzfußes.", fragment: "Fragment.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert.", hedged: "Die Quelle gibt den Wert unter Vorbehalt.", inferred: "Abgeleiteter Wert.", derived: "Aus einem abgeleiteten Wert errechnet."},
-    en: {approximate: "Approximate value.", template: "Target value of the standard.", fragment: "Fragment.", suspect: "Suspect value.", unverified: "Estimated value.", erroneous: "Erroneous value.", hedged: "The source gives the value with reservation.", inferred: "Inferred value.", derived: "Computed from an inferred value."},
-    da: {approximate: "Omtrentlig værdi.", template: "Møntfodens målværdi.", fragment: "Fragment.", suspect: "Mistænkelig værdi.", unverified: "Anslået værdi.", erroneous: "Fejlagtig værdi.", hedged: "Kilden angiver værdien med forbehold.", inferred: "Udledt værdi.", derived: "Beregnet ud fra en udledt værdi."}
+    uk: {variant: "Засвідчений варіант.", approximate: "Приблизне значення.", template: "Цільове значення стандарту.", fragment: "Фрагмент.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення.", hedged: "Джерело подає значення непевно.", inferred: "Виведене значення.", derived: "Обчислено з виведеного значення."},
+    de: {variant: "Belegte Variante.", approximate: "Ungefährer Wert.", template: "Sollwert des Münzfußes.", fragment: "Fragment.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert.", hedged: "Die Quelle gibt den Wert unter Vorbehalt.", inferred: "Abgeleiteter Wert.", derived: "Aus einem abgeleiteten Wert errechnet."},
+    en: {variant: "Attested variant.", approximate: "Approximate value.", template: "Target value of the standard.", fragment: "Fragment.", suspect: "Suspect value.", unverified: "Estimated value.", erroneous: "Erroneous value.", hedged: "The source gives the value with reservation.", inferred: "Inferred value.", derived: "Computed from an inferred value."},
+    da: {variant: "Belagt variant.", approximate: "Omtrentlig værdi.", template: "Møntfodens målværdi.", fragment: "Fragment.", suspect: "Mistænkelig værdi.", unverified: "Anslået værdi.", erroneous: "Fejlagtig værdi.", hedged: "Kilden angiver værdien med forbehold.", inferred: "Udledt værdi.", derived: "Beregnet ud fra en udledt værdi."}
   };
   function markKind(trigger) {
     var c = trigger && trigger.className;
@@ -484,7 +484,7 @@
     // Coin.uncertainty: «(?)» a source's own reservation, «[ ]» an inference.
     var u = /(?:^|\s)unc-(hedged|inferred|derived)(?:\s|$)/.exec(c);
     if (u) return u[1];
-    var m = /(?:^|\s)(suspect|erroneous|template|fragment|approximate)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(c);
+    var m = /(?:^|\s)(suspect|erroneous|template|fragment|approximate|variant)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(c);
     return m ? (m[1] || m[2]) : null;
   }
   // Tooltip text may carry [b]…[/b] (the work / source) and [i]…[/i] (its

@@ -242,7 +242,8 @@
       {#- No «(?)» / «[ ]» on the metal: not useful to the reader (curator
           2026-10-29); metal_verified and Coin.uncertainty stay in the data. -#}
       <span class="nw">{{ metals[coin.raw.metal] }}</span>
-      {%- for a in coin.raw.metal_alts or [] if a.value != coin.raw.metal %} <span class="mint-alt">{{ metals[a.value] if a.value in metals else a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
+      {%- for a in coin.raw.metal_alts or [] if a.value != coin.raw.metal and a.kind == 'variant' %}, <span class="nw variant-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ (metals[a.value] if a.value in metals else a.value)|lower }}</span>{% endfor -%}
+      {%- for a in coin.raw.metal_alts or [] if a.value != coin.raw.metal and a.kind != 'variant' %} <span class="mint-alt">{{ metals[a.value] if a.value in metals else a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
     {%- else -%}{{ nv() }}{%- endif -%}
   </td>
   <td class="c-fin{% if coin.msr_n > 1 %} c-msr{% endif %}">

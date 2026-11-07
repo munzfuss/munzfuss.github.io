@@ -212,7 +212,10 @@ def apply_metal_mark(entry) -> None:
     if isinstance(mark, dict) and mark.get("kind") == "suspect":
         entry["metal_verified"] = False
         return
-    if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
+    # «variant»: a second metal the sources attest for this coin. It leaves the
+    # matching and the class's metal to the other members exactly like an
+    # erroneous one, and is shown beside it without «(!)».
+    if not isinstance(mark, dict) or mark.get("kind") not in ("erroneous", "variant"):
         return
     printed = entry.get("metal")
     if printed and not mark.get("value"):

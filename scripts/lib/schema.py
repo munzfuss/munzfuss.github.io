@@ -75,8 +75,10 @@ class I18nTextOptional(_StrictBase):
 class YearMark(_StrictBase):
     """A curation mark on a seed's own year, ruler, mint, nominal or metal
     (see Coin.year_mark, Coin.ruler_mark, Coin.mint_mark, Coin.nominal_mark,
-    Coin.metal_mark)."""
-    kind: Literal["suspect", "erroneous", "approximate"]
+    Coin.metal_mark). «variant» (metal only): a second metal the sources
+    attest for the same coin — shown beside the class's metal, not as an
+    error (curator 2026-11-07, the brass Sechsling 1850, ucoin 187884)."""
+    kind: Literal["suspect", "erroneous", "approximate", "variant"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
     # The year the source printed, when a curator `_source_errata` has replaced
@@ -91,7 +93,7 @@ class YearAlt(_StrictBase):
     Coin.ruler_alts, Coin.mint_alts)."""
     value: str = Field(..., min_length=1)
     source: str = Field(..., min_length=1)
-    kind: Literal["suspect", "erroneous", "approximate"]
+    kind: Literal["suspect", "erroneous", "approximate", "variant"]
     reason: I18nText
 
 
