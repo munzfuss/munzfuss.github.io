@@ -351,7 +351,10 @@ def _nominal_wildcard_match(na: str, nb: str) -> bool:
     wildcard so the nominal discriminator never SPLITS on it. Same quantity
     required; the shared unit must be ≥4 chars to avoid trivial coincidence."""
     def _split_qty(n: str):
-        m = re.match(r"^(\d+(?:/\d+)?)\s+(.+)$", n)
+        # A mixed number («2 1/2 skilling», normalised from «2½») is ONE
+        # quantity: read as «2» it made «2½ Schilling» the wildcard of
+        # «2 Skilling» (curator 2026-11-07).
+        m = re.match(r"^(\d+(?:\s+\d+/\d+|/\d+)?)\s+(.+)$", n)
         return (m.group(1), m.group(2)) if m else ("1", n)
     qa, ba = _split_qty(na)
     qb, bb = _split_qty(nb)
@@ -2323,10 +2326,30 @@ def _declared_nominal_pairs(raw) -> list[tuple[str, str]]:
     return [(a, b) for i, a in enumerate(parts) for b in parts[i + 1:]]
 
 
+# Numista titles a type by both its names («1 Speciesthaler / 60 Schilling
+# Courant - Christian VII») while its value field carries one («1
+# Speciesthaler»), and the seed takes the value field. The title's first
+# segment is Numista's own declaration that the two names are one coin
+# (curator 2026-11-07, Hede C7 39). Only a «A / B» segment counts: other
+# title segments are type descriptions, not names.
+_NUMISTA_TITLE_RE = re.compile(r"^Numista N#\d+ — (.+?)(?: - |$)")
+
+
+def _numista_title_names(c) -> str | None:
+    for s in c.get("sources") or []:
+        m = _NUMISTA_TITLE_RE.match(str((s or {}).get("ref") or ""))
+        if m and " / " in m.group(1):
+            return m.group(1)
+    return None
+
+
 def _collect_declared_nominal_equiv(seeds) -> None:
     for c in seeds:
         for a, b in _declared_nominal_pairs(c.get("nominal")):
             _DECLARED_NOMINAL_EQUIV.setdefault(frozenset({a, b}), f"{c.get('id')}: {c.get('nominal')}")
+        title = _numista_title_names(c)
+        for a, b in _declared_nominal_pairs(title):
+            _DECLARED_NOMINAL_EQUIV.setdefault(frozenset({a, b}), f"{c.get('id')}: Numista title «{title}»")
 
 
 def _nominal_like(x: str, y: str) -> bool:

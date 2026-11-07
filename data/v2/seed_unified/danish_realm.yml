@@ -2,7 +2,7 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8529 per-source seed entries.
+# Input: 8527 per-source seed entries.
 # Output: 1873 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -104969,34 +104969,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-122241
-  - id: c-142b7982
-    class_id: c-142b7982
-    label: unified-kmk-122242
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1644
-    year_last: 1644
-    year_label: '1644'
-    ruler: Christian IV
-    catalog:
-      hede: '19'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122242
-        ref: KMM 122242 (Inv. FP 5051.46)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122243
-        ref: KMM 122243 (Inv. FP 5051.47)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-122242
-      - kmk-122243
   - id: c-b14b8b5c
     class_id: c-b14b8b5c
     label: unified-kmk-122244
@@ -105530,12 +105502,8 @@ coins:
     year_label: '1619'
     ruler: Christian V
     catalog:
-      hede:
-        - 106A
-        - 106B
-      schou:
-        - '52'
-        - '59'
+      hede: 106A
+      schou: '52'
     metal_verified: false
     weight_rough_verified: true
     mint_verified: false
@@ -105543,18 +105511,40 @@ coins:
     weight_rough_g:
       - value: 18.3
         source: kmk
-      - value: 18.62
-        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/131602
         ref: KMM 131602 (Inv. FP 3537.1)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-131602
+  - id: c-8c4fc1ae
+    class_id: c-8c4fc1ae
+    label: unified-kmk-131604
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Krone
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    ruler: Christian V
+    catalog:
+      hede: 106B
+      schou: '59'
+    metal_verified: false
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 18.62
+        source: kmk
+    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/131604
         ref: KMM 131604 (Inv. FP 3537.2)
     issuing_entity: danish_realm
     composed_of:
-      - kmk-131602
       - kmk-131604
   - id: c-48461fbe
     class_id: c-48461fbe

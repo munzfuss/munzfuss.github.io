@@ -29,6 +29,23 @@ class DeclaredPairs(unittest.TestCase):
         self.assertEqual(m._declared_nominal_pairs("½ Skilling"), [])
         self.assertEqual(m._declared_nominal_pairs("1/4 Speciedaler"), [])
 
+    def test_numista_title_declares_both_names(self):
+        """Numista's title names the type twice while its value field — the
+        seed's nominal — keeps one (curator 2026-11-07, Hede C7 39)."""
+        c = {"id": "dk-numista-32842", "nominal": "1 Speciesthaler", "sources": [
+            {"ref": "Numista N#32842 — 1 Speciesthaler / 60 Schilling Courant - Christian VII"}]}
+        self.assertEqual(m._numista_title_names(c), "1 Speciesthaler / 60 Schilling Courant")
+        single = {"sources": [{"ref": "Numista N#82177 — 8 Skilling - Frederik IV (Type I; heavy) - Norway"}]}
+        self.assertIsNone(m._numista_title_names(single))
+        other = {"sources": [{"ref": "Bruun Part I, lot 1153 — 1 / 2"}]}
+        self.assertIsNone(m._numista_title_names(other))
+
+    def test_mixed_number_is_one_quantity(self):
+        """«2½» is not «2»: the bare-unit wildcard needs the same quantity."""
+        self.assertFalse(m._nominal_wildcard_match("2 skilling", "2 1/2 skilling kurant"))
+        self.assertFalse(m._nominal_wildcard_match("2 skilling", "2 1/2 skilling"))
+        self.assertTrue(m._nominal_wildcard_match("2 1/2 skilling", "2 1/2 rigsbankskilling"))
+
 
 class Equivalence(unittest.TestCase):
     def setUp(self):
