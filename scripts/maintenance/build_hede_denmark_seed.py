@@ -628,8 +628,9 @@ _OVERVIEW_METALS: dict | None = None
 # Pages whose index metal contradicts another source's verified metal; the
 # fallback stays off until the curator decides (2026-11-07).
 _OVERVIEW_METAL_HOLD: dict[str, str] = {
-    "f2h33": "Hede index «1 Penning lybsk Kobber 1566, 1571 Flensborg» vs NGC / "
-             "NumisMaster 166851 silver — open curator question.",
+    # f2h33 released 2026-11-07: NGC / NumisMaster 166851 «Silver» (no
+    # fineness, no weight) marked suspect (*) on their seeds; Hede's index
+    # «Kobber» stands.
 }
 
 

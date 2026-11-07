@@ -204,8 +204,14 @@ def apply_metal_mark(entry) -> None:
     with «(!)») and `metal` is cleared with `metal_verified` false, so the
     merger's metal matching and its verified-vs-verified conflict check never
     see it (curator 2026-11-07, KMM 152038 «kobber»). Idempotent. A «suspect»
-    mark changes nothing here."""
+    mark keeps the metal (shown with «(*)») but takes away `metal_verified`:
+    a doubted value cannot outrank another source's attested one in the
+    verified-vs-verified check (curator 2026-11-07, NGC / NumisMaster 166851
+    «Silver» without a fineness against Hede's «Kobber»)."""
     mark = entry.get("metal_mark")
+    if isinstance(mark, dict) and mark.get("kind") == "suspect":
+        entry["metal_verified"] = False
+        return
     if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
         return
     printed = entry.get("metal")

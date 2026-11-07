@@ -27,5 +27,18 @@ class MetalMark(unittest.TestCase):
         self.assertEqual(e["metal"], "copper")
 
 
+
+class SuspectMetalMark(unittest.TestCase):
+    def test_suspect_keeps_metal_but_drops_verified(self):
+        """A doubted metal stays visible but cannot outrank another source's
+        attested one (curator 2026-11-07, NGC 166851 «Silver» vs Hede «Kobber»)."""
+        from lib.seed_merge import apply_metal_mark
+        e = {"metal": "silver", "metal_verified": True,
+             "metal_mark": {"kind": "suspect", "reason": {"de": "x", "en": "x", "uk": "x", "da": "x"}}}
+        apply_metal_mark(e)
+        self.assertEqual(e["metal"], "silver")
+        self.assertFalse(e["metal_verified"])
+
+
 if __name__ == "__main__":
     unittest.main()
