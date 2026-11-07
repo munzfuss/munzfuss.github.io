@@ -7933,7 +7933,9 @@ coins:
       note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-c8h7 (matched via seed-unified-bridge; V1→V2 bootstrap had dropped the note field — see 
         restore_v1_notes_to_v2_final.py).
   - fuss: 18_5_thaler
-    phase: I
+    phase:
+      denmark: I
+      schleswig_holstein: II
     kind: scheide
     nominal: 3 Rigsbankskilling / 3 R.B.S
     fraction: 1/24
@@ -7965,10 +7967,30 @@ coins:
     weight_rough_g:
       - value: 1.519
         source: hede
+    catalog_alts:
+      - register: hede
+        value: 8C
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], Übersicht: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (Übers.: «… 3 Rigsbankskilling
+            / 3 R.B.S. Silber 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (Übers.: «C) 1842
+            (RR), Altona; Münzzeichen: Reichsapfel und FF (Hede 8C, Schou 6, Sieg 8)»)."
+          en: "The Hede number does not belong to this coin.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], overview: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (transl.: «… 3 Rigsbankskilling
+            / 3 R.B.S. silver 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (transl.: «C) 1842
+            (RR), Altona; mint mark: orb and FF (Hede 8C, Schou 6, Sieg 8)»)."
+          uk: "Номер Hede не належить цій монеті.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], огляд: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (перекл.: «… 3 Rigsbankskilling /
+            3 R.B.S. срібло 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (перекл.: «C) 1842 (RR),
+            Altona; монетний знак: держава і FF (Hede 8C, Schou 6, Sieg 8)»)."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], oversigt: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i].\n[b]danskmoent.dk (Hede
+            8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i]."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c8h9.htm
         ref: danskmoent.dk (Hede c8h9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168061
+        ref: KMM 168061 (Inv. FP 2448.27)
     note:
       de: 'Vorderseite: Porträt, Rückseite: Krone. Die Wertangabe erscheint entweder als ‹3 Rigsbankskilling› oder als ‹3 R.B.S.›. Müntzmeisterzeichen FF. Geprägt in København.'
       en: 'Obverse: portrait, reverse: crown. The value indication appears either as ‹3 Rigsbankskilling› or as ‹3 R.B.S.›. Mintmaster mark FF. Struck at København.'
@@ -17001,34 +17023,6 @@ coins:
     composed_of:
       - c-62d71501
     label: unified-kmk-168013
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: II
-    kind: kurant
-    nominal: 3 Rigsbankskilling
-    ruler: Christian VIII.
-    issuing_entity: royal_holstein
-    fraction: 1/24
-    id: c-f7b8830f
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    mint: Altona
-    catalog:
-      schou: '7'
-      hede: 8C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168061
-        ref: KMM 168061 (Inv. FP 2448.27)
-    verification_note: *id002
-    composed_of:
-      - c-f7b8830f
-    label: unified-kmk-168061
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk

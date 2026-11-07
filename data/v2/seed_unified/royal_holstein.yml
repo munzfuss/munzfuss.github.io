@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1141 per-source seed entries.
-# Output: 295 unified entries (one per physical coin).
+# Output: 294 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-06'
+generated_at: '2026-11-07'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -9818,10 +9818,30 @@ coins:
     weight_rough_g:
       - value: 1.519
         source: hede
+    catalog_alts:
+      - register: hede
+        value: 8C
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], Übersicht: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (Übers.: «… 3 Rigsbankskilling
+            / 3 R.B.S. Silber 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (Übers.: «C) 1842
+            (RR), Altona; Münzzeichen: Reichsapfel und FF (Hede 8C, Schou 6, Sieg 8)»)."
+          en: "The Hede number does not belong to this coin.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], overview: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (transl.: «… 3 Rigsbankskilling
+            / 3 R.B.S. silver 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (transl.: «C) 1842
+            (RR), Altona; mint mark: orb and FF (Hede 8C, Schou 6, Sieg 8)»)."
+          uk: "Номер Hede не належить цій монеті.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], огляд: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (перекл.: «… 3 Rigsbankskilling /
+            3 R.B.S. срібло 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (перекл.: «C) 1842 (RR),
+            Altona; монетний знак: держава і FF (Hede 8C, Schou 6, Sieg 8)»)."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], oversigt: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i].\n[b]danskmoent.dk (Hede
+            8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i]."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c8h9.htm
         ref: danskmoent.dk (Hede c8h9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168061
+        ref: KMM 168061 (Inv. FP 2448.27)
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 21.0
@@ -9830,6 +9850,7 @@ coins:
       unit_raw: rigsbankdalere
     composed_of:
       - dk-hede-c8h9
+      - kmk-168061
   - id: c-6371da81
     class_id: c-6371da81
     label: unified-dk-hede-f3h142
@@ -16930,32 +16951,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-168013
-  - id: c-f7b8830f
-    class_id: c-f7b8830f
-    label: unified-kmk-168061
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 3 Rigsbankskilling
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    ruler: Christian VIII
-    mint: Altona
-    catalog:
-      schou: '7'
-      hede: 8C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168061
-        ref: KMM 168061 (Inv. FP 2448.27)
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-168061
   - id: c-e8383c93
     class_id: c-e8383c93
     label: unified-kmk-276867
