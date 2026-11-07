@@ -2140,6 +2140,16 @@ def parse_one(html: str, basename: str) -> dict:
     hm_filename = re.search(r"^n?[cf]\d+h([\d\-,A-Za-z\s]+?)(?:\.|note|$)", basename)
     if hm_filename:
         out["hede_numbers_filename"] = re.findall(r"\d+[A-Za-z]*", hm_filename.group(1))
+    # A note page («f3h134n») that the page itself numbers from Hede's
+    # supplement — «(Hede 134a (tillæg, side 223), Schou 62, …)» — carries
+    # that supplement number, not the file name's «134n». Kept with its
+    # «(tillæg)» so it can never read as the main volume's sub-letter: Hede
+    # 134A is a different coin (2 Skilling 1664-1667), and catalogue indices
+    # compare case-insensitively (curator 2026-11-07, subgroup B5).
+    if re.match(r"^n?[cf]\d+h\d+n$", basename):
+        sup = re.search(r"\(\s*Hede\s+(\d+[A-Za-z]?)\s*\(\s*till[æa]e?g", text)
+        if sup:
+            out["hede_numbers_filename"] = [f"{sup.group(1)} (tillæg)"]
     title_str = out.get("page_title", "")
     if "Hede" in title_str:
         out["hede_numbers_title"] = re.findall(

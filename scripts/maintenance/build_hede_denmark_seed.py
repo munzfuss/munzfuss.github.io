@@ -1012,6 +1012,11 @@ def _build_coin(
         metal = "billon"
     kind = _infer_kind(metal, nominal, ruler, fineness)
     coin_id = f"dk-hede-{hede_volume}{hede_number.lower()}"
+    if not re.fullmatch(r"[0-9A-Za-z]+", hede_number) and parsed.get("id"):
+        # A labelled number («134a (tillæg)», parse_hede: a supplement
+        # number on a note page) is no id fragment: the seed id stays the
+        # page's own («dk-hede-f3h134n»), the stable handle (CLAUDE.md §9b).
+        coin_id = f"dk-hede-{parsed['id']}"
 
     cm = CommentedMap()
     cm["id"] = coin_id
@@ -1169,7 +1174,9 @@ def _build_coin(
         # the domain (the actual link target) leads, the catalog basename
         # follows in parens as sub-resource disambiguator. Reads as «which
         # domain → which page on it», the natural navigation order.
-        src["ref"] = f"danskmoent.dk (Hede {hede_volume}{hede_number})"
+        src["ref"] = (f"danskmoent.dk (Hede {hede_volume}{hede_number})"
+                      if re.fullmatch(r"[0-9A-Za-z]+", hede_number)
+                      else f"danskmoent.dk (Hede {parsed['id']})")
     sources.append(src)
     cm["sources"] = sources
 
