@@ -8149,11 +8149,15 @@ coins:
     label: unified-dk-hede-c7h44
     origin: promoted
   - fuss: 18_5_thaler
-    phase: I
-    kind: scheide
+    phase:
+      denmark: I
+      schleswig_holstein: II
+    kind: kurant
     nominal: 8 Rigsbankskilling
     ruler: Christian VIII.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     fraction: 1/12
     id: c-1054b072
     year_first: 1843
@@ -8178,12 +8182,16 @@ coins:
       - value: 0.375
         source: hede
       - value: 0.375
+        source: ngc
+      - value: 0.375
         source: numismaster
       - value: 0.375
         source: ucoin
     weight_rough_g:
       - value: 2.809
         source: hede
+      - value: 2.809
+        source: ngc
       - value: 2.809
         source: numismaster
       - value: 2.81
@@ -8209,6 +8217,9 @@ coins:
       - type: web
         url: https://www.ngccoin.com/price-guide/world/denmark-8-rigsbankskilling-km-737-1843-cuid-1050984-duid-1238249
         ref: NGC
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-8-rigsbankskilling-km-737-1843-cuid-1069087-duid-1238260
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: «CHRISTIANVS VIII 1843 F.F.» · Münzmeister Friedrich Ferdinand · 8 RBS = 1/12 Rigsbankdaler · 2½ Sch.C. = 1/24 Thaler Species
       en: «CHRISTIANVS VIII 1843 F.F.» · mintmaster Friedrich Ferdinand · 8 RBS = 1/12 Rigsbankdaler · 2½ Sch.C. = 1/24 Thaler Species
@@ -11841,9 +11852,13 @@ coins:
       - value: 0.896
         source: hede
       - value: 0.896
+        source: ngc
+      - value: 0.896
         source: numismaster
       - value: 0.896
         source: numista
+      - value: 0.896
+        source: ucoin
     weight_rough_g:
       - value: 6.61
         source: bruun
@@ -11851,8 +11866,12 @@ coins:
         source: bruun
       - value: 6.64
         source: numista
+      - value: 6.64
+        source: ucoin
       - value: 6.642
         source: hede
+      - value: 6.642
+        source: ngc
       - value: 6.642
         source: numismaster
       - value: 6.65
@@ -11885,6 +11904,9 @@ coins:
       - type: literature
         url: https://en.numista.com/275998
         ref: Numista N#275998 — 1 Christians d'Or - Christian VIII
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-christians-dor-km-730-1843-1847-cuid-1050399-duid-1238367
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 1 Christian d'Or 1843–1847 (KM-730, Hede 2 / Fr-290) — Halbnominal zu KM-722.2 · Bruttogewicht 6,642 g (Pistolenfuß), Mzz. FF (Johan Friedrich Freund) · zwei Bruun-Specimina (1843, 1847) 
         dokumentieren die Altona-Goldprägung; 1846 nicht geprägt.
@@ -14258,6 +14280,9 @@ coins:
         ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-1-5-rigsbankskilling-km-724-1842-cuid-1050444-duid-1238198
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-5-rigsbankskilling-km-723-1842-cuid-1050312-duid-1238197
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c8hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
@@ -17745,6 +17770,7 @@ coins:
     issuing_entity: royal_holstein
     fraction: '2'
     id: c-f79a47c2
+    mintmaster: Johann Friedrich Freund
     year_first: 1841
     year_last: 1847
     year_ranges:
@@ -17758,7 +17784,9 @@ coins:
       km:
         - '722.2'
         - '722'
-      hede: 1B
+      hede:
+        - '1'
+        - 1B
       hede_volume: c8h
       schou: '1'
       sieg: '16.2'
@@ -17772,6 +17800,8 @@ coins:
       bruun_page: 152
       numista: '83072'
       fr: '289'
+      others:
+        - Schön# 52
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -17791,6 +17821,8 @@ coins:
         source: bruun
       - value: 13.28
         source: bruun
+      - value: 13.28
+        source: ikmk
       - value: 13.284
         source: hede
       - value: 13.284
@@ -17798,6 +17830,8 @@ coins:
       - value: 13.29
         source: bruun
     diameter_mm:
+      - value: 27.0
+        source: ikmk
       - value: 27.15
         source: numista
     sources:
@@ -17819,6 +17853,11 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14217, p. 79
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18204859
+        ref: IKMK Berlin 18204859
+    inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
+    inscription_rev: 2 CHR - D'OR 18-42
     note:
       de: 2 Christian d'Or 1842, 1844, 1847 (KM-722.2, einheitliche Hede-1B / Fr-289) · drei Bruun-Specimina dokumentieren die durchgängige Altona-Goldprägung in der späten Christian-VIII.-Periode.
       en: 2 Christian d'Or 1842, 1844, 1847 (KM-722.2, all Hede-1B / Fr-289) · three Bruun specimens document the continuous Altona gold issue in late Christian VIII's reign.
@@ -18386,49 +18425,6 @@ coins:
     composed_of:
       - c-5fa0e2c3
     label: unified-dk-hede-f7h1b
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 2 Christiandor
-    ruler: Christian VIII.
-    mintmaster: Johann Friedrich Freund
-    issuing_entity: royal_holstein
-    id: c-60e98e1b
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    mint: Altona
-    catalog:
-      hede: '1'
-      others:
-        - Schön# 52
-    metal: gold
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 13.28
-        source: ikmk
-    diameter_mm:
-      - value: 27.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18204859
-        ref: IKMK Berlin 18204859
-    inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
-    inscription_rev: 2 CHR - D'OR 18-42
-    verification_note:
-      de: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Interactive Catalogue of the Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис з інтерактивного каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-      da: Post fra Münzkabinett Berlins interaktive katalog (ikmk.smb.museum, CC BY-SA 4.0); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-60e98e1b
-    label: unified-ikmk-18204859
     origin: promoted
   - fuss: 11_333_thaler
     phase: I
@@ -20360,6 +20356,25 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-726.1-1842-cuid-1069084-duid-1238207
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203791
+        ref: KMM 203791 (Inv. FP 6588.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122620
+        ref: KMM 122620 (Inv. FP 3711.19)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122917
+        ref: KMM 122917 (Inv. FP 3712.42)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308682
+        ref: KMM 308682 (Inv. FP 7430.34)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/340429
+        ref: KMM 340429 (Inv. FP 5633.13)
+        display: false
     note:
       de: Bildnis König Christian VIII. nach rechts. / Gekreuztes Schwert und Zepter, darüber die dänische Krone, darunter der Wert, links die Jahreszahl, rechts die Müntzzeichen.
       en: Portrait of King Christian VIII facing right. / Crossed sword and scepter with the Crown of Denmark above; below, the value with the date at the left and the mintmarks at the right.

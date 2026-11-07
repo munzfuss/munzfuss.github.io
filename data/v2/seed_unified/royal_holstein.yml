@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1171 per-source seed entries.
-# Output: 276 unified entries (one per physical coin).
+# Input: 1176 per-source seed entries.
+# Output: 275 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -8884,6 +8884,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1842/?tid=70723
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203791
+        ref: KMM 203791 (Inv. FP 6588.10)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-726.2-1842-cuid-1050979-duid-1238208
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -8900,6 +8903,7 @@ coins:
       - dk-hede-c8h11ab
       - dk-numista-23857
       - dk-tid-70723
+      - kmk-203791
       - ngc-1050979
       - ngc-1069084
   - id: c-da5b11f8
@@ -8919,8 +8923,8 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '724'
         - '723'
+        - '724'
       hede: 13ab
       hede_volume: c8h
       sieg:
@@ -8977,6 +8981,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-5-rigsbankskilling-1842/?tid=70717
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-5-rigsbankskilling-km-723-1842-cuid-1050312-duid-1238197
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-1-5-rigsbankskilling-km-724-1842-cuid-1050444-duid-1238198
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
@@ -9003,6 +9010,7 @@ coins:
       - dk-numista-41421
       - dk-tid-70716
       - dk-tid-70717
+      - ngc-1050312
       - ngc-1050444
   - id: c-f79a47c2
     class_id: c-f79a47c2
@@ -9018,6 +9026,9 @@ coins:
           - 1847
     year_label: 1841-1847
     ruler: Christian VIII
+    mintmaster: Johann Friedrich Freund
+    inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
+    inscription_rev: 2 CHR - D'OR 18-42
     mint:
       - Altona
       - Kopenhagen
@@ -9025,7 +9036,9 @@ coins:
       km:
         - '722.2'
         - '722'
-      hede: 1B
+      hede:
+        - '1'
+        - 1B
       hede_volume: c8h
       schou: '1'
       sieg: '16.2'
@@ -9039,6 +9052,8 @@ coins:
       bruun_page: 152
       numista: '83072'
       fr: '289'
+      others:
+        - Schön# 52
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -9058,6 +9073,8 @@ coins:
         source: bruun
       - value: 13.28
         source: bruun
+      - value: 13.28
+        source: ikmk
       - value: 13.284
         source: hede
       - value: 13.284
@@ -9065,6 +9082,8 @@ coins:
       - value: 13.29
         source: bruun
     diameter_mm:
+      - value: 27.0
+        source: ikmk
       - value: 27.15
         source: numista
     sources:
@@ -9086,6 +9105,9 @@ coins:
       - type: literature
         url: https://en.numista.com/83072
         ref: Numista N#83072 — 2 Christians d'Or - Christian VIII
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18204859
+        ref: IKMK Berlin 18204859
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-8149
@@ -9094,6 +9116,7 @@ coins:
       - dk-bruun-8184
       - dk-hede-c8h1b
       - dk-numista-83072
+      - ikmk-18204859
   - id: c-bffd7a14
     class_id: c-bffd7a14
     label: unified-dk-hede-c8h2
@@ -9143,9 +9166,13 @@ coins:
       - value: 0.896
         source: hede
       - value: 0.896
+        source: ngc
+      - value: 0.896
         source: numismaster
       - value: 0.896
         source: numista
+      - value: 0.896
+        source: ucoin
     weight_rough_g:
       - value: 6.61
         source: bruun
@@ -9153,8 +9180,12 @@ coins:
         source: bruun
       - value: 6.64
         source: numista
+      - value: 6.64
+        source: ucoin
       - value: 6.642
         source: hede
+      - value: 6.642
+        source: ngc
       - value: 6.642
         source: numismaster
       - value: 6.65
@@ -9181,6 +9212,12 @@ coins:
       - type: literature
         url: https://en.numista.com/275998
         ref: Numista N#275998 — 1 Christians d'Or - Christian VIII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dor-1843-1847/?tid=130239
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-christians-dor-km-730-1843-1847-cuid-1050399-duid-1238367
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: royal_holstein
     composed_of:
       - denmark-numismaster-66095
@@ -9189,6 +9226,8 @@ coins:
       - dk-bruun-8185
       - dk-hede-c8h2
       - dk-numista-275998
+      - dk-tid-130239
+      - ngc-1050399
   - id: c-66323a33
     class_id: c-66323a33
     label: unified-dk-hede-c8h3b
@@ -9698,12 +9737,16 @@ coins:
       - value: 0.375
         source: hede
       - value: 0.375
+        source: ngc
+      - value: 0.375
         source: numismaster
       - value: 0.375
         source: ucoin
     weight_rough_g:
       - value: 2.809
         source: hede
+      - value: 2.809
+        source: ngc
       - value: 2.809
         source: numismaster
       - value: 2.81
@@ -9726,7 +9769,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-8-rigsbankskilling-1843/?tid=70754
         ref: ucoin
-    issuing_entity: royal_holstein
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-8-rigsbankskilling-km-737-1843-cuid-1069087-duid-1238260
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     hede_muentzfuss_yield:
       value: 18.5
       unit: rigsbankdaler
@@ -9737,6 +9785,7 @@ coins:
       - dk-hede-c8h7
       - dk-numista-45871
       - dk-tid-70754
+      - ngc-1069087
   - id: c-baf27f19
     class_id: c-baf27f19
     label: unified-dk-hede-c8h8ba
@@ -16357,44 +16406,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ikmk-18202375
-  - id: c-60e98e1b
-    class_id: c-60e98e1b
-    label: unified-ikmk-18204859
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 2 Christiandor
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    ruler: Christian VIII
-    mintmaster: Johann Friedrich Freund
-    inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
-    inscription_rev: 2 CHR - D'OR 18-42
-    mint: Altona
-    catalog:
-      hede: '1'
-      others:
-        - Schön# 52
-    metal: gold
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 13.28
-        source: ikmk
-    diameter_mm:
-      - value: 27.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18204859
-        ref: IKMK Berlin 18204859
-    issuing_entity: royal_holstein
-    composed_of:
-      - ikmk-18204859
   - id: c-0192c8d4
     class_id: c-0192c8d4
     label: unified-ikmk-18236636
