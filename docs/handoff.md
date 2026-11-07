@@ -16,6 +16,44 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-07 — Hede-base refusals worked type by type (В–Ж); open items (branch claude/blissful-kirch-7b7be3)
+
+- **Shipped (local, unpushed), through 9ce614a:** refusal types В4/В5/Г/Ґ/Д/Ж with per-item curator verdicts
+  (exclusions kmk-157225, 354179, 122078, 275995, 131602, 131604, 740770, 122106, 83624; catalog / reading /
+  mint marks; `nominal_mark` + `nominal_alts`); Hede-base rule series-aware (`_hede_series`: no / dk /
+  wolfenbüttel / lauenborg), skips every excluded seed, reports refusals after curator merges; Hede builder
+  takes metal from the reign-index rows (`_overview_metal`), splits letter pages (F6 15 → 15A Altona / 15B
+  Kongsberg), guards labelled numbers («134a (tillæg)»), Pedersen column → `catalog_refs.FP`; Bruun company
+  prefixes + lot mint mark (2, 14114); new entity bucket `herzogtum_sachsen_lauenburg` (Numista 31393, no page
+  of its own, not on the Denmark page); 2 Skilling 1686 merged with NGC / NumisMaster / ucoin readings (*);
+  Hede F2 33 copper, NGC / NumisMaster «Silver» (*) (a suspect metal mark drops `metal_verified`); local main
+  merged in (1f1ab3f, 0 losses against both parents). SOURCES §14b lists future harvest sources (numisbids,
+  Tietjen, CoinVarieties, coinarchives).
+- **Push order:** harvest repo first (commits through 567fda0), then the branch. Landing the branch in main is
+  the curator's call; session «дрібні правки» waits for it (main's Hede builder misreads two of this branch's
+  cache commits until then).
+- **Open, worked through in this order (curator 2026-11-07):**
+  1. Type И — Bruun 7276 «8 Skilling Lead», a lead strike; §9 exclusion candidate, curator's call.
+  2. Re-measure the Hede-base refusals (`HEDE_BASE=1` dry-run) after the overview-metal fix. Expected
+     remainder: type Е (gold from silver dies — Portugaløser, «N Ducats», «Gold 16 Skilling», Oldenburg
+     15139i: correct refusals) and the no_merges groups (Norge Hede 8/9, F2 7A–G, F3 125/131: correct).
+  3. «Exclude only the conflicting class» mode of the rule — not implemented; then switching the rule on after
+     the curator accepts its result.
+  4. Stale KMM 149338 citation on final km-161-fr-iii-1648 (record dropped by the stub rule).
+  5. Hede C4 75 (4 Solidi) sits in the ½ Speciedaler KM 14 class.
+  6. Bruun 5851 (KM 115) unverified.
+  7. Hede C5 106 class: two member-less citations («Hede 108», Bruun III lot 11249) — go with the kronemønt
+     rebuild.
+  8. Bruun lot 17092 contradicts itself: «KM-383.1» (narrow crown, 11 mm) and «Sieg-9.2» (wide crown, 13 mm);
+     one of the two could be marked (!).
+  9. Hede `lauenbor.htm` not cached, the parser makes no L1 stub from the overview row → no Hede seed for the
+     Lauenburg ⅔ Thaler.
+  10. Bruun builder no longer writes `bruun_part` / `bruun_lot_no` / `bruun_page`; they survive only in old
+      seeds and are lost when a seed moves bucket (restored by hand for Bruun 10772).
+  11. absorb reports «Curator assignments unmatched: 8» — not investigated.
+  12. KMM 167023 Hebrew 4 Skilling class stands apart from Hede 150.
+- **Known failing tests (same on main):** `test_kb_search` (6), `test_kmk_place_joint_mints` (2).
+
 ## 2026-11-05 — KMM «A eller B» mint places (branch claude/blissful-kirch-7b7be3)
 
 - **Shipped (local, unpushed):** d4dfde0 (builder keeps alternative mints as an unverified list; `seed_merge`
