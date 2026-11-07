@@ -515,6 +515,10 @@ _GOLD_NOMINAL_TOKENS = (
     # among the gold standards. Without the token the coin's own page —
     # which names no metal — fell through to the silver default.
     "Engelot",
+    # Sovereign — Christian IV's 1608 piece after the English model. Its
+    # page (c4h19) names no metal; the reign index c4hede.htm gives
+    # «19 150 Sovereign Guld 1608 Helsingør». Curator 2026-11-07.
+    "Sovereign",
 )
 _KRONE_GOLD_RULERS = {"Christian IX.", "Christian X.", "Frederik VIII.", "Frederik IX."}
 

@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 2742 per-source seed entries.
-# Output: 576 unified entries (one per physical coin).
+# Input: 2743 per-source seed entries.
+# Output: 575 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3985,81 +3985,6 @@ coins:
       - denmark-numismaster-110620
       - dk-bruun-9470
       - ngc-1094234
-  - id: c-3d3d7b44
-    class_id: c-3d3d7b44
-    label: unified-dk-bruun-9544
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1644
-    year_last: 1647
-    year_ranges:
-      -   - 1644
-          - 1647
-    year_label: 1644-1647
-    ruler: Christian IV
-    mint: Christiania
-    catalog:
-      km: '27'
-      bruun_collection_id: '9544'
-      sieg: '6'
-      schou: '63'
-      hede: '20'
-      nmd: '119'
-      bruun_part: II
-      bruun_lot_no: 14029
-      bruun_page: 197
-      numista: '99346'
-      others:
-        - Brekke# 117
-        - AAJT# 117
-        - Thesen# 117
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.593
-        source: ngc
-      - value: 0.593
-        source: numismaster
-      - value: 0.593
-        source: numista
-    weight_rough_g:
-      - value: 5.23
-        source: bruun
-      - value: 5.568
-        source: numista
-      - value: 5.57
-        source: ngc
-      - value: 5.57
-        source: numismaster
-    diameter_mm:
-      - value: 29.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110631
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14029, p. 171
-      - type: literature
-        url: https://en.numista.com/99346
-        ref: Numista N#99346 — 16 Skilling - Christian IV - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-16-skilling-km-27-1644-1647-cuid-1099058-duid-1448164
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110631
-      - dk-bruun-9544
-      - dk-numista-99346
-      - ngc-1099058
   - id: c-44446081
     class_id: c-44446081
     label: unified-dk-bruun-9600
@@ -11691,6 +11616,7 @@ coins:
     ruler: Christian IV
     mint: Christiania
     catalog:
+      km: '27'
       hede: '20'
       hede_volume: nc4h
       schou:
@@ -11698,15 +11624,33 @@ coins:
         - 62-63
         - 62-64
         - 75-86
+      bruun_collection_id: '9544'
+      sieg: '6'
+      nmd: '119'
+      bruun_part: II
+      bruun_lot_no: 14029
+      bruun_page: 197
+      numista: '99346'
+      others:
+        - Brekke# 117
+        - AAJT# 117
+        - Thesen# 117
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.593
         source: hede
+      - value: 0.593
+        source: ngc
+      - value: 0.593
+        source: numismaster
+      - value: 0.593
+        source: numista
     weight_rough_g:
       - value: 3.75
         source: kmk
@@ -11714,6 +11658,8 @@ coins:
         source: kmk
       - value: 5.223
         source: kmk
+      - value: 5.23
+        source: bruun
       - value: 5.38
         source: kmk
       - value: 5.39
@@ -11724,10 +11670,31 @@ coins:
         source: kmk
       - value: 5.568
         source: hede
+      - value: 5.568
+        source: numista
+      - value: 5.57
+        source: ngc
+      - value: 5.57
+        source: numismaster
+    diameter_mm:
+      - value: 29.0
+        source: numista
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_110631
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14029, p. 171
       - type: literature
         url: https://www.danskmoent.dk/norge/nc4h20.htm
         ref: danskmoent.dk (Hede nc4h20)
+      - type: literature
+        url: https://en.numista.com/99346
+        ref: Numista N#99346 — 16 Skilling - Christian IV - Norway
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122244
+        ref: KMM 122244 (Inv. FP 5051.48)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/157826
         ref: KMM 157826 (Inv. FP 1466.206)
@@ -11752,6 +11719,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/394331
         ref: KMM 394331 (Inv. FP 4227.1391)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-16-skilling-km-27-1644-1647-cuid-1099058-duid-1448164
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
       value: 11.789
@@ -11759,7 +11729,11 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-110631
+      - dk-bruun-9544
       - dk-hede-nc4h20
+      - dk-numista-99346
+      - kmk-122244
       - kmk-157826
       - kmk-157827
       - kmk-157828
@@ -11768,6 +11742,7 @@ coins:
       - kmk-157831
       - kmk-394330
       - kmk-394331
+      - ngc-1099058
   - id: c-c8ab03ba
     class_id: c-c8ab03ba
     label: unified-dk-hede-nc4h3
