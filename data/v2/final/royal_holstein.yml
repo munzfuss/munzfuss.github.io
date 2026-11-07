@@ -17767,16 +17767,22 @@ coins:
     kind: kurant
     nominal: 2 Christian D'or
     ruler: Christian VIII.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     fraction: '2'
-    id: c-f79a47c2
     mintmaster: Johann Friedrich Freund
+    id: c-f79a47c2
     year_first: 1841
     year_last: 1847
     year_ranges:
       -   - 1841
+          - 1842
+      -   - 1844
+          - 1845
+      -   - 1847
           - 1847
-    year_label: 1841-1847
+    year_label: 1841-1842, 1844-1845, 1847
     mint:
       - Altona
       - Kopenhagen
@@ -17784,17 +17790,28 @@ coins:
       km:
         - '722.2'
         - '722'
+        - '722.1'
+        - '722.3'
       hede:
         - '1'
+        - 1A
         - 1B
+        - 1C
       hede_volume: c8h
-      schou: '1'
-      sieg: '16.2'
+      schou:
+        - '1'
+        - '2'
+      sieg:
+        - '16.1'
+        - '16.2'
+        - '16.3'
       bruun_collection_id:
         - '8149'
         - '8168'
         - '8184'
         - '8173'
+        - '8136'
+        - '8166'
       bruun_part: III
       bruun_lot_no: 11304
       bruun_page: 152
@@ -17812,8 +17829,35 @@ coins:
     fineness:
       - value: 0.896
         source: hede
+        specimen: dk-hede-c8h1a
+      - value: 0.896
+        source: hede
+        specimen: dk-hede-c8h1b
+      - value: 0.896
+        source: hede
+        specimen: dk-hede-c8h1c
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050451
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050452
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1051031
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66109
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66110
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66111
       - value: 0.896
         source: numista
+      - value: 0.896
+        source: ucoin
     weight_rough_g:
       - value: 13.26
         source: bruun
@@ -17823,8 +17867,35 @@ coins:
         source: bruun
       - value: 13.28
         source: ikmk
+      - value: 13.28
+        source: ucoin
       - value: 13.284
         source: hede
+        specimen: dk-hede-c8h1a
+      - value: 13.284
+        source: hede
+        specimen: dk-hede-c8h1b
+      - value: 13.284
+        source: hede
+        specimen: dk-hede-c8h1c
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050451
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050452
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1051031
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66109
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66110
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66111
       - value: 13.284
         source: numista
       - value: 13.29
@@ -17832,6 +17903,8 @@ coins:
     diameter_mm:
       - value: 27.0
         source: ikmk
+      - value: 27.1
+        source: ucoin
       - value: 27.15
         source: numista
     sources:
@@ -17856,6 +17929,33 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18204859
         ref: IKMK Berlin 18204859
+      - type: literature
+        url: https://numismaster.com/MC_66109
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66110
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66111
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1163, p. 200
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14216, p. 79
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dor-1841-1847/?tid=130240
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-722.2-1842-1847-cuid-1050451-duid-1238408
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-722.3-1844-cuid-1050452-duid-1238412
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-722.1-1841-cuid-1051031-duid-1238407
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
     inscription_rev: 2 CHR - D'OR 18-42
     note:

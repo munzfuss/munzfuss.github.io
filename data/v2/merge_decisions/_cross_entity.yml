@@ -1327,6 +1327,46 @@ merges:
       6.61-6.65 g. The two danish_realm records publish no mint and so
       routed by default. Curator 2026-11-07.
 
+  - target_entity: royal_holstein
+    issuing_entity: [danish_realm, royal_holstein]
+    members:
+      - dk-hede-c8h1a               # home: danish_realm    (Hede 1A, Schou 1, Sieg 16.1 — København 1841)
+      - dk-hede-c8h1b               # home: royal_holstein  (Hede 1B, Schou 1, Sieg 16.2 — Altona 1842-1847)
+      - dk-hede-c8h1c               # home: danish_realm    (Hede 1C, Schou 2, Sieg 16.3 — København 1844)
+      - dk-bruun-8136               # home: danish_realm    (Bruun I lot 1163, KM 722.1, Hede 1A)
+      - dk-bruun-8149               # home: royal_holstein  (Bruun III lot 11304, KM 722.2, Hede 1B)
+      - dk-bruun-8168               # home: royal_holstein  (Bruun IV lot 17185, KM 722.2, Hede 1B)
+      - dk-bruun-8173               # home: royal_holstein  (Bruun V lot 14217, KM 722.2, Hede 1B)
+      - dk-bruun-8184               # home: royal_holstein  (Bruun IV lot 17190, KM 722.2, Hede 1B)
+      - dk-bruun-8166               # home: danish_realm    (Bruun V lot 14216, KM 722.3, Hede 1C)
+      - ngc-1051031                 # home: danish_realm    (NGC, km 722.1)
+      - ngc-1050451                 # home: danish_realm    (NGC, km 722.2)
+      - ngc-1050452                 # home: danish_realm    (NGC, km 722.3)
+      - denmark-numismaster-66109   # home: danish_realm    (KM 722.1, København)
+      - denmark-numismaster-66110   # home: danish_realm    (KM 722.2)
+      - denmark-numismaster-66111   # home: danish_realm    (KM 722.3, København)
+      - dk-numista-83072            # home: royal_holstein  (KM 722, Altona + København)
+      - dk-tid-130240               # home: danish_realm    (ucoin, KM 722, 1841-1847)
+      - ikmk-18204859               # home: royal_holstein  (IKMK, 2 Christiandor 1842 Altona, «Hede 1», 13.28 g)
+    excludes:
+      - dk-hede-c9h1a               # Christian IX Hede 1A (KM 773, 1866-1867) — page text mis-rules it «Christian 8»
+      - dk-hede-c9h1b               # Christian IX Hede 1B (KM 773, 1869-1870)
+    reason: |
+      One coin — Christian VIII 2 Christian d'or 1841-1847, Hede 1, struck
+      at København (A 1841, C 1844) and Altona (B 1842-1847). danskmoent
+      c8h1: «A) 1841 (R), København … B) 1842 (R), 1844, 1845 (R), 1847,
+      Altona … C) 1844 (S), København». Load-bearing keys: the Hede 1 base
+      with letters A/B/C, the KM 722 base (.1/.2/.3) and the Sieg 16 base
+      (.1/.2/.3), all three concordant letter by letter; gold .896,
+      13.26-13.29 g throughout.
+
+      It was split into four classes rendering as two rows (danish_realm
+      final dk-tid-130240 and royal_holstein c-f79a47c2), with the KM 722.2
+      (Altona) NGC / NumisMaster records stranded beside Hede 1C. Joint
+      mint → [danish_realm, royal_holstein], homing to royal_holstein.
+      Supersedes the same-day royal_holstein merge of IKMK 18204859 into
+      Hede 1B. Curator (Serhii) 2026-11-07.
+
   # ─────────────────────────────────────────────────────────────────────
   # 2026-07-29 (fourth batch) — Rendsburg 1716-1720, Frederik IV.
   #
