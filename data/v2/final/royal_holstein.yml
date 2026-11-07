@@ -667,16 +667,21 @@ coins:
     year_label: 1640-1643, 1645-1647
     mint: Glückstadt
     catalog:
-      km: '26'
+      km:
+        - '26'
+        - '26.1'
+        - '26.2'
       numista:
         - '154260'
         - '109009'
+        - '154272'
       lange:
         - '48'
         - '49'
         - '50'
         - '51'
         - 51A
+        - 51Ab
         - 51B
     metal: silver
     metal_verified: true
@@ -687,6 +692,8 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: ngc
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
@@ -694,6 +701,15 @@ coins:
       - value: 0.812
         source: numista
         specimen: dk-numista-154260
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-154272
+      - value: 0.812
+        source: ucoin
+        specimen: dk-tid-163618
+      - value: 0.812
+        source: ucoin
+        specimen: dk-tid-163623
     weight_rough_g:
       - value: 1.57
         source: numista
@@ -701,15 +717,35 @@ coins:
       - value: 1.64
         source: numista
         specimen: dk-numista-154260
+      - value: 1.78
+        source: numista
+        specimen: dk-numista-154272
+      - value: 1.785
+        source: ngc
       - value: 1.785
         source: numismaster
+      - value: 1.79
+        source: ucoin
+        specimen: dk-tid-163618
+      - value: 1.79
+        source: ucoin
+        specimen: dk-tid-163623
     diameter_mm:
       - value: 20.0
         source: numista
         specimen: dk-numista-109009
+      - value: 20.2
+        source: numista
+        specimen: dk-numista-154272
       - value: 20.56
         source: numista
         specimen: dk-numista-154260
+      - value: 21.0
+        source: ucoin
+        specimen: dk-tid-163618
+      - value: 21.0
+        source: ucoin
+        specimen: dk-tid-163623
     sources:
       - type: numista
         url: https://en.numista.com/154260
@@ -726,6 +762,12 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_93001
         ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/154272
+        ref: Numista N#154272 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type II)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-26-1640-1647-cuid-1051973-duid-1239794
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV. (Glückstadt 1640–1641, Legend-Typ I) · Mzz. (f) = Monogramm mit Feder und ST-Buchstaben (Münzmeister Simon Timpf, ab 1641 in Glückstadt)
         · Obverse «CHRISTIANUS·IIII·D:G:» mit gekröntem Brustbild im Rope-Circle; Reverse Wertangabe «XVI E:REIS DAL» auf vier Zeilen, Außen «DAN:NO:V:G:Q:REX:1640». Glückstadter Theilstück im 9¼-Fuß 
@@ -13222,6 +13264,11 @@ coins:
     year_label: 1665-1667, 1669
     mint: Glückstadt
     catalog:
+      km:
+        - '54.1'
+        - '54.2'
+        - '54.3'
+        - '54'
       hede: '152'
       hede_volume: f3h
       schou:
@@ -13234,15 +13281,41 @@ coins:
         - '150.1'
         - '150.2'
         - '151'
+      numista: '129062'
+      lange:
+        - '69'
+        - 70a
+        - 71a
+        - 73a
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.812
         source: hede
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1051731
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1052789
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1821949
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93006
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93007
+      - value: 0.812
+        source: numista
+      - value: 0.812
+        source: ucoin
     weight_rough_g:
       - value: 1.7
         source: kmk
@@ -13250,6 +13323,30 @@ coins:
         source: kmk
       - value: 1.785
         source: hede
+      - value: 1.785
+        source: ngc
+        specimen: ngc-1051731
+      - value: 1.785
+        source: ngc
+        specimen: ngc-1052789
+      - value: 1.785
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93006
+      - value: 1.785
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93007
+      - value: 1.79
+        source: ngc
+        specimen: ngc-1821949
+      - value: 1.79
+        source: numista
+      - value: 1.79
+        source: ucoin
+    diameter_mm:
+      - value: 20.0
+        source: numista
+      - value: 21.0
+        source: ucoin
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h152.htm
@@ -13260,6 +13357,27 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276958
         ref: KMM 276958 (Inv. FP 4227.1348)
+      - type: literature
+        url: https://en.numista.com/129062
+        ref: Numista N#129062 — 1⁄16 Thaler - Frederik III (Roman style bust)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1665-1667/?tid=163628
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-54.1-1665-1669-cuid-1051731-duid-1239807
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-54.2-1665-cuid-1052789-duid-1239811
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-54.3-1665-cuid-1821949-duid-1821950
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93006
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_93007
+        ref: NumisMaster
     note:
       de: 'Vorderseite: Porträt in römisch inspirierter Tracht bzw. in Rüstung, Rückseite: Wertangabe, deren Endung als »DAL«, »TAL« bzw. »THA« erscheint (»XVI E REICHS…«).'
       en: "Obverse: portrait in Roman-inspired dress or in armour; reverse: value statement whose ending appears as 'DAL', 'TAL' or 'THA' ('XVI E REICHS…')."
@@ -15323,89 +15441,6 @@ coins:
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1⁄16 Thaler
-    ruler: Frederik III.
-    issuing_entity: royal_holstein
-    id: c-62db4424
-    year_first: 1665
-    year_last: 1669
-    year_ranges:
-      -   - 1665
-          - 1667
-      -   - 1669
-          - 1669
-    year_label: 1665-1667, 1669
-    mint: Glückstadt
-    catalog:
-      km:
-        - '54'
-        - '54.1'
-        - '54.2'
-      numista: '129062'
-      lange: 69 - 70a - 71a - 73a
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-      - value: 0.812
-        source: numista
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-      - value: 1.79
-        source: numista
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 20.0
-        source: numista
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/129062
-        ref: Numista N#129062 — 1⁄16 Thaler - Frederik III (Roman style bust)
-      - type: literature
-        url: https://numismaster.com/MC_93006
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_93007
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1665-1667/?tid=163628
-        ref: ucoin
-    note:
-      de: Gekröntes Brustbild König Friedrichs III. mit langem, lockigem Haar im Perlkreis, umlaufende Umschrift; der König in römischer Rüstung mit einem Löwenkopf auf der Schulter / Wert und 
-        Jahreszahl auf vier Zeilen im Perlkreis; Umschrift außen mit Glückstädter Müntzzeichen am Ende
-      en: Crowned bust of King Frederik III with long curly hair within a beaded circle, legend around; the king in Roman-style armour with a lion's head on the shoulder / Value and date on four lines
-        within a pearl circle; legend outside with Glückstadt mintmark at the end
-      uk: Короноване погруддя короля Фредеріка III із довгим кучерявим волоссям у перлинному колі, кругова легенда; король у обладунку римського типу з левовою головою на плечі / Номінал і дата в 
-        чотири рядки в перлинному колі; легенда назовні з глюкштадтським монетним знаком у кінці
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-4d26e854
-      - c-62db4424
-    label: unified-dk-numista-129062
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
     nominal: 1 Speciedaler
     ruler: Frederik V.
     issuing_entity: royal_holstein
@@ -15540,77 +15575,6 @@ coins:
     composed_of:
       - c-b426bb3d
     label: unified-dk-numista-144810
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 3 Skilling Lybsk
-    ruler: Christian IV.
-    issuing_entity: royal_holstein
-    id: c-a7defc2c
-    year_first: 1641
-    year_last: 1646
-    year_ranges:
-      -   - 1641
-          - 1646
-    year_label: 1641-1646
-    mint: Glückstadt
-    catalog:
-      km:
-        - '26'
-        - '26.2'
-      numista: '154272'
-      lange:
-        - 51Ab
-        - 51b
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numista
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.78
-        source: numista
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 20.2
-        source: numista
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/154272
-        ref: Numista N#154272 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type II)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1641-1646/?tid=163623
-        ref: ucoin
-    note:
-      de: Gekröntes Brustbild König Christians IV. im Strickkreis, Umschrift außen; Rüstung und Brustbild in abweichendem Stil / Wertangabe auf vier Zeilen im Strickkreis; Umschrift außen mit 
-        Jahreszahl und Glückstädter Müntzzeichen am Ende
-      en: Crowned bust of King Christian IV within a rope circle, legend outside; the armour and bust style differ / Value on four lines within a rope circle; legend outside with date and Glückstadt 
-        mintmark at the end
-      uk: Короноване погруддя короля Крістіана IV у мотузковому колі, легенда назовні; обладунок і стиль погруддя відмінні / Номінал у чотири рядки в мотузковому колі; легенда назовні з датою й 
-        глюкштадтським монетним знаком у кінці
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-a7defc2c
-    label: unified-dk-numista-154272
     origin: promoted
   - fuss: 9_thaler
     phase: II
@@ -22437,50 +22401,6 @@ coins:
       - c-e0bdd066
     label: unified-dk-tid-163585
     origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    ruler: Christian IV
-    issuing_entity: royal_holstein
-    id: c-875cc7e2
-    year_first: 1640
-    year_last: 1641
-    year_ranges:
-      -   - 1640
-          - 1641
-    year_label: 1640-1641
-    catalog:
-      km: '26.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1640-1641/?tid=163618
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    composed_of:
-      - c-875cc7e2
-    label: unified-dk-tid-163618
-    origin: promoted
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
@@ -24480,153 +24400,3 @@ coins:
       - c-10ce0871
     label: unified-dk-hede-f7h20
     origin: promoted
-  - id: unified-km-26-chr-iv-1641-l2b1
-    label: unified-km-26-chr-iv-1641-l2b1
-    origin: promoted
-    fuss: 9_thaler
-    phase: II
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    ruler: Christian IV.
-    issuing_entity: royal_holstein
-    fraction: 1/16
-    year_first: 1640
-    year_last: 1641
-    year_ranges:
-      -   - 1640
-          - 1641
-    year_label: 1640-1641
-    catalog:
-      km: '26.1'
-      lange:
-        - 48-51
-        - 51A
-      numista: '109009'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1640-1641/?tid=163618
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_93001
-        ref: NumisMaster
-      - type: numista
-        url: https://en.numista.com/109009
-        ref: Numista
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1641-1646/?tid=163623
-        ref: ucoin tid 163623
-    note:
-      de: "1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV. (Glückstadt 1641–1647, Legend-Typ II / Bust-Typ I) · Reverse-Legende «MON:NOV:GLUCKSTADT:(Datum)(Mzz.)», Wert «XVI E:REIC HSDA». Mzz. (f)
-        = Simon Timpf 1641–1644, (h) = gekreuzte Hellebarden ab 1645. Lange# 48–51, 51A. Glückstadter Theilstück im 9¼-Fuß zu reduziertem Feingehalt .812.\n\nBruttogewicht-Diskrepanz zwischen den Quellen:
-        Numista 1,57 g, ucoin (KM# 26.1 / 26.2) 1,79 g. Das rechnerische Soll-Brutto bei .812 Feingehalt beträgt 1,946 g (≈ Soll-Fein 1,580 g / 0,812); Numistas 1,57 g entspricht fast deckungsgleich dem
-        Soll-Feingewicht und ist wahrscheinlich Feingewicht, das im Bruttogewichts-Feld eingetragen wurde. Ucoins 1,79 g liegt erwartungsgemäß als Bruttogewicht ≈ −8 % unter Soll."
-      en: "1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV (Glückstadt 1641–1647, legend type II / bust type I) · reverse legend «MON:NOV:GLUCKSTADT:(date)(mark)», value «XVI E:REIC HSDA». Mintmarks:
-        (f) = Simon Timpf 1641–1644, (h) = crossed halberds from 1645. Lange# 48–51, 51A. Glückstadt sub-unit on the 9¼-Fuß at reduced fineness .812.\n\nGross-weight discrepancy between sources: Numista
-        1.57 g, ucoin (KM# 26.1 / 26.2) 1.79 g. The computed gross-weight standard at .812 fineness is 1.946 g (≈ Sollfein 1.580 g / 0.812); Numista's 1.57 g sits almost exactly on the fine-weight standard
-        and is most likely a fine-weight value entered in the gross-weight field. Ucoin's 1.79 g sits ≈ −8 % below standard, consistent with a gross-weight reading."
-      uk: "1/16 Reichs Thaler = 3 Skilling Lybsk · Кристіан IV (Glückstadt 1641–1647, легенда тип II / бюст тип I) · легенда реверсу «MON:NOV:GLUCKSTADT:(дата)(монограма)», номінал «XVI E:REIC HSDA». Монограми:
-        (f) = Simon Timpf 1641–1644, (h) = схрещені галебарди з 1645. Lange# 48–51, 51A. Ґлюкштатський підрозмінний номінал у 9¼-Fuß зі зниженою пробою .812.\n\nРозходження повної ваги між джерелами: Numista
-        1,57 г, ucoin (KM# 26.1 / 26.2) 1,79 г. Розрахункове Soll-Brutto при пробі .812 = 1,946 г (≈ Soll-Fein 1,580 г / 0,812); значення 1,57 г з Numista майже точно збігається з Soll-Feingewicht і, найвірогідніше,
-        є чистою вагою, помилково записаною у поле повної ваги. Ucoin'ове 1,79 г закономірно стоїть ≈ −8 % від Soll як повна вага."
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    composed_of:
-      - unified-km-26-chr-iv-1641-l2b1
-    _curation_holds:
-      note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-26-chr-iv-1641-l2b1 (matched via unified-prefix; V1→V2 bootstrap had dropped the note field — see 
-        restore_v1_notes_to_v2_final.py).
-  - id: unified-km-54-fr-iii-1665
-    label: unified-km-54-fr-iii-1665
-    origin: promoted
-    fuss: 9_thaler
-    phase: II
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: royal_holstein
-    fraction: 1/16
-    year_first: 1665
-    year_last: 1667
-    year_ranges:
-      -   - 1665
-          - 1667
-    year_label: 1665-1667
-    catalog:
-      km:
-        - '54'
-        - '54.2'
-      lange:
-        - '69'
-        - 70a
-        - 71a
-        - 73a
-      numista: '129062'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1665-1667/?tid=163628
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_93006
-        ref: NumisMaster
-      - type: numista
-        url: https://en.numista.com/129062
-        ref: Numista
-      - type: literature
-        url: https://numismaster.com/MC_93007
-        ref: NumisMaster
-    note:
-      de: '1/16 Thaler Friedrichs III. · Obverse römische Büste «FRIDERIC. 3. D.G: D.N.V.G.REX»; Reverse «MONETA NOVA GLVCKSTAD — XVI E.REIC. HS.THA 1666». Drei Wert-Schreibweisen-Varianten KM# 54.1 (HS
-        THA), 54.2 (HS DAL), 54.3 (HS TAL). Glückstadter Theilstück im 9¼-Fuß bei reduziertem Feingehalt .812.'
-      en: '1/16 Thaler of Frederik III · obverse Roman-style bust «FRIDERIC. 3. D.G: D.N.V.G.REX»; reverse «MONETA NOVA GLVCKSTAD — XVI E.REIC. HS.THA 1666». Three value-spelling variants KM# 54.1 (HS THA),
-        54.2 (HS DAL), 54.3 (HS TAL). Glückstadt sub-unit on the 9¼-Fuß at reduced fineness .812.'
-      uk: '1/16 Thaler Фредеріка III · аверс — римський бюст «FRIDERIC. 3. D.G: D.N.V.G.REX»; реверс «MONETA NOVA GLVCKSTAD — XVI E.REIC. HS.THA 1666». Три варіанти написання номіналу KM# 54.1 (HS THA),
-        54.2 (HS DAL), 54.3 (HS TAL). Ґлюкштатський підрозмінний номінал у 9¼-Fuß зі зниженою пробою .812.'
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    composed_of:
-      - unified-km-54-fr-iii-1665
-    _curation_holds:
-      note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-54-fr-iii-1665 (matched via unified-prefix; V1→V2 bootstrap had dropped the note field — see 
-        restore_v1_notes_to_v2_final.py).

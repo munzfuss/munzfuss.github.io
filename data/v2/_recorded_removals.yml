@@ -5061,3 +5061,9 @@ removals:
     kind: empty_duplicate
     hosts: [dk-tid-162980]
     reason: "Curator (Serhii) 2026-11-07 («запиши видалення якщо це не втрата даних»): leftover promoted class (nominal «2 Skilling», KM 86, Hede 137, seed_unsorted) whose only live member, c-1cd13966 (NGC 1059866, NumisMaster 64964, KMM 152243), joined Hede 137 = dk-tid-162980 (1 Hvid 1624-1625, copper). Its catalogue values sit on the host; its 13 other citations are KMM records the stub scope rule dropped (kmk-275647, 130530, 131374, 331919, 332066, 569191, 131500, 149622, 149623, 155182, 155184, 304634, 736274): no weight, no image."
+  - seed: dk-numista-129062
+    kind: field
+    field: lange
+    dropped:
+      - 69 - 70a - 71a - 73a
+    reason: 'Curator 2026-11-07 («пофіксь»): Numista 129062 prints four Lange numbers as one reference joined by spaced dashes; build_numista_seed._split_dash_list now splits it into 69, 70a, 71a, 73a, all kept.'
