@@ -1,0 +1,28 @@
+# Curator per-coin EXCLUSIONS — entity `hanseatic_lubeck`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: hanseatic_lubeck
+exclusions:
+  - id: km-168-1-1752
+    category: duplicate_noise
+    reason: Pre-V2 foundation final (48 Schilling Courant 1752) with no seed. Its Numista 24631, NGC and Davenport 2420 citations are on the live class (dk-numista-24631 …); its Behrens 291a and Jaeger 22 come from Tietjen + Co. Auktion 110 lot 88, now the seed tietjen-110-88 merged into that class; its 11 1/3-Thaler-Fuss classification moves to the class. Curator (Serhii) 2026-11-07.
+  - id: lu-tid-102437
+    category: duplicate_noise
+    reason: 'Empty pre-V2 bootstrap final (1 Sechsling 1750: no sources, no catalogue, empty composed_of). Its only seed, ucoin tid 102437, is in the class c-94588b79 (1 Sechsling 1750, KM 165, NGC, Numista 149231), which cites it. Curator (Serhii) 2026-11-07.'

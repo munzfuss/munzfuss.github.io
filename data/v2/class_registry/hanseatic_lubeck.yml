@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 326 active, 53 retired.
+# 325 active, 54 retired.
 
 id: hanseatic_lubeck
 classes:
@@ -478,6 +478,8 @@ classes:
     members:
       - dk-numista-24631
       - ngc-1137379
+      - ngc-1137380
+      - tietjen-110-88
   - id: c-2c1e39f7
     status: active
     created: '2026-10-22'
@@ -1379,13 +1381,6 @@ classes:
     legacy_id: unified-dk-numista-422983
     members:
       - dk-numista-422983
-  - id: c-8cdf491c
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1137380
-    legacy_id: unified-ngc-1137380
-    members:
-      - ngc-1137380
   - id: c-8d1cc669
     status: active
     created: '2026-10-22'
@@ -2662,6 +2657,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-428046
+  - id: c-8cdf491c
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1137380
+    legacy_id: unified-ngc-1137380
+    merged_into: c-2c1c8566
+    retired: '2026-11-07'
+    members:
+      - ngc-1137380
   - id: c-8f1e2561
     status: retired
     created: '2026-10-22'

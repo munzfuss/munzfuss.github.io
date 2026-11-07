@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 486 per-source seed entries.
-# Output: 326 unified entries (one per physical coin).
+# Input: 487 per-source seed entries.
+# Output: 325 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4870,15 +4870,21 @@ coins:
     year_last: 1752
     year_label: '1752'
     ruler: Francis I (Franz I)
+    mintmaster: JJJ
     catalog:
       km:
         - '168.1'
+        - '168.2'
         - '168'
-      behrens: '291'
+      behrens:
+        - '291'
+        - 291a
       dav:
         - GT II 2420
         - GT II 2420A
       numista: '24631'
+      others:
+        - Jaeger# 22
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -4889,11 +4895,21 @@ coins:
     fineness:
       - value: 0.75
         source: ngc
+        specimen: ngc-1137379
+      - value: 0.75
+        source: ngc
+        specimen: ngc-1137380
       - value: 0.75
         source: numista
     weight_rough_g:
+      - value: 27.18
+        source: Tietjen 110, lot 88
       - value: 27.51
         source: ngc
+        specimen: ngc-1137379
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1137380
       - value: 27.51
         source: numista
     diameter_mm:
@@ -4906,44 +4922,18 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.1-1752-cuid-1137379-duid-1339595
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.2-1752-cuid-1137380-duid-1339734
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: auction
+        url: https://www.yumpu.com/de/document/view/7817078/auktion-110-auktionshaus-tietjen-co
+        ref: Tietjen + Co., Auktion 110 (17. Dezember 2012), Los 88
     issuing_entity: hanseatic_lubeck
     composed_of:
       - dk-numista-24631
       - ngc-1137379
-  - id: c-8cdf491c
-    class_id: c-8cdf491c
-    label: unified-ngc-1137380
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.2'
-      behrens: '291'
-      dav: 2420A
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.2-1752-cuid-1137380-duid-1339734
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
       - ngc-1137380
+      - tietjen-110-88
   - id: c-e78d218b
     class_id: c-e78d218b
     label: unified-ngc-1137382
