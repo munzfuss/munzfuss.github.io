@@ -6700,6 +6700,7 @@ def process_entity(entity_id: str,
     #     group check refuses those before any link is made.
     hede_base_joined: list[list[str]] = []
     hede_base_refused: list[dict] = []
+    hede_base_split: list[list[str]] = []
     if _HEDE_BASE_RULE:
         _hb_groups, _hb_info = _hede_base_groups(uf, seeds_by_id, entity_id)
         for _g in _hb_groups:
@@ -6708,6 +6709,28 @@ def process_entity(entity_id: str,
             if _eq and not _why and os.environ.get("HEDE_BASE_EQUIV_LOG"):
                 print(f"    equiv-joined {_g[:3]}{'…' if len(_g) > 3 else ''}: {'; '.join(sorted(set(_eq)))}")
             if _why:
+                # A group refused on metal: classes of one Hede base in
+                # different metals are different coins (a gold strike from
+                # the silver dies), but the classes of ONE metal among them
+                # are still sub-variants of one coin. Split by metal and try
+                # each part on its own; a part with any conflict of its own
+                # (nominal, curator no_merges, several bases) stays refused.
+                _parts: dict = defaultdict(list)
+                for _r in _g:
+                    _parts[_hb_info[_r]["metal"]].append(_r)
+                _split = (len(_parts) > 1
+                          and any(w.startswith("metal ") for w in _why))
+                if _split:
+                    for _p in _parts.values():
+                        if len(_p) < 2:
+                            continue
+                        _pwhy = _hede_base_conflicts(_p, _hb_info, uf)
+                        if _pwhy:
+                            continue
+                        for _r in _p[1:]:
+                            uf.force_union(_p[0], _r)
+                        hede_base_joined.append(_p)
+                        hede_base_split.append(_p)
                 hede_base_refused.append({"classes": _g, "why": _why})
                 continue
             for _r in _g[1:]:
@@ -6762,6 +6785,8 @@ def process_entity(entity_id: str,
             print(f"  HEDE_BASE: {len(hede_base_joined)} groups joined "
                   f"({sum(len(g) for g in hede_base_joined)} classes), "
                   f"{len(hede_base_refused)} refused")
+            for _p in hede_base_split:
+                print(f"    joined within one metal {_p[:3]}{'…' if len(_p) > 3 else ''}")
             _dump = os.environ.get("HEDE_BASE_DUMP")
             if _dump:
                 import json as _json
