@@ -3,43 +3,6 @@ source_locations: []
 migrated_from_v1: ''
 coins:
   - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 8 Skilling
-    ruler: Frederik II
-    issuing_entity: gotland
-    id: c-6f48798e
-    year_first: 1565
-    year_last: 1565
-    year_label: '1565'
-    mint: Visby
-    catalog:
-      hede: '35'
-      sieg: '18'
-      bruun_collection_id: '4503'
-      schou: '2'
-      others:
-        - Llt# 12
-        - Delzanno# 92
-        - JS# 23
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 4.29
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14082, p. 33
-    composed_of:
-      - c-6f48798e
-    label: unified-dk-bruun-4503
-    origin: promoted
-  - fuss: seed_unsorted
     phase: galster
     kind: kurant
     nominal: 1 Gote
@@ -1093,15 +1056,31 @@ coins:
     catalog:
       hede: '35'
       hede_volume: f2h
-      sieg: '34'
+      sieg:
+        - '18'
+        - '34'
+      bruun_collection_id: '4503'
+      schou: '2'
+      others:
+        - Llt# 12
+        - Delzanno# 92
+        - JS# 23
     metal: silver
     metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 4.29
+        source: bruun
     sources:
       - type: literature
         url: https://www.danskmoent.dk/f2hede.htm
         ref: danskmoent.dk overview f2hede (Hede f2h35 — Tiefenseite fehlt)
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14082, p. 33
     verification_note:
       de: 'Nur die Übersichtsreihe von f2hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Slået af lensmanden på Gotland, Jens Bille.»'

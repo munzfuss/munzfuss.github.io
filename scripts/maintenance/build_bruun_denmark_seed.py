@@ -655,7 +655,11 @@ _TERRITORY_LEAD = re.compile(
     r"wolfenb[üu]ttel|"
     # Foreign / Baltic secondary realms that prefix the denom on
     # Swedish-section lots («SWEDEN. Swedish Livonia. Riga. 5 Ducats»).
-    r"swedish|livonia|riga|reval|pomerania|stralsund|stade)\b",
+    r"swedish|livonia|riga|reval|pomerania|stralsund|stade|"
+    # A trading company named before the denom («DENMARK. Danish East India
+    # Company. 2 Speciedaler, 1671»: lots 1100, 1130, 1152) is the issuer,
+    # not the denomination (curator 2026-11-07).
+    r"danish\s+(?:east|west)\s+india\s+company|danish\s+asiatic\s+company)\b",
     re.IGNORECASE,
 )
 

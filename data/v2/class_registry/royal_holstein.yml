@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 294 active, 489 retired.
+# 292 active, 491 retired.
 
 id: royal_holstein
 classes:
@@ -201,13 +201,6 @@ classes:
       - dk-hede-f3h152
       - kmk-276473
       - kmk-276958
-  - id: c-12b53297
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-167040
-    legacy_id: unified-kmk-167040
-    members:
-      - kmk-167040
   - id: c-1421b068
     status: active
     created: '2026-10-22'
@@ -237,14 +230,6 @@ classes:
     members:
       - dk-hede-f6h16
       - dk-numista-61491
-  - id: c-1902e335
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-199146
-    legacy_id: unified-dk-numista-199146
-    members:
-      - dk-numista-199146
-      - dk-tid-163580
   - id: c-19731217
     status: active
     created: '2026-10-22'
@@ -1991,7 +1976,10 @@ classes:
     members:
       - dk-hede-c4h178a
       - dk-hede-c4h178b
+      - dk-numista-199146
+      - dk-tid-163580
       - kmk-167030
+      - kmk-167040
       - kmk-167044
       - kmk-167068
       - schleswig_holstein-numismaster-92968
@@ -3397,6 +3385,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-423003
+  - id: c-12b53297
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-167040
+    legacy_id: unified-kmk-167040
+    merged_into: c-ae0d7bfb
+    retired: '2026-11-07'
+    members:
+      - kmk-167040
   - id: c-133335ba
     status: retired
     created: '2026-10-22'
@@ -3464,6 +3461,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-653505
+  - id: c-1902e335
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-199146
+    legacy_id: unified-dk-numista-199146
+    merged_into: c-ae0d7bfb
+    retired: '2026-11-07'
+    members:
+      - dk-numista-199146
+      - dk-tid-163580
   - id: c-19390e58
     status: retired
     created: '2026-10-22'

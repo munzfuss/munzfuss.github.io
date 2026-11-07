@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `gotland`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gotland.yml across all sources.
 #
 # Input: 28 per-source seed entries.
-# Output: 11 unified entries (one per physical coin).
+# Output: 10 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,45 +11,8 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gotland
-generated_at: '2026-11-06'
+generated_at: '2026-11-07'
 coins:
-  - id: c-6f48798e
-    class_id: c-6f48798e
-    label: unified-dk-bruun-4503
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1565
-    year_last: 1565
-    year_label: '1565'
-    ruler: Frederik II
-    mint: Visby
-    catalog:
-      hede: '35'
-      sieg: '18'
-      bruun_collection_id: '4503'
-      schou: '2'
-      others:
-        - Llt# 12
-        - Delzanno# 92
-        - JS# 23
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 4.29
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14082, p. 33
-    issuing_entity: gotland
-    composed_of:
-      - dk-bruun-4503
   - id: c-3a4c6dbd
     class_id: c-3a4c6dbd
     label: unified-dk-galster-hg-135
@@ -1073,12 +1036,28 @@ coins:
     catalog:
       hede: '35'
       hede_volume: f2h
-      sieg: '34'
+      sieg:
+        - '18'
+        - '34'
+      bruun_collection_id: '4503'
+      schou: '2'
+      others:
+        - Llt# 12
+        - Delzanno# 92
+        - JS# 23
     metal: silver
     metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 4.29
+        source: bruun
     sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14082, p. 33
       - type: literature
         url: https://www.danskmoent.dk/f2hede.htm
         ref: danskmoent.dk overview f2hede (Hede f2h35 — Tiefenseite fehlt)
@@ -1093,6 +1072,7 @@ coins:
         1965. Bemærkning i indekset: «Slået af lensmanden på Gotland, Jens Bille.»'
     issuing_entity: gotland
     composed_of:
+      - dk-bruun-4503
       - dk-hede-f2h35
   - id: c-27b95413
     class_id: c-27b95413

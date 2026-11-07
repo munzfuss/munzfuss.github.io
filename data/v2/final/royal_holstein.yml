@@ -10229,6 +10229,19 @@ coins:
       -   - 1640
           - 1648
     year_label: 1640-1648
+    nominal_alts:
+      - value: 1 Skilling, norsk
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Das Nominal gehört nicht zu diesem Stück.\n[b]Webkatalog KMM, FP 1780.92[/b]: [i]«søsling lybsk»[/i] (Übers.: «Lübischer Søsling»), «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk
+            (Hede 178)[/b]: [i]«1 søsling lybsk, Glückstadt»[/i] (Übers.: «1 Lübischer Søsling, Glückstadt»)."
+          en: "The denomination does not belong to this piece.\n[b]KMM web catalogue, FP 1780.92[/b]: [i]«søsling lybsk»[/i] (transl.: «Lübeck søsling»), «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk
+            (Hede 178)[/b]: [i]«1 søsling lybsk, Glückstadt»[/i] (transl.: «1 Lübeck søsling, Glückstadt»)."
+          uk: "Номінал не належить цьому екземпляру.\n[b]Вебкаталог KMM, FP 1780.92[/b]: [i]«søsling lybsk»[/i] (перекл.: «любекський сьослінг»), «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk
+            (Hede 178)[/b]: [i]«1 søsling lybsk, Glückstadt»[/i] (перекл.: «1 любекський сьослінг, Glückstadt»)."
+          da: "Nominalen hører ikke til dette stykke.\n[b]KMM's webkatalog, FP 1780.92[/b]: [i]«søsling lybsk»[/i], «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk (Hede 178)[/b]: [i]«1 søsling
+            lybsk, Glückstadt»[/i]."
     mint: Glückstadt
     catalog:
       km: '25'
@@ -10325,6 +10338,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167068
         ref: KMM 167068 (Inv. FP 1780.156; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.155)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167040
+        ref: KMM 167040 (Inv. FP 1780.92)
     note:
       de: '1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Christian IV. (Glückstadt 1640-1648) · zwei Müntzmeister-Varianten nach Hede 178 unter dieser Einheits-Karte zusammengefaßt:
         178A fjer+ST Mzz (1640 R + 1641-1643), 178B to korslagte glødehager (1644-1647 + 1648 Unik) · Billon-Scheidemünze, Feingehalt .312 — unterwertig · Bruttovægt 0,704g · Marken-fin 11,066 daler · die
@@ -10349,7 +10366,6 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
-      - c-1902e335
       - c-ae0d7bfb
     label: unified-dk-hede-c4h178a
     origin: promoted
@@ -13626,7 +13642,7 @@ coins:
   - fuss: 11_333_thaler
     phase: I
     kind: kurant
-    nominal: Albertsdaler T34
+    nominal: 1 Albertsdaler
     ruler: Christian VII.
     issuing_entity: royal_holstein
     mintmaster: Didrik Christian Liebst
@@ -13680,6 +13696,7 @@ coins:
       fp:
         - '34.1'
         - '34.2'
+        - T34
       numista: '131730'
     metal: silver
     metal_verified: true
@@ -20283,36 +20300,6 @@ coins:
     composed_of:
       - c-d75ea985
     label: unified-dk-hede-f7h6a
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling, norsk
-    ruler: Christian 4
-    issuing_entity: royal_holstein
-    id: c-12b53297
-    year_first: 1643
-    year_last: 1643
-    year_label: '1643'
-    mint: Glückstadt
-    catalog:
-      hede: 178A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167040
-        ref: KMM 167040 (Inv. FP 1780.92)
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-12b53297
-    label: unified-kmk-167040
     origin: promoted
   - fuss: seed_unsorted
     phase: numismaster

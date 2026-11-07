@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1141 per-source seed entries.
-# Output: 294 unified entries (one per physical coin).
+# Output: 292 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4310,10 +4310,12 @@ coins:
         - 96-99
         - 157-159
       sieg: '161'
+      numista: '199146'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -4325,7 +4327,11 @@ coins:
         specimen: dk-hede-c4h178b
       - value: 0.312
         source: numismaster
+      - value: 0.312
+        source: ucoin
     weight_rough_g:
+      - value: 0.7
+        source: ucoin
       - value: 0.704
         source: hede
         specimen: dk-hede-c4h178a
@@ -4334,13 +4340,42 @@ coins:
         specimen: dk-hede-c4h178b
       - value: 0.704
         source: numismaster
+      - value: 0.76
+        source: numista
+    diameter_mm:
+      - value: 17.0
+        source: numista
+      - value: 17.0
+        source: ucoin
+    nominal_alts:
+      - value: 1 Skilling, norsk
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Das Nominal gehört nicht zu diesem Stück.\n[b]Webkatalog KMM, FP 1780.92[/b]: [i]«søsling lybsk»[/i] (Übers.: «Lübischer Søsling»), «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk
+            (Hede 178)[/b]: [i]«1 søsling lybsk, Glückstadt»[/i] (Übers.: «1 Lübischer Søsling, Glückstadt»)."
+          en: "The denomination does not belong to this piece.\n[b]KMM web catalogue, FP 1780.92[/b]: [i]«søsling lybsk»[/i] (transl.: «Lübeck søsling»), «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk
+            (Hede 178)[/b]: [i]«1 søsling lybsk, Glückstadt»[/i] (transl.: «1 Lübeck søsling, Glückstadt»)."
+          uk: "Номінал не належить цьому екземпляру.\n[b]Вебкаталог KMM, FP 1780.92[/b]: [i]«søsling lybsk»[/i] (перекл.: «любекський сьослінг»), «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk
+            (Hede 178)[/b]: [i]«1 søsling lybsk, Glückstadt»[/i] (перекл.: «1 любекський сьослінг, Glückstadt»)."
+          da: "Nominalen hører ikke til dette stykke.\n[b]KMM's webkatalog, FP 1780.92[/b]: [i]«søsling lybsk»[/i], «Hede 178A», 1643, «Danmark - Glückstadt».\n[b]danskmoent.dk (Hede 178)[/b]: [i]«1 søsling
+            lybsk, Glückstadt»[/i]."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h178.htm
         ref: danskmoent.dk (Hede c4h178A)
+      - type: literature
+        url: https://en.numista.com/199146
+        ref: Numista N#199146 — 1 Søsling Lybsk - Christian IV
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-sosling-1640-1648/?tid=163580
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167030
         ref: KMM 167030 (Inv. FP 1780.113; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.112)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167040
+        ref: KMM 167040 (Inv. FP 1780.92)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167044
         ref: KMM 167044 (Inv. FP 1780.88)
@@ -4359,7 +4394,10 @@ coins:
     composed_of:
       - dk-hede-c4h178a
       - dk-hede-c4h178b
+      - dk-numista-199146
+      - dk-tid-163580
       - kmk-167030
+      - kmk-167040
       - kmk-167044
       - kmk-167068
       - schleswig_holstein-numismaster-92968
@@ -6611,7 +6649,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: Albertsdaler T34
+    nominal: 1 Albertsdaler
     year_first: 1781
     year_last: 1796
     year_ranges:
@@ -6632,6 +6670,10 @@ coins:
       sieg:
         - '18.2'
         - '22A: 18.1 22B: 18.2'
+      fp:
+        - '34.1'
+        - '34.2'
+        - T34
       bruun_collection_id:
         - '7814'
         - '7851'
@@ -6639,9 +6681,6 @@ coins:
       schou:
         - '1'
         - '4'
-      fp:
-        - '34.1'
-        - '34.2'
       bruun_part: III
       bruun_lot_no: 11294
       bruun_page: 147
@@ -15279,55 +15318,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-19525
-  - id: c-1902e335
-    class_id: c-1902e335
-    label: unified-dk-numista-199146
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Sosling Lybsk
-    year_first: 1640
-    year_last: 1648
-    year_ranges:
-      -   - 1640
-          - 1648
-    year_label: 1640-1648
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      km: '25'
-      numista: '199146'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.312
-        source: ucoin
-    weight_rough_g:
-      - value: 0.7
-        source: ucoin
-      - value: 0.76
-        source: numista
-    diameter_mm:
-      - value: 17.0
-        source: numista
-      - value: 17.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/199146
-        ref: Numista N#199146 — 1 Søsling Lybsk - Christian IV
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-sosling-1640-1648/?tid=163580
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-199146
-      - dk-tid-163580
   - id: c-30b93dd0
     class_id: c-30b93dd0
     label: unified-dk-numista-204200
@@ -16859,31 +16849,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-156555
-  - id: c-12b53297
-    class_id: c-12b53297
-    label: unified-kmk-167040
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling, norsk
-    year_first: 1643
-    year_last: 1643
-    year_label: '1643'
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      hede: 178A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167040
-        ref: KMM 167040 (Inv. FP 1780.92)
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-167040
   - id: c-9bb5923f
     class_id: c-9bb5923f
     label: unified-kmk-167316

@@ -2258,6 +2258,10 @@ def _hede_base_groups(uf, seeds_by_id, entity_id):
     info: dict[str, dict] = {}
     key_roots: dict[tuple, set] = defaultdict(set)
     for root, members in uf.classes().items():
+        # A curator-excluded seed is an isolated singleton that absorb drops;
+        # it is no member of any group (curator 2026-11-07).
+        if all(m in uf.isolated for m in members):
+            continue
         bases: dict[str, set] = defaultdict(set)
         noms, metals = [], []
         for mid in members:
@@ -6630,27 +6634,6 @@ def process_entity(entity_id: str,
             for _r in _g[1:]:
                 uf.force_union(_g[0], _r)
             hede_base_joined.append(_g)
-        if _hb_groups:
-            print(f"  HEDE_BASE: {len(hede_base_joined)} groups joined "
-                  f"({sum(len(g) for g in hede_base_joined)} classes), "
-                  f"{len(hede_base_refused)} refused")
-            _dump = os.environ.get("HEDE_BASE_DUMP")
-            if _dump:
-                import json as _json
-                with open(_dump, "a") as _fh:
-                    for _rf in hede_base_refused:
-                        _fh.write(_json.dumps({
-                            "entity": entity_id, "why": _rf["why"],
-                            "classes": {r: [
-                                {"id": m, "nominal": (seeds_by_id.get(m) or {}).get("nominal"),
-                                 "hede": {k: v for k, v in _catalog_refs(seeds_by_id.get(m) or {}, entity_id).items()
-                                          if k.startswith("hede/")}}
-                                for m in uf._class_members(r)] for r in _rf["classes"]},
-                        }, ensure_ascii=False, default=str) + "\n")
-            for _rf in hede_base_refused:
-                print(f"    refused {_rf['classes'][:3]}{'…' if len(_rf['classes']) > 3 else ''}: "
-                      f"{'; '.join(_rf['why'][:3])}")
-
     # 4. Apply explicit curator merges LAST via force_union: a curator merge
     #    outranks the heuristic matcher, so auto no_merges between the member
     #    classes are CLEARED; only an EXPLICIT curator no_merge can block it
@@ -6689,6 +6672,34 @@ def process_entity(entity_id: str,
                       f"— left separate")
         if len(present) >= 2:
             forced_merges.append({"members": present, "cross_entity": True})
+
+    # 3c. Report the Hede-base result only now: a group the curator merges
+    #     above have joined anyway is no refusal (curator 2026-11-07).
+    if _HEDE_BASE_RULE:
+        hede_base_refused = [
+            _rf for _rf in hede_base_refused
+            if len({uf.find(r) for r in _rf["classes"]}) > 1]
+        if _hb_groups:
+            print(f"  HEDE_BASE: {len(hede_base_joined)} groups joined "
+                  f"({sum(len(g) for g in hede_base_joined)} classes), "
+                  f"{len(hede_base_refused)} refused")
+            _dump = os.environ.get("HEDE_BASE_DUMP")
+            if _dump:
+                import json as _json
+                with open(_dump, "a") as _fh:
+                    for _rf in hede_base_refused:
+                        _fh.write(_json.dumps({
+                            "entity": entity_id, "why": _rf["why"],
+                            "classes": {r: [
+                                {"id": m, "nominal": (seeds_by_id.get(m) or {}).get("nominal"),
+                                 "hede": {k: v for k, v in _catalog_refs(seeds_by_id.get(m) or {}, entity_id).items()
+                                          if k.startswith("hede/")}}
+                                for m in uf._class_members(uf.find(r))] for r in _rf["classes"]},
+                        }, ensure_ascii=False, default=str) + "\n")
+            for _rf in hede_base_refused:
+                print(f"    refused {_rf['classes'][:3]}{'…' if len(_rf['classes']) > 3 else ''}: "
+                      f"{'; '.join(_rf['why'][:3])}")
+
 
     # 4. Build unified entries from equivalence classes
     classes = uf.classes()

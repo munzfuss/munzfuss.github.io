@@ -1108,6 +1108,7 @@ def _build_coin(
     _HEDE_REF_MAP = {
         "Schou": "schou", "Sieg": "sieg", "Fr": "fr", "Dav": "dav",
         "Km": "km", "Galster": "galster", "Bruun": "bruun_collection_id",
+        "FP": "fp",
     }
     mapped = catalog_from_ref_dict(
         refs, _HEDE_REF_MAP, drop_keys={"Hede", "Frederik"}

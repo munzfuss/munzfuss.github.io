@@ -2383,8 +2383,9 @@ def _index_classify_columns(cells: list[str]) -> dict | None:
     Two layouts seen across volumes:
       7-col: [Hede, Sieg, Nominal, Metal, Year, Mint, Comment]
         (c3, c4, f2, f4, f5, f6, c8, c10, f9)
-      8-col: [Hede, Sieg, ProofTag, Nominal, Metal, Year, Mint, Comment]
-        (c7 — Prøvemøntning rows with P1/T34/E3 sub-classification tag)
+      8-col: [Hede, Sieg, Pedersen, Nominal, Metal, Year, Mint, Comment]
+        (c7 — the third column is «Pedersen (2017)», Frank Pedersen's
+        catalogue number of Christian VII's coins: P1 / T34 / E3)
 
     Detection: cell[3] is a metal token → 7-col; cell[4] is a metal
     token → 8-col. Otherwise fall back to 7-col with empty metal.
@@ -2400,6 +2401,7 @@ def _index_classify_columns(cells: list[str]) -> dict | None:
     cell3 = cells[3].lower().strip() if len(cells) > 3 else ""
     cell4 = cells[4].lower().strip() if len(cells) > 4 else ""
 
+    pedersen = ""
     if cell3 in _INDEX_METAL_TOKENS:
         # 7-col layout
         nominal = cells[2]
@@ -2408,9 +2410,11 @@ def _index_classify_columns(cells: list[str]) -> dict | None:
         mint = cells[5] if len(cells) > 5 else ""
         note = " · ".join(c for c in cells[6:] if c) if len(cells) > 6 else ""
     elif cell4 in _INDEX_METAL_TOKENS:
-        # 8-col layout with proof-tag at cell[2]
-        # Merge proof-tag into nominal: «1/3 Speciedaler P1»
-        nominal = f"{cells[3]} {cells[2]}".strip() if cells[2] else cells[3]
+        # 8-col layout: cell[2] is the Pedersen (2017) number, a catalogue
+        # index, not part of the nominal (it read «1/2 Krone E3»; curator
+        # 2026-11-07).
+        nominal = cells[3]
+        pedersen = cells[2].strip()
         metal = _INDEX_METAL_TOKENS[cell4]
         years_cell = cells[5] if len(cells) > 5 else ""
         mint = cells[6] if len(cells) > 6 else ""
@@ -2428,6 +2432,7 @@ def _index_classify_columns(cells: list[str]) -> dict | None:
         "year_hedge": _index_year_hedge(years_cell),
         "mint": mint.strip().rstrip(",.;"),
         "note": note.strip(),
+        "pedersen": pedersen,
     }
 
 
@@ -2509,6 +2514,8 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
         catalog_refs: dict[str, list[str]] = {"Hede": [hede_no]}
         if parsed_row["sieg"]:
             catalog_refs["Sieg"] = [parsed_row["sieg"]]
+        if parsed_row.get("pedersen"):
+            catalog_refs["FP"] = [parsed_row["pedersen"]]
         stub = {
             "id": stub_id,
             "ruler_volume": volume_code,

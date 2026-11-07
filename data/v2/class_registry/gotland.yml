@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 11 active, 27 retired.
+# 10 active, 28 retired.
 
 id: gotland
 classes:
@@ -43,6 +43,7 @@ classes:
     label: unified-dk-hede-f2h35
     legacy_id: unified-dk-hede-f2h35
     members:
+      - dk-bruun-4503
       - dk-hede-f2h35
   - id: c-6d7206e9
     status: active
@@ -52,13 +53,6 @@ classes:
     members:
       - dk-galster-hg-147
       - metallanalyser-2017-3-g147-gotland
-  - id: c-6f48798e
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-4503
-    legacy_id: unified-dk-bruun-4503
-    members:
-      - dk-bruun-4503
   - id: c-87275be0
     status: active
     created: '2026-10-25'
@@ -188,6 +182,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-46387
+  - id: c-6f48798e
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-4503
+    legacy_id: unified-dk-bruun-4503
+    merged_into: c-3b90e62c
+    retired: '2026-11-07'
+    members:
+      - dk-bruun-4503
   - id: c-86505a4a
     status: retired
     created: '2026-10-22'
