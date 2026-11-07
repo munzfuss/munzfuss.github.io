@@ -175,6 +175,22 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Stockholm",
         "entity": "sweden",
     },
+    "avesta": {
+        # Avesta — Swedish copper mint (plate money); same rule as Stockholm.
+        # Bruun Part III lot 12202 «… Avesta Mint» (2026-11-07: the Bruun seed
+        # builder now takes the printed mint, so an unregistered Avesta would
+        # have fallen back to danish_realm).
+        "aliases": {"avesta"},
+        "display": "Avesta",
+        "entity": "sweden",
+    },
+    "sala": {
+        # Sala — Swedish silver-mine mint; same rule as Stockholm. Bruun Part
+        # III lot 12165 «Stockholm & Sala Mint».
+        "aliases": {"sala"},
+        "display": "Sala",
+        "entity": "sweden",
+    },
     "vesteras": {
         # Västerås — Swedish mint; same rule as Stockholm.
         "aliases": {"vesteras", "västerås", "vasteras"},

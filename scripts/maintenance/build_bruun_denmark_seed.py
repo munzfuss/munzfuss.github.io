@@ -603,44 +603,44 @@ def parse_ruler_from_meta(meta_line: str | None, body: str | None,
     return slot
 
 
-def parse_mint(lot: dict) -> str | None:
-    """Extract mint from meta_line: pattern `<Mint> Mint.` typically.
+def parse_mint(lot: dict) -> str | list[str] | None:
+    """The lot's mint, from the parser's `mint` field (02_parse_lots.py reads
+    the cataloguer's «<X> Mint» at its fixed place in the meta line).
 
-    Also supports the «<Modern> (<Period>) Mint.» / «<Period> (<Modern>) Mint.»
-    bilingual form (Bruun PDF uses for Nidaros/Trondheim etc.). Returns
-    the period-canonical name when both are present.
+    The builder used to re-read the meta line itself with a closed list of
+    towns and, failing that, any bare town name in it — which found «Gottorp»
+    inside the territory «Schleswig-Holstein-Gottorp» on 49 lots struck at
+    Tönning, Schleswig, Steinbeck, Eutin, Stade, Mannheim and Bremervörde, and
+    kept only the first town of «Malmö or Copenhagen» (2026-11-07). Now:
+      * «X (Y)» — one town with its other form in brackets («Nidaros
+        (Trondheim)», «Elsinore (Helsingør)»): the registered form, X first;
+      * «A & B» / «A and B» — two mints, both attested: a list;
+      * «A or B» / «A / B» — alternatives: passed on verbatim, the seed
+        writer splits them, sets mint_verified false and records the source's
+        words (as for KMM «A eller B», d4dfde0).
     """
-    meta = lot.get("meta_line") or ""
-    # Bilingual «Nidaros (Trondheim) Mint» / «Trondheim (Nidaros) Mint»
-    m = re.search(
-        r"\b(Nidaros|Trondheim)\s*\([^)]+\)\s+Mint\b",
-        meta,
-    )
-    if m:
-        # Canonical: use the period name. «Nidaros» is the period name,
-        # «Trondheim» is modern. When matched first capture is one of
-        # them, return as-is — both forms are widely understood.
-        return m.group(1)
-    # Direct ".Malmö Mint." or "Copenhagen Mint." patterns
-    m = re.search(
-        r"\b(Copenhagen|København|Malmö|Malmø|Malmo|Husum|Gottorp|Roskilde|"
-        r"Aarhus|Ribe|Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|"
-        r"Helsingør|Helsingor|Lund|Nidaros|Trondheim|Lübeck|Hamburg|"
-        r"Altona|Glückstadt|Gluckstadt|Rendsburg|Schwerin)\s+Mint\b",
-        meta,
-    )
-    if m:
-        return m.group(1)
-    # Without "Mint" suffix
-    m = re.search(
-        r"\b(Copenhagen|København|Malmö|Husum|Gottorp|Roskilde|Aarhus|Ribe|"
-        r"Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|Helsingør|Lund|"
-        r"Nidaros|Trondheim)\b",
-        meta,
-    )
-    if m:
-        return m.group(1)
-    return lot.get("mint")
+    from lib.mint_registry import canon_for_alias
+    raw = lot.get("mint")
+    if not isinstance(raw, str) or not raw.strip():
+        return None
+    s = re.sub(r"\s+M[Ii]nt\s*$", "", raw).strip() or raw.strip()
+
+    def one(tok: str) -> str:
+        tok = tok.strip()
+        m = re.fullmatch(r"(.+?)\s*\(([^)]+)\)", tok)
+        if not m:
+            return tok
+        a, b = m.group(1).strip(), m.group(2).strip()
+        if canon_for_alias(a) or not canon_for_alias(b):
+            return a
+        return b
+
+    joint = re.split(r"\s*&\s*|\s+and\s+", s)
+    if len(joint) > 1:
+        out = [one(t) for t in joint if t.strip()]
+        return out if len(out) > 1 else out[0]
+    parts = re.split(r"(\s+or\s+|\s*/\s*)", s)
+    return "".join(one(t) if i % 2 == 0 else t for i, t in enumerate(parts))
 
 
 # Leading region word of a «. »-delimited TERRITORY segment. Used to strip
@@ -938,6 +938,26 @@ _BRUUN_LOT_ERRATA: dict[tuple[int, int], list[dict]] = {
 
 # Curation marks on a Bruun lot's printed weight, keyed like the errata above.
 _BRUUN_LOT_WEIGHT_MARKS: dict[tuple[int, int], dict] = {
+    # Curator 2026-11-07: Hede 117 ducat 1685, lot 11246 — 4.44 g against
+    # 3.44-3.46 g in the three other Bruun lots of the type.
+    (3, 11246): {"suspect": {
+        "de": "Übergewichtiges Stück.\n[b]Bruun Part III, Los 11246, S. 110[/b]: [i]«Weight: 4.44 gms»[/i] (Übers.: «Gewicht: 4,44 g»).\n"
+              "[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i] (Übers.: «Bruttogewicht: 3,490 g»).\n"
+              "[b]Bruun Part III, Los 11244, S. 109[/b]; [b]Part II, Los 13180, S. 105[/b]; [b]Part I, Los 1106, S. 131[/b]: 3,46 g, 3,44 g, 3,45 g für denselben Typ.\n"
+              "Ein Druckfehler und ein tatsächlich schwereres Stück sind gleichermaßen möglich; keines ist erwiesen.",
+        "en": "An overweight piece.\n[b]Bruun Part III, lot 11246, p. 110[/b]: [i]«Weight: 4.44 gms»[/i].\n"
+              "[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i] (transl.: «gross weight: 3.490 g»).\n"
+              "[b]Bruun Part III, lot 11244, p. 109[/b]; [b]Part II, lot 13180, p. 105[/b]; [b]Part I, lot 1106, p. 131[/b]: 3.46 g, 3.44 g, 3.45 g for the same type.\n"
+              "A misprint and a genuinely heavier piece are equally possible; neither is proven.",
+        "uk": "Надважкий екземпляр.\n[b]Bruun Part III, лот 11246, с. 110[/b]: [i]«Weight: 4.44 gms»[/i] (перекл.: «вага: 4,44 г»).\n"
+              "[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i] (перекл.: «вага брутто: 3,490 г»).\n"
+              "[b]Bruun Part III, лот 11244, с. 109[/b]; [b]Part II, лот 13180, с. 105[/b]; [b]Part I, лот 1106, с. 131[/b]: 3,46 г, 3,44 г, 3,45 г для того самого типу.\n"
+              "Помилка друку і справді важчий екземпляр однаково можливі; жодне з них не доведене.",
+        "da": "Et overvægtigt eksemplar.\n[b]Bruun Part III, lot 11246, s. 110[/b]: [i]«Weight: 4.44 gms»[/i] (overs.: «vægt: 4,44 g»).\n"
+              "[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i].\n"
+              "[b]Bruun Part III, lot 11244, s. 109[/b]; [b]Part II, lot 13180, s. 105[/b]; [b]Part I, lot 1106, s. 131[/b]: 3,46 g, 3,44 g, 3,45 g for samme type.\n"
+              "En trykfejl og et faktisk tungere eksemplar er lige mulige; ingen af delene er bevist.",
+    }},
     # Curator 2026-10-17: keep the lot, mark the weight suspect with Bruun's own words.
     (5, 14085): {"suspect": {
         "de": "Übergewichtiges Stück. Der Katalog Bruun Part V (Los 14085, S. 35): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» "
@@ -1313,7 +1333,7 @@ def main() -> int:
     # Summary
     from collections import Counter
     by_ruler = Counter(e.get("ruler") or "?" for e in entries)
-    by_mint = Counter(e.get("mint") or "?" for e in entries)
+    by_mint = Counter(" / ".join(m) if isinstance(m := e.get("mint"), list) else (m or "?") for e in entries)
     by_metal = Counter(e.get("metal") or "?" for e in entries)
     print(f"By ruler: {dict(by_ruler.most_common())}")
     print(f"By mint: {dict(by_mint.most_common())}")

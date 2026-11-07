@@ -447,10 +447,37 @@ MINT_RE = re.compile(r"\b((?:Copenhagen|Glückstadt|Glueckstadt|Glykstad|Altona|
 # Copenhagen») preserved verbatim (the entity classifier splits on «/ or »).
 # A truncated line-break meta («Copen-») carries no « Mint» token and correctly
 # falls through to the body reassembly.
+_MINT_NAME = r"[A-ZÆØÅÖÜ][A-Za-zæøåäöüéÆØÅÖÜ]+(?:\s*\([A-ZÆØÅÖÜ][A-Za-zæøåäöüé]+\))?"
 META_MINT_RE = re.compile(
-    r"\.\s*([A-ZÆØÅ][A-Za-zæøåüö]+"
-    r"(?:(?:\s*/\s*|\s+or\s+|\s+and\s+)[A-ZÆØÅ][A-Za-zæøåüö]+)?)\s+Mint\b"
+    r"\.\s*(" + _MINT_NAME +
+    r"(?:(?:\s*/\s*|\s+or\s+|\s+and\s+|\s*&\s*)" + _MINT_NAME + r")?)\s+M[Ii]nt\b"
 )
+# 2026-11-07: «Nidaros (Trondheim) Mint» / «Elsinore (Helsingør) Mint» (a name
+# with its other form in brackets), «Stockholm & Sala Mint» and the catalogue's
+# «Visby MInt» misprint were not matched, and the seed builder then searched
+# the meta line for a bare town name from its own list — which found «Gottorp»
+# inside the territory «Schleswig-Holstein-Gottorp» on 49 lots struck at
+# Tönning, Schleswig, Steinbeck, Eutin, Stade, Mannheim and Bremervörde.
+
+# A meta-line segment that is nothing but a registered mint town, standing
+# after the denomination/year segment («DENMARK. Skilling, 1525. Landskrona.
+# Christian II.»): the cataloguer's mint without the word «Mint». Checked
+# against the mint gazetteer (lib/mint_registry), never a regex list, and only
+# as a WHOLE segment — a town inside a territory or a medal title («Peace in
+# Lund Restrike Silver Medal») is not a segment of its own.
+_YEAR_SEG_RE = re.compile(r"\b(?:1[0-9]{3}|ND)\b")
+
+
+def bare_segment_mint(meta_line: str | None) -> str | None:
+    from lib.mint_registry import canon_for_alias
+    segs = [x.strip() for x in re.split(r"\.\s+", meta_line or "")]
+    seen_year = False
+    for seg in segs:
+        if seen_year and seg and canon_for_alias(seg):
+            return seg
+        if _YEAR_SEG_RE.search(seg):
+            seen_year = True
+    return None
 
 
 def split_pages(slug: str) -> list[tuple[int, str]]:
@@ -731,6 +758,10 @@ def parse_part(slug: str) -> list[dict]:
             mm_wrapped = META_MINT_RE.search(window)
             if mm_wrapped:
                 mint = mm_wrapped.group(1).strip() + " Mint"
+        if mint is None and meta_line:
+            bare = bare_segment_mint(meta_line)
+            if bare:
+                mint = bare + " Mint"
         if mint is None:
             mmint = MINT_RE.search(body_match)
             if mmint:
