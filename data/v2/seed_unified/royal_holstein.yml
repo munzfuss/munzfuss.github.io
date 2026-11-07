@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1174 per-source seed entries.
-# Output: 285 unified entries (one per physical coin).
+# Input: 1177 per-source seed entries.
+# Output: 283 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -10708,6 +10708,11 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
+      km:
+        - '54.1'
+        - '54.2'
+        - '54.3'
+        - '54'
       hede: '152'
       hede_volume: f3h
       schou:
@@ -10720,15 +10725,37 @@ coins:
         - '150.1'
         - '150.2'
         - '151'
+      numista: '129062'
+      lange: 69 - 70a - 71a - 73a
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.812
         source: hede
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1051731
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1052789
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1821949
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93006
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93007
+      - value: 0.812
+        source: numista
+      - value: 0.812
+        source: ucoin
     weight_rough_g:
       - value: 1.7
         source: kmk
@@ -10736,16 +10763,61 @@ coins:
         source: kmk
       - value: 1.785
         source: hede
+      - value: 1.785
+        source: ngc
+        specimen: ngc-1051731
+      - value: 1.785
+        source: ngc
+        specimen: ngc-1052789
+      - value: 1.785
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93006
+      - value: 1.785
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93007
+      - value: 1.79
+        source: ngc
+        specimen: ngc-1821949
+      - value: 1.79
+        source: numista
+      - value: 1.79
+        source: ucoin
+    diameter_mm:
+      - value: 20.0
+        source: numista
+      - value: 21.0
+        source: ucoin
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h152.htm
         ref: danskmoent.dk (Hede f3h152)
+      - type: literature
+        url: https://en.numista.com/129062
+        ref: Numista N#129062 — 1⁄16 Thaler - Frederik III (Roman style bust)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1665-1667/?tid=163628
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276473
         ref: KMM 276473 (Inv. FP 4227.1347)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276958
         ref: KMM 276958 (Inv. FP 4227.1348)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-54.1-1665-1669-cuid-1051731-duid-1239807
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-54.2-1665-cuid-1052789-duid-1239811
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-54.3-1665-cuid-1821949-duid-1821950
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93006
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_93007
+        ref: NumisMaster
     note:
       de: Døtgen
       en: Døtgen
@@ -10758,8 +10830,15 @@ coins:
       unit_raw: daler
     composed_of:
       - dk-hede-f3h152
+      - dk-numista-129062
+      - dk-tid-163628
       - kmk-276473
       - kmk-276958
+      - ngc-1051731
+      - ngc-1052789
+      - ngc-1821949
+      - schleswig_holstein-numismaster-93006
+      - schleswig_holstein-numismaster-93007
   - id: c-35178b3c
     class_id: c-35178b3c
     label: unified-dk-hede-f3h153a
@@ -15111,70 +15190,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-109450
-  - id: c-62db4424
-    class_id: c-62db4424
-    label: unified-dk-numista-129062
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1⁄16 Thaler
-    year_first: 1665
-    year_last: 1669
-    year_ranges:
-      -   - 1665
-          - 1667
-      -   - 1669
-          - 1669
-    year_label: 1665-1667, 1669
-    ruler: Frederik III
-    mint: Glückstadt
-    catalog:
-      km:
-        - '54'
-        - '54.1'
-      numista: '129062'
-      lange: 69 - 70a - 71a - 73a
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-      - value: 0.812
-        source: numista
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-      - value: 1.79
-        source: numista
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 20.0
-        source: numista
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/129062
-        ref: Numista N#129062 — 1⁄16 Thaler - Frederik III (Roman style bust)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1665-1667/?tid=163628
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_93006
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-129062
-      - dk-tid-163628
-      - schleswig_holstein-numismaster-93006
   - id: c-7116ef28
     class_id: c-7116ef28
     label: unified-dk-numista-131337
@@ -20365,37 +20380,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-93005
-  - id: c-4d26e854
-    class_id: c-4d26e854
-    label: unified-schleswig_holstein-numismaster-93007
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    catalog:
-      km: '54.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93007
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93007
   - id: c-d462eb54
     class_id: c-d462eb54
     label: unified-schleswig_holstein-numismaster-93021

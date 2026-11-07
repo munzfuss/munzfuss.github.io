@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 285 active, 500 retired.
+# 283 active, 502 retired.
 
 id: royal_holstein
 classes:
@@ -225,8 +225,15 @@ classes:
     legacy_id: unified-dk-hede-f3h152
     members:
       - dk-hede-f3h152
+      - dk-numista-129062
+      - dk-tid-163628
       - kmk-276473
       - kmk-276958
+      - ngc-1051731
+      - ngc-1052789
+      - ngc-1821949
+      - schleswig_holstein-numismaster-93006
+      - schleswig_holstein-numismaster-93007
   - id: c-1421b068
     status: active
     created: '2026-10-22'
@@ -850,13 +857,6 @@ classes:
     legacy_id: unified-dk-hede-f6h17
     members:
       - dk-hede-f6h17
-  - id: c-4d26e854
-    status: active
-    created: '2026-10-22'
-    label: unified-schleswig_holstein-numismaster-93007
-    legacy_id: unified-schleswig_holstein-numismaster-93007
-    members:
-      - schleswig_holstein-numismaster-93007
   - id: c-4e4e2b1f
     status: active
     created: '2026-10-22'
@@ -1091,15 +1091,6 @@ classes:
     legacy_id: unified-kmk-168013
     members:
       - kmk-168013
-  - id: c-62db4424
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-129062
-    legacy_id: unified-dk-numista-129062
-    members:
-      - dk-numista-129062
-      - dk-tid-163628
-      - schleswig_holstein-numismaster-93006
   - id: c-62e72f59
     status: active
     created: '2026-10-22'
@@ -4411,6 +4402,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149708
+  - id: c-4d26e854
+    status: retired
+    created: '2026-10-22'
+    label: unified-schleswig_holstein-numismaster-93007
+    legacy_id: unified-schleswig_holstein-numismaster-93007
+    merged_into: c-128abb8a
+    retired: '2026-11-07'
+    members:
+      - schleswig_holstein-numismaster-93007
   - id: c-4d61aad1
     status: retired
     created: '2026-10-22'
@@ -4679,6 +4679,17 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-148175
+  - id: c-62db4424
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-129062
+    legacy_id: unified-dk-numista-129062
+    merged_into: c-128abb8a
+    retired: '2026-11-07'
+    members:
+      - dk-numista-129062
+      - dk-tid-163628
+      - schleswig_holstein-numismaster-93006
   - id: c-6312bd8a
     status: retired
     created: '2026-10-22'
