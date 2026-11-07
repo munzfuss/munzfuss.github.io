@@ -2,7 +2,7 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1157 per-source seed entries.
+# Input: 1172 per-source seed entries.
 # Output: 291 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -1217,101 +1217,6 @@ coins:
       - denmark-numismaster-66038
       - dk-bruun-8053
       - dk-tid-70756
-  - id: c-7ed1bf0d
-    class_id: c-7ed1bf0d
-    label: unified-dk-bruun-8055
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1820
-    year_last: 1839
-    year_ranges:
-      -   - 1820
-          - 1820
-      -   - 1822
-          - 1822
-      -   - 1824
-          - 1829
-      -   - 1833
-          - 1835
-      -   - 1837
-          - 1839
-    year_label: 1820, 1822, 1824-1829, 1833-1835, 1837-1839
-    ruler: Frederik VI
-    mintmaster: Johan Friedrich Freund (FF)
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km:
-        - '695.1'
-        - '695'
-      bruun_collection_id:
-        - '8055'
-        - '8071'
-        - '8079'
-      sieg: '30.4'
-      schou:
-        - '2'
-        - '3'
-      hede: 26D
-      bruun_part: IV
-      bruun_lot_no: 17162
-      bruun_page: 93
-      numista: '22190'
-      dav:
-        - EC IV 73
-        - ECT 73
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.86
-        source: bruun
-      - value: 28.88
-        source: bruun
-      - value: 28.893
-        source: numismaster
-      - value: 28.893
-        source: numista
-      - value: 28.92
-        source: bruun
-    diameter_mm:
-      - value: 39.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66078
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17162, p. 77
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17166, p. 80
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11302, p. 134
-      - type: literature
-        url: https://en.numista.com/22190
-        ref: Numista N#22190 — 1 Speciedaler - Frederik VI
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-66078
-      - dk-bruun-8055
-      - dk-bruun-8071
-      - dk-bruun-8079
-      - dk-numista-22190
   - id: c-c53249ef
     class_id: c-c53249ef
     label: unified-dk-bruun-8065
@@ -12453,6 +12358,255 @@ coins:
       - dk-hede-f6h25
       - dk-numista-70515
       - dk-tid-70766
+  - id: c-5342bf6e
+    class_id: c-5342bf6e
+    label: unified-dk-hede-f6h26a
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1820
+    year_last: 1839
+    year_ranges:
+      -   - 1820
+          - 1820
+      -   - 1822
+          - 1822
+      -   - 1824
+          - 1829
+      -   - 1833
+          - 1835
+      -   - 1837
+          - 1839
+    year_label: 1820, 1822, 1824-1829, 1833-1835, 1837-1839
+    ruler: Frederik VI
+    mintmaster: Johan Friedrich Freund (FF)
+    mint:
+      - Altona
+      - Kopenhagen
+    catalog:
+      km:
+        - '695.1'
+        - '695.4'
+        - '695.2'
+        - '695.3'
+        - '695'
+      hede:
+        - '26'
+        - 26A
+        - 26B
+        - 26C
+        - 26D
+      hede_volume: f6h
+      schou:
+        - '1'
+        - '2'
+        - '3'
+        - 4-5
+      sieg:
+        - '30.1'
+        - '30.2'
+        - '30.3'
+        - '30.4'
+      bruun_collection_id:
+        - '8055'
+        - '8071'
+        - '8079'
+        - '8098'
+        - '8110'
+      bruun_part: IV
+      bruun_lot_no: 17162
+      bruun_page: 93
+      numista: '22190'
+      dav:
+        - EC IV 73
+        - ECT 73
+      others:
+        - LEB# 8058
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26b
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26c
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26d
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050423
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050424
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051050
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051051
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66078
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66079
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66080
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66081
+      - value: 0.875
+        source: numista
+      - value: 0.875
+        source: ucoin
+    weight_rough_g:
+      - value: 28.79
+        source: bruun
+      - value: 28.86
+        source: bruun
+      - value: 28.88
+        source: bruun
+      - value: 28.89
+        source: ucoin
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26a
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26b
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26c
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26d
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050423
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050424
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051050
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051051
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66078
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66079
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66080
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66081
+      - value: 28.893
+        source: numista
+      - value: 28.92
+        source: bruun
+      - value: 28.95
+        source: bruun
+    diameter_mm:
+      - value: 37.0
+        source: ucoin
+      - value: 39.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_66078
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66079
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66080
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66081
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17162, p. 77
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17166, p. 80
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11302, p. 134
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17170, p. 81
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1161, p. 197
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h26.htm
+        ref: danskmoent.dk (Hede f6h26A)
+      - type: literature
+        url: https://en.numista.com/22190
+        ref: Numista N#22190 — 1 Speciedaler - Frederik VI
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1820-1839/?tid=70767
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122087
+        ref: KMM 122087 (Inv. GP 4551.47)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.2-1820-1825-cuid-1050423-duid-1238323
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.3-1833-1834-cuid-1050424-duid-1238327
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.1-1820-1839-cuid-1051050-duid-1238310
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.4-1835-1839-cuid-1051051-duid-1238329
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    composed_of:
+      - denmark-numismaster-66078
+      - denmark-numismaster-66079
+      - denmark-numismaster-66080
+      - denmark-numismaster-66081
+      - dk-bruun-8055
+      - dk-bruun-8071
+      - dk-bruun-8079
+      - dk-bruun-8098
+      - dk-bruun-8110
+      - dk-hede-f6h26a
+      - dk-hede-f6h26b
+      - dk-hede-f6h26c
+      - dk-hede-f6h26d
+      - dk-numista-22190
+      - dk-tid-70767
+      - kmk-122087
+      - ngc-1050423
+      - ngc-1050424
+      - ngc-1051050
+      - ngc-1051051
   - id: c-e6374257
     class_id: c-e6374257
     label: unified-dk-hede-f6h27a

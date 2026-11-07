@@ -2298,7 +2298,9 @@ coins:
     fraction: '1'
     nominal: 1 Speciedaler
     ruler: Frederik VI.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     mintmaster: Johan Friedrich Freund (FF)
     id: km-695-1-fr-vi-1822
     year_first: 1820
@@ -2320,25 +2322,43 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '695.1'
         - '695'
+        - '695.1'
+        - '695.4'
+        - '695.2'
+        - '695.3'
       bruun_collection_id:
-        - '8055'
         - '8071'
         - '8079'
-      bruun_part: IV
-      bruun_lot_no: 17162
-      bruun_page: 93
+        - '8055'
+        - '8098'
+        - '8110'
       hede_volume: f6h
-      sieg: '30.4'
       schou:
+        - '1'
         - '2'
         - '3'
-      hede: 26D
+        - 4-5
       numista: '22190'
       dav:
         - EC IV 73
         - ECT 73
+      hede:
+        - '26'
+        - 26A
+        - 26B
+        - 26C
+        - 26D
+      sieg:
+        - '30.1'
+        - '30.2'
+        - '30.3'
+        - '30.4'
+      bruun_part: IV
+      bruun_lot_no: 17162
+      bruun_page: 93
+      others:
+        - LEB# 8058
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2348,27 +2368,98 @@ coins:
     verified: false
     fineness:
       - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26b
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26c
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h26d
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050423
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050424
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051050
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051051
+      - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66078
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66079
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66080
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66081
       - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
-      - value: 28.86
+      - value: 28.79
         source: bruun
       - value: 28.88
         source: bruun
+      - value: 28.89
+        source: ucoin
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26a
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26b
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26c
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f6h26d
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050423
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050424
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051050
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051051
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-66078
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66079
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66080
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66081
       - value: 28.893
         source: numista
-      - value: 28.92
+      - value: 28.95
         source: bruun
     diameter_mm:
+      - value: 37.0
+        source: ucoin
       - value: 39.0
         source: numista
     sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17162, p. 77
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17166, p. 80
@@ -2393,6 +2484,39 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1820-1839/?tid=70767
         ref: ucoin
+      - type: literature
+        url: https://numismaster.com/MC_66079
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66080
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66081
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17162, p. 77
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17170, p. 81
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1161, p. 197
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122087
+        ref: KMM 122087 (Inv. GP 4551.47)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.2-1820-1825-cuid-1050423-duid-1238323
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.3-1833-1834-cuid-1050424-duid-1238327
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.1-1820-1839-cuid-1051050-duid-1238310
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-695.4-1835-1839-cuid-1051051-duid-1238329
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Speciedaler 1822, 1827, 1829 (KM-695.1, einheitliche Hede-26D / Sieg-30.4) · drei Bruun-Specimina dokumentieren die fortgeführte Altona-Prägung im 9¼-Fuß während der Frederiks-VI.-Periode.
       en: Speciedaler 1822, 1827, 1829 (KM-695.1, all Hede-26D / Sieg-30.4) · three Bruun specimens document the continued Altona issue in the 9¼-Fuß during Frederik VI's reign.
@@ -2402,12 +2526,21 @@ coins:
       en: Fineness not directly attested; taken from the canonical coinage standard (9¼-Thaler-Fuß, anchor 0.875). Δ −0.05 % against the soll value is within specimen tolerance.
       uk: Проба не засвідчена джерелом безпосередньо; узята з канонічного стандарту (9¼-Thaler-Fuß, якір 0,875). Δ −0,05 % проти нормативу — у межах допуску зразка.
       da: Finheden er ikke direkte belagt; overtaget fra den kanoniske møntfodsstandard (9¼-Thaler-Fuß, anker 0,875). Δ −0,05 % i forhold til sollværdien ligger inden for specimen-tolerancen.
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
     composed_of:
-      - c-7ed1bf0d
+      - c-5342bf6e
     label: km-695-1-fr-vi-1822
     origin: foundation
     v1_home_location: schleswig_holstein
     _migration_note: auto-mapped from gesamtstaat
+    _weights_thinned:
+      - value: 28.86
+        source: bruun
+      - value: 28.92
+        source: bruun
   - fuss: 18_5_thaler
     phase: I
     kind: kurant
@@ -18506,95 +18639,6 @@ coins:
       - c-60e98e1b
     label: unified-ikmk-18204859
     origin: promoted
-  - fuss: 9_25_thaler
-    phase: IV
-    kind: kurant
-    fraction: '1'
-    nominal: 1 Speciedaler
-    ruler: Frederik VI.
-    issuing_entity:
-      - danish_realm
-      - royal_holstein
-    id: km-695-fr-vi-1820
-    year_first: 1820
-    year_last: 1839
-    year_ranges:
-      -   - 1820
-          - 1839
-    year_label: 1820-1839
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km:
-        - '695'
-        - '695.2'
-        - '695.3'
-      hede:
-        - '26'
-        - 26D
-      schou: '3'
-      bruun_lot: '8110'
-      numista: '22190'
-      hede_volume: f6h
-      sieg: '30'
-      dav: '73'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.89
-        source: ucoin
-      - value: 28.893
-        source: numismaster
-    diameter_mm:
-      - value: 37.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1820-1839/?tid=70767
-        ref: ucoin
-      - type: numista
-        url: https://en.numista.com/22190
-        ref: Numista
-      - type: web
-        url: https://auctions.stacksbowers.com/lots/view/3-1AKSSL/denmark-speciedaler-1837-copenhagen-mint-frederik-vi-ngc-specimen-66
-        ref: SB (Bruun)
-      - type: web
-        url: https://coins.ha.com/itm/denmark/denmark-frederik-vi-speciedaler-1839-ic-ws-ms64-ngc-/a/3040-29621.s
-        ref: Heritage
-      - type: web
-        url: https://www.danskmoent.dk/fr/f6h26.htm
-        ref: Hede / danskmoent.dk
-      - type: literature
-        url: https://numismaster.com/MC_66079
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_66080
-        ref: NumisMaster
-    note:
-      de: "«EN RIGSDALER SPECIES» · Münzmeister WS (Georg Wilhelm Svendsen) · Stempelschneider IC (Johannes Conradsen)\n"
-      en: «EN RIGSDALER SPECIES» · mintmaster WS (Georg Wilhelm Svendsen) · die-engraver IC (Johannes Conradsen)
-      uk: «EN RIGSDALER SPECIES» · монетмайстер WS (Georg Wilhelm Svendsen) · різьбяр штампів IC (Johannes Conradsen)
-    verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-      da: 'ucoin-seed (V1-overførsel): V1-kuratorpost fra før cachen, uden cache-dækning.'
-    composed_of: []
-    label: km-695-fr-vi-1820
-    origin: foundation
-    v1_home_location: schleswig_holstein
-    _migration_note: auto-mapped from gesamtstaat (joint-mint)
   - fuss: 18_5_thaler
     phase: II
     kind: scheide
