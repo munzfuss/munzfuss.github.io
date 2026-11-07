@@ -1061,6 +1061,13 @@ def _danskmoent_url(basename: str) -> str:
     return f"{_DANSKMOENT_BASE}/{basename}.htm"
 
 
+def _printed_letter_hede(lv: dict) -> str | None:
+    """The single Hede number the page prints for one lettered sub-variant
+    («(Hede 8A, Schou 3, Sieg 8)» → «8A»), or None."""
+    vals = ((lv or {}).get("catalog_refs") or {}).get("Hede") or []
+    return vals[0] if len(vals) == 1 and re.match(r"^\d+[A-Z]$", str(vals[0])) else None
+
+
 def _build_coin(
     *,
     hede_volume: str,
@@ -1071,6 +1078,7 @@ def _build_coin(
     mint_normalised: str | list[str],
     years_override: list[dict] | None = None,
     catalog_refs_override: dict | None = None,
+    hede_printed: str | None = None,
 ) -> dict | None:
     """Assemble one Coin-schema dict from a parsed-page entry + a
     specific spec block. Returns None when essential fields are
@@ -1200,7 +1208,12 @@ def _build_coin(
         cm["mint"] = mint_normalised
 
     catalog = CommentedMap()
-    catalog["hede"] = hede_number
+    # The number the page prints for this sub-variant («Hede 8A»), not the
+    # file name + letter: danskmoent names some pages with a letter of their
+    # own (c8h8b.htm, c8h11a.htm, c5h112a.htm, f5h37b.htm), which glued to
+    # the sub-letter gave «8bA», «11aA», «112aA», «37bA» (2026-11-07). The
+    # seed id keeps the file-based form so every decision that names it holds.
+    catalog["hede"] = hede_printed or hede_number
     catalog["hede_volume"] = hede_volume
     refs = catalog_refs_override or parsed.get("catalog_refs") or {}
     # GENERIC catalogue mapping (§CJ): Schou/Sieg/Fr/Dav/Km/Galster/Bruun →
@@ -1762,6 +1775,7 @@ def main() -> int:
                         mint_normalised=letter_mint,
                         years_override=lv.get("years"),
                         catalog_refs_override=lv.get("catalog_refs"),
+                        hede_printed=_printed_letter_hede(lv),
                     )
                     if coin is None:
                         stats["skipped_no_nominal"] += 1

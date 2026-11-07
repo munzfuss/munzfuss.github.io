@@ -175,6 +175,22 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Stockholm",
         "entity": "sweden",
     },
+    "avesta": {
+        # Avesta — Swedish copper mint (plate money); same rule as Stockholm.
+        # Bruun Part III lot 12202 «… Avesta Mint» (2026-11-07: the Bruun seed
+        # builder now takes the printed mint, so an unregistered Avesta would
+        # have fallen back to danish_realm).
+        "aliases": {"avesta"},
+        "display": "Avesta",
+        "entity": "sweden",
+    },
+    "sala": {
+        # Sala — Swedish silver-mine mint; same rule as Stockholm. Bruun Part
+        # III lot 12165 «Stockholm & Sala Mint».
+        "aliases": {"sala"},
+        "display": "Sala",
+        "entity": "sweden",
+    },
     "vesteras": {
         # Västerås — Swedish mint; same rule as Stockholm.
         "aliases": {"vesteras", "västerås", "vasteras"},
@@ -989,6 +1005,39 @@ _ISSUER_REGISTRY: dict[str, str | None] = {
     "archbishopric of bremen (german states)": "erzbisthum_bremen_verden",
     "duchy under swedish possession of bremen-verden (german states)": "erzbisthum_bremen_verden",
     "bremen-verden (swedish)": "erzbisthum_bremen_verden",
+
+    # ─────────── Hanseatic cities, Hesse-Cassel, Calenberg ──────────────
+    # Chrome-harvested Numista `country` strings that had no entry, so 618
+    # Numista seeds sat in _unclassified (2026-11-07). «City of Bremen» is the
+    # town, not the archbishopric (bremen_verden page: «Nicht zu verwechseln
+    # mit der Freien Hansestadt Bremen») — its own entity, curator 2026-11-07.
+    # The Electorate of Hesse (1803-1866) continues Hesse-Cassel.
+    "free hanseatic city of lübeck (german states)": "hanseatic_lubeck",
+    "free hanseatic city of lübeck": "hanseatic_lubeck",
+    "free hanseatic city of lubeck": "hanseatic_lubeck",
+    "lübeck (german states)": "hanseatic_lubeck",
+    "german states (lübeck)": "hanseatic_lubeck",
+    "lübeck": "hanseatic_lubeck",
+    "free hanseatic city of hamburg (german states)": "hanseatic_hamburg",
+    "free hanseatic city of hamburg": "hanseatic_hamburg",
+    "city of bremen (german states)": "hanseatic_bremen",
+    "city of bremen": "hanseatic_bremen",
+    "bremen (german states)": "hanseatic_bremen",
+    "bremen (city)": "hanseatic_bremen",
+    "bremen (free imperial city)": "hanseatic_bremen",
+    "germany (bremen)": "hanseatic_bremen",
+    "bremen": "hanseatic_bremen",
+    "landgraviate of hesse-cassel": "landgrafschaft_hessen_kassel",
+    "landgraviate of hesse-cassel (hesse-cassel)": "landgrafschaft_hessen_kassel",
+    "landgraviate of hesse-cassel (province of schaumburg-hessen)": "landgrafschaft_hessen_kassel",
+    "landgraviate of hesse-cassel (province of upper hesse)": "landgrafschaft_hessen_kassel",
+    "electorate of hesse (hesse-cassel)": "landgrafschaft_hessen_kassel",
+    "electorate of hesse (province of upper hesse, hesse-cassel)": "landgrafschaft_hessen_kassel",
+    "electorate of hesse (province of schaumburg-hessen, hesse-cassel)": "landgrafschaft_hessen_kassel",
+    "hesse-cassel": "landgrafschaft_hessen_kassel",
+    "brunswick-lüneburg-calenberg (german states)": "herzogtum_braunschweig_lueneburg",
+    "brunswick-lüneburg-calenberg": "herzogtum_braunschweig_lueneburg",
+    "brunswick-luneburg-calenberg": "herzogtum_braunschweig_lueneburg",
 
     # ──────────────────── Saxe-Lauenburg ────────────────────────────────
     "duchy of saxe-lauenburg (german states)": "herzogtum_sachsen_lauenburg",

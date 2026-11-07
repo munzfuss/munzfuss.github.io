@@ -1126,7 +1126,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # by (value, source). The merger emits them from the seeds' `year_mark` /
     # `ruler_mark`; the final never carries one the current members do not, so
     # a mark removed on the seed disappears here on the next absorb.
-    for _fld in ("year_alts", "ruler_alts", "mint_alts", "nominal_alts"):
+    for _fld in ("year_alts", "ruler_alts", "mint_alts", "nominal_alts", "metal_alts"):
         _alts: list[dict] = []
         _alt_seen: set[tuple[str, str]] = set()
         for _m in members:
@@ -2406,6 +2406,65 @@ def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> 
         and not _final_has_live_backing(fe, live_unified_ids, live_ids)
         and not _final_is_curated(fe)
     )
+
+
+V2_SCOPE_DROPPED = ROOT / "data" / "v2" / "_scope_dropped"
+_SCOPE_DROPPED_IDS: set[str] | None = None
+_KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
+
+
+def _scope_dropped_ids() -> set[str]:
+    """Seed ids a source builder's scope rule keeps out of the corpus
+    (`data/v2/_scope_dropped/<src>.yml`, `dropped:` keys — the KMM stub rule,
+    curator 2026-11-05)."""
+    global _SCOPE_DROPPED_IDS
+    if _SCOPE_DROPPED_IDS is None:
+        ids: set[str] = set()
+        for p in sorted(V2_SCOPE_DROPPED.glob("*.yml")) if V2_SCOPE_DROPPED.exists() else []:
+            ids |= set((_load_yaml(p).get("dropped") or {}).keys())
+        _SCOPE_DROPPED_IDS = ids
+    return _SCOPE_DROPPED_IDS
+
+
+def _is_scope_dropped_final(fe: dict, live_unified_ids: set, live_ids: set) -> bool:
+    """A final no live seed reaches whose EVERY source is a KMM object the scope
+    rule dropped — the coin existed only through those records, so it leaves
+    with them, curated or not (curator 2026-11-06: 356 such finals had stayed,
+    e.g. KMM 150153 / 150155 / 673522 under 8_daler_fod, because the vanished-
+    backing drop spares any final with a real Fuß). A final with any other
+    source (danskmoent, Bruun, a live KMM record …) is never matched here."""
+    if _final_has_live_backing(fe, live_unified_ids, live_ids):
+        return False
+    srcs = fe.get("sources") or []
+    if not srcs:
+        return False
+    dropped = _scope_dropped_ids()
+    if not dropped:
+        return False
+    for s in srcs:
+        n = _kmm_object_of(s)
+        if not n or f"kmk-{n}" not in dropped:
+            return False
+    return True
+
+
+_KMM_REF_RE = re.compile(r"^\s*KMM\s+(\d+)\b")
+
+
+def _kmm_object_of(src) -> str | None:
+    """KMM object number a citation points at: from its url
+    («…/KMM/object/<n>»), or — for an older citation stored without a url —
+    from its label («KMM <n> (Inv. …)»; 2026-11-07, five such finals)."""
+    if not isinstance(src, dict):
+        return None
+    m = _KMM_OBJECT_RE.search(str(src.get("url") or ""))
+    if m:
+        return m.group(1)
+    if not src.get("url"):
+        m = _KMM_REF_RE.match(str(src.get("ref") or ""))
+        if m:
+            return m.group(1)
+    return None
 
 
 _CROSS_ENTITY_DOC: dict | None = None
@@ -4348,6 +4407,7 @@ def process_entity(entity_id: str) -> dict:
     _live_ids = _live_unified_ids | _live_seed_ids
 
     stale_dropped_ids: set[str] = set()
+    scope_dropped_final_ids: set[str] = set()
     _kept_after_stale: list[dict] = []
     shell_dropped: set[str] = set()
     shell_kept_curated: list[str] = []
@@ -4358,6 +4418,10 @@ def process_entity(entity_id: str) -> dict:
     for e in enriched_entries:
         if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(e.get("id")))
+            continue
+        if _is_scope_dropped_final(e, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(e.get("id")))
+            scope_dropped_final_ids.add(str(e.get("id")))
             continue
         _eid = str(e.get("id"))
         # A V1 foundation the curator let go as an empty duplicate (2026-10-23).
@@ -4392,6 +4456,9 @@ def process_entity(entity_id: str) -> dict:
         print(f"  [{entity_id}] stale finals dropped: "
               f"{len(stale_dropped_ids)} entries (backing seed_unified gone, "
               f"no curation): {sorted(stale_dropped_ids)[:8]}")
+    if scope_dropped_final_ids:
+        print(f"  [{entity_id}] of which every source a scope-dropped KMM record: "
+              f"{len(scope_dropped_final_ids)}: {sorted(scope_dropped_final_ids)[:8]}")
 
     # MONOTONIC-ABSORB GUARD (TODO §CH). A coin already on the page must
     # not silently vanish from final just because a new source (IKMK, …)
@@ -4442,6 +4509,10 @@ def process_entity(entity_id: str) -> dict:
         # the explicit filter; both feed `stale_dropped_ids` for the stat.
         if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(fid))
+            continue
+        if _is_scope_dropped_final(fc, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(fid))
+            scope_dropped_final_ids.add(str(fid))
             continue
         if ((_is_promoted(fc) and str(fid) not in _live_unified_ids
                 and _seed_of(str(fid)) in _shell_removals())
@@ -4787,6 +4858,20 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
 _KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
 
 
+_IKMK_OBJECT_RE = re.compile(r"ikmk\.smb\.museum/object\?(?:[^#]*&)?id=(\d+)")
+
+
+def _specimen_seed_of(src: dict) -> str | None:
+    """Seed id of the museum specimen a citation points at: KMM object N →
+    «kmk-N», IKMK object N → «ikmk-N»; None for any other citation."""
+    url = str(src.get("url") or "")
+    m = _KMM_OBJECT_RE.search(url)
+    if m:
+        return f"kmk-{m.group(1)}"
+    m = _IKMK_OBJECT_RE.search(url)
+    return f"ikmk-{m.group(1)}" if m else None
+
+
 def _prune_foreign_kmm_citations(entities: list[str]) -> int:
     """Drop from each final the KMM citations of specimens that belong to
     ANOTHER final (curator 2026-10-19).
@@ -4812,11 +4897,16 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
         sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
         from lib.v2_index import V2Index
     _unified_docs = {str(p): d for p, d in _all_unified_docs()}
+    _unified_by_id = {u.get("id"): u for d in _unified_docs.values()
+                      for u in ((d or {}).get("coins") or []) if isinstance(u, dict)}
     idx = V2Index.load(loader=lambda p: (
         _seed_doc(p) if p.parent.parent == V2_SEED
         else _unified_docs.get(str(p)) or _load_yaml(p)))
     holder: dict[str, str] = {}
-    for sf in (V2_SEED / "kmk").glob("*.yml"):
+    # IKMK Berlin specimens too (curator 2026-11-07): an IKMK seed that left a
+    # class through an old over-merge (a Klagenfurt taler beside a Hamburg
+    # thaler on nominal + year) left its citation on the old final the same way.
+    for sf in [*(V2_SEED / "kmk").glob("*.yml"), *(V2_SEED / "ikmk").glob("*.yml")]:
         for c in (_seed_doc(sf).get("coins") or []):
             cid = c.get("id")
             if not cid:
@@ -4850,10 +4940,25 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
             if not isinstance(c, dict) or not c.get("sources"):
                 continue
             fid = c.get("id")
+            # A final that exists ONLY through foreign specimen citations (a
+            # pre-V2 record awaiting review, e.g. hs-ikmk-18286306) keeps them:
+            # stripping its last source would leave a sourceless coin on the
+            # page (2026-11-07). Its fate is a curator decision, not this rule.
+            _owners = [owner.get(_specimen_seed_of(s)) if isinstance(s, dict) else None
+                       for s in c["sources"]]
+            if all(o is not None and o != fid and o in where for o in _owners):
+                continue
+            # A citation the final's own classes carry stays (a seed lists a
+            # specimen it absorbed by §9a thinning; audit_lost_citations holds
+            # every member citation to the final).
+            _member_urls = {str(ms.get("url")) for m in (c.get("composed_of") or [])
+                            for ms in ((_unified_by_id.get(m) or {}).get("sources") or [])
+                            if isinstance(ms, dict) and ms.get("url")}
             keep = []
             for src in c["sources"]:
-                m = _KMM_OBJECT_RE.search(str(src.get("url") or "")) if isinstance(src, dict) else None
-                own = owner.get(f"kmk-{m.group(1)}") if m else None
+                own = owner.get(_specimen_seed_of(src)) if isinstance(src, dict) else None
+                if own is not None and str(src.get("url")) in _member_urls:
+                    own = None
                 if own is None or own == fid:
                     keep.append(src)
                     continue
@@ -4880,7 +4985,7 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
             _emit_final_yaml(ent, docs[ent].get("coins") or [], docs[ent]),
             encoding="utf-8")
     if dropped:
-        print(f"  KMM citations of specimens that belong to another final: "
+        print(f"  KMM / IKMK citations of specimens that belong to another final: "
               f"{dropped} removed from the old final, {moved} of them moved to "
               f"the specimen's final (which lacked them)")
     total = dropped

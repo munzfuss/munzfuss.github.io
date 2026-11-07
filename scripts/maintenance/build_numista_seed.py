@@ -222,7 +222,18 @@ def _resolve_default_entity(canonical: dict[str, Any]) -> str | list[str] | None
         ent = classify_issuer_to_entity(issuer)
         if ent is not None:
             return ent
+    # A generic country («German States», «Germany»): Numista names the
+    # issuer again in the title, after the denomination («16 Schilling -
+    # Free Hanseatic city of Lübeck – Numista», «12 Grote - City of Bremen»).
+    if (issuer or "").strip().lower() in _GENERIC_COUNTRIES:
+        for seg in re.split(r"\s+[-–—]\s+", canonical.get("title") or "")[1:]:
+            ent = classify_issuer_to_entity(seg)
+            if ent is not None:
+                return ent
     return None
+
+
+_GENERIC_COUNTRIES = frozenset({"german states", "germany"})
 
 
 def _filter_catalog(refs: dict[str, str] | None) -> dict[str, str]:

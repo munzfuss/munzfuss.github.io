@@ -73,8 +73,9 @@ class I18nTextOptional(_StrictBase):
 
 
 class YearMark(_StrictBase):
-    """A curation mark on a seed's own year, ruler, mint or nominal (see
-    Coin.year_mark, Coin.ruler_mark, Coin.mint_mark, Coin.nominal_mark)."""
+    """A curation mark on a seed's own year, ruler, mint, nominal or metal
+    (see Coin.year_mark, Coin.ruler_mark, Coin.mint_mark, Coin.nominal_mark,
+    Coin.metal_mark)."""
     kind: Literal["suspect", "erroneous", "approximate"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
@@ -1233,6 +1234,15 @@ class Coin(_StrictBase):
     # the Altona Rejsedaler 1788 (Hede 25).
     mint_mark: "YearMark | None" = None
     mint_alts: "list[YearAlt] | None" = None
+    # The metal-column analogue (curator 2026-11-07). An «erroneous» mark on the
+    # metal a source printed: `seed_merge.apply_metal_mark` moves the value into
+    # `metal_mark.value` and clears `metal`, so it takes part in nothing (not
+    # the class's metal, not the verified-vs-verified metal check) and is only
+    # shown, muted with «(!)», beside the real metal via `metal_alts`. Founding
+    # case: KMM 152038 records a Christian VIII 4 Rigsbankskilling (Hede 8A,
+    # billon .250) as «kobber».
+    metal_mark: "YearMark | None" = None
+    metal_alts: "list[YearAlt] | None" = None
     # Curation marks on catalogue numbers (schema CatalogMark), written on the
     # SEED of the source that printed the number; the merger turns them into
     # `catalog_alts` (marked numbers shown beside the class's numbers) and

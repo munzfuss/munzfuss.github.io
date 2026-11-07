@@ -1392,9 +1392,15 @@ def _kmm_stub(entry: dict) -> bool:
 
 
 def build_entry(src) -> dict | None:
-    if _is_exonumia_workdesc(src.get("workDescription")):
-        return None
-    if _is_exonumia_nominal(src.get("nominal")):
+    if (_is_exonumia_workdesc(src.get("workDescription"))
+            or _is_exonumia_nominal(src.get("nominal"))):
+        # Recorded in the scope ledger like a stub, so a final that exists
+        # only through such records (a banknote or token classified before
+        # the 2026-06-10 exonumia drop) leaves with them in absorb
+        # (curator 2026-11-07).
+        rid = str(src.get("id") or "")
+        if rid.isdigit():
+            _STUB_DROPPED[f"kmk-{rid}"] = "exonumia"
         return None
     src = _enrich_from_raadata(src)
     if src.get("id") in _KMM_DROP_IDS or str(src.get("id")) in {str(x) for x in _KMM_DROP_IDS}:
@@ -1613,7 +1619,9 @@ def _write_scope_dropped() -> None:
     payload = {
         "source": "kmk",
         "rule": ("KMM stub (curator 2026-11-05): a forgery; no weight and no "
-                 "image; or a weight with no image and no catalogue index."),
+                 "image; or a weight with no image and no catalogue index. "
+                 "exonumia (§9.2; ledger since curator 2026-11-07): a medal, "
+                 "jeton, token, banknote or other non-coin object."),
         "dropped": {k: _STUB_DROPPED[k] for k in sorted(_STUB_DROPPED)},
     }
     _erroneous_marks()

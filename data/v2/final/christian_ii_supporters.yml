@@ -2,9 +2,9 @@ id: christian_ii_supporters
 source_locations: []
 migrated_from_v1: ''
 coins:
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
+  - fuss: luebischer_muenzfuss
+    phase: IIa
+    kind: scheide
     nominal: 1 Skilling
     ruler: Christian II
     issuing_entity: christian_ii_supporters
@@ -53,15 +53,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g80.htm
         ref: Galster 80 (c2g) — danskmoent.dk chr_c2g80.htm
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - c-6f17b704
     label: unified-dk-bruun-4116
@@ -183,6 +174,12 @@ coins:
           value: '1535'
           seed: kmk-156731
       mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmø or Copenhagen
+          value: Malmø, Copenhagen
+          seed: dk-bruun-4149
         - kind: hedged
           how: alternatives
           source: kmk
@@ -311,8 +308,8 @@ coins:
       - c-ddefc984
     label: unified-dk-galster-c2g-82
     origin: promoted
-  - fuss: seed_unsorted
-    phase: galster
+  - fuss: 8_5_gylden_fod
+    phase: B
     kind: kurant
     nominal: Halv Sølvgylden
     ruler: Christian II
@@ -372,84 +369,6 @@ coins:
     composed_of:
       - c-664cca8f
     label: unified-dk-galster-c2g-84
-    origin: promoted
-  - fuss: luebischer_muenzfuss
-    phase: III
-    kind: scheide
-    nominal: 4 Skilling
-    ruler: Christian II
-    issuing_entity: christian_ii_supporters
-    id: c-02d2cd23
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_verified: true
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 4 Skilling
-          value: billon
-          seed: dk-galster-c2g-85
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '3.35'
-          seed: dk-galster-c2g-85
-    mint:
-      - Güstow
-      - Güstrow
-      - Malmø
-      - Mecklenburg
-    catalog:
-      galster: '85'
-      schou: 18-36
-      sieg: '1'
-      galster_volume: c2g
-      others:
-        - B# 33
-        - B# 36b
-    metal: billon
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 3.35
-        max:
-        approx: true
-        source: danskmoent.dk chr/c2g85.htm
-        url: https://www.danskmoent.dk/gif/grevefejden_g85.gif
-    diameter_mm:
-      - value: 28.0
-        source: danskmoent.dk chr/c2g85.htm
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c2g85.htm
-        ref: Galster 85 (c2g) — danskmoent.dk chr_c2g85.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150191
-        ref: KMM 150191 (Inv. KP 1656.122)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150192
-        ref: KMM 150192 (Inv. KP 1656.121)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156732
-        ref: KMM 156732 (Inv. RP 372.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156733
-        ref: KMM 156733 (Inv. RP 373.1)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/417187
-        ref: KMM 417187 (Inv. FP 1542.210)
-        display: false
-    composed_of:
-      - c-02d2cd23
-    label: unified-dk-galster-c2g-85
     origin: promoted
   - fuss: reichsdukatenfuss
     phase: I
@@ -806,4 +725,104 @@ coins:
     composed_of:
       - c-ee673d08
     label: unified-dk-galster-c2g-86
+    origin: promoted
+  - fuss: luebischer_muenzfuss
+    phase: III
+    kind: scheide
+    nominal: 4 Skilling
+    ruler: Christian II
+    issuing_entity: christian_ii_supporters
+    id: c-02d2cd23
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-85
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '3.35'
+          seed: dk-galster-c2g-85
+    mint:
+      - Güstow
+      - Güstrow
+      - Malmø
+      - Mecklenburg
+    catalog:
+      galster: '85'
+      schou: 18-36
+      sieg: '1'
+      galster_volume: c2g
+      others:
+        - B# 33
+        - B# 36b
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.28125
+        source: danskmoent.dk (Kunzel 1985–86)
+        template:
+          de: "Kein Probierbefund: 4½ Lot (281,25 ‰) ist die Probe, die der Vertrag Herzog Albrechts VII. von Mecklenburg mit dem Münzmeister Moritz Schacht (Schwerin, 28. März 1535) vorschreibt, nicht
+            die an einem Stück bestimmte Feinheit.\n[b]Kunzel 1985–86 (Nordisk Numismatisk Årsskrift 1985–86), danskmoent.dk/artikler/gustrow.htm[/b]: [i]«Diese Münzen dänischer Währung, d.h. Vierskillinge,
+            sollten nach folgendem Fuß ausgeprägt werden»[/i]; Korn 4½ Lot, Schrot 63½ Stück aus der Mark; Remedium [i]«ein Quentchen am Feingehalt»[/i]."
+          en: "Not an assay: 4½ Lot (281.25 ‰) is the fineness prescribed by the contract of Duke Albrecht VII of Mecklenburg with the mintmaster Moritz Schacht (Schwerin, 28 March 1535), not a fineness
+            determined on a specimen.\n[b]Kunzel 1985–86 (Nordisk Numismatisk Årsskrift 1985–86), danskmoent.dk/artikler/gustrow.htm[/b]: [i]«Diese Münzen dänischer Währung, d.h. Vierskillinge, sollten
+            nach folgendem Fuß ausgeprägt werden»[/i] (transl.: «These coins of Danish currency, i.e. four-skilling pieces, were to be struck on the following standard»); fineness 4½ Lot, 63½ pieces to
+            the mark; remedy [i]«ein Quentchen am Feingehalt»[/i] (transl.: «one Quentchen in the fineness»)."
+          uk: "Не результат визначення проби: 4½ лота (281,25 ‰) — проба, яку приписує контракт герцога Albrecht VII Мекленбурзького з мінцмейстером Moritz Schacht (Schwerin, 28 березня 1535 р.), а не проба,
+            визначена на екземплярі.\n[b]Kunzel 1985–86 (Nordisk Numismatisk Årsskrift 1985–86), danskmoent.dk/artikler/gustrow.htm[/b]: [i]«Diese Münzen dänischer Währung, d.h. Vierskillinge, sollten nach
+            folgendem Fuß ausgeprägt werden»[/i] (перекл.: «Ці монети данської валюти, тобто четвертаки, мали карбуватися за такою стопою»); проба 4½ лота, 63½ штуки з марки; допуск [i]«ein Quentchen am
+            Feingehalt»[/i] (перекл.: «один квентхен на пробі»)."
+          da: "Ikke en prøvning: 4½ lod (281,25 ‰) er den lødighed, som hertug Albrecht 7. af Mecklenburgs kontrakt med møntmester Moritz Schacht (Schwerin, 28. marts 1535) foreskriver, ikke en lødighed
+            bestemt på et eksemplar.\n[b]Kunzel 1985–86 (Nordisk Numismatisk Årsskrift 1985–86), danskmoent.dk/artikler/gustrow.htm[/b]: [i]«Diese Münzen dänischer Währung, d.h. Vierskillinge, sollten nach
+            folgendem Fuß ausgeprägt werden»[/i] (overs.: «Disse mønter af dansk mønt, dvs. firskillinger, skulle præges efter følgende fod»); lødighed 4½ lod, 63½ stykker af marken; remedium [i]«ein Quentchen
+            am Feingehalt»[/i] (overs.: «et kvintin i lødigheden»)."
+    weight_range_g:
+      - min: 3.35
+        max:
+        approx: true
+        source: danskmoent.dk chr/c2g85.htm
+        url: https://www.danskmoent.dk/gif/grevefejden_g85.gif
+    diameter_mm:
+      - value: 28.0
+        source: danskmoent.dk chr/c2g85.htm
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c2g85.htm
+        ref: Galster 85 (c2g) — danskmoent.dk chr_c2g85.htm
+      - type: literature
+        url: https://www.danskmoent.dk/artikler/gustrow.htm
+        ref: Kunzel 1985–86, Nordisk Numismatisk Årsskrift 1985–86, s. 97–112 — danskmoent.dk artikler/gustrow.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150191
+        ref: KMM 150191 (Inv. KP 1656.122)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150192
+        ref: KMM 150192 (Inv. KP 1656.121)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156732
+        ref: KMM 156732 (Inv. RP 372.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156733
+        ref: KMM 156733 (Inv. RP 373.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/417187
+        ref: KMM 417187 (Inv. FP 1542.210)
+        display: false
+    composed_of:
+      - c-02d2cd23
+    label: unified-dk-galster-c2g-85
     origin: promoted
