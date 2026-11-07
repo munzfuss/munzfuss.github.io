@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 2744 per-source seed entries.
-# Output: 575 unified entries (one per physical coin).
+# Input: 2751 per-source seed entries.
+# Output: 573 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -7020,6 +7020,93 @@ coins:
     composed_of:
       - dk-hede-f5h36b
       - dk-hede-f5h36c
+  - id: c-7b49f8e9
+    class_id: c-7b49f8e9
+    label: unified-dk-hede-f6h15b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1812
+    year_last: 1812
+    year_label: '1812'
+    ruler: Frederik VI
+    mint: Kongsberg
+    catalog:
+      km: '281'
+      hede:
+        - '6'
+        - 15B
+      hede_volume: f6h
+      schou:
+        - '8'
+        - '9'
+      others:
+        - Sieg Norge# 2
+        - Brekke# 8A
+        - Brekke# 8B
+      sieg: '2'
+      numista: '76225'
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.76
+        source: numista
+      - value: 0.76
+        source: ucoin
+      - value: 0.78
+        source: hede
+      - value: 0.8
+        source: kmk
+      - value: 0.85
+        source: kmk
+    diameter_mm:
+      - value: 13.0
+        source: hede
+      - value: 13.0
+        source: ucoin
+      - value: 15.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_122241
+        ref: NumisMaster
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h15.htm
+        ref: danskmoent.dk (Hede f6h15)
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf6h6.htm
+        ref: danskmoent.dk (Hede nf6h6)
+      - type: literature
+        url: https://en.numista.com/76225
+        ref: Numista N#76225 — 1 Skilling - Frederik VI - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-skilling-1812/?tid=88669
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/625282
+        ref: KMM 625282 (Inv. RP 1313.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/625283
+        ref: KMM 625283 (Inv. RP 1312.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-281-1812-cuid-1097065-duid-1449852
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_norway
+    composed_of:
+      - denmark-numismaster-122241
+      - dk-hede-f6h15b
+      - dk-hede-nf6h6
+      - dk-numista-76225
+      - dk-tid-88669
+      - kmk-625282
+      - kmk-625283
+      - ngc-1097065
   - id: c-e62141ef
     class_id: c-e62141ef
     label: unified-dk-hede-nc3h1
@@ -32155,8 +32242,8 @@ coins:
       - dk-numista-97335
       - dk-tid-88718
       - kmk-122077
-  - id: c-edb74f02
-    class_id: c-edb74f02
+  - id: c-84e61d5d
+    class_id: c-84e61d5d
     label: unified-dk-hede-nf6h4
     fuss: seed_unsorted
     phase: hede
@@ -32168,27 +32255,50 @@ coins:
     ruler: Frederik VI
     mint: Kongsberg
     catalog:
+      km: '274'
       hede: '4'
       hede_volume: nf6h
       schou: 12-15
       sieg: '1'
-    metal: silver
+      numista: '49469'
+      others:
+        - Brekke# 7
+    metal: copper
     metal_verified: true
+    fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
       - value: 5.568
         source: hede
+      - value: 5.568
+        source: numista
+      - value: 5.57
+        source: ucoin
+    diameter_mm:
+      - value: 25.0
+        source: numista
+      - value: 25.0
+        source: ucoin
     sources:
       - type: literature
         url: https://www.danskmoent.dk/norge/nf6h4.htm
         ref: danskmoent.dk (Hede nf6h4)
+      - type: literature
+        url: https://en.numista.com/49469
+        ref: Numista N#49469 — 1 Skilling Courant - Frederik VI - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-skilling-1809/?tid=88592
+        ref: ucoin
     issuing_entity: danish_norway
     composed_of:
       - dk-hede-nf6h4
-  - id: c-a1594a3d
-    class_id: c-a1594a3d
+      - dk-numista-49469
+      - dk-tid-88592
+  - id: c-eab674bb
+    class_id: c-eab674bb
     label: unified-dk-hede-nf6h5
     fuss: seed_unsorted
     phase: hede
@@ -32203,6 +32313,9 @@ coins:
     ruler: Frederik VI
     mint: Kongsberg
     catalog:
+      km:
+        - '280.1'
+        - '280'
       hede: '5'
       hede_volume: nf6h
       schou:
@@ -32210,48 +32323,49 @@ coins:
         - 4-7
         - '8'
       sieg: '4'
-    metal: silver
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nf6h5.htm
-        ref: danskmoent.dk (Hede nf6h5)
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-hede-nf6h5
-  - id: c-d6963d18
-    class_id: c-d6963d18
-    label: unified-dk-hede-nf6h6
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1812
-    year_last: 1812
-    year_label: '1812'
-    ruler: Frederik VI
-    mint: Kongsberg
-    catalog:
-      hede: '6'
-      hede_volume: nf6h
-      schou: '9'
-      sieg: '2'
-    metal: silver
+      numista: '20936'
+      others:
+        - Brekke# 5
+    metal: copper
     metal_verified: true
+    fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 0.78
-        source: hede
+      - value: 8.0
+        source: ucoin
+      - value: 8.35
+        source: numista
+    diameter_mm:
+      - value: 28.0
+        source: numista
+      - value: 28.0
+        source: ucoin
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/norge/nf6h6.htm
-        ref: danskmoent.dk (Hede nf6h6)
+        url: https://numismaster.com/MC_122245
+        ref: NumisMaster
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf6h5.htm
+        ref: danskmoent.dk (Hede nf6h5)
+      - type: literature
+        url: https://en.numista.com/20936
+        ref: Numista N#20936 — 2 Skilling Courant - Frederik VI - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-2-skilling-1810-1811/?tid=88694
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-280.1-1810-cuid-1098069-duid-1452313
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     composed_of:
-      - dk-hede-nf6h6
+      - denmark-numismaster-122245
+      - dk-hede-nf6h5
+      - dk-numista-20936
+      - dk-tid-88694
+      - ngc-1098069
   - id: c-c2b3e971
     class_id: c-c2b3e971
     label: unified-dk-numista-100330
@@ -33810,52 +33924,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-494068
-  - id: c-84e61d5d
-    class_id: c-84e61d5d
-    label: unified-dk-numista-49469
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling Courant
-    year_first: 1809
-    year_last: 1809
-    year_label: '1809'
-    ruler: Frederik VI
-    mint: Kongsberg
-    catalog:
-      km: '274'
-      numista: '49469'
-      hede: '4'
-      others:
-        - Brekke# 7
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 5.568
-        source: numista
-      - value: 5.57
-        source: ucoin
-    diameter_mm:
-      - value: 25.0
-        source: numista
-      - value: 25.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/49469
-        ref: Numista N#49469 — 1 Skilling Courant - Frederik VI - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-skilling-1809/?tid=88592
-        ref: ucoin
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-49469
-      - dk-tid-88592
   - id: c-04698c53
     class_id: c-04698c53
     label: unified-dk-numista-500866
@@ -42590,64 +42658,6 @@ coins:
     composed_of:
       - denmark-numismaster-122239
       - ngc-1098068
-  - id: c-eab674bb
-    class_id: c-eab674bb
-    label: unified-ngc-1098069
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1810
-    year_last: 1811
-    year_ranges:
-      -   - 1810
-          - 1811
-    year_label: 1810-1811
-    ruler: Frederik VI
-    catalog:
-      km:
-        - '280.1'
-        - '280'
-      numista: '20936'
-      hede: '5'
-      others:
-        - Brekke# 5
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 8.0
-        source: ucoin
-      - value: 8.35
-        source: numista
-    diameter_mm:
-      - value: 28.0
-        source: numista
-      - value: 28.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122245
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/20936
-        ref: Numista N#20936 — 2 Skilling Courant - Frederik VI - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-2-skilling-1810-1811/?tid=88694
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-280.1-1810-cuid-1098069-duid-1452313
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122245
-      - dk-numista-20936
-      - dk-tid-88694
-      - ngc-1098069
   - id: c-6c9b49f3
     class_id: c-6c9b49f3
     label: unified-ngc-1098070

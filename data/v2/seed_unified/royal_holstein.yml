@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1141 per-source seed entries.
-# Output: 292 unified entries (one per physical coin).
+# Input: 1134 per-source seed entries.
+# Output: 291 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4882,6 +4882,7 @@ coins:
         - '45'
       sieg: '141'
     metal: silver
+    metal_verified: true
     mint_verified: true
     verified: false
     sources:
@@ -11797,7 +11798,7 @@ coins:
       - kmk-152090
   - id: c-6d4898b8
     class_id: c-6d4898b8
-    label: unified-dk-hede-f6h15
+    label: unified-dk-hede-f6h15a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -11806,30 +11807,22 @@ coins:
     year_last: 1812
     year_label: '1812'
     ruler: Frederik VI
+    mintmaster: MF
     mint:
       - Altona
-      - Kongsberg
       - Kopenhagen
     catalog:
-      km:
-        - '671'
-        - '281'
+      km: '671'
       hede:
-        - '6'
         - '15'
         - 15A
-        - 15B
       hede_volume: f6h
       schou:
         - '7'
         - '8'
       sieg: '2'
-      numista:
-        - '23611'
-        - '76225'
+      numista: '23611'
       others:
-        - Brekke# 8A
-        - Brekke# 8B
         - B# 28a
     metal: copper
     metal_verified: true
@@ -11839,10 +11832,6 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 0.76
-        source: numista
-      - value: 0.76
-        source: ucoin
       - value: 0.78
         source: hede
       - value: 0.78
@@ -11853,27 +11842,18 @@ coins:
         source: numista
       - value: 0.78
         source: ucoin
-      - value: 0.8
-        source: kmk
-      - value: 0.85
-        source: kmk
       - value: 0.87
         source: kmk
     diameter_mm:
-      - value: 13.0
-        source: ucoin
+      - value: 15.0
+        source: hede
       - value: 15.0
         source: ngc
-      - value: 15.0
-        source: numista
       - value: 15.0
         source: ucoin
       - value: 15.6
         source: numista
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_122241
-        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_65032
         ref: NumisMaster
@@ -11883,14 +11863,8 @@ coins:
       - type: literature
         url: https://en.numista.com/23611
         ref: Numista N#23611 — 1 Skilling Dansk - Frederik VI
-      - type: literature
-        url: https://en.numista.com/76225
-        ref: Numista N#76225 — 1 Skilling - Frederik VI - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-skilling-1812/?tid=79552
-        ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-skilling-1812/?tid=88669
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152079
@@ -11910,40 +11884,24 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/625271
         ref: KMM 625271 (Inv. RP 1311.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/625282
-        ref: KMM 625282 (Inv. RP 1313.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/625283
-        ref: KMM 625283 (Inv. RP 1312.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-671-1812-cuid-1069011-duid-1236522
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-281-1812-cuid-1097065-duid-1449852
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity:
-      - danish_norway
       - danish_realm
       - royal_holstein
     composed_of:
-      - denmark-numismaster-122241
       - denmark-numismaster-65032
-      - dk-hede-f6h15
+      - dk-hede-f6h15a
       - dk-numista-23611
-      - dk-numista-76225
       - dk-tid-79552
-      - dk-tid-88669
       - kmk-152079
       - kmk-152080
       - kmk-152081
       - kmk-203795
       - kmk-442027
       - kmk-625271
-      - kmk-625282
-      - kmk-625283
       - ngc-1069011
-      - ngc-1097065
   - id: c-1826f10b
     class_id: c-1826f10b
     label: unified-dk-hede-f6h16
@@ -13592,8 +13550,8 @@ coins:
       unit_raw: rd
     composed_of:
       - dk-hede-f7h18
-  - id: c-862bb9a7
-    class_id: c-862bb9a7
+  - id: c-aeda0c4e
+    class_id: c-aeda0c4e
     label: unified-dk-hede-f7h19
     fuss: seed_unsorted
     phase: hede
@@ -13608,6 +13566,7 @@ coins:
     ruler: Frederik VII
     mint: Altona
     catalog:
+      km: '162'
       hede: '19'
       hede_volume: f7h
       schou:
@@ -13616,9 +13575,7 @@ coins:
       sieg:
         - '22'
         - '2016'
-      others:
-        - ucoin# 100
-    metal: silver
+    metal: copper
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
@@ -13626,7 +13583,7 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 9.57
+      - value: 9.5
         source: ucoin
     diameter_mm:
       - value: 27.0
@@ -13635,13 +13592,21 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f7h19.htm
         ref: danskmoent.dk (Hede f7h19)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sechsling-km-162-1850-1851-cuid-1207932-duid-1390941
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120092
+        ref: NumisMaster
       - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850/?tid=187884
+        url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850-1851/?tid=90814
         ref: ucoin
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-f7h19
-      - sh-tid-187884
+      - ngc-1207932
+      - schleswig_holstein-numismaster-120092
+      - sh-tid-90814
   - id: c-5fa0e2c3
     class_id: c-5fa0e2c3
     label: unified-dk-hede-f7h1b
@@ -15759,51 +15724,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-313357
-  - id: c-d84bda91
-    class_id: c-d84bda91
-    label: unified-dk-numista-31393
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅔ Thaler
-    year_first: 1830
-    year_last: 1830
-    year_label: '1830'
-    ruler: Frederick VI of Denmark (Friedrich VI von Dänemark)
-    mint: Altona
-    catalog:
-      km: '25'
-      numista: '31393'
-      hede: '1'
-      others:
-        - SIEG SD# 44
-        - AKS# 1
-        - Jaeg 6 FHI# 14
-        - Kahnt/Schön# 280
-        - Dorfmann# 140
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.75
-        source: numista
-    weight_rough_g:
-      - value: 17.32
-        source: numista
-    diameter_mm:
-      - value: 34.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/31393
-        ref: Numista N#31393 — ⅔ Thaler - Frederick VI - Duchy of Saxe-Lauenburg
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-31393
   - id: c-708f86ad
     class_id: c-708f86ad
     label: unified-dk-numista-398134
@@ -18611,49 +18531,6 @@ coins:
     composed_of:
       - ngc-1207929
       - schleswig_holstein-numismaster-120085
-  - id: c-aeda0c4e
-    class_id: c-aeda0c4e
-    label: unified-ngc-1207932
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1850
-    year_last: 1851
-    year_ranges:
-      -   - 1850
-          - 1851
-    year_label: 1850-1851
-    catalog:
-      km: '162'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 9.5
-        source: ucoin
-    diameter_mm:
-      - value: 27.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sechsling-km-162-1850-1851-cuid-1207932-duid-1390941
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120092
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850-1851/?tid=90814
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-1207932
-      - schleswig_holstein-numismaster-120092
-      - sh-tid-90814
   - id: c-0bf076b2
     class_id: c-0bf076b2
     label: unified-ngc-121093
@@ -20300,6 +20177,39 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-93040
+  - id: c-862bb9a7
+    class_id: c-862bb9a7
+    label: unified-sh-tid-187884
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1850
+    year_last: 1850
+    year_label: '1850'
+    catalog:
+      others:
+        - ucoin# 100
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 9.57
+        source: ucoin
+    diameter_mm:
+      - value: 27.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850/?tid=187884
+        ref: ucoin
+    issuing_entity: royal_holstein
+    composed_of:
+      - sh-tid-187884
   - id: c-2b57ace5
     class_id: c-2b57ace5
     label: unified-sh-tid-90742

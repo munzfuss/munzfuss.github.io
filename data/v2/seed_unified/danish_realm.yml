@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8525 per-source seed entries.
-# Output: 1860 unified entries (one per physical coin).
+# Output: 1857 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6213,81 +6213,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-7006
-  - id: c-353a9042
-    class_id: c-353a9042
-    label: unified-dk-bruun-7017
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1686
-    year_last: 1686
-    year_label: '1686'
-    ruler: Christian V
-    mintmaster: Gregorius Seseman (GS)
-    mint: Kopenhagen
-    catalog:
-      km: '383.1'
-      bruun_collection_id: '7017'
-      sieg: '9.2'
-      schou: '25'
-      bruun_part: IV
-      bruun_lot_no: 17092
-      bruun_page: 64
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-      - value: 1.3
-        source: ucoin
-    catalog_alts:
-      - register: hede
-        value: '54'
-        source: bruun
-        kind: erroneous
-        reason:
-          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686,
-            København»[/i], [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
-          en: "The Hede number does not belong to this coin.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686,
-            København»[/i], [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
-          uk: "Номер Hede не належить цій монеті.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i],
-            [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
-          da: "Hede-nummeret hører ikke til denne mønt.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i],
-            [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65079
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17092, p. 48
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1686/?tid=96984
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-383.1-1686-cuid-1049851-duid-1236626
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65079
-      - dk-bruun-7017
-      - dk-tid-96984
-      - ngc-1049851
   - id: c-44e9ee6d
     class_id: c-44e9ee6d
     label: unified-dk-bruun-7032
@@ -13037,7 +12962,7 @@ coins:
       hede: '11'
       hede_volume: c10h
       sieg: '12.3'
-    metal: silver
+    metal: copper_nickel
     metal_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -13071,7 +12996,7 @@ coins:
       hede: '13'
       hede_volume: c10h
       sieg: '10.3'
-    metal: silver
+    metal: copper_nickel
     metal_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -14761,8 +14686,8 @@ coins:
       - kmk-152255
       - kmk-152256
       - ngc-1050497
-  - id: c-982f6b4e
-    class_id: c-982f6b4e
+  - id: c-c2c1fa83
+    class_id: c-c2c1fa83
     label: unified-dk-hede-c4h103
     fuss: seed_unsorted
     phase: hede
@@ -14774,15 +14699,16 @@ coins:
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
+      km: PnA17
       hede: '103'
       hede_volume: c4h
       schou: '161'
       sieg: '20'
-      others:
-        - B# 452
-    metal: silver
+    metal: copper
     metal_verified: true
+    fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     weight_rough_g:
@@ -14792,13 +14718,13 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h103.htm
         ref: danskmoent.dk (Hede c4h103)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137640
-        ref: KMM 137640 (Inv. RP 100.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-pna17-1619-cuid-1055247-duid-1238771
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-c4h103
-      - kmk-137640
+      - ngc-1055247
   - id: c-99ba75ff
     class_id: c-99ba75ff
     label: unified-dk-hede-c4h105a
@@ -23783,8 +23709,8 @@ coins:
       - denmark-numismaster-64975
       - dk-hede-c4h136
       - ngc-1049775
-  - id: c-1cd13966
-    class_id: c-1cd13966
+  - id: c-7e9eeca5
+    class_id: c-7e9eeca5
     label: unified-dk-hede-c4h137
     fuss: seed_unsorted
     phase: hede
@@ -23797,6 +23723,7 @@ coins:
           - 1625
     year_label: 1624-1625
     ruler: Christian IV
+    mint: Kopenhagen
     catalog:
       km: '86'
       hede: '137'
@@ -23805,32 +23732,39 @@ coins:
         - '68'
         - '161'
       sieg: '21'
-    metal: silver
+      numista: '197751'
+    metal: copper
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 1.03
+        source: numista
+      - value: 1.03
+        source: ucoin
+    diameter_mm:
+      - value: 15.6
+        source: numista
+      - value: 15.6
+        source: ucoin
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_64964
-        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h137.htm
         ref: danskmoent.dk (Hede c4h137)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152243
-        ref: KMM 152243 (Inv. FP 3574.51)
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-86-1624-1625-cuid-1059866-duid-1236423
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
+        url: https://en.numista.com/197751
+        ref: Numista N#197751 — 1 Hvid - Christian IV
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-hvid-1624-1625/?tid=162980
+        ref: ucoin
     issuing_entity: danish_realm
     composed_of:
-      - denmark-numismaster-64964
       - dk-hede-c4h137
-      - kmk-152243
-      - ngc-1059866
+      - dk-numista-197751
+      - dk-tid-162980
   - id: c-0f875c99
     class_id: c-0f875c99
     label: unified-dk-hede-c4h138
@@ -38067,7 +38001,7 @@ coins:
       others:
         - Harck# 4.4
         - B# 37
-    metal: billon
+    metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
@@ -39968,6 +39902,7 @@ coins:
       schou: 11-17
       sieg: '16'
     metal: silver
+    metal_verified: true
     mint_verified: true
     verified: false
     sources:
@@ -52360,12 +52295,22 @@ coins:
     year_last: 1686
     year_label: '1686'
     ruler: Christian V
+    mintmaster: Gregorius Seseman (GS)
     mint: Kopenhagen
     catalog:
+      km:
+        - '383.1'
+        - '383.2'
       hede: '84'
       hede_volume: c5h
       schou: 25-31
-      sieg: '9.1'
+      sieg:
+        - '9.1'
+        - '9.2'
+      bruun_collection_id: '7017'
+      bruun_part: IV
+      bruun_lot_no: 17092
+      bruun_page: 64
       others:
         - B# 346
         - B# 347
@@ -52376,9 +52321,65 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.281
+        source: ngc
+        suspect: &id003
+          de: "Krauses Werte, nicht die Hedes.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 g, 0,281 (für die Krone von 11 und von 13 mm gleich).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g
+            Finhed: 0,343»[/i] (Übers.: «Bruttogewicht: 1,218 g, Feingehalt: 0,343»).\nFür die beiden anderen Werte von 1686 stimmen Krause und Hede überein: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling,
+            [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i] (Übers.: «Bruttogewicht: 1,114 g, Feingehalt: 0,187») — KM 382: 1,114 g, 0,187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed:
+            0,156»[/i] (Übers.: «Bruttogewicht: 0,668 g, Feingehalt: 0,156») — KM 381: 0,668 g, 0,156. Woher Krause 1,299 g und 0,281 nimmt, ist aus den Quellen nicht bekannt."
+          en: "Krause's figures, not Hede's.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1.299 g, 0.281 (the same for the 11 mm and the 13 mm crown).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g
+            Finhed: 0,343»[/i] (transl.: «gross weight: 1.218 g, fineness: 0.343»).\nFor the other two values of 1686 Krause and Hede agree: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g
+            Finhed: 0,187»[/i] (transl.: «gross weight: 1.114 g, fineness: 0.187») — KM 382: 1.114 g, 0.187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] (transl.:
+            «gross weight: 0.668 g, fineness: 0.156») — KM 381: 0.668 g, 0.156. Where Krause takes 1.299 g and 0.281 from is not known from the sources."
+          uk: "Значення Krause, а не Hede.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 г, 0,281 (однаково для корони 11 і 13 мм).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i]
+            (перекл.: «вага брутто: 1,218 г, проба: 0,343»).\nДля двох інших номіналів 1686 року Krause і Hede збігаються: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i]
+            (перекл.: «вага брутто: 1,114 г, проба: 0,187») — KM 382: 1,114 г, 0,187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] (перекл.: «вага брутто: 0,668
+            г, проба: 0,156») — KM 381: 0,668 г, 0,156. Звідки Krause взяв 1,299 г і 0,281, із джерел невідомо."
+          da: "Krauses værdier, ikke Hedes.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 g, 0,281 (ens for kronen på 11 og 13 mm).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i].\n\
+            For de to andre værdier fra 1686 stemmer Krause og Hede overens: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i] — KM 382: 1,114 g, 0,187; [b]danskmoent.dk
+            (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] — KM 381: 0,668 g, 0,156. Hvor Krause har 1,299 g og 0,281 fra, vides ikke ud fra kilderne."
+      - value: 0.281
+        source: numismaster
+        suspect: &id004
+          de: "Krauses Werte, nicht die Hedes.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 g, 0,281 (für die Krone von 11 und von 13 mm gleich).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g
+            Finhed: 0,343»[/i] (Übers.: «Bruttogewicht: 1,218 g, Feingehalt: 0,343»).\nFür die beiden anderen Werte von 1686 stimmen Krause und Hede überein: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling,
+            [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i] (Übers.: «Bruttogewicht: 1,114 g, Feingehalt: 0,187») — KM 382: 1,114 g, 0,187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed:
+            0,156»[/i] (Übers.: «Bruttogewicht: 0,668 g, Feingehalt: 0,156») — KM 381: 0,668 g, 0,156. Woher Krause 1,299 g und 0,281 nimmt, ist aus den Quellen nicht bekannt."
+          en: "Krause's figures, not Hede's.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1.299 g, 0.281 (the same for the 11 mm and the 13 mm crown).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g
+            Finhed: 0,343»[/i] (transl.: «gross weight: 1.218 g, fineness: 0.343»).\nFor the other two values of 1686 Krause and Hede agree: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g
+            Finhed: 0,187»[/i] (transl.: «gross weight: 1.114 g, fineness: 0.187») — KM 382: 1.114 g, 0.187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] (transl.:
+            «gross weight: 0.668 g, fineness: 0.156») — KM 381: 0.668 g, 0.156. Where Krause takes 1.299 g and 0.281 from is not known from the sources."
+          uk: "Значення Krause, а не Hede.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 г, 0,281 (однаково для корони 11 і 13 мм).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i]
+            (перекл.: «вага брутто: 1,218 г, проба: 0,343»).\nДля двох інших номіналів 1686 року Krause і Hede збігаються: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i]
+            (перекл.: «вага брутто: 1,114 г, проба: 0,187») — KM 382: 1,114 г, 0,187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] (перекл.: «вага брутто: 0,668
+            г, проба: 0,156») — KM 381: 0,668 г, 0,156. Звідки Krause взяв 1,299 г і 0,281, із джерел невідомо."
+          da: "Krauses værdier, ikke Hedes.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 g, 0,281 (ens for kronen på 11 og 13 mm).\n[b]danskmoent.dk (Hede 84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i].\n\
+            For de to andre værdier fra 1686 stemmer Krause og Hede overens: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i] — KM 382: 1,114 g, 0,187; [b]danskmoent.dk
+            (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] — KM 381: 0,668 g, 0,156. Hvor Krause har 1,299 g og 0,281 fra, vides ikke ud fra kilderne."
+      - value: 0.281
+        source: ucoin
+        suspect: &id005
+          de: "Krauses Werte, nicht die Hedes.\n[b]ucoin[/b]: 1,3 g, 0,281 — wie bei Krause.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 g, 0,281 (für die Krone von 11 und von 13 mm gleich).\n[b]danskmoent.dk
+            (Hede 84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i] (Übers.: «Bruttogewicht: 1,218 g, Feingehalt: 0,343»).\nFür die beiden anderen Werte von 1686 stimmen Krause und Hede überein: [b]danskmoent.dk
+            (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i] (Übers.: «Bruttogewicht: 1,114 g, Feingehalt: 0,187») — KM 382: 1,114 g, 0,187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling,
+            [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] (Übers.: «Bruttogewicht: 0,668 g, Feingehalt: 0,156») — KM 381: 0,668 g, 0,156. Woher Krause 1,299 g und 0,281 nimmt, ist aus den Quellen nicht bekannt."
+          en: "Krause's figures, not Hede's.\n[b]ucoin[/b]: 1.3 g, 0.281 — as in Krause.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1.299 g, 0.281 (the same for the 11 mm and the 13 mm crown).\n[b]danskmoent.dk
+            (Hede 84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i] (transl.: «gross weight: 1.218 g, fineness: 0.343»).\nFor the other two values of 1686 Krause and Hede agree: [b]danskmoent.dk (Hede
+            85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i] (transl.: «gross weight: 1.114 g, fineness: 0.187») — KM 382: 1.114 g, 0.187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt:
+            0,668g Finhed: 0,156»[/i] (transl.: «gross weight: 0.668 g, fineness: 0.156») — KM 381: 0.668 g, 0.156. Where Krause takes 1.299 g and 0.281 from is not known from the sources."
+          uk: "Значення Krause, а не Hede.\n[b]ucoin[/b]: 1,3 г, 0,281 — як у Krause.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 г, 0,281 (однаково для корони 11 і 13 мм).\n[b]danskmoent.dk (Hede
+            84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i] (перекл.: «вага брутто: 1,218 г, проба: 0,343»).\nДля двох інших номіналів 1686 року Krause і Hede збігаються: [b]danskmoent.dk (Hede 85)[/b],
+            1 Skilling, [i]«Bruttovægt: 1,114g Finhed: 0,187»[/i] (перекл.: «вага брутто: 1,114 г, проба: 0,187») — KM 382: 1,114 г, 0,187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g
+            Finhed: 0,156»[/i] (перекл.: «вага брутто: 0,668 г, проба: 0,156») — KM 381: 0,668 г, 0,156. Звідки Krause взяв 1,299 г і 0,281, із джерел невідомо."
+          da: "Krauses værdier, ikke Hedes.\n[b]ucoin[/b]: 1,3 g, 0,281 — som hos Krause.\n[b]NGC / NumisMaster, KM 383.1, 383.2[/b]: 1,299 g, 0,281 (ens for kronen på 11 og 13 mm).\n[b]danskmoent.dk (Hede
+            84)[/b]: [i]«Bruttovægt: 1,218g Finhed: 0,343»[/i].\nFor de to andre værdier fra 1686 stemmer Krause og Hede overens: [b]danskmoent.dk (Hede 85)[/b], 1 Skilling, [i]«Bruttovægt: 1,114g Finhed:
+            0,187»[/i] — KM 382: 1,114 g, 0,187; [b]danskmoent.dk (Hede 86)[/b], ½ Skilling, [i]«Bruttovægt: 0,668g Finhed: 0,156»[/i] — KM 381: 0,668 g, 0,156. Hvor Krause har 1,299 g og 0,281 fra, vides
+            ikke ud fra kilderne."
       - value: 0.343
         source: hede
     weight_rough_g:
@@ -52398,7 +52399,29 @@ coins:
         source: hede
       - value: 1.29
         source: kmk
+      - value: 1.299
+        source: ngc
+        suspect: *id003
+      - value: 1.299
+        source: numismaster
+        suspect: *id004
+      - value: 1.3
+        source: ucoin
+        suspect: *id005
     catalog_alts:
+      - register: hede
+        value: '54'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686,
+            København»[/i], [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
+          en: "The Hede number does not belong to this coin.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686,
+            København»[/i], [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
+          uk: "Номер Hede не належить цій монеті.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i],
+            [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]Bruun Part IV, lot 17092[/b]: [i]«2 Skilling, 1686 … Hede-54; Sieg-9.2; Schou-25»[/i].\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i],
+            [i]«Hede 84, Schou 25-31»[/i].\n[b]danskmoent.dk (Hede 54)[/b]: 2 Dukat, 1699."
       - register: hede
         value: '86'
         source: kmk
@@ -52414,8 +52437,20 @@ coins:
             (Hede 86)[/b]: [i]«1/2 Skilling 1686, København»[/i], [i]«Hede 86, Schou 40»[/i], [i]«Bruttovægt: 0,668g»[/i]."
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65079
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65080
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17092, p. 48
+      - type: literature
         url: https://www.danskmoent.dk/chr/c5h84.htm
         ref: danskmoent.dk (Hede c5h84)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1686/?tid=96984
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148609
         ref: KMM 148609 (Inv. KP 1656.1704)
@@ -52443,6 +52478,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/46697
         ref: KMM 46697 (Inv. GP 2890.316)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-383.1-1686-cuid-1049851-duid-1236626
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-383.2-1686-cuid-1050057-duid-1236627
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 11.636
@@ -52450,7 +52491,11 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-65079
+      - denmark-numismaster-65080
+      - dk-bruun-7017
       - dk-hede-c5h84
+      - dk-tid-96984
       - kmk-148609
       - kmk-148610
       - kmk-148611
@@ -52460,6 +52505,8 @@ coins:
       - kmk-277018
       - kmk-277019
       - kmk-46697
+      - ngc-1049851
+      - ngc-1050057
   - id: c-ddc8c72d
     class_id: c-ddc8c72d
     label: unified-dk-hede-c5h85
@@ -52837,6 +52884,7 @@ coins:
       hede_volume: c5h
       schou: '2'
     metal: gold
+    metal_verified: true
     mint_verified: true
     verified: false
     sources:
@@ -60277,6 +60325,7 @@ coins:
       hede: '34'
       hede_volume: f2h
     metal: silver
+    metal_verified: true
     mint_verified: false
     verified: false
     year_verified: false
@@ -88323,8 +88372,8 @@ coins:
       - dk-numista-82695
       - dk-tid-94111
       - ngc-1048863
-  - id: c-39276045
-    class_id: c-39276045
+  - id: c-6cd73dc4
+    class_id: c-6cd73dc4
     label: unified-dk-hede-f4h55
     fuss: seed_unsorted
     phase: hede
@@ -88336,25 +88385,68 @@ coins:
     ruler: Frederik IV
     mint: Kopenhagen
     catalog:
+      km:
+        - '512.1'
+        - '512'
       hede: '55'
       hede_volume: f4h
       schou: '15'
       sieg: '1.1'
-    metal: silver
+      numista: '18165'
+    metal: copper
     metal_verified: true
+    fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 3.65
+        source: ucoin
       - value: 3.654
         source: hede
+      - value: 3.654
+        source: ngc
+      - value: 3.654
+        source: numismaster
+      - value: 3.654
+        source: numista
+    diameter_mm:
+      - value: 21.0
+        source: numista
+      - value: 21.0
+        source: ucoin
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_58023
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h55.htm
         ref: danskmoent.dk (Hede f4h55)
+      - type: literature
+        url: https://en.numista.com/18165
+        ref: Numista N#18165 — ½ Skilling Dansk - Frederik IV
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-skilling-1719/?tid=94058
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152157
+        ref: KMM 152157 (Inv. FP 3574.137)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152158
+        ref: KMM 152158 (Inv. FP 3574.136)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-skilling-km-512.1-1719-cuid-1049016-duid-1238793
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-58023
       - dk-hede-f4h55
+      - dk-numista-18165
+      - dk-tid-94058
+      - kmk-152157
+      - kmk-152158
+      - ngc-1049016
   - id: c-87ffdc1d
     class_id: c-87ffdc1d
     label: unified-dk-hede-f4h56
@@ -92498,7 +92590,8 @@ coins:
       hede_volume: f6h
       schou: '1'
       sieg: '14'
-    metal: silver
+    metal: copper
+    metal_verified: true
     mint_verified: false
     verified: false
     sources:
@@ -92556,7 +92649,8 @@ coins:
       hede_volume: f6h
       schou: 5-6
       sieg: '12'
-    metal: silver
+    metal: copper
+    metal_verified: true
     mint_verified: false
     verified: false
     sources:
@@ -92582,8 +92676,8 @@ coins:
       hede_volume: f6h
       schou: '1'
       sieg: '11'
-    metal: silver
-    metal_verified: false
+    metal: copper
+    metal_verified: true
     weight_rough_verified: false
     mint_verified: false
     verified: false
@@ -92614,8 +92708,8 @@ coins:
       hede_volume: f6h
       schou: '2'
       sieg: '10'
-    metal: silver
-    metal_verified: false
+    metal: copper
+    metal_verified: true
     weight_rough_verified: false
     mint_verified: false
     verified: false
@@ -92646,7 +92740,8 @@ coins:
       hede_volume: f6h
       schou: '3'
       sieg: '9'
-    metal: silver
+    metal: copper
+    metal_verified: true
     mint_verified: false
     verified: false
     sources:
@@ -97669,52 +97764,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-182403
-  - id: c-7e9eeca5
-    class_id: c-7e9eeca5
-    label: unified-dk-numista-197751
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1624
-    year_last: 1625
-    year_ranges:
-      -   - 1624
-          - 1625
-    year_label: 1624-1625
-    ruler: Christian IV
-    mint: Kopenhagen
-    catalog:
-      km: '86'
-      numista: '197751'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.03
-        source: numista
-      - value: 1.03
-        source: ucoin
-    diameter_mm:
-      - value: 15.6
-        source: numista
-      - value: 15.6
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/197751
-        ref: Numista N#197751 — 1 Hvid - Christian IV
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-hvid-1624-1625/?tid=162980
-        ref: ucoin
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-numista-197751
-      - dk-tid-162980
   - id: c-327a89cb
     class_id: c-327a89cb
     label: unified-dk-numista-200981
@@ -106815,6 +106864,33 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-137639
+  - id: c-982f6b4e
+    class_id: c-982f6b4e
+    label: unified-kmk-137640
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    ruler: Christian IV
+    catalog:
+      schou: '161'
+      others:
+        - B# 452
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137640
+        ref: KMM 137640 (Inv. RP 100.1)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-137640
   - id: c-9593f887
     class_id: c-9593f887
     label: unified-kmk-137641
@@ -128332,72 +128408,6 @@ coins:
     composed_of:
       - denmark-numismaster-58043
       - ngc-1048905
-  - id: c-6cd73dc4
-    class_id: c-6cd73dc4
-    label: unified-ngc-1049016
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ½ Skilling
-    year_first: 1719
-    year_last: 1719
-    year_label: '1719'
-    ruler: Frederik IV
-    mint: Kopenhagen
-    catalog:
-      km:
-        - '512.1'
-        - '512'
-      numista: '18165'
-      hede: '55'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.65
-        source: ucoin
-      - value: 3.654
-        source: ngc
-      - value: 3.654
-        source: numismaster
-      - value: 3.654
-        source: numista
-    diameter_mm:
-      - value: 21.0
-        source: numista
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_58023
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/18165
-        ref: Numista N#18165 — ½ Skilling Dansk - Frederik IV
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-skilling-1719/?tid=94058
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152157
-        ref: KMM 152157 (Inv. FP 3574.137)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152158
-        ref: KMM 152158 (Inv. FP 3574.136)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-skilling-km-512.1-1719-cuid-1049016-duid-1238793
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-58023
-      - dk-numista-18165
-      - dk-tid-94058
-      - kmk-152157
-      - kmk-152158
-      - ngc-1049016
   - id: c-6f473e47
     class_id: c-6f473e47
     label: unified-ngc-1049779
@@ -131023,46 +131033,6 @@ coins:
       - dk-numista-82684
       - dk-tid-96472
       - ngc-1050055
-  - id: c-5471bd8f
-    class_id: c-5471bd8f
-    label: unified-ngc-1050057
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1686
-    year_last: 1686
-    year_label: '1686'
-    catalog:
-      km: '383.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-    weight_rough_g:
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65080
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-383.2-1686-cuid-1050057-duid-1236627
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65080
-      - ngc-1050057
   - id: c-b58b55d4
     class_id: c-b58b55d4
     label: unified-ngc-1050059
@@ -139861,32 +139831,6 @@ coins:
     composed_of:
       - denmark-numismaster-117946
       - ngc-1055246
-  - id: c-c2c1fa83
-    class_id: c-c2c1fa83
-    label: unified-ngc-1055247
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    catalog:
-      km: PnA17
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-pna17-1619-cuid-1055247-duid-1238771
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1055247
   - id: c-8b68a55c
     class_id: c-8b68a55c
     label: unified-ngc-1055952
@@ -140705,6 +140649,45 @@ coins:
       - kmk-740774
       - ngc-1059715
       - ngc-1070538
+  - id: c-1cd13966
+    class_id: c-1cd13966
+    label: unified-ngc-1059866
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1624
+    year_last: 1625
+    year_ranges:
+      -   - 1624
+          - 1625
+    year_label: 1624-1625
+    ruler: Christian IV
+    catalog:
+      km: '86'
+      hede: '137'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_64964
+        ref: NumisMaster
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152243
+        ref: KMM 152243 (Inv. FP 3574.51)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-86-1624-1625-cuid-1059866-duid-1236423
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_realm
+    composed_of:
+      - denmark-numismaster-64964
+      - kmk-152243
+      - ngc-1059866
   - id: c-39edb171
     class_id: c-39edb171
     label: unified-ngc-1059867

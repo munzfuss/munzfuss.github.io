@@ -624,6 +624,56 @@ _METAL_BARE_LINE_RE = re.compile(
 )
 
 
+_OVERVIEW_METALS: dict | None = None
+# Pages whose index metal contradicts another source's verified metal; the
+# fallback stays off until the curator decides (2026-11-07).
+_OVERVIEW_METAL_HOLD: dict[str, str] = {
+    "f2h33": "Hede index «1 Penning lybsk Kobber 1566, 1571 Flensborg» vs NGC / "
+             "NumisMaster 166851 silver — open curator question.",
+}
+
+
+def _overview_metal(hede_volume: str | None, hede_number: str | None) -> str | None:
+    """The metal Hede's reign index (`<vol>hede*.htm`) gives in its
+    «Materiale» column for this Hede number — for every row, linked to a
+    deep page or not. Norwegian rows carry an «N» prefix (`N6` → volume
+    `nf6h`), Lauenborg rows an «L». Used only when the coin's own page names
+    no metal: the default «silver» had made Hede Norge 6 (1 Skilling 1812,
+    «Kobber» in the index) a verified silver coin (curator 2026-11-07)."""
+    global _OVERVIEW_METALS
+    if _OVERVIEW_METALS is None:
+        import parse_hede as ph
+        seen: dict[tuple, set] = {}
+        for f in sorted(HEDE_CACHE.glob("*hede*.htm")):
+            m = re.match(r"^(n?)(c|f)(\d+)hede[\da-z]*$", f.stem)
+            if not m:
+                continue
+            vol_dk = f"{m.group(1)}{m.group(2)}{m.group(3)}h"
+            html = f.read_text(encoding="utf-8", errors="replace")
+            for row in ph._INDEX_TR_RE.finditer(html):
+                cells = [ph._index_clean_cell(td) for td in ph._INDEX_TD_RE.findall(row.group(1))]
+                if len(cells) < 4:
+                    continue
+                mm = re.match(r"^\s*([NL])?\s*(\d+[A-Za-z]{0,3})\s*$", cells[0])
+                if not mm:
+                    continue
+                parsed_row = ph._index_classify_columns(cells)
+                if not parsed_row or not parsed_row.get("metal"):
+                    continue
+                pref = (mm.group(1) or "").upper()
+                vol = ("n" + vol_dk if not vol_dk.startswith("n") else vol_dk) if pref == "N" \
+                    else (vol_dk + "l" if pref == "L" else vol_dk)
+                num = mm.group(2).lower()
+                for key in {(vol, num), (vol, re.sub(r"[a-z]+$", "", num))}:
+                    seen.setdefault(key, set()).add(parsed_row["metal"])
+        _OVERVIEW_METALS = {k: next(iter(v)) for k, v in seen.items() if len(v) == 1}
+    if not hede_volume or not hede_number:
+        return None
+    n = str(hede_number).lower()
+    return (_OVERVIEW_METALS.get((hede_volume, n))
+            or _OVERVIEW_METALS.get((hede_volume, re.sub(r"[a-z]+$", "", n))))
+
+
 def _metal_from_text(parsed: dict) -> str | None:
     """Return the metal class the danskmoent.dk page states for the COIN
     ITSELF — from the planchet phrase, a leading spec line, or a bare
@@ -877,6 +927,56 @@ def _split_multi_value_pages(coins: list) -> tuple[int, set[str]]:
     return n, gone
 
 
+# A Hede page whose letters are different coins by MINT (curator 2026-11-07,
+# type Ж): f6h15 «A) … MF (Altona; Hede 15A, Schou 7, Sieg 2) B) …
+# (Kongsberg; Hede Danmark 15B, Schou 8, Sieg Norge 2 type II). Denne variant
+# regnedes tidligere for dansk, men må nu anses for norsk … Hede Norge 6».
+# One seed per letter, each routed by its own mint; the page seed is dropped.
+_LETTER_SPLIT_PAGES: dict[str, dict[str, dict]] = {
+    "f6h15": {
+        "15A": {"mint": "Altona", "mintmaster": "MF", "diameter_mm": 15,
+                "catalog": {"schou": "7", "sieg": "2"}},
+        "15B": {"mint": "Kongsberg", "diameter_mm": 13,
+                "catalog": {"schou": "8", "others": ["Sieg Norge# 2"]}},
+    },
+}
+
+
+def _split_letter_pages(coins: list) -> tuple[int, set[str]]:
+    """Replace the one seed of each `_LETTER_SPLIT_PAGES` page by one seed per
+    letter. Returns (pages split, ids of the page seeds now gone)."""
+    import copy
+    gone: set[str] = set()
+    out: list = []
+    for c in coins:
+        page = c.get("id", "").removeprefix("dk-hede-")
+        letters = _LETTER_SPLIT_PAGES.get(page)
+        if not letters:
+            out.append(c)
+            continue
+        gone.add(c["id"])
+        vol = (c.get("catalog") or {}).get("hede_volume")
+        for letter, spec in letters.items():
+            lc = copy.deepcopy(c)
+            lc["id"] = f"dk-hede-{vol}{letter.lower()}"
+            cat = CommentedMap()
+            cat["hede"] = letter
+            cat["hede_volume"] = vol
+            for k, v in spec.get("catalog", {}).items():
+                cat[k] = v
+            lc["catalog"] = cat
+            lc["mint"] = spec["mint"]
+            if spec.get("mintmaster"):
+                lc["mintmaster"] = spec["mintmaster"]
+            if spec.get("diameter_mm"):
+                lc["diameter_mm"] = spec["diameter_mm"]
+            lc["issuing_entity"] = _classify_hede_entity(
+                spec["mint"], vol, lc.get("year_first"))
+            out.append(lc)
+    coins[:] = out
+    return len(gone), gone
+
+
 def _apply_page_specimen_tables(coins: list) -> int:
     """Add the specimen weights printed in an image on the coin's OWN page
     (lib.danskmoent_specimen_tables; curator 2026-11-04 — Nöbbe 1938's
@@ -1000,10 +1100,15 @@ def _build_coin(
     is_index_stub = parsed.get("_source_type") == "index_stub"
     metal_from_index = parsed.get("metal_from_index") if is_index_stub else None
     metal_from_text = _metal_from_text(parsed) if not is_index_stub else None
+    metal_from_overview = (_overview_metal(hede_volume, hede_number)
+                           if not (is_index_stub or metal_from_text
+                                   or parsed.get("id") in _OVERVIEW_METAL_HOLD) else None)
     if metal_from_index:
         metal = metal_from_index
     elif metal_from_text:
         metal = metal_from_text
+    elif metal_from_overview:
+        metal = metal_from_overview
     else:
         metal = _infer_metal(nominal, ruler, fineness)
     # Billon downgrade — applies whatever the «silver» reading's origin.
@@ -1214,7 +1319,8 @@ def _build_coin(
     # For index-stub coins, the overview table's metal column is the
     # source-of-record — flip metal_verified even though
     # fineness/weight stay null.
-    if fineness is not None or brutto is not None or metal_from_index or metal_from_text:
+    if (fineness is not None or brutto is not None or metal_from_index
+            or metal_from_text or metal_from_overview):
         cm["metal_verified"] = True
     cm["mint_verified"] = False  # parser-heuristic; not flipped here
     # Only an index stub carries a note: what it says is about this record.
@@ -1768,6 +1874,10 @@ def main() -> int:
     n_split, split_ids = _split_multi_value_pages(coins)
     if n_split:
         print(f"  multi-value Hede pages split per letter: {n_split} page(s)")
+    zinc_drop_ids |= split_ids
+    n_split, split_ids = _split_letter_pages(coins)
+    if n_split:
+        print(f"  Hede pages split per letter by mint: {n_split} page(s)")
     zinc_drop_ids |= split_ids
 
     n_tab = _apply_page_specimen_tables(coins)

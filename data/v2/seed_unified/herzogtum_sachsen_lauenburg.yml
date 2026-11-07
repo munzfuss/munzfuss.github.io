@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `herzogtum_sachsen_lauenburg`.
-# Generated 2026-10-31 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_sachsen_lauenburg.yml across all sources.
 #
-# Input: 76 per-source seed entries.
+# Input: 77 per-source seed entries.
 # Output: 45 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_sachsen_lauenburg
-generated_at: '2026-10-31'
+generated_at: '2026-11-07'
 coins:
   - id: c-da05cf4b
     class_id: c-da05cf4b
@@ -32,6 +32,13 @@ coins:
       sieg: '44'
       schou: '3'
       hede: '1'
+      numista: '31393'
+      others:
+        - SIEG SD# 44
+        - AKS# 1
+        - Jaeg 6 FHI# 14
+        - Kahnt/Schön# 280
+        - Dorfmann# 140
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -41,17 +48,26 @@ coins:
     verified: false
     fineness:
       - value: 0.75
+        source: numista
+      - value: 0.75
         source: ucoin
     weight_rough_g:
       - value: 17.32
+        source: numista
+      - value: 17.32
         source: ucoin
     diameter_mm:
+      - value: 34.0
+        source: numista
       - value: 34.0
         source: ucoin
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13261, p. 149
+      - type: literature
+        url: https://en.numista.com/31393
+        ref: Numista N#31393 — ⅔ Thaler - Frederick VI - Duchy of Saxe-Lauenburg
       - type: ucoin
         url: https://en.ucoin.net/coin/lauenburg-2-3-thaler-1830/?tid=131324
         ref: ucoin
@@ -62,6 +78,7 @@ coins:
     issuing_entity: herzogtum_sachsen_lauenburg
     composed_of:
       - dk-bruun-8082
+      - dk-numista-31393
       - tid-tid-131324
   - id: c-0512789d
     class_id: c-0512789d

@@ -838,6 +838,14 @@ def _catalogue_section(coin: dict) -> str | None:
     cat = coin.get("catalog") or {}
     if (cat.get("hede_volume") or "").strip().lower().startswith("c4wolf"):
         return "wolfenbüttel"
+    # Frederik VI's Lauenburg coinage is Hede's own «Lauenborg» section
+    # (f6hede.htm: «L1 … 2/3 Thaler … 1830 Altona»; danskmoent lauenbor.htm
+    # «Hede Lauenborg 1»), so its «Hede 1» is not the Danish Hede 1 of the
+    # same king (curator 2026-11-07). Recognised by the issuing entity.
+    _ie = coin.get("issuing_entity")
+    _ies = _ie if isinstance(_ie, list) else [_ie]
+    if "herzogtum_sachsen_lauenburg" in _ies:
+        return "lauenborg"
     mint = coin.get("mint")
     mints = mint if isinstance(mint, list) else [mint]
     if any(isinstance(m, str) and "wolfenb" in m.lower() for m in mints):
@@ -2126,8 +2134,9 @@ def _hede_series(coin: dict) -> str | None:
         return None
     # The Wolfenbüttel section is a series of its own (see
     # `_catalogue_section`); it is known even without a volume code.
-    if _catalogue_section(coin) == "wolfenbüttel":
-        return "wolfenbüttel"
+    _sec = _catalogue_section(coin)
+    if _sec:
+        return _sec
     vol = ((coin.get("catalog") or {}).get("hede_volume") or "").strip()
     if not vol:
         return None

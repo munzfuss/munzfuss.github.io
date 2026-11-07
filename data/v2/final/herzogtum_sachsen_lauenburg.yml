@@ -21,6 +21,13 @@ coins:
       sieg: '44'
       schou: '3'
       hede: '1'
+      numista: '31393'
+      others:
+        - SIEG SD# 44
+        - AKS# 1
+        - Jaeg 6 FHI# 14
+        - Kahnt/Schön# 280
+        - Dorfmann# 140
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -30,11 +37,17 @@ coins:
     verified: false
     fineness:
       - value: 0.75
+        source: numista
+      - value: 0.75
         source: ucoin
     weight_rough_g:
       - value: 17.32
+        source: numista
+      - value: 17.32
         source: ucoin
     diameter_mm:
+      - value: 34.0
+        source: numista
       - value: 34.0
         source: ucoin
     sources:
@@ -44,6 +57,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/lauenburg-2-3-thaler-1830/?tid=131324
         ref: ucoin
+      - type: literature
+        url: https://en.numista.com/31393
+        ref: Numista N#31393 — ⅔ Thaler - Frederick VI - Duchy of Saxe-Lauenburg
     note:
       de: Zweidrittel
       en: Zweidrittel

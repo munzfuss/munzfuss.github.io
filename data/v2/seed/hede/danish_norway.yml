@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-06T21:24:42Z'
+generated_at: '2026-11-07T13:08:23Z'
 entity: danish_norway
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -8557,6 +8557,7 @@ coins:
     issuing_entity: danish_norway
     verified: false
     mint_verified: true
+    metal_verified: true
   - id: dk-hede-nf4h14
     fuss: seed_unsorted
     phase: hede
@@ -8590,6 +8591,7 @@ coins:
     _source_note:
       da: 'Forside: portræt, bagside: værdiangivelse (Hede Norge 14, Schou hhv. 6, 5 og 1, Sieg Norge 7) Møntmestermærket: henviser ligesom møntmesterinitialerne HCM til Henning Christopher Meyer. Stykker
         med 1718 og 1719 er falske. Ved forordning 31. juli 1726 nedsat til 15 skilling'
+    metal_verified: true
   - id: dk-hede-nf4h15
     fuss: seed_unsorted
     phase: hede
@@ -8628,6 +8630,7 @@ coins:
     _source_note:
       da: 'Forside: monogram, bagside: værdiangivelse (Hede Norge 15, Schou hhv. 4-5, 4, 5, 2, 3, 2, 7-8 og 2-3, Sieg Norge 6) Møntmestermærket: henviser ligesom møntmesterinitialerne HCM til Henning Christopher
         Meyer. Ved forordning 15. juli 1726 nedsat til 10 skilling'
+    metal_verified: true
   - id: dk-hede-nf4h8b
     fuss: seed_unsorted
     phase: hede
@@ -10655,7 +10658,7 @@ coins:
       hede_volume: nf6h
       schou: 12-15
       sieg: '1'
-    metal: silver
+    metal: copper
     weight_rough_g: 5.568
     sources:
       - type: literature
@@ -10690,7 +10693,7 @@ coins:
         - 4-7
         - '8'
       sieg: '4'
-    metal: silver
+    metal: copper
     sources:
       - type: literature
         url: https://www.danskmoent.dk/norge/nf6h5.htm
@@ -10701,6 +10704,39 @@ coins:
     _source_note:
       da: 'Forside: monogram, bagside: værdiangivelse A) 1810; krydser omkring 2-tallet (Hede Norge 5, Schou 8, Sieg Norge 4) B) 1810, 1811; rosetter omkring 2-tallet (Hede Norge 5, Schou hhv. 4-7 og 3-4,
         Sieg Norge 4) Vægt: 8,352'
+    metal_verified: true
+  - id: dk-hede-f6h15b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Skilling
+    year_label: '1812'
+    year_first: 1812
+    year_last: 1812
+    ruler: Frederik VI.
+    mint: Kongsberg
+    catalog:
+      hede: 15B
+      hede_volume: f6h
+      schou: '8'
+      others:
+        - Sieg Norge# 2
+    metal: copper
+    weight_rough_g: 0.78
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h15.htm
+        ref: danskmoent.dk (Hede f6h15)
+    issuing_entity: danish_norway
+    verified: false
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    _source_note:
+      da: 'Forside: monogram, bagside: værdiangivelse. A) Diameter 15mm; Møntmestermærke: MF (Altona; Hede 15A, Schou 7, Sieg 2) B) Diameter 13mm; Intet møntmestermærke (Kongsberg; Hede Danmark 15B, Schou
+        8, Sieg Norge 2 type II). Denne variant regnedes tidligere for dansk, men må nu anses for norsk, idet den er fremstillet med samme punsler som den tilsvarende norske 1-skilling , Hede Norge 6, Sieg
+        Norge 2. Kobber Vægt: 0,780g Den folkelige betegnelse for denne lille kobbermønt var Degnelus. Tilbage til Ordbogen Tilbage Danmarks Mønter'
+    diameter_mm: 13
   - id: dk-hede-nf6h6
     fuss: seed_unsorted
     phase: hede
@@ -10716,7 +10752,7 @@ coins:
       hede_volume: nf6h
       schou: '9'
       sieg: '2'
-    metal: silver
+    metal: copper
     weight_rough_g: 0.78
     sources:
       - type: literature

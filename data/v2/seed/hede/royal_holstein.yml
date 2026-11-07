@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-07T11:12:05Z'
+generated_at: '2026-11-07T13:08:28Z'
 entity: royal_holstein
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -500,6 +500,7 @@ coins:
     mint_verified: true
     _source_note:
       da: 'Forside: monogram, bagside: værdiangivelse (Hede 171, Schou hhv. 85-88, 149-159, 67 og 89-90, Sieg (2013) 163) Vægt: 0,40-0,79g, gennemsnit: 0,63g 1623, fuldt årstal'
+    metal_verified: true
   - id: dk-hede-c4h172
     fuss: seed_unsorted
     phase: hede
@@ -1904,6 +1905,7 @@ coins:
     issuing_entity: royal_holstein
     verified: false
     mint_verified: true
+    metal_verified: true
   - id: dk-hede-c5h120
     fuss: seed_unsorted
     phase: hede
@@ -4485,21 +4487,20 @@ coins:
       - [1809, 1809]
       - [1810, 1810]
       - [1811, 1811]
-  - id: dk-hede-f6h15
+  - id: dk-hede-f6h15a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Skilling
     year_label: '1812'
     year_first: 1812
+    year_last: 1812
     ruler: Frederik VI.
-    mint: [Altona, Kongsberg]
+    mint: Altona
     catalog:
-      hede: '15'
+      hede: 15A
       hede_volume: f6h
-      schou:
-        - '7'
-        - '8'
+      schou: '7'
       sieg: '2'
     metal: copper
     weight_rough_g: 0.78
@@ -4507,9 +4508,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h15.htm
         ref: danskmoent.dk (Hede f6h15)
-    issuing_entity:
-      - danish_norway
-      - royal_holstein
+    issuing_entity: royal_holstein
     verified: false
     weight_rough_verified: true
     metal_verified: true
@@ -4518,7 +4517,8 @@ coins:
       da: 'Forside: monogram, bagside: værdiangivelse. A) Diameter 15mm; Møntmestermærke: MF (Altona; Hede 15A, Schou 7, Sieg 2) B) Diameter 13mm; Intet møntmestermærke (Kongsberg; Hede Danmark 15B, Schou
         8, Sieg Norge 2 type II). Denne variant regnedes tidligere for dansk, men må nu anses for norsk, idet den er fremstillet med samme punsler som den tilsvarende norske 1-skilling , Hede Norge 6, Sieg
         Norge 2. Kobber Vægt: 0,780g Den folkelige betegnelse for denne lille kobbermønt var Degnelus. Tilbage til Ordbogen Tilbage Danmarks Mønter'
-    year_last: 1812
+    mintmaster: MF
+    diameter_mm: 15
   - id: dk-hede-f6h17
     fuss: seed_unsorted
     phase: hede
@@ -5419,7 +5419,7 @@ coins:
       sieg:
         - '22'
         - '2016'
-    metal: silver
+    metal: copper
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f7h19.htm
@@ -5431,6 +5431,7 @@ coins:
       da: 'Forside: Slesvig-Holstens våben (2 løver for Slesvig samt Holstens nældeblad), bagside: værdiangivelse (Hede 19, Schou hhv 2 og 5, Sieg 22) Under treårskrigen 1848-50 prægede oprørsregeringen
         i Slesvig-Holsten egne mønter. Møntmester var Theodor C. W. Andersen (TA) og stempelskærer Heinrich Lorenz (HL). Sechslingblanketter er brugt til møntmester Andersens personlige visitkort. Kobber
         (Vi kender ikke yderligere til et'
+    metal_verified: true
   - id: dk-hede-f7h20
     fuss: seed_unsorted
     phase: hede

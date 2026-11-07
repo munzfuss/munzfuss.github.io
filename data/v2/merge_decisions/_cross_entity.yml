@@ -870,40 +870,30 @@ merges:
 
   - target_entity: royal_holstein
     members:
-      - dk-hede-f6h15               # home: royal_holstein  (1 Skilling, Hede 15/15A, Schou 7/8, km 671)
-      - dk-numista-23611            # home: royal_holstein  (km 671)
-      - kmk-429765                  # home: royal_holstein  (KMM specimen)
-      - dk-tid-79552                # home: royal_holstein  (ucoin, re-homed by the mint fix)
-      - denmark-numismaster-65032   # home: danish_realm    (no mint published; km 671, Hede 15/15A/15B, B# 28a)
-      - kmk-122416                  # home: danish_realm    (KMM specimen, no mint)
-      - kmk-152079                  # home: danish_realm
-      - kmk-152080                  # home: danish_realm
-      - kmk-152081                  # home: danish_realm
-      - kmk-155169                  # home: danish_realm
-      - kmk-159726                  # home: danish_realm
-      - kmk-292938                  # home: danish_realm
-      - kmk-301834                  # home: danish_realm
-      - kmk-301835                  # home: danish_realm
-      - kmk-301836                  # home: danish_realm
-      - kmk-306269                  # home: danish_realm
-      - kmk-331330                  # home: danish_realm
-      - kmk-340386                  # home: danish_realm
-      - kmk-351613                  # home: danish_realm
-      - kmk-410706                  # home: danish_realm
-      - kmk-442027                  # home: danish_realm  (the one KMM record that does name Kopenhagen)
-      - kmk-625271                  # home: royal_holstein  (KMM, Hede 15, Altona, 0.87 g)
-      - kmk-340748                  # home: danish_realm    (KMM, Hede 15, "København og Altona")
-      - dk-numista-76225            # home: danish_norway   (variant B: Kongsberg, Hede 15B / Norge 6, km 281, Brekke 8A/8B)
-      - denmark-numismaster-122241  # home: danish_norway   (km 281)
-      - dk-tid-88669                # home: danish_norway   (ucoin, km 281, Kongsberg, 0.76 g, 13 mm)
-      - kmk-155285                  # home: danish_norway   (KMM, Hede Norge 6)
-      - kmk-625282                  # home: danish_norway   (KMM, Hede Norge 6, Kongsberg, 0.85 g)
-      - kmk-625283                  # home: danish_norway   (KMM, Hede Norge 6, Kongsberg, 0.80 g)
-      - ngc-1069011                   # home: danish_realm  (NGC, km 671, 1812-1812)
-      - ngc-1097065                   # home: danish_norway  (NGC, km 281, 1812-1812)
-      # Curator 2026-09-12 — +28 KMM specimens, same cause as the Hede-74 group.
-      # KMM prints «H. 15A» against base 15 (§9.4 sub-variant); nominal, ruler and the
-      # 1812 date all agree.
+      - dk-hede-f6h15a
+      - dk-numista-23611
+      - kmk-429765
+      - dk-tid-79552
+      - denmark-numismaster-65032
+      - kmk-122416
+      - kmk-152079
+      - kmk-152080
+      - kmk-152081
+      - kmk-155169
+      - kmk-159726
+      - kmk-292938
+      - kmk-301834
+      - kmk-301835
+      - kmk-301836
+      - kmk-306269
+      - kmk-331330
+      - kmk-340386
+      - kmk-351613
+      - kmk-410706
+      - kmk-442027
+      - kmk-625271
+      - kmk-340748
+      - ngc-1069011
       - kmk-155170
       - kmk-155257
       - kmk-155261
@@ -973,6 +963,17 @@ merges:
       user-edited source (section 5 tier 5); both readings survive
       list-form per section 9a.
 
+      SUPERSEDED IN PART 2026-11-07 (curator Serhii: «попереднє рішення перекривається новішим рішенням»): the Hede f6h15 page is split per letter — 15A Altona stays here (dk-hede-f6h15a); 15B Kongsberg (dk-hede-f6h15b), which danskmoent calls Norwegian («må nu anses for norsk … Hede Norge 6»), goes with its Norwegian records to Hede Norge 6 in danish_norway (merge_decisions/danish_norway.yml). Those records are listed under excludes here.
+
+    excludes:
+      - dk-hede-f6h15b
+      - dk-numista-76225
+      - denmark-numismaster-122241
+      - dk-tid-88669
+      - kmk-155285
+      - kmk-625282
+      - kmk-625283
+      - ngc-1097065
   - target_entity: royal_holstein
     members:
       - dk-numista-47999            # home: royal_holstein  (km 729, Altona)
