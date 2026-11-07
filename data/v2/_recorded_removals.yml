@@ -5059,3 +5059,15 @@ removals:
     dropped:
       - 69 - 70a - 71a - 73a
     reason: 'Curator 2026-11-07 («пофіксь»): Numista 129062 prints four Lange numbers as one reference joined by spaced dashes; build_numista_seed._split_dash_list now splits it into 69, 70a, 71a, 73a, all kept.'
+  - seed: dk-hede-f7h19
+    kind: field
+    field: sieg
+    dropped:
+      - '2016'
+    reason: "Curator 2026-11-07 («виправляй»): «Sieg 2016» on danskmoent f7h19 («Hede (og Sieg 2016) angiver …») names the catalogue's edition year, not a Sieg number. parse_hede._strip_year_tokens now drops 1951-2100 values for Sieg."
+  - seed: dk-hede-f7h20
+    kind: field
+    field: sieg
+    dropped:
+      - '2016'
+    reason: "Curator 2026-11-07 («виправляй»): «Sieg 2016» on danskmoent f7h20 («Hede (og Sieg 2016) angiver …») names the catalogue's edition year, not a Sieg number. parse_hede._strip_year_tokens now drops 1951-2100 values for Sieg."
