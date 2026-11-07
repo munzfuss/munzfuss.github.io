@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-07T18:27:04Z'
+generated_at: '2026-11-07T19:28:03Z'
 entity: royal_holstein
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -5605,7 +5605,7 @@ coins:
     year_label: '1851'
     year_first: 1851
     year_last: 1851
-    ruler: Frederik VII.
+    ruler: Prov. Regierung
     mint: Altona
     catalog:
       hede: '18'
@@ -5634,6 +5634,29 @@ coins:
       da: 'Forside: Slesvig-Holstens våben (2 løver for Slesvig samt Holstens nældeblad), bagside: værdiangivelse (Hede 18, Schou 4, Sieg 23) Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten
         egne mønter. Møntmester var Theodor C. W. Andersen (TA) og stempelskærer Heinrich Lorenz (HL). Oprørsregeringen nåede ikke at præge 1 Schillingen. Efter den danske sejr bragtes stemplerne til København.
         Mønten kendes i nypræg samt i nyere afstøbninger'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik VII.
+      reason:
+        de: 'Kein Gepräge Frederiks VII. danskmoent.dk (Hede 18) führt die Münze unter «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (dt.: «Im Dreijährigen
+          Krieg 1848–50 prägte die Aufstandsregierung in Schleswig-Holstein eigene Münzen»).'
+        en: "Not a coinage of Frederik VII. danskmoent.dk (Hede 18) lists the coin under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (transl.: «During
+          the Three Years' War 1848–50 the rebel government in Schleswig-Holstein struck its own coins»)."
+        uk: 'Не карбування Frederik VII. danskmoent.dk (Hede 18) подає монету під «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (перекл.: «Під час Трирічної
+          війни 1848–50 повстанський уряд у Шлезвіг-Гольштейні карбував власні монети»).'
+        da: 'Ikke en mønt fra Frederik 7. danskmoent.dk (Hede 18) fører mønten under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter».'
+    _source_errata:
+      - field: ruler
+        printed: Frederik VII.
+        correct: Prov. Regierung
+        curator: serg
+        reason: "Curator (Serhii) 2026-11-07: the type is the Schleswig-Holstein rebel government's. danskmoent's Frederik 7 volume lists Hede 18 under «Oprørsregeringen i Slesvig-Holsten» (f7hede), the
+          obverse carries «Slesvig-Holstens våben», and the page says «Oprørsregeringen nåede ikke at præge 1 Schillingen. Efter den danske sejr bragtes stemplerne til København». Frederik VII kept as an
+          erroneous (!) alternative via ruler_mark."
+    _errata_applied:
+      - field: ruler
+        printed: Frederik VII.
+        correct: Prov. Regierung
   - id: dk-hede-f7h1b
     fuss: seed_unsorted
     phase: hede
