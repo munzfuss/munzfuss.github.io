@@ -120,6 +120,28 @@ def _excluded_seed_ids() -> set[str]:
 _EXCLUDED_SEED_IDS: frozenset | None = None
 
 
+_ALL_EXCLUDED_SEED_IDS: frozenset | None = None
+
+
+def _all_excluded_seed_ids() -> frozenset:
+    """EVERY seed id named in data/v2/exclusions/*.yml, plain exclusions
+    included. A plain exclusion removes the whole coin its seed belongs to, so
+    the Hede-base rule must never pull such a seed into a real class: absorb
+    would then drop the real coin with it (an off-strike joined to its
+    mother coin's Hede group, say). Curator 2026-11-07."""
+    global _ALL_EXCLUDED_SEED_IDS
+    if _ALL_EXCLUDED_SEED_IDS is None:
+        out: set[str] = set()
+        if V2_EXCLUSIONS.exists():
+            for f in sorted(V2_EXCLUSIONS.glob("*.yml")):
+                doc = yaml.safe_load(f.read_text()) or {}
+                for e in doc.get("exclusions") or []:
+                    if isinstance(e, dict) and e.get("id"):
+                        out.add(str(e["id"]))
+        _ALL_EXCLUDED_SEED_IDS = frozenset(out)
+    return _ALL_EXCLUDED_SEED_IDS
+
+
 def _read_excluded_seed_ids() -> set[str]:
     out: set[str] = set()
     if not V2_EXCLUSIONS.exists():
@@ -2260,7 +2282,8 @@ def _hede_base_groups(uf, seeds_by_id, entity_id):
     for root, members in uf.classes().items():
         # A curator-excluded seed is an isolated singleton that absorb drops;
         # it is no member of any group (curator 2026-11-07).
-        if all(m in uf.isolated for m in members):
+        _excl = _all_excluded_seed_ids()
+        if all(m in uf.isolated or m in _excl for m in members):
             continue
         bases: dict[str, set] = defaultdict(set)
         noms, metals = [], []
