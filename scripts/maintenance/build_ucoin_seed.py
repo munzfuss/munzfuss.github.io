@@ -277,6 +277,7 @@ def detect_metal(comp: str | None, denom: str | None) -> str:
       «Silver (Billon) 0.125» → billon
       «Gold 0.917»         → gold
       «Copper»             → copper
+      «Brass»              → brass
     Falls back to denomination heuristics on missing/empty composition.
     """
     if comp:
@@ -289,6 +290,10 @@ def detect_metal(comp: str | None, denom: str | None) -> str:
             return "silver"
         if "bronze" in c:
             return "bronze"
+        # «Brass» (copper-zinc) is its own metal; it used to fall through to
+        # the «silver» default (ucoin 187884, Sechsling 1850).
+        if "brass" in c:
+            return "brass"
         if "copper" in c:
             return "copper"
         if "lead" in c:
