@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8480 per-source seed entries.
-# Output: 1833 unified entries (one per physical coin).
+# Output: 1830 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -37297,82 +37297,195 @@ coins:
       - dk-bruun-5851
       - dk-hede-c4h63e
       - ngc-1060266
-  - id: c-63aad0d8
-    class_id: c-63aad0d8
+  - id: c-f8faede7
+    class_id: c-f8faede7
     label: unified-dk-hede-c4h63f
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Breddaler
-    year_first: 1588
-    year_last: 1648
+    nominal: 1 Speciedaler
+    year_first: 1607
+    year_last: 1614
     year_ranges:
-      -   - 1588
-          - 1648
-    year_label: 1588-1648
-    _year_demoted: true
+      -   - 1607
+          - 1614
+    year_label: 1607-1614
     ruler: Christian IV
+    nominal_verified: false
     mint: Kopenhagen
     catalog:
+      km: '144'
       hede: 63F
       hede_volume: c4h
+      dav: '3537'
     metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+    weight_rough_g:
+      - value: 29.232
+        source: ngc
+      - value: 29.232
+        source: numismaster
     uncertainty:
       year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65422
         - kind: inferred
           how: reign
           source: hede
           as_printed: u.år
           value: 1588-1648
           seed: dk-hede-c4h63f
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14) Unique
+          value: 1607-1614
+          seed: ngc-1050179
+      nominal:
+        - kind: inferred
+          how: page_values
+          source: danskmoent.dk (Hede 63)
+          as_printed: i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere
+          value: 1 Speciedaler
+          translation:
+            de: in den Werten 1, 1½, 2, 3, 4 und 6 Speciedaler
+            en: in the values 1, 1½, 2, 3, 4 and 6 speciedaler
+            uk: у номіналах 1, 1½, 2, 3, 4 і 6 Speciedaler
+          seed: dk-hede-c4h63f
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65422
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h63.htm
         ref: danskmoent.dk (Hede c4h63)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-144-1607-14-cuid-1050179-duid-1237430
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65422
       - dk-hede-c4h63f
-  - id: c-4b18eb6e
-    class_id: c-4b18eb6e
+      - ngc-1050179
+  - id: c-6ec3ac11
+    class_id: c-6ec3ac11
     label: unified-dk-hede-c4h64a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Breddaler
-    year_first: 1588
-    year_last: 1648
-    year_ranges:
-      -   - 1588
-          - 1648
-    year_label: 1588-1648
-    _year_demoted: true
+    nominal: 3 Speciedaler
+    year_first: 1611
+    year_last: 1611
+    year_label: '1611'
     ruler: Christian IV
+    nominal_verified: false
     mint: Kopenhagen
     catalog:
+      km: '78'
       hede: 64A
       hede_volume: c4h
+      dav: EC II 3538C
+      numista: '522052'
     metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-numista-522052
+          source: numista
+          years: '1611'
+      uncertain:
+        - seed: ngc-1050186
+          source: ngc
+          years: '1611'
+        - seed: denmark-numismaster-65570
+          source: numismaster
+          years: '1611'
+    fineness:
+      - value: 0.88889
+        source: Wilcke 1919, s. 93
+    weight_rough_g:
+      - value: 86.98
+        source: numista
     uncertainty:
       year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1611'
+          seed: denmark-numismaster-65570
         - kind: inferred
           how: reign
           source: hede
           as_printed: u. år
           value: 1588-1648
           seed: dk-hede-c4h64a
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1611) Rare
+          value: '1611'
+          seed: ngc-1050186
+      fineness:
+        - kind: inferred
+          how: standard
+          source: Wilcke 1919, s. 93
+          as_printed: Prætorius oplyst, at Schwabes Dalere var 14 4/18 lødige
+          value: '0.88889'
+          translation:
+            de: Prætorius hat angegeben, dass Schwabes Taler 14 4/18 Lot fein waren
+            en: Prætorius stated that Schwabe's thalers were 14 4/18 lod fine
+            uk: Prætorius повідомив, що талери Schwabe мали пробу 14 4/18 лота
+          seed: dk-numista-522052
+      nominal:
+        - kind: inferred
+          how: page_values
+          source: danskmoent.dk (Hede 64)
+          as_printed: i værdierne 1, 1-1/2, 2 og 3 speciedalere
+          value: 3 Speciedaler
+          translation:
+            de: in den Werten 1, 1½, 2 und 3 Speciedaler
+            en: in the values 1, 1½, 2 and 3 speciedaler
+            uk: у номіналах 1, 1½, 2 і 3 Speciedaler
+          seed: dk-hede-c4h64a
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65570
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h64.htm
         ref: danskmoent.dk (Hede c4h64)
+      - type: literature
+        url: https://en.numista.com/522052
+        ref: Numista N#522052 — 3 Speciedaler Breddaler - Christian IV
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-3-speciedaler-km-78-ca.1611-cuid-1050186-duid-1237834
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65570
       - dk-hede-c4h64a
+      - dk-numista-522052
+      - ngc-1050186
   - id: c-ba85216a
     class_id: c-ba85216a
     label: unified-dk-hede-c4h64b
@@ -37661,44 +37774,87 @@ coins:
       - dk-bruun-5850
       - dk-hede-c4h64c
       - ngc-1050078
-  - id: c-20719157
-    class_id: c-20719157
+  - id: c-c7c30681
+    class_id: c-c7c30681
     label: unified-dk-hede-c4h64d
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Breddaler
-    year_first: 1588
-    year_last: 1648
-    year_ranges:
-      -   - 1588
-          - 1648
-    year_label: 1588-1648
-    _year_demoted: true
+    nominal: 1 Speciedaler
+    year_first: 1611
+    year_last: 1611
+    year_label: '1611'
     ruler: Christian IV
+    nominal_verified: false
     mint: Kopenhagen
     catalog:
+      km: '145'
       hede: 64D
       hede_volume: c4h
+      dav: '3538'
     metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+    weight_rough_g:
+      - value: 29.232
+        source: ngc
+      - value: 29.232
+        source: numismaster
     uncertainty:
       year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1611'
+          seed: denmark-numismaster-65424
         - kind: inferred
           how: reign
           source: hede
           as_printed: u. år
           value: 1588-1648
           seed: dk-hede-c4h64d
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1611) Unique
+          value: '1611'
+          seed: ngc-1050713
+      nominal:
+        - kind: inferred
+          how: page_values
+          source: danskmoent.dk (Hede 64)
+          as_printed: i værdierne 1, 1-1/2, 2 og 3 speciedalere
+          value: 1 Speciedaler
+          translation:
+            de: in den Werten 1, 1½, 2 und 3 Speciedaler
+            en: in the values 1, 1½, 2 and 3 speciedaler
+            uk: у номіналах 1, 1½, 2 і 3 Speciedaler
+          seed: dk-hede-c4h64d
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65424
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h64.htm
         ref: danskmoent.dk (Hede c4h64)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-145-ca.1611-cuid-1050713-duid-1237431
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65424
       - dk-hede-c4h64d
+      - ngc-1050713
   - id: c-86e93a72
     class_id: c-86e93a72
     label: unified-dk-hede-c4h65
@@ -131638,64 +131794,6 @@ coins:
     composed_of:
       - denmark-numismaster-65429
       - ngc-1050177
-  - id: c-f8faede7
-    class_id: c-f8faede7
-    label: unified-ngc-1050179
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1607
-    year_last: 1614
-    year_ranges:
-      -   - 1607
-          - 1614
-    year_label: 1607-1614
-    catalog:
-      km: '144'
-      dav: '3537'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 29.232
-        source: ngc
-      - value: 29.232
-        source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1607-1614
-          seed: denmark-numismaster-65422
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1607-14) Unique
-          value: 1607-1614
-          seed: ngc-1050179
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65422
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-144-1607-14-cuid-1050179-duid-1237430
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65422
-      - ngc-1050179
   - id: c-33d7a52a
     class_id: c-33d7a52a
     label: unified-ngc-1050180
@@ -131737,86 +131835,6 @@ coins:
     composed_of:
       - denmark-numismaster-65449
       - ngc-1050180
-  - id: c-6ec3ac11
-    class_id: c-6ec3ac11
-    label: unified-ngc-1050186
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 3 Speciedaler
-    year_first: 1611
-    year_last: 1611
-    year_label: '1611'
-    ruler: Christian IV
-    catalog:
-      km: '78'
-      dav: EC II 3538C
-      numista: '522052'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-numista-522052
-          source: numista
-          years: '1611'
-      uncertain:
-        - seed: ngc-1050186
-          source: ngc
-          years: '1611'
-        - seed: denmark-numismaster-65570
-          source: numismaster
-          years: '1611'
-    fineness:
-      - value: 0.88889
-        source: Wilcke 1919, s. 93
-    weight_rough_g:
-      - value: 86.98
-        source: numista
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: '1611'
-          seed: denmark-numismaster-65570
-        - kind: hedged
-          how: circa
-          source: ngc
-          as_printed: (ca.1611) Rare
-          value: '1611'
-          seed: ngc-1050186
-      fineness:
-        - kind: inferred
-          how: standard
-          source: Wilcke 1919, s. 93
-          as_printed: Prætorius oplyst, at Schwabes Dalere var 14 4/18 lødige
-          value: '0.88889'
-          translation:
-            de: Prætorius hat angegeben, dass Schwabes Taler 14 4/18 Lot fein waren
-            en: Prætorius stated that Schwabe's thalers were 14 4/18 lod fine
-            uk: Prætorius повідомив, що талери Schwabe мали пробу 14 4/18 лота
-          seed: dk-numista-522052
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65570
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/522052
-        ref: Numista N#522052 — 3 Speciedaler Breddaler - Christian IV
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-3-speciedaler-km-78-ca.1611-cuid-1050186-duid-1237834
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65570
-      - dk-numista-522052
-      - ngc-1050186
   - id: c-dba4a063
     class_id: c-dba4a063
     label: unified-ngc-1050212
@@ -135589,61 +135607,6 @@ coins:
     composed_of:
       - denmark-numismaster-65504
       - ngc-1050697
-  - id: c-c7c30681
-    class_id: c-c7c30681
-    label: unified-ngc-1050713
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1611
-    year_last: 1611
-    year_label: '1611'
-    catalog:
-      km: '145'
-      dav: '3538'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 29.232
-        source: ngc
-      - value: 29.232
-        source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: '1611'
-          seed: denmark-numismaster-65424
-        - kind: hedged
-          how: circa
-          source: ngc
-          as_printed: (ca.1611) Unique
-          value: '1611'
-          seed: ngc-1050713
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65424
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-145-ca.1611-cuid-1050713-duid-1237431
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65424
-      - ngc-1050713
   - id: c-d3d86520
     class_id: c-d3d86520
     label: unified-ngc-1050715

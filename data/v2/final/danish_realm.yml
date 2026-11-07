@@ -137055,8 +137055,8 @@ coins:
       - c-c6084b8a
     label: unified-kmk-78337
     origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: 9_thaler
+    phase: I
     kind: kurant
     nominal: 1 Speciedaler
     ruler: Christian IV.
@@ -137076,21 +137076,42 @@ coins:
           source: numismaster
           value: 1607-1614
           seed: denmark-numismaster-65422
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
+          seed: dk-hede-c4h63f
         - kind: hedged
           how: attributed
           source: ngc
           as_printed: (1607-14) Unique
           value: 1607-1614
           seed: ngc-1050179
+      nominal:
+        - kind: inferred
+          how: page_values
+          source: danskmoent.dk (Hede 63)
+          as_printed: i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere
+          value: 1 Speciedaler
+          translation:
+            de: in den Werten 1, 1½, 2, 3, 4 und 6 Speciedaler
+            en: in the values 1, 1½, 2, 3, 4 and 6 speciedaler
+            uk: у номіналах 1, 1½, 2, 3, 4 і 6 Speciedaler
+          seed: dk-hede-c4h63f
+    nominal_verified: false
+    mint: Kopenhagen
     catalog:
       km: '144'
       dav: '3537'
+      hede: 63F
+      hede_volume: c4h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -137113,12 +137134,16 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-144-1607-14-cuid-1050179-duid-1237430
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h63.htm
+        ref: danskmoent.dk (Hede c4h63)
     verification_note: *id008
     composed_of:
       - c-bd171069
       - c-f8faede7
     label: unified-kmk-78341
     origin: promoted
+    fraction: '1'
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -149488,6 +149513,7 @@ coins:
     nominal: 3 Speciedaler
     ruler: Christian IV
     issuing_entity: danish_realm
+    fraction: '3'
     id: c-6ec3ac11
     year_first: 1611
     year_last: 1611
@@ -149512,6 +149538,12 @@ coins:
           source: numismaster
           value: '1611'
           seed: denmark-numismaster-65570
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1588-1648
+          seed: dk-hede-c4h64a
         - kind: hedged
           how: circa
           source: ngc
@@ -149529,16 +149561,31 @@ coins:
             en: Prætorius stated that Schwabe's thalers were 14 4/18 lod fine
             uk: Prætorius повідомив, що талери Schwabe мали пробу 14 4/18 лота
           seed: dk-numista-522052
+      nominal:
+        - kind: inferred
+          how: page_values
+          source: danskmoent.dk (Hede 64)
+          as_printed: i værdierne 1, 1-1/2, 2 og 3 speciedalere
+          value: 3 Speciedaler
+          translation:
+            de: in den Werten 1, 1½, 2 und 3 Speciedaler
+            en: in the values 1, 1½, 2 and 3 speciedaler
+            uk: у номіналах 1, 1½, 2 і 3 Speciedaler
+          seed: dk-hede-c4h64a
+    nominal_verified: false
+    mint: Kopenhagen
     catalog:
       km: '78'
       dav: EC II 3538C
       numista: '522052'
+      hede: 64A
+      hede_volume: c4h
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.88889
@@ -149556,6 +149603,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-3-speciedaler-km-78-ca.1611-cuid-1050186-duid-1237834
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h64.htm
+        ref: danskmoent.dk (Hede c4h64)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -149565,7 +149615,6 @@ coins:
       - c-6ec3ac11
     label: unified-ngc-1050186
     origin: promoted
-    fraction: '3'
   - fuss: courantdukatenfuss
     phase: I
     kind: kurant
@@ -151976,12 +152025,13 @@ coins:
       - c-b2565836
     label: unified-ngc-1050697
     origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
+  - fuss: 9_thaler
+    phase: I
     kind: kurant
     nominal: 1 Speciedaler
     issuing_entity: danish_realm
     id: c-c7c30681
+    ruler: Christian IV
     year_first: 1611
     year_last: 1611
     year_label: '1611'
@@ -151993,21 +152043,42 @@ coins:
           source: numismaster
           value: '1611'
           seed: denmark-numismaster-65424
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1588-1648
+          seed: dk-hede-c4h64d
         - kind: hedged
           how: circa
           source: ngc
           as_printed: (ca.1611) Unique
           value: '1611'
           seed: ngc-1050713
+      nominal:
+        - kind: inferred
+          how: page_values
+          source: danskmoent.dk (Hede 64)
+          as_printed: i værdierne 1, 1-1/2, 2 og 3 speciedalere
+          value: 1 Speciedaler
+          translation:
+            de: in den Werten 1, 1½, 2 und 3 Speciedaler
+            en: in the values 1, 1½, 2 and 3 speciedaler
+            uk: у номіналах 1, 1½, 2 і 3 Speciedaler
+          seed: dk-hede-c4h64d
+    nominal_verified: false
+    mint: Kopenhagen
     catalog:
       km: '145'
       dav: '3538'
+      hede: 64D
+      hede_volume: c4h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -152026,6 +152097,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-145-ca.1611-cuid-1050713-duid-1237431
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h64.htm
+        ref: danskmoent.dk (Hede c4h64)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -152035,6 +152109,7 @@ coins:
       - c-c7c30681
     label: unified-ngc-1050713
     origin: promoted
+    fraction: '1'
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
@@ -174997,120 +175072,6 @@ coins:
       - value: 1.0
         source: kmk
         display: false
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Breddaler
-    ruler: Christian IV
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-63aad0d8
-    year_first: 1588
-    year_last: 1648
-    year_ranges:
-      -   - 1588
-          - 1648
-    year_label: 1588-1648
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: hede
-          as_printed: u.år
-          value: 1588-1648
-          seed: dk-hede-c4h63f
-    mint: Kopenhagen
-    catalog:
-      hede: 63F
-      hede_volume: c4h
-    metal: silver
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h63.htm
-        ref: danskmoent.dk (Hede c4h63)
-    composed_of:
-      - c-63aad0d8
-    label: unified-dk-hede-c4h63f
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Breddaler
-    ruler: Christian IV
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-4b18eb6e
-    year_first: 1588
-    year_last: 1648
-    year_ranges:
-      -   - 1588
-          - 1648
-    year_label: 1588-1648
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: hede
-          as_printed: u. år
-          value: 1588-1648
-          seed: dk-hede-c4h64a
-    mint: Kopenhagen
-    catalog:
-      hede: 64A
-      hede_volume: c4h
-    metal: silver
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h64.htm
-        ref: danskmoent.dk (Hede c4h64)
-    composed_of:
-      - c-4b18eb6e
-    label: unified-dk-hede-c4h64a
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Breddaler
-    ruler: Christian IV
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-20719157
-    year_first: 1588
-    year_last: 1648
-    year_ranges:
-      -   - 1588
-          - 1648
-    year_label: 1588-1648
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: hede
-          as_printed: u. år
-          value: 1588-1648
-          seed: dk-hede-c4h64d
-    mint: Kopenhagen
-    catalog:
-      hede: 64D
-      hede_volume: c4h
-    metal: silver
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h64.htm
-        ref: danskmoent.dk (Hede c4h64)
-    composed_of:
-      - c-20719157
-    label: unified-dk-hede-c4h64d
-    origin: promoted
   - fuss: seed_unsorted
     phase: hede
     kind: kurant
