@@ -1055,6 +1055,26 @@ a table in the builder (extend it with each new territory). First lot:
 Emporium Hamburg 69 (4–5 April 2013), lot 1676, 4 Schilling 1701/1702 Tönning
 = KM 155 (Lange 438, 438A; 2,76 / 2,78 g).
 
+### 7.8 Tietjen + Co., Hamburg — printed auction catalogues (cached since 2026-11-07)
+
+Hamburg auction house (Dagmar u. Detlef Tietjen); the catalogues open with
+Hamburg, Lübeck and Schleswig-Holstein sections. Auktion 110 (17 December
+2012, 214 pp., lots 1–1350 coins/medals, 2001–2990 literature) is on yumpu
+(<https://www.yumpu.com/de/document/view/7817078/auktion-110-auktionshaus-tietjen-co>);
+yumpu sends the PDF only to an e-mail address (the curator downloaded it)
+and blocks scripted fetches. Cached at
+`scripts/cache/auctions/tietjen/tietjen_2012_auktion_110.pdf` with a text
+layer and corpus record `tietjen-2012-auktion-110`: the coin section has no
+printed page numbers — cite the LOT; the literature section's printed page =
+PDF page. Lot «N*» = illustrated on the plate pages.
+
+**Pipeline:** `scripts/parse_tietjen.py` (pdftotext -layout; every lot with
+its section heading, grade, estimate, weights, Behr./Dav./J./Gaed./Lange/
+Hede/KM numbers, mint mark) → `auktion_<n>_lots.json` →
+`scripts/maintenance/build_tietjen_seed.py`, which takes ONLY the lots listed
+in its `LOTS` table (lot → entity). First lot: 110/88, Lübeck 48 Schilling
+Courant 1752 (Behr. 291a, Dav. 2420, J. 22, Mz. JJJ, 27,18 g).
+
 ---
 
 ## 8. Museum sources
