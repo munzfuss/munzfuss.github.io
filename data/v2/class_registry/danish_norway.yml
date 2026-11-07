@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 578 active, 1211 retired.
+# 576 active, 1213 retired.
 
 id: danish_norway
 classes:
@@ -211,14 +211,6 @@ classes:
       - dk-numista-118930
       - dk-numista-444858
       - ngc-1094426
-  - id: c-0a1589a1
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-148498
-    legacy_id: unified-kmk-148498
-    members:
-      - kmk-148498
-      - kmk-201994
   - id: c-0a210ec7
     status: active
     created: '2026-10-22'
@@ -4396,6 +4388,7 @@ classes:
       - dk-hede-nf6h3
       - dk-numista-97335
       - dk-tid-88718
+      - kmk-122077
   - id: c-8458c886
     status: active
     created: '2026-10-22'
@@ -5582,13 +5575,6 @@ classes:
       - dk-bruun-9872
       - dk-numista-118992
       - ngc-1100406
-  - id: c-b713609a
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-122077
-    legacy_id: unified-kmk-122077
-    members:
-      - kmk-122077
   - id: c-b728a319
     status: active
     created: '2026-10-22'
@@ -6412,6 +6398,8 @@ classes:
       - dk-hede-nf4h6
       - dk-numista-82177
       - dk-tid-143946
+      - kmk-148498
+      - kmk-201994
       - ngc-1113816
   - id: c-d97f3668
     status: active
@@ -7745,6 +7733,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-423252
+  - id: c-0a1589a1
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-148498
+    legacy_id: unified-kmk-148498
+    merged_into: c-d92c4cc6
+    retired: '2026-11-07'
+    members:
+      - kmk-148498
+      - kmk-201994
   - id: c-0a32507b
     status: retired
     created: '2026-10-22'
@@ -14848,6 +14846,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-424407
+  - id: c-b713609a
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-122077
+    legacy_id: unified-kmk-122077
+    merged_into: c-84289c15
+    retired: '2026-11-07'
+    members:
+      - kmk-122077
   - id: c-b743375f
     status: retired
     created: '2026-11-03'

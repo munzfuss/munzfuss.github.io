@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2740 per-source seed entries.
-# Output: 578 unified entries (one per physical coin).
+# Output: 576 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-06'
+generated_at: '2026-11-07'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -31045,6 +31045,7 @@ coins:
         - Brekke# 20
         - Brekke# 21
         - Brekke# 22
+        - B# 25
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -31077,6 +31078,23 @@ coins:
     diameter_mm:
       - value: 19.5
         source: numista
+    catalog_alts:
+      - register: hede
+        value: '8'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]Foto KMM[/b]: Porträt, Krone, «8 S», «1700».\n[b]danskmoent.dk (Hede Norge 6)[/b]: [i]«8 Skilling, Kongsberg 1700-1715 … Forside: portræt,
+            bagside: krone»[/i] (Übers.: «8 Skilling, Kongsberg 1700-1715 … Vorderseite: Porträt, Rückseite: Krone»).\n[b]danskmoent.dk (Hede Norge 8)[/b]: [i]«1 Skilling, Kongsberg … Forside: monogram,
+            bagside: værdiangivelse»[/i] (Übers.: «1 Skilling, Kongsberg … Vorderseite: Monogramm, Rückseite: Wertangabe»)."
+          en: "The Hede number does not belong to this coin.\n[b]KMM photo[/b]: portrait, crown, «8 S», «1700».\n[b]danskmoent.dk (Hede Norge 6)[/b]: [i]«8 Skilling, Kongsberg 1700-1715 … Forside: portræt,
+            bagside: krone»[/i] (transl.: «8 Skilling, Kongsberg 1700-1715 … obverse: portrait, reverse: crown»).\n[b]danskmoent.dk (Hede Norge 8)[/b]: [i]«1 Skilling, Kongsberg … Forside: monogram, bagside:
+            værdiangivelse»[/i] (transl.: «1 Skilling, Kongsberg … obverse: monogram, reverse: value»)."
+          uk: "Номер Hede не належить цій монеті.\n[b]Фото KMM[/b]: портрет, корона, «8 S», «1700».\n[b]danskmoent.dk (Hede Norge 6)[/b]: [i]«8 Skilling, Kongsberg 1700-1715 … Forside: portræt, bagside:
+            krone»[/i] (перекл.: «8 скілінгів, Kongsberg 1700-1715 … аверс: портрет, реверс: корона»).\n[b]danskmoent.dk (Hede Norge 8)[/b]: [i]«1 Skilling, Kongsberg … Forside: monogram, bagside: værdiangivelse»[/i]
+            (перекл.: «1 скілінг, Kongsberg … аверс: монограма, реверс: позначення вартості»)."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]Foto KMM[/b]: portræt, krone, «8 S», «1700».\n[b]danskmoent.dk (Hede Norge 6)[/b]: [i]«8 Skilling, Kongsberg 1700-1715 … Forside: portræt, bagside:
+            krone»[/i].\n[b]danskmoent.dk (Hede Norge 8)[/b]: [i]«1 Skilling, Kongsberg … Forside: monogram, bagside: værdiangivelse»[/i]."
     sources:
       - type: literature
         url: https://numismaster.com/MC_86226
@@ -31090,6 +31108,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-8-skilling-1700-1702/?tid=143946
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148498
+        ref: KMM 148498 (Inv. KP 1656.1815)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201994
+        ref: KMM 201994 (Inv. RP 541.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-8-skilling-km-207-1700-1702-cuid-1113816-duid-1444949
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -31099,6 +31123,8 @@ coins:
       - dk-hede-nf4h6
       - dk-numista-82177
       - dk-tid-143946
+      - kmk-148498
+      - kmk-201994
       - ngc-1113816
   - id: c-83fc6896
     class_id: c-83fc6896
@@ -32048,6 +32074,7 @@ coins:
       numista: '97335'
       others:
         - Brekke# 3
+        - LEB# 10949
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -32069,6 +32096,23 @@ coins:
         source: ucoin
       - value: 33.0
         source: numista
+    ruler_alts:
+      - value: Frederik 4
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Münze wurde unter Frederik VI geschlagen.\n[b]Foto KMM[/b]: Kupfer, «4 SKILLING COURANT 1810», Kongsberger Hämmer.\n[b]danskmoent.dk (Hede Norge 3, Frederik 6.)[/b]: [i]«4 Skilling, Kongsberg
+            Kobber … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»[/i] (Übers.: «4 Skilling, Kongsberg, Kupfer … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»).\n[b]L. E. Bruuns Mønt- og
+            Medaillesamling (1928), S. 330[/b], Abschnitt «1808 – Frederik VI – 1814», 1810: [i]«Fireskilling af Kobber»[/i] (Übers.: «Vierschilling aus Kupfer»), Schou 1."
+          en: "The coin was struck under Frederik VI.\n[b]KMM photo[/b]: copper, «4 SKILLING COURANT 1810», Kongsberg hammers.\n[b]danskmoent.dk (Hede Norge 3, Frederik 6.)[/b]: [i]«4 Skilling, Kongsberg
+            Kobber … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»[/i] (transl.: «4 Skilling, Kongsberg, copper … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»).\n[b]L. E. Bruuns Mønt- og
+            Medaillesamling (1928), p. 330[/b], section «1808 – Frederik VI – 1814», 1810: [i]«Fireskilling af Kobber»[/i] (transl.: «four-skilling of copper»), Schou 1."
+          uk: "Монету карбовано за Frederik VI.\n[b]Фото KMM[/b]: мідь, «4 SKILLING COURANT 1810», молотки Kongsberg.\n[b]danskmoent.dk (Hede Norge 3, Frederik 6.)[/b]: [i]«4 Skilling, Kongsberg Kobber
+            … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»[/i] (перекл.: «4 скілінги, Kongsberg, мідь … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»).\n[b]L. E. Bruuns Mønt- og Medaillesamling
+            (1928), с. 330[/b], розділ «1808 – Frederik VI – 1814», 1810: [i]«Fireskilling af Kobber»[/i] (перекл.: «чотирискілінговик із міді»), Schou 1."
+          da: "Mønten er slået under Frederik 6.\n[b]Foto KMM[/b]: kobber, «4 SKILLING COURANT 1810», Kongsberg-hamre.\n[b]danskmoent.dk (Hede Norge 3, Frederik 6.)[/b]: [i]«4 Skilling, Kongsberg Kobber
+            … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»[/i].\n[b]L. E. Bruuns Mønt- og Medaillesamling (1928), s. 330[/b], afsnittet «1808 – Frederik VI – 1814», 1810: [i]«Fireskilling af Kobber»[/i],
+            Schou 1."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -32082,12 +32126,16 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-4-skilling-1809-1810/?tid=88718
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122077
+        ref: KMM 122077 (Inv. GP 4551.57)
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-10942
       - dk-hede-nf6h3
       - dk-numista-97335
       - dk-tid-88718
+      - kmk-122077
   - id: c-edb74f02
     class_id: c-edb74f02
     label: unified-dk-hede-nf6h4
@@ -34602,32 +34650,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - ikmk-18244029
-  - id: c-b713609a
-    class_id: c-b713609a
-    label: unified-kmk-122077
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1810
-    year_last: 1810
-    year_label: '1810'
-    ruler: Frederik IV
-    catalog:
-      hede: '3'
-      others:
-        - LEB# 10949
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122077
-        ref: KMM 122077 (Inv. GP 4551.57)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-122077
   - id: c-8458c886
     class_id: c-8458c886
     label: unified-kmk-122078
@@ -34987,39 +35009,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-148330
-  - id: c-0a1589a1
-    class_id: c-0a1589a1
-    label: unified-kmk-148498
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 8-skilling
-    year_first: 1700
-    year_last: 1700
-    year_label: '1700'
-    ruler: Frederik IV
-    mint: Kongsberg
-    catalog:
-      schou: '10'
-      hede: '8'
-      others:
-        - B# 25
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148498
-        ref: KMM 148498 (Inv. KP 1656.1815)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201994
-        ref: KMM 201994 (Inv. RP 541.1)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-148498
-      - kmk-201994
   - id: c-c4e381f9
     class_id: c-c4e381f9
     label: unified-kmk-148612

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8529 per-source seed entries.
-# Output: 1879 unified entries (one per physical coin).
+# Output: 1873 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-06'
+generated_at: '2026-11-07'
 coins:
   - id: c-160340b9
     class_id: c-160340b9
@@ -52302,8 +52302,8 @@ coins:
       - dk-numista-311705
       - dk-tid-99103
       - ngc-1050388
-  - id: c-d63b66c0
-    class_id: c-d63b66c0
+  - id: c-2ebc19dd
+    class_id: c-2ebc19dd
     label: unified-dk-hede-c5h84
     fuss: seed_unsorted
     phase: hede
@@ -52319,6 +52319,12 @@ coins:
       hede_volume: c5h
       schou: 25-31
       sieg: '9.1'
+      others:
+        - B# 346
+        - B# 347
+        - B# 345
+        - B# 347a
+        - B# 346a
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -52329,8 +52335,36 @@ coins:
       - value: 0.343
         source: hede
     weight_rough_g:
+      - value: 0.93
+        source: kmk
+      - value: 0.95
+        source: kmk
+      - value: 1.13
+        source: kmk
+      - value: 1.14
+        source: kmk
+      - value: 1.15
+        source: kmk
+      - value: 1.18
+        source: kmk
       - value: 1.218
         source: hede
+      - value: 1.29
+        source: kmk
+    catalog_alts:
+      - register: hede
+        value: '86'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i], [i]«Hede 84, Schou 25-31»[/i], [i]«Bruttovægt: 1,218g»[/i].\n[b]danskmoent.dk
+            (Hede 86)[/b]: [i]«1/2 Skilling 1686, København»[/i], [i]«Hede 86, Schou 40»[/i], [i]«Bruttovægt: 0,668g»[/i]."
+          en: "The Hede number does not belong to this coin.\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i], [i]«Hede 84, Schou 25-31»[/i], [i]«Bruttovægt: 1,218g»[/i].\n[b]danskmoent.dk
+            (Hede 86)[/b]: [i]«1/2 Skilling 1686, København»[/i], [i]«Hede 86, Schou 40»[/i], [i]«Bruttovægt: 0,668g»[/i]."
+          uk: "Номер Hede не належить цій монеті.\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i], [i]«Hede 84, Schou 25-31»[/i], [i]«Bruttovægt: 1,218g»[/i].\n[b]danskmoent.dk (Hede
+            86)[/b]: [i]«1/2 Skilling 1686, København»[/i], [i]«Hede 86, Schou 40»[/i], [i]«Bruttovægt: 0,668g»[/i]."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]danskmoent.dk (Hede 84)[/b]: [i]«2 Skilling 1686, København»[/i], [i]«Hede 84, Schou 25-31»[/i], [i]«Bruttovægt: 1,218g»[/i].\n[b]danskmoent.dk
+            (Hede 86)[/b]: [i]«1/2 Skilling 1686, København»[/i], [i]«Hede 86, Schou 40»[/i], [i]«Bruttovægt: 0,668g»[/i]."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h84.htm
@@ -52338,6 +52372,30 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148609
         ref: KMM 148609 (Inv. KP 1656.1704)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148610
+        ref: KMM 148610 (Inv. KP 1656.1703)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148611
+        ref: KMM 148611 (Inv. KP 1656.1702)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/277012
+        ref: KMM 277012 (Inv. RP 693.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/277013
+        ref: KMM 277013 (Inv. RP 694.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/277014
+        ref: KMM 277014 (Inv. RP 695.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/277018
+        ref: KMM 277018 (Inv. RP 471.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/277019
+        ref: KMM 277019 (Inv. RP 471.7)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/46697
+        ref: KMM 46697 (Inv. GP 2890.316)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 11.636
@@ -52347,6 +52405,14 @@ coins:
     composed_of:
       - dk-hede-c5h84
       - kmk-148609
+      - kmk-148610
+      - kmk-148611
+      - kmk-277012
+      - kmk-277013
+      - kmk-277014
+      - kmk-277018
+      - kmk-277019
+      - kmk-46697
   - id: c-ddc8c72d
     class_id: c-ddc8c72d
     label: unified-dk-hede-c5h85
@@ -85693,6 +85759,8 @@ coins:
       schou: 13-15
       sieg: '29'
       bruun_collection_id: '7557'
+      others:
+        - LEB# 7560
       fr: '241'
     metal: gold
     metal_verified: true
@@ -85737,6 +85805,20 @@ coins:
           as_printed: u.år
           value: 1699-1730
           seed: dk-hede-f4h25
+    catalog_alts:
+      - register: hede
+        value: '26'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]L. E. Bruuns Mønt- og Medaillesamling (1928), S. 229[/b]: Nr. 7560 steht unter [i]«Halv Dukat»[/i] (Übers.: «Halber Dukat»), Schou 15.\n\
+            [b]danskmoent.dk (Hede 25)[/b]: [i]«1/2 Dukat Hede 25, Schou 13-15»[/i].\n[b]danskmoent.dk (Hede, Frederik 4.)[/b], Übersicht: Hede 26 [i]«1/4 Dukat»[/i]."
+          en: "The Hede number does not belong to this coin.\n[b]L. E. Bruuns Mønt- og Medaillesamling (1928), p. 229[/b]: No. 7560 stands under [i]«Halv Dukat»[/i] (transl.: «Half Ducat»), Schou 15.\n\
+            [b]danskmoent.dk (Hede 25)[/b]: [i]«1/2 Dukat Hede 25, Schou 13-15»[/i].\n[b]danskmoent.dk (Hede, Frederik 4.)[/b], overview: Hede 26 [i]«1/4 Dukat»[/i]."
+          uk: "Номер Hede не належить цій монеті.\n[b]L. E. Bruuns Mønt- og Medaillesamling (1928), с. 229[/b]: №7560 стоїть під [i]«Halv Dukat»[/i] (перекл.: «пів дуката»), Schou 15.\n[b]danskmoent.dk
+            (Hede 25)[/b]: [i]«1/2 Dukat Hede 25, Schou 13-15»[/i].\n[b]danskmoent.dk (Hede, Frederik 4.)[/b], огляд: Hede 26 [i]«1/4 Dukat»[/i]."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]L. E. Bruuns Mønt- og Medaillesamling (1928), s. 229[/b]: Nr. 7560 står under [i]«Halv Dukat»[/i], Schou 15.\n[b]danskmoent.dk (Hede 25)[/b]:
+            [i]«1/2 Dukat Hede 25, Schou 13-15»[/i].\n[b]danskmoent.dk (Hede, Frederik 4.)[/b], oversigt: Hede 26 [i]«1/4 Dukat»[/i]."
     sources:
       - type: literature
         url: https://numismaster.com/MC_65712
@@ -85747,6 +85829,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h25.htm
         ref: danskmoent.dk (Hede f4h25)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122090
+        ref: KMM 122090 (Inv. GP 4551.44)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-1-2-ducat-km-452-1702-cuid-1050894-duid-1236398
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -85755,6 +85840,7 @@ coins:
       - denmark-numismaster-65712
       - dk-bruun-7557
       - dk-hede-f4h25
+      - kmk-122090
       - ngc-1050894
   - id: c-5feafe7d
     class_id: c-5feafe7d
@@ -103510,29 +103596,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-122088
-  - id: c-6aabd6f2
-    class_id: c-6aabd6f2
-    label: unified-kmk-122090
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: halv dukat
-    ruler: Frederik IV
-    catalog:
-      hede: '26'
-      others:
-        - LEB# 7560
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122090
-        ref: KMM 122090 (Inv. GP 4551.44)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-122090
   - id: c-2ad846d1
     class_id: c-2ad846d1
     label: unified-kmk-122091
@@ -108631,71 +108694,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-148537
-  - id: c-e549ad01
-    class_id: c-e549ad01
-    label: unified-kmk-148610
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1686
-    year_last: 1686
-    year_label: '1686'
-    ruler: Christian V
-    mint: Kopenhagen
-    catalog:
-      schou: '29'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.13
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148610
-        ref: KMM 148610 (Inv. KP 1656.1703)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-148610
-  - id: c-f22c6441
-    class_id: c-f22c6441
-    label: unified-kmk-148611
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1686
-    year_last: 1686
-    year_label: '1686'
-    ruler: Christian V
-    mint: Kopenhagen
-    catalog:
-      schou: '26'
-      hede: '86'
-      others:
-        - B# 347
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.14
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148611
-        ref: KMM 148611 (Inv. KP 1656.1702)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/277013
-        ref: KMM 277013 (Inv. RP 694.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-148611
-      - kmk-277013
   - id: c-d703e603
     class_id: c-d703e603
     label: unified-kmk-148705
@@ -120809,85 +120807,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-276963
-  - id: c-2ebc19dd
-    class_id: c-2ebc19dd
-    label: unified-kmk-277012
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1686
-    year_last: 1686
-    year_label: '1686'
-    ruler: Christian V
-    catalog:
-      hede: '86'
-      schou:
-        - '29'
-        - '30'
-      others:
-        - B# 346
-        - B# 346a
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.18
-        source: kmk
-      - value: 1.29
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/277012
-        ref: KMM 277012 (Inv. RP 693.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/277019
-        ref: KMM 277019 (Inv. RP 471.7)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-277012
-      - kmk-277019
-  - id: c-fb821fe0
-    class_id: c-fb821fe0
-    label: unified-kmk-277014
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1686
-    year_last: 1686
-    year_label: '1686'
-    ruler: Christian V
-    catalog:
-      hede: '86'
-      schou:
-        - '25'
-        - '28'
-      others:
-        - B# 345
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.93
-        source: kmk
-      - value: 0.95
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/277014
-        ref: KMM 277014 (Inv. RP 695.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/46697
-        ref: KMM 46697 (Inv. GP 2890.316)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-277014
-      - kmk-46697
   - id: c-fd2bb8e6
     class_id: c-fd2bb8e6
     label: unified-kmk-277016
@@ -120919,37 +120838,6 @@ coins:
     composed_of:
       - kmk-277016
       - kmk-277112
-  - id: c-5a305f2e
-    class_id: c-5a305f2e
-    label: unified-kmk-277018
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1686
-    year_last: 1686
-    year_label: '1686'
-    ruler: Christian V
-    catalog:
-      hede: '86'
-      schou: '27'
-      others:
-        - B# 347a
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.15
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/277018
-        ref: KMM 277018 (Inv. RP 471.8)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-277018
   - id: c-c01aa658
     class_id: c-c01aa658
     label: unified-kmk-278482
