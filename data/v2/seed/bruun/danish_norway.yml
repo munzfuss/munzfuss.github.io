@@ -1,6 +1,6 @@
 status: seed
 source: Stack's Bowers L. E. Bruun Collection (parts I-V, 2024-2026)
-generated_at: '2026-10-25T07:19:48Z'
+generated_at: '2026-11-07T06:34:32Z'
 entity: danish_norway
 scope_note: §AZ Tier 1 — Bruun corpus pre-1541 realm lots, covers the gap Hede 1971 doesn't catalogue (Christian II + Frederik I + Christian III pre-1541 Møntordning). NOT a substitute for the Hede 
   seed at v2/seed/hede/; parallel source.
@@ -92,10 +92,6 @@ coins:
         curator: serg
         reason: Bruun lot 12029 titles the piece «½ Skilling (Søsling)»; the type is the Søsling of Galster 149 / Schou 100 (danskmoent hans.htm), the name every other record of the type uses. Curator
           2026-10-16.
-    _errata_applied:
-      - field: nominal
-        printed: ½ Skilling
-        correct: 1 Søsling
     uncertainty:
       year:
         - kind: hedged
@@ -103,6 +99,10 @@ coins:
           source: bruun
           as_printed: ND (1481-1512)
           value: 1481-1512
+    _errata_applied:
+      - field: nominal
+        printed: ½ Skilling
+        correct: 1 Søsling
   - id: dk-bruun-9242
     fuss: seed_unsorted
     phase: bruun
@@ -201,10 +201,6 @@ coins:
         da: 'En omstridt henførelse. Bruun (Part III, lot 12031) henfører denne hvid til ærkebiskop Gaute Ivarsson af Nidaros, som tidligere C. T. Jørgensen (nr. 33). Ernst (NNÅ 1940) anser typen med kronet
           O, omskriften «Sanctus Olavus» og øksen i skjold (Schou 220) for en kongelig udmøntning i Nidaros: de ærkebispelige mønter bærer ærkebispens titel eller kirkelige tegn, og denne type bærer ingen
           af delene. Danskmoent (Galster 159) fører mønten under Hans. Hvilken henførelse der er rigtig, er ikke endeligt afgjort ud fra kilderne.'
-    _errata_applied:
-      - field: ruler
-        printed: Gaute Ivarsson
-        correct: Hans
     uncertainty:
       year:
         - kind: hedged
@@ -212,6 +208,10 @@ coins:
           source: bruun
           as_printed: ND (1505-10)
           value: 1505-1510
+    _errata_applied:
+      - field: ruler
+        printed: Gaute Ivarsson
+        correct: Hans
   - id: dk-bruun-9248
     fuss: seed_unsorted
     phase: bruun
@@ -5083,7 +5083,6 @@ coins:
       sieg: '24'
       schou: '23'
       davenport: '3592'
-      km: '48'
       hede: '14'
       nmd: '74'
       bruun_part: III
