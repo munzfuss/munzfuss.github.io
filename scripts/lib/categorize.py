@@ -379,7 +379,7 @@ def categorize(
                     pg.year_ordered_coins.append(cc)
                     # Pure copper tokens (no precious metal content) get their own sub-group
                     # since Δ is undefined and the economic logic differs from billon scheidemünzen.
-                    if cc.raw.metal in ("copper", "bronze", "brass"):
+                    if cc.raw.metal in ("copper", "copper_nickel", "copper_lead", "bronze", "brass"):
                         pg.copper_coins.append(cc)
                     else:
                         pg.scheide_coins.append(cc)

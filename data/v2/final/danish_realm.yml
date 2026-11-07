@@ -33109,76 +33109,6 @@ coins:
     label: km-798-2-chr-ix-1897
     origin: foundation
     v1_home_location: denmark
-  - fuss: 9_25_thaler
-    phase: I
-    kind: gedenk
-    fraction: 1/12
-    nominal: 8 Skilling
-    ruler: Christian V.
-    issuing_entity: danish_realm
-    mintmaster: Hans Wilhelm von Meerheim
-    id: km-8-chr-v-1677
-    year_first: 1677
-    year_last: 1678
-    year_ranges:
-      -   - 1677
-          - 1678
-    year_label: 1677-1678
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1677-1678)
-          value: 1677-1678
-          seed: dk-bruun-7277
-    mint: Kopenhagen
-    catalog:
-      km: '8'
-      bruun_collection_id:
-        - '6904'
-        - '7277'
-      bruun_part: III
-      bruun_lot_no: 11259
-      bruun_page: 133
-      hede_volume: c5h
-      sieg: '149.1'
-      schou: '52'
-      hede: 133A
-      others:
-        - Aagaard# 8
-    metal: copper
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 16.84
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11259, p. 115
-    note:
-      de: 8 Skilling Klippe 1677 · Sonderprägung · Bruun-Specimen.
-      en: 8 Skilling klippe 1677 · special strike · Bruun specimen.
-      uk: 8 Skilling klippe 1677 · спеціальна емісія · Bruun-зразок.
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-0af7a324
-    label: km-8-chr-v-1677
-    origin: foundation
-    v1_home_location: denmark
   - fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -169894,7 +169824,7 @@ coins:
       bruun_collection_id: '7275'
       others:
         - Aagaard# 1
-    metal: copper
+    metal: copper_lead
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
@@ -169919,13 +169849,14 @@ coins:
       - c-88cdebef
     label: unified-dk-hede-c5h132
     origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
+  - fuss: 9_25_thaler
+    phase: I
+    kind: gedenk
     nominal: 8 Skilling
     ruler: Christian V.
     issuing_entity: danish_realm
     id: c-c94b696e
+    mintmaster: Hans Wilhelm von Meerheim
     year_first: 1677
     year_last: 1678
     year_ranges:
@@ -169942,6 +169873,9 @@ coins:
         - seed: dk-bruun-7276
           source: bruun
           years: 1677-1678
+        - seed: dk-bruun-7277
+          source: bruun
+          years: 1677-1678
     uncertainty:
       year:
         - kind: hedged
@@ -169950,10 +169884,18 @@ coins:
           as_printed: ND (1677-78)
           value: 1677-1678
           seed: dk-bruun-7276
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1677-1678)
+          value: 1677-1678
+          seed: dk-bruun-7277
     mint: Christiansstad
     catalog:
+      km: '8'
       hede:
         - '133'
+        - 133A
         - 133B
       hede_volume: c5h
       schou:
@@ -169961,18 +169903,23 @@ coins:
         - '53'
       sieg:
         - '149'
+        - '149.1'
         - '149.2'
-      bruun_collection_id: '7276'
+      bruun_collection_id:
+        - '7276'
+        - '7277'
       others:
         - Aagaard# 8
-    metal: silver
-    metal_verified: false
+    metal: copper_lead
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
       - value: 14.72
+        source: bruun
+      - value: 16.84
         source: bruun
     sources:
       - type: auction
@@ -169981,6 +169928,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h133.htm
         ref: danskmoent.dk (Hede c5h133)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11259, p. 115
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -169990,6 +169940,7 @@ coins:
       - c-c94b696e
     label: unified-dk-hede-c5h133
     origin: promoted
+    fraction: 1/12
   - fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -170038,8 +169989,8 @@ coins:
       bruun_collection_id: '7280'
       others:
         - Aagaard# 4
-    metal: silver
-    metal_verified: false
+    metal: copper_lead
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -170118,7 +170069,7 @@ coins:
       bruun_collection_id: '7285'
       others:
         - Aagaard# 2
-    metal: silver
+    metal: copper_lead
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true

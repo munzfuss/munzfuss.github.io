@@ -585,7 +585,7 @@ def _infer_metal(nominal: str, ruler: str | None, fineness: float | None) -> str
 _METAL_TEXT_MAP = {
     "guld": "gold", "sølv": "silver", "soelv": "silver",
     "kobber": "copper", "bronze": "bronze",
-    "billon": "billon",
+    "billon": "billon", "bly": "lead",
 }
 # «bronze» is a distinct schema metal class (Literal in schema.py — 259
 # uses), NOT collapsed to copper: danskmoent.dk distinguishes «Kobber»
@@ -596,7 +596,7 @@ _METAL_TEXT_MAP = {
 # value never blocks a merge with a coarser «copper» museum tag.
 # «tin» is intentionally absent — it is not a valid schema metal and the
 # only tin mentions in scope are Tinafslag off-strikes (prose, excluded).
-_METAL_WORD = r"(guld|sølv|soelv|kobber|billon|bronze)"
+_METAL_WORD = r"(guld|sølv|soelv|kobber|billon|bronze|bly)"
 # The metal must appear as the LEADING token of the coin's physical-
 # description line — three structural shapes danskmoent.dk uses, all
 # stating the coin's OWN metal. Free-prose mentions (off-strikes,
@@ -614,7 +614,7 @@ _METAL_PLANCHET_RE = re.compile(
 # The trailing «[.,]» requirement rejects prose openers like «Sølv blev
 # brugt …» (metal followed by a space+word, not punctuation).
 _METAL_LEAD_RE = re.compile(
-    r"^\s*(?:\d{4}[a-z]?\s*,\s*)?" + _METAL_WORD + r"\s*[.,]",
+    r"^\s*(?:\d{4}[a-z]?\s*,\s*)?" + _METAL_WORD + r"\s*[.,;]",
     re.IGNORECASE | re.MULTILINE,
 )
 # Slot 3 — bare spec line: the metal word alone on its own line
@@ -698,6 +698,12 @@ def _metal_from_text(parsed: dict) -> str | None:
             hits.add(_METAL_TEXT_MAP[m.group(1).lower()])
     if len(hits) == 1:
         return next(iter(hits))
+    # One type struck in copper AND in lead, each metal on its own spec line
+    # («Kobber; Hede 133A, Schou 52 … / Bly; Hede 133B, Schou 53 …» — the
+    # Christiansstad siege klippinge, Hede C5 132-135): one record with both
+    # metals (curator 2026-11-07).
+    if hits == {"copper", "lead"}:
+        return "copper_lead"
     return None  # silent, or slots disagree → defer to heuristic
 
 

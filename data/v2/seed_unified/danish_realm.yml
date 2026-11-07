@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8485 per-source seed entries.
-# Output: 1841 unified entries (one per physical coin).
+# Output: 1840 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6801,54 +6801,6 @@ coins:
       - denmark-numismaster-65800
       - dk-bruun-7253
       - ngc-1050272
-  - id: c-0af7a324
-    class_id: c-0af7a324
-    label: unified-dk-bruun-7277
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1677
-    year_last: 1678
-    year_ranges:
-      -   - 1677
-          - 1678
-    year_label: 1677-1678
-    ruler: Christian V
-    mintmaster: Hans Wilhelm von Meerheim
-    catalog:
-      km: '8'
-      bruun_collection_id: '7277'
-      sieg: '149.1'
-      schou: '52'
-      hede: 133A
-      others:
-        - Aagaard# 8
-    metal: copper
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 16.84
-        source: bruun
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1677-1678)
-          value: 1677-1678
-          seed: dk-bruun-7277
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11259, p. 115
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-bruun-7277
   - id: c-054f8d2c
     class_id: c-054f8d2c
     label: unified-dk-bruun-7296
@@ -45665,7 +45617,7 @@ coins:
       bruun_collection_id: '7275'
       others:
         - Aagaard# 1
-    metal: copper
+    metal: copper_lead
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
@@ -45717,10 +45669,13 @@ coins:
           - 1678
     year_label: 1677-1678
     ruler: Christian V
+    mintmaster: Hans Wilhelm von Meerheim
     mint: Christiansstad
     catalog:
+      km: '8'
       hede:
         - '133'
+        - 133A
         - 133B
       hede_volume: c5h
       schou:
@@ -45728,12 +45683,15 @@ coins:
         - '53'
       sieg:
         - '149'
+        - '149.1'
         - '149.2'
-      bruun_collection_id: '7276'
+      bruun_collection_id:
+        - '7276'
+        - '7277'
       others:
         - Aagaard# 8
-    metal: silver
-    metal_verified: false
+    metal: copper_lead
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -45748,8 +45706,13 @@ coins:
         - seed: dk-bruun-7276
           source: bruun
           years: 1677-1678
+        - seed: dk-bruun-7277
+          source: bruun
+          years: 1677-1678
     weight_rough_g:
       - value: 14.72
+        source: bruun
+      - value: 16.84
         source: bruun
     uncertainty:
       year:
@@ -45759,16 +45722,26 @@ coins:
           as_printed: ND (1677-78)
           value: 1677-1678
           seed: dk-bruun-7276
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1677-1678)
+          value: 1677-1678
+          seed: dk-bruun-7277
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14177, p. 69
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11259, p. 115
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h133.htm
         ref: danskmoent.dk (Hede c5h133)
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-7276
+      - dk-bruun-7277
       - dk-hede-c5h133
   - id: c-285784a0
     class_id: c-285784a0
@@ -45800,8 +45773,8 @@ coins:
       bruun_collection_id: '7280'
       others:
         - Aagaard# 4
-    metal: silver
-    metal_verified: false
+    metal: copper_lead
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -45869,8 +45842,8 @@ coins:
       bruun_collection_id: '7285'
       others:
         - Aagaard# 2
-    metal: silver
-    metal_verified: false
+    metal: copper_lead
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true

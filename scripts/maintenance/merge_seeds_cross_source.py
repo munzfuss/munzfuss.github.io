@@ -285,6 +285,17 @@ _ENTITY_TO_KM_REGISTER: dict[str, str] = {
 # ---------------------------------------------------------------------------
 
 
+# One type struck in copper and in lead (Hede C5 132-135, Christiansstad):
+# a record carrying `copper_lead` agrees with a copper record and with a lead
+# record, and a class holding both metals carries `copper_lead` (curator
+# 2026-11-07). Copper against lead on their own stays a disagreement.
+_COPPER_LEAD = frozenset({"copper", "lead", "copper_lead"})
+
+
+def _copper_lead_compatible(a, b) -> bool:
+    return "copper_lead" in (a, b) and {a, b} <= _COPPER_LEAD
+
+
 def _normalise_metal(metal, fineness):
     """billon/silver collapse when fineness < 0.5 (per §5.2 primary rule 1)."""
     if metal is None:
@@ -314,7 +325,7 @@ def _normalise_metal(metal, fineness):
     # granularity difference must not block a merge or read as a real metal
     # disagreement. The precise stored value survives via `_collect_metal`
     # (authority-ranked), which reads the raw metal, not this normalised one.
-    if m in ("bronze", "brass"):
+    if m in ("bronze", "brass", "copper_nickel"):
         return "copper"
     return m
 
@@ -2577,6 +2588,8 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
 def _hede_base_conflicts(group, info, uf, equivs: list | None = None) -> list[str]:
     """Why the group cannot be joined (empty → compatible)."""
     why = []
+    _gm = {info[r]["metal"] for r in group if info[r]["metal"]}
+    _cu_pb = "copper_lead" in _gm and _gm <= _COPPER_LEAD
     for i, a in enumerate(group):
         for b in group[i + 1:]:
             ia, ib = info[a], info[b]
@@ -2586,7 +2599,8 @@ def _hede_base_conflicts(group, info, uf, equivs: list | None = None) -> list[st
                     why.append(f"nominal {ia['nominal']!r} vs {ib['nominal']!r}")
                 elif eq != "same" and equivs is not None:
                     equivs.append(f"{ia['nominal']!r} ~ {ib['nominal']!r} ({eq})")
-            if ia["metal"] and ib["metal"] and ia["metal"] != ib["metal"]:
+            if ia["metal"] and ib["metal"] and ia["metal"] != ib["metal"] \
+                    and not _cu_pb:
                 why.append(f"metal {ia['metal']} vs {ib['metal']}")
             ma, mb = uf._class_members(a), set(uf._class_members(b))
             for x in ma:
@@ -2814,7 +2828,7 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     a_metal_verified = bool(coin_a.get("metal_verified"))
     b_metal_verified = bool(coin_b.get("metal_verified"))
     if ma and mb:
-        if ma == mb:
+        if ma == mb or _copper_lead_compatible(ma, mb):
             primary["metal"] = True
         elif {ma, mb} == {"billon", "silver"}:
             # Billon is low-grade silver; a museum record often writes «sølv»
@@ -4199,6 +4213,10 @@ def _collect_metal(members: list[dict], *, foundation_first: bool = False,
     _thin = next((p for p in _THIN_LINE_METAL_PAIRS if _distinct == p), None)
     if _thin is not None:
         return _thin_line_consensus_metal(_specimens, _thin)
+    # copper and lead strikes of one type → both metals (curator 2026-11-07)
+    if (len(_distinct) > 1 and _distinct <= _COPPER_LEAD
+            and "metal" not in foundation_holds):
+        return "copper_lead"
     # Tier 1: verified attestations. Sort key: (-authority, -insertion_index)
     # so high-authority wins; ties broken by later insertion (fresher).
     indexed = list(enumerate(members))

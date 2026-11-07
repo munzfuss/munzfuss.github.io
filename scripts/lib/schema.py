@@ -1265,7 +1265,12 @@ class Coin(_StrictBase):
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
     # `silver_billon`: the assayed specimens of one coin fall on both sides
     # of the 50 % Ag line (curator 2026-10-26, Metallanalyser av mynt).
-    metal: Literal["silver", "gold", "billon", "silver_billon", "copper", "lead", "bronze", "pewter"] | None = None
+    # `copper_lead`: one type struck in copper and in lead (the Christiansstad
+    # siege klippinge, Hede C5 132-135: «Kobber; Hede 133A … Bly; Hede 133B»),
+    # one record carrying both metals (curator 2026-11-07).
+    # `copper_nickel`: Hede's «Kobbernikkel» (25 Øre 1913-1919), rendered as
+    # a copper-tier coin (curator 2026-11-07).
+    metal: Literal["silver", "gold", "billon", "silver_billon", "copper", "copper_nickel", "lead", "copper_lead", "bronze", "pewter"] | None = None
     # D49 class identity. `class_id` is the registry's opaque immutable id of
     # the class (data/v2/class_registry/<entity>.yml); `label` is the mutable
     # human-readable name (the `unified-<top-authority member>` string) the

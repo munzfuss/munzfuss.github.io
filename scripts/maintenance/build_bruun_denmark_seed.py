@@ -770,6 +770,9 @@ def _bruun_display_nominal(raw: str | None) -> str | None:
     if not s:
         return None
     s = re.sub(r",?\s+Klippe\b", "", s)
+    # a metal word inside the denomination («8 Skilling Lead») is the metal,
+    # read by parse_metal, not part of the nominal
+    s = re.sub(r"\s+Lead\b", "", s)
     s = re.sub(r"\s*\((?!\s*\d)[^)]*\)", "", s).strip()   # drop NAME-paren, keep VALUE-paren
     s = re.sub(
         r"(\d)[\s-]+(1/2|1/3|2/3|1/4|3/4|1/8|3/8)\b",
@@ -841,6 +844,10 @@ def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple
     # and the metal-ambiguous «gulden» family.
     if "gold" in d or "guldkrone" in d or "guldgylden" in d or "guldreal" in d:
         return ("gold", True)
+    # LEAD word: «8 Skilling Lead Klippe» (lot 14177, the Christiansstad siege
+    # klipping in lead, Hede 133B) — the catalogue names the metal.
+    if re.search(r"\blead\b", d):
+        return ("lead", True)
     # (3) NGC/PCGS grade-COLOUR suffix → copper. NGC applies a colour code
     # (Red «RD» / Red-Brown «RB» / Brown «BN», or spelled-out «Brown» / «Red
     # Brown») ONLY to copper/bronze coins; silver and gold get a bare numeric
