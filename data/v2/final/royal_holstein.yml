@@ -3383,72 +3383,6 @@ coins:
   - fuss: 18_5_thaler
     phase: II
     kind: kurant
-    fraction: 1/6
-    nominal: 16 Rigsbankskilling = 5 Schilling Courant
-    ruler: Christian VIII.
-    issuing_entity: royal_holstein
-    mintmaster: FK VS
-    id: km-733-chr-v-1842
-    year_first: 1842
-    year_last: 1844
-    year_ranges:
-      -   - 1842
-          - 1844
-    year_label: 1842-1844
-    mint: Altona
-    catalog:
-      km: '733'
-      numista: '24423'
-      bruun_collection_id: '8140'
-      bruun_part: IV
-      bruun_lot_no: 17177
-      bruun_page: 99
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 4.21
-        source: ucoin
-    diameter_mm:
-      - value: 21.5
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-16-rigsbankskilling-1842-1844/?tid=70755
-        ref: ucoin
-      - type: numista
-        url: https://en.numista.com/24423
-        ref: Numista
-      - type: web
-        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238262
-        ref: NGC
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17177, p. 83
-    note:
-      de: Reverse trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
-      en: reverse trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
-      uk: реверс trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
-    verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-      da: 'ucoin-seed (V1-overførsel): V1-kuratorpost fra før cachen, uden cache-dækning.'
-    composed_of: []
-    label: km-733-chr-v-1842
-    origin: foundation
-    v1_home_location: schleswig_holstein
-    _migration_note: auto-mapped from gesamtstaat
-  - fuss: 18_5_thaler
-    phase: II
-    kind: kurant
     fraction: '1'
     nominal: 1 Rigsbankdaler
     ruler: Christian VIII.
@@ -24132,4 +24066,116 @@ coins:
     composed_of:
       - c-60868fc8
     label: unified-dk-hede-c5h119
+    origin: promoted
+  - fuss: 18_5_thaler
+    phase:
+      denmark: I
+      schleswig_holstein: II
+    kind: scheide
+    nominal: 16 Rigsbankskilling
+    ruler: Christian VIII
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    fraction: 1/6
+    id: c-58969558
+    year_first: 1842
+    year_last: 1844
+    year_ranges:
+      -   - 1842
+          - 1842
+      -   - 1844
+          - 1844
+    year_label: 1842, 1844
+    mint: Kopenhagen
+    catalog:
+      km: '733'
+      hede: '6'
+      hede_volume: c8h
+      schou:
+        - '4'
+        - '6'
+      sieg: '10'
+      bruun_collection_id: '8140'
+      bruun_part: IV
+      bruun_lot_no: 17177
+      bruun_page: 99
+      numista: '24423'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.5
+        source: hede
+      - value: 0.5
+        source: ngc
+      - value: 0.5
+        source: numismaster
+      - value: 0.5
+        source: numista
+      - value: 0.5
+        source: ucoin
+    weight_rough_g:
+      - value: 4.21
+        source: bruun
+      - value: 4.21
+        source: ucoin
+      - value: 4.214
+        source: hede
+      - value: 4.214
+        source: ngc
+      - value: 4.214
+        source: numismaster
+      - value: 4.214
+        source: numista
+    diameter_mm:
+      - value: 21.5
+        source: numista
+      - value: 21.5
+        source: ucoin
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_66030
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17177, p. 83
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c8h6.htm
+        ref: danskmoent.dk (Hede c8h6)
+      - type: literature
+        url: https://en.numista.com/24423
+        ref: Numista N#24423 — 16 Rigsbankskilling / 5 Schilling Courant - Christian VIII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-16-rigsbankskilling-1842-1844/?tid=70755
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78528
+        ref: KMM 78528 (Inv. GP 678.192)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238261
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: web
+        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238262
+        ref: NGC
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575018
+        ref: KMM 575018 (Inv. FP 11167.24)
+        display: false
+    note:
+      de: Reverse trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
+      en: reverse trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
+      uk: реверс trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+      unit_raw: rigsbankdalere
+    composed_of:
+      - c-58969558
+    label: unified-dk-hede-c8h6
     origin: promoted
