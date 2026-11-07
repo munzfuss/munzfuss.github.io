@@ -4858,6 +4858,8 @@ coins:
       dav: EC II 3538C
     metal: silver
     fineness:
+      - value: 0.88889
+        source: Wilcke 1919, s. 93
     weight_rough_g: 86.98
     diameter_mm:
     issuing_entity: danish_realm
@@ -4871,6 +4873,23 @@ coins:
       - type: literature
         url: https://en.numista.com/522052
         ref: Numista N#522052 — 3 Speciedaler Breddaler - Christian IV
+    uncertainty:
+      fineness:
+        - kind: inferred
+          how: standard
+          source: Wilcke 1919, s. 93
+          as_printed: Prætorius oplyst, at Schwabes Dalere var 14 4/18 lødige
+          value: '0.88889'
+          translation:
+            de: Prætorius hat angegeben, dass Schwabes Taler 14 4/18 Lot fein waren
+            en: Prætorius stated that Schwabe's thalers were 14 4/18 lod fine
+            uk: Prætorius повідомив, що талери Schwabe мали пробу 14 4/18 лота
+    _curation_holds:
+      fineness: "2026-11-07 curator: 0,88889 (14 2/9 Lot) inferred for the Breddaler of Hede 63/64, which no source assays. Basis: the 9-Thaler-Fuß (8 Speciedaler per rough mark, 9 per fine mark) and Wilcke
+        1919 s. 93, who reports after Prætorius that Schwabe's daler were 14 4/18 lødige (Wilcke himself calls the derivation, from one ledger entry, «ret betænkeligt»). Schwabe struck Hede 64; Hede 63
+        (Flemming) takes the same standard value."
+      fineness_verified: false — no assay of this type; the value is the standard's, supported by Wilcke 1919.
+      uncertainty: "2026-11-07: fineness entry names Wilcke 1919 s. 93 as the support of the inferred standard fineness; the year / nominal entries are the builder's own."
   - id: dk-numista-79356
     fuss: seed_unsorted
     phase: numista
