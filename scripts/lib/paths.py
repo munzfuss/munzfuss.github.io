@@ -62,6 +62,7 @@ IKMK_CACHE: Path = HARVEST_ROOT / "ikmk"
 NUMISTA_CACHE: Path = HARVEST_ROOT / "numista"
 UCOIN_CACHE: Path = HARVEST_ROOT / "ucoin"
 BRUUN_CACHE: Path = HARVEST_ROOT / "bruun"
+NUMISBIDS_CACHE: Path = HARVEST_ROOT / "numisbids"
 # danskmoent.dk Galster page series — added 2026-05-16 per §AZ Tier 2.
 # Hosts Galster-numbered per-coin pages for pre-Christian-III rulers
 # (Hede 1957 doesn't catalogue Christian II / Frederik I / Christian III

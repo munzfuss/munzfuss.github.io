@@ -1031,6 +1031,30 @@ European auction database. Useful for post-1700 Danish/German coins. Has mintmas
 
 ucoin (see §1.2) also has past-sale data per `tid` page. Useful for additional specimen weights.
 
+### 7.7 NumisBids — `numisbids.com` (harvested source since 2026-11-07)
+
+<https://www.numisbids.com/sale/{sale_id}/lot/{lot_no}>
+
+Lot archive of many auction houses (Emporium Hamburg, Künker eLive, …): the
+house's lot text, estimate and result. Useful for specimen weights and
+catalogue numbers of single lots.
+
+**Access:** scripted fetches (curl, WebFetch, the built-in browser) get a
+Cloudflare challenge (403); a real Chrome session (Claude in Chrome) passes the
+normal check after ~5 s. The page HTML cannot be returned whole through the
+Chrome tool (its links carry query strings, which the tool blocks), so the
+cache holds the page TEXT: `document.title`, the sale block and the
+`.viewlottext` block. No Wayback copies of lot pages were found.
+
+**Pipeline:** `scripts/cache/numisbids/raw/<sale>_<lot>.json` (captured text)
+→ `scripts/parse_numisbids.py` → `scripts/cache/numisbids/<sale>_<lot>.json`
++ `_parsed_index.json` → `scripts/maintenance/build_numisbids_seed.py` →
+`data/v2/seed/numisbids/<entity>.yml`. One entry per lot; a lot of several
+pieces («2 Stk.») is one type with one weight per piece. Territory → entity is
+a table in the builder (extend it with each new territory). First lot:
+Emporium Hamburg 69 (4–5 April 2013), lot 1676, 4 Schilling 1701/1702 Tönning
+= KM 155 (Lange 438, 438A; 2,76 / 2,78 g).
+
 ---
 
 ## 8. Museum sources
