@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_hamburg`.
-# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_hamburg.yml across all sources.
 #
-# Input: 131 per-source seed entries.
-# Output: 130 unified entries (one per physical coin).
+# Input: 156 per-source seed entries.
+# Output: 155 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,819 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_hamburg
-generated_at: '2026-11-05'
+generated_at: '2026-11-07'
 coins:
+  - id: c-3d20ad1d
+    class_id: c-3d20ad1d
+    label: unified-dk-numista-109344
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Schilling
+    year_first: 1553
+    year_last: 1566
+    year_ranges:
+      -   - 1553
+          - 1553
+      -   - 1566
+          - 1566
+    year_label: 1553, 1566
+    catalog:
+      numista: '109344'
+      mb: '25'
+      others:
+        - Saur# 3416
+        - Gaed# 796
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.32
+        source: numista
+    diameter_mm:
+      - value: 30.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/109344
+        ref: Numista N#109344 — Hamburg 2 Schilling - Free Hanseatic City 1553-1566
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-109344
+  - id: c-de51a2e3
+    class_id: c-de51a2e3
+    label: unified-dk-numista-114183
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1553
+    year_last: 1566
+    year_ranges:
+      -   - 1553
+          - 1566
+    year_label: 1553-1566
+    catalog:
+      numista: '114183'
+      mb: '23'
+      others:
+        - Gaed# 913
+        - Schult# 1104
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.86
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/114183
+        ref: Numista N#114183 — Hamburg 1 Schilling - Free Hanseatic City 1553-1566
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-114183
+  - id: c-2f795572
+    class_id: c-2f795572
+    label: unified-dk-numista-114189
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1553
+    year_last: 1566
+    year_ranges:
+      -   - 1553
+          - 1566
+    year_label: 1553-1566
+    catalog:
+      numista: '114189'
+      mb: '32'
+      others:
+        - Gaed# 308c
+      dav: GT I 9217
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.66
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/114189
+        ref: Numista N#114189 — Hamburg 1 Thaler - Free Hanseatic City 1553-1566
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-114189
+  - id: c-b0d68b95
+    class_id: c-b0d68b95
+    label: unified-dk-numista-177053
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1566
+    year_last: 1566
+    year_label: '1566'
+    catalog:
+      numista: '177053'
+      mb: '49'
+      others:
+        - Gaed# 535
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 14.19
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177053
+        ref: Numista N#177053 — Hamburg 1/2 Thaler - Free Hanseatic City 1566
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177053
+  - id: c-ad467835
+    class_id: c-ad467835
+    label: unified-dk-numista-177054
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler = 32 Schilling
+    year_first: 1572
+    year_last: 1574
+    year_ranges:
+      -   - 1572
+          - 1574
+    year_label: 1572-1574
+    ruler: Maximilian II
+    catalog:
+      numista: '177054'
+      mb: '52'
+      dav: GT I 9218
+      others:
+        - Gaed# 325
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.08
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177054
+        ref: Numista N#177054 — Hamburg 1 Thaler = 32 Schilling - Free Hanseatic City 1572-1574
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177054
+  - id: c-dbe47411
+    class_id: c-dbe47411
+    label: unified-dk-numista-177056
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1572
+    year_last: 1576
+    year_ranges:
+      -   - 1572
+          - 1572
+      -   - 1575
+          - 1576
+    year_label: 1572, 1575-1576
+    ruler: Maximilian II
+    catalog:
+      numista: '177056'
+      mb: '53'
+      others:
+        - Gaed# 956
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.56
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177056
+        ref: Numista N#177056 — Hamburg 1 Schilling - Maximilian II 1572-1576
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177056
+  - id: c-cbdd4c75
+    class_id: c-cbdd4c75
+    label: unified-dk-numista-177057
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Portugaløser
+    year_first: 1578
+    year_last: 1582
+    year_ranges:
+      -   - 1578
+          - 1582
+    year_label: 1578-1582
+    catalog:
+      numista: '177057'
+      mb: '56'
+      fr: '1091'
+      others:
+        - Gaed# 3
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 35.43
+        source: numista
+    diameter_mm:
+      - value: 44.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177057
+        ref: Numista N#177057 — Hamburg 1 Portugaloeser = 10 Ducat - ND 1578-1582
+    note:
+      de: 1 Portugalöser 10 Ducat
+      en: 1 Portugalöser 10 Ducat
+      uk: 1 Portugalöser 10 Ducat
+      da: 1 Portugalöser 10 Ducat
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177057
+  - id: c-a6baf419
+    class_id: c-a6baf419
+    label: unified-dk-numista-177058
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ¼ Thaler = 8 Schilling
+    year_first: 1581
+    year_last: 1588
+    year_ranges:
+      -   - 1581
+          - 1583
+      -   - 1585
+          - 1586
+      -   - 1588
+          - 1588
+    year_label: 1581-1583, 1585-1586, 1588
+    ruler: Rudolph II
+    catalog:
+      numista: '177058'
+      mb: '65'
+      others:
+        - Gaed# 593
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 7.15
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177058
+        ref: Numista N#177058 — German States Hamburg ¼ Thaler = 8 Schilling - Rudolph II 1581-1588
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177058
+  - id: c-1430994a
+    class_id: c-1430994a
+    label: unified-dk-numista-177059
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1581
+    year_last: 1584
+    year_ranges:
+      -   - 1581
+          - 1584
+    year_label: 1581-1584
+    ruler: Rudolph II
+    catalog:
+      numista: '177059'
+      mb: '68'
+      dav: GT I 9221
+      others:
+        - Gaed# 334
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.9
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177059
+        ref: Numista N#177059 — German States Hamburg 1 Thaler - Rudolph II ND 1581-1584
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177059
+  - id: c-408b5fb6
+    class_id: c-408b5fb6
+    label: unified-dk-numista-177060
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Thalers
+    year_first: 1582
+    year_last: 1605
+    year_ranges:
+      -   - 1582
+          - 1605
+    year_label: 1582-1605
+    catalog:
+      numista: '177060'
+      mb: '72'
+      others:
+        - Gaed# 1517
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 58.37
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177060
+        ref: Numista N#177060 — German States Hamburg 2 Thalers - ND 1582-1605
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177060
+  - id: c-d1b19ed2
+    class_id: c-d1b19ed2
+    label: unified-dk-numista-177065
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Sechsling = 6 Pfennig
+    year_first: 1583
+    year_last: 1598
+    year_ranges:
+      -   - 1583
+          - 1583
+      -   - 1591
+          - 1591
+      -   - 1593
+          - 1594
+      -   - 1596
+          - 1598
+    year_label: 1583, 1591, 1593-1594, 1596-1598
+    ruler: Rudolph II
+    catalog:
+      numista: '177065'
+      mb: '74'
+      others:
+        - Gaed# 1041-1048
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.94
+        source: numista
+    diameter_mm:
+      - value: 21.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177065
+        ref: Numista N#177065 — German States Hamburg 1 Sechsling = 6 Pfennig - Rudolph II 1583-1598
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177065
+  - id: c-348e44fa
+    class_id: c-348e44fa
+    label: unified-dk-numista-177066
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Thaler = 16 Schilling
+    year_first: 1585
+    year_last: 1586
+    year_ranges:
+      -   - 1585
+          - 1586
+    year_label: 1585-1586
+    ruler: Rudolph II
+    catalog:
+      numista: '177066'
+      mb: '76'
+      others:
+        - Gaed# 541
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/177066
+        ref: Numista N#177066 — Hamburg ½ Thaler = 16 Schilling - Rudolph II 1585-1586
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177066
+  - id: c-ab2a0330
+    class_id: c-ab2a0330
+    label: unified-dk-numista-177419
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1585
+    year_last: 1588
+    year_ranges:
+      -   - 1585
+          - 1588
+    year_label: 1585-1588
+    ruler: Rudolph II
+    catalog:
+      numista: '177419'
+      mb: '77'
+      dav: GT I 9223
+      others:
+        - Gaed# 339
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.89
+        source: numista
+    diameter_mm:
+      - value: 43.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177419
+        ref: Numista N#177419 — Hamburg 1 Thaler - Rudolph II 1585-1588
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177419
+  - id: c-56237250
+    class_id: c-56237250
+    label: unified-dk-numista-177421
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1587
+    year_last: 1587
+    year_label: '1587'
+    ruler: Rudolph II
+    catalog:
+      numista: '177421'
+      mb: '79'
+      fr: '1094'
+      others:
+        - Gaed# 273a
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.23
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177421
+        ref: Numista N#177421 — Hamburg 1 Goldgulden - Rudolph II 1587
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177421
+  - id: c-ddb43ada
+    class_id: c-ddb43ada
+    label: unified-dk-numista-177425
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler = 32 Schilling
+    year_first: 1588
+    year_last: 1590
+    year_ranges:
+      -   - 1588
+          - 1590
+    year_label: 1588-1590
+    ruler: Emperor Rudolph II
+    catalog:
+      numista: '177425'
+      mb: '82'
+      dav: GT I 9226
+      others:
+        - Gaed# 348
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.1
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177425
+        ref: Numista N#177425 — Hamburg 1 Thaler = 32 Schilling - Free Hanseatic City - 1588-1590 (Rudolph II)
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177425
+  - id: c-e81f3e1d
+    class_id: c-e81f3e1d
+    label: unified-dk-numista-177426
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Scherf = ½ Pfennig
+    year_first: 1589
+    year_last: 1589
+    year_label: '1589'
+    catalog:
+      numista: '177426'
+      mb: '84'
+      others:
+        - Gaed# 1247
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/177426
+        ref: Numista N#177426 — Hamburg 1 Scherf = 1/2 Pfennig - Free Hanseatic City - 1589
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177426
+  - id: c-0e3a8527
+    class_id: c-0e3a8527
+    label: unified-dk-numista-177709
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Portugaløser
+    year_first: 1578
+    year_last: 1582
+    year_ranges:
+      -   - 1578
+          - 1582
+    year_label: 1578-1582
+    catalog:
+      numista: '177709'
+      mb: '55'
+      fr: '1092'
+      others:
+        - Gaed# 4
+        - Bahrf# 3
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 17.35
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177709
+        ref: Numista N#177709 — Hamburg 1/2 Portugaloeser - ND 1578-1582
+    note:
+      de: ½ Portugalöser
+      en: ½ Portugalöser
+      uk: ½ Portugalöser
+      da: ½ Portugalöser
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177709
+  - id: c-5dc66f31
+    class_id: c-5dc66f31
+    label: unified-dk-numista-177711
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Thaler = 16 Schilling
+    year_first: 1581
+    year_last: 1582
+    year_ranges:
+      -   - 1581
+          - 1582
+    year_label: 1581-1582
+    ruler: Rudolph II
+    catalog:
+      numista: '177711'
+      mb: '67'
+      others:
+        - Gaed# 540 var.
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 15.0
+        source: numista
+    diameter_mm:
+      - value: 36.8
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177711
+        ref: Numista N#177711 — German States Hamburg ½ Thaler = 16 Schilling - Rudolph II 1581-1582
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177711
+  - id: c-96dab9b0
+    class_id: c-96dab9b0
+    label: unified-dk-numista-177713
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1581
+    year_last: 1581
+    year_label: '1581'
+    ruler: Rudolph II
+    catalog:
+      numista: '177713'
+      mb: '70'
+      fr: '1094'
+      others:
+        - Gaed# 273
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.2
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177713
+        ref: Numista N#177713 — Hamburg 1 Goldgulden - Rudolph II 1581
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177713
+  - id: c-abefa335
+    class_id: c-abefa335
+    label: unified-dk-numista-177715
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler = 32 Schilling
+    year_first: 1588
+    year_last: 1588
+    year_label: '1588'
+    ruler: Emperor Rudolph II
+    catalog:
+      numista: '177715'
+      mb: '81'
+      dav: GT I 9225
+      others:
+        - Gaed# 344
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.6
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177715
+        ref: Numista N#177715 — Hamburg 1 Thaler = 32 Schilling - Free Hanseatic City - 1588 (Rudolph II)
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177715
+  - id: c-26eb36f9
+    class_id: c-26eb36f9
+    label: unified-dk-numista-177716
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1588
+    year_last: 1588
+    year_label: '1588'
+    ruler: Emperor Rudolph II
+    catalog:
+      numista: '177716'
+      mb: '83'
+      fr: '1094'
+      others:
+        - Gaed# 273
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.2
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177716
+        ref: Numista N#177716 — Hamburg 1 Goldgulden - Free Hanseatic City - 1588 (Rudolph II)
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177716
+  - id: c-611aeeee
+    class_id: c-611aeeee
+    label: unified-dk-numista-177717
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1589
+    year_last: 1589
+    year_label: '1589'
+    ruler: Emperor Rudolph II
+    catalog:
+      numista: '177717'
+      mb: '87'
+      fr: '1094'
+      others:
+        - Gaed# 274a
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.19
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/177717
+        ref: Numista N#177717 — Hamburg 1 Goldgulden - Free Hanseatic City - 1589 (Rudolph II)
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-177717
   - id: c-3689fda1
     class_id: c-3689fda1
     label: unified-dk-numista-20410
@@ -122,6 +933,114 @@ coins:
     issuing_entity: hanseatic_hamburg
     composed_of:
       - dk-numista-313829
+  - id: c-e230e984
+    class_id: c-e230e984
+    label: unified-dk-numista-354970
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Thalers
+    year_first: 1586
+    year_last: 1586
+    year_label: '1586'
+    ruler: Rudolph II
+    catalog:
+      numista: '354970'
+      mb: '78'
+      dav: GT I 9222
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 57.64
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/354970
+        ref: Numista N#354970 — Hamburg 2 Thalers - Rudolph II 1586
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-354970
+  - id: c-5c97fe15
+    class_id: c-5c97fe15
+    label: unified-dk-numista-354997
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler = 32 Schilling
+    year_first: 1588
+    year_last: 1588
+    year_label: '1588'
+    ruler: Rudolph II
+    catalog:
+      numista: '354997'
+      mb: '80'
+      dav: GT I 9224
+      others:
+        - Gaed# 343
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/354997
+        ref: Numista N#354997 — Hamburg 1 Thaler = 32 Schilling - Rudolph II 1588
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-354997
+  - id: c-f67efb93
+    class_id: c-f67efb93
+    label: unified-dk-numista-87021
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2½ Ducats
+    year_first: 1572
+    year_last: 1582
+    year_ranges:
+      -   - 1572
+          - 1582
+    year_label: 1572-1582
+    catalog:
+      numista: '87021'
+      mb: '54'
+      fr: '1093'
+      others:
+        - Gaed# 4
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numista
+    weight_rough_g:
+      - value: 8.75
+        source: numista
+    diameter_mm:
+      - value: 43.4
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/87021
+        ref: Numista N#87021 — Hamburg 2.5 Ducats - ND 1572-1582
+    issuing_entity: hanseatic_hamburg
+    composed_of:
+      - dk-numista-87021
   - id: c-2ba08de1
     class_id: c-2ba08de1
     label: unified-hb-tid-81900

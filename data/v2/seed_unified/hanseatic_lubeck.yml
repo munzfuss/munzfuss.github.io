@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 372 per-source seed entries.
-# Output: 281 unified entries (one per physical coin).
+# Input: 486 per-source seed entries.
+# Output: 326 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-11-05'
+generated_at: '2026-11-07'
 coins:
   - id: c-c114e202
     class_id: c-c114e202
@@ -90,6 +90,1659 @@ coins:
     composed_of:
       - dk-bruun-15027
       - ngc-1136953
+  - id: c-226d433c
+    class_id: c-226d433c
+    label: unified-dk-numista-128005
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Dreiling
+    year_first: 1609
+    year_last: 1712
+    year_ranges:
+      -   - 1609
+          - 1609
+      -   - 1612
+          - 1612
+      -   - 1620
+          - 1622
+      -   - 1624
+          - 1639
+      -   - 1641
+          - 1652
+      -   - 1654
+          - 1655
+      -   - 1665
+          - 1667
+      -   - 1671
+          - 1672
+      -   - 1675
+          - 1675
+      -   - 1690
+          - 1690
+      -   - 1692
+          - 1692
+      -   - 1697
+          - 1698
+      -   - 1701
+          - 1701
+      -   - 1703
+          - 1703
+      -   - 1705
+          - 1707
+      -   - 1709
+          - 1710
+      -   - 1712
+          - 1712
+    year_label: 1609, 1612, 1620-1622, 1624-1639, 1641-1652, 1654-1655, 1665-1667, 1671-1672, 1675, 1690, 1692, 1697-1698, 1701, 1703, 1705-1707, 1709-1710, 1712
+    catalog:
+      km: '27'
+      numista: '128005'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.41
+        source: numista
+    diameter_mm:
+      - value: 14.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/128005
+        ref: Numista N#128005 — 1 Dreiling - Free Hanseatic city of Lübeck - Numista
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-128005
+  - id: c-9af17bea
+    class_id: c-9af17bea
+    label: unified-dk-numista-201957
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Scherf = ½ Pfennig
+    year_first: 1570
+    year_last: 1570
+    year_label: '1570'
+    catalog:
+      numista: '201957'
+      mb: '140'
+      others:
+        - Behr# 550
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.55
+        source: numista
+    diameter_mm:
+      - value: 14.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/201957
+        ref: Numista N#201957 — 1 Scherf - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-201957
+  - id: c-6704eeb8
+    class_id: c-6704eeb8
+    label: unified-dk-numista-20420
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Marks
+    year_first: 1904
+    year_last: 1912
+    year_ranges:
+      -   - 1904
+          - 1907
+      -   - 1911
+          - 1912
+    year_label: 1904-1907, 1911-1912
+    mint: Berlin
+    catalog:
+      km: '212'
+      numista: '20420'
+      others:
+        - J# 81
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.9
+        source: numista
+    weight_rough_g:
+      - value: 11.111
+        source: numista
+    diameter_mm:
+      - value: 28.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/20420
+        ref: Numista N#20420 — 2 Mark - Free Hanseatic city of Lübeck - 1904-1912
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-20420
+  - id: c-814668c3
+    class_id: c-814668c3
+    label: unified-dk-numista-20422
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Marks
+    year_first: 1901
+    year_last: 1901
+    year_label: '1901'
+    mint: Berlin
+    catalog:
+      km: '210'
+      numista: '20422'
+      others:
+        - J# 80
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.9
+        source: numista
+    weight_rough_g:
+      - value: 11.111
+        source: numista
+    diameter_mm:
+      - value: 28.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/20422
+        ref: Numista N#20422 — 2 Mark - Free Hanseatic city of Lübeck - 1901
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-20422
+  - id: c-7751e777
+    class_id: c-7751e777
+    label: unified-dk-numista-265073
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 5 Ducats
+    year_first: 1694
+    year_last: 1694
+    year_label: '1694'
+    ruler: Anthony Winckler
+    catalog:
+      numista: '265073'
+      others:
+        - Behr# 689b
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numista
+    weight_rough_g:
+      - value: 17.5
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/265073
+        ref: Numista N#265073 — 5 Ducats - Anthony Winckler (Gold Pattern) - Free Hanseatic city of Lubeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-265073
+  - id: c-4720a601
+    class_id: c-4720a601
+    label: unified-dk-numista-266298
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Dreiling — Gold Pattern
+    year_first: 1752
+    year_last: 1752
+    year_label: '1752'
+    ruler: Francis I (Franz I)
+    catalog:
+      numista: '266298'
+      others:
+        - Behr# 541 b
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numista
+    weight_rough_g:
+      - value: 0.89
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/266298
+        ref: Numista N#266298 — Lübeck 1 Dreiling (Gold Pattern) - Free city 1752
+    note:
+      de: 1/192 Thaler
+      en: 1/192 Thaler
+      uk: 1/192 Thaler
+      da: 1/192 Thaler
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-266298
+  - id: c-330ea26b
+    class_id: c-330ea26b
+    label: unified-dk-numista-271402
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1580
+    year_last: 1580
+    year_label: '1580'
+    catalog:
+      numista: '271402'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.15
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271402
+        ref: Numista N#271402 — 1 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271402
+  - id: c-c926f46f
+    class_id: c-c926f46f
+    label: unified-dk-numista-271403
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1579
+    year_last: 1589
+    year_ranges:
+      -   - 1579
+          - 1585
+      -   - 1587
+          - 1589
+    year_label: 1579-1585, 1587-1589
+    ruler: Rudolph II (Rudolf II)
+    catalog:
+      numista: '271403'
+      mb: '160'
+      dav: GT I 9411
+      others:
+        - Behr# 115 a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.14
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271403
+        ref: Numista N#271403 — 1 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271403
+  - id: c-76133c90
+    class_id: c-76133c90
+    label: unified-dk-numista-271404
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1590
+    year_last: 1594
+    year_ranges:
+      -   - 1590
+          - 1590
+      -   - 1592
+          - 1594
+    year_label: 1590, 1592-1594
+    ruler: Rudolph II (Rudolf II)
+    catalog:
+      numista: '271404'
+      mb: '174'
+      dav: GT I 9413
+      others:
+        - Behr# 121 b
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.99
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271404
+        ref: Numista N#271404 — 1 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271404
+  - id: c-5684b26d
+    class_id: c-5684b26d
+    label: unified-dk-numista-271406
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1601
+    year_last: 1604
+    year_ranges:
+      -   - 1601
+          - 1604
+    year_label: 1601-1604
+    ruler: Rudolph II (Rudolf II)
+    catalog:
+      km: A 8
+      numista: '271406'
+      dav: CCT 5444
+      others:
+        - Behr# 130 b
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.84
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271406
+        ref: Numista N#271406 — 1 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271406
+  - id: c-2873b37c
+    class_id: c-2873b37c
+    label: unified-dk-numista-271407
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1605
+    year_last: 1609
+    year_ranges:
+      -   - 1605
+          - 1605
+      -   - 1607
+          - 1609
+    year_label: 1605, 1607-1609
+    ruler: Rudolph II (Rudolf II)
+    catalog:
+      km: A 23
+      numista: '271407'
+      others:
+        - Behr# 135 b
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.55
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271407
+        ref: Numista N#271407 — 1 Thaler - Free Hanseatic city of Lübeck - Numista
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271407
+  - id: c-9a5b1742
+    class_id: c-9a5b1742
+    label: unified-dk-numista-271408
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1610
+    year_last: 1612
+    year_ranges:
+      -   - 1610
+          - 1612
+    year_label: 1610-1612
+    ruler: Rudolph II
+    catalog:
+      km: A 35
+      numista: '271408'
+      dav: CCT 5446
+      others:
+        - Behr# 140 a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.1
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271408
+        ref: Numista N#271408 — 1 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271408
+  - id: c-5b0e0c72
+    class_id: c-5b0e0c72
+    label: unified-dk-numista-271423
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1580
+    year_last: 1595
+    year_ranges:
+      -   - 1580
+          - 1581
+      -   - 1583
+          - 1583
+      -   - 1585
+          - 1585
+      -   - 1591
+          - 1591
+      -   - 1593
+          - 1595
+    year_label: 1580-1581, 1583, 1585, 1591, 1593-1595
+    ruler: Rudolph II (Rudolf II)
+    catalog:
+      numista: '271423'
+      mb: '162'
+      others:
+        - Behr# 216
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 14.05
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271423
+        ref: Numista N#271423 — 0.5 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271423
+  - id: c-12542d6a
+    class_id: c-12542d6a
+    label: unified-dk-numista-271424
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1608
+    year_last: 1612
+    year_ranges:
+      -   - 1608
+          - 1610
+      -   - 1612
+          - 1612
+    year_label: 1608-1610, 1612
+    ruler: Rudolph II (Rudolf II)
+    catalog:
+      km: A 26
+      numista: '271424'
+      others:
+        - Behr# 221
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 14.22
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271424
+        ref: Numista N#271424 — ½ Thaler - Free Hanseatic city of Lübeck - Numista
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271424
+  - id: c-030d61a3
+    class_id: c-030d61a3
+    label: unified-dk-numista-271429
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1½ Thaler
+    year_first: 1603
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
+    catalog:
+      km: A 12
+      numista: '271429'
+      dav: Lg 330
+      others:
+        - Behr# 136 c
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 43.08
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/271429
+        ref: Numista N#271429 — 1½ Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-271429
+  - id: c-3323477c
+    class_id: c-3323477c
+    label: unified-dk-numista-278161
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1½ Thaler
+    year_first: 1580
+    year_last: 1580
+    year_label: '1580'
+    catalog:
+      numista: '278161'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 42.37
+        source: numista
+    diameter_mm:
+      - value: 57.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/278161
+        ref: Numista N#278161 — 1.5 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-278161
+  - id: c-1b89e924
+    class_id: c-1b89e924
+    label: unified-dk-numista-300511
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1568
+    year_last: 1579
+    year_ranges:
+      -   - 1568
+          - 1568
+      -   - 1573
+          - 1573
+      -   - 1575
+          - 1579
+    year_label: 1568, 1573, 1575-1579
+    ruler: Maximilian II
+    catalog:
+      numista: '300511'
+      mb: '153'
+      dav: GT I 9409
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.07
+        source: numista
+    diameter_mm:
+      - value: 40.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/300511
+        ref: Numista N#300511 — 1 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-300511
+  - id: c-3a209644
+    class_id: c-3a209644
+    label: unified-dk-numista-303459
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1790
+    year_last: 1790
+    year_label: '1790'
+    ruler: Leopold II
+    catalog:
+      numista: '303459'
+      fr: '1500'
+      others:
+        - Behr# 641a
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numista
+    weight_rough_g:
+      - value: 3.51
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/303459
+        ref: Numista N#303459 — 1 Ducat - Free Hanseatic city of Lübeck (1790)
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-303459
+  - id: c-1847621c
+    class_id: c-1847621c
+    label: unified-dk-numista-310994
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1673
+    year_last: 1673
+    year_label: '1673'
+    catalog:
+      km: '108'
+      numista: '310994'
+      others:
+        - Behr# 184 b
+      dav: CCT 5457 A
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
+      - value: 29.28
+        source: numista
+    diameter_mm:
+      - value: 41.0
+        source: numista
+      - value: 41.0
+        source: ucoin
+    sources:
+      - type: literature
+        url: https://en.numista.com/310994
+        ref: Numista N#310994 — 1 Thaler - Free Hanseatic city of Lübeck
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1673/?tid=102713
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-310994
+      - lu-tid-102713
+  - id: c-93c3eed7
+    class_id: c-93c3eed7
+    label: unified-dk-numista-312725
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    catalog:
+      numista: '312725'
+      mb: '124'
+      dav: GT I 9408
+      others:
+        - Behr# 99
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.4
+        source: numista
+    diameter_mm:
+      - value: 40.1
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/312725
+        ref: Numista N#312725 — 1 Thaler - Free Hanseatic city of Lübeck (1559)
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-312725
+  - id: c-74121e61
+    class_id: c-74121e61
+    label: unified-dk-numista-320401
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 10 Ducats
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
+    catalog:
+      numista: '320401'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numista
+    weight_rough_g:
+      - value: 32.79
+        source: numista
+    diameter_mm:
+      - value: 44.05
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/320401
+        ref: Numista N#320401 — 10 Ducats - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-320401
+  - id: c-3bcae967
+    class_id: c-3bcae967
+    label: unified-dk-numista-354520
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 3 Thalers
+    year_first: 1603
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
+    catalog:
+      km: B17
+      numista: '354520'
+      dav: Lg 327
+      others:
+        - Behr# 136f
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 86.5
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/354520
+        ref: Numista N#354520 — 3 Thaler - Free Hanseatic city of Lübeck - Numista
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-354520
+  - id: c-7257ec5f
+    class_id: c-7257ec5f
+    label: unified-dk-numista-355325
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ¼ Thaler
+    year_first: 1581
+    year_last: 1600
+    year_ranges:
+      -   - 1581
+          - 1581
+      -   - 1585
+          - 1585
+      -   - 1588
+          - 1588
+      -   - 1591
+          - 1591
+      -   - 1594
+          - 1595
+      -   - 1600
+          - 1600
+    year_label: 1581, 1585, 1588, 1591, 1594-1595, 1600
+    catalog:
+      numista: '355325'
+      mb: '164'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 6.81
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/355325
+        ref: Numista N#355325 — 0.25 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-355325
+  - id: c-097ccc50
+    class_id: c-097ccc50
+    label: unified-dk-numista-356631
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1591
+    year_last: 1591
+    year_label: '1591'
+    ruler: Rudolph II (Rudolf II)
+    catalog:
+      numista: '356631'
+      mb: '175'
+      dav: GT I 9414
+      others:
+        - Behr# 118
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/356631
+        ref: Numista N#356631 — 1 Thaler - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-356631
+  - id: c-3ae2851c
+    class_id: c-3ae2851c
+    label: unified-dk-numista-39025
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 4 Shillings
+    year_first: 1732
+    year_last: 1758
+    year_ranges:
+      -   - 1732
+          - 1732
+      -   - 1752
+          - 1752
+      -   - 1758
+          - 1758
+    year_label: 1732, 1752, 1758
+    ruler: Francis I (Franz I)
+    catalog:
+      km: '174'
+      numista: '39025'
+      others:
+        - Behr# 328
+        - Jaeg 6 NWD# 6
+        - Schön DM# 25
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.562
+        source: ucoin
+      - value: 0.5625
+        source: numista
+    weight_rough_g:
+      - value: 3.05
+        source: numista
+      - value: 3.05
+        source: ucoin
+    diameter_mm:
+      - value: 23.0
+        source: numista
+      - value: 23.0
+        source: ucoin
+    sources:
+      - type: literature
+        url: https://en.numista.com/39025
+        ref: Numista N#39025 — 4 Schilling - Free Hanseatic city of Lübeck – Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-schilling-1758/?tid=102433
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-39025
+      - lu-tid-102433
+  - id: c-cad9001c
+    class_id: c-cad9001c
+    label: unified-dk-numista-409094
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1792
+    year_last: 1792
+    year_label: '1792'
+    ruler: Francis II
+    catalog:
+      numista: '409094'
+      fr: '1500'
+      others:
+        - Behr# 643c
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numista
+    weight_rough_g:
+      - value: 3.5
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/409094
+        ref: Numista N#409094 — 1 Ducat - Free Hanseatic city of Lübeck - Francis II 1792
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-409094
+  - id: c-05f8a1f3
+    class_id: c-05f8a1f3
+    label: unified-dk-numista-409785
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1590
+    year_last: 1591
+    year_ranges:
+      -   - 1590
+          - 1591
+    year_label: 1590-1591
+    catalog:
+      numista: '409785'
+      mb: '172'
+      others:
+        - Behr# 558
+      fr: '1475'
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.21
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/409785
+        ref: Numista N#409785 — 1 Goldgulden - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-409785
+  - id: c-8a277195
+    class_id: c-8a277195
+    label: unified-dk-numista-415505
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 3 Schillinge
+    year_first: 1623
+    year_last: 1683
+    year_ranges:
+      -   - 1623
+          - 1624
+      -   - 1629
+          - 1629
+      -   - 1642
+          - 1649
+      -   - 1651
+          - 1651
+      -   - 1659
+          - 1660
+      -   - 1662
+          - 1662
+      -   - 1667
+          - 1667
+      -   - 1669
+          - 1673
+      -   - 1683
+          - 1683
+    year_label: 1623-1624, 1629, 1642-1649, 1651, 1659-1660, 1662, 1667, 1669-1673, 1683
+    catalog:
+      km: A57
+      numista: '415505'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/415505
+        ref: Numista N#415505 — 1/16 Thaler - Free Hanseatic city of Lübeck
+    note:
+      de: 1/16 Thaler
+      en: 1/16 Thaler
+      uk: 1/16 Thaler
+      da: 1/16 Thaler
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-415505
+  - id: c-9f03de21
+    class_id: c-9f03de21
+    label: unified-dk-numista-422126
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1552
+    year_last: 1559
+    year_ranges:
+      -   - 1552
+          - 1553
+      -   - 1557
+          - 1557
+      -   - 1559
+          - 1559
+    year_label: 1552-1553, 1557, 1559
+    catalog:
+      numista: '422126'
+      others:
+        - Behr# 426
+      mb: '114'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.01
+        source: numista
+    diameter_mm:
+      - value: 19.8
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/422126
+        ref: Numista N#422126 — 1 Sechsling - Free Hanseatic city of Lübeck (1552, 1553, 1557, 1559)
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422126
+  - id: c-eb536288
+    class_id: c-eb536288
+    label: unified-dk-numista-422696
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Dreiling
+    year_first: 1655
+    year_last: 1668
+    year_ranges:
+      -   - 1655
+          - 1660
+      -   - 1668
+          - 1668
+    year_label: 1655-1660, 1668
+    catalog:
+      km: '88'
+      numista: '422696'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/422696
+        ref: Numista N#422696 — 1 Dreiling - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422696
+  - id: c-46042a35
+    class_id: c-46042a35
+    label: unified-dk-numista-422702
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Thalers
+    year_first: 1603
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
+    catalog:
+      km: A15
+      numista: '422702'
+      dav: Lg 329b
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 58.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/422702
+        ref: Numista N#422702 — 2 Thalers - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422702
+  - id: c-750a9e68
+    class_id: c-750a9e68
+    label: unified-dk-numista-422715
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1/64 Thaler
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    catalog:
+      numista: '422715'
+      others:
+        - Behr# 434a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.55
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/422715
+        ref: Numista N#422715 — 1/64 Thaler (Piedfort) - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422715
+  - id: c-61bb820e
+    class_id: c-61bb820e
+    label: unified-dk-numista-422875
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Pfennig
+    year_first: 1574
+    year_last: 1582
+    year_ranges:
+      -   - 1574
+          - 1574
+      -   - 1582
+          - 1582
+    year_label: 1574, 1582
+    catalog:
+      numista: '422875'
+      mb: '157'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/422875
+        ref: Numista N#422875 — 1 Pfennig - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422875
+  - id: c-69e951cf
+    class_id: c-69e951cf
+    label: unified-dk-numista-422902
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 16 Schilling
+    year_first: 1573
+    year_last: 1579
+    year_ranges:
+      -   - 1573
+          - 1573
+      -   - 1576
+          - 1577
+      -   - 1579
+          - 1579
+    year_label: 1573, 1576-1577, 1579
+    ruler: Maximilian II
+    catalog:
+      numista: '422902'
+      mb: '151'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 14.43
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/422902
+        ref: Numista N#422902 — 16 Schilling - Free Hanseatic city of Lübeck
+    note:
+      de: ⅓ Thaler
+      en: ⅓ Thaler
+      uk: ⅓ Thaler
+      da: ⅓ Thaler
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422902
+  - id: c-3637fc44
+    class_id: c-3637fc44
+    label: unified-dk-numista-422914
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Pfennig
+    year_first: 1573
+    year_last: 1573
+    year_label: '1573'
+    catalog:
+      numista: '422914'
+      mb: '148'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/422914
+        ref: Numista N#422914 — 1 Pfennig - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422914
+  - id: c-f41bffba
+    class_id: c-f41bffba
+    label: unified-dk-numista-422929
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 13 Schillings 9 Pfennigs
+    year_first: 1568
+    year_last: 1568
+    year_label: '1568'
+    ruler: Maximilian II
+    catalog:
+      numista: '422929'
+      mb: '134'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 14.44
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/422929
+        ref: Numista N#422929 — 13 Schillings 9 Pfennigs - Free Hanseatic city of Lübeck (1568)
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422929
+  - id: c-8a341eb9
+    class_id: c-8a341eb9
+    label: unified-dk-numista-422983
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Schillings
+    year_first: 1563
+    year_last: 1563
+    year_label: '1563'
+    catalog:
+      numista: '422983'
+      mb: '128'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 2.88
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/422983
+        ref: Numista N#422983 — 2 Schillings - Free Hanseatic city of Lübeck (1563)
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-422983
+  - id: c-84be50c6
+    class_id: c-84be50c6
+    label: unified-dk-numista-423092
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    catalog:
+      numista: '423092'
+      mb: '122'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/423092
+        ref: Numista N#423092 — 1/2 Thaler - Free Hanseatic city of Lübeck (1559)
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-423092
+  - id: c-1b9738dd
+    class_id: c-1b9738dd
+    label: unified-dk-numista-42387
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Schilling
+    year_first: 1645
+    year_last: 1715
+    year_ranges:
+      -   - 1645
+          - 1680
+      -   - 1682
+          - 1689
+      -   - 1691
+          - 1703
+      -   - 1705
+          - 1705
+      -   - 1707
+          - 1707
+      -   - 1709
+          - 1710
+      -   - 1712
+          - 1712
+      -   - 1714
+          - 1715
+    year_label: 1645-1680, 1682-1689, 1691-1703, 1705, 1707, 1709-1710, 1712, 1714-1715
+    catalog:
+      km: A79
+      numista: '42387'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.82
+        source: numista
+    diameter_mm:
+      - value: 20.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/42387
+        ref: Numista N#42387 — 1/24 Reichsdaler - Free Hanseatic city of Lübeck
+    note:
+      de: 1/24 Reichsthaler
+      en: 1/24 Reichsthaler
+      uk: 1/24 Reichsthaler
+      da: 1/24 Reichsthaler
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-42387
+  - id: c-6ced623e
+    class_id: c-6ced623e
+    label: unified-dk-numista-434504
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Thalers
+    year_first: 1619
+    year_last: 1627
+    year_ranges:
+      -   - 1619
+          - 1627
+    year_label: 1619-1627
+    catalog:
+      km: A47
+      numista: '434504'
+      dav: Lg 339
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 57.63
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/434504
+        ref: Numista N#434504 — 2 Thalers - Free Hanseatic city of Lübeck
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-434504
+  - id: c-a8cf1933
+    class_id: c-a8cf1933
+    label: unified-dk-numista-460818
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Pfennig
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    catalog:
+      numista: '460818'
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.74
+        source: numista
+    diameter_mm:
+      - value: 12.5
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/460818
+        ref: Numista N#460818 — 1 Pfennig - Free Hanseatic city of Lübeck 1621
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-460818
+  - id: c-84661d32
+    class_id: c-84661d32
+    label: unified-dk-numista-73285
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Schautaler - ½ Thaler
+    year_first: 1636
+    year_last: 1636
+    year_label: '1636'
+    catalog:
+      numista: '73285'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 14.0
+        source: numista
+    diameter_mm:
+      - value: 42.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/73285
+        ref: Numista N#73285 — 1/2 Schautaler (Hochzeitstaler) - Free Hanseatic city of Lübeck
+    note:
+      de: Hochzeitstaler
+      en: Hochzeitstaler
+      uk: Hochzeitstaler
+      da: Hochzeitstaler
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-73285
+  - id: c-e18b2bcf
+    class_id: c-e18b2bcf
+    label: unified-dk-numista-89159
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1620
+    year_last: 1676
+    year_ranges:
+      -   - 1620
+          - 1624
+      -   - 1629
+          - 1629
+      -   - 1643
+          - 1650
+      -   - 1654
+          - 1654
+      -   - 1659
+          - 1659
+      -   - 1661
+          - 1662
+      -   - 1664
+          - 1666
+      -   - 1669
+          - 1670
+      -   - 1675
+          - 1676
+    year_label: 1620-1624, 1629, 1643-1650, 1654, 1659, 1661-1662, 1664-1666, 1669-1670, 1675-1676
+    catalog:
+      km: A50
+      numista: '89159'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.7
+        source: numista
+    diameter_mm:
+      - value: 17.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/89159
+        ref: Numista N#89159 — 1 Sechsling - Free Hanseatic city of Lübeck 1620-1676
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - dk-numista-89159
   - id: c-d8b5edcc
     class_id: c-d8b5edcc
     label: unified-ikmk-18201883
@@ -127,43 +1780,42 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18201883
-  - id: c-75d0e8ea
-    class_id: c-75d0e8ea
-    label: unified-ikmk-18206339
+  - id: c-9acd8508
+    class_id: c-9acd8508
+    label: unified-ikmk-18202373
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
-    nominal: 1 Dukat
-    year_first: 1730
-    year_last: 1730
-    year_label: '1730'
-    mintmaster: Johann Justus Jaster
-    inscription_obv: IMPERIAL CIVIT - LUBECENSIS 1730
-    inscription_rev: CONFESS EVANG IN COM AUG EXHIBITAE -/ SAC - SAECU/LAR - SEC / 25 - IUN
+    nominal: 1 Taler (32 Schillinge)
+    year_first: 1631
+    year_last: 1631
+    year_label: '1631'
+    inscription_obv: MONE NOVA - LVBECENS
+    inscription_rev: FERDINAND II D G ROM IM SEMP AV
     mint: Lübeck
     catalog:
+      dav: '5449'
       others:
-        - Schön# 23
-        - Behrens# 638 c
-    metal: gold
+        - Behrens# 161 b
+    metal: silver
     metal_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 3.46
+      - value: 29.01
         source: ikmk
     diameter_mm:
-      - value: 23.0
+      - value: 43.0
         source: ikmk
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18206339
-        ref: IKMK Berlin 18206339
+        url: https://ikmk.smb.museum/object?id=18202373
+        ref: IKMK Berlin 18202373
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - ikmk-18206339
+      - ikmk-18202373
   - id: c-f121cc31
     class_id: c-f121cc31
     label: unified-ikmk-18219826
@@ -241,6 +1893,45 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18219983
+  - id: c-6d2850cf
+    class_id: c-6d2850cf
+    label: unified-ikmk-18264671
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Taler
+    year_first: 1609
+    year_last: 1616
+    year_ranges:
+      -   - 1609
+          - 1616
+    year_label: 1609-1616
+    mintmaster: Statius Wessel
+    inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
+    inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
+    mint: Lübeck
+    catalog:
+      others:
+        - Behrens# 137
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 29.94
+        source: ikmk
+    diameter_mm:
+      - value: 59.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18264671
+        ref: IKMK Berlin 18264671
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - ikmk-18264671
   - id: c-1453e8f6
     class_id: c-1453e8f6
     label: unified-ikmk-18274551
@@ -296,6 +1987,43 @@ coins:
     inscription_obv: MONE NO - LVBEC
     inscription_rev: CIVITAT IMPERI 20
     mint: Lübeck
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.84
+        source: ikmk
+    diameter_mm:
+      - value: 19.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18276098
+        ref: IKMK Berlin 18276098
+    note:
+      de: 1/96 Taler
+      en: 1/96 Taler
+      uk: 1/96 Taler
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - ikmk-18276098
+  - id: c-6773751b
+    class_id: c-6773751b
+    label: unified-ikmk-18276104
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Heinrich von der Klähren
+    inscription_obv: MONE NO - LVBEC
+    inscription_rev: CIVITAT IMPERI 20
+    mint: Lübeck
     catalog:
       others:
         - Behrens# 439 b
@@ -306,19 +2034,12 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 0.84
-        source: ikmk
       - value: 0.87
         source: ikmk
     diameter_mm:
       - value: 16.0
         source: ikmk
-      - value: 19.0
-        source: ikmk
     sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18276098
-        ref: IKMK Berlin 18276098
       - type: museum
         url: https://ikmk.smb.museum/object?id=18276104
         ref: IKMK Berlin 18276104
@@ -328,7 +2049,6 @@ coins:
       uk: 1/96 Taler
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - ikmk-18276098
       - ikmk-18276104
   - id: c-c6033810
     class_id: c-c6033810
@@ -427,8 +2147,6 @@ coins:
     weight_rough_g:
       - value: 0.64
         source: ikmk
-      - value: 0.67
-        source: ikmk
     diameter_mm:
       - value: 17.0
         source: ikmk
@@ -436,6 +2154,40 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18276121
         ref: IKMK Berlin 18276121
+    note:
+      de: 1/96 Taler
+      en: 1/96 Taler
+      uk: 1/96 Taler
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - ikmk-18276121
+  - id: c-ac10810d
+    class_id: c-ac10810d
+    label: unified-ikmk-18276123
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    mintmaster: Heinrich von der Klähren
+    inscription_obv: MONE NO - LVBE
+    inscription_rev: CIVITAT IMPERI 22
+    mint: Lübeck
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.67
+        source: ikmk
+    diameter_mm:
+      - value: 17.0
+        source: ikmk
+    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18276123
         ref: IKMK Berlin 18276123
@@ -445,7 +2197,6 @@ coins:
       uk: 1/96 Taler
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - ikmk-18276121
       - ikmk-18276123
   - id: c-8edfbc3e
     class_id: c-8edfbc3e
@@ -1095,6 +2846,34 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-184160
+  - id: c-5b644fd8
+    class_id: c-5b644fd8
+    label: unified-kmk-184161
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Daler
+    year_first: 1631
+    year_last: 1631
+    year_label: '1631'
+    mint: Lübeck
+    catalog:
+      behrens: '161'
+      dav: '5449'
+    metal_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 28.44
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184161
+        ref: KMM 184161 (Inv. FP 3427.244)
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - kmk-184161
   - id: c-c1384ae2
     class_id: c-c1384ae2
     label: unified-kmk-184162
@@ -1151,43 +2930,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-184163
-  - id: c-92933122
-    class_id: c-92933122
-    label: unified-kmk-184165
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    ruler: Ferdinand 2
-    mint: Lübeck
-    catalog:
-      behrens: '151'
-      dav:
-        - '5449'
-        - '67'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.79
-        source: kmk
-      - value: 28.99
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184165
-        ref: KMM 184165 (Inv. FP 3427.240)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/187988
-        ref: KMM 187988 (Inv. FP 4271.8)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-184165
-      - kmk-187988
   - id: c-361be678
     class_id: c-361be678
     label: unified-kmk-184167
@@ -1645,77 +3387,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-740898
-  - id: c-3ae2851c
-    class_id: c-3ae2851c
-    label: unified-lu-tid-102433
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 4 Schilling
-    year_first: 1758
-    year_last: 1758
-    year_label: '1758'
-    catalog:
-      km: '174'
-      numista: '39025'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.562
-        source: ucoin
-    weight_rough_g:
-      - value: 3.05
-        source: ucoin
-    diameter_mm:
-      - value: 23.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/lubeck-4-schilling-1758/?tid=102433
-        ref: ucoin
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - lu-tid-102433
-  - id: c-df087f80
-    class_id: c-df087f80
-    label: unified-lu-tid-102437
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1750
-    year_last: 1750
-    year_label: '1750'
-    catalog:
-      km: '165'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.187
-        source: ucoin
-    weight_rough_g:
-      - value: 0.52
-        source: ucoin
-    diameter_mm:
-      - value: 17.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/lubeck-1-sechsling-1750/?tid=102437
-        ref: ucoin
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - lu-tid-102437
   - id: c-3211e883
     class_id: c-3211e883
     label: unified-lu-tid-102697
@@ -1751,6 +3422,43 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - lu-tid-102697
+  - id: c-8d1cc669
+    class_id: c-8d1cc669
+    label: unified-lu-tid-102739
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1791
+    year_last: 1792
+    year_ranges:
+      -   - 1791
+          - 1792
+    year_label: 1791-1792
+    catalog:
+      km: '195'
+      numista: '303461'
+      others:
+        - Behrens 642
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: ucoin
+    weight_rough_g:
+      - value: 3.5
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1791-1792/?tid=102739
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - lu-tid-102739
   - id: c-15c627b0
     class_id: c-15c627b0
     label: unified-ngc-1125693
@@ -1791,8 +3499,8 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1125693
-  - id: c-e9d996ec
-    class_id: c-e9d996ec
+  - id: c-1b3fc3f8
+    class_id: c-1b3fc3f8
     label: unified-ngc-1126099
     fuss: seed_unsorted
     phase: ngc
@@ -1808,30 +3516,45 @@ coins:
       -   - 1913
           - 1913
     year_label: 1904, 1907-1908, 1913
+    mint: Berlin
     catalog:
       km: '213'
+      numista: '20423'
+      others:
+        - J# 83
+      dav: GT III 726
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.9
         source: ngc
+      - value: 0.9
+        source: numista
     weight_rough_g:
       - value: 27.777
         source: ngc
+      - value: 27.777
+        source: numista
     diameter_mm:
       - value: 38.0
         source: ngc
+      - value: 38.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/20423
+        ref: Numista N#20423 — 5 Mark - Free Hanseatic city of Lübeck - 1904-1913
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-5-mark-km-213-1904-1913-cuid-1126099-duid-1335923
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-20423
       - ngc-1126099
   - id: c-db1f3e02
     class_id: c-db1f3e02
@@ -1868,8 +3591,8 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1126470
-  - id: c-b6e0ed9d
-    class_id: c-b6e0ed9d
+  - id: c-30bfe97c
+    class_id: c-30bfe97c
     label: unified-ngc-1126471
     fuss: seed_unsorted
     phase: ngc
@@ -1885,25 +3608,40 @@ coins:
     year_label: 1905-1906, 1909-1910
     catalog:
       km: '214'
+      numista: '20425'
+      others:
+        - J# 228
+      fr: '3799'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.9
         source: ngc
+      - value: 0.9
+        source: numista
     weight_rough_g:
       - value: 3.982
         source: ngc
+      - value: 3.982
+        source: numista
+    diameter_mm:
+      - value: 19.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/20425
+        ref: Numista N#20425 — 10 Mark - Free Hanseatic city of Lübeck (1905-1910)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-10-mark-km-214-1905-1910-cuid-1126471-duid-1335979
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-20425
       - ngc-1126471
   - id: c-37c699df
     class_id: c-37c699df
@@ -1922,25 +3660,40 @@ coins:
     year_label: 1901, 1904
     catalog:
       km: '211'
+      numista: '20424'
+      others:
+        - J# 227
+      fr: '3798'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.9
         source: ngc
+      - value: 0.9
+        source: numista
     weight_rough_g:
       - value: 3.982
         source: ngc
+      - value: 3.982
+        source: numista
+    diameter_mm:
+      - value: 19.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/20424
+        ref: Numista N#20424 — 10 Mark - Free Hanseatic city of Lübeck (1901-1904)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-10-mark-km-211-1901-1904-cuid-1126659-duid-1335893
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-20424
       - ngc-1126659
   - id: c-6fabee4c
     class_id: c-6fabee4c
@@ -1955,30 +3708,44 @@ coins:
       -   - 1908
           - 1914
     year_label: 1908-1914
+    mint: Berlin
     catalog:
       km: '215'
+      numista: '20421'
+      others:
+        - J# 82
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.9
         source: ngc
+      - value: 0.9
+        source: numista
     weight_rough_g:
       - value: 16.667
         source: ngc
+      - value: 16.667
+        source: numista
     diameter_mm:
       - value: 33.0
         source: ngc
+      - value: 33.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/20421
+        ref: Numista N#20421 — 3 Mark - Free Hanseatic city of Lübeck - 1908-1914
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-3-mark-km-215-1908-common-date-cuid-1128126-duid-1336029
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-20421
       - ngc-1128126
   - id: c-6d0dd242
     class_id: c-6d0dd242
@@ -2167,12 +3934,15 @@ coins:
       -   - 1762
           - 1762
     year_label: 1752, 1762
+    ruler: Francis I
     catalog:
       km: '166'
       behrens:
         - '541'
         - '542'
       numista: '161060'
+      others:
+        - Schön DM# 32
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2184,16 +3954,25 @@ coins:
       - value: 0.187
         source: ngc
       - value: 0.187
+        source: numista
+      - value: 0.187
         source: ucoin
     weight_rough_g:
       - value: 0.51
         source: ngc
       - value: 0.51
+        source: numista
+      - value: 0.51
         source: ucoin
     diameter_mm:
       - value: 13.0
+        source: numista
+      - value: 13.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/161060
+        ref: Numista N#161060 — 1 Dreiling - Free Hanseatic city of Lübeck 1752-1762
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-dreiling-1752-1762/?tid=102436
         ref: ucoin
@@ -2202,6 +3981,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-161060
       - lu-tid-102436
       - ngc-1136959
   - id: c-94588b79
@@ -2214,22 +3994,49 @@ coins:
     year_first: 1750
     year_last: 1750
     year_label: '1750'
+    ruler: Francis I (Franz I)
     catalog:
       km: '165'
       behrens: '464'
+      numista: '149231'
+      others:
+        - Behr# 464a
+        - Jaeg 6 NWD# 2
     metal: silver
     metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
+    fineness:
+      - value: 0.187
+        source: ucoin
+    weight_rough_g:
+      - value: 0.52
+        source: ucoin
+    diameter_mm:
+      - value: 17.0
+        source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/149231
+        ref: Numista N#149231 — Lübeck 1 Sechsling - Free city 1750
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-sechsling-1750/?tid=102437
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-sechsling-km-165-1750-cuid-1136960-duid-1339140
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: 1/96 Thaler
+      en: 1/96 Thaler
+      uk: 1/96 Thaler
+      da: 1/96 Thaler
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-149231
+      - lu-tid-102437
       - ngc-1136960
   - id: c-b090d9f1
     class_id: c-b090d9f1
@@ -2241,6 +4048,7 @@ coins:
     year_first: 1758
     year_last: 1758
     year_label: '1758'
+    ruler: Francis I
     catalog:
       km: '175'
       behrens: '400'
@@ -2249,20 +4057,30 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.437
         source: ngc
       - value: 0.437
+        source: numista
+      - value: 0.437
         source: ucoin
     weight_rough_g:
       - value: 1.96
         source: ngc
       - value: 1.96
+        source: numista
+      - value: 1.96
         source: ucoin
+    diameter_mm:
+      - value: 20.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/285014
+        ref: Numista N#285014 — 2 Schilling - Free Hanseatic city of Lübeck 1758
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-2-schilling-1758/?tid=102427
         ref: ucoin
@@ -2271,6 +4089,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-285014
       - lu-tid-102427
       - ngc-1136961
   - id: c-9ecff8a6
@@ -2321,17 +4140,27 @@ coins:
       -   - 1635
           - 1635
     year_label: 1620-1623, 1625-1629, 1631-1633, 1635
+    ruler: Ferdinand II
     catalog:
       km: '52'
       behrens: 224-236
+      numista: '271426'
+      others:
+        - Behr# 227 b
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 13.59
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/271426
+        ref: Numista N#271426 — ½ Thaler - Free Hanseatic city of Lübeck (Ferdinand II) 1620-1635
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-16-schilling-1620-1635/?tid=102677
         ref: ucoin
@@ -2340,6 +4169,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271426
       - lu-tid-102677
       - ngc-1137050
   - id: c-fda86520
@@ -2352,17 +4182,25 @@ coins:
     year_first: 1662
     year_last: 1662
     year_label: '1662'
+    ruler: Leopold I
     catalog:
       km: '97'
       behrens: '240'
+      numista: '422648'
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 14.36
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/422648
+        ref: Numista N#422648 — 16 Schillings - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-16-schilling-1662/?tid=102681
         ref: ucoin
@@ -2371,6 +4209,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422648
       - lu-tid-102681
       - ngc-1137053
   - id: c-01e0c3b7
@@ -2386,12 +4225,14 @@ coins:
       -   - 1747
           - 1748
     year_label: 1747-1748
+    ruler: Francis I
     catalog:
       km: '162'
       behrens:
         - '296'
         - '297'
       dav: '627'
+      numista: '422499'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2409,14 +4250,23 @@ coins:
       - value: 38.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422499
+        ref: Numista N#422499 — 32 Schilling (Gulden) - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1747-1748/?tid=102692
         ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-32-schilling-km-162-1747-1748-cuid-1137055-duid-1339154
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: Gulden
+      en: Gulden
+      uk: Gulden
+      da: Gulden
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422499
       - lu-tid-102692
       - ngc-1137055
   - id: c-e964398d
@@ -2621,22 +4471,36 @@ coins:
       -   - 1612
           - 1612
     year_label: 1601, 1603, 1606, 1609-1610, 1612
+    ruler: Rudolph II (Rudolf II)
     catalog:
       km: A6
       behrens: 252-257
+      numista: '252294'
+      others:
+        - Behr# 255 var.
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 6.63
+        source: numista
+    diameter_mm:
+      - value: 29.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/252294
+        ref: Numista N#252294 — 8 Schilling - Free Hanseatic city of Lübeck
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-8-schilling-km-a6-1603-1610-cuid-1137247-duid-1339093
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-252294
       - ngc-1137247
   - id: c-223ac8a7
     class_id: c-223ac8a7
@@ -2687,11 +4551,19 @@ coins:
       -   - 1796
           - 1797
     year_label: 1796-1797
+    ruler: Francis II
     catalog:
       km: '199'
       behrens:
         - '302'
         - '303'
+      numista: '47237'
+      others:
+        - Behr# 302
+        - Behr# 303
+        - Jaeg 6 NWD# 31
+        - Schön DM# 42
+      dav: SG 2943
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2708,7 +4580,12 @@ coins:
     diameter_mm:
       - value: 38.0
         source: ucoin
+      - value: 39.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/47237
+        ref: Numista N#47237 — 32 Schilling - Free Hanseatic city of Lübeck - Francis II 1796-1797
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1796-1797/?tid=102696
         ref: ucoin
@@ -2717,6 +4594,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-47237
       - lu-tid-102696
       - ngc-1137253
   - id: c-25297d7b
@@ -2729,10 +4607,12 @@ coins:
     year_first: 1661
     year_last: 1661
     year_label: '1661'
+    ruler: Leopold I
     catalog:
       km: '96'
       behrens: '180'
-      dav: '5453'
+      dav: CCT 5453
+      numista: '422653'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -2748,7 +4628,12 @@ coins:
         source: ucoin
       - value: 44.0
         source: ngc
+      - value: 44.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/422653
+        ref: Numista N#422653 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1661/?tid=102709
         ref: ucoin
@@ -2757,10 +4642,11 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422653
       - lu-tid-102709
       - ngc-1137298
-  - id: c-1847621c
-    class_id: c-1847621c
+  - id: c-9f45b027
+    class_id: c-9f45b027
     label: unified-ngc-1137299
     fuss: seed_unsorted
     phase: ngc
@@ -2776,26 +4662,16 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
+    weight_rough_verified: false
+    diameter_mm_verified: false
     mint_verified: false
     verified: false
-    weight_rough_g:
-      - value: 29.0
-        source: ucoin
-    diameter_mm:
-      - value: 41.0
-        source: ucoin
     sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/lubeck-1-thaler-1673/?tid=102713
-        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-108-1673-cuid-1137299-duid-1339732
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - lu-tid-102713
       - ngc-1137299
   - id: c-14227d55
     class_id: c-14227d55
@@ -2819,6 +4695,7 @@ coins:
     catalog:
       km: '53'
       behrens: 404-12
+      numista: '345279'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -2832,7 +4709,12 @@ coins:
     diameter_mm:
       - value: 17.0
         source: ucoin
+      - value: 18.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/345279
+        ref: Numista N#345279 — 1 Schilling - Free Hanseatic city of Lübeck 1620-1671
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-schilling-1620-1671/?tid=102423
         ref: ucoin
@@ -2841,6 +4723,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-345279
       - lu-tid-102423
       - ngc-1137352
   - id: c-aee8adc6
@@ -2893,7 +4776,10 @@ coins:
     catalog:
       km: '109'
       behrens: '185'
-      dav: '5458'
+      dav: CCT 5458
+      numista: '271411'
+      others:
+        - Behr# 185
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -2902,6 +4788,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 28.36
+        source: numista
       - value: 29.0
         source: ucoin
     diameter_mm:
@@ -2910,6 +4798,9 @@ coins:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/271411
+        ref: Numista N#271411 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1676/?tid=102714
         ref: ucoin
@@ -2918,6 +4809,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271411
       - lu-tid-102714
       - ngc-1137377
   - id: c-cdd82423
@@ -2933,7 +4825,10 @@ coins:
     catalog:
       km: '130'
       behrens: '190'
-      dav: '2413'
+      dav: GT II 2413
+      numista: '422561'
+      others:
+        - Behr# 190
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -2942,12 +4837,17 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 28.63
+        source: numista
       - value: 29.0
         source: ucoin
     diameter_mm:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422561
+        ref: Numista N#422561 — 1 Thaler - Free Hanseatic city of Lubeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1710/?tid=102717
         ref: ucoin
@@ -2956,10 +4856,11 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422561
       - lu-tid-102717
       - ngc-1137378
-  - id: c-94343408
-    class_id: c-94343408
+  - id: c-2c1c8566
+    class_id: c-2c1c8566
     label: unified-ngc-1137379
     fuss: seed_unsorted
     phase: ngc
@@ -2968,29 +4869,46 @@ coins:
     year_first: 1752
     year_last: 1752
     year_label: '1752'
+    ruler: Francis I (Franz I)
     catalog:
-      km: '168.1'
+      km:
+        - '168.1'
+        - '168'
       behrens: '291'
-      dav: '2420'
+      dav:
+        - GT II 2420
+        - GT II 2420A
+      numista: '24631'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.75
         source: ngc
+      - value: 0.75
+        source: numista
     weight_rough_g:
       - value: 27.51
         source: ngc
+      - value: 27.51
+        source: numista
+    diameter_mm:
+      - value: 41.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/24631
+        ref: Numista N#24631 — Lübeck 48 Schilling - Free city 1752
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.1-1752-cuid-1137379-duid-1339595
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-24631
       - ngc-1137379
   - id: c-8cdf491c
     class_id: c-8cdf491c
@@ -3078,6 +4996,7 @@ coins:
     year_first: 1730
     year_last: 1730
     year_label: '1730'
+    ruler: Charles VI (Karl VI)
     mintmaster: Johann Justus Jaster
     inscription_obv: IMPERIAL CIVIT - LUBECENSIS 1730
     inscription_rev: CONFESS EVANG IN COMIT AUG EXHIBITAE // SACRA - SAECU/LARIA - SECUNDA / XXV - IUN
@@ -3085,8 +5004,10 @@ coins:
     catalog:
       km: '150'
       behrens: '193'
-      dav: '2416'
+      dav: GT II 2416
+      numista: '271415'
       others:
+        - Behr# 193
         - Schön# 22
         - Behrens# 193
     metal: silver
@@ -3102,12 +5023,19 @@ coins:
     weight_rough_g:
       - value: 28.97
         source: ikmk
+      - value: 29.17
+        source: numista
       - value: 29.2
         source: ngc
     diameter_mm:
+      - value: 41.1
+        source: numista
       - value: 42.0
         source: ikmk
     sources:
+      - type: literature
+        url: https://en.numista.com/271415
+        ref: Numista N#271415 — 1 Thaler (200th Anniversary Augsburg Confession) — Lübeck, Karl VI 1730
       - type: museum
         url: https://ikmk.smb.museum/object?id=18206000
         ref: IKMK Berlin 18206000
@@ -3116,6 +5044,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271415
       - ikmk-18206000
       - ngc-1137385
   - id: c-27605e38
@@ -3208,9 +5137,7 @@ coins:
       -   - 1619
           - 1619
     year_label: 1612-1617, 1619
-    mintmaster: Statius Wessel
-    inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
-    inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
+    ruler: Matthias
     mint: Lübeck
     catalog:
       km: '38'
@@ -3218,28 +5145,26 @@ coins:
         - 142b
         - 143-49
         - '149'
-      dav: '5447'
+      dav: CCT 5447
+      numista: '271409'
       others:
-        - Behrens# 137
+        - Behr# 143
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     weight_rough_g:
       - value: 28.33
         source: kmk
-      - value: 29.94
-        source: ikmk
-    diameter_mm:
-      - value: 59.0
-        source: ikmk
+      - value: 28.91
+        source: numista
     sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18264671
-        ref: IKMK Berlin 18264671
+      - type: literature
+        url: https://en.numista.com/271409
+        ref: Numista N#271409 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/184166
         ref: KMM 184166 (Inv. FP 3427.239)
@@ -3248,7 +5173,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - ikmk-18264671
+      - dk-numista-271409
       - kmk-184166
       - ngc-1137442
   - id: c-93bed0ce
@@ -3362,11 +5287,16 @@ coins:
       -   - 1729
           - 1730
     year_label: 1729-1730
+    ruler: Charles VI (Karl VI)
     catalog:
       km: '148'
       behrens:
         - 637b
         - 638a
+      numista: '278632'
+      fr: '1495'
+      others:
+        - Behr# 638 a
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -3378,13 +5308,20 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
+      - value: 3.49
+        source: numista
       - value: 3.5
         source: ngc
       - value: 3.5
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/278632
+        ref: Numista N#278632 — 1 Ducat — Lübeck Free Hanseatic city, Karl VI 1729-1730
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1729-1730/?tid=102735
         ref: ucoin
@@ -3393,6 +5330,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-278632
       - lu-tid-102735
       - ngc-1137483
   - id: c-6e69e86e
@@ -3460,12 +5398,16 @@ coins:
       -   - 1662
           - 1663
     year_label: 1662-1663
+    ruler: Leopold I
     catalog:
       km: '99'
       behrens:
         - 181b
         - '182'
-      dav: '5455'
+      dav: CCT 5455
+      numista: '271412'
+      others:
+        - Behr# 181 b
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -3474,6 +5416,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 28.58
+        source: numista
       - value: 29.0
         source: ucoin
     diameter_mm:
@@ -3482,6 +5426,9 @@ coins:
       - value: 42.0
         source: ngc
     sources:
+      - type: literature
+        url: https://en.numista.com/271412
+        ref: Numista N#271412 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1662-1663/?tid=102710
         ref: ucoin
@@ -3490,6 +5437,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271412
       - lu-tid-102710
       - ngc-1137613
   - id: c-ce9bc778
@@ -3507,12 +5455,16 @@ coins:
       -   - 1696
           - 1696
     year_label: 1690, 1696
+    ruler: Leopold I
     catalog:
       km: '120'
       behrens:
         - '188'
         - '189'
-      dav: '5460'
+      dav: CCT 5460
+      numista: '271414'
+      others:
+        - Behr# 188
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -3521,6 +5473,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 28.89
+        source: numista
       - value: 29.0
         source: ucoin
     diameter_mm:
@@ -3529,6 +5483,9 @@ coins:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/271414
+        ref: Numista N#271414 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1690-1696/?tid=102716
         ref: ucoin
@@ -3537,6 +5494,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271414
       - lu-tid-102716
       - ngc-1137615
   - id: c-ba5f1df4
@@ -3583,10 +5541,15 @@ coins:
     year_first: 1727
     year_last: 1727
     year_label: '1727'
+    ruler: Charles VI (Karl VI)
     catalog:
       km: '145'
       behrens: '192'
-      dav: '2415'
+      dav: GT II 2415
+      numista: '422546'
+      others:
+        - Behr# 192
+        - Jaeg 6 NWD# 32
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -3598,16 +5561,23 @@ coins:
       - value: 0.888
         source: ngc
       - value: 0.888
+        source: numista
+      - value: 0.888
         source: ucoin
     weight_rough_g:
       - value: 29.2
         source: ngc
+      - value: 29.2
+        source: numista
       - value: 29.2
         source: ucoin
     diameter_mm:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422546
+        ref: Numista N#422546 — 1 Thaler - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1727/?tid=102719
         ref: ucoin
@@ -3616,6 +5586,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422546
       - lu-tid-102719
       - ngc-1137618
   - id: c-6a71a151
@@ -4121,6 +6092,13 @@ coins:
     catalog:
       km: '143'
       behrens: 328-30
+      numista: '15679'
+      others:
+        - Behr# 328
+        - Behr# 329
+        - Löbbecke# 273
+        - Jaeg 6 NWD# 6
+        - Schön DM# A16
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -4132,16 +6110,25 @@ coins:
       - value: 0.562
         source: ngc
       - value: 0.562
+        source: numista
+      - value: 0.562
         source: ucoin
     weight_rough_g:
+      - value: 2.75
+        source: numista
       - value: 3.05
         source: ngc
       - value: 3.05
         source: ucoin
     diameter_mm:
       - value: 23.0
+        source: numista
+      - value: 23.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/15679
+        ref: Numista N#15679 — 4 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-4-schilling-1727-1729/?tid=102431
         ref: ucoin
@@ -4150,10 +6137,11 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-15679
       - lu-tid-102431
       - ngc-1137809
-  - id: c-d27df127
-    class_id: c-d27df127
+  - id: c-75bf1ac3
+    class_id: c-75bf1ac3
     label: unified-ngc-1137859
     fuss: seed_unsorted
     phase: ngc
@@ -4162,31 +6150,59 @@ coins:
     year_first: 1730
     year_last: 1730
     year_label: '1730'
+    ruler: Charles VI (Karl VI)
+    mintmaster: Johann Justus Jaster
+    inscription_obv: IMPERIAL CIVIT - LUBECENSIS 1730
+    inscription_rev: CONFESS EVANG IN COM AUG EXHIBITAE -/ SAC - SAECU/LAR - SEC / 25 - IUN
+    mint: Lübeck
     catalog:
       km: '151'
       behrens: 638b
+      numista: '271430'
+      others:
+        - Behr# 638 b
+        - Schön# 23
+        - Behrens# 638 c
+      fr: '1496'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.986
         source: ngc
+      - value: 0.986
+        source: numista
     weight_rough_g:
+      - value: 3.46
+        source: ikmk
       - value: 3.5
         source: ngc
+      - value: 3.5
+        source: numista
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
     sources:
+      - type: literature
+        url: https://en.numista.com/271430
+        ref: Numista N#271430 — 1 Ducat — Lübeck Free Hanseatic city, Karl VI 1730
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206339
+        ref: IKMK Berlin 18206339
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-151-1730-cuid-1137859-duid-1338995
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271430
+      - ikmk-18206339
       - ngc-1137859
-  - id: c-8d1cc669
-    class_id: c-8d1cc669
+  - id: c-656b4b18
+    class_id: c-656b4b18
     label: unified-ngc-1137860
     fuss: seed_unsorted
     phase: ngc
@@ -4198,11 +6214,16 @@ coins:
       -   - 1791
           - 1792
     year_label: 1791-1792
+    ruler: Leopold II
     catalog:
       km: '195'
-      numista: '303461'
+      numista:
+        - '303461'
+        - '409121'
+      fr: '1500'
       others:
-        - Behrens 642
+        - Behr# 642
+        - Behr# 643a
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -4214,25 +6235,37 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
-        source: ucoin
+        source: numista
+        specimen: dk-numista-303461
+      - value: 0.986
+        source: numista
+        specimen: dk-numista-409121
     weight_rough_g:
+      - value: 3.47
+        source: numista
+        specimen: dk-numista-303461
+      - value: 3.48
+        source: numista
+        specimen: dk-numista-409121
       - value: 3.5
         source: ngc
-      - value: 3.5
-        source: ucoin
     sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/lubeck-1-ducat-1791-1792/?tid=102739
-        ref: ucoin
+      - type: literature
+        url: https://en.numista.com/303461
+        ref: Numista N#303461 — 1 Ducat - Free Hanseatic city of Lübeck - Leopold II 1791-1792
+      - type: literature
+        url: https://en.numista.com/409121
+        ref: Numista N#409121 — 1 Ducat - Free Hanseatic city of Lübeck - Leopold II 1792
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-195-1791-1792-cuid-1137860-duid-1339753
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - lu-tid-102739
+      - dk-numista-303461
+      - dk-numista-409121
       - ngc-1137860
-  - id: c-7f9ced9a
-    class_id: c-7f9ced9a
+  - id: c-2f454caf
+    class_id: c-2f454caf
     label: unified-ngc-1137867
     fuss: seed_unsorted
     phase: ngc
@@ -4243,6 +6276,10 @@ coins:
     year_label: '1717'
     catalog:
       km: '134'
+      numista: '409302'
+      fr: '1493'
+      others:
+        - Behr# 663b
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -4253,15 +6290,23 @@ coins:
     fineness:
       - value: 0.986
         source: ngc
+      - value: 0.986
+        source: numista
     weight_rough_g:
       - value: 7.0
         source: ngc
+      - value: 7.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/409302
+        ref: Numista N#409302 — 2 Ducats (Bicentenary of the Reformation) - Free Hanseatic city of Lübeck – Numista
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-ducat-km-134-1717-cuid-1137867-duid-1364866
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-409302
       - ngc-1137867
   - id: c-ba030692
     class_id: c-ba030692
@@ -4343,17 +6388,30 @@ coins:
     year_first: 1646
     year_last: 1646
     year_label: '1646'
+    ruler: Ferdinand III
     catalog:
       km: A81
       behrens: '238'
+      numista: '390917'
+      others:
+        - Behr# 238
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 18.42
+        source: numista
+    diameter_mm:
+      - value: 33.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/390917
+        ref: Numista N#390917 — 16 Schilling, Ferdinand III - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-16-schilling-1646/?tid=102679
         ref: ucoin
@@ -4362,6 +6420,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-390917
       - lu-tid-102679
       - ngc-1137897
   - id: c-0c0207eb
@@ -4378,6 +6437,7 @@ coins:
       km: '106'
       behrens: '289'
       dav: '624'
+      numista: '422642'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -4389,13 +6449,20 @@ coins:
       - value: 0.75
         source: ngc
       - value: 0.75
+        source: numista
+      - value: 0.75
         source: ucoin
     weight_rough_g:
       - value: 18.32
         source: ngc
       - value: 18.32
+        source: numista
+      - value: 18.32
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422642
+        ref: Numista N#422642 — 32 Schillings - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1671/?tid=102685
         ref: ucoin
@@ -4404,6 +6471,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422642
       - lu-tid-102685
       - ngc-1137900
   - id: c-1a6aa882
@@ -4416,23 +6484,38 @@ coins:
     year_first: 1758
     year_last: 1758
     year_label: '1758'
+    ruler: Francis I
     catalog:
       km: '177'
       behrens: '301'
-      dav: '629'
+      dav: SG 629
+      numista: '342383'
+      others:
+        - Behr# 301
+        - Jaeg 6 NWD# 28a
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 17.96
+        source: numista
+    diameter_mm:
+      - value: 39.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/342383
+        ref: Numista N#342383 — 32 Schilling (Gulden) - Free Hanseatic city of Lübeck 1758
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-32-schilling-km-177-1758-cuid-1137901-duid-1339495
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-342383
       - ngc-1137901
   - id: c-540c27e7
     class_id: c-540c27e7
@@ -4761,53 +6844,46 @@ coins:
       -   - 1627
           - 1635
     year_label: 1627-1635
-    inscription_obv: MONE NOVA - LVBECENS
-    inscription_rev: FERDINAND II D G ROM IM SEMP AV
-    mint: Lübeck
+    ruler: Ferdinand II
     catalog:
       km: A61
-      dav:
-        - 5449C
-        - '5449'
+      dav: 5449C
+      numista: '266132'
       others:
-        - Behrens# 161 b
-      behrens: '161'
+        - Behr# 160 e/b
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 28.44
-        source: kmk
+      - value: 28.74
+        source: numista
       - value: 29.0
         source: ucoin
-      - value: 29.01
-        source: ikmk
     diameter_mm:
       - value: 41.0
         source: ucoin
-      - value: 43.0
-        source: ikmk
     sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18202373
-        ref: IKMK Berlin 18202373
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184161
-        ref: KMM 184161 (Inv. FP 3427.244)
+      - type: literature
+        url: https://en.numista.com/266132
+        ref: Numista N#266132 — 32 Schilling - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1627-1635/?tid=102702
         ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-a61-1627-1635-cuid-1138066-duid-1339417
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: ⅔ Thaler
+      en: ⅔ Thaler
+      uk: ⅔ Thaler
+      da: ⅔ Thaler
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - ikmk-18202373
-      - kmk-184161
+      - dk-numista-266132
       - lu-tid-102702
       - ngc-1138066
   - id: c-2b10e032
@@ -5184,6 +7260,8 @@ coins:
           - 1702
       -   - 1707
           - 1707
+      -   - 1710
+          - 1710
       -   - 1712
           - 1712
       -   - 1714
@@ -5194,9 +7272,13 @@ coins:
           - 1725
       -   - 1728
           - 1728
-    year_label: 1679, 1683, 1690, 1692-1694, 1697, 1701-1702, 1707, 1712, 1714-1716, 1721, 1725, 1728
+    year_label: 1679, 1683, 1690, 1692-1694, 1697, 1701-1702, 1707, 1710, 1712, 1714-1716, 1721, 1725, 1728
     catalog:
       km: '110'
+      numista: '266296'
+      fr: '1487'
+      others:
+        - Behr# 576
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -5208,13 +7290,20 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
       - value: 0.875
         source: ngc
       - value: 0.88
+        source: numista
+      - value: 0.88
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/266296
+        ref: Numista N#266296 — ¼ Ducat - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-4-ducat-1679-1728/?tid=102728
         ref: ucoin
@@ -5223,6 +7312,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-266296
       - lu-tid-102728
       - ngc-1138164
   - id: c-c46d2a1d
@@ -5595,6 +7685,7 @@ coins:
       -   - 1758
           - 1758
     year_label: 1731-1734, 1738, 1741, 1747, 1749, 1752, 1758
+    ruler: Charles VI (Karl VI) (1711-1740) / Francis I (Franz I)
     catalog:
       km: '152'
       behrens:
@@ -5613,16 +7704,25 @@ coins:
       - value: 0.625
         source: ngc
       - value: 0.625
+        source: numista
+      - value: 0.625
         source: ucoin
     weight_rough_g:
       - value: 5.5
         source: ngc
       - value: 5.5
+        source: numista
+      - value: 5.5
         source: ucoin
     diameter_mm:
       - value: 28.0
+        source: numista
+      - value: 28.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/47239
+        ref: Numista N#47239 — 8 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-8-schilling-1731-1758/?tid=102641
         ref: ucoin
@@ -5631,6 +7731,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-47239
       - lu-tid-102641
       - ngc-1138442
   - id: c-b55e491c
@@ -5643,9 +7744,13 @@ coins:
     year_first: 1728
     year_last: 1728
     year_label: '1728'
+    ruler: Charles VI (Karl VI)
     catalog:
       km: '146'
       behrens: '304'
+      numista: '184951'
+      others:
+        - Behr# 304
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5657,16 +7762,25 @@ coins:
       - value: 0.75
         source: ngc
       - value: 0.75
+        source: numista
+      - value: 0.75
         source: ucoin
     weight_rough_g:
       - value: 9.16
         source: ngc
       - value: 9.16
+        source: numista
+      - value: 9.16
         source: ucoin
     diameter_mm:
       - value: 32.0
         source: ucoin
+      - value: 32.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/184951
+        ref: Numista N#184951 — 16 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-16-schilling-1728/?tid=102683
         ref: ucoin
@@ -5675,6 +7789,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-184951
       - lu-tid-102683
       - ngc-1138446
   - id: c-d14be120
@@ -5691,6 +7806,7 @@ coins:
       km: '107'
       behrens: '290'
       dav: '625'
+      numista: '422616'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5702,16 +7818,23 @@ coins:
       - value: 0.75
         source: ngc
       - value: 0.75
+        source: numista
+      - value: 0.75
         source: ucoin
     weight_rough_g:
       - value: 18.32
         source: ngc
+      - value: 18.32
+        source: numista
       - value: 18.32
         source: ucoin
     diameter_mm:
       - value: 37.93
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422616
+        ref: Numista N#422616 — 32 Schilling - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1672/?tid=102686
         ref: ucoin
@@ -5720,6 +7843,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422616
       - lu-tid-102686
       - ngc-1138447
   - id: c-f2484ed5
@@ -5732,10 +7856,15 @@ coins:
     year_first: 1728
     year_last: 1728
     year_label: '1728'
+    ruler: Charles VI (Karl VI)
     catalog:
       km: '147'
       behrens: '292'
-      dav: '626'
+      dav: SG 626
+      numista: '422513'
+      others:
+        - Behr# 292
+        - Jaeg 6 NWD# 9
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5753,6 +7882,9 @@ coins:
       - value: 38.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422513
+        ref: Numista N#422513 — 32 Schilling — Lübeck Free Hanseatic city, Karl VI 1728
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1728/?tid=102687
         ref: ucoin
@@ -5761,6 +7893,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422513
       - lu-tid-102687
       - ngc-1138448
   - id: c-40016ca5
@@ -5773,10 +7906,12 @@ coins:
     year_first: 1752
     year_last: 1752
     year_label: '1752'
+    ruler: Francis I (Franz I)
     catalog:
       km: '167'
       behrens: '300'
       dav: '629'
+      numista: '20264'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5792,16 +7927,27 @@ coins:
         source: ucoin
     diameter_mm:
       - value: 38.0
+        source: numista
+      - value: 38.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/20264
+        ref: Numista N#20264 — Lübeck 32 Schilling - Free city 1752
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1752/?tid=102694
         ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-32-schilling-km-167-1752-cuid-1138449-duid-1339068
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: ⅔ Thaler
+      en: ⅔ Thaler
+      uk: ⅔ Thaler
+      da: ⅔ Thaler
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-20264
       - lu-tid-102694
       - ngc-1138449
   - id: c-32772ec4
@@ -5910,10 +8056,15 @@ coins:
     year_first: 1789
     year_last: 1789
     year_label: '1789'
+    ruler: Joseph II
     catalog:
       km: '190'
       behrens: '418'
       numista: '83915'
+      others:
+        - Behr# 418
+        - Jaeg 6 NWD# 30
+        - Schön DM# 38
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5925,16 +8076,25 @@ coins:
       - value: 0.375
         source: ngc
       - value: 0.375
+        source: numista
+      - value: 0.375
         source: ucoin
     weight_rough_g:
       - value: 1.08
         source: ngc
       - value: 1.08
+        source: numista
+      - value: 1.08
         source: ucoin
     diameter_mm:
       - value: 17.25
+        source: numista
+      - value: 17.25
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/83915
+        ref: Numista N#83915 — 1 Schilling - Free Hanseatic city of Lübeck (1789)
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-schilling-1789/?tid=102425
         ref: ucoin
@@ -5943,6 +8103,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-83915
       - lu-tid-102425
       - ngc-1138493
   - id: c-7c499d47
@@ -5993,6 +8154,9 @@ coins:
     catalog:
       km: '131'
       behrens: '327'
+      numista: '422553'
+      others:
+        - Behr# 327
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6001,6 +8165,9 @@ coins:
     mint_verified: false
     verified: false
     sources:
+      - type: literature
+        url: https://en.numista.com/422553
+        ref: Numista N#422553 — 4 Schilling - Free Hanseatic city of Lubeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-4-schilling-1711/?tid=102430
         ref: ucoin
@@ -6009,6 +8176,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422553
       - lu-tid-102430
       - ngc-1138497
   - id: c-f33155cd
@@ -6026,6 +8194,7 @@ coins:
       -   - 1752
           - 1752
     year_label: 1732, 1752
+    ruler: Charles VI (Karl VI) (1711-1740) / Francis I (Franz I)
     catalog:
       km: '156'
       behrens:
@@ -6043,10 +8212,14 @@ coins:
       - value: 0.562
         source: ngc
       - value: 0.562
+        source: numista
+      - value: 0.562
         source: ucoin
     weight_rough_g:
       - value: 3.05
         source: ngc
+      - value: 3.05
+        source: numista
       - value: 3.05
         source: ucoin
     diameter_mm:
@@ -6054,7 +8227,12 @@ coins:
         source: ucoin
       - value: 23.3
         source: ngc
+      - value: 23.3
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/83894
+        ref: Numista N#83894 — 4 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-4-schilling-1732-1752/?tid=102432
         ref: ucoin
@@ -6063,6 +8241,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-83894
       - lu-tid-102432
       - ngc-1138498
   - id: c-5f379ee5
@@ -6203,10 +8382,12 @@ coins:
       -   - 1738
           - 1738
     year_label: 1731-1732, 1738
+    ruler: Charles VI (Karl VI)
     catalog:
       km: '154'
       behrens: 293-95
       dav: '627'
+      numista: '47238'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -6223,7 +8404,12 @@ coins:
     diameter_mm:
       - value: 38.0
         source: ucoin
+      - value: 39.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/47238
+        ref: Numista N#47238 — 32 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1731-1738/?tid=102691
         ref: ucoin
@@ -6232,6 +8418,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-47238
       - lu-tid-102691
       - ngc-1138603
   - id: c-a6c181f5
@@ -6247,6 +8434,7 @@ coins:
       -   - 1749
           - 1750
     year_label: 1749-1750
+    ruler: Francis I
     catalog:
       km: '163'
       behrens:
@@ -6263,14 +8451,23 @@ coins:
     verified: false
     fineness:
       - value: 0.9
+        source: numista
+      - value: 0.9
         source: ucoin
     weight_rough_g:
+      - value: 18.2
+        source: numista
       - value: 18.2
         source: ucoin
     diameter_mm:
       - value: 38.0
+        source: numista
+      - value: 38.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/39774
+        ref: Numista N#39774 — 32 Schilling - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1749-1750/?tid=102693
         ref: ucoin
@@ -6279,6 +8476,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-39774
       - lu-tid-102693
       - ngc-1138604
   - id: c-24717bbb
@@ -6329,12 +8527,14 @@ coins:
       -   - 1683
           - 1683
     year_label: 1680, 1683
+    ruler: Leopold I
     catalog:
       km: '115'
       behrens:
         - '186'
         - '187'
-      dav: '5459'
+      dav: CCT 5459
+      numista: '422614'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6343,6 +8543,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 28.72
+        source: numista
       - value: 29.0
         source: ucoin
     diameter_mm:
@@ -6351,6 +8553,9 @@ coins:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422614
+        ref: Numista N#422614 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1680-1683/?tid=102715
         ref: ucoin
@@ -6359,6 +8564,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422614
       - lu-tid-102715
       - ngc-1138628
   - id: c-3906e29c
@@ -6374,20 +8580,30 @@ coins:
     catalog:
       km: '132'
       behrens: '191'
-      dav: '2414'
+      dav: GT II 2414
+      numista: '271416'
+      others:
+        - Behr# 191 a
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 29.39
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/271416
+        ref: Numista N#271416 — 1 Thaler (Election of Emperor Charles VI) - Free Hanseatic city of Lubeck
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-132-1712-cuid-1138629-duid-1339527
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271416
       - ngc-1138629
   - id: c-8f0aee1e
     class_id: c-8f0aee1e
@@ -6758,11 +8974,17 @@ coins:
     year_first: 1801
     year_last: 1801
     year_label: '1801'
+    ruler: Francis II
     catalog:
       km: '205'
       numista: '271072'
       others:
+        - Behr# 647
+        - Schlum# 492
+        - Jaeg 6 NWD# 49
+        - Divo/S# 137
         - Behrens 647
+      fr: '1500'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -6774,13 +8996,20 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
+      - value: 3.47
+        source: numista
       - value: 3.5
         source: ngc
       - value: 3.5
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/271072
+        ref: Numista N#271072 — 1 Ducat - Free Hanseatic city of Lübeck - 1801
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1801/?tid=102742
         ref: ucoin
@@ -6789,6 +9018,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271072
       - lu-tid-102742
       - ngc-1138910
   - id: c-435fd828
@@ -6867,12 +9097,15 @@ coins:
     year_first: 1776
     year_last: 1776
     year_label: '1776'
+    ruler: Joseph II
     catalog:
       km: '185'
       behrens: 197a
-      dav: '2422'
+      dav: GT II 2422
       numista: '59482'
       others:
+        - Behr# 197
+        - Jaeg 6 NWD# 37
         - Davenport 2422; Behrens 312
     metal: silver
     metal_verified: true
@@ -6885,16 +9118,25 @@ coins:
       - value: 0.888
         source: ngc
       - value: 0.888
+        source: numista
+      - value: 0.888
         source: ucoin
     weight_rough_g:
       - value: 29.2
         source: ngc
       - value: 29.2
+        source: numista
+      - value: 29.2
         source: ucoin
     diameter_mm:
       - value: 41.0
         source: ucoin
+      - value: 43.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/59482
+        ref: Numista N#59482 — 1 Thaler - Free Hanseatic city of Lübeck (1776)
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1776/?tid=102724
         ref: ucoin
@@ -6903,6 +9145,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-59482
       - lu-tid-102724
       - ngc-1138948
   - id: c-0541d096
@@ -7277,6 +9520,7 @@ coins:
       -   - 1758
           - 1758
     year_label: 1731-1733, 1737-1738, 1752, 1758
+    ruler: Charles VI (Karl VI) (1711-1740) / Francis I (Franz I)
     catalog:
       km: '153'
       behrens: 305-11
@@ -7292,16 +9536,25 @@ coins:
       - value: 0.75
         source: ngc
       - value: 0.75
+        source: numista
+      - value: 0.75
         source: ucoin
     weight_rough_g:
       - value: 9.16
         source: ngc
       - value: 9.16
+        source: numista
+      - value: 9.16
         source: ucoin
     diameter_mm:
       - value: 32.0
+        source: numista
+      - value: 32.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/20520
+        ref: Numista N#20520 — 16 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-16-schilling-1731-1758/?tid=102684
         ref: ucoin
@@ -7310,6 +9563,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-20520
       - lu-tid-102684
       - ngc-1139276
   - id: c-0a1dbb97
@@ -7352,32 +9606,59 @@ coins:
       -   - 1620
           - 1627
     year_label: 1620-1627
+    ruler: Ferdinand II
     mint: Lübeck
     catalog:
       km: '54'
       behrens:
         - 150-168b
+        - '151'
         - '153'
-      dav: '5449'
+      dav:
+        - CCT 5449
+        - CCT 67
+      numista: '271410'
+      others:
+        - Behr# 151
     metal: silver
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.889
+        source: numista
     weight_rough_g:
       - value: 28.76
         source: kmk
+      - value: 28.79
+        source: kmk
+      - value: 28.99
+        source: kmk
       - value: 29.0
         source: ucoin
+      - value: 29.2
+        source: numista
     diameter_mm:
+      - value: 40.0
+        source: numista
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/271410
+        ref: Numista N#271410 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/184164
         ref: KMM 184164 (Inv. FP 3427.241)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184165
+        ref: KMM 184165 (Inv. FP 3427.240)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/187988
+        ref: KMM 187988 (Inv. FP 4271.8)
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1620-1627/?tid=102701
         ref: ucoin
@@ -7386,7 +9667,10 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271410
       - kmk-184164
+      - kmk-184165
+      - kmk-187988
       - lu-tid-102701
       - ngc-1139470
   - id: c-791183bb
@@ -7470,10 +9754,14 @@ coins:
     year_first: 1745
     year_last: 1745
     year_label: '1745'
+    ruler: Francis I
     catalog:
       km: '161'
       behrens: '196'
-      dav: '2419'
+      dav: GT II 2419
+      numista: '271420'
+      others:
+        - Behr# 196
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -7485,12 +9773,17 @@ coins:
       - value: 0.888
         source: ucoin
     weight_rough_g:
+      - value: 28.68
+        source: numista
       - value: 29.2
         source: ucoin
     diameter_mm:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/271420
+        ref: Numista N#271420 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1745/?tid=102723
         ref: ucoin
@@ -7499,6 +9792,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271420
       - lu-tid-102723
       - ngc-1139475
   - id: c-3f7d776f
@@ -7798,6 +10092,10 @@ coins:
         - 602B
         - 603-34
         - '636'
+      numista: '266134'
+      others:
+        - Behr# 608
+      fr: '1486'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -7809,13 +10107,20 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
+      - value: 3.49
+        source: numista
       - value: 3.5
         source: ngc
       - value: 3.5
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/266134
+        ref: Numista N#266134 — 1 Ducat - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1627-1737/?tid=102730
         ref: ucoin
@@ -7824,6 +10129,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-266134
       - lu-tid-102730
       - ngc-1139658
   - id: c-23923700
@@ -8022,16 +10328,25 @@ coins:
       - value: 0.375
         source: ngc
       - value: 0.375
+        source: numista
+      - value: 0.375
         source: ucoin
     weight_rough_g:
       - value: 1.08
         source: ngc
       - value: 1.08
+        source: numista
+      - value: 1.08
         source: ucoin
     diameter_mm:
       - value: 17.0
+        source: numista
+      - value: 17.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/38483
+        ref: Numista N#38483 — 1 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-schilling-1727-1758/?tid=102424
         ref: ucoin
@@ -8040,6 +10355,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-38483
       - lu-tid-102424
       - ngc-1142055
   - id: c-89d4cc7b
@@ -8056,24 +10372,37 @@ coins:
       km: '142'
       behrens: '399'
       numista: '285020'
+      others:
+        - Behr# 399
+        - Jaeg 6 NWD# 5
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.437
         source: ngc
       - value: 0.437
+        source: numista
+      - value: 0.437
         source: ucoin
     weight_rough_g:
       - value: 1.96
         source: ngc
       - value: 1.96
+        source: numista
+      - value: 1.96
         source: ucoin
+    diameter_mm:
+      - value: 20.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/285020
+        ref: Numista N#285020 — 2 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-2-schilling-1727/?tid=102426
         ref: ucoin
@@ -8082,6 +10411,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-285020
       - lu-tid-102426
       - ngc-1142056
   - id: c-196c400d
@@ -8101,16 +10431,26 @@ coins:
       -   - 1634
           - 1637
     year_label: 1622-1623, 1629-1630, 1634-1637
+    ruler: Ferdinand II
     catalog:
       km: A56
+      numista: '266131'
+      others:
+        - Behr# 282
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 3.48
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/266131
+        ref: Numista N#266131 — 4 Schilling - Free Hanseatic city of Lübeck (Ferdinand II) 1622-1637
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-4-schilling-1622-1637/?tid=102428
         ref: ucoin
@@ -8119,6 +10459,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-266131
       - lu-tid-102428
       - ngc-1142058
   - id: c-dd005b20
@@ -8333,10 +10674,15 @@ coins:
     year_first: 1731
     year_last: 1731
     year_label: '1731'
+    ruler: Charles VI (Karl VI)
     catalog:
       km: '155'
       behrens: '194'
-      dav: '2417'
+      dav: GT II 2417
+      numista: '271418'
+      others:
+        - Behr# 194
+        - Jaeg 6 NWD# 34
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -8350,6 +10696,8 @@ coins:
       - value: 0.888
         source: ucoin
     weight_rough_g:
+      - value: 29.09
+        source: numista
       - value: 29.2
         source: ngc
       - value: 29.2
@@ -8358,6 +10706,9 @@ coins:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/271418
+        ref: Numista N#271418 — 1 Thaler — Lübeck Free Hanseatic city, Karl VI 1731
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1731/?tid=102721
         ref: ucoin
@@ -8366,6 +10717,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271418
       - lu-tid-102721
       - ngc-1142504
   - id: c-85399e8b
@@ -8378,10 +10730,14 @@ coins:
     year_first: 1742
     year_last: 1742
     year_label: '1742'
+    ruler: Charles VII
     catalog:
       km: '160'
       behrens: '195'
-      dav: '2418'
+      dav: GT II 2418
+      numista: '271421'
+      others:
+        - Behr# 195
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -8395,6 +10751,8 @@ coins:
       - value: 0.888
         source: ucoin
     weight_rough_g:
+      - value: 29.14
+        source: numista
       - value: 29.2
         source: ngc
       - value: 29.2
@@ -8403,6 +10761,9 @@ coins:
       - value: 41.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/271421
+        ref: Numista N#271421 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1742/?tid=102722
         ref: ucoin
@@ -8411,6 +10772,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271421
       - lu-tid-102722
       - ngc-1142505
   - id: c-6881abe0
@@ -8557,6 +10919,9 @@ coins:
     year_label: 1679, 1682-1683, 1688, 1690, 1692-1693, 1697-1698, 1703, 1706, 1710-1711, 1714, 1716
     catalog:
       km: '111'
+      numista: '266294'
+      others:
+        - Behr# 587
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -8568,25 +10933,38 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
       - value: 1.75
         source: ngc
       - value: 1.75
+        source: numista
+      - value: 1.75
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/266294
+        ref: Numista N#266294 — ½ Ducat - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-2-ducat-1679-1716/?tid=102729
         ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-2-ducat-km-111-1679-1716-cuid-1142744-duid-1339450
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: ½ Dukat
+      en: ½ Dukat
+      uk: ½ Dukat
+      da: ½ Dukat
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-266294
       - lu-tid-102729
       - ngc-1142744
-  - id: c-bbbfb2e6
-    class_id: c-bbbfb2e6
+  - id: c-a2b0d92e
+    class_id: c-a2b0d92e
     label: unified-ngc-1142745
     fuss: seed_unsorted
     phase: ngc
@@ -8603,6 +10981,8 @@ coins:
     catalog:
       km: A22
       behrens: 596-601
+      numista: '409626'
+      fr: '1477'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -8613,15 +10993,23 @@ coins:
     fineness:
       - value: 0.986
         source: ngc
+      - value: 0.986
+        source: numista
     weight_rough_g:
       - value: 3.5
         source: ngc
+      - value: 3.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/409626
+        ref: Numista N#409626 — 1 Ducat - Free Hanseatic city of Lübeck - Numista
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-a22-1603-1609-cuid-1142745-duid-1339535
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-409626
       - ngc-1142745
   - id: c-ee868e4e
     class_id: c-ee868e4e
@@ -8636,9 +11024,11 @@ coins:
       -   - 1789
           - 1790
     year_label: 1789-1790
+    ruler: Joseph II
     catalog:
       km: '191'
       numista: '409002'
+      fr: '1500'
       others:
         - Behrens 641a, 642
     metal: gold
@@ -8652,13 +11042,20 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
       - value: 3.5
         source: ngc
       - value: 3.5
+        source: numista
+      - value: 3.5
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/409002
+        ref: Numista N#409002 — 1 Ducat - Free Hanseatic city of Lübeck (1789-1790)
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1789-1790/?tid=102738
         ref: ucoin
@@ -8667,6 +11064,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-409002
       - lu-tid-102738
       - ngc-1142750
   - id: c-47aa83d5
@@ -8753,33 +11151,48 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1143015
-  - id: c-f56715d6
-    class_id: c-f56715d6
+  - id: c-167d5da3
+    class_id: c-167d5da3
     label: unified-ngc-1171276
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Goldgulden
-    year_first: 1600
+    year_first: 1598
     year_last: 1600
-    year_label: '1600'
+    year_ranges:
+      -   - 1598
+          - 1598
+      -   - 1600
+          - 1600
+    year_label: 1598, 1600
     catalog:
       mb: '172'
       behrens: 557-65
       fr: '1475'
+      numista: '409725'
+      others:
+        - Behr# 563
     metal: gold
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 3.19
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/409725
+        ref: Numista N#409725 — 1 Goldgulden - Free Hanseatic city of Lübeck
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-goldgulden-mb-172-1600-cuid-1171276-duid-1361184
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-409725
       - ngc-1171276
   - id: c-a24984fc
     class_id: c-a24984fc
@@ -9036,26 +11449,40 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Thaler
-    year_first: 1600
+    year_first: 1595
     year_last: 1600
-    year_label: '1600'
+    year_ranges:
+      -   - 1595
+          - 1600
+    year_label: 1595-1600
+    ruler: Rudolph II (Rudolf II)
     catalog:
       mb: '182'
       behrens: 122-27b
-      dav: '9416'
+      dav: GT I 9416
+      numista: '271405'
+      others:
+        - Behr# 123
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 28.6
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/271405
+        ref: Numista N#271405 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-mb-182-1600-cuid-1193212-duid-1365193
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-271405
       - ngc-1193212
   - id: c-7760c37f
     class_id: c-7760c37f
@@ -9420,6 +11847,7 @@ coins:
     catalog:
       km: '140'
       behrens: 535-40
+      numista: '283168'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -9431,8 +11859,12 @@ coins:
       - value: 0.187
         source: ngc
       - value: 0.187
+        source: numista
+      - value: 0.187
         source: ucoin
     weight_rough_g:
+      - value: 0.5
+        source: numista
       - value: 0.51
         source: ngc
       - value: 0.51
@@ -9440,7 +11872,12 @@ coins:
     diameter_mm:
       - value: 13.0
         source: ucoin
+      - value: 15.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/283168
+        ref: Numista N#283168 — 1 Dreiling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-dreiling-1727-1747/?tid=102435
         ref: ucoin
@@ -9449,6 +11886,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-283168
       - lu-tid-102435
       - ngc-1203403
   - id: c-ae2a956c
@@ -9461,9 +11899,13 @@ coins:
     year_first: 1687
     year_last: 1687
     year_label: '1687'
+    ruler: Leopold I
     catalog:
       km: '117'
       behrens: '465'
+      numista: '422585'
+      others:
+        - Behr# 465a
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9473,8 +11915,13 @@ coins:
     verified: false
     weight_rough_g:
       - value: 0.72
+        source: numista
+      - value: 0.72
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/422585
+        ref: Numista N#422585 — 4 Pfennigs - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-4-pfennig-1687/?tid=181239
         ref: ucoin
@@ -9483,6 +11930,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422585
       - lu-tid-181239
       - ngc-1203404
   - id: c-e9e41e57
@@ -9517,16 +11965,25 @@ coins:
       - value: 0.625
         source: ngc
       - value: 0.625
+        source: numista
+      - value: 0.625
         source: ucoin
     weight_rough_g:
       - value: 5.5
         source: ngc
       - value: 5.5
+        source: numista
+      - value: 5.5
         source: ucoin
     diameter_mm:
       - value: 28.0
+        source: numista
+      - value: 28.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/19206
+        ref: Numista N#19206 — 8 Schilling - Free Hanseatic city of Lübeck – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-8-schilling-1727-1758/?tid=102640
         ref: ucoin
@@ -9535,6 +11992,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-19206
       - lu-tid-102640
       - ngc-1203406
   - id: c-14cca2d6
@@ -9723,10 +12181,12 @@ coins:
     year_first: 1660
     year_last: 1660
     year_label: '1660'
+    ruler: Leopold I
     catalog:
       km: '95'
       behrens: '179'
-      dav: '5452'
+      dav: CCT 5452
+      numista: '422660'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9735,6 +12195,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 28.89
+        source: numista
       - value: 29.0
         source: ucoin
     diameter_mm:
@@ -9742,7 +12204,12 @@ coins:
         source: ucoin
       - value: 43.0
         source: ngc
+      - value: 43.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/422660
+        ref: Numista N#422660 — 1 Thaler - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1660/?tid=102708
         ref: ucoin
@@ -9751,6 +12218,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-422660
       - lu-tid-102708
       - ngc-1203430
   - id: c-2a81e708
@@ -9832,6 +12300,13 @@ coins:
     year_label: 1603, 1608, 1617, 1619, 1622-1624, 1627, 1629, 1637, 1651, 1657, 1663, 1670, 1675
     catalog:
       km: A21
+      numista:
+        - '409402'
+        - '409439'
+      others:
+        - Behr# 575
+        - Behr# 572
+      fr: '1475'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -9843,13 +12318,31 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+        specimen: dk-numista-409402
+      - value: 0.986
+        source: numista
+        specimen: dk-numista-409439
+      - value: 0.986
         source: ucoin
     weight_rough_g:
+      - value: 3.16
+        source: numista
+        specimen: dk-numista-409439
+      - value: 3.2
+        source: numista
+        specimen: dk-numista-409402
       - value: 3.5
         source: ngc
       - value: 3.5
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/409402
+        ref: Numista N#409402 — 1 Goldgulden - Free Hanseatic city of Lübeck
+      - type: literature
+        url: https://en.numista.com/409439
+        ref: Numista N#409439 — 1 Goldgulden - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-goldgulden-1622-1675/?tid=102725
         ref: ucoin
@@ -9858,6 +12351,8 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-409402
+      - dk-numista-409439
       - lu-tid-102725
       - ngc-1203444
   - id: c-d4429ddf
@@ -9912,6 +12407,11 @@ coins:
     year_label: '1717'
     catalog:
       km: '133'
+      numista: '280721'
+      fr: '1494'
+      others:
+        - Behr# 635
+        - Slg. Whiting# 202
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -9922,15 +12422,23 @@ coins:
     fineness:
       - value: 0.986
         source: ngc
+      - value: 0.986
+        source: numista
     weight_rough_g:
+      - value: 3.46
+        source: numista
       - value: 3.5
         source: ngc
     sources:
+      - type: literature
+        url: https://en.numista.com/280721
+        ref: Numista N#280721 — 1 Ducat (Bicentenary of the Reformation) - Free Hanseatic city of Lübeck – Numista
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-133-1717-cuid-1203456-duid-1339666
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-280721
       - ngc-1203456
   - id: c-8eb64d66
     class_id: c-8eb64d66
@@ -9947,29 +12455,43 @@ coins:
       -   - 1797
           - 1797
     year_label: 1793-1794, 1797
+    ruler: Francis II
     catalog:
       km: '198'
       numista: '32000'
       others:
+        - Behr# 644-646
+        - Schlum# 488-490
+        - Jaeg 6 NWD# 47b
         - Behrens 644–646
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
       - value: 3.5
         source: ngc
       - value: 3.5
+        source: numista
+      - value: 3.5
         source: ucoin
+    diameter_mm:
+      - value: 22.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/32000
+        ref: Numista N#32000 — 1 Ducat - Free Hanseatic city of Lübeck - Francis II 1793-1797
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1793-1797/?tid=102741
         ref: ucoin
@@ -9978,6 +12500,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-32000
       - lu-tid-102741
       - ngc-1203465
   - id: c-bb4f5174
@@ -10027,24 +12550,35 @@ coins:
     year_label: 1656, 1658, 1660, 1666-1667, 1672, 1674-1676, 1678, 1681-1682, 1686, 1690-1691, 1694, 1699, 1701, 1706-1707, 1711, 1713-1714, 1716
     catalog:
       km: '89'
+      numista: '31999'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
       - value: 7.0
         source: ngc
       - value: 7.0
+        source: numista
+      - value: 7.0
         source: ucoin
+    diameter_mm:
+      - value: 29.5
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/31999
+        ref: Numista N#31999 — 2 Ducat - Free Hanseatic city of Lübeck
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-2-ducat-1656-1716/?tid=111539
         ref: ucoin
@@ -10053,6 +12587,7 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-31999
       - lu-tid-111539
       - ngc-1203466
   - id: c-24a49125
@@ -10104,6 +12639,11 @@ coins:
     catalog:
       km: '179'
       behrens: '639'
+      numista: '409229'
+      others:
+        - Behr# 639
+        - Jaeg 6 NWD# 43
+      fr: '1486'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -10115,13 +12655,20 @@ coins:
       - value: 0.986
         source: ngc
       - value: 0.986
+        source: numista
+      - value: 0.986
         source: ucoin
     weight_rough_g:
       - value: 3.5
         source: ngc
       - value: 3.5
+        source: numista
+      - value: 3.5
         source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/409229
+        ref: Numista N#409229 — 1 Dukat - Free Hanseatic city of Lübeck 1759
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1749-1759/?tid=102737
         ref: ucoin
@@ -10130,5 +12677,6 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - dk-numista-409229
       - lu-tid-102737
       - ngc-1211241
