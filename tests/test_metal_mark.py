@@ -42,3 +42,22 @@ class SuspectMetalMark(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class VariantMetalMark(unittest.TestCase):
+    def test_variant_leaves_matching_like_erroneous(self):
+        """A second attested metal (brass Sechsling 1850, ucoin 187884) leaves
+        the class's metal to the other members and is kept for display."""
+        e = {"metal": "brass", "metal_verified": True,
+             "metal_mark": {"kind": "variant", "reason": {"en": "x"}}}
+        apply_metal_mark(e)
+        self.assertIsNone(e["metal"])
+        self.assertEqual(e["metal_mark"]["value"], "brass")
+
+    def test_variant_reaches_metal_alts(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts" / "maintenance"))
+        from merge_seeds_cross_source import _collect_metal_alts
+        m = {"id": "sh-tid-187884", "metal": None,
+             "metal_mark": {"kind": "variant", "value": "brass", "reason": {"en": "x"}}}
+        alts = _collect_metal_alts([m])
+        self.assertEqual([(a["value"], a["kind"]) for a in alts], [("brass", "variant")])

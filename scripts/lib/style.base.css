@@ -2567,6 +2567,10 @@ tr.msr-sh .msr-cut { display: none; }
    (The `.approximate` value class gets no rule on purpose.) */
 .approximate-mark { color: var(--text-muted); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); }
+/* .variant-mark — a second metal the sources attest for the same coin
+   («Мідь, латунь»). Not an error: the word itself carries the tooltip, no sign
+   (curator 2026-11-07). */
+.variant-mark { cursor: help; text-decoration: underline dotted; text-underline-offset: 2px; }
 /* The Δ percentage line (.sd-pct) is inline-block, so an ancestor's line-through
    does not reach it (atomic inline boxes are not decorated by their parents) —
    re-apply it explicitly when the Δ badge itself is marked. */

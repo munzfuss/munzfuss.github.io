@@ -494,10 +494,14 @@ def _strip_year_tokens(num: str, catalogue: str) -> str:
     legitimately sit in the 1200-1700s (Dav 1288, 1725)."""
     if catalogue == "Dav":
         return num
+    # Sieg is also cited by EDITION YEAR («Hede (og Sieg 2016) angiver
+    # 4,872g», f7h19 / f7h20): a 1951-2100 value is an edition, never a Sieg
+    # number (Sieg's numbering stays in the hundreds).
+    top = 2100 if catalogue == "Sieg" else 1950
     kept = []
     for t in num.split(","):
         head = t.split("-")[0]
-        if head.isdigit() and 1500 <= int(head) <= 1950:
+        if head.isdigit() and 1500 <= int(head) <= top:
             continue
         kept.append(t)
     return ",".join(kept)

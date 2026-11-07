@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-07T13:08:28Z'
+generated_at: '2026-11-07T16:55:45Z'
 entity: royal_holstein
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -5408,7 +5408,7 @@ coins:
     year_ranges:
       - [1850, 1850]
       - [1851, 1851]
-    ruler: Frederik VII.
+    ruler:
     mint: Altona
     catalog:
       hede: '19'
@@ -5416,9 +5416,7 @@ coins:
       schou:
         - '2'
         - '5'
-      sieg:
-        - '22'
-        - '2016'
+      sieg: '22'
     metal: copper
     sources:
       - type: literature
@@ -5432,6 +5430,37 @@ coins:
         i Slesvig-Holsten egne mønter. Møntmester var Theodor C. W. Andersen (TA) og stempelskærer Heinrich Lorenz (HL). Sechslingblanketter er brugt til møntmester Andersens personlige visitkort. Kobber
         (Vi kender ikke yderligere til et'
     metal_verified: true
+    weight_rough_g:
+      - value: 4.872
+        source: danskmoent.dk (Hede 19)
+        suspect:
+          de: 'Halbes Gewicht. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g» (dt.: «Gewicht: Hede (und
+            Sieg 2016) geben 4,872 g an, aber das stimmt nicht; drei von uns gewogene Stücke wiegen 9,60 g, 9,62 g und 10,05 g»). «Det virker som om Hede har angivet den halve vægt» (dt.: «Es scheint, als
+            habe Hede das halbe Gewicht angegeben»).'
+          en: 'Half the weight. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g» (transl.: «Weight: Hede
+            (and Sieg 2016) give 4.872 g, but that is not right; three specimens we weighed weigh 9.60 g, 9.62 g and 10.05 g»). «Det virker som om Hede har angivet den halve vægt» (transl.: «It seems that
+            Hede has given half the weight»).'
+          uk: 'Половинна вага. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g» (перекл.: «Вага: Hede (і
+            Sieg 2016) подає 4,872 г, але це не так; три зважені нами примірники важать 9,60 г, 9,62 г і 10,05 г»). «Det virker som om Hede har angivet den halve vægt» (перекл.: «Схоже, Hede подав половинну
+            вагу»).'
+          da: 'Den halve vægt. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g». «Det virker som om Hede
+            har angivet den halve vægt».'
+    weight_rough_verified: true
+    ruler_mark:
+      kind: erroneous
+      value: Frederik VII.
+      reason:
+        de: 'Kein Gepräge Frederiks VII. danskmoent.dk (Hede 19) führt die Münze unter «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (dt.: «Im Dreijährigen
+          Krieg 1848–50 prägte die Aufstandsregierung in Schleswig-Holstein eigene Münzen»).'
+        en: "Not a coinage of Frederik VII. danskmoent.dk (Hede 19) lists the coin under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (transl.: «During
+          the Three Years' War 1848–50 the rebel government in Schleswig-Holstein struck its own coins»)."
+        uk: 'Не карбування Frederik VII. danskmoent.dk (Hede 19) подає монету під «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (перекл.: «Під час Трирічної
+          війни 1848–50 повстанський уряд у Шлезвіг-Гольштейні карбував власні монети»).'
+        da: 'Ikke en mønt fra Frederik 7. danskmoent.dk (Hede 19) fører mønten under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter».'
+    _curation_holds:
+      weight_rough_g: "Curator (Serhii) 2026-11-07: Hede's printed weight as danskmoent.dk (Hede 19) reports it, marked suspect (*) — the page says Hede gives half the weight. Not in the parser's specs
+        (the page has no «Bruttovægt» line)."
+      weight_rough_verified:
   - id: dk-hede-f7h20
     fuss: seed_unsorted
     phase: hede
@@ -5440,15 +5469,13 @@ coins:
     year_label: '1850'
     year_first: 1850
     year_last: 1850
-    ruler: Frederik VII.
+    ruler:
     mint: Altona
     catalog:
       hede: '20'
       hede_volume: f7h
       schou: '3'
-      sieg:
-        - '21'
-        - '2016'
+      sieg: '21'
     metal: copper
     sources:
       - type: literature
@@ -5461,6 +5488,34 @@ coins:
     _source_note:
       da: 'Forside: Slesvig-Holstens våben (2 løver for Slesvig samt Holstens nældeblad), bagside: værdiangivelse (Hede 20, Schou 3, Sieg 21) Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten
         egne mønter. Møntmester var Theodor C. W. Andersen (TA) og stempelskærer Heinrich Lorenz (HL). Kobber Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et'
+    weight_rough_g:
+      - value: 2.436
+        source: danskmoent.dk (Hede 20)
+        suspect:
+          de: 'Halbes Gewicht. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g» (dt.: «Gewicht: Hede (und Sieg 2016) geben
+            2,436 g an, aber das stimmt nicht. Ein Stück in unserer Sammlung wiegt 4,83 g»). «Det virker som om Hede har angivet den halve vægt» (dt.: «Es scheint, als habe Hede das halbe Gewicht angegeben»).'
+          en: 'Half the weight. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g» (transl.: «Weight: Hede (and Sieg 2016)
+            give 2.436 g, but that is not right. A specimen in our collection weighs 4.83 g»). «Det virker som om Hede har angivet den halve vægt» (transl.: «It seems that Hede has given half the weight»).'
+          uk: 'Половинна вага. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g» (перекл.: «Вага: Hede (і Sieg 2016) подає
+            2,436 г, але це не так. Примірник у нашій збірці важить 4,83 г»). «Det virker som om Hede har angivet den halve vægt» (перекл.: «Схоже, Hede подав половинну вагу»).'
+          da: 'Den halve vægt. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g». «Det virker som om Hede har angivet den
+            halve vægt».'
+    weight_rough_verified: true
+    ruler_mark:
+      kind: erroneous
+      value: Frederik VII.
+      reason:
+        de: 'Kein Gepräge Frederiks VII. danskmoent.dk (Hede 20) führt die Münze unter «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (dt.: «Im Dreijährigen
+          Krieg 1848–50 prägte die Aufstandsregierung in Schleswig-Holstein eigene Münzen»).'
+        en: "Not a coinage of Frederik VII. danskmoent.dk (Hede 20) lists the coin under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (transl.: «During
+          the Three Years' War 1848–50 the rebel government in Schleswig-Holstein struck its own coins»)."
+        uk: 'Не карбування Frederik VII. danskmoent.dk (Hede 20) подає монету під «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (перекл.: «Під час Трирічної
+          війни 1848–50 повстанський уряд у Шлезвіг-Гольштейні карбував власні монети»).'
+        da: 'Ikke en mønt fra Frederik 7. danskmoent.dk (Hede 20) fører mønten under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter».'
+    _curation_holds:
+      weight_rough_g: "Curator (Serhii) 2026-11-07: Hede's printed weight as danskmoent.dk (Hede 20) reports it, marked suspect (*) — the page says Hede gives half the weight. Not in the parser's specs
+        (the page has no «Bruttovægt» line)."
+      weight_rough_verified:
   - id: dk-hede-f7h18
     fuss: seed_unsorted
     phase: hede

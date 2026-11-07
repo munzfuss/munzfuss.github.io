@@ -75,8 +75,10 @@ class I18nTextOptional(_StrictBase):
 class YearMark(_StrictBase):
     """A curation mark on a seed's own year, ruler, mint, nominal or metal
     (see Coin.year_mark, Coin.ruler_mark, Coin.mint_mark, Coin.nominal_mark,
-    Coin.metal_mark)."""
-    kind: Literal["suspect", "erroneous", "approximate"]
+    Coin.metal_mark). «variant» (metal only): a second metal the sources
+    attest for the same coin — shown beside the class's metal, not as an
+    error (curator 2026-11-07, the brass Sechsling 1850, ucoin 187884)."""
+    kind: Literal["suspect", "erroneous", "approximate", "variant"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
     # The year the source printed, when a curator `_source_errata` has replaced
@@ -91,7 +93,7 @@ class YearAlt(_StrictBase):
     Coin.ruler_alts, Coin.mint_alts)."""
     value: str = Field(..., min_length=1)
     source: str = Field(..., min_length=1)
-    kind: Literal["suspect", "erroneous", "approximate"]
+    kind: Literal["suspect", "erroneous", "approximate", "variant"]
     reason: I18nText
 
 
@@ -1270,7 +1272,7 @@ class Coin(_StrictBase):
     # one record carrying both metals (curator 2026-11-07).
     # `copper_nickel`: Hede's «Kobbernikkel» (25 Øre 1913-1919), rendered as
     # a copper-tier coin (curator 2026-11-07).
-    metal: Literal["silver", "gold", "billon", "silver_billon", "copper", "copper_nickel", "lead", "copper_lead", "bronze", "pewter"] | None = None
+    metal: Literal["silver", "gold", "billon", "silver_billon", "copper", "copper_nickel", "lead", "copper_lead", "bronze", "brass", "pewter"] | None = None
     # D49 class identity. `class_id` is the registry's opaque immutable id of
     # the class (data/v2/class_registry/<entity>.yml); `label` is the mutable
     # human-readable name (the `unified-<top-authority member>` string) the
