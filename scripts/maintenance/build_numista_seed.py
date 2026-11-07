@@ -236,11 +236,31 @@ def _resolve_default_entity(canonical: dict[str, Any]) -> str | list[str] | None
 _GENERIC_COUNTRIES = frozenset({"german states", "germany"})
 
 
+_SPACED_DASH = re.compile(r"\s+-\s+")
+
+
+def _split_dash_list(value):
+    """Numista sometimes prints several numbers of one catalogue as one
+    reference joined by spaced dashes — «Lange 69 - 70a - 71a - 73a» (Numista
+    129062). Split those into a list. One spaced dash is a RANGE («Jungk# 366 -
+    371», «Lange 21 - 22») and stays a string; only two or more separators make
+    a list, since a range has exactly one."""
+    if isinstance(value, list):
+        out: list = []
+        for v in value:
+            r = _split_dash_list(v)
+            out.extend(r if isinstance(r, list) else [r])
+        return out
+    if isinstance(value, str) and len(_SPACED_DASH.findall(value)) >= 2:
+        return [p.strip() for p in _SPACED_DASH.split(value) if p.strip()]
+    return value
+
+
 def _filter_catalog(refs: dict[str, str] | None) -> dict[str, str]:
-    """Drop keys not in our schema. Schema validates strict-extra."""
+    """Drop keys not in our schema (strict-extra) and split spaced-dash lists."""
     if not refs:
         return {}
-    return {k: v for k, v in refs.items() if k in _ALLOWED_CATALOG}
+    return {k: _split_dash_list(v) for k, v in refs.items() if k in _ALLOWED_CATALOG}
 
 
 # Country-volume tag Numista appends to a KM when a coin is cross-listed across
