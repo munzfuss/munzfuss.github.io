@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8485 per-source seed entries.
-# Output: 1840 unified entries (one per physical coin).
+# Output: 1839 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -23581,8 +23581,8 @@ coins:
       - denmark-numismaster-64975
       - dk-hede-c4h136
       - ngc-1049775
-  - id: c-7e9eeca5
-    class_id: c-7e9eeca5
+  - id: c-1cd13966
+    class_id: c-1cd13966
     label: unified-dk-hede-c4h137
     fuss: seed_unsorted
     phase: hede
@@ -23622,7 +23622,45 @@ coins:
         source: numista
       - value: 15.6
         source: ucoin
+    metal_alts:
+      - value: silver
+        source: numismaster
+        kind: suspect
+        reason:
+          de: "Kein Ergebnis einer Feingehaltsbestimmung.\n[b]NumisMaster, KM 86[/b]: «Silver» (Hvid 1624-1625), ohne Feingehalt und Gewicht.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København.
+            Kobber.»[/i] (Übers.: «1624, 1625, København. Kupfer.»)."
+          en: "Not the result of a fineness determination.\n[b]NumisMaster, KM 86[/b]: «Silver» (Hvid 1624-1625), no fineness, no weight.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i]
+            (transl.: «1624, 1625, København. Copper.»)."
+          uk: "Не результат визначення проби.\n[b]NumisMaster, KM 86[/b]: «Silver» (Hvid 1624-1625), без проби й ваги.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i] (перекл.:
+            «1624, 1625, København. Мідь.»)."
+          da: "Ikke resultatet af en lødighedsbestemmelse.\n[b]NumisMaster, KM 86[/b]: «Silver» (Hvid 1624-1625), uden lødighed og vægt.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i]."
+      - value: silver
+        source: kmk
+        kind: suspect
+        reason:
+          de: "Kein Ergebnis einer Feingehaltsbestimmung.\n[b]KMM 152243 (Inv. FP 3574.51)[/b]: «sølv» (hvid, H 137), ohne Feingehalt und Gewicht.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København.
+            Kobber.»[/i] (Übers.: «1624, 1625, København. Kupfer.»)."
+          en: "Not the result of a fineness determination.\n[b]KMM 152243 (Inv. FP 3574.51)[/b]: «sølv» (hvid, H 137), no fineness, no weight.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København.
+            Kobber.»[/i] (transl.: «1624, 1625, København. Copper.»)."
+          uk: "Не результат визначення проби.\n[b]KMM 152243 (Inv. FP 3574.51)[/b]: «sølv» (hvid, H 137), без проби й ваги.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i] (перекл.:
+            «1624, 1625, København. Мідь.»)."
+          da: "Ikke resultatet af en lødighedsbestemmelse.\n[b]KMM 152243 (Inv. FP 3574.51)[/b]: «sølv» (hvid, H 137), uden lødighed og vægt.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København.
+            Kobber.»[/i]."
+      - value: silver
+        source: ngc
+        kind: suspect
+        reason:
+          de: "Kein Ergebnis einer Feingehaltsbestimmung.\n[b]NGC, KM 86[/b]: «Silver» (Hvid 1624-1625), ohne Feingehalt und Gewicht.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i]
+            (Übers.: «1624, 1625, København. Kupfer.»)."
+          en: "Not the result of a fineness determination.\n[b]NGC, KM 86[/b]: «Silver» (Hvid 1624-1625), no fineness, no weight.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i]
+            (transl.: «1624, 1625, København. Copper.»)."
+          uk: "Не результат визначення проби.\n[b]NGC, KM 86[/b]: «Silver» (Hvid 1624-1625), без проби й ваги.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i] (перекл.: «1624,
+            1625, København. Мідь.»)."
+          da: "Ikke resultatet af en lødighedsbestemmelse.\n[b]NGC, KM 86[/b]: «Silver» (Hvid 1624-1625), uden lødighed og vægt.\n[b]danskmoent.dk (Hede 137)[/b]: [i]«1624, 1625, København. Kobber.»[/i]."
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_64964
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h137.htm
         ref: danskmoent.dk (Hede c4h137)
@@ -23632,11 +23670,20 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-hvid-1624-1625/?tid=162980
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152243
+        ref: KMM 152243 (Inv. FP 3574.51)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-86-1624-1625-cuid-1059866-duid-1236423
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-64964
       - dk-hede-c4h137
       - dk-numista-197751
       - dk-tid-162980
+      - kmk-152243
+      - ngc-1059866
   - id: c-0f875c99
     class_id: c-0f875c99
     label: unified-dk-hede-c4h138
@@ -139814,45 +139861,6 @@ coins:
       - kmk-740774
       - ngc-1059715
       - ngc-1070538
-  - id: c-1cd13966
-    class_id: c-1cd13966
-    label: unified-ngc-1059866
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1624
-    year_last: 1625
-    year_ranges:
-      -   - 1624
-          - 1625
-    year_label: 1624-1625
-    ruler: Christian IV
-    catalog:
-      km: '86'
-      hede: '137'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_64964
-        ref: NumisMaster
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152243
-        ref: KMM 152243 (Inv. FP 3574.51)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-86-1624-1625-cuid-1059866-duid-1236423
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-64964
-      - kmk-152243
-      - ngc-1059866
   - id: c-39edb171
     class_id: c-39edb171
     label: unified-ngc-1059867
