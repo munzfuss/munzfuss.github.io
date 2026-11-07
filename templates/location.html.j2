@@ -237,6 +237,7 @@
         'copper': ui_get('metal.copper'),
         'lead':   ui_get('metal.lead'),
         'bronze': ui_get('metal.bronze'),
+        'brass':  ui_get('metal.brass'),
         'pewter': ui_get('metal.pewter')
       } -%}
       {#- No «(?)» / «[ ]» on the metal: not useful to the reader (curator
@@ -537,6 +538,8 @@
       'brass':  ui_get('metal.brass')
     } -%}
     {{ metals[coin.raw.metal] if coin.raw.metal in metals else coin.raw.metal }}
+    {%- for a in coin.raw.metal_alts or [] if a.value != coin.raw.metal and a.kind == 'variant' %}, <span class="nw variant-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ (metals[a.value] if a.value in metals else a.value)|lower }}</span>{% endfor -%}
+    {%- for a in coin.raw.metal_alts or [] if a.value != coin.raw.metal and a.kind != 'variant' %} <span class="mint-alt">{{ metals[a.value] if a.value in metals else a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor %}
   </td>
   <td class="c-w{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
