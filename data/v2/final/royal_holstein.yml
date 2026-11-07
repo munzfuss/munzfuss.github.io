@@ -667,16 +667,21 @@ coins:
     year_label: 1640-1643, 1645-1647
     mint: Glückstadt
     catalog:
-      km: '26'
+      km:
+        - '26'
+        - '26.1'
+        - '26.2'
       numista:
         - '154260'
         - '109009'
+        - '154272'
       lange:
         - '48'
         - '49'
         - '50'
         - '51'
         - 51A
+        - 51Ab
         - 51B
     metal: silver
     metal_verified: true
@@ -687,6 +692,8 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: ngc
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
@@ -694,6 +701,15 @@ coins:
       - value: 0.812
         source: numista
         specimen: dk-numista-154260
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-154272
+      - value: 0.812
+        source: ucoin
+        specimen: dk-tid-163618
+      - value: 0.812
+        source: ucoin
+        specimen: dk-tid-163623
     weight_rough_g:
       - value: 1.57
         source: numista
@@ -701,15 +717,35 @@ coins:
       - value: 1.64
         source: numista
         specimen: dk-numista-154260
+      - value: 1.78
+        source: numista
+        specimen: dk-numista-154272
+      - value: 1.785
+        source: ngc
       - value: 1.785
         source: numismaster
+      - value: 1.79
+        source: ucoin
+        specimen: dk-tid-163618
+      - value: 1.79
+        source: ucoin
+        specimen: dk-tid-163623
     diameter_mm:
       - value: 20.0
         source: numista
         specimen: dk-numista-109009
+      - value: 20.2
+        source: numista
+        specimen: dk-numista-154272
       - value: 20.56
         source: numista
         specimen: dk-numista-154260
+      - value: 21.0
+        source: ucoin
+        specimen: dk-tid-163618
+      - value: 21.0
+        source: ucoin
+        specimen: dk-tid-163623
     sources:
       - type: numista
         url: https://en.numista.com/154260
@@ -726,6 +762,12 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_93001
         ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/154272
+        ref: Numista N#154272 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type II)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-26-1640-1647-cuid-1051973-duid-1239794
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV. (Glückstadt 1640–1641, Legend-Typ I) · Mzz. (f) = Monogramm mit Feder und ST-Buchstaben (Münzmeister Simon Timpf, ab 1641 in Glückstadt)
         · Obverse «CHRISTIANUS·IIII·D:G:» mit gekröntem Brustbild im Rope-Circle; Reverse Wertangabe «XVI E:REIS DAL» auf vier Zeilen, Außen «DAN:NO:V:G:Q:REX:1640». Glückstadter Theilstück im 9¼-Fuß 
@@ -15541,77 +15583,6 @@ coins:
       - c-b426bb3d
     label: unified-dk-numista-144810
     origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 3 Skilling Lybsk
-    ruler: Christian IV.
-    issuing_entity: royal_holstein
-    id: c-a7defc2c
-    year_first: 1641
-    year_last: 1646
-    year_ranges:
-      -   - 1641
-          - 1646
-    year_label: 1641-1646
-    mint: Glückstadt
-    catalog:
-      km:
-        - '26'
-        - '26.2'
-      numista: '154272'
-      lange:
-        - 51Ab
-        - 51b
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numista
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.78
-        source: numista
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 20.2
-        source: numista
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/154272
-        ref: Numista N#154272 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type II)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1641-1646/?tid=163623
-        ref: ucoin
-    note:
-      de: Gekröntes Brustbild König Christians IV. im Strickkreis, Umschrift außen; Rüstung und Brustbild in abweichendem Stil / Wertangabe auf vier Zeilen im Strickkreis; Umschrift außen mit 
-        Jahreszahl und Glückstädter Müntzzeichen am Ende
-      en: Crowned bust of King Christian IV within a rope circle, legend outside; the armour and bust style differ / Value on four lines within a rope circle; legend outside with date and Glückstadt 
-        mintmark at the end
-      uk: Короноване погруддя короля Крістіана IV у мотузковому колі, легенда назовні; обладунок і стиль погруддя відмінні / Номінал у чотири рядки в мотузковому колі; легенда назовні з датою й 
-        глюкштадтським монетним знаком у кінці
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-a7defc2c
-    label: unified-dk-numista-154272
-    origin: promoted
   - fuss: 9_thaler
     phase: II
     kind: kurant
@@ -22436,50 +22407,6 @@ coins:
     composed_of:
       - c-e0bdd066
     label: unified-dk-tid-163585
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    ruler: Christian IV
-    issuing_entity: royal_holstein
-    id: c-875cc7e2
-    year_first: 1640
-    year_last: 1641
-    year_ranges:
-      -   - 1640
-          - 1641
-    year_label: 1640-1641
-    catalog:
-      km: '26.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1640-1641/?tid=163618
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    composed_of:
-      - c-875cc7e2
-    label: unified-dk-tid-163618
     origin: promoted
   - fuss: 9_25_thaler
     phase: I
