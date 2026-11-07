@@ -316,7 +316,7 @@ from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
 from lib.gen_stamp import resolve_generated_at
 from lib.seed_merge import _CURATION_MARK_KEYS
-from lib.seed_merge import apply_catalog_marks, apply_mint_mark, apply_ruler_mark
+from lib.seed_merge import apply_catalog_marks, apply_metal_mark, apply_mint_mark, apply_ruler_mark
 
 
 # The Danish Krone is 4 Mark Danske: Hede names the same coin «4 Mark» where
@@ -3309,6 +3309,12 @@ def _collect_mint_alts(members: list[dict]) -> list[dict]:
     return _collect_marked_alts(members, "mint", "mint")
 
 
+def _collect_metal_alts(members: list[dict]) -> list[dict]:
+    """Metal alternatives from members that carry a `metal_mark` (schema
+    Coin.metal_mark); same shape as `_collect_mint_alts`."""
+    return _collect_marked_alts(members, "metal", "metal")
+
+
 def _catalog_values(cat, register: str) -> set[str]:
     v = (cat or {}).get(register) if isinstance(cat, dict) else None
     if v is None:
@@ -5090,6 +5096,9 @@ def build_unified(members: list[dict], unified_id: str,
     mint_alts = _collect_mint_alts(members)
     if mint_alts:
         out["mint_alts"] = mint_alts
+    metal_alts = _collect_metal_alts(members)
+    if metal_alts:
+        out["metal_alts"] = metal_alts
     _apply_catalog_marks_to_class(members, out)
 
     # Sources union
@@ -5464,6 +5473,7 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
                 # An «erroneous» mint mark takes the printed mint out of play
                 # even on a seed hand-marked since its last regen.
                 apply_mint_mark(c)
+                apply_metal_mark(c)
                 apply_ruler_mark(c)
                 apply_catalog_marks(c)
                 coins.append(c)
@@ -5533,6 +5543,7 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
                     apply_mint_mark(c)
+                    apply_metal_mark(c)
                     apply_ruler_mark(c)
                     apply_catalog_marks(c)
                     by_id[c["id"]] = c

@@ -91,6 +91,8 @@ CURATED_FIELDS = frozenset({
     "ruler_mark",
     # Same for the mint (schema Coin.mint_mark → mint_alts).
     "mint_mark",
+    # Same for the metal (schema Coin.metal_mark → metal_alts).
+    "metal_mark",
     # Marks on catalogue numbers (schema CatalogMark → catalog_alts /
     # catalog_unverified on the class).
     "catalog_marks",
@@ -168,6 +170,25 @@ def apply_mint_mark(entry) -> None:
         mark["value"] = ", ".join(printed) if isinstance(printed, list) else str(printed)
     if printed is not None:
         entry["mint"] = None
+
+
+def apply_metal_mark(entry) -> None:
+    """Neutralise a metal the curator marked «erroneous» (schema
+    Coin.metal_mark) — the metal-column analogue of `apply_mint_mark`: the
+    printed metal moves into `metal_mark.value` (shown as a `metal_alts` entry
+    with «(!)») and `metal` is cleared with `metal_verified` false, so the
+    merger's metal matching and its verified-vs-verified conflict check never
+    see it (curator 2026-11-07, KMM 152038 «kobber»). Idempotent. A «suspect»
+    mark changes nothing here."""
+    mark = entry.get("metal_mark")
+    if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
+        return
+    printed = entry.get("metal")
+    if printed and not mark.get("value"):
+        mark["value"] = str(printed)
+    if printed is not None:
+        entry["metal"] = None
+        entry["metal_verified"] = False
 
 
 def apply_ruler_mark(entry) -> None:
@@ -854,6 +875,7 @@ def merge_seed(
         if isinstance(c, dict):
             apply_source_errata(c)
             apply_mint_mark(c)
+            apply_metal_mark(c)
             apply_ruler_mark(c)
             apply_catalog_marks(c)
 
