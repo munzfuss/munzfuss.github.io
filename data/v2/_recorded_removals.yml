@@ -4976,3 +4976,17 @@ removals:
     dropped:
       - 97-102
     reason: 'Curator 2026-11-06 («Так, прибери»): Hede prints this range for the whole page, all values together («Hede 63A-F, Schou 15-17, 20-21, 26-27, 29, Sieg 97-102»); it does not say which number belongs to which letter. The page seed (dk-hede-c4h63) is now split per letter (build_hede_denmark_seed._MULTI_VALUE_PAGES) and the range stays off the single-value coins.'
+  - seed: dk-numista-114189
+    kind: field
+    field: diameter_mm
+    dropped:
+      - source: ikmk
+        value: 36.0
+    reason: 'Curator 2026-11-07 («Так, роби»): the reading belongs to IKMK 18200855, a Taler 1553 of Albrecht II Alcibiades, Schweinfurt, not to this Hamburg thaler; it reached the Hamburg final through an old _unclassified over-merge (Numista seed + unrelated IKMK seed on nominal + year) and stayed by self-union. The IKMK seed now stands alone in _unclassified.'
+  - seed: dk-numista-177059
+    kind: field
+    field: diameter_mm
+    dropped:
+      - source: ikmk
+        value: 41.0
+    reason: 'Curator 2026-11-07 («Так, роби»): the reading belongs to IKMK 18306115, a Taler 1582, Klagenfurt, not to this Hamburg thaler; it reached the Hamburg final through an old _unclassified over-merge (Numista seed + unrelated IKMK seed on nominal + year) and stayed by self-union. The IKMK seed now stands alone in _unclassified.'

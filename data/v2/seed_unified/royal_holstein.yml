@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1142 per-source seed entries.
-# Output: 294 unified entries (one per physical coin).
+# Input: 1157 per-source seed entries.
+# Output: 291 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -12121,138 +12121,251 @@ coins:
       - dk-hede-f6h2
       - dk-numista-309018
       - dk-tid-133224
-  - id: c-7666875c
-    class_id: c-7666875c
-    label: unified-dk-hede-f6h24c
+  - id: c-114c159c
+    class_id: c-114c159c
+    label: unified-dk-hede-f6h24a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Rigsbankdaler
     year_first: 1813
-    year_last: 1813
-    year_label: '1813'
+    year_last: 1819
+    year_ranges:
+      -   - 1813
+          - 1813
+      -   - 1818
+          - 1819
+    year_label: 1813, 1818-1819
     ruler: Frederik VI
-    mint: Altona
+    mintmaster: Ole Varberg
+    mint:
+      - Altona
+      - Kopenhagen
     catalog:
-      hede: 24C
+      km:
+        - '683.2'
+        - '683.4'
+        - '683.5'
+        - '683.3'
+        - '683.1'
+        - '683'
+      hede:
+        - 24A
+        - 24B
+        - 24C
+        - 24D
+        - 24E
       hede_volume: f6h
-      schou: '3'
-      sieg: '26.3'
+      schou:
+        - '1'
+        - '2'
+        - '3'
+      sieg:
+        - '26.1'
+        - '26.2'
+        - '26.3'
+        - '26.4'
+        - '26.5'
+      bruun_collection_id:
+        - '8026'
+        - '8044'
+      bruun_part: IV
+      bruun_lot_no: 17150
+      bruun_page: 91
+      numista: '22803'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.875
         source: hede
-    weight_rough_g:
-      - value: 14.447
-        source: hede
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h24.htm
-        ref: danskmoent.dk (Hede f6h24C)
-    issuing_entity: royal_holstein
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-    composed_of:
-      - dk-hede-f6h24c
-  - id: c-b836e677
-    class_id: c-b836e677
-    label: unified-dk-hede-f6h24d
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Rigsbankdaler
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    ruler: Frederik VI
-    mintmaster: Cajus Branth (C
-    mint: Altona
-    catalog:
-      km: '683.4'
-      hede: 24D
-      hede_volume: f6h
-      schou: '1'
-      sieg: '26.4'
-      bruun_collection_id: '8044'
-      bruun_part: III
-      bruun_lot_no: 11299
-      bruun_page: 149
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
+        specimen: dk-hede-f6h24a
       - value: 0.875
         source: hede
+        specimen: dk-hede-f6h24b
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h24c
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h24d
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h24e
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050318
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050447
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051047
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1069089
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1069090
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66045
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66046
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66047
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66048
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66049
+      - value: 0.875
+        source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
       - value: 14.43
         source: bruun
       - value: 14.447
         source: hede
+        specimen: dk-hede-f6h24a
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h24b
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h24c
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h24d
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h24e
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1050318
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1050447
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051047
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1069089
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1069090
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66045
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66046
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66047
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66048
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66049
+      - value: 14.447
+        source: numista
+      - value: 14.45
+        source: ucoin
+      - value: 14.48
+        source: bruun
+    diameter_mm:
+      - value: 30.0
+        source: ucoin
+      - value: 31.0
+        source: numista
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_66045
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66046
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66047
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66048
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66049
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17150, p. 75
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11299, p. 131
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h24.htm
-        ref: danskmoent.dk (Hede f6h24D)
-    issuing_entity: royal_holstein
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-    composed_of:
-      - dk-bruun-8044
-      - dk-hede-f6h24d
-  - id: c-360dad35
-    class_id: c-360dad35
-    label: unified-dk-hede-f6h24e
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Rigsbankdaler
-    year_first: 1819
-    year_last: 1819
-    year_label: '1819'
-    ruler: Frederik VI
-    mint: Altona
-    catalog:
-      hede: 24E
-      hede_volume: f6h
-      schou: '2'
-      sieg: '26.5'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-    weight_rough_g:
-      - value: 14.447
-        source: hede
-    sources:
+        ref: danskmoent.dk (Hede f6h24A)
       - type: literature
-        url: https://www.danskmoent.dk/fr/f6h24.htm
-        ref: danskmoent.dk (Hede f6h24E)
-    issuing_entity: royal_holstein
+        url: https://en.numista.com/22803
+        ref: Numista N#22803 — 1 Rigsbankdaler - Frederik VI
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1813-1819/?tid=70758
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/576954
+        ref: KMM 576954 (Inv. RP 1255.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-683.4-1818-cuid-1050318-duid-1238277
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-683.5-1819-cuid-1050447-duid-1238278
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-683.3-1813-cuid-1051047-duid-1238276
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-683.1-1813-cuid-1069089-duid-1238274
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-683.2-1813-cuid-1069090-duid-1238275
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     hede_muentzfuss_yield:
       value: 18.5
       unit: rigsbankdaler
       basis: fin
     composed_of:
+      - denmark-numismaster-66045
+      - denmark-numismaster-66046
+      - denmark-numismaster-66047
+      - denmark-numismaster-66048
+      - denmark-numismaster-66049
+      - dk-bruun-8026
+      - dk-bruun-8044
+      - dk-hede-f6h24a
+      - dk-hede-f6h24b
+      - dk-hede-f6h24c
+      - dk-hede-f6h24d
       - dk-hede-f6h24e
+      - dk-numista-22803
+      - dk-tid-70758
+      - kmk-576954
+      - ngc-1050318
+      - ngc-1050447
+      - ngc-1051047
+      - ngc-1069089
+      - ngc-1069090
   - id: c-5b380645
     class_id: c-5b380645
     label: unified-dk-hede-f6h25
@@ -15413,49 +15526,6 @@ coins:
       - dk-numista-204200
       - dk-tid-163641
       - schleswig_holstein-numismaster-93011
-  - id: c-f3a5551f
-    class_id: c-f3a5551f
-    label: unified-dk-numista-22803
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 6 Rigsdaler courant
-    year_first: 1813
-    year_last: 1819
-    year_ranges:
-      -   - 1813
-          - 1819
-    year_label: 1813-1819
-    ruler: Frederik VI
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km: '683'
-      numista: '22803'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 14.447
-        source: numista
-    diameter_mm:
-      - value: 31.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/22803
-        ref: Numista N#22803 — 1 Rigsbankdaler - Frederik VI
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-22803
   - id: c-2067c665
     class_id: c-2067c665
     label: unified-dk-numista-24422
