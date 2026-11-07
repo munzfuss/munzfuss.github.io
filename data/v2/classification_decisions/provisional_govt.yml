@@ -1,0 +1,44 @@
+# Classification decisions for entity `provisional_govt` (Phase 4).
+# Curator-authoritative file (committed). Two sections:
+#
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
+#    Example:
+#      assignments:
+#        - coin_id: dk-numismaster-12345
+#          fuss: 9_25_thaler
+#          phase: A
+#          kind: kurant
+#          reason: 'specimen Δ ambiguous; per Hede assignment'
+#
+# 2. `pending:` — auto-populated diagnostic list of unified
+#    entries with no match in current final. Curator either:
+#    moves an entry to `assignments:` with classification,
+#    OR fixes the matcher rules so the coin gets absorbed,
+#    OR confirms it's a genuinely new coin needing addition
+#    (will be auto-routed by §8a once that's built).
+#
+# This file is REGENERATED on every absorb run for the
+# `pending:` section; existing `assignments:` entries are
+# preserved.
+
+entity_id: provisional_govt
+generated_at: '2026-11-07'
+assignments:
+  - coin_id: dk-hede-f7h20
+    fuss: 9_25_thaler
+    phase: IV
+    kind: scheide
+    reason: 'Curator (Serhii) 2026-11-07: 1 Dreiling 1850, KM 160, rebel government coinage; the classification of the pre-V2 record it replaces (9_25_thaler IV, scheide).'
+  - coin_id: dk-hede-f7h19
+    fuss: 9_25_thaler
+    phase: IV
+    kind: scheide
+    reason: 'Curator (Serhii) 2026-11-07: 1 Sechsling 1850-1851, KM 162, rebel government coinage; the classification of the pre-V2 record it replaces (9_25_thaler IV, scheide).'
+pending: []
+multi_match_warnings: []

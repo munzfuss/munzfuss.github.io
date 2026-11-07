@@ -13,6 +13,18 @@ coins:
     year_first: 1850
     year_last: 1850
     year_label: '1850'
+    ruler_alts:
+      - value: Frederik VII.
+        source: hede
+        kind: erroneous
+        reason:
+          de: 'Kein Gepräge Frederiks VII. danskmoent.dk (Hede 20) führt die Münze unter «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (dt.: «Im Dreijährigen
+            Krieg 1848–50 prägte die Aufstandsregierung in Schleswig-Holstein eigene Münzen»).'
+          en: "Not a coinage of Frederik VII. danskmoent.dk (Hede 20) lists the coin under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (transl.: «During
+            the Three Years' War 1848–50 the rebel government in Schleswig-Holstein struck its own coins»)."
+          uk: 'Не карбування Frederik VII. danskmoent.dk (Hede 20) подає монету під «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (перекл.: «Під час
+            Трирічної війни 1848–50 повстанський уряд у Шлезвіг-Гольштейні карбував власні монети»).'
+          da: 'Ikke en mønt fra Frederik 7. danskmoent.dk (Hede 20) fører mønten under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter».'
     mint: Altona
     catalog:
       km: '160'
@@ -22,6 +34,12 @@ coins:
         - Jaeg 6 NWD# 15
         - Kahnt/Schön# 1
         - C# 23
+      hede: '20'
+      hede_volume: f7h
+      schou: '3'
+      sieg:
+        - '21'
+        - '2016'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -30,9 +48,24 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.436
+        source: danskmoent.dk (Hede 20)
+        suspect:
+          de: 'Halbes Gewicht. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g» (dt.: «Gewicht: Hede (und Sieg 2016) geben
+            2,436 g an, aber das stimmt nicht. Ein Stück in unserer Sammlung wiegt 4,83 g»). «Det virker som om Hede har angivet den halve vægt» (dt.: «Es scheint, als habe Hede das halbe Gewicht angegeben»).'
+          en: 'Half the weight. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g» (transl.: «Weight: Hede (and Sieg 2016)
+            give 2.436 g, but that is not right. A specimen in our collection weighs 4.83 g»). «Det virker som om Hede har angivet den halve vægt» (transl.: «It seems that Hede has given half the weight»).'
+          uk: 'Половинна вага. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g» (перекл.: «Вага: Hede (і Sieg 2016) подає
+            2,436 г, але це не так. Примірник у нашій збірці важить 4,83 г»). «Det virker som om Hede har angivet den halve vægt» (перекл.: «Схоже, Hede подав половинну вагу»).'
+          da: 'Den halve vægt. danskmoent.dk (Hede 20): «Vægt: Hede (og Sieg 2016) angiver 2,436g, men det stemmer ikke. Et eksemplar i vor samling vejer 4,83g». «Det virker som om Hede har angivet den
+            halve vægt».'
+      - value: 4.83
+        source: numista
       - value: 4.83
         source: ucoin
     diameter_mm:
+      - value: 22.64
+        source: numista
       - value: 22.64
         source: ucoin
     sources:
@@ -42,6 +75,18 @@ coins:
       - type: numista
         url: https://en.numista.com/catalogue/pieces39944.html
         ref: Numista
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h20.htm
+        ref: danskmoent.dk (Hede f7h20)
+      - type: literature
+        url: https://en.numista.com/39944
+        ref: Numista N#39944 — 1 Dreiling (Provisional Government Coinage)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-dreiling-km-160-1850-cuid-1207931-duid-1406946
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120091
+        ref: NumisMaster
     note:
       de: Provisorische Regierung Schleswig-Holsteins (1848–1851) · letzte Münzprägung der eigenständigen Verwaltung
       en: Provisional Government of Schleswig-Holstein (1848–1851) · last mint of the autonomous administration
@@ -50,7 +95,8 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of: []
+    composed_of:
+      - c-10ce0871
     label: km-160-1850
     origin: foundation
     v1_home_location: schleswig_holstein
@@ -67,6 +113,18 @@ coins:
       -   - 1850
           - 1851
     year_label: 1850-1851
+    ruler_alts:
+      - value: Frederik VII.
+        source: hede
+        kind: erroneous
+        reason:
+          de: 'Kein Gepräge Frederiks VII. danskmoent.dk (Hede 19) führt die Münze unter «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (dt.: «Im Dreijährigen
+            Krieg 1848–50 prägte die Aufstandsregierung in Schleswig-Holstein eigene Münzen»).'
+          en: "Not a coinage of Frederik VII. danskmoent.dk (Hede 19) lists the coin under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (transl.: «During
+            the Three Years' War 1848–50 the rebel government in Schleswig-Holstein struck its own coins»)."
+          uk: 'Не карбування Frederik VII. danskmoent.dk (Hede 19) подає монету під «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (перекл.: «Під час
+            Трирічної війни 1848–50 повстанський уряд у Шлезвіг-Гольштейні карбував власні монети»).'
+          da: 'Ikke en mønt fra Frederik 7. danskmoent.dk (Hede 19) fører mønten under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter».'
     mint: Altona
     catalog:
       km: '162'
@@ -75,6 +133,14 @@ coins:
         - AKS# 13
         - Jaeg 6 NWD# 16
         - Kahnt/Schön# 2
+      hede: '19'
+      hede_volume: f7h
+      schou:
+        - '2'
+        - '5'
+      sieg:
+        - '22'
+        - '2016'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -83,11 +149,29 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 4.872
+        source: danskmoent.dk (Hede 19)
+        suspect:
+          de: 'Halbes Gewicht. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g» (dt.: «Gewicht: Hede (und
+            Sieg 2016) geben 4,872 g an, aber das stimmt nicht; drei von uns gewogene Stücke wiegen 9,60 g, 9,62 g und 10,05 g»). «Det virker som om Hede har angivet den halve vægt» (dt.: «Es scheint, als
+            habe Hede das halbe Gewicht angegeben»).'
+          en: 'Half the weight. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g» (transl.: «Weight: Hede
+            (and Sieg 2016) give 4.872 g, but that is not right; three specimens we weighed weigh 9.60 g, 9.62 g and 10.05 g»). «Det virker som om Hede har angivet den halve vægt» (transl.: «It seems that
+            Hede has given half the weight»).'
+          uk: 'Половинна вага. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g» (перекл.: «Вага: Hede (і
+            Sieg 2016) подає 4,872 г, але це не так; три зважені нами примірники важать 9,60 г, 9,62 г і 10,05 г»). «Det virker som om Hede har angivet den halve vægt» (перекл.: «Схоже, Hede подав половинну
+            вагу»).'
+          da: 'Den halve vægt. danskmoent.dk (Hede 19): «Vægt: Hede (og Sieg 2016) angiver 4,872g, men det stemmer ikke; 3 af os vejede eksemplarer vejer 9,60g, 9,62g og 10,05g». «Det virker som om Hede
+            har angivet den halve vægt».'
+      - value: 9.5
+        source: numista
       - value: 9.5
         source: ucoin
     diameter_mm:
       - value: 27.0
         source: ucoin
+      - value: 27.1
+        source: numista
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850-1851/?tid=90814
@@ -98,6 +182,18 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850/?tid=187884
         ref: ucoin tid 187884 (UC# 100)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h19.htm
+        ref: danskmoent.dk (Hede f7h19)
+      - type: literature
+        url: https://en.numista.com/19525
+        ref: Numista N#19525 — 1 Sechsling (Provisional Government Coinage)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sechsling-km-162-1850-1851-cuid-1207932-duid-1390941
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120092
+        ref: NumisMaster
     note:
       de: Zwei Jahrgänge (1850, 1851) · Provisorische Regierung Schleswig-Holsteins
       en: Two year issues (1850, 1851) · Provisional Government of Schleswig-Holstein
@@ -106,7 +202,8 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of: []
+    composed_of:
+      - c-aeda0c4e
     label: km-162-1850
     origin: foundation
     v1_home_location: schleswig_holstein
