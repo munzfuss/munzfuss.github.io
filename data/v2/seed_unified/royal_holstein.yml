@@ -2,7 +2,7 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1172 per-source seed entries.
+# Input: 1178 per-source seed entries.
 # Output: 291 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -8939,8 +8939,8 @@ coins:
         - '726.1'
         - '726'
       hede:
-        - 11aA
-        - 11aB
+        - 11A
+        - 11B
       hede_volume: c8h
       schou:
         - '10'
@@ -9646,13 +9646,12 @@ coins:
       km:
         - '721.1'
         - '721.3'
+        - '721.2'
         - '721'
       hede:
         - 8A
+        - 8B
         - 8C
-        - 8bA
-        - 8bB
-        - 8bC
       hede_volume: c8h
       schou:
         - '3'
@@ -9687,10 +9686,30 @@ coins:
         source: hede
         specimen: dk-hede-c8h8bc
       - value: 0.25
+        source: ngc
+        specimen: ngc-1050418
+      - value: 0.25
+        source: ngc
+        specimen: ngc-1050465
+      - value: 0.25
+        source: ngc
+        specimen: ngc-1050981
+      - value: 0.25
         source: numismaster
+        specimen: denmark-numismaster-66012
+      - value: 0.25
+        source: numismaster
+        specimen: denmark-numismaster-66013
+      - value: 0.25
+        source: numismaster
+        specimen: denmark-numismaster-66016
       - value: 0.25
         source: numista
+      - value: 0.25
+        source: ucoin
     weight_rough_g:
+      - value: 1.7
+        source: ucoin
       - value: 1.856
         source: hede
         specimen: dk-hede-c8h8ba
@@ -9701,13 +9720,40 @@ coins:
         source: hede
         specimen: dk-hede-c8h8bc
       - value: 1.856
+        source: ngc
+        specimen: ngc-1050418
+      - value: 1.856
+        source: ngc
+        specimen: ngc-1050465
+      - value: 1.856
+        source: ngc
+        specimen: ngc-1050981
+      - value: 1.856
         source: numismaster
+        specimen: denmark-numismaster-66012
+      - value: 1.856
+        source: numismaster
+        specimen: denmark-numismaster-66013
+      - value: 1.856
+        source: numismaster
+        specimen: denmark-numismaster-66016
       - value: 1.856
         source: numista
     diameter_mm:
       - value: 17.0
+        source: ngc
+        specimen: ngc-1050418
+      - value: 17.0
         source: numista
+      - value: 17.0
+        source: ucoin
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_66012
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66013
+        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_66016
         ref: NumisMaster
@@ -9723,6 +9769,18 @@ coins:
       - type: literature
         url: https://en.numista.com/19002
         ref: Numista N#19002 — 4 Rigsbankskilling / 1¼ Schilling Courant - Christian VIII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-4-rigsbankskilling-1841-1842/?tid=70753
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.2-1842-cuid-1050418-duid-1238228
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.3-1842-cuid-1050465-duid-1238229
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.1-1841-cuid-1050981-duid-1238227
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity:
       - danish_realm
       - royal_holstein
@@ -9732,6 +9790,8 @@ coins:
       basis: fin
       unit_raw: rigsbankdalere
     composed_of:
+      - denmark-numismaster-66012
+      - denmark-numismaster-66013
       - denmark-numismaster-66016
       - dk-bruun-8138
       - dk-bruun-8152
@@ -9739,6 +9799,10 @@ coins:
       - dk-hede-c8h8bb
       - dk-hede-c8h8bc
       - dk-numista-19002
+      - dk-tid-70753
+      - ngc-1050418
+      - ngc-1050465
+      - ngc-1050981
   - id: c-28391585
     class_id: c-28391585
     label: unified-dk-hede-c8h9

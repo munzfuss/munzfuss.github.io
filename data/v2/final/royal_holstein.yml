@@ -3141,6 +3141,7 @@ coins:
         - '721.3'
         - '721'
         - '721.1'
+        - '721.2'
       bruun_collection_id:
         - '8152'
         - '8138'
@@ -3158,10 +3159,8 @@ coins:
         - '6'
       hede:
         - 8A
+        - 8B
         - 8C
-        - 8bA
-        - 8bB
-        - 8bC
       numista: '19002'
     metal: billon
     metal_verified: true
@@ -3181,10 +3180,30 @@ coins:
         source: hede
         specimen: dk-hede-c8h8bc
       - value: 0.25
+        source: ngc
+        specimen: ngc-1050418
+      - value: 0.25
+        source: ngc
+        specimen: ngc-1050465
+      - value: 0.25
+        source: ngc
+        specimen: ngc-1050981
+      - value: 0.25
         source: numismaster
+        specimen: denmark-numismaster-66012
+      - value: 0.25
+        source: numismaster
+        specimen: denmark-numismaster-66013
+      - value: 0.25
+        source: numismaster
+        specimen: denmark-numismaster-66016
       - value: 0.25
         source: numista
+      - value: 0.25
+        source: ucoin
     weight_rough_g:
+      - value: 1.7
+        source: ucoin
       - value: 1.856
         source: hede
         specimen: dk-hede-c8h8ba
@@ -3195,12 +3214,33 @@ coins:
         source: hede
         specimen: dk-hede-c8h8bc
       - value: 1.856
+        source: ngc
+        specimen: ngc-1050418
+      - value: 1.856
+        source: ngc
+        specimen: ngc-1050465
+      - value: 1.856
+        source: ngc
+        specimen: ngc-1050981
+      - value: 1.856
         source: numismaster
+        specimen: denmark-numismaster-66012
+      - value: 1.856
+        source: numismaster
+        specimen: denmark-numismaster-66013
+      - value: 1.856
+        source: numismaster
+        specimen: denmark-numismaster-66016
       - value: 1.856
         source: numista
     diameter_mm:
       - value: 17.0
+        source: ngc
+        specimen: ngc-1050418
+      - value: 17.0
         source: numista
+      - value: 17.0
+        source: ucoin
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -3217,6 +3257,24 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17176, p. 83
+      - type: literature
+        url: https://numismaster.com/MC_66012
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66013
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-4-rigsbankskilling-1841-1842/?tid=70753
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.2-1842-cuid-1050418-duid-1238228
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.3-1842-cuid-1050465-duid-1238229
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.1-1841-cuid-1050981-duid-1238227
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 4 Rigsbankskilling 1842 (KM-721.3) · Scheidemünze nach der Forordning 18. Dez. 1841
       en: 4 Rigsbankskilling 1842 (KM-721.3) · petty coin per the Forordning of 18 Dec. 1841
@@ -18639,67 +18697,6 @@ coins:
       - c-60e98e1b
     label: unified-ikmk-18204859
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: II
-    kind: scheide
-    fraction: 1/24
-    nominal: 4 Rigsbankskilling = 1¼ Schilling Courant
-    ruler: Christian VIII.
-    issuing_entity:
-      - danish_realm
-      - royal_holstein
-    id: km-721-chr-v-1841
-    year_first: 1841
-    year_last: 1842
-    year_ranges:
-      -   - 1841
-          - 1842
-    year_label: 1841-1842
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km: '721'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ucoin
-    weight_rough_g:
-      - value: 1.7
-        source: ucoin
-    diameter_mm:
-      - value: 17.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-4-rigsbankskilling-1841-1842/?tid=70753
-        ref: ucoin
-      - type: web
-        url: https://www.infinitycoins.com/Products/1842-denmark-4-rigsbankskilling-1-schilling-courant--christian-viii.aspx
-        ref: Infinity Coins
-      - type: web
-        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.2-1842-cuid-1050418-duid-1238228
-        ref: NGC
-    note:
-      de: Systematische dual-Denomination ab 1841 · 4 RBS = 1/24 Rigsbankdaler · 1¼ Sch.C. = 1/48 Thaler Species
-      en: Systematische dual denomination from 1841 · 4 RBS = 1/24 Rigsbankdaler · 1¼ Sch.C. = 1/48 Thaler Species
-      uk: Systematische подвійна деномінація з 1841 · 4 RBS = 1/24 Rigsbankdaler · 1¼ Sch.C. = 1/48 Thaler Species
-    verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-      da: 'ucoin-seed (V1-overførsel): V1-kuratorpost fra før cachen, uden cache-dækning.'
-    composed_of: []
-    label: km-721-chr-v-1841
-    origin: foundation
-    v1_home_location: schleswig_holstein
-    _migration_note: auto-mapped from gesamtstaat (joint-mint)
   - fuss: 11_333_thaler
     phase: I
     kind: scheide
@@ -20639,8 +20636,8 @@ coins:
         - '726.1'
         - '726.2'
       hede:
-        - 11aA
-        - 11aB
+        - 11A
+        - 11B
       hede_volume: c8h
       schou:
         - '10'

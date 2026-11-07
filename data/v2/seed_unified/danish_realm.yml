@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8497 per-source seed entries.
-# Output: 1871 unified entries (one per physical coin).
+# Input: 8491 per-source seed entries.
+# Output: 1868 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -45592,8 +45592,8 @@ coins:
         - '421'
       hede:
         - '112'
-        - 112aA
-        - 112aB
+        - 112A
+        - 112B
       hede_volume: c5h
       schou:
         - 40-42
@@ -90958,9 +90958,7 @@ coins:
       km:
         - '578.1'
         - '578'
-      hede:
-        - 37A
-        - 37bA
+      hede: 37A
       hede_volume: f5h
       schou:
         - '3'
@@ -91056,9 +91054,7 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '578.2'
-      hede:
-        - 37B
-        - 37bB
+      hede: 37B
       hede_volume: f5h
       schou:
         - '13'
@@ -133595,51 +133591,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050413
-  - id: c-6ffbb5e0
-    class_id: c-6ffbb5e0
-    label: unified-ngc-1050418
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Rigsbankskilling
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    ruler: Christian VIII
-    mint: Kopenhagen
-    catalog:
-      km: '721.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ngc
-      - value: 0.25
-        source: numismaster
-    weight_rough_g:
-      - value: 1.856
-        source: ngc
-      - value: 1.856
-        source: numismaster
-    diameter_mm:
-      - value: 17.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66013
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.2-1842-cuid-1050418-duid-1238228
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-66013
-      - ngc-1050418
   - id: c-10a69c33
     class_id: c-10a69c33
     label: unified-ngc-1050419
@@ -133962,39 +133913,6 @@ coins:
       - denmark-numismaster-66100
       - dk-tid-130481
       - ngc-1050450
-  - id: c-502c166d
-    class_id: c-502c166d
-    label: unified-ngc-1050465
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Rigsbankskilling
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    ruler: Christian VIII
-    catalog:
-      km: '721.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ngc
-    weight_rough_g:
-      - value: 1.856
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.3-1842-cuid-1050465-duid-1238229
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1050465
   - id: c-f262cfdc
     class_id: c-f262cfdc
     label: unified-ngc-1050470
@@ -136452,64 +136370,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050965
-  - id: c-ed0d13a7
-    class_id: c-ed0d13a7
-    label: unified-ngc-1050981
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Rigsbankskilling
-    year_first: 1841
-    year_last: 1842
-    year_ranges:
-      -   - 1841
-          - 1842
-    year_label: 1841-1842
-    ruler: Christian VIII
-    mint: Kopenhagen
-    catalog:
-      km:
-        - '721.1'
-        - '721'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ngc
-      - value: 0.25
-        source: numismaster
-      - value: 0.25
-        source: ucoin
-    weight_rough_g:
-      - value: 1.7
-        source: ucoin
-      - value: 1.856
-        source: ngc
-      - value: 1.856
-        source: numismaster
-    diameter_mm:
-      - value: 17.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66012
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-4-rigsbankskilling-1841-1842/?tid=70753
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-4-rigsbankskilling-km-721.1-1841-cuid-1050981-duid-1238227
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-66012
-      - dk-tid-70753
-      - ngc-1050981
   - id: c-bc09ec5d
     class_id: c-bc09ec5d
     label: unified-ngc-1051027
