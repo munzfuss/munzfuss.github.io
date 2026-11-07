@@ -6791,6 +6791,16 @@ def process_entity(entity_id: str,
             if _dump:
                 import json as _json
                 with open(_dump, "a") as _fh:
+                    if os.environ.get("HEDE_BASE_DUMP_JOINED"):
+                        for _jg in hede_base_joined:
+                            _fh.write(_json.dumps({
+                                "entity": entity_id, "joined": True,
+                                "classes": {r: [
+                                    {"id": m, "nominal": (seeds_by_id.get(m) or {}).get("nominal"),
+                                     "metal": (seeds_by_id.get(m) or {}).get("metal"),
+                                     "metal_verified": (seeds_by_id.get(m) or {}).get("metal_verified")}
+                                    for m in uf._class_members(uf.find(r))] for r in _jg},
+                            }, ensure_ascii=False, default=str) + "\n")
                     for _rf in hede_base_refused:
                         _fh.write(_json.dumps({
                             "entity": entity_id, "why": _rf["why"],
