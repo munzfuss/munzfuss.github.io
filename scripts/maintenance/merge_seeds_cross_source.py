@@ -2286,6 +2286,9 @@ def _hede_base_groups(uf, seeds_by_id, entity_id):
         if all(m in uf.isolated or m in _excl for m in members):
             continue
         bases: dict[str, set] = defaultdict(set)
+        # Hede series of the members giving each base (`_hede_series`: Norge,
+        # Danish volumes, a section such as Wolfenbüttel; None = unknown).
+        series: dict[tuple, set] = defaultdict(set)
         noms, metals = [], []
         for mid in members:
             c = seeds_by_id.get(mid)
@@ -2298,13 +2301,17 @@ def _hede_base_groups(uf, seeds_by_id, entity_id):
                     m = _HEDE_BASE_TOKEN.match(tok)
                     if m:
                         bases[k].add(m.group(1))
+                        _s = _hede_series(c)
+                        if _s:
+                            series[(k, m.group(1))].add(_s)
             n = _normalise_nominal(c.get("nominal"))
             if n and n != "(?)":
                 noms.append(n)
             mt = c.get("metal")
             if mt:
                 metals.append("silver" if mt in _SILVER_BILLON else mt)
-        info[root] = {"bases": bases, "nominal": _class_majority(noms),
+        info[root] = {"bases": bases, "series": series,
+                      "nominal": _class_majority(noms),
                       "metal": _class_majority(metals)}
         for k, bs in bases.items():
             for b in bs:
@@ -2317,12 +2324,23 @@ def _hede_base_groups(uf, seeds_by_id, entity_id):
             par[x] = par[par[x]]
             x = par[x]
         return x
-    for roots in key_roots.values():
-        rs = sorted(roots)
+    def link(rs):
+        rs = sorted(rs)
         for r in rs[1:]:
             a, b = f(rs[0]), f(r)
             if a != b:
                 par[max(a, b)] = min(a, b)
+    # One base number in two Hede series (Norge 39 and Danish 39, Danish 6
+    # and Wolfenbüttel 6) names two coins: link classes only within their
+    # series, and leave a class of unknown series out, since it cannot be
+    # told which one it belongs to (curator 2026-11-07, type Ж).
+    for key, roots in key_roots.items():
+        present = set().union(*(info[r]["series"].get(key, set()) for r in roots))
+        if len(present) <= 1:
+            link(roots)
+            continue
+        for s in present:
+            link([r for r in roots if s in info[r]["series"].get(key, set())])
     groups: dict[str, list] = defaultdict(list)
     for r in par:
         groups[f(r)].append(r)

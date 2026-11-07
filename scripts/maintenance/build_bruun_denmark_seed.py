@@ -1003,6 +1003,13 @@ _BRUUN_LOT_MINT_MARKS: dict[tuple[int, int], dict] = {
               "(«møntstedet Altona/Poppenbüttel»), og L. E. Bruuns Mønt- og Medaillesamling (1928, s. 239) fører netop "
               "dette stykke, Bruun 7892, under «1788 ALTONA».",
     }},
+    # Curator 2026-11-07 (Hede-base type Ж): the Norwegian Speciedaler 1765.
+    (2, 14114): {"kind": "erroneous", "reason": {
+        "de": 'Falsche Münzstätte. Bruun Part II (Los 14114) druckt «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint» («Münzstätte København»), doch Hede Norge 1 (danskmoent) nennt «1 Speciedaler 1765, Kongsberg».',
+        "en": 'Wrong mint. Bruun Part II (lot 14114) prints «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint», but Hede Norge 1 (danskmoent) gives «1 Speciedaler 1765, Kongsberg».',
+        "uk": 'Помилкове місце карбування. Bruun Part II (лот 14114) друкує «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint» («монетний двір København»), але Hede Norge 1 (danskmoent) подає «1 Speciedaler 1765, Kongsberg».',
+        "da": 'Forkert møntsted. Bruun Part II (lot 14114) trykker «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint» («møntstedet København»), men Hede Norge 1 (danskmoent) angiver «1 Speciedaler 1765, Kongsberg».',
+    }},
 }
 
 

@@ -2,7 +2,7 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 2743 per-source seed entries.
+# Input: 2744 per-source seed entries.
 # Output: 575 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -5296,7 +5296,6 @@ coins:
         - Thesen# 144
       skaare: '552'
       numista: '118991'
-      hede: '1'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5327,6 +5326,20 @@ coins:
     diameter_mm:
       - value: 25.0
         source: numista
+    catalog_alts:
+      - register: hede
+        value: '1'
+        source: numista
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]Bruun Part I, lot 1206[/b]: [i]«1/8 Speciedaler, 1660. Christiania Mint … KM-60; Hede-cf. 1»[/i].\n[b]danskmoent.dk (Hede, Frederik 3.)[/b],
+            Übersicht: [i]«N1 1 Dukat Guld 1660 Christiania»[/i], [i]«Formentlig ikke en mønt, men et guldafslag af dukatvægt»[/i] (Übers.: «Möglicherweise keine Münze, sondern ein Goldabschlag im Dukatengewicht»)."
+          en: "The Hede number does not belong to this coin.\n[b]Bruun Part I, lot 1206[/b]: [i]«1/8 Speciedaler, 1660. Christiania Mint … KM-60; Hede-cf. 1»[/i].\n[b]danskmoent.dk (Hede, Frederik 3.)[/b],
+            overview: [i]«N1 1 Dukat Guld 1660 Christiania»[/i], [i]«Formentlig ikke en mønt, men et guldafslag af dukatvægt»[/i] (transl.: «Probably not a coin but a gold off-strike of ducat weight»)."
+          uk: "Номер Hede не належить цій монеті.\n[b]Bruun Part I, lot 1206[/b]: [i]«1/8 Speciedaler, 1660. Christiania Mint … KM-60; Hede-cf. 1»[/i].\n[b]danskmoent.dk (Hede, Frederik 3.)[/b], огляд:
+            [i]«N1 1 Dukat Guld 1660 Christiania»[/i], [i]«Formentlig ikke en mønt, men et guldafslag af dukatvægt»[/i] (перекл.: «Імовірно, не монета, а золотий відбиток вагою дуката»)."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]Bruun Part I, lot 1206[/b]: [i]«1/8 Speciedaler, 1660. Christiania Mint … KM-60; Hede-cf. 1»[/i].\n[b]danskmoent.dk (Hede, Frederik 3.)[/b], oversigt:
+            [i]«N1 1 Dukat Guld 1660 Christiania»[/i], [i]«Formentlig ikke en mønt, men et guldafslag af dukatvægt»[/i]."
     sources:
       - type: literature
         url: https://numismaster.com/MC_110689
@@ -31378,6 +31391,11 @@ coins:
         - '1'
         - '4'
       sieg: '4'
+      bruun_collection_id: '10772'
+      nmd: '2'
+      bruun_part: II
+      bruun_lot_no: 14114
+      bruun_page: 245
       dav: EC III 1303
       numista: '100314'
       others:
@@ -31411,13 +31429,30 @@ coins:
         source: ucoin
       - value: 28.893
         source: hede
+      - value: 28.92
+        source: bruun
     diameter_mm:
       - value: 40.0
         source: numista
+    mint_alts:
+      - value: Kopenhagen
+        source: bruun
+        kind: erroneous
+        reason:
+          de: Falsche Münzstätte. Bruun Part II (Los 14114) druckt «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint» («Münzstätte København»), doch Hede Norge 1 (danskmoent) nennt «1 Speciedaler 1765, 
+            Kongsberg».
+          en: Wrong mint. Bruun Part II (lot 14114) prints «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint», but Hede Norge 1 (danskmoent) gives «1 Speciedaler 1765, Kongsberg».
+          uk: Помилкове місце карбування. Bruun Part II (лот 14114) друкує «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint» («монетний двір København»), але Hede Norge 1 (danskmoent) подає «1 
+            Speciedaler 1765, Kongsberg».
+          da: Forkert møntsted. Bruun Part II (lot 14114) trykker «NORWAY. Speciedaler, 1765-TL. Copenhagen Mint» («møntstedet København»), men Hede Norge 1 (danskmoent) angiver «1 Speciedaler 1765, 
+            Kongsberg».
     sources:
       - type: literature
         url: https://numismaster.com/MC_86286
         ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14114, p. 219
       - type: literature
         url: https://www.danskmoent.dk/norge/nf5h1.htm
         ref: danskmoent.dk (Hede nf5h1)
@@ -31438,6 +31473,7 @@ coins:
       unit_raw: spdl
     composed_of:
       - denmark-numismaster-86286
+      - dk-bruun-10772
       - dk-hede-nf5h1
       - dk-numista-100314
       - dk-tid-88745
