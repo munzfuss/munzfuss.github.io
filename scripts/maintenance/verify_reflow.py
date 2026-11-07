@@ -743,8 +743,36 @@ def compare_entity(entity: str, base: str) -> dict:
     _scope_dropped_index(base)
     return compare_coins(entity, head, cur, excluded=_excluded_ids(entity),
                          retracted=_retracted_refs(entity),
-                         elsewhere=_relocation_attestation_index(),
+                         elsewhere=(_all_entities_attestation_index(entity)
+                                    if entity == "_unclassified"
+                                    else _relocation_attestation_index()),
                          head_members=_head_unified_members(base))
+
+
+_ALL_ATTEST: dict[str, set[str]] | None = None
+
+
+def _all_entities_attestation_index(exclude_entity: str) -> dict[str, set[str]]:
+    """What every OTHER entity's current finals attest — consulted only for
+    `_unclassified`. That file holds seeds no routing rule could place; when a
+    rule learns their issuer (2026-11-07: 618 Numista seeds, «Free Hanseatic
+    city of Lübeck», «City of Bremen», Hesse-Cassel …) they leave for a real
+    entity with their values, which the per-entity comparison of
+    `_unclassified` cannot see. A real entity's comparison is never widened
+    this way."""
+    global _ALL_ATTEST
+    if _ALL_ATTEST is None:
+        idx: dict[str, set[str]] = {f: set() for f in LIST_FIELDS}
+        idx["catalog"] = set()
+        idx["catalog_bare"] = set()
+        idx["source_urls"] = set()
+        for path in sorted((ROOT / FINAL_REL).glob("*.yml")):
+            if path.stem == exclude_entity:
+                continue
+            for f, vals in _attestation_index(_coins(_read_yaml(path))).items():
+                idx.setdefault(f, set()).update(vals)
+        _ALL_ATTEST = idx
+    return _ALL_ATTEST
 
 
 _ELSEWHERE_COINS: dict[str, tuple[str, str]] | None = None
@@ -1097,7 +1125,11 @@ def _attestation_index(coins: dict[str, dict]) -> dict[str, set[str]]:
 # 3534») and not in others («3534»). When two members merge and the catalogue
 # de-duplicates to the prefixed form, the bare form is the same index, not a
 # lost one (2026-10-17).
-_EDITION_PREFIX = re.compile(r"^EC\s+[IVX]+\s+", re.IGNORECASE)
+# 2026-11-07: every Davenport series, not EC alone — a bare «2414» beside
+# «GT II 2414», «5457» beside «CCT 5457 A» are promoted to the series form by
+# catalog_codes._promote_bare_dav and are the same index.
+_EDITION_PREFIX = re.compile(
+    r"^(?:ECT|EC|GT|ST|CCT|SG|Lg|BrSL|AAO)\s+(?:[IVX]+\s+)?", re.IGNORECASE)
 
 
 def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],

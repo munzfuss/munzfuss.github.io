@@ -390,6 +390,13 @@ def _dav_volume(v: str) -> str | None:
     None for a bare number («3679»). A value is volume-qualified when it has
     >1 whitespace-token and the first token does NOT start with a digit."""
     toks = str(v).split()
+    # A separate sub-letter after the number («CCT 5457 A», «EC II 3731 A») is
+    # part of the number, not of the volume: without this the volume read as
+    # «CCT 5457» and a bare «5457» beside it was promoted to «CCT 5457 5457»
+    # (lu-tid-102713, 2026-11-07).
+    if (len(toks) > 2 and toks[-1].isalpha() and len(toks[-1]) <= 2
+            and any(ch.isdigit() for ch in toks[-2])):
+        toks = toks[:-1]
     if len(toks) > 1 and not toks[0][:1].isdigit():
         return " ".join(toks[:-1])
     return None
