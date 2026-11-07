@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8529 per-source seed entries.
-# Output: 1882 unified entries (one per physical coin).
+# Input: 8528 per-source seed entries.
+# Output: 1881 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-06'
+generated_at: '2026-11-07'
 coins:
   - id: c-160340b9
     class_id: c-160340b9
@@ -121242,34 +121242,6 @@ coins:
     composed_of:
       - kmk-279186
       - kmk-279187
-  - id: c-0f5cb76e
-    class_id: c-0f5cb76e
-    label: unified-kmk-28296
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Amulet
-    year_first: 1912
-    year_last: 1947
-    year_ranges:
-      -   - 1912
-          - 1947
-    year_label: 1912-1947
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 8.07
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/28296
-        ref: KMM 28296 (Inv. GP 3803.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-28296
   - id: c-56a73ad5
     class_id: c-56a73ad5
     label: unified-kmk-291045
