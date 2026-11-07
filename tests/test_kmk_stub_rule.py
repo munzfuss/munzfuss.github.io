@@ -110,3 +110,28 @@ class ImageOfAnotherObject(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ExonumiaLedger(unittest.TestCase):
+    """A KMM non-coin (banknote «Seddel», token «Andet», medal …) is kept out
+    of the seed AND recorded in the scope ledger with category «exonumia», so a
+    final that exists only through it leaves in absorb (curator 2026-11-07:
+    KMM 463985, 50 rigsbanksdalder 1813, a «Seddel» classified under 18½)."""
+
+    def setUp(self):
+        self._saved = dict(bk._STUB_DROPPED)
+        bk._STUB_DROPPED.clear()
+
+    def tearDown(self):
+        bk._STUB_DROPPED.clear()
+        bk._STUB_DROPPED.update(self._saved)
+
+    def test_banknote_is_recorded(self):
+        self.assertIsNone(bk.build_entry({"id": 463985, "workDescription": "Seddel",
+                                          "nominal": "50 rigsbanksdalder"}))
+        self.assertEqual(bk._STUB_DROPPED.get("kmk-463985"), "exonumia")
+
+    def test_exonumia_nominal_is_recorded(self):
+        self.assertIsNone(bk.build_entry({"id": 28296, "workDescription": "Mønt",
+                                          "nominal": "amulet"}))
+        self.assertEqual(bk._STUB_DROPPED.get("kmk-28296"), "exonumia")
