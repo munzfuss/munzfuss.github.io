@@ -1457,6 +1457,18 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                     gone = {k for k in gone
                             if not any(isinstance(x, dict) and x.get("url") in keep_urls
                                        and _key(x) == k for x in _as_list(h.get(f)))}
+                    # A museum specimen's citation (KMM / IKMK object) moved to
+                    # the final its seed now sits in, which may be another
+                    # entity (absorb's foreign-specimen-citation prune,
+                    # 2026-11-07): still cited there, not lost.
+                    if gone:
+                        far = _global_url_carriers(entity)
+                        gone = {k for k in gone
+                                if not any(isinstance(x, dict) and _key(x) == k
+                                           and re.search(r"/KMM/object/|ikmk\.smb\.museum/object",
+                                                         str(x.get("url") or ""))
+                                           and x.get("url") in far
+                                           for x in _as_list(h.get(f)))}
                 # A reading the parser REFUSED is a recorded removal, not a
                 # loss. This is the measurement-list twin of the catalog branch
                 # below: a source-sanity gate (parse_ngc.sift_fineness) declines

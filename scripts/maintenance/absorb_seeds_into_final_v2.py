@@ -4858,6 +4858,20 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
 _KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
 
 
+_IKMK_OBJECT_RE = re.compile(r"ikmk\.smb\.museum/object\?(?:[^#]*&)?id=(\d+)")
+
+
+def _specimen_seed_of(src: dict) -> str | None:
+    """Seed id of the museum specimen a citation points at: KMM object N →
+    «kmk-N», IKMK object N → «ikmk-N»; None for any other citation."""
+    url = str(src.get("url") or "")
+    m = _KMM_OBJECT_RE.search(url)
+    if m:
+        return f"kmk-{m.group(1)}"
+    m = _IKMK_OBJECT_RE.search(url)
+    return f"ikmk-{m.group(1)}" if m else None
+
+
 def _prune_foreign_kmm_citations(entities: list[str]) -> int:
     """Drop from each final the KMM citations of specimens that belong to
     ANOTHER final (curator 2026-10-19).
@@ -4883,11 +4897,16 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
         sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
         from lib.v2_index import V2Index
     _unified_docs = {str(p): d for p, d in _all_unified_docs()}
+    _unified_by_id = {u.get("id"): u for d in _unified_docs.values()
+                      for u in ((d or {}).get("coins") or []) if isinstance(u, dict)}
     idx = V2Index.load(loader=lambda p: (
         _seed_doc(p) if p.parent.parent == V2_SEED
         else _unified_docs.get(str(p)) or _load_yaml(p)))
     holder: dict[str, str] = {}
-    for sf in (V2_SEED / "kmk").glob("*.yml"):
+    # IKMK Berlin specimens too (curator 2026-11-07): an IKMK seed that left a
+    # class through an old over-merge (a Klagenfurt taler beside a Hamburg
+    # thaler on nominal + year) left its citation on the old final the same way.
+    for sf in [*(V2_SEED / "kmk").glob("*.yml"), *(V2_SEED / "ikmk").glob("*.yml")]:
         for c in (_seed_doc(sf).get("coins") or []):
             cid = c.get("id")
             if not cid:
@@ -4921,10 +4940,25 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
             if not isinstance(c, dict) or not c.get("sources"):
                 continue
             fid = c.get("id")
+            # A final that exists ONLY through foreign specimen citations (a
+            # pre-V2 record awaiting review, e.g. hs-ikmk-18286306) keeps them:
+            # stripping its last source would leave a sourceless coin on the
+            # page (2026-11-07). Its fate is a curator decision, not this rule.
+            _owners = [owner.get(_specimen_seed_of(s)) if isinstance(s, dict) else None
+                       for s in c["sources"]]
+            if all(o is not None and o != fid and o in where for o in _owners):
+                continue
+            # A citation the final's own classes carry stays (a seed lists a
+            # specimen it absorbed by §9a thinning; audit_lost_citations holds
+            # every member citation to the final).
+            _member_urls = {str(ms.get("url")) for m in (c.get("composed_of") or [])
+                            for ms in ((_unified_by_id.get(m) or {}).get("sources") or [])
+                            if isinstance(ms, dict) and ms.get("url")}
             keep = []
             for src in c["sources"]:
-                m = _KMM_OBJECT_RE.search(str(src.get("url") or "")) if isinstance(src, dict) else None
-                own = owner.get(f"kmk-{m.group(1)}") if m else None
+                own = owner.get(_specimen_seed_of(src)) if isinstance(src, dict) else None
+                if own is not None and str(src.get("url")) in _member_urls:
+                    own = None
                 if own is None or own == fid:
                     keep.append(src)
                     continue
@@ -4951,7 +4985,7 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
             _emit_final_yaml(ent, docs[ent].get("coins") or [], docs[ent]),
             encoding="utf-8")
     if dropped:
-        print(f"  KMM citations of specimens that belong to another final: "
+        print(f"  KMM / IKMK citations of specimens that belong to another final: "
               f"{dropped} removed from the old final, {moved} of them moved to "
               f"the specimen's final (which lacked them)")
     total = dropped
