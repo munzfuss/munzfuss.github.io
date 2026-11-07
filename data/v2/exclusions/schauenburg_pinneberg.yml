@@ -1,0 +1,186 @@
+# Curator per-coin EXCLUSIONS — entity `schauenburg_pinneberg`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# `scope: member` (2026-10-16): remove ONE record that has joined a merged class
+# (e.g. on nominal + ruler + mint alone), not the class. The merger keeps such a
+# seed a singleton, absorb drops that singleton. Without `scope`, an id removes
+# the whole coin it belongs to (the original meaning, kept for older entries).
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: schauenburg_pinneberg
+exclusions:
+  - id: hs-ikmk-18285689
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285689 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-0aa98956, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285701
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285701 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-0aa98956, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285715
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285715 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285716
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285716 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285717
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285717 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285718
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285718 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, hs-ikmk-18285714, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285719
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285719 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285720
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285720 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285721
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285721 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285714, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285722
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285722 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285723
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285723 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285724
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285724 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285708, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285774
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285774 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285782
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285782 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285789
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285789 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285792
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285792 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285797
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285797 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285803
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285803 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285754, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285805
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285805 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285754, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285814
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285814 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285754, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285818
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285818 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285902
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285902 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285754, hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285911
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285911 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285754, hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285912
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285912 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285754, hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285913
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285913 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285773, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285916
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285916 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285754, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18285931
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18285931 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285924, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286200
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286200 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18285924, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286201
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286201 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-023f3975, hs-ikmk-18285918, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286203
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286203 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-023f3975, hs-ikmk-18285918, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286206
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286206 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-023f3975, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286208
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286208 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-023f3975, hs-ikmk-18285918, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286284
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286284 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286248, hs-ikmk-18286251, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286289
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286289 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286248, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286294
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286294 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286248, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286687
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286687 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286681, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286694
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286694 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286681, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286696
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286696 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286681, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286720
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286720 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286716, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286724
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286724 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286716, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286735
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286735 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286709, hs-ikmk-18286716, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286738
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286738 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286709, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286752
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286752 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286709, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286755
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286755 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286709, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286782
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286782 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286759, hs-ikmk-18286771, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286788
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286788 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286763, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286798
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286798 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286759, hs-ikmk-18286763, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286821
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286821 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-ceef4b74, hs-ikmk-18286763, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286826
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286826 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-ceef4b74, hs-ikmk-18286759, hs-ikmk-18286763, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286827
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286827 (seed_unsorted) with no seed; its IKMK object is cited by the live class c-38414a6e, hs-ikmk-18286763, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286829
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286829 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286759, hs-ikmk-18286771, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286834
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286834 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286763, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
+  - id: hs-ikmk-18286854
+    category: duplicate_noise
+    reason: Pre-V2 IKMK specimen final hs-ikmk-18286854 (seed_unsorted) with no seed; its IKMK object is cited by the live class hs-ikmk-18286846, which carries its every source, catalogue value and weight. Curator (Serhii) 2026-11-07.
