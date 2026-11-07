@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8474 per-source seed entries.
-# Output: 1834 unified entries (one per physical coin).
+# Input: 8475 per-source seed entries.
+# Output: 1832 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -55857,76 +55857,6 @@ coins:
       - ikmk-18204757
       - ngc-1050425
       - ngc-66082
-  - id: c-a5e1362b
-    class_id: c-a5e1362b
-    label: unified-dk-hede-c8h5
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    year_first: 1842
-    year_last: 1843
-    year_ranges:
-      -   - 1842
-          - 1843
-    year_label: 1842-1843
-    ruler: Christian VIII
-    catalog:
-      km: '734'
-      hede: '5'
-      hede_volume: c8h
-      schou:
-        - '3'
-        - '6'
-      sieg: '11'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.68
-        source: ucoin
-      - value: 0.687
-        source: hede
-      - value: 0.687
-        source: ngc
-    weight_rough_g:
-      - value: 6.129
-        source: hede
-      - value: 6.129
-        source: ngc
-      - value: 6.13
-        source: ucoin
-    diameter_mm:
-      - value: 24.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c8h5.htm
-        ref: danskmoent.dk (Hede c8h5)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1842-1843/?tid=70757
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/78529
-        ref: KMM 78529 (Inv. GP 678.193)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-734-1842-1843-cuid-1050466-duid-1238269
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-      unit_raw: rigsbankdalere
-    composed_of:
-      - dk-hede-c8h5
-      - dk-tid-70757
-      - kmk-78529
-      - ngc-1050466
   - id: c-8fe3f899
     class_id: c-8fe3f899
     label: unified-dk-hede-c9h10
@@ -92763,8 +92693,8 @@ coins:
       - dk-hede-f6h27c
       - kmk-78504
       - ngc-1051026
-  - id: c-79711eb5
-    class_id: c-79711eb5
+  - id: c-e8645e7a
+    class_id: c-e8645e7a
     label: unified-dk-hede-f6h29
     fuss: seed_unsorted
     phase: hede
@@ -92779,37 +92709,104 @@ coins:
           - 1820
     year_label: 1818, 1820
     ruler: Frederik VI
+    mintmaster: Johan Friedrich Freund (IFF)
+    mint: Altona
     catalog:
-      km: '690.2'
-      hede: '29'
+      km:
+        - '690.2'
+        - '690.1'
+        - '690'
+      hede:
+        - '29'
+        - 29B
       hede_volume: f6h
       schou:
         - '2'
         - '3'
-      sieg: '25'
+      sieg:
+        - '25'
+        - '25.2'
+      bruun_collection_id: '8053'
+      bruun_part: IV
+      bruun_lot_no: 17161
+      bruun_page: 93
+      numista: '24424'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
     fineness:
+      - value: 0.68
+        source: ucoin
       - value: 0.687
         source: hede
       - value: 0.687
         source: ngc
+        specimen: ngc-1050317
+      - value: 0.687
+        source: ngc
+        specimen: ngc-1050419
+      - value: 0.687
+        source: numismaster
+        specimen: denmark-numismaster-66036
+      - value: 0.687
+        source: numismaster
+        specimen: denmark-numismaster-66038
+      - value: 0.687
+        source: numista
     weight_rough_g:
+      - value: 6.07
+        source: bruun
       - value: 6.129
         source: hede
       - value: 6.129
         source: ngc
+        specimen: ngc-1050317
+      - value: 6.129
+        source: ngc
+        specimen: ngc-1050419
+      - value: 6.129
+        source: numismaster
+        specimen: denmark-numismaster-66036
+      - value: 6.129
+        source: numismaster
+        specimen: denmark-numismaster-66038
+      - value: 6.129
+        source: numista
+      - value: 6.13
+        source: ucoin
+    diameter_mm:
+      - value: 25.5
+        source: ucoin
+      - value: 26.12
+        source: numista
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_66036
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66038
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17161, p. 77
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h29.htm
         ref: danskmoent.dk (Hede f6h29)
       - type: literature
+        url: https://en.numista.com/24424
+        ref: Numista N#24424 — 32 Rigsbankskilling - Frederik VI
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
+        ref: ucoin
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-690.2-1820-cuid-1050317-duid-1238268
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-690.1-1818-cuid-1050419-duid-1238267
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
@@ -92818,8 +92815,14 @@ coins:
       basis: fin
       unit_raw: rigsbankdalere
     composed_of:
+      - denmark-numismaster-66036
+      - denmark-numismaster-66038
+      - dk-bruun-8053
       - dk-hede-f6h29
+      - dk-numista-24424
+      - dk-tid-70756
       - ngc-1050317
+      - ngc-1050419
   - id: c-63b82b67
     class_id: c-63b82b67
     label: unified-dk-hede-f6h35
@@ -133013,39 +133016,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050413
-  - id: c-10a69c33
-    class_id: c-10a69c33
-    label: unified-ngc-1050419
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    ruler: Frederik VI
-    catalog:
-      km: '690.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.687
-        source: ngc
-    weight_rough_g:
-      - value: 6.129
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-690.1-1818-cuid-1050419-duid-1238267
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1050419
   - id: c-d9e09358
     class_id: c-d9e09358
     label: unified-ngc-1050421

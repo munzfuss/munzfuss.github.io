@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1173 per-source seed entries.
-# Output: 279 unified entries (one per physical coin).
+# Input: 1172 per-source seed entries.
+# Output: 277 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1156,67 +1156,6 @@ coins:
       - dk-numista-83066
       - dk-tid-101039
       - ngc-1050225
-  - id: c-e8645e7a
-    class_id: c-e8645e7a
-    label: unified-dk-bruun-8053
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    year_first: 1820
-    year_last: 1820
-    year_label: '1820'
-    ruler: Frederik VI
-    mintmaster: Johan Friedrich Freund (IFF)
-    mint: Altona
-    catalog:
-      km:
-        - '690.2'
-        - '690'
-      bruun_collection_id: '8053'
-      sieg: '25.2'
-      schou: '3'
-      hede: 29B
-      bruun_part: IV
-      bruun_lot_no: 17161
-      bruun_page: 93
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.68
-        source: ucoin
-      - value: 0.687
-        source: numismaster
-    weight_rough_g:
-      - value: 6.07
-        source: bruun
-      - value: 6.129
-        source: numismaster
-      - value: 6.13
-        source: ucoin
-    diameter_mm:
-      - value: 25.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66038
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17161, p. 77
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-66038
-      - dk-bruun-8053
-      - dk-tid-70756
   - id: c-c53249ef
     class_id: c-c53249ef
     label: unified-dk-bruun-8065
@@ -1442,75 +1381,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-8127
-  - id: c-95a0f8a1
-    class_id: c-95a0f8a1
-    label: unified-dk-bruun-8150
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    year_first: 1842
-    year_last: 1843
-    year_ranges:
-      -   - 1842
-          - 1843
-    year_label: 1842-1843
-    ruler: Christian VIII
-    mintmaster: Johan Friedrich Freund (FF)
-    mint: Altona
-    catalog:
-      km: '734'
-      bruun_collection_id:
-        - '8150'
-        - '8163'
-      sieg: '11'
-      schou:
-        - '2'
-        - '5'
-      hede: 5A
-      bruun_part: IV
-      bruun_lot_no: 17180
-      bruun_page: 100
-      numista: '39798'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.687
-        source: numismaster
-      - value: 0.687
-        source: numista
-    weight_rough_g:
-      - value: 6.129
-        source: numismaster
-      - value: 6.129
-        source: numista
-    diameter_mm:
-      - value: 24.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66041
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17180, p. 84
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17184, p. 86
-      - type: literature
-        url: https://en.numista.com/39798
-        ref: Numista N#39798 — 32 Rigsbankskilling / 10 Schilling Courant - Christian VIII
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-66041
-      - dk-bruun-8150
-      - dk-bruun-8163
-      - dk-numista-39798
   - id: c-758acbdb
     class_id: c-758acbdb
     label: unified-dk-hede-c4h104
@@ -9583,6 +9453,117 @@ coins:
       - dk-tid-70764
       - ngc-1050422
       - ngc-1069091
+  - id: c-95a0f8a1
+    class_id: c-95a0f8a1
+    label: unified-dk-hede-c8h5
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 32 Rigsbankskilling
+    year_first: 1842
+    year_last: 1843
+    year_ranges:
+      -   - 1842
+          - 1843
+    year_label: 1842-1843
+    ruler: Christian VIII
+    mintmaster: Johan Friedrich Freund (FF)
+    mint: Altona
+    catalog:
+      km: '734'
+      hede:
+        - '5'
+        - 5A
+      hede_volume: c8h
+      schou:
+        - '2'
+        - '3'
+        - '5'
+        - '6'
+      sieg: '11'
+      bruun_collection_id:
+        - '8150'
+        - '8163'
+      bruun_part: IV
+      bruun_lot_no: 17180
+      bruun_page: 100
+      numista: '39798'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.68
+        source: ucoin
+      - value: 0.687
+        source: hede
+      - value: 0.687
+        source: ngc
+      - value: 0.687
+        source: numismaster
+      - value: 0.687
+        source: numista
+    weight_rough_g:
+      - value: 6.129
+        source: hede
+      - value: 6.129
+        source: ngc
+      - value: 6.129
+        source: numismaster
+      - value: 6.129
+        source: numista
+      - value: 6.13
+        source: ucoin
+    diameter_mm:
+      - value: 24.0
+        source: numista
+      - value: 24.0
+        source: ucoin
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_66041
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17180, p. 84
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17184, p. 86
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c8h5.htm
+        ref: danskmoent.dk (Hede c8h5)
+      - type: literature
+        url: https://en.numista.com/39798
+        ref: Numista N#39798 — 32 Rigsbankskilling / 10 Schilling Courant - Christian VIII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1842-1843/?tid=70757
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78529
+        ref: KMM 78529 (Inv. GP 678.193)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-734-1842-1843-cuid-1050466-duid-1238269
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+      unit_raw: rigsbankdalere
+    composed_of:
+      - denmark-numismaster-66041
+      - dk-bruun-8150
+      - dk-bruun-8163
+      - dk-hede-c8h5
+      - dk-numista-39798
+      - dk-tid-70757
+      - kmk-78529
+      - ngc-1050466
   - id: c-58969558
     class_id: c-58969558
     label: unified-dk-hede-c8h6
@@ -15624,59 +15605,6 @@ coins:
       - denmark-numismaster-66005
       - dk-numista-24422
       - dk-tid-70747
-  - id: c-c9a4caae
-    class_id: c-c9a4caae
-    label: unified-dk-numista-24424
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    year_first: 1818
-    year_last: 1820
-    year_ranges:
-      -   - 1818
-          - 1818
-      -   - 1820
-          - 1820
-    year_label: 1818, 1820
-    ruler: Frederik VI
-    mint: Altona
-    catalog:
-      km:
-        - '690'
-        - '690.1'
-      numista: '24424'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.687
-        source: numismaster
-      - value: 0.687
-        source: numista
-    weight_rough_g:
-      - value: 6.129
-        source: numismaster
-      - value: 6.129
-        source: numista
-    diameter_mm:
-      - value: 26.12
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66036
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/24424
-        ref: Numista N#24424 — 32 Rigsbankskilling - Frederik VI
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-66036
-      - dk-numista-24424
   - id: c-278d3c2d
     class_id: c-278d3c2d
     label: unified-dk-numista-301532

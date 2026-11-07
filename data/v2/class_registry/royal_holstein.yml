@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 279 active, 505 retired.
+# 277 active, 506 retired.
 
 id: royal_holstein
 classes:
@@ -1657,13 +1657,17 @@ classes:
   - id: c-95a0f8a1
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-8150
+    label: unified-dk-hede-c8h5
     legacy_id: unified-dk-bruun-8150
     members:
       - denmark-numismaster-66041
       - dk-bruun-8150
       - dk-bruun-8163
+      - dk-hede-c8h5
       - dk-numista-39798
+      - dk-tid-70757
+      - kmk-78529
+      - ngc-1050466
   - id: c-961f34f4
     status: active
     created: '2026-10-22'
@@ -2261,14 +2265,6 @@ classes:
     legacy_id: unified-schleswig_holstein-numismaster-93005
     members:
       - schleswig_holstein-numismaster-93005
-  - id: c-c9a4caae
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-24424
-    legacy_id: unified-dk-numista-24424
-    members:
-      - denmark-numismaster-66036
-      - dk-numista-24424
   - id: c-c9d7a202
     status: active
     created: '2026-10-22'
@@ -2636,15 +2632,6 @@ classes:
     legacy_id: unified-kmk-276867
     members:
       - kmk-276867
-  - id: c-e8645e7a
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-8053
-    legacy_id: unified-dk-bruun-8053
-    members:
-      - denmark-numismaster-66038
-      - dk-bruun-8053
-      - dk-tid-70756
   - id: c-e8d37364
     status: active
     created: '2026-10-22'
@@ -6325,6 +6312,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-148884
+  - id: c-c9a4caae
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-24424
+    legacy_id: unified-dk-numista-24424
+    merged_into: c-e8645e7a
+    retired: '2026-11-07'
+    members:
+      - denmark-numismaster-66036
+      - dk-numista-24424
   - id: c-ca453fa8
     status: retired
     created: '2026-10-22'
