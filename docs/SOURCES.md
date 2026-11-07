@@ -2113,6 +2113,23 @@ Last reviewed: 2026-05-13.
 
 When the «Status» column shows anything other than `OK`, the affected harvest pipeline is blocked and TODO entries reference the recovery procedure.
 
+## 14b. Candidate sources — not yet harvested
+
+The one list of sources worth a harvester later (curator 2026-11-07: «заведи
+десь список потенційних майбутніх джерел для харвесту»). A row is a
+candidate, not a commitment: before a fetcher is written, survey access and
+terms per `docs/HARVEST_GUIDE.md` and move the row to §14 once a cache exists.
+Add a row whenever a session meets a source that would have settled a
+question had it been in the cache.
+
+| Source | What it is | Why we would want it | Access (as known) | Added |
+|---|---|---|---|---|
+| **NGC World Coin Price Guide** (ngccoin.com) | Krause-based price guide, successor of NumisMaster's data | German territories absent from the NumisMaster walk | surveyed: no API, browser-context `fetch()` only (§1.5, §13.13); Wayback refuses its pages (§13.20) | 2026-08-07 (also in §14) |
+| **NumisBids** (numisbids.com) | aggregator of live and past auction catalogues from many houses | lot texts and photos beyond the Bruun catalogues; other cabinet specimens of rare Danish types | not surveyed | 2026-11-07 |
+| **Tietjen + Co** (Hamburg) | coin auction house with North German / Danish specialisation | auction lots of Hamburg, Lübeck, Schleswig-Holstein and Danish coins with weights and catalogue numbers | not surveyed | 2026-11-07 |
+| **CoinVarieties** (coinvarieties.com) | wiki of individual types with their catalogue numbers and auction records | per-type concordances (Fr / KM / Hede / Sieg / Schou) and sale records; met on the 1608 Sovereign (Fr-35) | page fetch works (WebFetch, 2026-11-07); not surveyed further | 2026-11-07 |
+| **CoinArchives** (coinarchives.com) | archive of auction lot records (photos, descriptions, weights) | specimen weights and photos for types with few published pieces | not surveyed; full archive assumed to need a subscription — to be checked | 2026-11-07 |
+
 ---
 
 When citing a new source for the first time, **add a ref-slot** in the appropriate references file (per CLAUDE.md §5 «Source hierarchy» / «Web-sourced facts → bibliography entry + inline `<sup>` citation, IMMEDIATELY»).
@@ -2193,6 +2210,17 @@ note: IA's CDX endpoint answered curl with 429 / hung, but a same-origin
 `fetch('/cdx/search/cdx?…')` from a web.archive.org page in the in-app
 browser worked; for CDX 503s, `/__wb/sparkline?output=json&url=…` (the
 calendar's own endpoint) gives first/last timestamps.
+
+*Two more class-B ids (2026-11-07).* 167039 and 167040 carry the same
+inventory number on both sides (FP 1780.93 / .92), yet the API content is
+the neighbour's: API 167039 «søsling lybsk» 1643 is the page of 167040
+(«søsling lybsk», Hede 178A, Glückstadt 1643), and the page of 167039 is
+«4 skilling», Hede 150, 1644 København — its photo reads «IIII SKILLING
+DANSKE». Page content and photo follow the id, as above. Curator call:
+the API nominal is marked erroneous «(!)» on each seed (`nominal_mark`) and
+both join their Hede classes by whole-class merge decisions (`5f263cb`).
+Seeds built from the API alone in this find should be read with that in
+mind.
 
 
 ### 13.20 NGC price-guide pages cannot be archived — Wayback 403, archive.ph Cloudflare loop (2026-10-13)
