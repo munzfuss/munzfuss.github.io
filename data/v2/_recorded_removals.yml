@@ -5053,3 +5053,9 @@ removals:
     dropped:
       - 37bB
     reason: "Curator 2026-11-07 («так»): the page prints «Hede 37B» for this sub-variant; «37bB» was the builder gluing danskmoent's file name (f5h37b.htm) to the letter. Builder fixed (build_hede_denmark_seed._printed_letter_hede); seed id unchanged."
+  - seed: dk-numista-129062
+    kind: field
+    field: lange
+    dropped:
+      - 69 - 70a - 71a - 73a
+    reason: 'Curator 2026-11-07 («пофіксь»): Numista 129062 prints four Lange numbers as one reference joined by spaced dashes; build_numista_seed._split_dash_list now splits it into 69, 70a, 71a, 73a, all kept.'

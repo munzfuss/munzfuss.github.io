@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-10-09T16:00:16Z'
+generated_at: '2026-11-07T15:56:09Z'
 entity: royal_holstein
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -1411,7 +1411,11 @@ coins:
     catalog:
       numista: '129062'
       km: '54'
-      lange: 69 - 70a - 71a - 73a
+      lange:
+        - '69'
+        - 70a
+        - 71a
+        - 73a
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.79
