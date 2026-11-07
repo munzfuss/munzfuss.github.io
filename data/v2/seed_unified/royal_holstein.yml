@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1141 per-source seed entries.
-# Output: 295 unified entries (one per physical coin).
+# Input: 1142 per-source seed entries.
+# Output: 294 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-06'
+generated_at: '2026-11-07'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -982,8 +982,8 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7877
     sources:
       - type: auction
@@ -1034,8 +1034,8 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona / Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona / Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7894
     sources:
       - type: auction
@@ -4652,6 +4652,7 @@ coins:
       km:
         - '70.1'
         - '70'
+        - '70.2'
       hede: '117'
       hede_volume: c5h
       schou: 1-4
@@ -4661,10 +4662,12 @@ coins:
         - '144.1'
         - '144.3'
         - '144.4'
+        - '144.5'
       bruun_collection_id:
         - '6910'
         - '6911'
         - '6913'
+        - '7006'
       bruun_part: III
       bruun_lot_no: 11244
       bruun_page: 127
@@ -4672,6 +4675,7 @@ coins:
         - Aagaard# 6.1
         - Aagaard# 7.1
         - Aagaard# 5.1
+        - Aagaard# 8.1
       numista: '275959'
       fr: '141'
       lange: 80A
@@ -4687,6 +4691,10 @@ coins:
         source: hede
       - value: 0.986
         source: numismaster
+        specimen: schleswig_holstein-numismaster-93039
+      - value: 0.986
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93040
       - value: 0.986
         source: numista
       - value: 0.986
@@ -4704,13 +4712,46 @@ coins:
         source: hede
       - value: 3.5
         source: numismaster
+        specimen: schleswig_holstein-numismaster-93039
+      - value: 3.5
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-93040
       - value: 3.5
         source: ucoin
+      - value: 4.44
+        source: bruun
+        suspect:
+          de: "Übergewichtiges Stück.\n[b]Bruun Part III, Los 11246, S. 110[/b]: [i]«Weight: 4.44 gms»[/i] (Übers.: «Gewicht: 4,44 g»).\n[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i] (Übers.:
+            «Bruttogewicht: 3,490 g»).\n[b]Bruun Part III, Los 11244, S. 109[/b]; [b]Part II, Los 13180, S. 105[/b]; [b]Part I, Los 1106, S. 131[/b]: 3,46 g, 3,44 g, 3,45 g für denselben Typ.\nEin Druckfehler
+            und ein tatsächlich schwereres Stück sind gleichermaßen möglich; keines ist erwiesen."
+          en: "An overweight piece.\n[b]Bruun Part III, lot 11246, p. 110[/b]: [i]«Weight: 4.44 gms»[/i].\n[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i] (transl.: «gross weight: 3.490 g»).\n\
+            [b]Bruun Part III, lot 11244, p. 109[/b]; [b]Part II, lot 13180, p. 105[/b]; [b]Part I, lot 1106, p. 131[/b]: 3.46 g, 3.44 g, 3.45 g for the same type.\nA misprint and a genuinely heavier piece
+            are equally possible; neither is proven."
+          uk: "Надважкий екземпляр.\n[b]Bruun Part III, лот 11246, с. 110[/b]: [i]«Weight: 4.44 gms»[/i] (перекл.: «вага: 4,44 г»).\n[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i] (перекл.:
+            «вага брутто: 3,490 г»).\n[b]Bruun Part III, лот 11244, с. 109[/b]; [b]Part II, лот 13180, с. 105[/b]; [b]Part I, лот 1106, с. 131[/b]: 3,46 г, 3,44 г, 3,45 г для того самого типу.\nПомилка
+            друку і справді важчий екземпляр однаково можливі; жодне з них не доведене."
+          da: "Et overvægtigt eksemplar.\n[b]Bruun Part III, lot 11246, s. 110[/b]: [i]«Weight: 4.44 gms»[/i] (overs.: «vægt: 4,44 g»).\n[b]danskmoent.dk (Hede 117)[/b]: [i]«Bruttovægt: 3,490g»[/i].\n[b]Bruun
+            Part III, lot 11244, s. 109[/b]; [b]Part II, lot 13180, s. 105[/b]; [b]Part I, lot 1106, s. 131[/b]: 3,46 g, 3,44 g, 3,45 g for samme type.\nEn trykfejl og et faktisk tungere eksemplar er lige
+            mulige; ingen af delene er bevist."
     diameter_mm:
       - value: 22.0
         source: numista
       - value: 24.0
         source: ucoin
+    catalog_alts:
+      - register: friedberg
+        value: '41'
+        source: bruun
+        kind: suspect
+        reason:
+          de: "Die Friedberg-Nummer stimmt nicht zum Typ.\n[b]Bruun Part III, Los 11246, S. 110[/b]: [i]«Fr-41»[/i].\n[b]Bruun Part III, Los 11244, S. 109[/b]; [b]Part II, Los 13180, S. 105[/b]; [b]Part
+            I, Los 1106, S. 131[/b]: [i]«Fr-141»[/i] für denselben Typ (Hede 117).\n[b]Numista N# 275959[/b]: Fr 141."
+          en: "The Friedberg number does not fit the type.\n[b]Bruun Part III, lot 11246, p. 110[/b]: [i]«Fr-41»[/i].\n[b]Bruun Part III, lot 11244, p. 109[/b]; [b]Part II, lot 13180, p. 105[/b]; [b]Part
+            I, lot 1106, p. 131[/b]: [i]«Fr-141»[/i] for the same type (Hede 117).\n[b]Numista N# 275959[/b]: Fr 141."
+          uk: "Номер Friedberg не відповідає типу.\n[b]Bruun Part III, лот 11246, с. 110[/b]: [i]«Fr-41»[/i].\n[b]Bruun Part III, лот 11244, с. 109[/b]; [b]Part II, лот 13180, с. 105[/b]; [b]Part I, лот
+            1106, с. 131[/b]: [i]«Fr-141»[/i] для того самого типу (Hede 117).\n[b]Numista N# 275959[/b]: Fr 141."
+          da: "Friedberg-nummeret passer ikke til typen.\n[b]Bruun Part III, lot 11246, s. 110[/b]: [i]«Fr-41»[/i].\n[b]Bruun Part III, lot 11244, s. 109[/b]; [b]Part II, lot 13180, s. 105[/b]; [b]Part
+            I, lot 1106, s. 131[/b]: [i]«Fr-141»[/i] for samme type (Hede 117).\n[b]Numista N# 275959[/b]: Fr 141."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -4721,6 +4762,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13180, p. 105
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11246, p. 110
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h117.htm
         ref: danskmoent.dk (Hede c5h117)
@@ -4733,15 +4777,20 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_93039
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_93040
+        ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-6910
       - dk-bruun-6911
       - dk-bruun-6913
+      - dk-bruun-7006
       - dk-hede-c5h117
       - dk-numista-275959
       - dk-tid-163669
       - schleswig_holstein-numismaster-93039
+      - schleswig_holstein-numismaster-93040
   - id: c-3317a19c
     class_id: c-3317a19c
     label: unified-dk-hede-c5h118
@@ -6664,8 +6713,8 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona / Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona / Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7863
     sources:
       - type: auction
@@ -6760,8 +6809,8 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7893
     mint_alts:
       - value: Kopenhagen
@@ -7596,20 +7645,20 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7866
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7888
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona / Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona / Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7911
     sources:
       - type: auction
@@ -7781,8 +7830,8 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7867
     sources:
       - type: auction
@@ -7932,14 +7981,14 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7870
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7871
     sources:
       - type: auction
@@ -8027,8 +8076,8 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7872
     sources:
       - type: auction
@@ -8097,8 +8146,8 @@ coins:
         - kind: hedged
           how: alternatives
           source: bruun
-          as_printed: Altona/Poppenbüttel Mint
-          value: Altona, Poppenbüttel Mint
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
           seed: dk-bruun-7875
     sources:
       - type: auction
@@ -20309,37 +20358,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-93025
-  - id: c-dde766c4
-    class_id: c-dde766c4
-    label: unified-schleswig_holstein-numismaster-93040
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1680
-    year_last: 1680
-    year_label: '1680'
-    catalog:
-      km: '70.2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.986
-        source: numismaster
-    weight_rough_g:
-      - value: 3.5
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93040
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93040
   - id: c-2b57ace5
     class_id: c-2b57ace5
     label: unified-sh-tid-90742

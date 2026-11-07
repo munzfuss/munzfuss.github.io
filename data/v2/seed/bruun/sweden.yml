@@ -1,6 +1,6 @@
 status: seed
 source: Stack's Bowers L. E. Bruun Collection (parts I-V, 2024-2026)
-generated_at: '2026-10-25T07:19:52Z'
+generated_at: '2026-11-07T08:46:56Z'
 entity: sweden
 scope_note: §AZ Tier 1 — Bruun corpus pre-1541 realm lots, covers the gap Hede 1971 doesn't catalogue (Christian II + Frederik I + Christian III pre-1541 Møntordning). NOT a substitute for the Hede 
   seed at v2/seed/hede/; parallel source.
@@ -2476,7 +2476,9 @@ coins:
           - 1634
     year_verified: false
     ruler: Gustav Vasa
-    mint: Stockholm
+    mint:
+      - Nürnberg
+      - Stockholm
     catalog:
       bruun_collection_id: '11889'
       others:
@@ -2493,7 +2495,7 @@ coins:
     verified: false
     fineness_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2505,6 +2507,12 @@ coins:
           source: bruun
           as_printed: ND (1634)
           value: '1634'
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Stockholm or Nürnberg
+          value: Stockholm, Nürnberg
   - id: dk-bruun-11909
     fuss: seed_unsorted
     phase: bruun
@@ -2758,7 +2766,9 @@ coins:
       -   - 1641
           - 1641
     ruler: Kristina
-    mint: Stockholm
+    mint:
+      - Sala
+      - Stockholm
     catalog:
       km: '180'
       bruun_collection_id: '11963'
@@ -5224,7 +5234,7 @@ coins:
       -   - 1717
           - 1717
     ruler: Karl XII
-    mint: Stockholm
+    mint: Avesta
     catalog:
       km: PM46
       bruun_collection_id: '13822'

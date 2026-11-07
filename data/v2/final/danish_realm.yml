@@ -17866,45 +17866,6 @@ coins:
     label: hede-17-fr-ii-1572
     origin: foundation
     v1_home_location: denmark
-  - fuss: reichsdukatenfuss
-    phase: IV
-    kind: kurant
-    fraction: '2'
-    nominal: 2 Ducat
-    ruler: Frederik V.
-    issuing_entity: danish_realm
-    id: hede-18-fr-v-1749
-    year_first: 1749
-    year_last: 1749
-    year_label: '1749'
-    mint: Kopenhagen
-    catalog:
-      bruun_collection_id: '7670'
-      bruun_part: IV
-      bruun_lot_no: 17126
-      bruun_page: 82
-      hede_volume: f5h
-      sieg_hede1971: '38'
-      schou_hede1971: '2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    mint_verified: true
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17126, p. 66
-      - type: web
-        url: https://www.danskmoent.dk/fr/f5h17.htm
-        ref: Hede 18 / danskmoent.dk
-    note:
-      de: 2 Ducat 1749 (Hede-18) · Bruun-Specimen.
-      en: 2 Ducat 1749 (Hede-18) · Bruun specimen.
-      uk: 2 Ducat 1749 (Hede-18) · Bruun-зразок.
-    composed_of: []
-    label: hede-18-fr-v-1749
-    origin: foundation
-    v1_home_location: denmark
   - fuss: 9_thaler
     phase: I
     kind: scheide
@@ -27061,67 +27022,6 @@ coins:
     composed_of:
       - c-edb5ac70
     label: km-374-1-chr-v-1685
-    origin: foundation
-    v1_home_location: denmark
-  - fuss: reichsdukatenfuss
-    phase: III
-    kind: kurant
-    fraction: '1'
-    nominal: 1 Ducat
-    ruler: Christian V.
-    issuing_entity: danish_realm
-    mintmaster: Christopher Woltereck
-    id: km-374-2-chr-v-1685
-    year_first: 1685
-    year_last: 1685
-    year_label: '1685'
-    mint: Kopenhagen
-    catalog:
-      km: '374.2'
-      bruun_collection_id:
-        - '7042'
-        - '7006'
-      bruun_part: I
-      bruun_lot_no: 1123
-      bruun_page: 174
-      hede_volume: c5h
-      sieg: '144.5'
-      schou: '2'
-      hede: '117'
-      fr: '41'
-      others:
-        - Aagaard# 8.1
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 4.44
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11246, p. 110
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1123, p. 150
-    note:
-      de: Ducat 1685 (Hede-12B, Untervariante zu Hede-12A) · Bruun-Specimen.
-      en: Ducat 1685 (Hede-12B, sub-variant of Hede-12A) · Bruun specimen.
-      uk: Ducat 1685 (Hede-12B, підваріант Hede-12A) · Bruun-зразок.
-    verification_note:
-      de: Probe nicht direkt belegt; aus dem kanonischen Müntzfuß-Standard (Reichsdukatenfuß, Anker 0,9861) übernommen — dieser Fuß kennt nur eine einzige Probe. Δ −1,73 % gegen den Soll-Wert liegt in
-        der Spezimen-Toleranz.
-      en: Fineness not directly attested; taken from the canonical coinage standard (Reichsdukatenfuß, anchor 0.9861) — this standard has a single fineness throughout. Δ −1.73 % against the soll value
-        is within specimen tolerance.
-      uk: Проба не засвідчена джерелом безпосередньо; узята з канонічного стандарту (Reichsdukatenfuß, якір 0,9861) — ця стопа має єдину пробу. Δ −1,73 % проти нормативу — у межах допуску зразка.
-      da: Finheden er ikke direkte belagt; overtaget fra den kanoniske møntfodsstandard (Reichsdukatenfuß, anker 0,9861) — denne fod kender kun én enkelt finhed. Δ −1,73 % i forhold til sollværdien 
-        ligger inden for specimen-tolerancen.
-    composed_of:
-      - c-a87246b1
-    label: km-374-2-chr-v-1685
     origin: foundation
     v1_home_location: denmark
   - fuss: reichsdukatenfuss
@@ -36341,6 +36241,13 @@ coins:
     year_label: '1523'
     year_verified: true
     uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Roskilde or Serridslev
+          value: Roskilde, Serridslev
+          seed: dk-bruun-3957
       metal:
         - kind: inferred
           how: from_name
@@ -104512,9 +104419,7 @@ coins:
           - 1502
     year_label: 1496, 1502
     year_verified: true
-    mint:
-      - Kopenhagen
-      - Malmø
+    mint: Malmø
     catalog:
       bruun_collection_id: '3831'
       sieg: '12'
@@ -104588,6 +104493,12 @@ coins:
     origin: promoted
     uncertainty:
       mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmö or Copenhagen
+          value: Malmö, Copenhagen
+          seed: dk-bruun-3831
         - kind: hedged
           how: alternatives
           source: galster
@@ -111578,6 +111489,12 @@ coins:
           value: '1497'
           seed: dk-galster-hg-27
       mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmö or Copenhagen
+          value: Malmö, Copenhagen
+          seed: dk-bruun-3840
         - kind: hedged
           how: alternatives
           source: galster

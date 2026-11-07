@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8528 per-source seed entries.
-# Output: 1881 unified entries (one per physical coin).
+# Input: 8527 per-source seed entries.
+# Output: 1880 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -890,9 +890,7 @@ coins:
           - 1502
     year_label: 1496, 1502
     ruler: Hans
-    mint:
-      - Kopenhagen
-      - Malmø
+    mint: Malmø
     catalog:
       bruun_collection_id: '3831'
       sieg: '12'
@@ -934,6 +932,12 @@ coins:
         source: danskmoent.dk 3nobel.htm
     uncertainty:
       mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmö or Copenhagen
+          value: Malmö, Copenhagen
+          seed: dk-bruun-3831
         - kind: hedged
           how: alternatives
           source: galster
@@ -1242,6 +1246,12 @@ coins:
           value: '1497'
           seed: dk-galster-hg-27
       mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmö or Copenhagen
+          value: Malmö, Copenhagen
+          seed: dk-bruun-3840
         - kind: hedged
           how: alternatives
           source: galster
@@ -1815,9 +1825,7 @@ coins:
     year_label: '1523'
     ruler: Frederik I
     mintmaster: Berndt Buske
-    mint:
-      - Kopenhagen
-      - Roskilde
+    mint: Kopenhagen
     catalog:
       bruun_collection_id: '3957'
       sieg: '22.3'
@@ -1848,6 +1856,13 @@ coins:
       - value: 30.0
         source: danskmoent.dk fr/f1g51.htm
     uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Roskilde or Serridslev
+          value: Roskilde, Serridslev
+          seed: dk-bruun-3957
       metal:
         - kind: inferred
           how: from_name
@@ -6337,45 +6352,6 @@ coins:
       - denmark-numismaster-65305
       - dk-bruun-6900
       - ngc-1069035
-  - id: c-a87246b1
-    class_id: c-a87246b1
-    label: unified-dk-bruun-7006
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1685
-    year_last: 1685
-    year_label: '1685'
-    ruler: Christian V
-    mintmaster: Christopher Woltereck
-    catalog:
-      bruun_collection_id: '7006'
-      sieg: '144.5'
-      schou: '2'
-      hede: '117'
-      bruun_part: III
-      bruun_lot_no: 11246
-      bruun_page: 128
-      others:
-        - Aagaard# 8.1
-      fr: '41'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 4.44
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11246, p. 110
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-bruun-7006
   - id: c-353a9042
     class_id: c-353a9042
     label: unified-dk-bruun-7017

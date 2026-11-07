@@ -1,6 +1,6 @@
 status: seed
 source: Stack's Bowers L. E. Bruun Collection (parts I-V, 2024-2026)
-generated_at: '2026-10-30T12:42:59Z'
+generated_at: '2026-11-07T08:46:54Z'
 entity: danish_realm
 scope_note: §AZ Tier 1 — Bruun corpus pre-1541 realm lots, covers the gap Hede 1971 doesn't catalogue (Christian II + Frederik I + Christian III pre-1541 Møntordning). NOT a substitute for the Hede 
   seed at v2/seed/hede/; parallel source.
@@ -223,7 +223,9 @@ coins:
       -   - 1496
           - 1496
     ruler: Hans
-    mint: Kopenhagen
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       bruun_collection_id: '3831'
       sieg: '12'
@@ -241,7 +243,7 @@ coins:
     verified: false
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -263,6 +265,13 @@ coins:
     _curation_holds:
       note: '2026-10-08: the coin-type description was entered by hand from the source page (danskmoent.dk) and, for Hans 1496, the L. E. Bruun lot text, on curator request; the source feeds carry no note
         for this type. Frozen so a re-seed cannot drop it.'
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmö or Copenhagen
+          value: Malmö, Copenhagen
   - id: dk-bruun-3839
     fuss: seed_unsorted
     phase: bruun
@@ -279,7 +288,9 @@ coins:
       -   - 1496
           - 1497
     ruler: Hans
-    mint: Kopenhagen
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       bruun_collection_id: '3839'
       sieg: '10'
@@ -296,7 +307,7 @@ coins:
     verified: false
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -347,7 +358,9 @@ coins:
       -   - 1496
           - 1497
     ruler: Hans
-    mint: Kopenhagen
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       bruun_collection_id: '3840'
       sieg: '10'
@@ -364,7 +377,7 @@ coins:
     verified: false
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -378,6 +391,12 @@ coins:
           source: bruun
           as_printed: ND (ca. 1496-1497)
           value: 1496-1497
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmö or Copenhagen
+          value: Malmö, Copenhagen
   - id: dk-bruun-3837
     fuss: seed_unsorted
     phase: bruun
@@ -601,7 +620,9 @@ coins:
       -   - 1523
           - 1523
     ruler: Frederik I
-    mint: Roskilde
+    mint:
+      - Roskilde
+      - Serridslev
     catalog:
       bruun_collection_id: '3957'
       sieg: '22.3'
@@ -618,13 +639,20 @@ coins:
     verified: false
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11154, p. 65
     mintmaster: Berndt Buske
     metal_verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Roskilde or Serridslev
+          value: Roskilde, Serridslev
   - id: dk-bruun-3964
     fuss: seed_unsorted
     phase: bruun
@@ -4616,7 +4644,6 @@ coins:
       bruun_collection_id: '5847'
       sieg: '119.1'
       schou: '22'
-      km: '154'
       hede: 64B
       others:
         - Harck# 6.13.1
@@ -14279,7 +14306,7 @@ coins:
           - 1678
     year_verified: false
     ruler: Christian V
-    mint:
+    mint: Christiansstad
     catalog:
       hede: 132B
       sieg: '150.2'
@@ -14295,7 +14322,7 @@ coins:
     verified: false
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: false
+    mint_verified: true
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -14668,44 +14695,6 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17091, p. 47
     mintmaster: Gregorius Sesemann (GS)
-    metal_verified: true
-  - id: dk-bruun-7006
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_label: '1685'
-    year_first: 1685
-    year_last: 1685
-    year_ranges:
-      -   - 1685
-          - 1685
-    ruler: Christian V
-    mint:
-    catalog:
-      bruun_collection_id: '7006'
-      sieg: '144.5'
-      schou: '2'
-      friedberg: '41'
-      hede: '117'
-      bruun_part: III
-      bruun_lot_no: 11246
-      bruun_page: 128
-      others:
-        - Aagaard# 8.1
-    metal: gold
-    fineness:
-    weight_rough_g: 4.44
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11246, p. 110
-    mintmaster: Christopher Woltereck
     metal_verified: true
   - id: dk-bruun-7247
     fuss: seed_unsorted
