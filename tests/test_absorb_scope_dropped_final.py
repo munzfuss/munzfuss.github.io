@@ -56,6 +56,13 @@ class ScopeDroppedFinal(unittest.TestCase):
         fe = _fe("c-x4", KMM.format(150153))
         self.assertFalse(AB._is_scope_dropped_final(fe, {"c-x4"}, {"c-x4"}))
 
+    def test_label_only_kmm_citation_counts(self):
+        fe = {"id": "c-x6", "fuss": "kronefod", "composed_of": ["c-x6"],
+              "sources": [{"type": "museum", "ref": "KMM 150153 (Inv. FP 2711.20)"}]}
+        self.assertTrue(AB._is_scope_dropped_final(fe, set(), set()))
+        fe["sources"][0]["ref"] = "KMM 999999 (Inv. FP 2711.20)"
+        self.assertFalse(AB._is_scope_dropped_final(fe, set(), set()))
+
     def test_no_sources_is_not_this_rule(self):
         self.assertFalse(AB._is_scope_dropped_final(_fe("c-x5"), set(), set()))
 

@@ -2442,10 +2442,29 @@ def _is_scope_dropped_final(fe: dict, live_unified_ids: set, live_ids: set) -> b
     if not dropped:
         return False
     for s in srcs:
-        m = _KMM_OBJECT_RE.search(str((s or {}).get("url") or ""))
-        if not m or f"kmk-{m.group(1)}" not in dropped:
+        n = _kmm_object_of(s)
+        if not n or f"kmk-{n}" not in dropped:
             return False
     return True
+
+
+_KMM_REF_RE = re.compile(r"^\s*KMM\s+(\d+)\b")
+
+
+def _kmm_object_of(src) -> str | None:
+    """KMM object number a citation points at: from its url
+    («…/KMM/object/<n>»), or — for an older citation stored without a url —
+    from its label («KMM <n> (Inv. …)»; 2026-11-07, five such finals)."""
+    if not isinstance(src, dict):
+        return None
+    m = _KMM_OBJECT_RE.search(str(src.get("url") or ""))
+    if m:
+        return m.group(1)
+    if not src.get("url"):
+        m = _KMM_REF_RE.match(str(src.get("ref") or ""))
+        if m:
+            return m.group(1)
+    return None
 
 
 _CROSS_ENTITY_DOC: dict | None = None
