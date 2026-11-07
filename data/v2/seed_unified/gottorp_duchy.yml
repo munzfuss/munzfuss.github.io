@@ -2,7 +2,7 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 549 per-source seed entries.
+# Input: 550 per-source seed entries.
 # Output: 228 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -7584,16 +7584,23 @@ coins:
         - 431-32
         - '434'
         - 436-38
+        - '438'
+        - 438A
       others:
         - Schön# 1 (1702)
       numista: '301828'
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 2.76
+        source: Emporium Hamburg 69, lot 1676
+      - value: 2.78
+        source: Emporium Hamburg 69, lot 1676
     sources:
       - type: literature
         url: https://en.numista.com/301828
@@ -7601,6 +7608,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-4-schilling-km-155-1695-1702-cuid-1185476-duid-1394340
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: auction
+        url: https://www.numisbids.com/sale/433/lot/1676
+        ref: Emporium Hamburg 69 (4-5 April 2013), lot 1676
       - type: literature
         url: https://numismaster.com/MC_167287
         ref: NumisMaster
@@ -7608,6 +7618,7 @@ coins:
     composed_of:
       - dk-numista-301828
       - ngc-1185476
+      - numisbids-433-1676
       - schleswig_holstein-numismaster-167287
   - id: c-daa44a71
     class_id: c-daa44a71
