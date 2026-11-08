@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8364 per-source seed entries.
-# Output: 1765 unified entries (one per physical coin).
+# Output: 1764 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6471,79 +6471,6 @@ coins:
       - denmark-numismaster-65888
       - dk-bruun-7242
       - ngc-1051018
-  - id: c-5b79f07d
-    class_id: c-5b79f07d
-    label: unified-dk-bruun-7253
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1696
-    year_last: 1696
-    year_label: '1696'
-    ruler: Christian V
-    mint: Kopenhagen
-    catalog:
-      km: A445
-      bruun_collection_id: '7253'
-      sieg: '83'
-      schou: '22'
-      hede: 49B
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: ngc-1050272
-          source: ngc
-          years: '1696'
-        - seed: denmark-numismaster-65800
-          source: numismaster
-          years: '1696'
-      uncertain:
-        - seed: dk-bruun-7253
-          source: bruun
-          years: '1696'
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.47
-        source: bruun
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1696)
-          value: '1696'
-          seed: dk-bruun-7253
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65800
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11257, p. 114
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-a445-1696-cuid-1050272-duid-1238038
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65800
-      - dk-bruun-7253
-      - ngc-1050272
   - id: c-054f8d2c
     class_id: c-054f8d2c
     label: unified-dk-bruun-7296
@@ -48398,8 +48325,12 @@ coins:
     ruler: Christian V
     mint: Kopenhagen
     catalog:
-      km: '444'
-      hede: 49AB
+      km:
+        - A445
+        - '444'
+      hede:
+        - 49AB
+        - 49B
       hede_volume: c5h
       schou:
         - 20-21
@@ -48407,6 +48338,7 @@ coins:
       sieg:
         - '81'
         - '83'
+      bruun_collection_id: '7253'
       numista: '146234'
       fr: '182'
     metal: gold
@@ -48416,13 +48348,49 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-hede-c5h49ab
+          source: hede
+          years: '1696'
+        - seed: ngc-1050272
+          source: ngc
+          years: '1696'
+        - seed: ngc-1069065
+          source: ngc
+          years: '1696'
+        - seed: dk-numista-146234
+          source: numista
+          years: '1696'
+        - seed: denmark-numismaster-65799
+          source: numismaster
+          years: '1696'
+        - seed: denmark-numismaster-65800
+          source: numismaster
+          years: '1696'
+        - seed: dk-tid-99078
+          source: ucoin
+          years: '1696'
+      uncertain:
+        - seed: dk-bruun-7253
+          source: bruun
+          years: '1696'
     fineness:
       - value: 0.979
         source: hede
       - value: 0.979
         source: ngc
+        specimen: ngc-1050272
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1069065
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-65799
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65800
       - value: 0.979
         source: numista
       - value: 0.98
@@ -48430,12 +48398,22 @@ coins:
     weight_rough_g:
       - value: 3.44
         source: numista
+      - value: 3.47
+        source: bruun
       - value: 3.49
         source: hede
       - value: 3.49
         source: ngc
+        specimen: ngc-1050272
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1069065
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-65799
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-65800
       - value: 3.49
         source: ucoin
     diameter_mm:
@@ -48443,10 +48421,24 @@ coins:
         source: ucoin
       - value: 18.2
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1696)
+          value: '1696'
+          seed: dk-bruun-7253
     sources:
       - type: literature
         url: https://numismaster.com/MC_65799
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65800
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11257, p. 114
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h49.htm
         ref: danskmoent.dk (Hede c5h49AB)
@@ -48457,14 +48449,20 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-dukat-1696/?tid=99078
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-a445-1696-cuid-1050272-duid-1238038
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-444-1696-cuid-1069065-duid-1238037
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-65799
+      - denmark-numismaster-65800
+      - dk-bruun-7253
       - dk-hede-c5h49ab
       - dk-numista-146234
       - dk-tid-99078
+      - ngc-1050272
       - ngc-1069065
   - id: c-49254e87
     class_id: c-49254e87
