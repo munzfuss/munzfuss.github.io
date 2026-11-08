@@ -44418,6 +44418,8 @@ coins:
         source: galster
       - value: 1.75
         source: numista
+      - value: 1.79
+        source: kmk
     diameter_mm:
       - value: 21.0
         source: numista
@@ -44432,6 +44434,9 @@ coins:
       - type: literature
         url: https://en.numista.com/152060
         ref: Numista N#152060 — 2 Skilling - Christian III (Copenhagen)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150154
+        ref: KMM 150154 (Inv. KP 1656.159)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/161232
         ref: KMM 161232 (Inv. FP 4407.1)
@@ -106925,6 +106930,9 @@ coins:
       bruun_lot_no: 17152
       bruun_page: 91
       numista: '40844'
+      others:
+        - JSJ# 258
+        - JSJ# 257
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -106962,6 +106970,12 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-6-skilling-km-tn1-1813-cuid-1051146-duid-1238483
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279186
+        ref: KMM 279186 (Inv. FP 3528.258)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279187
+        ref: KMM 279187 (Inv. FP 3528.257)
     note:
       de: 6 Skilling Rigsbanktegn 1813 (Hede-20) · Bruun-Specimen.
       en: 6 Skilling Rigsbanktegn 1813 (Hede-20) · Bruun specimen.
@@ -107079,6 +107093,8 @@ coins:
       bruun_lot_no: 17155
       bruun_page: 91
       numista: '56609'
+      others:
+        - JSJ# 259
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -107120,6 +107136,19 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-4-skilling-km-tn6-1815-cuid-1050456-duid-1238486
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157268
+        ref: KMM 157268 (Inv. FP 2491.26)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203793
+        ref: KMM 203793 (Inv. FP 6588.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279185
+        ref: KMM 279185 (Inv. FP 3528.259)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/492515
+        ref: KMM 492515 (Inv. FP 10686.13)
+        display: false
     note:
       de: 4 Skilling Rigsbanktegn 1815 (Hede-21) · Bruun-Specimen.
       en: 4 Skilling Rigsbanktegn 1815 (Hede-21) · Bruun specimen.
@@ -107274,6 +107303,8 @@ coins:
       bruun_lot_no: 17157
       bruun_page: 92
       numista: '37054'
+      others:
+        - JSJ# 262
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -107388,6 +107419,21 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/278925
         ref: KMM 278925 (Inv. FP 3257.4)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/123185
+        ref: KMM 123185 (Inv. FP 2638.19)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203792
+        ref: KMM 203792 (Inv. FP 6588.9)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279182
+        ref: KMM 279182 (Inv. FP 3528.262)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122417
+        ref: KMM 122417 (Inv. FP 4443.4)
         display: false
     note:
       de: 2 Skilling Rigsbanktegn 1815 (Hede-23) · Bruun-Specimen.
@@ -117358,35 +117404,6 @@ coins:
   - fuss: 18_5_thaler
     phase: I
     kind: kurant
-    nominal: Rigsbanktegn 2 Skilling
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    id: c-7e551492
-    year_first: 1815
-    year_last: 1815
-    year_label: '1815'
-    catalog:
-      hede: '23'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122417
-        ref: KMM 122417 (Inv. FP 4443.4)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/203792
-        ref: KMM 203792 (Inv. FP 6588.9)
-    verification_note: *id008
-    composed_of:
-      - c-7e551492
-    label: unified-kmk-122417
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
     nominal: 1 Skilling
     ruler: Frederik VII.
     issuing_entity: danish_realm
@@ -118429,32 +118446,6 @@ coins:
     composed_of:
       - c-412aff59
     label: unified-kmk-123184
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 2 Skilling
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    fraction: 1/96
-    id: c-60702d4f
-    year_first: 1815
-    year_last: 1815
-    year_label: '1815'
-    catalog:
-      schou: '3'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/123185
-        ref: KMM 123185 (Inv. FP 2638.19)
-    verification_note: *id008
-    composed_of:
-      - c-60702d4f
-    label: unified-kmk-123185
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -125363,31 +125354,6 @@ coins:
       - c-2aab670b
     label: unified-kmk-156813
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: Rigsbanktegn 4 Skilling
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    id: c-4aef9f9b
-    year_first: 1815
-    year_last: 1815
-    year_label: '1815'
-    catalog:
-      schou: '1'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157268
-        ref: KMM 157268 (Inv. FP 2491.26)
-    verification_note: *id008
-    composed_of:
-      - c-4aef9f9b
-    label: unified-kmk-157268
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -130796,40 +130762,6 @@ coins:
       - c-a5c963eb
     label: unified-kmk-161191
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    fraction: 1/96
-    id: c-7dc990b0
-    year_first: 1813
-    year_last: 1813
-    year_label: '1813'
-    catalog:
-      hede: '17'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/161238
-        ref: KMM 161238 (Inv. FP 4406.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/370985
-        ref: KMM 370985 (Inv. FP 6183.5)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306312
-        ref: KMM 306312 (Inv. FP 7858.18)
-        display: false
-    verification_note: *id008
-    composed_of:
-      - c-7dc990b0
-    label: unified-kmk-161238
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -131815,31 +131747,6 @@ coins:
       - c-880feaf0
     label: unified-kmk-203788
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: rigsbanktegn 4 Skilling
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    id: c-c1b8d7fc
-    year_first: 1815
-    year_last: 1815
-    year_label: '1815'
-    catalog:
-      hede: '21'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/203793
-        ref: KMM 203793 (Inv. FP 6588.8)
-    verification_note: *id008
-    composed_of:
-      - c-c1b8d7fc
-    label: unified-kmk-203793
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -132134,34 +132041,6 @@ coins:
   - fuss: 18_5_thaler
     phase: I
     kind: kurant
-    nominal: 1 Skilling rigsmønt
-    ruler: Frederik VII.
-    issuing_entity: danish_realm
-    fraction: 1/96
-    id: c-dab816a5
-    year_first: 1853
-    year_last: 1853
-    year_label: '1853'
-    catalog:
-      hede: 12C
-      others:
-        - JSJ# 264
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279180
-        ref: KMM 279180 (Inv. FP 3528.264)
-    verification_note: *id008
-    composed_of:
-      - c-dab816a5
-    label: unified-kmk-279180
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
     nominal: 3 Rigsbankskilling
     ruler: Christian VIII.
     issuing_entity: danish_realm
@@ -132194,94 +132073,6 @@ coins:
     composed_of:
       - c-82ae4b7d
     label: unified-kmk-279181
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 2 Rigsbankskilling rigsbanktegn
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    fraction: 1/96
-    id: c-c9bd2d73
-    year_first: 1815
-    year_last: 1815
-    year_label: '1815'
-    catalog:
-      hede: '23'
-      others:
-        - JSJ# 262
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279182
-        ref: KMM 279182 (Inv. FP 3528.262)
-    verification_note: *id008
-    composed_of:
-      - c-c9bd2d73
-    label: unified-kmk-279182
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 4 Rigsbankskilling rigsbanktegn
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    fraction: 1/24
-    id: c-a6bca4c3
-    year_first: 1815
-    year_last: 1815
-    year_label: '1815'
-    catalog:
-      hede: '21'
-      others:
-        - JSJ# 259
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279185
-        ref: KMM 279185 (Inv. FP 3528.259)
-    verification_note: *id008
-    composed_of:
-      - c-a6bca4c3
-    label: unified-kmk-279185
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 6 Rigsbankskilling rigsbanktegn
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    fraction: 1/12
-    id: c-371cf1c9
-    year_first: 1813
-    year_last: 1813
-    year_label: '1813'
-    catalog:
-      hede: '20'
-      others:
-        - JSJ# 258
-        - JSJ# 257
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279186
-        ref: KMM 279186 (Inv. FP 3528.258)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279187
-        ref: KMM 279187 (Inv. FP 3528.257)
-    verification_note: *id008
-    composed_of:
-      - c-371cf1c9
-    label: unified-kmk-279186
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -134266,32 +134057,6 @@ coins:
     composed_of:
       - c-0ab8f941
     label: unified-kmk-492499
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 4 Skilling rigbanktegn
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    fraction: 1/24
-    id: c-34ee65b0
-    year_first: 1815
-    year_last: 1815
-    year_label: '1815'
-    catalog:
-      hede: '21'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/492515
-        ref: KMM 492515 (Inv. FP 10686.13)
-    verification_note: *id008
-    composed_of:
-      - c-34ee65b0
-    label: unified-kmk-492515
     origin: promoted
   - fuss: kronefod
     phase: I
@@ -138408,6 +138173,18 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133424
         ref: KMM 133424 (Inv. FP 9374.49)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/161238
+        ref: KMM 161238 (Inv. FP 4406.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/370985
+        ref: KMM 370985 (Inv. FP 6183.5)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306312
+        ref: KMM 306312 (Inv. FP 7858.18)
         display: false
     note:
       de: Nackter Kopf nach rechts, von einer Umschrift umgeben. / Nennwert in drei Zeilen, darunter das Datum.
@@ -160773,6 +160550,8 @@ coins:
       bruun_lot_no: 17200
       bruun_page: 105
       numista: '19001'
+      others:
+        - JSJ# 264
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -160825,6 +160604,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152036
         ref: KMM 152036 (Inv. FP 3574.258)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279180
+        ref: KMM 279180 (Inv. FP 3528.264)
     note:
       de: Bildnis König Frederik VII. nach rechts; die Umschrift verläuft durchgehend über dem Bildnis. / Gekreuztes Schwert und Zepter, darüber die dänische Krone; unten der Wert, links das Datum, 
         rechts die Müntzzeichen.
@@ -169133,34 +168915,6 @@ coins:
     composed_of:
       - c-b252d41e
     label: unified-dk-hede-f6h23
-    origin: promoted
-  - fuss: luebischer_muenzfuss
-    phase: III
-    kind: scheide
-    nominal: 2 Skilling
-    ruler: Christian III
-    issuing_entity: danish_realm
-    id: c-362c28c8
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    mint: Kopenhagen
-    catalog:
-      schou: '28'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.79
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150154
-        ref: KMM 150154 (Inv. KP 1656.159)
-    composed_of:
-      - c-362c28c8
-    label: unified-kmk-150154
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
