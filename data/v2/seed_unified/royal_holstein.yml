@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1286 per-source seed entries.
-# Output: 272 unified entries (one per physical coin).
+# Input: 1298 per-source seed entries.
+# Output: 277 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -234,6 +234,41 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-5326
+  - id: c-8d167e4c
+    class_id: c-8d167e4c
+    label: unified-dk-bruun-5439
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1624
+    year_last: 1624
+    year_label: '1624'
+    ruler: Christian IV
+    mint: Glückstadt
+    catalog:
+      hede: 159F
+      bruun_collection_id: '5439'
+      schou: '13'
+      others:
+        - Pn# Pn7
+      dav: '3668'
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 39.91
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1034, p. 48
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-bruun-5439
   - id: c-af5a6625
     class_id: c-af5a6625
     label: unified-dk-bruun-5484
@@ -640,6 +675,78 @@ coins:
       - dk-bruun-6856
       - dk-numista-275958
       - schleswig_holstein-numismaster-93036
+  - id: c-5e81b057
+    class_id: c-5e81b057
+    label: unified-dk-bruun-6918
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1/16 Speciedaler (3 Skilling Lybsk)
+    year_first: 1680
+    year_last: 1680
+    year_label: '1680'
+    ruler: Christian V
+    mintmaster: Christoper Woltereck
+    mint: Glückstadt
+    catalog:
+      km: '69'
+      hede: '124'
+      sieg: '132'
+      lange: '83'
+      bruun_collection_id:
+        - '6918'
+        - '6919'
+      schou:
+        - '31'
+        - '32'
+      numista: '181803'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.812
+        source: numismaster
+      - value: 0.812
+        source: numista
+      - value: 0.812
+        source: ucoin
+    weight_rough_g:
+      - value: 1.785
+        source: numismaster
+      - value: 1.79
+        source: ucoin
+      - value: 1.82
+        source: numista
+    diameter_mm:
+      - value: 21.0
+        source: ucoin
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14157, p. 62
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11245, p. 109
+      - type: literature
+        url: https://en.numista.com/181803
+        ref: Numista N#181803 — 1⁄16 Thaler - Christian V
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1680/?tid=163636
+        ref: ucoin
+      - type: literature
+        url: https://numismaster.com/MC_93009
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-bruun-6918
+      - dk-bruun-6919
+      - dk-numista-181803
+      - dk-tid-163636
+      - schleswig_holstein-numismaster-93009
   - id: c-20b8d266
     class_id: c-20b8d266
     label: unified-dk-bruun-7779
@@ -1156,6 +1263,41 @@ coins:
       - dk-numista-83066
       - dk-tid-101039
       - ngc-1050225
+  - id: c-5cd784ac
+    class_id: c-5cd784ac
+    label: unified-dk-bruun-8045
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 32 Skilling
+    year_first: 1818
+    year_last: 1818
+    year_label: '1818'
+    ruler: Frederik VI
+    mintmaster: Cajus Branth
+    mint: Altona
+    catalog:
+      km: '690.1'
+      hede: 29A
+      sieg: '25.1'
+      bruun_collection_id: '8045'
+      schou: '2'
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 6.13
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11300, p. 132
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-bruun-8045
   - id: c-c53249ef
     class_id: c-c53249ef
     label: unified-dk-bruun-8065
@@ -1220,6 +1362,42 @@ coins:
       - denmark-numismaster-66101
       - dk-bruun-8065
       - dk-numista-152277
+  - id: c-79f1f02a
+    class_id: c-79f1f02a
+    label: unified-dk-bruun-8091
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: ¼ Speciedaler
+    year_first: 1833
+    year_last: 1833
+    year_label: '1833'
+    ruler: Frederik VI
+    mintmaster: Johan Friedrich Freund
+    mint: Altona
+    catalog:
+      hede: '28'
+      sieg: '42'
+      bruun_collection_id: '8091'
+      schou: '8'
+      others:
+        - Pn# Pn53
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 7.28
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17168, p. 80
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-bruun-8091
   - id: c-953420ee
     class_id: c-953420ee
     label: unified-dk-bruun-8105
@@ -1311,6 +1489,78 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-8127
+  - id: c-54bc804b
+    class_id: c-54bc804b
+    label: unified-dk-bruun-8206
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1851
+    year_last: 1851
+    year_label: '1851'
+    ruler: Frederik VII
+    mintmaster: Theodor C
+    mint: Altona
+    catalog:
+      hede: '18'
+      sieg: '23'
+      bruun_collection_id: '8206'
+      schou: '4'
+      others:
+        - AKS# 12
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.4
+        source: bruun
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13263, p. 150
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-bruun-8206
+  - id: c-f64cfbae
+    class_id: c-f64cfbae
+    label: unified-dk-bruun-8255
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 2 Rigsdaler
+    year_first: 1857
+    year_last: 1857
+    year_label: '1857'
+    ruler: Frederik VII
+    mintmaster: Hans Frederik Alsing
+    mint: Altona
+    catalog:
+      hede: '7'
+      sieg: '20'
+      bruun_collection_id: '8255'
+      schou: '3'
+      others:
+        - Pn# Pn60
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 26.47
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11307, p. 134
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-bruun-8255
   - id: c-758acbdb
     class_id: c-758acbdb
     label: unified-dk-hede-c4h104
@@ -1869,7 +2119,6 @@ coins:
         - '184'
       bruun_collection_id: '5327'
       schou: '7'
-      lange: '32'
       bruun_part: II
       bruun_lot_no: 13097
       bruun_page: 77
@@ -1972,16 +2221,32 @@ coins:
           - 1624
     year_label: 1623-1624
     ruler: Christian IV
+    mintmaster: Albert Dionis
     mint: Glückstadt
     catalog:
-      hede: '159'
+      hede:
+        - '159'
+        - 159B
       hede_volume: c4h
       sieg: mgl.
+      bruun_collection_id: '5328'
+      schou: '10'
+      others:
+        - Harck# 22.2
+        - Pn# Pn3
     metal: silver
     metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 57.13
+        source: bruun
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17053, p. 20
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
         ref: danskmoent.dk overview c4hede2 (Hede c4h159 — Tiefenseite fehlt)
@@ -1996,6 +2261,7 @@ coins:
         1965. Bemærkning i indekset: «Afslag af speciedalerstempler på kantede blanketter.»'
     issuing_entity: royal_holstein
     composed_of:
+      - dk-bruun-5328
       - dk-hede-c4h159
   - id: c-9f71c4b4
     class_id: c-9f71c4b4
@@ -4409,7 +4675,6 @@ coins:
         - '127'
         - '144'
         - '144.1'
-        - '144.3'
         - '144.4'
         - '144.5'
       bruun_collection_id:
@@ -7445,6 +7710,7 @@ coins:
         - '45.2'
         - '45.3'
         - '45.5'
+        - '53'
         - '55'
         - '56'
       schou:
@@ -7457,6 +7723,7 @@ coins:
         - '7888'
         - '7889'
         - '7911'
+        - '7945'
         - '7955'
       fp:
         - '9.1'
@@ -7468,14 +7735,15 @@ coins:
       bruun_part: I
       bruun_lot_no: 1153
       bruun_page: 212
+      others:
+        - Pn# Pn3c
+        - AKS# 3
+        - Jaeg 6 NWD# 10
+        - C# 9c
       dav: EC III 1311
       numista:
         - '309993'
         - '32842'
-      others:
-        - AKS# 3
-        - Jaeg 6 NWD# 10
-        - C# 9c
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -7535,6 +7803,8 @@ coins:
       - value: 0.875
         source: ucoin
     weight_rough_g:
+      - value: 27.44
+        source: bruun
       - value: 28.85
         source: bruun
       - value: 28.86
@@ -7633,6 +7903,9 @@ coins:
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14207, p. 77
       - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13252, p. 148
+      - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11297, p. 131
       - type: literature
@@ -7679,6 +7952,7 @@ coins:
       - dk-bruun-7888
       - dk-bruun-7889
       - dk-bruun-7911
+      - dk-bruun-7945
       - dk-bruun-7955
       - dk-hede-c7h39a
       - dk-hede-c7h39b
@@ -12949,11 +13223,11 @@ coins:
       - Kopenhagen
     catalog:
       km:
+        - '683.1'
         - '683.2'
         - '683.4'
         - '683.5'
         - '683.3'
-        - '683.1'
         - '683'
       hede:
         - 24A
@@ -12973,6 +13247,7 @@ coins:
         - '26.4'
         - '26.5'
       bruun_collection_id:
+        - '8025'
         - '8026'
         - '8044'
       bruun_part: IV
@@ -13037,6 +13312,8 @@ coins:
       - value: 0.875
         source: ucoin
     weight_rough_g:
+      - value: 14.42
+        source: bruun
       - value: 14.43
         source: bruun
       - value: 14.447
@@ -13112,6 +13389,9 @@ coins:
         url: https://numismaster.com/MC_66049
         ref: NumisMaster
       - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1157, p. 193
+      - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17150, p. 75
       - type: auction
@@ -13157,6 +13437,7 @@ coins:
       - denmark-numismaster-66047
       - denmark-numismaster-66048
       - denmark-numismaster-66049
+      - dk-bruun-8025
       - dk-bruun-8026
       - dk-bruun-8044
       - dk-hede-f6h24a
@@ -13311,6 +13592,8 @@ coins:
         - '30.4'
       bruun_collection_id:
         - '8055'
+        - '8056'
+        - '8057'
         - '8071'
         - '8079'
         - '8098'
@@ -13376,6 +13659,8 @@ coins:
       - value: 28.79
         source: bruun
       - value: 28.86
+        source: bruun
+      - value: 28.87
         source: bruun
       - value: 28.88
         source: bruun
@@ -13445,6 +13730,12 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17162, p. 77
       - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1158, p. 194
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17163, p. 78
+      - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17166, p. 80
       - type: auction
@@ -13493,6 +13784,8 @@ coins:
       - denmark-numismaster-66080
       - denmark-numismaster-66081
       - dk-bruun-8055
+      - dk-bruun-8056
+      - dk-bruun-8057
       - dk-bruun-8071
       - dk-bruun-8079
       - dk-bruun-8098
@@ -16506,60 +16799,6 @@ coins:
       - dk-numista-145748
       - dk-tid-163662
       - schleswig_holstein-numismaster-93024
-  - id: c-5e81b057
-    class_id: c-5e81b057
-    label: unified-dk-numista-181803
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1⁄16 Thaler
-    year_first: 1680
-    year_last: 1680
-    year_label: '1680'
-    ruler: Christian V
-    mint: Glückstadt
-    catalog:
-      km: '69'
-      numista: '181803'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-      - value: 0.812
-        source: numista
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-      - value: 1.79
-        source: ucoin
-      - value: 1.82
-        source: numista
-    diameter_mm:
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/181803
-        ref: Numista N#181803 — 1⁄16 Thaler - Christian V
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1680/?tid=163636
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_93009
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-181803
-      - dk-tid-163636
-      - schleswig_holstein-numismaster-93009
   - id: c-30b93dd0
     class_id: c-30b93dd0
     label: unified-dk-numista-204200

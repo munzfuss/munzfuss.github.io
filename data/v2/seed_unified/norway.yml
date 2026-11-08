@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `norway`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norway.yml across all sources.
 #
-# Input: 21 per-source seed entries.
-# Output: 16 unified entries (one per physical coin).
+# Input: 23 per-source seed entries.
+# Output: 18 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norway
-generated_at: '2026-11-06'
+generated_at: '2026-11-08'
 coins:
   - id: c-d32c82f5
     class_id: c-d32c82f5
@@ -223,6 +223,76 @@ coins:
       - dk-bruun-11006
       - dk-bruun-11012
       - dk-bruun-11023
+  - id: c-efe35da6
+    class_id: c-efe35da6
+    label: unified-dk-bruun-11028
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1837
+    year_last: 1837
+    year_label: '1837'
+    ruler: Karl XIV Johan
+    mintmaster: Caspar Herman Langberg
+    mint: Kongsberg
+    catalog:
+      bruun_collection_id: '11028'
+      others:
+        - Pn# PnA40
+        - Delzanno# 73
+        - NM# 72
+    metal: copper
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 9.21
+        source: bruun
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15113, p. 129
+    issuing_entity: norway
+    composed_of:
+      - dk-bruun-11028
+  - id: c-1c75b0f0
+    class_id: c-1c75b0f0
+    label: unified-dk-bruun-11030
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: ½ Skilling
+    year_first: 1837
+    year_last: 1837
+    year_label: '1837'
+    ruler: Karl XIV Johan
+    mintmaster: Caspar Herman Langberg
+    mint: Kongsberg
+    catalog:
+      bruun_collection_id: '11030'
+      others:
+        - Pn# PnF39
+        - Delzanno# 74
+        - NM# 73
+    metal: copper
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 5.18
+        source: bruun
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15114, p. 129
+    issuing_entity: norway
+    composed_of:
+      - dk-bruun-11030
   - id: c-27e26aa6
     class_id: c-27e26aa6
     label: unified-dk-bruun-11046
