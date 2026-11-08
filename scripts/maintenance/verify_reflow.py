@@ -323,6 +323,10 @@ def _catalog_registers(coin: dict) -> dict[str, set[str]]:
     """catalog → {register: {values}}, so a register losing a value is visible."""
     out: dict[str, set[str]] = {}
     for reg, val in (coin.get("catalog") or {}).items():
+        if isinstance(val, dict):
+            # Volume-separated KM ({sh: [...], dk: ...}): compare the values,
+            # not the dict's string — a grown list is not a lost index.
+            val = [x for v in val.values() for x in _as_list(v)]
         vals = _as_list(val)
         if reg == "others":
             # Same token canonicalisation the merger applies, so a spelling
