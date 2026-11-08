@@ -1350,9 +1350,9 @@ coins:
     nominal: 1 Skilling Dansk
     ruler: Christian VII.
     issuing_entity:
-      - royal_holstein
       - danish_norway
       - danish_realm
+      - royal_holstein
     mintmaster: Hans Schierven Knoph
     id: km-616-chr-v-1771
     year_first: 1771
@@ -1502,9 +1502,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/160394
         ref: KMM 160394 (Inv. FP 3326.4)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168062
-        ref: KMM 168062 (Inv. FP 2448.22)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/292893
         ref: KMM 292893 (Inv. FP 6109.18)
@@ -1807,6 +1804,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/299619
         ref: KMM 299619 (Inv. FP 8421.3)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168062
+        ref: KMM 168062 (Inv. FP 2448.22)
     note:
       de: «1 SKILLING DANSK K·M· 1771» (K·M· = Kongelige Mønt) · ca. 55 Mio. Stück
       en: «1 SKILLING DANSK K·M· 1771» (K·M· = Kongelige Mønt) · ca. 55 Mio. pieces
@@ -2903,7 +2903,9 @@ coins:
     fraction: '1'
     nominal: 1 Rigsbankdaler
     ruler: Frederik VI.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     mintmaster: Johan Friedrich Freund (FF)
     id: km-696-1-fr-vi-1826
     year_first: 1826
@@ -2913,9 +2915,9 @@ coins:
           - 1828
       -   - 1833
           - 1836
-      -   - 1839
+      -   - 1838
           - 1839
-    year_label: 1826-1828, 1833-1836, 1839
+    year_label: 1826-1828, 1833-1836, 1838-1839
     mint:
       - Altona
       - Kopenhagen
@@ -2924,18 +2926,36 @@ coins:
         sh:
           - '696.1'
           - '696'
+          - '706.2'
+          - '706.1'
+          - '706.3'
+          - '696.2'
+          - '706'
         dk: '706.1'
-      bruun_collection_id: '8067'
+      bruun_collection_id:
+        - '8067'
+        - '8093'
+        - '8103'
       bruun_part: IV
       bruun_lot_no: 17164
       bruun_page: 94
-      hede_volume: f6h
       sieg:
         - '27.1'
         - '28.1'
-      schou: '3'
-      hede: 27A
-      numista: '152303'
+        - '28.2'
+        - '28.3'
+      schou:
+        - '3'
+        - 5-6
+        - '7'
+      hede:
+        - 27A
+        - 27B
+        - 27C
+      hede_volume: f6h
+      numista:
+        - '152303'
+        - '83070'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2946,22 +2966,114 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f6h27a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h27b
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h27c
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050421
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051026
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051048
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051049
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1060680
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66050
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66051
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66052
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66055
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66057
       - value: 0.875
         source: numista
+        specimen: dk-numista-152303
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-83070
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70760
     weight_rough_g:
+      - value: 14.35
+        source: bruun
       - value: 14.43
         source: bruun
       - value: 14.447
         source: hede
+        specimen: dk-hede-f6h27a
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h27b
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h27c
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1050421
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051048
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1060680
       - value: 14.447
         source: numismaster
+        specimen: denmark-numismaster-66050
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66052
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66057
+      - value: 14.447
+        source: numista
+        specimen: dk-numista-83070
+      - value: 14.45
+        source: bruun
       - value: 14.45
         source: numista
+        specimen: dk-numista-152303
+      - value: 14.45
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 14.5
+        source: ucoin
+        specimen: dk-tid-70760
     diameter_mm:
+      - value: 31.0
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 32.0
+        source: numista
+        specimen: dk-numista-83070
+      - value: 32.0
+        source: ucoin
+        specimen: dk-tid-70760
       - value: 32.1
         source: numista
+        specimen: dk-numista-152303
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -2970,11 +3082,56 @@ coins:
         url: https://numismaster.com/MC_66050
         ref: NumisMaster
       - type: literature
-        url: https://en.numista.com/152303
-        ref: Numista N#152303 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut)
+        url: https://numismaster.com/MC_66051
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66052
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66055
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66057
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17169, p. 81
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17171, p. 81
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h27.htm
         ref: danskmoent.dk (Hede f6h27A)
+      - type: literature
+        url: https://en.numista.com/152303
+        ref: Numista N#152303 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut)
+      - type: literature
+        url: https://en.numista.com/83070
+        ref: Numista N#83070 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1826-1828/?tid=70759
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1833-1839/?tid=70760
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78504
+        ref: KMM 78504 (Inv. GP 678.168)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-696.1-1826-1834-cuid-1050421-duid-1238279
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.3-1835-1838-cuid-1051026-duid-1238292
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-696.2-1833-1834-cuid-1051048-duid-1238284
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.1-1833-1839-cuid-1051049-duid-1238286
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.2-1834-cuid-1060680-duid-1238291
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Rigsbankdaler (= ½ Speciedaler) 1826 (KM-696.1)
       en: Rigsbankdaler (= ½ Speciedaler) 1826 (KM-696.1)
@@ -2989,12 +3146,18 @@ coins:
       unit: rigsbankdaler
       basis: fin
     composed_of:
-      - c-c1fe61f5
-      - c-e6374257
+      - c-5825ae49
     label: km-696-1-fr-vi-1826
     origin: foundation
     v1_home_location: schleswig_holstein
     _migration_note: auto-mapped from gesamtstaat
+    _weights_thinned:
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051026
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66051
   - fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -3352,19 +3515,19 @@ coins:
     fraction: '1'
     nominal: 1 Speciedaler
     ruler: Christian VIII.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     mintmaster: Johan Friedrich Freund (FF)
     id: km-720-2-chr-viii-1840
     year_first: 1840
-    year_last: 1847
+    year_last: 1848
     year_ranges:
       -   - 1840
-          - 1840
-      -   - 1844
-          - 1845
-      -   - 1847
-          - 1847
-    year_label: 1840, 1844-1845, 1847
+          - 1841
+      -   - 1843
+          - 1848
+    year_label: 1840-1841, 1843-1848
     mint:
       - Altona
       - Kopenhagen
@@ -3372,24 +3535,47 @@ coins:
       km:
         - '720.2'
         - '720'
-      bruun_collection_id: '8133'
+        - '720.1'
+        - '741'
+        - '720.3'
+      bruun_collection_id:
+        - '8133'
+        - '8131'
+        - '8137'
+        - '8159'
+        - '8172'
+        - '8191'
       bruun_part: IV
       bruun_lot_no: 17175
       bruun_page: 98
-      hede_volume: c8h
       sieg:
+        - '13.1'
         - '13.2'
         - '13.3'
+        - '13.4'
+        - '13.6'
+        - '14'
       schou:
+        - '1'
         - '2'
+        - '3'
         - '4'
       hede:
+        - 3A
         - 3B
         - 3C
+        - 3D
+        - 3E
+        - 3F
       dav:
         - EC IV 74
         - ECT 74
-      numista: '22116'
+      numista:
+        - '22116'
+        - '22191'
+      hede_volume: c8h
+      others:
+        - Schön# 49
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -3400,30 +3586,124 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-c8h3a
+      - value: 0.875
+        source: hede
         specimen: dk-hede-c8h3b
       - value: 0.875
         source: hede
         specimen: dk-hede-c8h3c
       - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3d
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3e
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3f
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050425
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051027
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051052
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66082
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66083
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66084
+      - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66082
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66083
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66085
       - value: 0.875
         source: numista
+        specimen: dk-numista-22116
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-22191
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70768
     weight_rough_g:
+      - value: 28.79
+        source: bruun
+      - value: 28.86
+        source: ikmk
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-70768
       - value: 28.893
         source: hede
-        specimen: dk-hede-c8h3b
+        specimen: dk-hede-c8h3a
       - value: 28.893
         source: hede
-        specimen: dk-hede-c8h3c
+        specimen: dk-hede-c8h3d
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3f
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050425
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66082
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66084
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-66082
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66083
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66085
       - value: 28.893
         source: numista
-      - value: 28.91
+        specimen: dk-numista-22116
+      - value: 28.893
+        source: numista
+        specimen: dk-numista-22191
+      - value: 28.9
+        source: bruun
+      - value: 28.92
         source: bruun
     diameter_mm:
+      - value: 37.0
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 37.0
+        source: ucoin
+        specimen: dk-tid-70768
+      - value: 38.0
+        source: ikmk
+      - value: 38.3
+        source: numista
+        specimen: dk-numista-22191
       - value: 38.68
         source: numista
+        specimen: dk-numista-22116
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -3439,8 +3719,61 @@ coins:
         ref: KMM 437730 (Inv. FP 10604.1)
         display: false
       - type: literature
+        url: https://numismaster.com/MC_66082
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66085
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1162, p. 199
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14215, p. 79
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17183, p. 85
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17187, p. 86
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17192, p. 87
+      - type: literature
         url: https://www.danskmoent.dk/chr/c8h3.htm
-        ref: danskmoent.dk (Hede c8h3B)
+        ref: danskmoent.dk (Hede c8h3A)
+      - type: literature
+        url: https://en.numista.com/22191
+        ref: Numista N#22191 — 1 Speciedaler - Christian VIII (Type 2)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1846-1848/?tid=110651
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1840-1847/?tid=70768
+        ref: ucoin
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18204757
+        ref: IKMK Berlin 18204757
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.1-1840-1846-cuid-1050425-duid-1238334
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.2-1840-1847-cuid-1051027-duid-1238342
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-741-1846-1848-cuid-1051052-duid-1238346
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.1-1844-1847-cuid-66082-duid-184700
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.2-1841-cuid-66083-duid-184704
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.3-1840-1846-cuid-66084-duid-336098
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
+    inscription_rev: 1 SPE-CIES
     note:
       de: Speciedaler 1840 (KM-720.2) · erste Christian-VIII.-Speciedaler-Prägung in Altona
       en: Speciedaler 1840 (KM-720.2) · first Christian VIII Speciedaler issue at Altona
@@ -3455,11 +3788,22 @@ coins:
       unit: rigsbankdaler
       basis: fin
     composed_of:
-      - c-66323a33
+      - c-43e7dbd6
     label: km-720-2-chr-viii-1840
     origin: foundation
     v1_home_location: schleswig_holstein
     _migration_note: auto-mapped from gesamtstaat
+    _weights_thinned:
+      - value: 28.85
+        source: bruun
+      - value: 28.91
+        source: bruun
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3b
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051027
   - fuss: 18_5_thaler
     phase: II
     kind: scheide
@@ -3944,14 +4288,21 @@ coins:
     fraction: '1'
     nominal: 1 Speciedaler
     ruler: Frederik VII.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    mintmaster: Georg Vilhelm Svendsen (VS)
     id: km-744-2-fr-vii-1851
     year_first: 1849
     year_last: 1854
     year_ranges:
       -   - 1849
+          - 1849
+      -   - 1851
+          - 1851
+      -   - 1853
           - 1854
-    year_label: 1849-1854
+    year_label: 1849, 1851, 1853-1854
     mint:
       - Altona
       - Kopenhagen
@@ -3959,20 +4310,30 @@ coins:
       km:
         - '744.2'
         - '744'
-      bruun_collection_id: '8205'
+        - '744.1'
+      bruun_collection_id:
+        - '8205'
+        - '8197'
+        - '8213'
       bruun_part: III
       bruun_lot_no: 11306
       bruun_page: 152
-      hede_volume: f7h
-      sieg: '6.2'
-      schou:
-        - '2'
-        - '4'
-      hede: 4B
       numista: '83074'
       dav:
         - EC IV 76
         - ECT 76
+      hede:
+        - 4A
+        - 4B
+      hede_volume: f7h
+      schou:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+      sieg:
+        - '6.1'
+        - '6.2'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -3983,20 +4344,58 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f7h4a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f7h4b
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050426
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050467
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66087
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66088
       - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
+      - value: 28.77
+        source: bruun
       - value: 28.86
         source: bruun
+      - value: 28.89
+        source: ucoin
       - value: 28.893
         source: hede
+        specimen: dk-hede-f7h4a
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f7h4b
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050426
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050467
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-66087
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66088
       - value: 28.893
         source: numista
+      - value: 28.93
+        source: bruun
     diameter_mm:
+      - value: 37.0
+        source: ucoin
       - value: 37.88
         source: numista
     sources:
@@ -4010,8 +4409,26 @@ coins:
         url: https://en.numista.com/83074
         ref: Numista N#83074 — 1 Speciedaler "Våbenspecie" - Frederik VII
       - type: literature
+        url: https://numismaster.com/MC_66087
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1165, p. 203
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17199, p. 89
+      - type: literature
         url: https://www.danskmoent.dk/fr/f7h4.htm
-        ref: danskmoent.dk (Hede f7h4B)
+        ref: danskmoent.dk (Hede f7h4A)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1849-1854/?tid=70770
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-744.2-1851-1853-cuid-1050426-duid-1238353
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-744.1-1849-1854-cuid-1050467-duid-1238350
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Speciedaler 1851 (KM-744.2) · erste Frederik-VII.-Speciedaler-Prägung in Altona
       en: Speciedaler 1851 (KM-744.2) · first Frederik VII Speciedaler issue at Altona
@@ -4026,7 +4443,7 @@ coins:
       unit: rigsbankdaler
       basis: fin
     composed_of:
-      - c-e90a691d
+      - c-aa8321ea
     label: km-744-2-fr-vii-1851
     origin: foundation
     v1_home_location: schleswig_holstein
@@ -8664,98 +9081,6 @@ coins:
     _curation_holds:
       note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-c8h7 (matched via seed-unified-bridge; V1→V2 bootstrap had dropped the note field — see 
         restore_v1_notes_to_v2_final.py).
-  - fuss: 18_5_thaler
-    phase:
-      denmark: I
-      schleswig_holstein: II
-    kind: scheide
-    nominal: 3 Rigsbankskilling / 3 R.B.S
-    fraction: 1/24
-    ruler: Christian VIII.
-    issuing_entity: royal_holstein
-    id: c-28391585
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    mint: Altona
-    catalog:
-      hede:
-        - '9'
-        - 9A
-      hede_volume: c8h
-      schou:
-        - '7'
-        - '8'
-      sieg:
-        - '6'
-        - '7'
-      others:
-        - JSJ# 263
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.229
-        source: hede
-    weight_rough_g:
-      - value: 1.519
-        source: hede
-    catalog_alts:
-      - register: hede
-        value: 8C
-        source: kmk
-        kind: erroneous
-        reason:
-          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], Übersicht: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (Übers.: «… 3 Rigsbankskilling
-            / 3 R.B.S. Silber 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (Übers.: «C) 1842
-            (RR), Altona; Münzzeichen: Reichsapfel und FF (Hede 8C, Schou 6, Sieg 8)»)."
-          en: "The Hede number does not belong to this coin.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], overview: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (transl.: «… 3 Rigsbankskilling
-            / 3 R.B.S. silver 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (transl.: «C) 1842
-            (RR), Altona; mint mark: orb and FF (Hede 8C, Schou 6, Sieg 8)»)."
-          uk: "Номер Hede не належить цій монеті.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], огляд: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (перекл.: «… 3 Rigsbankskilling /
-            3 R.B.S. срібло 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (перекл.: «C) 1842 (RR),
-            Altona; монетний знак: держава і FF (Hede 8C, Schou 6, Sieg 8)»)."
-          da: "Hede-nummeret hører ikke til denne mønt.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], oversigt: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i].\n[b]danskmoent.dk (Hede
-            8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i]."
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c8h9.htm
-        ref: danskmoent.dk (Hede c8h9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168061
-        ref: KMM 168061 (Inv. FP 2448.27)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279181
-        ref: KMM 279181 (Inv. FP 3528.263)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308817
-        ref: KMM 308817 (Inv. FP 7412.10)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/340428
-        ref: KMM 340428 (Inv. FP 5633.14)
-        display: false
-    note:
-      de: 'Vorderseite: Porträt, Rückseite: Krone. Die Wertangabe erscheint entweder als ‹3 Rigsbankskilling› oder als ‹3 R.B.S.›. Müntzmeisterzeichen FF. Geprägt in København.'
-      en: 'Obverse: portrait, reverse: crown. The value indication appears either as ‹3 Rigsbankskilling› or as ‹3 R.B.S.›. Mintmaster mark FF. Struck at København.'
-      uk: 'Аверс: портрет, реверс: корона. Позначення номіналу подано або як ‹3 Rigsbankskilling›, або як ‹3 R.B.S.›. Знак монетмейстера FF. Карбована в København.'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 21.0
-      unit: rigsbankdaler
-      basis: fin
-      unit_raw: rigsbankdalere
-    composed_of:
-      - c-28391585
-    label: unified-dk-hede-c8h9
-    origin: promoted
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
@@ -12038,7 +12363,9 @@ coins:
           as_printed: Altona/Poppenbüttel
           value: Altona, Poppenbüttel
           seed: dk-bruun-7872
-    mint: Altona
+    mint:
+      - Altona
+      - Poppenbüttel
     catalog:
       km: '128'
       hede: '42'
@@ -14656,18 +14983,27 @@ coins:
     kind: scheide
     nominal: 1/5 Rigsbankskilling / 1/5 R.B.S
     ruler: Christian VIII.
-    issuing_entity:
-      - danish_realm
-      - royal_holstein
+    issuing_entity: royal_holstein
     fraction: 1/96
     mintmaster: FF
     id: c-da5b11f8
     year_first: 1842
     year_last: 1842
     year_label: '1842'
-    mint:
-      - Altona
-      - Kopenhagen
+    mint_alts:
+      - value: Kopenhagen
+        source: ucoin
+        kind: erroneous
+        reason:
+          de: 'Falsche Münzstätte. ucoin 70717 druckt «Copenhagen (FF)» («København (FF)»), doch FF ist das Altonaer Münzmeisterzeichen: danskmoent (Hede 13) nennt «1842, Altona, Kobber … Møntmester- og
+            medaillørmærke FF / K» («1842, Altona, Kupfer … Münzmeister- und Medailleurzeichen FF / K»), ucoin 70716 (KM 723) «Altona (FF)», Numista 41421 (KM 724) «Altona, Schleswig-Holstein».'
+          en: 'Wrong mint. ucoin 70717 prints «Copenhagen (FF)», but FF is the Altona mintmaster’s mark: danskmoent (Hede 13) gives «1842, Altona, Kobber … Møntmester- og medaillørmærke FF / K» («1842,
+            Altona, copper … mintmaster’s and medallist’s mark FF / K»), ucoin 70716 (KM 723) «Altona (FF)», Numista 41421 (KM 724) «Altona, Schleswig-Holstein».'
+          uk: 'Помилкове місце карбування. ucoin 70717 друкує «Copenhagen (FF)» («København (FF)»), але FF — знак мінцмейстера Altona: danskmoent (Hede 13) подає «1842, Altona, Kobber … Møntmester- og medaillørmærke
+            FF / K» («1842, Altona, мідь … знак мінцмейстера і медальєра FF / K»), ucoin 70716 (KM 723) — «Altona (FF)», Numista 41421 (KM 724) — «Altona, Schleswig-Holstein».'
+          da: 'Forkert møntsted. ucoin 70717 trykker «Copenhagen (FF)» («København (FF)»), men FF er møntmestermærket fra Altona: danskmoent (Hede 13) angiver «1842, Altona, Kobber … Møntmester- og medaillørmærke
+            FF / K», ucoin 70716 (KM 723) «Altona (FF)», Numista 41421 (KM 724) «Altona, Schleswig-Holstein».'
+    mint: Altona
     catalog:
       km:
         - '723'
@@ -15280,90 +15616,6 @@ coins:
     composed_of:
       - c-9300a9b6
     label: unified-dk-bruun-6485
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Rigsbankdaler
-    ruler: Frederik VI.
-    mintmaster: Johan Friedrich Freund
-    issuing_entity: royal_holstein
-    fraction: '1'
-    id: c-849abc3a
-    year_first: 1833
-    year_last: 1839
-    year_ranges:
-      -   - 1833
-          - 1836
-      -   - 1838
-          - 1839
-    year_label: 1833-1836, 1838-1839
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km:
-        - '706.1'
-        - '706'
-      bruun_collection_id: '8103'
-      sieg: '28.1'
-      schou: '6'
-      hede: 27A
-      numista: '83070'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 14.447
-        source: numismaster
-      - value: 14.447
-        source: numista
-      - value: 14.45
-        source: bruun
-    diameter_mm:
-      - value: 32.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66052
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17171, p. 81
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1833-1839/?tid=70760
-        ref: ucoin
-      - type: literature
-        url: https://en.numista.com/83070
-        ref: Numista N#83070 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut)
-    note:
-      de: Bloßer Kopf König Frederik VI. nach rechts; Graveursignatur am gebrochenen Halsabschnitt. / Gekröntes großes Wappen von Dänemark und seinen Territorien. Wert oben in Buchstaben, während der 
-        Wert als Bruchteil eines Speciedalers zu den Seiten des Schildes geteilt ist. Darunter die Jahreszahl, an den Seiten von den Müntzmeisterinitialen geteilt.
-      en: Bare head of King Frederik VI facing right; engraver's initials on the broken neck-cut. / Crowned greater shield with the arms of Denmark and its territories. Value above in letters, while 
-        the value as a fraction of a Speciedaler is divided at the sides of the shield. Date below, divided at the sides by the mint master's initials.
-      uk: Непокрита голова короля Frederik VI праворуч; ініціали гравера на ламаному зрізі шиї. / Коронований великий герб Данії та її територій. Номінал угорі літерами, тоді як номінал у вигляді 
-        частки Speciedaler розділений по боках щита. Нижче дата, розділена по боках ініціалами монетмейстера.
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-849abc3a
-    label: unified-dk-bruun-8103
     origin: promoted
   - fuss: 9_thaler
     phase: I
@@ -18368,7 +18620,7 @@ coins:
       denmark: I
       schleswig_holstein: III
     kind: scheide
-    nominal: 4 Skilling Rigsmønt. København og Altona
+    nominal: 4 Skilling Rigsmønt
     ruler: Frederik VII.
     mintmaster: Johan Friedrich Freund (FF)
     issuing_entity:
@@ -18793,15 +19045,21 @@ coins:
     nominal: 2 Frederik D'or
     ruler: Frederik VII.
     mintmaster: Johan Friedrich Freund (FF)
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     fraction: '2'
     id: c-5fa0e2c3
     year_first: 1850
     year_last: 1863
     year_ranges:
       -   - 1850
+          - 1857
+      -   - 1859
+          - 1859
+      -   - 1863
           - 1863
-    year_label: 1850-1863
+    year_label: 1850-1857, 1859, 1863
     mint:
       - Altona
       - Kopenhagen
@@ -18810,13 +19068,18 @@ coins:
         - '750.2'
         - '750'
         - '750.3'
+        - '750.1'
+        - '750.4'
       hede:
+        - 1A
         - 1B
         - 1C
+        - 1D
       hede_volume: f7h
       schou: '1'
       sieg:
         - '16'
+        - '16.1'
         - '16.2'
         - '16.3'
       bruun_collection_id:
@@ -18826,6 +19089,7 @@ coins:
         - '8261'
         - '8204'
         - '8248'
+        - '8200'
       bruun_part: IV
       bruun_lot_no: 17198
       bruun_page: 104
@@ -18841,10 +19105,31 @@ coins:
     fineness:
       - value: 0.896
         source: hede
+        specimen: dk-hede-f7h1a
+      - value: 0.896
+        source: hede
         specimen: dk-hede-f7h1b
       - value: 0.896
         source: hede
         specimen: dk-hede-f7h1c
+      - value: 0.896
+        source: hede
+        specimen: dk-hede-f7h1d
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050470
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050505
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050506
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1051030
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66105
       - value: 0.896
         source: numismaster
         specimen: denmark-numismaster-66106
@@ -18852,7 +19137,12 @@ coins:
         source: numismaster
         specimen: denmark-numismaster-66107
       - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66108
+      - value: 0.896
         source: numista
+      - value: 0.896
+        source: ucoin
     weight_rough_g:
       - value: 13.25
         source: bruun
@@ -18860,6 +19150,11 @@ coins:
         source: bruun
       - value: 13.28
         source: bruun
+      - value: 13.28
+        source: ucoin
+      - value: 13.284
+        source: hede
+        specimen: dk-hede-f7h1a
       - value: 13.284
         source: hede
         specimen: dk-hede-f7h1b
@@ -18867,11 +19162,32 @@ coins:
         source: hede
         specimen: dk-hede-f7h1c
       - value: 13.284
+        source: hede
+        specimen: dk-hede-f7h1d
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050470
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050505
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050506
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1051030
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66105
+      - value: 13.284
         source: numismaster
         specimen: denmark-numismaster-66106
       - value: 13.284
         source: numismaster
         specimen: denmark-numismaster-66107
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66108
       - value: 13.284
         source: numista
       - value: 13.29
@@ -18879,6 +19195,8 @@ coins:
     diameter_mm:
       - value: 27.0
         source: numista
+      - value: 27.1
+        source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_66106
@@ -18910,6 +19228,30 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14219, p. 80
+      - type: literature
+        url: https://numismaster.com/MC_66105
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66108
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1166, p. 204
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dor-1850-1863/?tid=130482
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.3-1856-1859-cuid-1050470-duid-1238403
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.2-1851-1855-cuid-1050505-duid-1238398
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.4-1863-cuid-1050506-duid-1238406
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.1-1850-cuid-1051030-duid-1238397
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 2 Frederik d'Or 1852, 1853, 1854 (KM-750.2, einheitliche Hede-1B / Fr-291) · drei Bruun-Specimina dokumentieren die fortgeführte Altona-Goldprägung Frederiks VII.
       en: 2 Frederik d'Or 1852, 1853, 1854 (KM-750.2, all Hede-1B / Fr-291) · three Bruun specimens document the continued Altona gold issue under Frederik VII.
@@ -20998,77 +21340,10 @@ coins:
     label: unified-ngc-101329
     origin: promoted
   - fuss: 18_5_thaler
-    phase: II
-    kind: kurant
-    nominal: 3 Rigsbankskilling
-    ruler: Christian VIII
-    issuing_entity: royal_holstein
-    fraction: 1/24
-    id: c-e40c23a1
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    mint: Altona
-    catalog:
-      km: '729'
-      numista: '47999'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.229
-        source: ngc
-      - value: 0.229
-        source: numismaster
-      - value: 0.229
-        source: ucoin
-    weight_rough_g:
-      - value: 1.519
-        source: ngc
-      - value: 1.519
-        source: numismaster
-      - value: 1.519
-        source: numista
-      - value: 1.52
-        source: ucoin
-    diameter_mm:
-      - value: 15.0
-        source: numista
-      - value: 15.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66009
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/47999
-        ref: Numista N#47999 — 3 Rigsbankskilling - Christian VIII (Type I)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1842/?tid=70750
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-3-rigsbankskilling-km-729-1842-cuid-1050316-duid-1238224
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Bildnis König Christian VIII. nach rechts. / Krone über gekreuztem Schwert und Zepter; oben der Wert ausgeschrieben; darunter teilt der Reichsapfel Jahreszahl und Initialen.
-      en: Portrait of King Christian VIII facing right. / Crown over crossed sword and scepter; the value written out in full above; below, the Royal Orb dividing the date and initials.
-      uk: Портрет короля Christian VIII праворуч. / Корона над схрещеними мечем і скіпетром; угорі номінал повним словом; нижче держава розділяє дату та ініціали.
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-e40c23a1
-    label: unified-ngc-1050316
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: II
-    kind: kurant
+    phase:
+      denmark: I
+      schleswig_holstein: II
+    kind: scheide
     nominal: 3 Rigsbankskilling
     ruler: Christian VIII
     issuing_entity: royal_holstein
@@ -21079,9 +21354,25 @@ coins:
     year_label: '1842'
     mint: Altona
     catalog:
-      km: A730
-      numista: '42508'
-    metal: silver
+      km:
+        - A730
+        - '729'
+      numista:
+        - '42508'
+        - '47999'
+      hede:
+        - '9'
+        - 9A
+      hede_volume: c8h
+      schou:
+        - '7'
+        - '8'
+      sieg:
+        - '6'
+        - '7'
+      others:
+        - JSJ# 263
+    metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -21090,25 +21381,74 @@ coins:
     verified: false
     fineness:
       - value: 0.229
+        source: hede
+      - value: 0.229
         source: ngc
+        specimen: ngc-1050316
+      - value: 0.229
+        source: ngc
+        specimen: ngc-1050417
       - value: 0.229
         source: numismaster
+        specimen: denmark-numismaster-66009
+      - value: 0.229
+        source: numismaster
+        specimen: denmark-numismaster-66010
       - value: 0.229
         source: ucoin
+        specimen: dk-tid-70750
+      - value: 0.229
+        source: ucoin
+        specimen: dk-tid-70751
     weight_rough_g:
       - value: 1.519
+        source: hede
+      - value: 1.519
         source: ngc
+        specimen: ngc-1050316
+      - value: 1.519
+        source: ngc
+        specimen: ngc-1050417
       - value: 1.519
         source: numismaster
+        specimen: denmark-numismaster-66009
+      - value: 1.519
+        source: numismaster
+        specimen: denmark-numismaster-66010
       - value: 1.519
         source: numista
       - value: 1.52
         source: ucoin
+        specimen: dk-tid-70750
+      - value: 1.52
+        source: ucoin
+        specimen: dk-tid-70751
     diameter_mm:
       - value: 15.0
         source: numista
+      - value: 15.0
+        source: ucoin
+        specimen: dk-tid-70750
       - value: 15.5
         source: ucoin
+        specimen: dk-tid-70751
+    catalog_alts:
+      - register: hede
+        value: 8C
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Hede-Nummer gehört nicht zu dieser Münze.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], Übersicht: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (Übers.: «… 3 Rigsbankskilling
+            / 3 R.B.S. Silber 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (Übers.: «C) 1842
+            (RR), Altona; Münzzeichen: Reichsapfel und FF (Hede 8C, Schou 6, Sieg 8)»)."
+          en: "The Hede number does not belong to this coin.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], overview: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (transl.: «… 3 Rigsbankskilling
+            / 3 R.B.S. silver 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (transl.: «C) 1842
+            (RR), Altona; mint mark: orb and FF (Hede 8C, Schou 6, Sieg 8)»)."
+          uk: "Номер Hede не належить цій монеті.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], огляд: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i] (перекл.: «… 3 Rigsbankskilling /
+            3 R.B.S. срібло 1842 Altona FF»).\n[b]danskmoent.dk (Hede 8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i] (перекл.: «C) 1842 (RR),
+            Altona; монетний знак: держава і FF (Hede 8C, Schou 6, Sieg 8)»)."
+          da: "Hede-nummeret hører ikke til denne mønt.\n[b]danskmoent.dk (Hede, Christian 8.)[/b], oversigt: [i]«9AB 6, 7 3 Rigsbankskilling / 3 R.B.S. Sølv 1842 Altona FF»[/i].\n[b]danskmoent.dk (Hede
+            8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i]."
     sources:
       - type: literature
         url: https://numismaster.com/MC_66010
@@ -21122,6 +21462,42 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-3-rigsbankskilling-km-a730-1842-cuid-1050417-duid-1238225
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_66009
+        ref: NumisMaster
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c8h9.htm
+        ref: danskmoent.dk (Hede c8h9)
+      - type: literature
+        url: https://en.numista.com/47999
+        ref: Numista N#47999 — 3 Rigsbankskilling - Christian VIII (Type I)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1842/?tid=70750
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168061
+        ref: KMM 168061 (Inv. FP 2448.27)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279181
+        ref: KMM 279181 (Inv. FP 3528.263)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78530
+        ref: KMM 78530 (Inv. GP 678.194)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78531
+        ref: KMM 78531 (Inv. GP 678.195)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-3-rigsbankskilling-km-729-1842-cuid-1050316-duid-1238224
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308817
+        ref: KMM 308817 (Inv. FP 7412.10)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/340428
+        ref: KMM 340428 (Inv. FP 5633.14)
+        display: false
     note:
       de: Bildnis König Christian VIII. nach rechts. / Krone über gekreuztem Schwert und Zepter; oben der Wert abgekürzt als R.B.S.; darunter teilt der Reichsapfel Jahreszahl und Initialen.
       en: Portrait of King Christian VIII facing right. / Crown over crossed sword and scepter; the value abbreviated as R.B.S. above; below, the Royal Orb dividing the date and initials.
@@ -21131,6 +21507,11 @@ coins:
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
       da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
+    hede_muentzfuss_yield:
+      value: 21.0
+      unit: rigsbankdaler
+      basis: fin
+      unit_raw: rigsbankdalere
     composed_of:
       - c-d3ce70e2
     label: unified-ngc-1050417
@@ -23780,97 +24161,6 @@ coins:
       - c-6e56a95f
     label: unified-ngc-1051947
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Rigsbankskilling. København og Altona
-    ruler: Frederik VII.
-    issuing_entity:
-      - danish_realm
-      - royal_holstein
-    fraction: 1/96
-    id: c-680c85ac
-    year_first: 1852
-    year_last: 1852
-    year_label: '1852'
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km: '754'
-      hede:
-        - 12A
-        - 12B
-      hede_volume: f7h
-      schou:
-        - 2-3
-        - '4'
-      sieg:
-        - '2'
-        - '3'
-      bruun_collection_id: '8208'
-      bruun_part: IV
-      bruun_lot_no: 17196
-      bruun_page: 104
-      numista: '43524'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 7.3
-        source: ucoin
-      - value: 7.308
-        source: hede
-      - value: 7.308
-        source: ngc
-      - value: 7.308
-        source: numismaster
-      - value: 7.308
-        source: numista
-    diameter_mm:
-      - value: 23.0
-        source: numista
-      - value: 23.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65994
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17196, p. 88
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f7h12.htm
-        ref: danskmoent.dk (Hede f7h12A)
-      - type: literature
-        url: https://en.numista.com/43524
-        ref: Numista N#43524 — 1 Rigsbankskilling - Frederik VII (type 1)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1852/?tid=70724
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/298427
-        ref: KMM 298427 (Inv. FP 10291.8)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/736270
-        ref: KMM 736270 (Inv. FP 12907.15)
-        display: false
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-754-1852-cuid-1050461-duid-1238209
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    composed_of:
-      - c-680c85ac
-    label: unified-dk-hede-f7h12a
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -24597,4 +24887,236 @@ coins:
     composed_of:
       - c-58969558
     label: unified-dk-hede-c8h6
+    origin: promoted
+  - fuss: 18_5_thaler
+    phase: I
+    kind: kurant
+    nominal: 1 Rigsbankskilling
+    ruler: Frederik VII
+    mintmaster: Georg Vilhelm Svendsen (VS)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    fraction: 1/96
+    id: c-0008432e
+    year_first: 1852
+    year_last: 1853
+    year_ranges:
+      -   - 1852
+          - 1853
+    year_label: 1852-1853
+    mint:
+      - Altona
+      - Kopenhagen
+    catalog:
+      km:
+        - '754'
+        - '756'
+      hede:
+        - 12A
+        - 12B
+        - 12C
+      hede_volume: f7h
+      schou:
+        - 2-3
+        - '4'
+        - '5'
+      sieg:
+        - '2'
+        - '3'
+        - '4'
+      bruun_collection_id:
+        - '8208'
+        - '8215'
+      bruun_part: IV
+      bruun_lot_no: 17196
+      bruun_page: 104
+      numista:
+        - '19001'
+        - '43524'
+      others:
+        - JSJ# 264
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 7.18
+        source: ucoin
+      - value: 7.3
+        source: ucoin
+      - value: 7.308
+        source: hede
+      - value: 7.308
+        source: ngc
+      - value: 7.308
+        source: numismaster
+      - value: 7.308
+        source: numista
+      - value: 7.32
+        source: numista
+    diameter_mm:
+      - value: 23.0
+        source: numista
+      - value: 23.0
+        source: ucoin
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65994
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65995
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17196, p. 88
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17200, p. 89
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h12.htm
+        ref: danskmoent.dk (Hede f7h12A)
+      - type: literature
+        url: https://en.numista.com/19001
+        ref: Numista N#19001 — 1 Rigsbankskilling - Frederik VII (type 2)
+      - type: literature
+        url: https://en.numista.com/43524
+        ref: Numista N#43524 — 1 Rigsbankskilling - Frederik VII (type 1)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1852/?tid=70724
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1853/?tid=70725
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152036
+        ref: KMM 152036 (Inv. FP 3574.258)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160388
+        ref: KMM 160388 (Inv. FP 3326.7)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-754-1852-cuid-1050461-duid-1238209
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-756-1853-cuid-1050462-duid-1238210
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331181
+        ref: KMM 331181 (Inv. FP 6200.80)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354566
+        ref: KMM 354566 (Inv. FP 4914.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/298427
+        ref: KMM 298427 (Inv. FP 10291.8)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/736270
+        ref: KMM 736270 (Inv. FP 12907.15)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279180
+        ref: KMM 279180 (Inv. FP 3528.264)
+    note:
+      de: Bildnis König Frederik VII. nach rechts; die Umschrift verläuft durchgehend über dem Bildnis. / Gekreuztes Schwert und Zepter, darüber die dänische Krone; unten der Wert, links das Datum, 
+        rechts die Müntzzeichen.
+      en: Portrait of King Frederik VII facing right; the legend continuous above the portrait. / A crossed sword and sceptre with the crown of Denmark above; below, the value, with the date at left 
+        and the mintmarks at right.
+      uk: Портрет короля Frederik VII, праворуч; легенда суцільна над портретом. / Схрещені меч і скіпетр, над ними данська корона; внизу номінал, ліворуч дата, праворуч монетні знаки.
+    composed_of:
+      - c-0008432e
+    label: unified-dk-hede-f7h12a
+    origin: promoted
+  - fuss: 18_5_thaler
+    phase: I
+    kind: kurant
+    nominal: ½ Rigsbankskilling
+    ruler: Frederik VII
+    mintmaster: FK VS
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    fraction: 1/192
+    id: c-274c5663
+    year_first: 1852
+    year_last: 1852
+    year_label: '1852'
+    mint:
+      - Altona
+      - Kopenhagen
+    catalog:
+      km: '753'
+      hede: '13'
+      hede_volume: f7h
+      schou:
+        - '3'
+        - '5'
+      sieg: '1'
+      bruun_collection_id: '8210'
+      bruun_part: IV
+      bruun_lot_no: 17197
+      bruun_page: 104
+      numista: '26710'
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 3.65
+        source: ucoin
+      - value: 3.654
+        source: hede
+      - value: 3.654
+        source: ngc
+      - value: 3.654
+        source: numismaster
+      - value: 3.654
+        source: numista
+    diameter_mm:
+      - value: 18.0
+        source: ucoin
+      - value: 18.2
+        source: numista
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65983
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17197, p. 88
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h13.htm
+        ref: danskmoent.dk (Hede f7h13)
+      - type: literature
+        url: https://en.numista.com/26710
+        ref: Numista N#26710 — ½ Rigsbankskilling - Frederik VII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-rigsbankskilling-1852/?tid=70720
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-rigsbankskilling-km-753-1852-cuid-1050459-duid-1238201
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122623
+        ref: KMM 122623 (Inv. FP 3711.22)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122624
+        ref: KMM 122624 (Inv. FP 3711.23)
+        display: false
+    note:
+      de: Gekröntes Königsmonogramm zwischen gekreuzten Eichenzweigen; darunter die Stempelschneider-Initialen. / Der Wert; darunter am Rand Datum und Müntzzeichen.
+      en: Crowned royal monogram between crossed oak branches; the engraver's initials below. / The value; the date and mintmark below, along the rim.
+      uk: Коронована королівська монограма між схрещеними дубовими гілками; нижче ініціали гравера. / Номінал; нижче вздовж краю дата й монетний знак.
+    composed_of:
+      - c-274c5663
+    label: unified-dk-hede-f7h13
     origin: promoted

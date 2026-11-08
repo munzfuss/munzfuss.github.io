@@ -6628,9 +6628,7 @@ coins:
           - 1670
     year_label: 1669-1670
     ruler: Frederik III
-    mint:
-      - Christiania
-      - Kopenhagen
+    mint: Christiania
     catalog:
       km: A119
       hede: '39'
@@ -6720,6 +6718,16 @@ coins:
           as_printed: u.år
           value: 1648-1670
           seed: dk-hede-f3h39
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: hede
+          as_printed: København eller Christiania
+          translation:
+            de: København oder Christiania
+            en: København or Christiania
+            uk: København або Christiania
+          seed: dk-hede-f3h39
     sources:
       - type: literature
         url: https://numismaster.com/MC_204386
@@ -6739,9 +6747,7 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-ducat-km-a119-1670-cuid-1105140-duid-1460829
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity:
-      - danish_norway
-      - danish_realm
+    issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-204386
       - dk-bruun-6737
@@ -13715,7 +13721,6 @@ coins:
         - 16B
       hede_volume: nc5h
       schou:
-        - '2'
         - '3'
         - '8'
         - '11'
@@ -24165,7 +24170,6 @@ coins:
         - 30B
       hede_volume: nf3h
       schou:
-        - 11-12
         - 18-19
         - 21-22
       bruun_collection_id:
@@ -24880,11 +24884,8 @@ coins:
         - 35B
       hede_volume: nf3h
       schou:
-        - '5'
         - 7-8
-        - 9-12
-        - 10-12
-        - 13-16
+        - '12'
       bruun_collection_id: '9794'
       sieg: '42.1'
       nmd: '26'

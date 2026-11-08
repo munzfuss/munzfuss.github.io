@@ -4654,7 +4654,7 @@ removals:
   # the hosts below; absorb drops the record only while every host is a final.
   - final: dk-tid-70750
     kind: empty_duplicate
-    hosts: [c-e40c23a1]
+    hosts: [c-d3ce70e2]
     reason: 'Curator (Serhii) 2026-10-23: 3 Rigsbankskilling 1842, danish_realm — empty duplicate of royal_holstein c-e40c23a1; nothing on main is missing there.'
   - final: dk-tid-70751
     kind: empty_duplicate
@@ -5110,3 +5110,120 @@ removals:
     field: others
     dropped: [Dav-LS533, Harck-6.13.1]
     reason: "Curator 2026-11-07 («згоден»): the Dav-LS and Harck numbers of Bruun Part IV lot 17062 (Bruun 5847, 2 Speciedaler Hede 64B), a foundation leftover on the 1½ Speciedaler Hede 64C record km-154-hede-64b-chr-iv-1611; they stay on dk-tid-163073 (Hede 64B) as «Dav-LS# 533» / «Harck# 6.13.1»."
+  - seed: ngc-1050316
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-08 (option 1): 3 Rigsbankskilling 1842 Altona KM 729 (Hede 9A) — superseded shell final c-e40c23a1 in royal_holstein after the Hede 9 merge (KM 729 + KM A730, _cross_entity.yml). Every seed of the shell sits in the successor class c-d3ce70e2. The shell''s hand-written note («the value written out in full above», from the Numista 47999 description) is dropped with it; the successor keeps its own note.'
+  - final: dk-tid-130240
+    kind: empty_duplicate
+    hosts: [c-f79a47c2]
+    reason: 'Curator (Serhii) 2026-11-08 («так»): 2 Christian d''Or 1841-1847, Christian VIII, Hede 1 / KM 722 — V1 foundation in danish_realm with no member left; its seed dk-tid-130240 sits in royal_holstein c-f79a47c2 (the Hede 1 cross-entity merge, 2026-11-07), and the record rendered a second Hede 1 row on the Denmark page. Dropped with it: its hand-written note (Hede 1A/1B/1C, KM 722, not Christian IX Hede 1), the ucoin URL variant …/denmark-2-d-or-1841-1847/?tid=130240 (the same ucoin record 130240 is on the host under its other slug), and danskmoent c9h1.htm, which is the Christian IX Hede 1 page (KM 773), not this coin.'
+  - final: dk-tid-130482
+    kind: empty_duplicate
+    hosts: [c-5fa0e2c3]
+    reason: 'Curator (Serhii) 2026-11-08 («так»): 2 Frederik d''or 1850-1863, Frederik VII, Hede 1 / KM 750 — V1 foundation in danish_realm with no member left after the Hede 1 cross-entity merge; every seed sits in royal_holstein c-5fa0e2c3, and the record rendered a second row on the Denmark page. Dropped with it: its note («Combined mintage of the 1850 (VS) and 1863 (RH) issues: 31,000», added 2026-07-11 in 255426e from a translated source note) and the ucoin URL variant …/denmark-2-d-or-1850-1863/?tid=130482 (the same ucoin record 130482 is on the host under its other slug).'
+  - final: km-744-1-fr-vii-1849
+    kind: empty_duplicate
+    hosts: [km-744-2-fr-vii-1851]
+    reason: 'Curator (Serhii) 2026-11-08 («так»): 1 Speciedaler 1849-1854, Frederik VII, Hede 4 / KM 744 — V1 foundation (Hede 4A, København) in danish_realm emptied by the Hede 4 cross-entity merge; every seed sits in royal_holstein km-744-2-fr-vii-1851. Dropped with it: its note («Speciedaler 1849, 1853 (KM-744.1 Hede-4A) · two Bruun specimens of different years · first Speciedaler series of Frederik VII»).'
+  - final: dk-tid-70759
+    kind: empty_duplicate
+    hosts: [km-696-1-fr-vi-1826]
+    reason: 'Curator (Serhii) 2026-11-08 («так, піти має в royal_holstein»): 1 Rigsbankdaler 1826-1834, Frederik VI, KM 696 (ucoin 70759, NGC 1050421) — V1 foundation in danish_realm emptied by the Hede 27 cross-entity merge; both seeds and both URLs sit in royal_holstein km-696-1-fr-vi-1826. No note, nothing else dropped.'
+  - final: dk-tid-101040
+    kind: empty_duplicate
+    hosts: [km-587-5-fr-v-1761]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 12 Mark 1757-1765, Frederik V, KM 587 (ucoin 101040, no Hede) — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in km-587-5-fr-v-1761. No note, nothing else dropped.'
+  - final: km-196-1-fr-iii-1653
+    kind: empty_duplicate
+    hosts: [dk-tid-97376]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 2 Speciedaler 1653, Frederik III, Hede 53A / KM 196.1 — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in dk-tid-97376. Dropped with it: its note («2 Speciedaler 1653 (Hede-53A) · Münzmeister Henrik Köhler · Stempelschneider Jeremias Hercules · SEHR SELTEN»).'
+  - final: km-374-1-chr-v-1685
+    kind: empty_duplicate
+    hosts: [dk-tid-97534]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 1 Dukat 1685, Christian V, Hede 12A / KM 374.1 — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in dk-tid-97534. Dropped with it: its note («Ducat 1685 (Hede-12A) · Bruun specimen»).'
+  - final: km-480-2-fr-iv-1704
+    kind: empty_duplicate
+    hosts: [dk-tid-94244]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 1 Speciedaler 1704, Frederik IV, Hede 34B / KM 480.2 — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in dk-tid-94244. Dropped with it: its note («Speciedaler 1704 (KM-480.2 Hede-34B) · Bruun specimen»).'
+  - final: km-587-1-fr-v-1758
+    kind: empty_duplicate
+    hosts: [km-587-5-fr-v-1761]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 12 Mark 1758, Frederik V, Hede 22A / KM 587.1 — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in km-587-5-fr-v-1761. Dropped with it: its note («12 Mark (Courant Ducat) 1758 (KM-587.1 Hede-22A) · Bruun specimen»).'
+  - final: km-587-7-chr-vii-1765
+    kind: empty_duplicate
+    hosts: [km-587-5-fr-v-1761]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 12 Mark 1765, Hede 22G / KM 587.7 — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in km-587-5-fr-v-1761. Dropped with it: its note («12 Mark (Courant Ducat) 1765 (KM-587.7 Hede-22G) · first gold striking of Christian VII …»).'
+  - final: km-797-2-chr-ix-1898
+    kind: empty_duplicate
+    hosts: [c-dbaa3e31]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 1 Krone 1898, Christian IX, Hede 14B / KM 797.2 — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in c-dbaa3e31. Dropped with it: its note («Krone 1898 (KM-797.2 Hede-14B, sub-variant) · Bruun specimen»).'
+  - final: km-798-2-chr-ix-1897
+    kind: empty_duplicate
+    hosts: [c-04e71a9f]
+    reason: 'Curator (Serhii) 2026-11-08 (basket A): 2 Kroner 1897, 1899, Christian IX, Hede 13B / KM 798.2 — V1 foundation in danish_realm emptied by the basket-A merge; every seed and every URL sits in c-04e71a9f. Dropped with it: its note («2 Kroner 1897, 1899 (KM-798.2 Hede-13B, sub-variant of KM-798.1) · two Bruun specimens»).'
+  - final: km-x035-chr-iv-1647
+    kind: empty_duplicate
+    hosts: [c-5d564c17]
+    reason: 'Curator (Serhii) 2026-11-08 («зливати»): 2 Speciedaler 1647, Christian IV, Hede 56D / KM 146 — V1 foundation in danish_realm emptied by the Hede 56 merge; every seed and every URL sits in c-5d564c17. Dropped with it: its note on the 1647 issue (9-Fuß fineness 0.888, Δ against the 9- and 9¼-Fuß targets).'
+  - final: km-a445-chr-v-1696
+    kind: empty_duplicate
+    hosts: [c-b956f8e7]
+    reason: 'Curator (Serhii) 2026-11-08 («теж зливай»): 1 Dukat 1696, Christian V, Hede 49B / KM A445 — V1 foundation in danish_realm emptied by the Hede 49 merge; every seed and every URL sits in c-b956f8e7. Dropped with it: its note («Ducat ND (1696) (KM-A445 Hede-49B) · Bruun specimen») and a Bruun anchor (coll. 7189, Part III lot 11257) that no seed carries.'
+  - seed: dk-hede-c5h63
+    kind: field
+    field: sieg
+    dropped: ['61']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede 64 (2 Speciedaler, «Hede 64, Schou 4, Sieg 61»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-c5h63
+    kind: field
+    field: schou
+    dropped: ['4']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede 64 (2 Speciedaler, «Hede 64, Schou 4, Sieg 61»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-c5h61
+    kind: field
+    field: sieg
+    dropped: ['59']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede 62 («Hede 62, Schou 42, Sieg 59»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-c5h61
+    kind: field
+    field: schou
+    dropped: ['42']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede 62 («Hede 62, Schou 42, Sieg 59»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-f3h98
+    kind: field
+    field: sieg
+    dropped: ['52']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede 99 (8 Mark, «Hede 99, Schou 30, Sieg 52»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-f3h98
+    kind: field
+    field: schou
+    dropped: ['30']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede 99 (8 Mark, «Hede 99, Schou 30, Sieg 52»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-c3h6b
+    kind: field
+    field: sieg
+    dropped: ['33.1']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede 6A («Hede 6A, Schou 1, Sieg 33.1»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-nc5h16
+    kind: field
+    field: schou
+    dropped: ['2']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede Norge 17 (3 Dukat, «Hede Norge 17, Schou 2»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-nf3h30
+    kind: field
+    field: schou
+    dropped: ['11-12']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede Norge 31 (2 Speciedaler, «Hede Norge 31, Schou 11-12»), whose seed carries it; no other source in this class gives it.'
+  - seed: dk-hede-nf3h35
+    kind: field
+    field: schou
+    dropped: ['5', '9-12', '10-12', '13-16']
+    reason: 'Curator (Serhii) 2026-11-08: a sibling coin''s number on the same danskmoent page, handed to this seed by the Hede builder''s page-aggregate fallback (fixed). It belongs to Hede Norge 34 (2 Speciedaler) and 36 (4 Speciedaler), whose seed carries it; no other source in this class gives it.'
+  - final: km-362-chr-v-1672
+    kind: empty_duplicate
+    hosts: [c-aaba5b52]
+    reason: 'Curator (Serhii) 2026-11-08 («зливай»): 1 Speciedaler 1672 (DOC), Christian V, Hede 63C / KM 362 — V1 foundation in danish_realm emptied by the Hede 63 merge; every seed and every URL sits in c-aaba5b52. Dropped with it: its note («Speciedaler 1672 (Hede-63C) · sub-variant of Hede-63A 1671 · Bruun specimen») and its Bruun anchor fields.'
+  - final: dk-tid-97369
+    kind: empty_duplicate
+    hosts: [c-d0f9a387]
+    reason: 'Curator (Serhii) 2026-11-08 («обʼєднуй»): 1 Speciedaler 1669, Frederik III, Hede 80B / KM 307 — V1 foundation in danish_realm emptied by the Hede 80 merge; every seed and every URL sits in c-d0f9a387. Its stored Bruun ids 6697 (KM 308, class c-beb3073b) and 6744 (Hede 82, class c-88fa5273) belong to other coins and stay there.'

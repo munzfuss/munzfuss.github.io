@@ -167,10 +167,6 @@ merges:
       - schleswig_holstein-numismaster-117987
     reason: '4 Mark Danske (= 1 Krone) Frederik III, Glückstadt 1659-1660 = Hede 153 (153A year-in-legend Sieg 153.1 Dav 3675 / 153B year-by-shield Sieg 153.2 Dav 3674). ONE coin per §9.4 — Hede base 153 unifies. Krause splits it across TWO volumes: KM 95 in the German-States Schleswig-Holstein volume (Numista 313341, issuer «Schleswig-Holstein duchies») = Hede 153A; KM A43 + B43 in the Denmark volume (Numista 111284/111285, issuer «Glückstadt») = Hede 153B / 153A. Merge; KM kept VOLUME-SEPARATED dict-form {sh:[95], dk:[A43,B43]} so German and Danish indices never conflate in future search/compare (curator direction; c5h125 pattern). Hede/Sieg/Dav list-form per §9a. Curator B5 2026-06-29. danskmoent.dk/fr/f3h153.htm.'
   - members:
-      - dk-hede-c8h9
-      - kmk-168061
-    reason: Hede 9 (3 Rigsbankskilling / 3 R.B.S., Christian VIII, 1842, Altona FF; Schou 7-8). KMM FP 2448.27 prints «3 rigsbankskilling», Schou 7, Altona 1842, and «H 8C»; Hede 8C is the 4 Rigsbankskilling Altona 1842 (Schou 6). «H 8C» is marked erroneous on the seed. Curator (Serhii) 2026-11-07.
-  - members:
       - dk-hede-c4h178a
       - dk-hede-c4h178b
       - dk-numista-199146
@@ -193,6 +189,18 @@ merges:
       - schleswig_holstein-numismaster-93040
     reason: '1 Dukat Christian V, Glückstadt, 1680 and 1685 = Hede 117 (danskmoent c5h117: «1 Dukat, Glückstadt», «1680 (S), 1685 (RR)», «Schou hhv. 1-4 og 2, Sieg 144»). Bruun Part III lot 11246 (dk-bruun-7006: 1685-CW, Glückstadt, Hede-117, Sieg-144.5, Schou-2, Aagaard-8.1) joins the class: Hede base 117 and Sieg base 144 unify. The auto-merge was blocked by its weight (4.44 g against 3.44-3.46 g) — marked suspect in the builder, as is its «Fr-41» (the other three lots and Numista: Fr 141). Whole class listed. Curator (Serhii) 2026-11-07.'
 no_merges:
+  - members: [dk-bruun-7774, kmk-301777]
+    reason: |
+      1 Skilling 1771 (Christian VII) — curator decision 2026-06-22 (Serhii,
+      by image). The copper circulation coin (KM 616: ucoin, NumisMaster MC_85807,
+      Bruun III lot 11290, KMM 122887/122888/291444/295585/301841/301843/306353/
+      306745/308027/741048) is a DIFFERENT coin from the silver «1 Skilling (?)»
+      specimen group (KMM 301777 «1 skilling (?)» sølv + 408037 sølv + 578767/
+      578768/578769) — the museum itself flags 301777 «(?)». An earlier absorb run
+      over-merged the silver group into the copper coin, flipping the FINAL metal
+      to silver; the cross-source merger has since split them correctly. Keep apart
+      so re-validate never re-fuses them (nominal «1 Skilling» vs «1 Skilling (?)»
+      is not a genuine difference, so the nominal discriminator alone won't hold).
   - members:
       - denmark-numismaster-145357
       - dk-hede-c7h39a

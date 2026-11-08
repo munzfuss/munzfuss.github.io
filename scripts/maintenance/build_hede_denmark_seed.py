@@ -298,7 +298,14 @@ DK_MINT_DE = {
 # Split a multi-mint string («København og Kongsberg»,
 # «Altona, Kopenhagen, Kongsberg») into individual segments. Hede uses
 # Danish/German conjunctions «og» / «und» / «&» / «,» between mints.
-_MINT_SEP_RE = re.compile(r"\s+(?:og|und|and|&)\s+|\s*,\s*", re.IGNORECASE)
+_MINT_SEP_RE = re.compile(r"\s+(?:og|und|and|&|eller)\s+|\s*,\s*", re.IGNORECASE)
+
+# How a Hede heading joins two mints (curator 2026-11-08): «X og Y» — the
+# coin was struck at both, an attested joint mint (mint_verified true);
+# «X eller Y» — one of the two, not known which (mint_verified false, a
+# hedged «alternatives» uncertainty with the heading's words).
+_MINT_AND_RE = re.compile(r"\s(?:og|und|and|&)\s", re.IGNORECASE)
+_MINT_OR_RE = re.compile(r"\seller\s", re.IGNORECASE)
 
 
 def _registry_display_for(part: str) -> str | None:
@@ -1108,6 +1115,7 @@ def _build_coin(
     years_override: list[dict] | None = None,
     catalog_refs_override: dict | None = None,
     hede_printed: str | None = None,
+    mint_header: str | None = None,
 ) -> dict | None:
     """Assemble one Coin-schema dict from a parsed-page entry + a
     specific spec block. Returns None when essential fields are
@@ -1365,6 +1373,22 @@ def _build_coin(
             or metal_from_text or metal_from_overview):
         cm["metal_verified"] = True
     cm["mint_verified"] = False  # parser-heuristic; not flipped here
+    # A two-mint heading decides the flag itself (curator 2026-11-08):
+    # «og» attests both mints, «eller» leaves the choice open.
+    if mint_header and isinstance(mint_normalised, list) and len(mint_normalised) > 1:
+        if _MINT_OR_RE.search(mint_header):
+            cm["uncertainty"] = unc.add(dict(cm), "mint", "alternatives", "hede",
+                                        as_printed=mint_header)["uncertainty"]
+            # The heading's words are Danish: a translation for the other
+            # languages' tooltips (only the conjunction changes).
+            for _u in cm["uncertainty"]["mint"]:
+                if _u.get("as_printed") == mint_header.strip():
+                    _u["translation"] = {
+                        "de": _MINT_OR_RE.sub(" oder ", mint_header),
+                        "en": _MINT_OR_RE.sub(" or ", mint_header),
+                        "uk": _MINT_OR_RE.sub(" або ", mint_header)}
+        elif _MINT_AND_RE.search(mint_header):
+            cm["mint_verified"] = True
     # Only an index stub carries a note: what it says is about this record.
     # The generic «Hede seed: …» line said nothing a record's own fields do
     # not, and no page renders the field (curator 2026-10-24).
@@ -1698,6 +1722,7 @@ def main() -> int:
             lv.get("mint") for lv in (d.get("by_letter") or {}).values()
         )
         mint_normalised: str | list[str] | None = None
+        header_mint_text: str | None = None
         # A denomination-shaped mint («1 Speciedaler») is a stale field-swap
         # artefact (parser Part 1 fixed the source of these) — ignore it.
         if raw_mint and not re.match(r"^\d+\s+[A-Za-zæøå]", raw_mint):
@@ -1710,6 +1735,7 @@ def main() -> int:
             mints_list = _normalize_mints(mint_clean)
             if mints_list:
                 mint_normalised = mints_list[0] if len(mints_list) == 1 else mints_list
+                header_mint_text = mint_clean
             else:
                 skipped_mints[mint_clean] = skipped_mints.get(mint_clean, 0) + 1
         if mint_normalised is None and not by_letter_mints:
@@ -1787,10 +1813,12 @@ def main() -> int:
                     # (78A København, 78B Helsingør differ) — falls back to the
                     # top-level mint for ordinary by_letter pages that share one.
                     letter_mint = mint_normalised
+                    letter_header = header_mint_text
                     if lv.get("mint"):
                         lm = _normalize_mints(str(lv["mint"]))
                         if lm:
                             letter_mint = lm[0] if len(lm) == 1 else lm
+                            letter_header = None
                     if letter_mint is None:
                         # Same rule as the page-level branch: an unnamed mint is
                         # the source's state of knowledge, not grounds to drop
@@ -1805,6 +1833,7 @@ def main() -> int:
                         years_override=lv.get("years"),
                         catalog_refs_override=lv.get("catalog_refs"),
                         hede_printed=_printed_letter_hede(lv),
+                        mint_header=letter_header,
                     )
                     if coin is None:
                         stats["skipped_no_nominal"] += 1
@@ -1827,6 +1856,7 @@ def main() -> int:
                 parsed=d,
                 spec=spec,
                 mint_normalised=mint_normalised,
+                mint_header=header_mint_text,
             )
             if coin is None:
                 stats["skipped_no_nominal"] += 1
@@ -1882,6 +1912,23 @@ def main() -> int:
                 # when the parser couldn't pull per-Hede data (older
                 # cached parses or label-format variants).
                 sub_refs = sub_spec.get("catalog_refs")
+                if not sub_refs:
+                    # The page-aggregate fallback must not hand this coin the
+                    # numbers a sibling coin on the same page owns: c5h63
+                    # (1 Speciedaler) took Sieg 61 / Schou 4 of Hede 64 (the
+                    # 2 Speciedaler), 2026-11-08. Subtract every sibling's
+                    # own refs, register by register.
+                    _sib: dict[str, set] = {}
+                    for _sn, _ss in by_hede.items():
+                        if _sn == sub_num:
+                            continue
+                        for _reg, _vals in (_ss.get("catalog_refs") or {}).items():
+                            _sib.setdefault(_reg, set()).update(map(str, _vals or []))
+                    if _sib:
+                        _page = d.get("catalog_refs") or {}
+                        sub_refs = {_reg: [v for v in (_vals or []) if str(v) not in _sib.get(_reg, set())]
+                                    for _reg, _vals in _page.items()}
+                        sub_refs = {k: v for k, v in sub_refs.items() if v} or None
                 # Per-Hede years (parser emits when letter-block matched
                 # for `specs.by_hede` shape). Falls back to the page-
                 # aggregate `parsed["years"]` inside `_build_coin` only
@@ -1898,6 +1945,7 @@ def main() -> int:
                     mint_normalised=mint_normalised,
                     catalog_refs_override=sub_refs,
                     years_override=sub_years,
+                    mint_header=header_mint_text,
                 )
                 if coin is None:
                     stats["skipped_no_nominal"] += 1

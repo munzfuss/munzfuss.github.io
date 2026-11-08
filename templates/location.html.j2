@@ -440,6 +440,7 @@
     {%- else -%}{{ nv() }}{%- endif -%}
     {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
     {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
+    {%- set _hma = mint_hedged_alts(coin.raw) -%}{%- if _hma %}{% set _hmu = umark(coin.raw, 'mint') %}{% for m in _hma %} <span class="mint-alt">{{ m|mint_label(coin.raw.year_first) }}{{ uq(_hmu) }}</span>{% endfor %}{% endif -%}
   </td>
   <td class="c-note">{%- if coin.raw.nominal_equiv -%}<span class="nom-equiv nw">{{ coin.raw.nominal }} = {{ coin.raw.nominal_equiv }}</span>{%- if coin.raw.note %}<br>{% endif -%}{%- endif -%}{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
@@ -585,6 +586,7 @@
     {%- else -%}—{%- endif -%}
     {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
     {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
+    {%- set _hma = mint_hedged_alts(coin.raw) -%}{%- if _hma %}{% set _hmu = umark(coin.raw, 'mint') %}{% for m in _hma %} <span class="mint-alt">{{ m|mint_label(coin.raw.year_first) }}{{ uq(_hmu) }}</span>{% endfor %}{% endif -%}
   </td>
   <td class="c-note">{%- if coin.raw.nominal_equiv -%}<span class="nom-equiv nw">{{ coin.raw.nominal }} = {{ coin.raw.nominal_equiv }}</span>{%- if coin.raw.note %}<br>{% endif -%}{%- endif -%}{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">

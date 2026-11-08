@@ -6908,7 +6908,6 @@ coins:
         - 16B
       hede_volume: nc5h
       schou:
-        - '2'
         - '3'
         - '8'
         - '11'
@@ -13878,7 +13877,6 @@ coins:
         - 30B
       hede_volume: nf3h
       schou:
-        - 11-12
         - 18-19
         - 21-22
       bruun_collection_id:
@@ -27101,11 +27099,8 @@ coins:
         - 35B
       hede_volume: nf3h
       schou:
-        - '5'
         - 7-8
-        - 9-12
-        - 10-12
-        - 13-16
+        - '12'
       bruun_collection_id: '9794'
       sieg: '42.1'
       nmd: '26'
@@ -42661,9 +42656,17 @@ coins:
           as_printed: u.år
           value: 1648-1670
           seed: dk-hede-f3h39
-    mint:
-      - Christiania
-      - Kopenhagen
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: hede
+          as_printed: København eller Christiania
+          translation:
+            de: København oder Christiania
+            en: København or Christiania
+            uk: København або Christiania
+          seed: dk-hede-f3h39
+    mint: Christiania
     catalog:
       km: A119
       hede: '39'

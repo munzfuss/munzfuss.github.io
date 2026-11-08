@@ -1288,6 +1288,62 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                     break
     # mint UNION across members (D17 list-form when multi-mint)
     mint = _collect_mints(members)
+    # A mint a live member marks «erroneous» (seed `mint_mark` → `mint_alts`
+    # kind erroneous) leaves the final unless a live member still attests it;
+    # otherwise the stored copy's self-union keeps re-adding the very value
+    # the curator struck out (2026-11-08, ucoin 70717 «Copenhagen (FF)»).
+    _live_m = members[1:] if len(members) > 1 else members
+    _struck = {str(a.get("value")) for _m in _live_m if isinstance(_m, dict)
+               for a in (_m.get("mint_alts") or [])
+               if isinstance(a, dict) and a.get("kind") == "erroneous"}
+    if _struck and mint is not None:
+        _attested: set[str] = set()
+        for _m in _live_m:
+            _v = _m.get("mint") if isinstance(_m, dict) else None
+            _attested.update(str(x) for x in (_v if isinstance(_v, list) else [_v]) if x)
+        _ml = mint if isinstance(mint, list) else [mint]
+        _kept = [x for x in _ml if str(x) not in _struck or str(x) in _attested]
+        if _kept != _ml and _kept:
+            mint = _kept if len(_kept) > 1 else _kept[0]
+            # The joint issuing_entity was derived from the struck mint: when
+            # every live member now gives one scalar entity that is part of
+            # the stored joint, the final follows it (the mirror of the
+            # subset-scalar → joint upgrade above; a curation hold opts out).
+            _ie2 = out.get("issuing_entity")
+            if (isinstance(_ie2, list) and len(_ie2) > 1
+                    and "issuing_entity" not in _ie_holds):
+                _mies = {(_m.get("issuing_entity") if isinstance(_m.get("issuing_entity"), str)
+                          else None) for _m in _live_m if isinstance(_m, dict)}
+                if len(_mies) == 1:
+                    _s = next(iter(_mies))
+                    if _s and _s in _ie2:
+                        out["issuing_entity"] = _s
+    # A mint only a source's own alternative names («København eller
+    # Christiania», a hedged `uncertainty.mint` entry) does not stand beside
+    # the mint the verified members give: it leaves the final — the stored
+    # copy's self-union kept it — and the page shows it as a «(?)»
+    # alternative from that entry (curator 2026-11-08, Frederik III Hede 39).
+    if mint is not None:
+        from lib.mint_registry import canon_for_alias as _cfa
+        _ver: set[str] = set()
+        _alt: set[str] = set()
+        for _m in _live_m:
+            if not isinstance(_m, dict):
+                continue
+            _v = _m.get("mint")
+            if _m.get("mint_verified") is True:
+                _ver |= {_cfa(str(x)) or str(x) for x in (_v if isinstance(_v, list) else [_v]) if x}
+            for u in ((_m.get("uncertainty") or {}).get("mint") or []):
+                if isinstance(u, dict) and u.get("kind") == "hedged" and u.get("how") == "alternatives":
+                    for _n in re.split(r"\s+(?:eller|or|oder)\s+|\s*,\s*|/", str(u.get("as_printed") or "")):
+                        if _n.strip() and _cfa(_n.strip()):
+                            _alt.add(_cfa(_n.strip()))
+        _alt -= _ver
+        if _ver and _alt:
+            _ml = mint if isinstance(mint, list) else [mint]
+            _kept = [x for x in _ml if (_cfa(str(x)) or str(x)) not in _alt]
+            if _kept and _kept != _ml:
+                mint = _kept if len(_kept) > 1 else _kept[0]
     if mint is not None:
         out["mint"] = mint
 
@@ -3954,6 +4010,12 @@ def process_entity(entity_id: str) -> dict:
             fid = fc["id"]
             if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                 continue  # curator no_merge: different coin — never absorb
+            # A final the curator recorded as an empty duplicate never hosts
+            # a new class: emptied by a merge, its catalogue shrinks to what no
+            # member gives and it matched an unrelated class on nominal + year
+            # alone (km-a445-chr-v-1696 took Hede 26, 2026-11-08).
+            if str(fid) in _empty_duplicate_removals():
+                continue
             if _u_carries and fc.get("fuss") in (None, "", "seed_unsorted"):
                 continue
             # An unclassified final with no catalogue index at all (a bare
@@ -3990,6 +4052,8 @@ def process_entity(entity_id: str) -> dict:
             for fid, fc in final_by_id.items():
                 if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                     continue  # curator no_merge: different coin — never absorb
+                if str(fid) in _empty_duplicate_removals():
+                    continue  # recorded empty duplicate: never a host
                 f_refs = _catalog_refs(fc, entity_id)
                 if not _shares_unique_id_ref(u_refs, f_refs):
                     continue
