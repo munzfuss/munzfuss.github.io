@@ -12310,94 +12310,6 @@ coins:
     phase: I
     kind: kurant
     nominal: 1 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: danish_realm
-    fraction: '1'
-    id: dk-tid-97369
-    year_first: 1669
-    year_last: 1669
-    year_label: '1669'
-    mint: Kopenhagen
-    catalog:
-      km: '307'
-      bruun_collection_id:
-        - '6698'
-        - '6697'
-        - '6744'
-      bruun_part: II
-      bruun_lot_no: 13167
-      bruun_page: 123
-      hede: 80B
-      hede_volume: f3h
-      schou: '14'
-      sieg:
-        - '96'
-        - '96.2'
-      dav: '3561'
-      others:
-        - Aagaard# 119.1
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.775
-        source: hede
-      - value: 28.775
-        source: ngc
-      - value: 28.775
-        source: numismaster
-      - value: 28.78
-        source: ucoin
-      - value: 29.19
-        source: bruun
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65461
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13167, p. 97
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h80.htm
-        ref: danskmoent.dk (Hede f3h80B)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1669/?tid=97369
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-307-1669-cuid-1050291-duid-1237465
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Coinage-standard assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення стопи і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-      da: Tildeling af møntfod og verifikation af den enkelte mønt mod Hede / Schön / Bruun udestår stadig.
-    hede_muentzfuss_yield:
-      value: 9.288
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
-      - c-b403b86c
-    label: dk-tid-97369
-    origin: foundation
-    v1_home_location: denmark
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Speciedaler
     ruler: Christian V.
     issuing_entity: danish_realm
     fraction: '1'
@@ -97107,18 +97019,33 @@ coins:
         - seed: dk-hede-f3h80a
           source: hede
           years: '1668'
+        - seed: dk-hede-f3h80b
+          source: hede
+          years: '1669'
         - seed: dk-bruun-6645
           source: bruun
           years: '1668'
+        - seed: dk-bruun-6698
+          source: bruun
+          years: '1669'
+        - seed: ngc-1050291
+          source: ngc
+          years: '1669'
         - seed: ngc-1060263
           source: ngc
           years: '1668'
         - seed: denmark-numismaster-65460
           source: numismaster
           years: '1668'
+        - seed: denmark-numismaster-65461
+          source: numismaster
+          years: '1669'
         - seed: dk-tid-97368
           source: ucoin
           years: '1668'
+        - seed: dk-tid-97369
+          source: ucoin
+          years: '1669'
         - seed: ikmk-18219597
           source: ikmk
           years: '1668'
@@ -97141,26 +97068,36 @@ coins:
           seed: dk-numista-81646
     mint: Kopenhagen
     catalog:
-      km: '301'
-      hede: 80A
+      km:
+        - '301'
+        - '307'
+      hede:
+        - 80A
+        - 80B
       hede_volume: f3h
       schou:
         - '13'
+        - '14'
         - '17'
       sieg:
         - '96'
         - '96.1'
+        - '96.2'
       bruun_collection_id:
         - '6645'
         - '6745'
+        - '6698'
       bruun_part: II
       bruun_lot_no: 13162
       bruun_page: 119
-      dav: EC II 3560
+      dav:
+        - EC II 3560
+        - EC II 3561
       numista: '81646'
       others:
         - Aagaard# 118.1
         - Aagaard# 118.2
+        - Aagaard# 119.1
         - BM# 300
     metal: silver
     metal_verified: true
@@ -97172,28 +97109,62 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f3h80a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f3h80b
       - value: 0.875
         source: ngc
+        specimen: ngc-1050291
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1060263
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65460
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65461
       - value: 0.875
         source: numista
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-97368
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-97369
     weight_rough_g:
       - value: 28.55
         source: numista
       - value: 28.775
         source: hede
+        specimen: dk-hede-f3h80a
+      - value: 28.775
+        source: hede
+        specimen: dk-hede-f3h80b
       - value: 28.775
         source: ngc
+        specimen: ngc-1050291
+      - value: 28.775
+        source: ngc
+        specimen: ngc-1060263
       - value: 28.775
         source: numismaster
+        specimen: denmark-numismaster-65460
+      - value: 28.775
+        source: numismaster
+        specimen: denmark-numismaster-65461
       - value: 28.78
         source: ucoin
+        specimen: dk-tid-97368
+      - value: 28.78
+        source: ucoin
+        specimen: dk-tid-97369
       - value: 28.79
         source: bruun
       - value: 29.17
+        source: bruun
+      - value: 29.19
         source: bruun
       - value: 29.39
         source: ikmk
@@ -97202,6 +97173,7 @@ coins:
         source: numista
       - value: 41.4
         source: ucoin
+        specimen: dk-tid-97368
       - value: 42.0
         source: ikmk
     sources:
@@ -97228,6 +97200,18 @@ coins:
         ref: IKMK Berlin 18219597
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-301-1668-cuid-1060263-duid-1237463
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_65461
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13167, p. 97
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1669/?tid=97369
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-307-1669-cuid-1050291-duid-1237465
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     inscription_obv: FRIDERICUS III D G DAN NOR V GOT REX
     inscription_rev: DVX SLES - HOL STOR - DITM COM - OLD & DELM
