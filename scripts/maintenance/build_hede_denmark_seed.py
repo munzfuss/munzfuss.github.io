@@ -1912,6 +1912,23 @@ def main() -> int:
                 # when the parser couldn't pull per-Hede data (older
                 # cached parses or label-format variants).
                 sub_refs = sub_spec.get("catalog_refs")
+                if not sub_refs:
+                    # The page-aggregate fallback must not hand this coin the
+                    # numbers a sibling coin on the same page owns: c5h63
+                    # (1 Speciedaler) took Sieg 61 / Schou 4 of Hede 64 (the
+                    # 2 Speciedaler), 2026-11-08. Subtract every sibling's
+                    # own refs, register by register.
+                    _sib: dict[str, set] = {}
+                    for _sn, _ss in by_hede.items():
+                        if _sn == sub_num:
+                            continue
+                        for _reg, _vals in (_ss.get("catalog_refs") or {}).items():
+                            _sib.setdefault(_reg, set()).update(map(str, _vals or []))
+                    if _sib:
+                        _page = d.get("catalog_refs") or {}
+                        sub_refs = {_reg: [v for v in (_vals or []) if str(v) not in _sib.get(_reg, set())]
+                                    for _reg, _vals in _page.items()}
+                        sub_refs = {k: v for k, v in sub_refs.items() if v} or None
                 # Per-Hede years (parser emits when letter-block matched
                 # for `specs.by_hede` shape). Falls back to the page-
                 # aggregate `parsed["years"]` inside `_build_coin` only
