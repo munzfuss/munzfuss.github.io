@@ -1318,6 +1318,32 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                     _s = next(iter(_mies))
                     if _s and _s in _ie2:
                         out["issuing_entity"] = _s
+    # A mint only a source's own alternative names («København eller
+    # Christiania», a hedged `uncertainty.mint` entry) does not stand beside
+    # the mint the verified members give: it leaves the final — the stored
+    # copy's self-union kept it — and the page shows it as a «(?)»
+    # alternative from that entry (curator 2026-11-08, Frederik III Hede 39).
+    if mint is not None:
+        from lib.mint_registry import canon_for_alias as _cfa
+        _ver: set[str] = set()
+        _alt: set[str] = set()
+        for _m in _live_m:
+            if not isinstance(_m, dict):
+                continue
+            _v = _m.get("mint")
+            if _m.get("mint_verified") is True:
+                _ver |= {_cfa(str(x)) or str(x) for x in (_v if isinstance(_v, list) else [_v]) if x}
+            for u in ((_m.get("uncertainty") or {}).get("mint") or []):
+                if isinstance(u, dict) and u.get("kind") == "hedged" and u.get("how") == "alternatives":
+                    for _n in re.split(r"\s+(?:eller|or|oder)\s+|\s*,\s*|/", str(u.get("as_printed") or "")):
+                        if _n.strip() and _cfa(_n.strip()):
+                            _alt.add(_cfa(_n.strip()))
+        _alt -= _ver
+        if _ver and _alt:
+            _ml = mint if isinstance(mint, list) else [mint]
+            _kept = [x for x in _ml if (_cfa(str(x)) or str(x)) not in _alt]
+            if _kept and _kept != _ml:
+                mint = _kept if len(_kept) > 1 else _kept[0]
     if mint is not None:
         out["mint"] = mint
 

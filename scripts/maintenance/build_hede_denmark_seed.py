@@ -1379,6 +1379,14 @@ def _build_coin(
         if _MINT_OR_RE.search(mint_header):
             cm["uncertainty"] = unc.add(dict(cm), "mint", "alternatives", "hede",
                                         as_printed=mint_header)["uncertainty"]
+            # The heading's words are Danish: a translation for the other
+            # languages' tooltips (only the conjunction changes).
+            for _u in cm["uncertainty"]["mint"]:
+                if _u.get("as_printed") == mint_header.strip():
+                    _u["translation"] = {
+                        "de": _MINT_OR_RE.sub(" oder ", mint_header),
+                        "en": _MINT_OR_RE.sub(" or ", mint_header),
+                        "uk": _MINT_OR_RE.sub(" або ", mint_header)}
         elif _MINT_AND_RE.search(mint_header):
             cm["mint_verified"] = True
     # Only an index stub carries a note: what it says is about this record.

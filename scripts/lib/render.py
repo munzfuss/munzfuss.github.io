@@ -902,3 +902,30 @@ def derived_mark(raw, ui: dict, lang: str) -> dict | None:
             return None
         tips.append(m["tip"])
     return {"kind": "derived", "tip": "\n".join(tips)}
+
+
+def mint_hedged_alts(raw) -> list[str]:
+    """Mints a source names only as an alternative («København eller
+    Christiania» — a hedged `uncertainty.mint` entry, how «alternatives»)
+    that the cell does not show: rendered beside the mint with «(?)» and the
+    entry's tooltip (curator 2026-11-08, Frederik III Hede 39)."""
+    from .mint_registry import canon_for_alias, display_for_alias
+
+    def _get(obj, key):
+        return obj.get(key) if isinstance(obj, dict) else getattr(obj, key, None)
+
+    shown = _get(raw, "mint")
+    shown = shown if isinstance(shown, list) else ([shown] if shown else [])
+    have = {canon_for_alias(str(x)) or str(x) for x in shown}
+    out: list[str] = []
+    for e in (_get(raw, "uncertainty") or {}).get("mint") or []:
+        e = e.model_dump(exclude_none=True) if hasattr(e, "model_dump") else e
+        if e.get("kind") != "hedged" or e.get("how") != "alternatives":
+            continue
+        for n in re.split(r"\s+(?:eller|or|oder)\s+|\s*,\s*|/", str(e.get("as_printed") or "")):
+            c = canon_for_alias(n.strip()) if n.strip() else None
+            if c and c not in have:
+                d = display_for_alias(n.strip()) or n.strip()
+                if d not in out:
+                    out.append(d)
+    return out

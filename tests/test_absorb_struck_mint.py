@@ -76,5 +76,37 @@ class StruckMint(unittest.TestCase):
         self.assertEqual(out["issuing_entity"], ["danish_realm", "royal_holstein"])
 
 
+ALT = {"kind": "hedged", "how": "alternatives", "source": "hede",
+       "as_printed": "København eller Christiania"}
+
+
+class HedgedAlternativeMint(unittest.TestCase):
+    """«København eller Christiania»: the alternative the verified members do
+    not give leaves the final (Frederik III Hede 39, 2026-11-08)."""
+
+    def _final(self):
+        return dict(FINAL, mint=["Christiania", "Kopenhagen"],
+                    issuing_entity="danish_norway")
+
+    def test_alternative_leaves_final(self):
+        cls = dict(CLS, mint="Christiania", issuing_entity="danish_norway",
+                   mint_alts=None, uncertainty={"mint": [ALT]})
+        out = _run(self._final(), cls)
+        self.assertEqual(out["mint"], "Christiania")
+
+    def test_no_verified_member_keeps_both(self):
+        cls = dict(CLS, mint=["Christiania", "Kopenhagen"], mint_verified=False,
+                   issuing_entity="danish_norway", mint_alts=None,
+                   uncertainty={"mint": [ALT]})
+        out = _run(self._final(), cls)
+        self.assertEqual(sorted(out["mint"]), ["Christiania", "Kopenhagen"])
+
+    def test_render_lists_the_alternative(self):
+        from lib.render import mint_hedged_alts
+        self.assertEqual(mint_hedged_alts({"mint": "Christiania",
+                                           "uncertainty": {"mint": [ALT]}}),
+                         ["Kopenhagen"])
+
+
 if __name__ == "__main__":
     unittest.main()
