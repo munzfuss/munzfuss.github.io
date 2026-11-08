@@ -36123,6 +36123,7 @@ coins:
       -   - 1649
           - 1670
     year_label: 1649-1670
+    year_verified: false
     uncertainty:
       year:
         - kind: hedged
@@ -36135,7 +36136,6 @@ coins:
           source: kmk
           value: 1649-1670
           seed: kmk-394035
-    year_verified: false
     mint: Christiania
     catalog:
       km: '30'
@@ -38794,6 +38794,11 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/200621
         ref: KMM 200621 (Inv. FP 3108.10663)
         display: false
+    note:
+      de: 'Vorderseite: norwegischer Löwe; Rückseite: Wertangabe'
+      en: 'Obverse: the Norwegian lion; reverse: statement of value'
+      uk: 'Аверс: норвезький лев; реверс: позначення номіналу'
+      da: 'Forside: norske løve, Bagside: værdiangivelse.'
     verification_note:
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
@@ -38808,11 +38813,6 @@ coins:
       - c-69d3c74c
     label: unified-kmk-157814
     origin: promoted
-    note:
-      de: 'Vorderseite: norwegischer Löwe; Rückseite: Wertangabe'
-      en: 'Obverse: the Norwegian lion; reverse: statement of value'
-      uk: 'Аверс: норвезький лев; реверс: позначення номіналу'
-      da: 'Forside: norske løve, Bagside: værdiangivelse.'
     _weights_thinned:
       - value: 1.299
         source: hede
@@ -40702,53 +40702,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian V.
-    issuing_entity: danish_norway
-    year_is_reign_span: true
-    id: c-089c7d2a
-    year_first: 1670
-    year_last: 1699
-    year_ranges:
-      -   - 1670
-          - 1699
-    year_label: 1670-1699
-    year_verified: false
-    uncertainty:
-      ruler:
-        - kind: hedged
-          how: doubt
-          source: kmk
-          as_printed: Christian 5?
-          value: Christian 5?
-          seed: kmk-349998
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1670-1699
-    catalog:
-      hede: '47'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    ruler_verified: false
-    weight_rough_g:
-      - value: 0.31
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/349998
-        ref: KMM 349998 (Inv. FP 5288.1)
-    verification_note: *id002
-    composed_of:
-      - c-089c7d2a
-    label: unified-kmk-349998
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 2 Skilling
     ruler: Frederik VI.
     issuing_entity: danish_norway
@@ -40851,35 +40804,6 @@ coins:
     composed_of:
       - c-7a46182c
     label: unified-kmk-679618
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian II.
-    issuing_entity: danish_norway
-    id: c-5b61eda4
-    year_first: 1514
-    year_last: 1515
-    year_ranges:
-      -   - 1514
-          - 1515
-    year_label: 1514-1515
-    mint: Christiania
-    catalog:
-      galster: 39B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/700881
-        ref: KMM 700881 (Inv. FP 12207.8)
-    verification_note: *id002
-    composed_of:
-      - c-5b61eda4
-    label: unified-kmk-700881
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
