@@ -5263,3 +5263,23 @@ removals:
     field: km
     dropped: ['66']
     reason: 'Curator (Serhii) 2026-11-08 («1 так»): Bruun Part V lot 14111 prints «Dav-7758D; cf. KM-66; Hede-3A» — a «cf.» reference to another type, not this coin''s number (CLAUDE.md anti-pattern 5); the parser now skips «cf.» references.'
+  # ── Stale «Gottorp» / «Glückstadt» mints, 2026-11-08 ──────────────────────
+  # «Gottorp» was the territory «Schleswig-Holstein-Gottorp» read as a mint by
+  # the old Bruun builder (fixed 0d41261 / 2caaa9c); the finals kept it by
+  # self-union. Bruun prints no mint on these lots. 43 list-form finals lost
+  # the stale element without emptying; the three below emptied.
+  - seed: dk-bruun-14361
+    kind: field
+    field: mint
+    dropped: [Gottorp]
+    reason: 'Curator (Serhii) 2026-11-08 («1 а», «2 а»): Bruun Part II lot 14218 prints «Schleswig-Holstein-Gottorp. Ducat, 1664» and no mint; «Gottorp» was the territory read as a town.'
+  - seed: dk-bruun-14147
+    kind: field
+    field: mint
+    dropped: [Gottorp]
+    reason: 'Curator (Serhii) 2026-11-08 («1 а», «2 а»): Bruun Part III lot 12204 prints «Schleswig-Holstein-Gottorp. 2 1/2 Talers, ND (1607-16)» and no mint; «Gottorp» was the territory read as a town.'
+  - seed: kmk-83151
+    kind: field
+    field: mint
+    dropped: [Glückstadt]
+    reason: 'Curator (Serhii) 2026-11-08 («3 і 4 прибрати взагалі, джерела не дають це як мінт»): only the KMM object page names «Slesvig-Holsten - Glückstadt»; no catalogue (Numista 278267/278268, NumisMaster MC_73972-73979) gives a mint for Hans Adolf''s 2/3 Thaler 1690, and KMM 290997 of the same issue reads «Pløn».'

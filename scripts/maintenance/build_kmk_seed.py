@@ -313,6 +313,19 @@ _KMM_PLACE_ERRATA = {
     }),
 }
 
+# Object-page localities that no source gives as the coin's mint, so the
+# rådata fallback must not turn them into `place` (curator 2026-11-08: «джерела
+# не дають це як мінт»). The ES record has no `place`; only the web page names
+# a locality.
+#   168042, 168043 — «Tysk, Gottorp» (Karl Friedrich 1723; Christian Albrecht
+#   1 Sechsling 1681-82, Lange 408): the duchy's name; Bruun and Numista give
+#   Schleswig / Tönning for these types, none gives a Gottorp mint.
+#   83151 — «Slesvig-Holsten - Glückstadt» on Hans Adolf's (Plön) 2/3 Thaler
+#   1690, Lange 759-762: no catalogue (Numista 278267/278268, NumisMaster
+#   MC_73972-73979) gives a mint for these types; KMM 290997 of the same issue
+#   reads «Pløn».
+_KMM_LOCALITY_NOT_MINT = {168042, 168043, 83151}
+
 # A KMM `place` naming two mints that the catalogue for the same type does not
 # both confirm. «København & Frederiksborg» / «København, Frederiksborg» sits on
 # Frederik II's Hede 9, 11, 12 and 14, and Hede's header for all four names
@@ -1172,7 +1185,7 @@ def _enrich_from_raadata(src: dict) -> dict:
         if not (src.get("place") or "").strip():
             loc = ((h0.get("lokalitet") or {}).get("angivelser") or "").strip()
             city = _raadata_place(loc)
-            if city:
+            if city and src.get("id") not in _KMM_LOCALITY_NOT_MINT:
                 src["place"] = city
     # typeNumber — rådata `klassifikationer` [{term, system:"Typenummer"}] is
     # the web-side equivalent of the ES `typeNumber` our cache lost for ~15k
