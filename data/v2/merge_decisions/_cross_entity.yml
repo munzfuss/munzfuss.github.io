@@ -2845,9 +2845,10 @@ merges:
       - kmk-291045
       - kmk-692608
       - kmk-83085
+      - kmk-150119
     excludes:
       - kmk-355345   # fragment, already a curator exclusion (undocumented_stub, 2026-11-06)
-    reason: '1 Søsling lybsk, Christian III, Flensborg 1545 = Hede 21 (danskmoent c3h21: «A) (15)45 … (Hede 21A, Schou 13-18 …) B) (15)45 (RR) … (Hede 21B, Schou 19-20 …)»). KMM 139673 and 411793 (royal_slesvig) and KMM 291045 (Hede 21B, Schou 19) and 692608 (Hede 21A, Schou 18), both in danish_realm, give no material; KMM 83085 (GP 982.109, 1545, Hede 21A, Schou 15, 0.99 g) joins with them. Curator (Serhii) 2026-11-08: «1 2 3 4 5 згоден», after merge-candidate tables.'
+    reason: '1 Søsling lybsk, Christian III, Flensborg 1545 = Hede 21 (danskmoent c3h21: «A) (15)45 … (Hede 21A, Schou 13-18 …) B) (15)45 (RR) … (Hede 21B, Schou 19-20 …)»). KMM 139673 and 411793 (royal_slesvig) and KMM 291045 (Hede 21B, Schou 19) and 692608 (Hede 21A, Schou 18), both in danish_realm, give no material; KMM 83085 (GP 982.109, 1545, Hede 21A, Schou 15, 0.99 g) joins with them; so does KMM 150119 (KP 1656.194, web page «søsling», «Danmark - Flensborg», «H 21A; Schou 17»; the API «1 skilling» / «Bergen» corrected by _source_errata, 2026-11-08). Curator (Serhii) 2026-11-08: «1 2 3 4 5 згоден», after merge-candidate tables.'
   - target_entity: danish_realm
     issuing_entity: danish_realm
     members:
@@ -2904,3 +2905,17 @@ merges:
     excludes:
       - kmk-160392
     reason: "1 Skilling 1771, Christian VII, København, Altona and Kongsberg = Hede 37 (danskmoent c7h37: «1 Skilling 1771, 1779, København, Altona og Kongsberg (Hede 37 …)») = KM 616 / 616.1-616.8 of the Danish Krause volume = KM 245a of the Norwegian one (Kongsberg). Ten classes in three entities joined: the Hede 37 class (danish_realm), km-616 (royal_holstein), the Kongsberg class (danish_norway), six NGC / NumisMaster classes of single KM 616 sub-variants and KMM 168062 («kurantskilling», H 37). Issuing entity is the three mints' jurisdictions. KMM 160392 is a curator exclusion. Curator (Serhii) 2026-11-08."
+  - target_entity: norburg_plon_duchy
+    issuing_entity: norburg_plon_duchy
+    members:
+      - kmk-290997
+    excludes:
+      - kmk-83151
+    reason: '⅔ Thaler 1690, Hans Adolf (legend «IOH:ADOL:D:G: H:N:D:S:HOLS»), Lange 759-762; KMM gives the place «Slesvig-Holsten-Gottorp - Pløn». Moved from gottorp_duchy to the Plön duchy. Not merged with KMM 83151: another design (2/3 numeral with countermark here, arms there). Curator (Serhii) 2026-11-08.'
+  - target_entity: norburg_plon_duchy
+    issuing_entity: norburg_plon_duchy
+    members:
+      - kmk-83151
+    excludes:
+      - kmk-290997
+    reason: "⅔ Thaler 1690, Hans Adolph (legend «IOH:ADOLP:D:G: H:N:D:S:HOLS»), Lange 759-762, reverse with the arms. Moved from royal_holstein to the Plön duchy. The web page's place «Slesvig-Holsten - Glückstadt» is kept unmarked; no source for the mint of this type is at hand. Not merged with KMM 290997 (another design). Curator (Serhii) 2026-11-08."

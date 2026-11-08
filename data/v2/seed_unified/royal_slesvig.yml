@@ -2,7 +2,7 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
-# Input: 140 per-source seed entries.
+# Input: 141 per-source seed entries.
 # Output: 57 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -1688,6 +1688,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139673
         ref: KMM 139673 (Inv. KP 1715.46)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150119
+        ref: KMM 150119 (Inv. KP 1656.194)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/291045
         ref: KMM 291045 (Inv. KP 1590.25)
       - type: museum
@@ -1710,10 +1713,20 @@ coins:
       - dk-hede-c3h21b
       - dk-hede-c3h21c
       - kmk-139673
+      - kmk-150119
       - kmk-291045
       - kmk-411793
       - kmk-692608
       - kmk-83085
+    _errata_applied:
+      - source: kmk-150119
+        field: nominal
+        printed: 1 Skilling
+        correct: 1 Søsling
+      - source: kmk-150119
+        field: mint
+        printed: Bergen
+        correct: Flensburg
   - id: c-c4b899ff
     class_id: c-c4b899ff
     label: unified-dk-hede-c3h22

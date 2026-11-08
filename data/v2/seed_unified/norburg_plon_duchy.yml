@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `norburg_plon_duchy`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norburg_plon_duchy.yml across all sources.
 #
-# Input: 51 per-source seed entries.
-# Output: 23 unified entries (one per physical coin).
+# Input: 53 per-source seed entries.
+# Output: 25 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norburg_plon_duchy
-generated_at: '2026-11-06'
+generated_at: '2026-11-08'
 coins:
   - id: c-ce380806
     class_id: c-ce380806
@@ -322,6 +322,59 @@ coins:
     issuing_entity: norburg_plon_duchy
     composed_of:
       - dk-numista-278268
+  - id: c-0f1952f7
+    class_id: c-0f1952f7
+    label: unified-kmk-290997
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: ⅔ Thaler
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
+    ruler: Hans Adolf
+    mint: Pløn
+    catalog:
+      lange: 759-762
+      others:
+        - Auk.Kat.# 5031
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290997
+        ref: KMM 290997 (Inv. KP 1590.73)
+    issuing_entity: norburg_plon_duchy
+    composed_of:
+      - kmk-290997
+  - id: c-bfa7b85c
+    class_id: c-bfa7b85c
+    label: unified-kmk-83151
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
+    ruler: Hans Adolph
+    mint: Glückstadt
+    catalog:
+      lange: 759-762
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83151
+        ref: KMM 83151 (Inv. GP 982.175)
+    issuing_entity: norburg_plon_duchy
+    composed_of:
+      - kmk-83151
   - id: c-a8b1b562
     class_id: c-a8b1b562
     label: unified-ngc-1139508

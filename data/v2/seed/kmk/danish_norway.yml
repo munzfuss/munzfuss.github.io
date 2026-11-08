@@ -686,9 +686,9 @@ coins:
     kind: kurant
     issuing_entity: danish_norway
     entity_classified_via: mint
-    nominal: 1 Skilling
+    nominal: 1 Søsling
     metal_verified: false
-    mint: Bergen
+    mint: Flensburg
     mint_verified: true
     ruler: Christian 3
     year_first: 1545
@@ -706,6 +706,28 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150119
         ref: KMM 150119 (Inv. KP 1656.194)
+    _source_errata:
+      - field: nominal
+        printed: 1 Skilling
+        correct: 1 Søsling
+        curator: serg
+        reason: 'Curator (Serhii) 2026-11-08: the KMM API record gives «1 skilling» and place «Bergen»; the KMM web page of the same object (KP 1656.194) gives «søsling», «Danmark - Flensborg», «H 21A;
+          Schou 17», and the object photo shows the Flensborg søsling lybsk type (Hede 21). Christian III has no Bergen mint in Hede (Hede Norge 1-4: Gimsø). The API value is not shown to the reader, who
+          reaches the web page through the link.'
+      - field: mint
+        printed: Bergen
+        correct: Flensburg
+        curator: serg
+        reason: 'Curator (Serhii) 2026-11-08: the KMM API record gives «1 skilling» and place «Bergen»; the KMM web page of the same object (KP 1656.194) gives «søsling», «Danmark - Flensborg», «H 21A;
+          Schou 17», and the object photo shows the Flensborg søsling lybsk type (Hede 21). Christian III has no Bergen mint in Hede (Hede Norge 1-4: Gimsø). The API value is not shown to the reader, who
+          reaches the web page through the link.'
+    _errata_applied:
+      - field: nominal
+        printed: 1 Skilling
+        correct: 1 Søsling
+      - field: mint
+        printed: Bergen
+        correct: Flensburg
   - id: kmk-156779
     fuss: seed_unsorted
     phase: kmk
@@ -9140,6 +9162,23 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167133
         ref: KMM 167133 (Inv. FP 1780.199; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.198)
+    catalog_marks:
+      - register: hede
+        value: 152B
+        kind: erroneous
+        reason:
+          de: 'Hede 152 ist ein dänischer Skilling aus København mit dem Wappen auf der Vorderseite (danskmoent.dk, Hede 152: «Forside: våbenskjold», Übers.: «Vorderseite: Wappenschild»). Das KMM-Foto dieses
+            Stücks zeigt auf der Vorderseite einen gekrönten Schild mit einem Löwen mit Axt, auf der Rückseite «NOR VAN GOT REX 1648»: den norwegischen Skilling Hede Norge 18 («Forside: norske løve», Übers.:
+            «Vorderseite: norwegischer Löwe»).'
+          en: 'Hede 152 is a Danish skilling of København with the arms on the obverse (danskmoent.dk, Hede 152: «Forside: våbenskjold», transl.: «obverse: coat of arms»). The KMM photo of this piece shows
+            a crowned shield with one lion holding an axe on the obverse and «NOR VAN GOT REX 1648» on the reverse: the Norwegian skilling Hede Norge 18 («Forside: norske løve», transl.: «obverse: Norwegian
+            lion»).'
+          uk: 'Hede 152 — данський скілінг з København із гербом на аверсі (danskmoent.dk, Hede 152: «Forside: våbenskjold», перекл.: «аверс: герб»). Знімок цього примірника в KMM показує на аверсі коронований
+            щит з одним левом із сокирою, на реверсі «NOR VAN GOT REX 1648»: це норвезький скілінг Hede Norge 18 («Forside: norske løve», перекл.: «аверс: норвезький лев»).'
+          da: 'Hede 152 er en dansk skilling fra København med våbenskjold på forsiden (danskmoent.dk, Hede 152: «Forside: våbenskjold»). KMM-fotoet af dette stykke viser på forsiden et kronet skjold med
+            én løve med økse og på bagsiden «NOR VAN GOT REX 1648»: den norske skilling Hede Norge 18 («Forside: norske løve»).'
+    _curation_holds:
+      catalog_marks: 'Curator (Serhii) 2026-11-08: Hede 152B printed by the KMM web page / label is wrong; the photo shows the Norwegian lion (Hede Norge 18).'
   - id: kmk-174306
     fuss: seed_unsorted
     phase: kmk
