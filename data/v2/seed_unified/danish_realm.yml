@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8364 per-source seed entries.
-# Output: 1772 unified entries (one per physical coin).
+# Output: 1769 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3209,45 +3209,6 @@ coins:
       - dk-tid-163020
       - kmk-371925
       - ngc-1049989
-  - id: c-9047ca49
-    class_id: c-9047ca49
-    label: unified-dk-bruun-4811
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1609
-    year_last: 1609
-    year_label: '1609'
-    ruler: Christian IV
-    mintmaster: Nicolaus Schwabe
-    mint: Kopenhagen
-    catalog:
-      km: '43'
-      bruun_collection_id: '4811'
-      sieg: '102.1'
-      schou: '5'
-      hede: 53A
-      bruun_part: II
-      bruun_lot_no: 13087
-      bruun_page: 71
-      dav: '102'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.33
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13087, p. 45
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-bruun-4811
   - id: c-eca5d3b7
     class_id: c-eca5d3b7
     label: unified-dk-bruun-4845
@@ -34666,130 +34627,9 @@ coins:
       - denmark-numismaster-65528
       - dk-hede-c4h52
       - ngc-1050778
-  - id: c-a1c3e727
-    class_id: c-a1c3e727
-    label: unified-dk-hede-c4h53ab
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1608
-    year_last: 1610
-    year_ranges:
-      -   - 1608
-          - 1610
-    year_label: 1608-1610
-    ruler: Christian IV
-    mintmaster: Nicolaus Schwabe
-    mint: Kopenhagen
-    catalog:
-      km: '43'
-      hede:
-        - 53A
-        - 53AB
-      hede_volume: c4h
-      schou:
-        - 1-6
-        - 1-7
-        - 4-6
-        - 7-8
-      sieg:
-        - '102.1'
-        - '118.1'
-        - '118.2'
-      bruun_collection_id:
-        - '4747'
-        - '4748'
-        - '4811'
-      others:
-        - Harck# 6.22.1
-        - B# 140a
-      bruun_part: II
-      bruun_lot_no: 13084
-      bruun_page: 69
-      dav: EC II 3513
-      numista: '142532'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.64
-        source: bruun
-      - value: 29.19
-        source: bruun
-      - value: 29.23
-        source: ucoin
-      - value: 29.232
-        source: hede
-      - value: 29.232
-        source: ngc
-      - value: 29.232
-        source: numismaster
-      - value: 29.232
-        source: numista
-    diameter_mm:
-      - value: 40.0
-        source: ucoin
-      - value: 40.26
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65402
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14091, p. 37
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13084, p. 43
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h53.htm
-        ref: danskmoent.dk (Hede c4h53AB)
-      - type: literature
-        url: https://en.numista.com/142532
-        ref: Numista N#142532 — 1 Speciedaler - Christian IV (Copenhagen; round danish arms)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1608-1609/?tid=163069
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137216
-        ref: KMM 137216 (Inv. RP 75.1)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-43-1608-1609-cuid-1050072-duid-1237406
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    hede_muentzfuss_yield:
-      value: 9.143
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
-      - denmark-numismaster-65402
-      - dk-bruun-4747
-      - dk-bruun-4748
-      - dk-hede-c4h53ab
-      - dk-numista-142532
-      - dk-tid-163069
-      - kmk-137216
-      - ngc-1050072
   - id: c-5ce84232
     class_id: c-5ce84232
-    label: unified-dk-hede-c4h53c
+    label: unified-dk-hede-c4h53ab
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -34803,29 +34643,41 @@ coins:
           - 1621
     year_label: 1608-1610, 1618-1621
     ruler: Christian IV
-    mintmaster: Hans Flemming
+    mintmaster: Nicolaus Schwabe
     mint:
       - Helsingør
       - Kopenhagen
     catalog:
-      km: '44'
+      km:
+        - '43'
+        - '44'
       hede:
+        - '53'
+        - 53A
+        - 53AB
         - 53B
         - 53C
       hede_volume: c4h
       schou:
         - 1-2
-        - '3'
-        - '5'
-        - '6'
+        - 1-6
+        - 1-7
+        - 4-6
+        - 7-8
         - 7-9
       sieg:
         - '102'
+        - '102.1'
         - '102.2'
         - '102.3'
+        - '118.1'
+        - '118.2'
         - '118.3'
       bruun_collection_id:
+        - '4747'
+        - '4748'
         - '4775'
+        - '4811'
         - '4826'
         - '4839'
         - '5000'
@@ -34833,17 +34685,22 @@ coins:
         - '5072'
         - '5152'
         - '5153'
-      bruun_part: III
-      bruun_lot_no: 11183
-      bruun_page: 95
       others:
+        - Harck# 6.22.1
         - Harck# 7.9
         - Harck# 12.4.1
         - Harck# 12.4.4
+        - B# 140a
+      bruun_part: II
+      bruun_lot_no: 13084
+      bruun_page: 69
       dav:
+        - EC II 102
+        - EC II 3513
         - EC II 3514
         - EC II 3514A
       numista:
+        - '142532'
         - '142901'
         - '199010'
     metal: silver
@@ -34855,21 +34712,42 @@ coins:
     verified: false
     fineness:
       - value: 0.875
+        source: hede
+        specimen: dk-hede-c4h53ab
+      - value: 0.875
         source: ngc
+        specimen: ngc-1050072
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050160
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65402
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65403
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-142532
       - value: 0.875
         source: numista
         specimen: dk-numista-142901
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-163069
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-163070
       - value: 0.888
         source: hede
+        specimen: dk-hede-c4h53c
       - value: 0.888
         source: numista
         specimen: dk-numista-199010
     weight_rough_g:
       - value: 28.07
+        source: bruun
+      - value: 28.33
         source: bruun
       - value: 28.37
         source: numista
@@ -34878,8 +34756,12 @@ coins:
         source: bruun
       - value: 28.6
         source: bruun
+      - value: 28.64
+        source: bruun
       - value: 28.69
         source: bruun
+      - value: 28.75
+        source: kmk
       - value: 28.78
         source: bruun
       - value: 28.79
@@ -34893,17 +34775,45 @@ coins:
       - value: 29.15
         source: numista
         specimen: dk-numista-199010
+      - value: 29.19
+        source: bruun
       - value: 29.23
         source: ucoin
+        specimen: dk-tid-163069
+      - value: 29.23
+        source: ucoin
+        specimen: dk-tid-163070
       - value: 29.232
         source: hede
+        specimen: dk-hede-c4h53ab
+      - value: 29.232
+        source: hede
+        specimen: dk-hede-c4h53c
       - value: 29.232
         source: ngc
+        specimen: ngc-1050072
+      - value: 29.232
+        source: ngc
+        specimen: ngc-1050160
       - value: 29.232
         source: numismaster
+        specimen: denmark-numismaster-65402
+      - value: 29.232
+        source: numismaster
+        specimen: denmark-numismaster-65403
+      - value: 29.232
+        source: numista
+        specimen: dk-numista-142532
     diameter_mm:
       - value: 40.0
         source: ucoin
+        specimen: dk-tid-163069
+      - value: 40.0
+        source: ucoin
+        specimen: dk-tid-163070
+      - value: 40.26
+        source: numista
+        specimen: dk-numista-142532
       - value: 40.63
         source: numista
         specimen: dk-numista-142901
@@ -34912,11 +34822,23 @@ coins:
         specimen: dk-numista-199010
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65402
+        ref: NumisMaster
+      - type: literature
         url: https://numismaster.com/MC_65403
         ref: NumisMaster
       - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14091, p. 37
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13084, p. 43
+      - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11183, p. 77
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13087, p. 45
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14092, p. 37
@@ -34940,7 +34862,10 @@ coins:
         ref: Bruun Part II, lot 13095, p. 50
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h53.htm
-        ref: danskmoent.dk (Hede c4h53C)
+        ref: danskmoent.dk (Hede c4h53AB)
+      - type: literature
+        url: https://en.numista.com/142532
+        ref: Numista N#142532 — 1 Speciedaler - Christian IV (Copenhagen; round danish arms)
       - type: literature
         url: https://en.numista.com/142901
         ref: Numista N#142901 — 1 Speciedaler - Christian IV Helsingør
@@ -34948,23 +34873,39 @@ coins:
         url: https://en.numista.com/199010
         ref: Numista N#199010 — 1 Speciedaler - Christian IV Copenhagen; rectangular danish arms
       - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1608-1609/?tid=163069
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1608-1621/?tid=163070
         ref: ucoin
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137216
+        ref: KMM 137216 (Inv. RP 75.1)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190270
         ref: KMM 190270 (Inv. FP 3108.14)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348809
+        ref: KMM 348809 (Inv. FP 5396.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-43-1608-1609-cuid-1050072-duid-1237406
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-44-1608-1621-cuid-1050160-duid-1237408
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
-      value: 9.0
+      value: 9.143
       unit: speciedaler
       basis: fin
       unit_raw: speciedalere
     composed_of:
+      - denmark-numismaster-65402
       - denmark-numismaster-65403
+      - dk-bruun-4747
+      - dk-bruun-4748
       - dk-bruun-4775
+      - dk-bruun-4811
       - dk-bruun-4826
       - dk-bruun-4839
       - dk-bruun-5000
@@ -34972,11 +34913,17 @@ coins:
       - dk-bruun-5072
       - dk-bruun-5152
       - dk-bruun-5153
+      - dk-hede-c4h53ab
       - dk-hede-c4h53c
+      - dk-numista-142532
       - dk-numista-142901
       - dk-numista-199010
+      - dk-tid-163069
       - dk-tid-163070
+      - kmk-137216
       - kmk-190270
+      - kmk-348809
+      - ngc-1050072
       - ngc-1050160
   - id: c-3f43575e
     class_id: c-3f43575e
@@ -120916,34 +120863,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-348808
-  - id: c-b94b9723
-    class_id: c-b94b9723
-    label: unified-kmk-348809
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1610
-    year_last: 1610
-    year_label: '1610'
-    ruler: Christian IV
-    catalog:
-      hede: '53'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.75
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348809
-        ref: KMM 348809 (Inv. FP 5396.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-348809
   - id: c-dd9589f7
     class_id: c-dd9589f7
     label: unified-kmk-349216
