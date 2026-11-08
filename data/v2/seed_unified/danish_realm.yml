@@ -6401,6 +6401,101 @@ coins:
       - denmark-numismaster-65888
       - dk-bruun-7242
       - ngc-1051018
+  - id: c-9182b7e3
+    class_id: c-9182b7e3
+    label: unified-dk-bruun-7249
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1685
+    year_last: 1685
+    year_label: '1685'
+    ruler: Christian V
+    mintmaster: Gregorius Sesemann
+    mint: Kopenhagen
+    catalog:
+      km: '375'
+      bruun_collection_id: '7249'
+      sieg: '76'
+      schou: '19'
+      hede: 12B
+      fr: '186'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-1050898
+          source: ngc
+          years: '1685'
+        - seed: denmark-numismaster-65779
+          source: numismaster
+          years: '1685'
+      uncertain:
+        - seed: dk-bruun-7249
+          source: bruun
+          years: '1685'
+    fineness:
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+    weight_rough_g:
+      - value: 3.43
+        source: bruun
+      - value: 3.49
+        source: ngc
+      - value: 3.49
+        source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1685)
+          value: '1685'
+          seed: dk-bruun-7249
+    catalog_alts:
+      - register: km
+        value: '374.2'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die KM-Nummer gehört zu einer anderen Variante.\n[b]Bruun Part I, lot 1123, S. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; das Foto des Loses zeigt den Reiter nach links zwischen
+            Bäumen.\n[b]NGC[/b]: [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i] (Übers.: «Reiterfigur Christians V. nach rechts, Stab nach vorn»); [i]«KM# 375 … Equestrian
+            figure of Christian V left, amongst trees»[/i] (Übers.: «Reiterfigur Christians V. nach links, zwischen Bäumen»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i]
+            (Übers.: «Reiter (nach rechts: A, nach links: B)»)."
+          en: "The KM number belongs to another variant.\n[b]Bruun Part I, lot 1123, p. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; the lot's photograph shows the rider to the left among trees.\n\
+            [b]NGC[/b]: [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i]; [i]«KM# 375 … Equestrian figure of Christian V left, amongst trees»[/i].\n[b]danskmoent.dk[/b]
+            (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i] (transl.: «rider (to the right: A, to the left: B)»)."
+          uk: "Номер KM належить іншому варіанту.\n[b]Bruun Part I, lot 1123, с. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; на фото лота вершник ліворуч серед дерев.\n[b]NGC[/b]: [i]«KM# 374.2
+            … Equistrian figure of Christian V right, baton points forward»[/i] (перекл.: «кінна фігура Christian V праворуч, жезл уперед»); [i]«KM# 375 … Equestrian figure of Christian V left, amongst
+            trees»[/i] (перекл.: «кінна фігура Christian V ліворуч, серед дерев»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i] (перекл.: «вершник (праворуч: A, ліворуч:
+            B)»)."
+          da: "KM-nummeret hører til en anden variant.\n[b]Bruun Part I, lot 1123, s. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; lottets foto viser rytteren mod venstre mellem træer.\n[b]NGC[/b]:
+            [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i] (overs.: «rytterfigur af Christian V mod højre, stav fremad»); [i]«KM# 375 … Equestrian figure of Christian
+            V left, amongst trees»[/i] (overs.: «rytterfigur af Christian V mod venstre, mellem træer»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i]."
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65779
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1123, p. 150
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-375-1685-cuid-1050898-duid-1238000
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_realm
+    composed_of:
+      - denmark-numismaster-65779
+      - dk-bruun-7249
+      - ngc-1050898
   - id: c-054f8d2c
     class_id: c-054f8d2c
     label: unified-dk-bruun-7296
@@ -44937,21 +45032,14 @@ coins:
       hede:
         - 12A
         - 12AB
-        - 12B
       hede_volume: c5h
-      schou:
-        - 17-18
-        - '19'
+      schou: 17-18
       sieg:
         - '73'
         - '73.2'
-        - '76'
-      bruun_collection_id:
-        - '7247'
-        - '7249'
+      bruun_collection_id: '7247'
       others:
         - JS# 510
-      fr: '186'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -44984,9 +45072,6 @@ coins:
         - seed: dk-bruun-7247
           source: bruun
           years: '1685'
-        - seed: dk-bruun-7249
-          source: bruun
-          years: '1685'
     fineness:
       - value: 0.979
         source: hede
@@ -45005,8 +45090,6 @@ coins:
       - value: 0.98
         source: ucoin
     weight_rough_g:
-      - value: 3.43
-        source: bruun
       - value: 3.48
         source: bruun
       - value: 3.49
@@ -45033,12 +45116,6 @@ coins:
           as_printed: ND (1685)
           value: '1685'
           seed: dk-bruun-7247
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1685)
-          value: '1685'
-          seed: dk-bruun-7249
     sources:
       - type: literature
         url: https://numismaster.com/MC_165458
@@ -45049,9 +45126,6 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17107, p. 55
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1123, p. 150
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h12.htm
         ref: danskmoent.dk (Hede c5h12AB)
@@ -45069,7 +45143,6 @@ coins:
       - denmark-numismaster-165458
       - denmark-numismaster-65778
       - dk-bruun-7247
-      - dk-bruun-7249
       - dk-hede-c5h12ab
       - dk-tid-97534
       - ngc-1060256
@@ -133615,46 +133688,6 @@ coins:
     composed_of:
       - denmark-numismaster-65861
       - ngc-1050856
-  - id: c-9182b7e3
-    class_id: c-9182b7e3
-    label: unified-ngc-1050898
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1685
-    year_last: 1685
-    year_label: '1685'
-    catalog:
-      km: '375'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65779
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-375-1685-cuid-1050898-duid-1238000
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65779
-      - ngc-1050898
   - id: c-497440fd
     class_id: c-497440fd
     label: unified-ngc-1050901
