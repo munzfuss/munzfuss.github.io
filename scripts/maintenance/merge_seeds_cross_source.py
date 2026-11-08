@@ -3946,7 +3946,18 @@ def _collect_mints(members: list[dict]) -> str | list[str] | None:
               → fall back to UNION of all mints (legitimate joint-mint
               coins like Altona+Kopenhagen where both attest the same
               physical issue)
+
+    A mint the curator marked «suspect» (`mint_mark.kind == suspect`) is
+    shown as a `mint_alts` entry «(*)» and does not enter the class's mint
+    when another member gives an unmarked one (curator 2026-11-08, Hede 23
+    Blaffert: Malmø the mint, KMM's Flensborg «(*)»). When every member
+    with a mint is marked, the marked mints stay.
     """
+    def _suspect(m):
+        mk = m.get("mint_mark")
+        return isinstance(mk, dict) and mk.get("kind") == "suspect"
+    if any(m.get("mint") is not None and not _suspect(m) for m in members):
+        members = [m for m in members if not _suspect(m)]
     # Tier 1: verified mints, when any exist (with non-empty mint)
     source_members = [m for m in members
                       if bool(m.get("mint_verified")) and m.get("mint") is not None]

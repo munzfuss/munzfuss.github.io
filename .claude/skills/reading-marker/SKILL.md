@@ -140,7 +140,10 @@ year and ruler: an **erroneous** mint mark is presentational ONLY (curator
 the merger loads seeds — so the value takes part in nothing: not the class's
 mints, not matching, not entity routing. The merger emits `mint_alts`, absorb
 unions them, and the template shows the value muted beside the mint with «(!)».
-A **suspect** mint mark keeps the mint in play (like a suspect reading).
+A **suspect** mint mark keeps the mint in matching, but it is shown only as a
+muted «(*)» alt and stays out of the class's mint column whenever another
+member gives an unmarked mint (`_collect_mints`, curator 2026-11-08, Hede 23
+Blaffert: Malmø the mint, KMM's Flensborg «(*)»).
 A builder may set the mark from its own table (Bruun: `_BRUUN_LOT_MINT_MARKS`,
 routing on `route_mint` that ignores the marked value); a hand-written mark on
 a seed works too, but the seed's `issuing_entity` is only re-derived on the
