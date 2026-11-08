@@ -1765,7 +1765,17 @@ def _parse_header(html: str) -> dict:
                 else:
                     out["nominal"] = line.strip(" ,")
             else:
-                out["nominal"] = line
+                # «<nominal>. <Mint> og <Mint>» — the mint after a full stop
+                # (f7h12 «1 Rigsbankskilling. København og Altona»). Split
+                # only when every part after the stop is a mint the registry
+                # knows, so a nominal with an internal stop stays whole.
+                dm = re.match(r"^(.+?)\.\s+(\S.*?)\.?$", line)
+                tail = [t.strip() for t in re.split(r"\s+og\s+|,", dm.group(2))] if dm else []
+                if dm and tail and all(t and canon_for_alias(t) is not None for t in tail):
+                    out["nominal"] = dm.group(1).strip()
+                    out["mint"] = dm.group(2).strip()
+                else:
+                    out["nominal"] = line
     return out
 
 
