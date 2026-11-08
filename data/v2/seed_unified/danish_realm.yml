@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8364 per-source seed entries.
-# Output: 1769 unified entries (one per physical coin).
+# Output: 1768 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -35222,7 +35222,7 @@ coins:
     kind: kurant
     nominal: 2 Speciedaler
     year_first: 1624
-    year_last: 1634
+    year_last: 1647
     year_ranges:
       -   - 1624
           - 1624
@@ -35232,16 +35232,21 @@ coins:
           - 1632
       -   - 1634
           - 1634
-    year_label: 1624, 1626-1628, 1631-1632, 1634
+      -   - 1647
+          - 1647
+    year_label: 1624, 1626-1628, 1631-1632, 1634, 1647
     ruler: Christian IV
     mintmaster: Nicolaus Schwabe (NS)
     mint: Kopenhagen
     catalog:
-      km: '104'
+      km:
+        - '104'
+        - '146'
       hede:
         - 56A
         - 56B
         - 56C
+        - 56D
       hede_volume: c4h
       schou:
         - 1-2
@@ -35258,6 +35263,7 @@ coins:
         - '124.1'
         - '124.2'
         - '124.3'
+        - '124.4'
       bruun_collection_id:
         - '5367'
         - '5498'
@@ -35271,7 +35277,9 @@ coins:
       bruun_part: II
       bruun_lot_no: 13106
       bruun_page: 82
-      dav: EC II 3523
+      dav:
+        - EC II 3523
+        - EC II 3535
       numista: '109970'
     metal: silver
     metal_verified: true
@@ -35283,6 +35291,7 @@ coins:
     fineness:
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-99114
       - value: 0.881
         source: hede
         specimen: dk-hede-c4h56a
@@ -35293,11 +35302,25 @@ coins:
         source: hede
         specimen: dk-hede-c4h56c
       - value: 0.881
+        source: hede
+        specimen: dk-hede-c4h56d
+      - value: 0.881
         source: numista
       - value: 0.888
         source: ngc
+        specimen: ngc-1050244
+      - value: 0.888
+        source: ngc
+        specimen: ngc-1050295
       - value: 0.888
         source: numismaster
+        specimen: denmark-numismaster-65530
+      - value: 0.888
+        source: numismaster
+        specimen: denmark-numismaster-65535
+      - value: 0.888
+        source: ucoin
+        specimen: dk-tid-97374
     weight_rough_g:
       - value: 57.29
         source: bruun
@@ -35313,6 +35336,10 @@ coins:
         source: bruun
       - value: 58.46
         source: ucoin
+        specimen: dk-tid-97374
+      - value: 58.46
+        source: ucoin
+        specimen: dk-tid-99114
       - value: 58.464
         source: hede
         specimen: dk-hede-c4h56a
@@ -35323,9 +35350,20 @@ coins:
         source: hede
         specimen: dk-hede-c4h56c
       - value: 58.464
+        source: hede
+        specimen: dk-hede-c4h56d
+      - value: 58.464
         source: ngc
+        specimen: ngc-1050244
+      - value: 58.464
+        source: ngc
+        specimen: ngc-1050295
       - value: 58.464
         source: numismaster
+        specimen: denmark-numismaster-65530
+      - value: 58.464
+        source: numismaster
+        specimen: denmark-numismaster-65535
       - value: 58.464
         source: numista
     diameter_mm:
@@ -35333,9 +35371,16 @@ coins:
         source: numista
       - value: 44.5
         source: ucoin
+        specimen: dk-tid-99114
+      - value: 45.0
+        source: ucoin
+        specimen: dk-tid-97374
     sources:
       - type: literature
         url: https://numismaster.com/MC_65530
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65535
         ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -35362,8 +35407,14 @@ coins:
         url: https://en.numista.com/109970
         ref: Numista N#109970 — 2 Speciedaler - Christian IV Bust type I; Oval provincial shields
       - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1647/?tid=97374
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-speciedaler-1624-1634/?tid=99114
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-146-1647-cuid-1050244-duid-1237550
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-104-1624-1634-cuid-1050295-duid-1237540
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -35375,6 +35426,7 @@ coins:
       unit_raw: speciedalere
     composed_of:
       - denmark-numismaster-65530
+      - denmark-numismaster-65535
       - dk-bruun-5367
       - dk-bruun-5498
       - dk-bruun-5499
@@ -35384,80 +35436,12 @@ coins:
       - dk-hede-c4h56a
       - dk-hede-c4h56b
       - dk-hede-c4h56c
-      - dk-numista-109970
-      - dk-tid-99114
-      - ngc-1050295
-  - id: c-5b5d15a7
-    class_id: c-5b5d15a7
-    label: unified-dk-hede-c4h56d
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 2 Speciedaler
-    year_first: 1647
-    year_last: 1647
-    year_label: '1647'
-    ruler: Christian IV
-    mint: Kopenhagen
-    catalog:
-      km: '146'
-      hede: 56D
-      hede_volume: c4h
-      schou: 8-9
-      sieg: '124.4'
-      dav: '3535'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.881
-        source: hede
-      - value: 0.888
-        source: ngc
-      - value: 0.888
-        source: numismaster
-      - value: 0.888
-        source: ucoin
-    weight_rough_g:
-      - value: 58.46
-        source: ucoin
-      - value: 58.464
-        source: hede
-      - value: 58.464
-        source: ngc
-      - value: 58.464
-        source: numismaster
-    diameter_mm:
-      - value: 45.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65535
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h56.htm
-        ref: danskmoent.dk (Hede c4h56D)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1647/?tid=97374
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-speciedaler-km-146-1647-cuid-1050244-duid-1237550
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    hede_muentzfuss_yield:
-      value: 9.071
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
-      - denmark-numismaster-65535
       - dk-hede-c4h56d
+      - dk-numista-109970
       - dk-tid-97374
+      - dk-tid-99114
       - ngc-1050244
+      - ngc-1050295
   - id: c-f253278d
     class_id: c-f253278d
     label: unified-dk-hede-c4h57
