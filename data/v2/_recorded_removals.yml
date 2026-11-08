@@ -4654,7 +4654,7 @@ removals:
   # the hosts below; absorb drops the record only while every host is a final.
   - final: dk-tid-70750
     kind: empty_duplicate
-    hosts: [c-e40c23a1]
+    hosts: [c-d3ce70e2]
     reason: 'Curator (Serhii) 2026-10-23: 3 Rigsbankskilling 1842, danish_realm — empty duplicate of royal_holstein c-e40c23a1; nothing on main is missing there.'
   - final: dk-tid-70751
     kind: empty_duplicate
@@ -5113,3 +5113,7 @@ removals:
   - seed: ngc-1050316
     kind: shell
     reason: 'Curator (Serhii) 2026-11-08 (option 1): 3 Rigsbankskilling 1842 Altona KM 729 (Hede 9A) — superseded shell final c-e40c23a1 in royal_holstein after the Hede 9 merge (KM 729 + KM A730, _cross_entity.yml). Every seed of the shell sits in the successor class c-d3ce70e2. The shell''s hand-written note («the value written out in full above», from the Numista 47999 description) is dropped with it; the successor keeps its own note.'
+  - final: dk-tid-130240
+    kind: empty_duplicate
+    hosts: [c-f79a47c2]
+    reason: 'Curator (Serhii) 2026-11-08 («так»): 2 Christian d''Or 1841-1847, Christian VIII, Hede 1 / KM 722 — V1 foundation in danish_realm with no member left; its seed dk-tid-130240 sits in royal_holstein c-f79a47c2 (the Hede 1 cross-entity merge, 2026-11-07), and the record rendered a second Hede 1 row on the Denmark page. Dropped with it: its hand-written note (Hede 1A/1B/1C, KM 722, not Christian IX Hede 1), the ucoin URL variant …/denmark-2-d-or-1841-1847/?tid=130240 (the same ucoin record 130240 is on the host under its other slug), and danskmoent c9h1.htm, which is the Christian IX Hede 1 page (KM 773), not this coin.'
