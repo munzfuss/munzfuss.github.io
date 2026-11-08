@@ -128,7 +128,11 @@ class UncertainReading(_StrictBase):
         # by other sources, the remaining letter takes the remaining value)
         "page_values",
         # a source's assay of the coin TYPE, applied to this coin
-        "type_assay"]
+        "type_assay",
+        # a metal the source does not give, taken from classes of the same
+        # denomination, ruler and period whose metal sources attest (KMM
+        # records with an empty `materials`; curator 2026-11-08)
+        "analogy"]
     source: str = Field(..., min_length=1)
     as_printed: str | None = None
     # A translation of `as_printed` in the reader's language (attributions
