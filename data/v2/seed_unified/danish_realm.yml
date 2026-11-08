@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8392 per-source seed entries.
-# Output: 1722 unified entries (one per physical coin).
+# Output: 1721 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -61233,7 +61233,9 @@ coins:
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
-      km: '221'
+      km:
+        - '221'
+        - '222'
       hede:
         - 100A
         - 100AB
@@ -61246,8 +61248,12 @@ coins:
       bruun_collection_id: '6284'
       others:
         - Aagaard# 76.1 (59-E5/59-E1)
-      dav: EC II 3576
-      numista: '82946'
+      dav:
+        - EC II 3576
+        - EC II 3576A
+      numista:
+        - '143625'
+        - '82946'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -61260,23 +61266,46 @@ coins:
         source: hede
       - value: 0.671
         source: ngc
+        specimen: ngc-1050391
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050640
       - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-65281
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65282
       - value: 0.671
         source: numista
+        specimen: dk-numista-143625
+      - value: 0.671
+        source: numista
+        specimen: dk-numista-82946
     weight_rough_g:
+      - value: 21.89
+        source: numista
+        specimen: dk-numista-143625
       - value: 22.18
         source: bruun
       - value: 22.272
         source: hede
       - value: 22.272
         source: numista
+        specimen: dk-numista-82946
     diameter_mm:
       - value: 41.0
         source: numista
+        specimen: dk-numista-82946
+      - value: 41.78
+        source: numista
+        specimen: dk-numista-143625
     sources:
       - type: literature
         url: https://numismaster.com/MC_65281
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65282
         ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -61285,10 +61314,16 @@ coins:
         url: https://www.danskmoent.dk/fr/f3h100.htm
         ref: danskmoent.dk (Hede f3h100AB)
       - type: literature
+        url: https://en.numista.com/143625
+        ref: Numista N#143625 — 1 Krone - Frederik III Victory over Swedish army - Type2
+      - type: literature
         url: https://en.numista.com/82946
         ref: Numista N#82946 — 1 Krone - Frederik III Victory over Swedish army - Type 1
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-221-1659-cuid-1050391-duid-1236892
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-222-1659-1660-cuid-1050640-duid-1236893
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
@@ -61298,10 +61333,13 @@ coins:
       unit_raw: daler
     composed_of:
       - denmark-numismaster-65281
+      - denmark-numismaster-65282
       - dk-bruun-6284
       - dk-hede-f3h100ab
+      - dk-numista-143625
       - dk-numista-82946
       - ngc-1050391
+      - ngc-1050640
     _errata_applied:
       - source: dk-hede-f3h100ab
         field: year_first
@@ -84827,6 +84865,12 @@ coins:
     weight_rough_g:
       - value: 18.52
         source: kmk
+      - value: 20.847
+        source: kmk
+      - value: 21.103
+        source: kmk
+      - value: 21.124
+        source: kmk
       - value: 21.54
         source: kmk
       - value: 21.751
@@ -85042,6 +85086,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/275372
         ref: KMM 275372 (Inv. FP 4227.714)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275373
+        ref: KMM 275373 (Inv. FP 4227.712)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275374
         ref: KMM 275374 (Inv. FP 4227.711)
       - type: museum
@@ -85053,6 +85100,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275377
         ref: KMM 275377 (Inv. FP 4227.708)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275389
+        ref: KMM 275389 (Inv. FP 4227.695)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275390
+        ref: KMM 275390 (Inv. FP 4227.694)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275495
         ref: KMM 275495 (Inv. FP 4227.577)
@@ -85177,10 +85230,13 @@ coins:
       - kmk-275370
       - kmk-275371
       - kmk-275372
+      - kmk-275373
       - kmk-275374
       - kmk-275375
       - kmk-275376
       - kmk-275377
+      - kmk-275389
+      - kmk-275390
       - kmk-275495
       - kmk-275496
       - kmk-275497
@@ -132725,79 +132781,6 @@ coins:
       - kmk-276856
       - ngc-1050639
       - ngc-1059884
-  - id: c-5ed5a379
-    class_id: c-5ed5a379
-    label: unified-ngc-1050640
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Krone
-    year_first: 1659
-    year_last: 1660
-    year_ranges:
-      -   - 1659
-          - 1660
-    year_label: 1659-1660
-    ruler: Frederick III (Frederik III)
-    mint: Kopenhagen
-    catalog:
-      km: '222'
-      dav: EC II 3576A
-      numista: '143625'
-      hede: 95A
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: numista
-    weight_rough_g:
-      - value: 20.847
-        source: kmk
-      - value: 21.103
-        source: kmk
-      - value: 21.124
-        source: kmk
-      - value: 21.89
-        source: numista
-    diameter_mm:
-      - value: 41.78
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65282
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/143625
-        ref: Numista N#143625 — 1 Krone - Frederik III Victory over Swedish army - Type2
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275373
-        ref: KMM 275373 (Inv. FP 4227.712)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275389
-        ref: KMM 275389 (Inv. FP 4227.695)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275390
-        ref: KMM 275390 (Inv. FP 4227.694)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-222-1659-1660-cuid-1050640-duid-1236893
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65282
-      - dk-numista-143625
-      - kmk-275373
-      - kmk-275389
-      - kmk-275390
-      - ngc-1050640
   - id: c-fa1115d9
     class_id: c-fa1115d9
     label: unified-ngc-1050643
