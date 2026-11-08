@@ -400,7 +400,7 @@ PATTERN_RE = re.compile(
     #
     # Every other suppression stands on Bruun's own wording and is unaffected:
     # «Pattern» (52), «off-metal strike» (24), «Trial» (8), «Piefort» (4).
-    r"\b(Pattern|Probe|Probestrike|Essai|Trial(?:\s+Strike)?|"
+    r"\b("
     # Double-thickness die trial (French «Piéfort» / Danish-numismatic
     # «Piefort» / English-prose «Piedfort») — extra-thick planchet used
     # for collectors' presentation of a circulation die. Per CLAUDE.md
@@ -517,6 +517,51 @@ def page_sections(pages: list[tuple[int, str]]) -> dict[int, str | None]:
                 current = m.group(1)
         out[page_no] = current
     return out
+
+
+# Pattern / trial WORDING (curator 2026-11-08). On its own it does not
+# exclude a lot: Bruun calls full-value coins of a correct nominal and metal
+# «pattern» or «trial» (lot 11230, the Roman-attire 4 Mark 1666, Hede 105B).
+# A decorative «pattern of crowned arms» / «trefoil pattern» is not a marker.
+PATTERN_WORD_RE = re.compile(
+    r"(?<!alternating )(?<!trefoil )\b(Pattern|Probe|Probestrike|Essai|Trial(?:\s+Strike)?)\b(?!\s+of\b)",
+    re.IGNORECASE,
+)
+_GOLD_NOMINAL_RE = re.compile(r"Ducat|Dukat|d.\s?or\b|Portugal|Noble|Gylden|Gulden|Guinea", re.I)
+_SILVER_NOMINAL_RE = re.compile(r"daler|thaler|taler|Mark\b|Krone\b|Riksdaler", re.I)
+_BASE_METAL_RE = re.compile(r"\b(Pewter|White\s+Metal|Tin|Lead|Bronze|Brass|Uniface)\b", re.I)
+_CAT_OTHER_METAL_RE = re.compile(r"(?<!listed as )\((?:gold|silver|copper)\)", re.I)
+
+
+def _pattern_off_metal_or_nominal(meta_line: str, desc: str) -> bool:
+    """True when a lot that Bruun calls a pattern / trial is struck in a metal
+    or with a nominal that is not the coin's: a base-metal or uniface strike, a
+    piece without denomination, gold under a silver nominal or silver / copper
+    under a gold one, copper under a daler / mark / krone nominal, a silver
+    «off-strike», or a catalogue reference flagged as another metal
+    («Sieg-40 (copper)»)."""
+    # Drop the leading region tokens («DENMARK.», «NORW AY .», «SWEDEN.
+    # Pomerania.») — «DENMARK» would otherwise read as the nominal «Mark».
+    title = re.sub(r"^(?:[A-Z][A-Z ]*\s?\.\s*)+", "", meta_line)
+    m = re.search(r"\b(?:NGC|PCGS|ANACS)\b|;", title)
+    if m:
+        title = title[: m.start()]
+    # A parenthesis describes the planchet, not the stamped nominal: «Gold 4
+    # Mark (of 10 Ducats Weight)» (lot 1111) is gold under a Mark nominal.
+    stamped = re.sub(r"\([^)]*\)", " ", title)
+    if _BASE_METAL_RE.search(title) or re.search(r"without denomination", title, re.I):
+        return True
+    if re.search(r"\bGold\b", title, re.I) and not _GOLD_NOMINAL_RE.search(stamped):
+        return True
+    if re.search(r"\b(Silver|Copper)\b", title, re.I) and _GOLD_NOMINAL_RE.search(title):
+        return True
+    if re.search(r"\bCopper\b", title, re.I) and _SILVER_NOMINAL_RE.search(title):
+        return True
+    if re.search(r"Off[- ]Strike", desc, re.I):
+        return True
+    if _CAT_OTHER_METAL_RE.search(desc):
+        return True
+    return False
 
 
 def parse_part(slug: str) -> list[dict]:
@@ -699,7 +744,13 @@ def parse_part(slug: str) -> list[dict]:
         # lot that carries the sentinel, and earlier — so cut there.
         pm = PRICE_LINE_RE.search(body_match)
         desc_match = body_match[: pm.start()] if pm else body_match
-        is_pattern = bool(PATTERN_RE.search(desc_match))
+        # A «pattern» / «trial» wording alone no longer excludes the lot
+        # (curator 2026-11-08): a pattern whose nominal and metal are those of
+        # the coin stays; only an off-metal or off-nominal piece goes.
+        is_pattern = bool(PATTERN_RE.search(desc_match)) or (
+            bool(PATTERN_WORD_RE.search(desc_match))
+            and _pattern_off_metal_or_nominal(meta_line or "", desc_match)
+        )
         # §9.2 exonumia — a «medallic» type that neither Krause (KM) nor Sieg
         # lists as a circulation coin is a medal, not a coin, and must not reach
         # the coin table. Real coins described as «medallic» in prose (e.g. lot
