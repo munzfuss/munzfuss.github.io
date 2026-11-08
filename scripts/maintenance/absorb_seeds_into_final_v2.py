@@ -1288,6 +1288,36 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                     break
     # mint UNION across members (D17 list-form when multi-mint)
     mint = _collect_mints(members)
+    # A mint a live member marks «erroneous» (seed `mint_mark` → `mint_alts`
+    # kind erroneous) leaves the final unless a live member still attests it;
+    # otherwise the stored copy's self-union keeps re-adding the very value
+    # the curator struck out (2026-11-08, ucoin 70717 «Copenhagen (FF)»).
+    _live_m = members[1:] if len(members) > 1 else members
+    _struck = {str(a.get("value")) for _m in _live_m if isinstance(_m, dict)
+               for a in (_m.get("mint_alts") or [])
+               if isinstance(a, dict) and a.get("kind") == "erroneous"}
+    if _struck and mint is not None:
+        _attested: set[str] = set()
+        for _m in _live_m:
+            _v = _m.get("mint") if isinstance(_m, dict) else None
+            _attested.update(str(x) for x in (_v if isinstance(_v, list) else [_v]) if x)
+        _ml = mint if isinstance(mint, list) else [mint]
+        _kept = [x for x in _ml if str(x) not in _struck or str(x) in _attested]
+        if _kept != _ml and _kept:
+            mint = _kept if len(_kept) > 1 else _kept[0]
+            # The joint issuing_entity was derived from the struck mint: when
+            # every live member now gives one scalar entity that is part of
+            # the stored joint, the final follows it (the mirror of the
+            # subset-scalar → joint upgrade above; a curation hold opts out).
+            _ie2 = out.get("issuing_entity")
+            if (isinstance(_ie2, list) and len(_ie2) > 1
+                    and "issuing_entity" not in _ie_holds):
+                _mies = {(_m.get("issuing_entity") if isinstance(_m.get("issuing_entity"), str)
+                          else None) for _m in _live_m if isinstance(_m, dict)}
+                if len(_mies) == 1:
+                    _s = next(iter(_mies))
+                    if _s and _s in _ie2:
+                        out["issuing_entity"] = _s
     if mint is not None:
         out["mint"] = mint
 
