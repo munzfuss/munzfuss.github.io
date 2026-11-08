@@ -96,6 +96,7 @@ Every new dossier gets a row here in the same commit (`tests/test_research_index
 | File | Covers |
 |---|---|
 | [`9_thalerfuss.md`](9_thalerfuss.md) | 9-Thalerfuß / Reichsmüntzfuß |
+| [`breddaler_christian_iv_hede_63_64.md`](breddaler_christian_iv_hede_63_64.md) | Christian IV Breddaler Hede 63 / 64: letter ↔ value ↔ KM / Dav / Schou concordance, prognoses, Bruun KM errors |
 | [`krone_muentzfuesse.md`](krone_muentzfuesse.md) | Krone-Müntzfüße 1618–1771 |
 | [`dk_kronefod_1873_research.md`](dk_kronefod_1873_research.md) | Danish Kronefod 1873–1914 |
 | [`dk_kronefod_unity_analysis.md`](dk_kronefod_unity_analysis.md) | Kronefod — one standard or two |

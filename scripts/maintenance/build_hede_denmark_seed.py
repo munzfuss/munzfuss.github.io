@@ -887,16 +887,33 @@ _MULTI_VALUE_PAGES: dict[str, dict[str, tuple[str | None, list[tuple[str, str]]]
         "63C": ("3 Speciedaler", [("Bruun Part II, lot 13123", "3 Speciedaler … Hede-63C")]),
         "63D": ("2 Speciedaler", [("Bruun Part I, lot 1052", "2 Speciedaler … Hede-63D")]),
         "63E": ("1½ Speciedaler", [("Bruun Part V, lot 14127", "1 1/2 Speciedaler … Hede-63E")]),
-        "63F": (None, []),
+        "63F": ("1 Speciedaler", [("danskmoent.dk (Hede 63)", "i værdierne 1, 1-1/2, 2, 3, 4 og 6 speciedalere")]),
     },
     "c4h64": {
-        "64A": (None, []),
+        "64A": ("3 Speciedaler", [("danskmoent.dk (Hede 64)", "i værdierne 1, 1-1/2, 2 og 3 speciedalere")]),
         "64B": ("2 Speciedaler", [
             ("Bruun Part I, lot 1053", "2 Speciedaler … Hede-64B"),
             ("Bruun Part IV, lot 17062", "2 Speciedaler … Hede- 64B")]),
         "64C": ("1½ Speciedaler", [("Bruun Part II, lot 13124", "1 1/2 Speciedaler … Hede-64C")]),
-        "64D": (None, []),
+        "64D": ("1 Speciedaler", [("danskmoent.dk (Hede 64)", "i værdierne 1, 1-1/2, 2 og 3 speciedalere")]),
     },
+}
+
+
+# Letters whose value no source prints with the letter: read off the page's
+# list of values (curator 2026-11-07, «Б»). 63F by elimination — six letters,
+# six values, 63A-E paired by Bruun / Numista. 64A / 64D are a working
+# decision: 64B / 64C leave {1, 3} for {A, D}, and the descending order of
+# Hede 63 (A = highest) is assumed for Hede 64
+# (docs/research/breddaler_christian_iv_hede_63_64.md §4.1).
+_PAGE_VALUE_LETTERS = frozenset({"63F", "64A", "64D"})
+_PAGE_VALUE_TRANSLATIONS = {
+    "c4h63": {"de": "in den Werten 1, 1½, 2, 3, 4 und 6 Speciedaler",
+              "en": "in the values 1, 1½, 2, 3, 4 and 6 speciedaler",
+              "uk": "у номіналах 1, 1½, 2, 3, 4 і 6 Speciedaler"},
+    "c4h64": {"de": "in den Werten 1, 1½, 2 und 3 Speciedaler",
+              "en": "in the values 1, 1½, 2 and 3 speciedaler",
+              "uk": "у номіналах 1, 1½, 2 і 3 Speciedaler"},
 }
 
 
@@ -926,8 +943,13 @@ def _split_multi_value_pages(coins: list) -> tuple[int, set[str]]:
             if nominal:
                 lc["nominal_verified"] = False
                 for src, printed in attest:
-                    unc.add(lc, "nominal", "other_source", src,
+                    how = ("page_values" if src.startswith("danskmoent.dk (Hede")
+                           and letter in _PAGE_VALUE_LETTERS else "other_source")
+                    unc.add(lc, "nominal", how, src,
                             as_printed=printed, value=nominal)
+                    if how == "page_values":
+                        lc["uncertainty"]["nominal"][-1]["translation"] = \
+                            dict(_PAGE_VALUE_TRANSLATIONS[page])
             out.append(lc)
     n = len(gone)
     coins[:] = out

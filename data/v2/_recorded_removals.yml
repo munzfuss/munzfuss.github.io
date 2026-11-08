@@ -5079,3 +5079,34 @@ removals:
     dropped:
       - '2016'
     reason: "Curator 2026-11-07 («виправляй»): «Sieg 2016» on danskmoent f7h20 («Hede (og Sieg 2016) angiver …») names the catalogue's edition year, not a Sieg number. parse_hede._strip_year_tokens now drops 1951-2100 values for Sieg."
+  - seed: kmk-149338
+    kind: field
+    field: sources
+    dropped: ['https://samlinger.natmus.dk/KMM/object/149338']
+    reason: "Curator 2026-11-07 («прибирай»): KMM 149338 (Inv. KP 1656.975) is a record the KMM stub scope rule dropped (no weight, no image; data/v2/_scope_dropped/kmk.yml); its citation stayed on the V1 final km-161-fr-iii-1648 (¼ Speciedaler 1648, Hede 47) only because the foundation keeps its sources."
+  - seed: ngc-1063136
+    kind: field
+    field: mint
+    dropped: [Kopenhagen]
+    reason: "Curator 2026-11-07 («розділяй»): the final of NGC 1063136 (Glückstadt ½ Speciedaler 1623, 1625, KM 14) also held the 4 Solidi 1603 class (Hede C4 75) through a bare KM 14 from another Krause volume. København is Hede 75's mint and stays on that class (c-057ec263); NGC gives no mint."
+  - seed: ngc-1063136
+    kind: field
+    field: mintmaster
+    dropped: [Nicolaus Scwabe]
+    reason: "Curator 2026-11-07 («розділяй»): mintmaster of the 4 Solidi 1603 (Hede C4 75), which stays on its own class c-057ec263 after the split from the Glückstadt ½ Speciedaler NGC 1063136."
+  - seed: dk-bruun-5847
+    kind: field
+    field: bruun_lot_no
+    dropped: ['17062']
+    reason: "Curator 2026-11-07 («згоден»): Bruun Part IV lot 17062 (Bruun 5847, 2 Speciedaler Hede 64B) left km-154-hede-64b-chr-iv-1611 on 2026-11-06; its lot number stayed on the 1½ Speciedaler Hede 64C record as a foundation leftover. Bruun 5847 sits in dk-tid-163073 (Hede 64B)."
+  - seed: denmark-numismaster-65516
+    kind: declassify
+    reason: "Curator 2026-11-07 («згоден»): KM 154 (Dav 3537A, 1607-14) is the 1½ Speciedaler Hede 63E, not Hede 64C; it joins the Hede 63E class c-e5109ae8 (seed_unsorted) and leaves the 9_thaler record km-154-hede-64b-chr-iv-1611 (now KM 155 = Hede 64C). docs/research/breddaler_christian_iv_hede_63_64.md."
+  - seed: ngc-1060266
+    kind: declassify
+    reason: "Curator 2026-11-07 («згоден»): KM 154 (Dav 3537A, 1607-14) is the 1½ Speciedaler Hede 63E, not Hede 64C; it joins the Hede 63E class c-e5109ae8 (seed_unsorted) and leaves the 9_thaler record km-154-hede-64b-chr-iv-1611 (now KM 155 = Hede 64C). docs/research/breddaler_christian_iv_hede_63_64.md."
+  - seed: dk-bruun-5847
+    kind: field
+    field: others
+    dropped: [Dav-LS533, Harck-6.13.1]
+    reason: "Curator 2026-11-07 («згоден»): the Dav-LS and Harck numbers of Bruun Part IV lot 17062 (Bruun 5847, 2 Speciedaler Hede 64B), a foundation leftover on the 1½ Speciedaler Hede 64C record km-154-hede-64b-chr-iv-1611; they stay on dk-tid-163073 (Hede 64B) as «Dav-LS# 533» / «Harck# 6.13.1»."

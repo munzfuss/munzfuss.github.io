@@ -2,7 +2,7 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1208 per-source seed entries.
+# Input: 1209 per-source seed entries.
 # Output: 275 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -2124,6 +2124,8 @@ coins:
       - value: 0.888
         source: hede
       - value: 0.888
+        source: ngc
+      - value: 0.888
         source: numismaster
       - value: 0.888
         source: numista
@@ -2172,6 +2174,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1623-1625/?tid=163652
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-2-speciedaler-km-14-16z3-16z7-cuid-1063136-duid-1239821
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93014
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -2188,6 +2193,7 @@ coins:
       - dk-hede-c4h160
       - dk-numista-142943
       - dk-tid-163652
+      - ngc-1063136
       - schleswig_holstein-numismaster-93014
   - id: c-1a549481
     class_id: c-1a549481

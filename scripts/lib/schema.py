@@ -122,6 +122,11 @@ class UncertainReading(_StrictBase):
         # a value this source does not give, taken from another source that
         # names the same catalogue number («Hede 63D» → Bruun's «2 Speciedaler»)
         "other_source",
+        # a value read off the catalogue page's list of values for its
+        # lettered numbers, the letter's own value printed nowhere (Hede 63F /
+        # 64A / 64D: the page lists the values, the other letters are paired
+        # by other sources, the remaining letter takes the remaining value)
+        "page_values",
         # a source's assay of the coin TYPE, applied to this coin
         "type_assay"]
     source: str = Field(..., min_length=1)
