@@ -169,7 +169,7 @@
     per phase: only copper rows are shaded, Scheidemünze rows are not
     (curator 2026-10-26). Elsewhere the Scheidemünze shading stays. -#}
 {%- if coin.raw.fuss in rebuild_scope -%}
-{%- set _rw = 'rw-cu' if coin.raw.metal in ('copper', 'copper_nickel', 'copper_lead', 'bronze', 'brass') else ('rw-ged' if coin.raw.kind == 'gedenk' else '') -%}
+{%- set _rw = 'rw-cu' if coin.raw.metal in base_metals else ('rw-ged' if coin.raw.kind == 'gedenk' else '') -%}
 {%- else -%}
 {%- set _rw = '' if coin.raw.fuss == 'seed_unsorted' else ('rw-sch' if coin.raw.kind == 'scheide' else ('rw-ged' if coin.raw.kind == 'gedenk' else '')) -%}
 {%- endif -%}
@@ -326,7 +326,7 @@
     {%- if coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if coin.delta_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_delta_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}{% if s.cu %} msr-cu{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">
-        {%- if s.value is none -%}{% if s.cu %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_reading_nodelta') }}">—</span>{% elif coin.raw.metal in ('copper', 'copper_nickel', 'copper_lead') %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>{% else %}{{ nv(True) }}{% endif %}
+        {%- if s.value is none -%}{% if s.cu %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_reading_nodelta') }}">—</span>{% elif coin.raw.metal in base_metals %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta' if coin.raw.metal in ('copper', 'copper_nickel', 'copper_lead') else 'marker.base_nodelta') }}">—</span>{% else %}{{ nv(True) }}{% endif %}
         {%- else -%}
           {%- set dp = s.delta_pct if s.delta_pct is not none else 0 -%}
           {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}{%- elif dp < 0 -%}{%- set sd_cls = 'under-mild' -%}{%- elif dp <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}{%- else -%}{%- set sd_cls = 'over-strong' -%}{%- endif -%}
@@ -357,8 +357,8 @@
           <span class="sd-wrap"><span class="sd {{ sd_cls }} alt-source {{ _k }}" data-tooltip="{{ tips(g.sources) }}">{{ fmt_delta(g.value, dp)|safe }}</span>{% set _m = mark_derived(g.anchor_key, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}</span>
         {%- endif -%}
       {%- endfor -%}
-    {%- elif coin.raw.metal in ('copper', 'copper_nickel', 'copper_lead') -%}
-      <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
+    {%- elif coin.raw.metal in base_metals -%}
+      <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta' if coin.raw.metal in ('copper', 'copper_nickel', 'copper_lead') else 'marker.base_nodelta') }}">—</span>
     {%- else -%}{{ nv(True) }}{%- endif -%}
   </td>
   {# N/Marck повна — coins-per-Cöllnische-Marck from the ROUGH weight, fraction-
@@ -388,7 +388,7 @@
   <td class="c-stop-fine{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {#- Copper: pieces per fine mark of silver is not shown, even where an
         assay gives traces of silver (curator 2026-10-31). -#}
-    {%- if coin.raw.metal in ('copper', 'copper_nickel', 'copper_lead') -%}
+    {%- if coin.raw.metal in base_metals -%}
     {%- elif coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_stop_fine_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}{% if s.cu %} msr-cu{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.cu %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_reading_nodelta') }}">—</span>{% elif s.value is none %}{{ nv(True) }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}

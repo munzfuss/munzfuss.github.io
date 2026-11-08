@@ -50,6 +50,8 @@ def build_env(template_dir: str) -> Environment:
     from .sites import sister_site_url
     env.globals["sister_site_url"] = sister_site_url
     env.globals["rebuild_scope"] = _rebuild_scope()
+    from .categorize import BASE_METALS
+    env.globals["base_metals"] = BASE_METALS
     env.filters["fmt_num"] = i18n.fmt_num
     env.filters["fmt_pct"] = i18n.fmt_pct
     env.filters["fmt_delta"] = i18n.fmt_delta

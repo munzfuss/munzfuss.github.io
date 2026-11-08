@@ -171,6 +171,15 @@ def _patch_rows(rows: list[dict], patch: dict[str, dict]) -> list[dict]:
     return out
 
 
+
+# Coin.metal values with no precious-metal content: no fine weight, so Δ and
+# pieces per fine mark are undefined, and a Scheidemünze of one goes to the
+# copper sub-table. The template reads the same set (env global
+# `base_metals`), so the render never treats lead, pewter, bronze or brass as
+# precious metal.
+BASE_METALS: frozenset[str] = frozenset(
+    {"copper", "copper_nickel", "copper_lead", "bronze", "brass", "lead", "pewter"})
+
 @dataclass
 class PhaseGroup:
     """A phase within a fuss, with its categorized coins."""
@@ -379,7 +388,7 @@ def categorize(
                     pg.year_ordered_coins.append(cc)
                     # Pure copper tokens (no precious metal content) get their own sub-group
                     # since Δ is undefined and the economic logic differs from billon scheidemünzen.
-                    if cc.raw.metal in ("copper", "copper_nickel", "copper_lead", "bronze", "brass"):
+                    if cc.raw.metal in BASE_METALS:
                         pg.copper_coins.append(cc)
                     else:
                         pg.scheide_coins.append(cc)
