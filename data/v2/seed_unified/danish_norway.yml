@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2751 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-07'
+generated_at: '2026-11-08'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -6681,9 +6681,7 @@ coins:
           - 1670
     year_label: 1669-1670
     ruler: Frederik III
-    mint:
-      - Christiania
-      - Kopenhagen
+    mint: Christiania
     catalog:
       km: A119
       hede: '39'
@@ -6773,6 +6771,12 @@ coins:
           as_printed: u.år
           value: 1648-1670
           seed: dk-hede-f3h39
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: hede
+          as_printed: København eller Christiania
+          seed: dk-hede-f3h39
     sources:
       - type: literature
         url: https://numismaster.com/MC_204386
@@ -6792,9 +6796,7 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-ducat-km-a119-1670-cuid-1105140-duid-1460829
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity:
-      - danish_norway
-      - danish_realm
+    issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-204386
       - dk-bruun-6737

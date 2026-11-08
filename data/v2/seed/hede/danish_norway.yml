@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-07T13:08:23Z'
+generated_at: '2026-11-08T10:15:41Z'
 entity: danish_norway
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -1213,6 +1213,54 @@ coins:
     _source_note:
       da: 'Forside: portræt; omskrift indenfor cirkelen: REGNA FIRMAT PIETAS; bagside: norske løve. A) 1634 (Unik); møntmærke: blomst (Hede Norge 9A, Schou 1) B) 1644 (RRR), 1645 (Unik), 1648 (Unik); møntmærke:
         kløver og PG (Hede Norge 9B, Schou hhv. 7-8, 11 og 6)'
+  - id: dk-hede-f3h39
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Dukat
+    year_label: 1648-1670
+    year_first: 1648
+    year_last: 1670
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1648-1670
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: hede
+          as_printed: København eller Christiania
+    ruler: Frederik III.
+    mint:
+      - Christiania
+      - Kopenhagen
+    catalog:
+      hede: '39'
+      hede_volume: f3h
+      schou: 4-6
+      sieg: '139'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 6.981
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h39.htm
+        ref: danskmoent.dk (Hede f3h39)
+    issuing_entity:
+      - danish_norway
+      - danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: false
+    _source_note:
+      da: 'Forside: ukronet portræt, bagside: krone og scepter (Hede 39, Schou 4-6, Sieg 139) Mønten bærer stempelskærermærket J L; den har traditionelt været anset for dansk, men Sven Aagaard konkluderer
+        i sin artikel i NNUM 2004, at stempelskærermærket relaterer til den norske stempelskærer Jonas Olufsen Lunder , hvorfor mønten må tilføres den norske møntrække'
   - id: dk-hede-nf3h68a
     fuss: seed_unsorted
     phase: hede
