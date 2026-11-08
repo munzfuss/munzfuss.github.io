@@ -258,7 +258,7 @@ def parse_references_from_strings(items: list[str] | None) -> dict[str, str]:
 # Plus chrome's `composition_text` carrying the same forms.
 
 # Map Numista metal vocabulary → our Pydantic-allowed metal set
-# (silver / gold / billon / copper / lead / bronze / pewter per schema.py).
+# (the Coin.metal Literal in schema.py; nickel and copper_nickel are own values).
 # Numista emits a wider vocabulary («Gilding metal plated», «Brass»,
 # «Cupronickel», «Aluminum-bronze», …) — these compound / alloy forms
 # get folded onto the nearest schema-allowed metal, or None when no
@@ -276,11 +276,11 @@ _METAL_TOKEN_TO_CANON: dict[str, str | None] = {
     "brass": "bronze",                      # copper-zinc, closest schema match
     "gilding": "bronze",                    # «Gilding metal plated» — copper-zinc alloy
     "gilt": "bronze",
-    "cupronickel": "copper",                # copper-nickel, project treats as copper-tier
+    "cupronickel": "copper_nickel",         # own schema value (curator 2026-11-08)
     "aluminum-bronze": "bronze",
     "aluminium-bronze": "bronze",
     "nickel-silver": "billon",              # German silver alloy — closest schema is billon
-    "nickel": "copper",                     # base-metal nickel, treat as copper-tier
+    "nickel": "nickel",                     # pure nickel, own schema value (curator 2026-11-08)
     # OOS (foreign tropical / fantasy / contemporary commemoratives)
     "iron": None,
     "aluminum": None,

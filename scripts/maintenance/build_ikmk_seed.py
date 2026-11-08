@@ -61,6 +61,7 @@ _METAL = {
     "Bronze": "bronze",
     "Blei": "lead",
     "Nickel": "nickel",
+    "Kupfer-Nickel": "copper_nickel",
 }
 
 # literatur catalogue authors → CatalogRefs typed key. Per-segment (split on
