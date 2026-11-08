@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `norway`.
-# Generated 2026-11-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norway.yml across all sources.
 #
 # Input: 21 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norway
-generated_at: '2026-11-06'
+generated_at: '2026-11-08'
 coins:
   - id: c-d32c82f5
     class_id: c-d32c82f5
@@ -564,10 +564,19 @@ coins:
     catalog:
       others:
         - JSJ# 284
+    metal: silver
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: 10 øre
+          value: silver
+          seed: kmk-279160
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/279160

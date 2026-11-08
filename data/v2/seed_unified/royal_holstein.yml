@@ -2,7 +2,7 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1188 per-source seed entries.
+# Input: 1190 per-source seed entries.
 # Output: 275 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -10116,7 +10116,9 @@ coins:
     ruler: Christian VIII
     mint: Altona
     catalog:
-      hede: '9'
+      hede:
+        - '9'
+        - 9A
       hede_volume: c8h
       schou:
         - '7'
@@ -10124,6 +10126,8 @@ coins:
       sieg:
         - '6'
         - '7'
+      others:
+        - JSJ# 263
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -10160,6 +10164,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/168061
         ref: KMM 168061 (Inv. FP 2448.27)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279181
+        ref: KMM 279181 (Inv. FP 3528.263)
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 21.0
@@ -10169,6 +10176,7 @@ coins:
     composed_of:
       - dk-hede-c8h9
       - kmk-168061
+      - kmk-279181
   - id: c-6371da81
     class_id: c-6371da81
     label: unified-dk-hede-f3h142
@@ -13951,6 +13959,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-4-skilling-rigsmont-1854-1856/?tid=70687
         ref: ucoin
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168048
+        ref: KMM 168048 (Inv. FP 2533.60)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/203790
         ref: KMM 203790 (Inv. FP 6588.11)
       - type: museum
@@ -13978,6 +13989,7 @@ coins:
       - dk-hede-f7h11b
       - dk-numista-10231
       - dk-tid-70687
+      - kmk-168048
       - kmk-203790
       - kmk-78541
       - ngc-1050982

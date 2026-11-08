@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8458 per-source seed entries.
-# Output: 1801 unified entries (one per physical coin).
+# Input: 8456 per-source seed entries.
+# Output: 1796 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -96104,6 +96104,9 @@ coins:
       schou:
         - '4'
         - '13'
+        - '20'
+        - '34'
+        - '54'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -96254,6 +96257,24 @@ coins:
           as_printed: Hvid
           value: billon
           seed: dk-galster-c1g-23
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: hvid
+          value: billon
+          seed: kmk-157276
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: hvid
+          value: billon
+          seed: kmk-157277
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: hvid
+          value: billon
+          seed: kmk-168055
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c1g23.htm
@@ -96276,6 +96297,15 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139318
         ref: KMM 139318 (Inv. KP 1715.401)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157276
+        ref: KMM 157276 (Inv. FP 2491.18)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157277
+        ref: KMM 157277 (Inv. FP 2491.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168055
+        ref: KMM 168055 (Inv. FP 2533.9)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/292783
         ref: KMM 292783 (Inv. FP 6952.35)
@@ -96399,6 +96429,9 @@ coins:
       - kmk-139316
       - kmk-139317
       - kmk-139318
+      - kmk-157276
+      - kmk-157277
+      - kmk-168055
       - kmk-292783
       - metallanalyser-2017-1-g23
   - id: c-cfdf4fba
@@ -110815,50 +110848,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-157275
-  - id: c-4cb99539
-    class_id: c-4cb99539
-    label: unified-kmk-157276
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Christian I
-    mint: Malmø
-    catalog:
-      schou: '54'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157276
-        ref: KMM 157276 (Inv. FP 2491.18)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-157276
-  - id: c-97a93b9d
-    class_id: c-97a93b9d
-    label: unified-kmk-157277
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Christian I
-    mint: Malmø
-    catalog:
-      schou: '34'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157277
-        ref: KMM 157277 (Inv. FP 2491.17)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-157277
   - id: c-eb84573c
     class_id: c-eb84573c
     label: unified-kmk-157861
@@ -115496,30 +115485,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-167346
-  - id: c-68b46bb6
-    class_id: c-68b46bb6
-    label: unified-kmk-168048
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1854
-    year_last: 1854
-    year_label: '1854'
-    ruler: Frederik VII
-    catalog:
-      schou: '8'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168048
-        ref: KMM 168048 (Inv. FP 2533.60)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-168048
   - id: c-f91377ff
     class_id: c-f91377ff
     label: unified-kmk-168049
@@ -115616,28 +115581,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-168052
-  - id: c-d2640870
-    class_id: c-d2640870
-    label: unified-kmk-168055
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Christian I
-    mint: Malmø
-    catalog:
-      schou: '20'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168055
-        ref: KMM 168055 (Inv. FP 2533.9)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-168055
   - id: c-125499b3
     class_id: c-125499b3
     label: unified-kmk-168062
@@ -120096,32 +120039,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-278485
-  - id: c-82ae4b7d
-    class_id: c-82ae4b7d
-    label: unified-kmk-279181
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 3 Rigsbankskilling
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    ruler: Christian VIII
-    catalog:
-      hede: 9A
-      others:
-        - JSJ# 263
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279181
-        ref: KMM 279181 (Inv. FP 3528.263)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-279181
   - id: c-4c9bd00f
     class_id: c-4c9bd00f
     label: unified-kmk-279183
@@ -123208,10 +123125,19 @@ coins:
     kind: kurant
     nominal: 1 Skilling
     ruler: Hans
+    metal: billon
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427529
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427529
@@ -123320,10 +123246,19 @@ coins:
     kind: kurant
     nominal: 1 Skilling
     ruler: Hans
+    metal: billon
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427530
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427530
@@ -123339,10 +123274,19 @@ coins:
     kind: kurant
     nominal: 1 Skilling
     ruler: Hans
+    metal: billon
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427531
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427531
@@ -123358,10 +123302,19 @@ coins:
     kind: kurant
     nominal: 1 Skilling
     ruler: Hans
+    metal: billon
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427532
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427532
@@ -123377,10 +123330,19 @@ coins:
     kind: kurant
     nominal: 1 Skilling
     ruler: Hans
+    metal: billon
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427533
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427533
@@ -123396,10 +123358,19 @@ coins:
     kind: kurant
     nominal: 1 Skilling
     ruler: Hans
+    metal: billon
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427535
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427535

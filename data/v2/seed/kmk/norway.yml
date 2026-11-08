@@ -62,6 +62,7 @@ coins:
     issuing_entity: norway
     entity_classified_via: nation
     nominal: 10 Øre
+    metal: silver
     metal_verified: false
     mint_verified: false
     ruler: Oscar 2
@@ -80,3 +81,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/279160
         ref: KMM 279160 (Inv. FP 3528.284)
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: 10 øre
+          value: silver
+    _curation_holds:
+      metal: 'KMM gives no material for this record; metal inferred by analogy (curator 2026-11-08): 10 Øre Christian IX, Kronefod (Hede 16), silver 0.400, 1.45 g, same Scandinavian union denomination.'
+      metal_verified:
+      uncertainty: Records the analogy basis of the inferred metal.

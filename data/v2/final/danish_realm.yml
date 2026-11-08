@@ -108414,6 +108414,9 @@ coins:
       schou:
         - '4'
         - '13'
+        - '20'
+        - '34'
+        - '54'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -108551,8 +108554,20 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139318
         ref: KMM 139318 (Inv. KP 1715.401)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157276
+        ref: KMM 157276 (Inv. FP 2491.18)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157277
+        ref: KMM 157277 (Inv. FP 2491.17)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168055
+        ref: KMM 168055 (Inv. FP 2533.9)
+        display: false
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/292783
         ref: KMM 292783 (Inv. FP 6952.35)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/303678
         ref: KMM 303678 (Inv. FP 8115.14)
@@ -108724,6 +108739,24 @@ coins:
           as_printed: Hvid
           value: billon
           seed: dk-galster-c1g-23
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: hvid
+          value: billon
+          seed: kmk-157276
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: hvid
+          value: billon
+          seed: kmk-157277
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: hvid
+          value: billon
+          seed: kmk-168055
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -125503,78 +125536,6 @@ coins:
       - c-1b749616
     label: unified-kmk-157275
     origin: promoted
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Christian I
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-4cb99539
-    year_first: 1448
-    year_last: 1481
-    year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    year_verified: false
-    mint: Malmø
-    catalog:
-      schou: '54'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157276
-        ref: KMM 157276 (Inv. FP 2491.18)
-    composed_of:
-      - c-4cb99539
-    label: unified-kmk-157276
-    origin: promoted
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1448-1481
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Christian I
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-97a93b9d
-    year_first: 1448
-    year_last: 1481
-    year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    year_verified: false
-    mint: Malmø
-    catalog:
-      schou: '34'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157277
-        ref: KMM 157277 (Inv. FP 2491.17)
-    composed_of:
-      - c-97a93b9d
-    label: unified-kmk-157277
-    origin: promoted
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1448-1481
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -131131,35 +131092,6 @@ coins:
       - c-1e4ece1a
     label: unified-kmk-167336
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 4 Skilling
-    ruler: Frederik VII.
-    issuing_entity: danish_realm
-    fraction: 1/24
-    id: c-68b46bb6
-    year_first: 1854
-    year_last: 1854
-    year_label: '1854'
-    mint: Hamborg
-    catalog:
-      schou: '8'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168048
-        ref: KMM 168048 (Inv. FP 2533.60)
-      - type: museum
-        ref: KMM 404728 (Inv. FP 2711.18)
-    verification_note: *id008
-    composed_of:
-      - c-68b46bb6
-    label: unified-kmk-168048
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -131210,42 +131142,6 @@ coins:
       - c-2cbf90af
     label: unified-kmk-168052
     origin: promoted
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Christian I
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-d2640870
-    year_first: 1448
-    year_last: 1481
-    year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    year_verified: false
-    mint: Malmø
-    catalog:
-      schou: '20'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168055
-        ref: KMM 168055 (Inv. FP 2533.9)
-    composed_of:
-      - c-d2640870
-    label: unified-kmk-168055
-    origin: promoted
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1448-1481
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -131984,42 +131880,6 @@ coins:
     composed_of:
       - c-aa39a15e
     label: unified-kmk-278485
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 3 Rigsbankskilling
-    ruler: Christian VIII.
-    issuing_entity: danish_realm
-    fraction: 1/24
-    id: c-82ae4b7d
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    catalog:
-      hede: 9A
-      others:
-        - JSJ# 263
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279181
-        ref: KMM 279181 (Inv. FP 3528.263)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308817
-        ref: KMM 308817 (Inv. FP 7412.10)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/340428
-        ref: KMM 340428 (Inv. FP 5633.14)
-        display: false
-    verification_note: *id009
-    composed_of:
-      - c-82ae4b7d
-    label: unified-kmk-279181
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -133685,6 +133545,15 @@ coins:
       year_first:
       year_last:
       year_verified: false — a lower bound from the coin system, not a source year.
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427529
+    metal: billon
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -162439,6 +162308,15 @@ coins:
       year_first:
       year_last:
       year_verified: false — a lower bound from the coin system, not a source year.
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427530
+    metal: billon
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -170931,6 +170809,13 @@ coins:
     year_label: 1483-1513
     year_verified: false
     uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427531
       year:
         - kind: inferred
           how: reign
@@ -170948,6 +170833,7 @@ coins:
       - c-b05f9abf
     label: unified-kmk-427531
     origin: promoted
+    metal: billon
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -170964,6 +170850,13 @@ coins:
     year_label: 1483-1513
     year_verified: false
     uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427532
       year:
         - kind: inferred
           how: reign
@@ -170981,6 +170874,7 @@ coins:
       - c-5a72a1e5
     label: unified-kmk-427532
     origin: promoted
+    metal: billon
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -170997,6 +170891,13 @@ coins:
     year_label: 1483-1513
     year_verified: false
     uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427533
       year:
         - kind: inferred
           how: reign
@@ -171014,6 +170915,7 @@ coins:
       - c-9fb094d7
     label: unified-kmk-427533
     origin: promoted
+    metal: billon
   - fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -173088,6 +172990,13 @@ coins:
     year_label: 1483-1513
     year_verified: false
     uncertainty:
+      metal:
+        - kind: inferred
+          how: analogy
+          source: KMM
+          as_printed: skilling
+          value: billon
+          seed: kmk-427535
       year:
         - kind: inferred
           how: reign
@@ -173105,6 +173014,7 @@ coins:
       - c-fd39bc45
     label: unified-kmk-427535
     origin: promoted
+    metal: billon
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
