@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8458 per-source seed entries.
-# Output: 1809 unified entries (one per physical coin).
+# Output: 1801 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -56526,6 +56526,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1875-1898/?tid=49659
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/79282
+        ref: KMM 79282 (Inv. GP 722.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-797.1-1875-1892-cuid-1050401-duid-1238461
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -56538,6 +56541,7 @@ coins:
       - dk-hede-c9h14a
       - dk-numista-18141
       - dk-tid-49659
+      - kmk-79282
       - ngc-1050401
   - id: c-79e1eafa
     class_id: c-79e1eafa
@@ -56788,127 +56792,6 @@ coins:
     kind: scheide
     nominal: 10 Øre
     year_first: 1874
-    year_last: 1891
-    year_ranges:
-      -   - 1874
-          - 1875
-      -   - 1882
-          - 1882
-      -   - 1884
-          - 1884
-      -   - 1886
-          - 1886
-      -   - 1888
-          - 1889
-      -   - 1891
-          - 1891
-    year_label: 1874-1875, 1882, 1884, 1886, 1888-1889, 1891
-    ruler: Christian IX
-    mint: Kopenhagen
-    catalog:
-      km: '795.1'
-      hede:
-        - '16'
-        - 16A
-      hede_volume: c9h
-      sieg:
-        - '9.1'
-        - '11.1'
-      bruun_collection_id:
-        - '8310'
-        - '8346'
-        - '8352'
-        - '8360'
-        - '8369'
-      schou:
-        - '1'
-        - '2'
-        - '5'
-      bruun_part: IV
-      bruun_lot_no: 17235
-      bruun_page: 116
-      others:
-        - JSJ# 265
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.4
-        source: hede
-      - value: 0.4
-        source: ngc
-      - value: 0.4
-        source: numismaster
-    weight_rough_g:
-      - value: 1.45
-        source: hede
-      - value: 1.45
-        source: ngc
-      - value: 1.45
-        source: numismaster
-    diameter_mm:
-      - value: 16.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66256
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17235, p. 100
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17245, p. 102
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17247, p. 102
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17250, p. 103
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17253, p. 103
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c9h16.htm
-        ref: danskmoent.dk (Hede c9h16A)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279179
-        ref: KMM 279179 (Inv. FP 3528.265)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-10-%C3%B8re-km-795.1-1874-1891-cuid-1051143-duid-1238450
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-66256
-      - dk-bruun-8310
-      - dk-bruun-8346
-      - dk-bruun-8352
-      - dk-bruun-8360
-      - dk-bruun-8369
-      - dk-hede-c9h16a
-      - kmk-279179
-      - ngc-1051143
-    _errata_applied:
-      - source: dk-bruun-8346
-        field: km
-        printed: '195.1'
-        correct: '795.1'
-      - source: dk-bruun-8360
-        field: km
-        printed: '195.1'
-        correct: '795.1'
-  - id: c-3e2b5ff6
-    class_id: c-3e2b5ff6
-    label: unified-dk-hede-c9h16b
-    fuss: seed_unsorted
-    phase: hede
-    kind: scheide
-    nominal: 10 Øre
-    year_first: 1874
     year_last: 1905
     year_ranges:
       -   - 1874
@@ -56937,25 +56820,39 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
+        - '795.1'
         - '795.2'
         - '795'
-      hede: 16B
+      hede:
+        - '16'
+        - 16A
+        - 16B
       hede_volume: c9h
       sieg:
         - '9.1'
         - '9.2'
+        - '11.1'
         - '11.2'
       bruun_collection_id:
+        - '8310'
+        - '8346'
+        - '8352'
+        - '8360'
+        - '8369'
         - '8383'
         - '8402'
-      schou: '2'
+      schou:
+        - '1'
+        - '2'
+        - '5'
       bruun_part: IV
-      bruun_lot_no: 17259
-      bruun_page: 120
+      bruun_lot_no: 17235
+      bruun_page: 116
       numista: '5567'
       others:
         - Schön# 4
         - DNF# 4.1-4.2.1
+        - JSJ# 265
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -56966,10 +56863,22 @@ coins:
     fineness:
       - value: 0.4
         source: hede
+        specimen: dk-hede-c9h16a
+      - value: 0.4
+        source: hede
+        specimen: dk-hede-c9h16b
       - value: 0.4
         source: ngc
+        specimen: ngc-1051143
+      - value: 0.4
+        source: ngc
+        specimen: ngc-1068383
       - value: 0.4
         source: numismaster
+        specimen: denmark-numismaster-41815
+      - value: 0.4
+        source: numismaster
+        specimen: denmark-numismaster-66256
       - value: 0.4
         source: numista
       - value: 0.4
@@ -56977,10 +56886,22 @@ coins:
     weight_rough_g:
       - value: 1.45
         source: hede
+        specimen: dk-hede-c9h16a
+      - value: 1.45
+        source: hede
+        specimen: dk-hede-c9h16b
       - value: 1.45
         source: ngc
+        specimen: ngc-1051143
+      - value: 1.45
+        source: ngc
+        specimen: ngc-1068383
       - value: 1.45
         source: numismaster
+        specimen: denmark-numismaster-41815
+      - value: 1.45
+        source: numismaster
+        specimen: denmark-numismaster-66256
       - value: 1.45
         source: numista
       - value: 1.45
@@ -56989,11 +56910,32 @@ coins:
       - value: 15.0
         source: numista
       - value: 16.0
+        source: ngc
+        specimen: ngc-1051143
+      - value: 16.0
         source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_41815
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66256
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17235, p. 100
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17245, p. 102
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17247, p. 102
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17250, p. 103
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17253, p. 103
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17259, p. 104
@@ -57002,25 +56944,57 @@ coins:
         ref: Bruun Part IV, lot 17267, p. 105
       - type: literature
         url: https://www.danskmoent.dk/chr/c9h16.htm
-        ref: danskmoent.dk (Hede c9h16B)
+        ref: danskmoent.dk (Hede c9h16A)
       - type: literature
         url: https://en.numista.com/5567
         ref: Numista N#5567 — 10 Øre - Christian IX
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-10-ore-1874-1905/?tid=49639
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168047
+        ref: KMM 168047 (Inv. FP 2533.61)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279179
+        ref: KMM 279179 (Inv. FP 3528.265)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/492516
+        ref: KMM 492516 (Inv. FP 10686.14)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-10-%C3%B8re-km-795.1-1874-1891-cuid-1051143-duid-1238450
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-10-%C3%B8re-km-795.2-1894-1905-cuid-1068383-duid-1237224
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-41815
+      - denmark-numismaster-66256
+      - dk-bruun-8310
+      - dk-bruun-8346
+      - dk-bruun-8352
+      - dk-bruun-8360
+      - dk-bruun-8369
       - dk-bruun-8383
       - dk-bruun-8402
+      - dk-hede-c9h16a
       - dk-hede-c9h16b
       - dk-numista-5567
       - dk-tid-49639
+      - kmk-168047
+      - kmk-279179
+      - kmk-492516
+      - ngc-1051143
       - ngc-1068383
+    _errata_applied:
+      - source: dk-bruun-8346
+        field: km
+        printed: '195.1'
+        correct: '795.1'
+      - source: dk-bruun-8360
+        field: km
+        printed: '195.1'
+        correct: '795.1'
   - id: c-d82add67
     class_id: c-d82add67
     label: unified-dk-hede-c9h17a
@@ -57324,6 +57298,18 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156659
         ref: KMM 156659 (Inv. FP 6286.6)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203786
+        ref: KMM 203786 (Inv. FP 6588.15)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352716
+        ref: KMM 352716 (Inv. FP 5113.58)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203787
+        ref: KMM 203787 (Inv. FP 6588.14)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203788
+        ref: KMM 203788 (Inv. FP 6588.13)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/279174
         ref: KMM 279174 (Inv. FP 3528.270)
       - type: museum
@@ -57358,6 +57344,9 @@ coins:
       - dk-tid-49611
       - kmk-152034
       - kmk-156659
+      - kmk-203786
+      - kmk-203787
+      - kmk-203788
       - kmk-279174
       - kmk-279175
       - kmk-279176
@@ -94726,6 +94715,7 @@ coins:
       numista: '9393'
       others:
         - DNF# 1.3
+      schou: '5'
     metal: bronze
     metal_verified: true
     fineness_verified: false
@@ -94762,6 +94752,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-ore-1907-1912/?tid=49461
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168046
+        ref: KMM 168046 (Inv. FP 2533.64)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-%C3%B8re-km-804-1907-1912-cuid-1046091-duid-1236910
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -94771,6 +94764,7 @@ coins:
       - dk-hede-f8h8
       - dk-numista-9393
       - dk-tid-49461
+      - kmk-168046
       - ngc-1046091
   - id: c-cebfa214
     class_id: c-cebfa214
@@ -115502,54 +115496,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-167346
-  - id: c-f9ae22f6
-    class_id: c-f9ae22f6
-    label: unified-kmk-168046
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Øre
-    year_first: 1912
-    year_last: 1912
-    year_label: '1912'
-    ruler: Frederik VIII
-    catalog:
-      schou: '5'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168046
-        ref: KMM 168046 (Inv. FP 2533.64)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-168046
-  - id: c-301adabc
-    class_id: c-301adabc
-    label: unified-kmk-168047
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 10 Øre
-    year_first: 1874
-    year_last: 1874
-    year_label: '1874'
-    ruler: Christian IX
-    catalog:
-      schou: '5'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168047
-        ref: KMM 168047 (Inv. FP 2533.61)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-168047
   - id: c-68b46bb6
     class_id: c-68b46bb6
     label: unified-kmk-168048
@@ -117418,75 +117364,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-203764
-  - id: c-86ba55c5
-    class_id: c-86ba55c5
-    label: unified-kmk-203786
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Øre
-    year_first: 1874
-    year_last: 1874
-    year_label: '1874'
-    ruler: Christian IX
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/203786
-        ref: KMM 203786 (Inv. FP 6588.15)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352716
-        ref: KMM 352716 (Inv. FP 5113.58)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-203786
-  - id: c-15ac15e7
-    class_id: c-15ac15e7
-    label: unified-kmk-203787
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Øre
-    year_first: 1875
-    year_last: 1875
-    year_label: '1875'
-    ruler: Christian IX
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/203787
-        ref: KMM 203787 (Inv. FP 6588.14)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-203787
-  - id: c-880feaf0
-    class_id: c-880feaf0
-    label: unified-kmk-203788
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Øre
-    year_first: 1874
-    year_last: 1874
-    year_label: '1874'
-    ruler: Christian IX
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/203788
-        ref: KMM 203788 (Inv. FP 6588.13)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-203788
   - id: c-c3ddc11e
     class_id: c-c3ddc11e
     label: unified-kmk-203789
@@ -124008,28 +123885,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-492499
-  - id: c-cbcefff2
-    class_id: c-cbcefff2
-    label: unified-kmk-492516
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 10 Øre
-    year_first: 1875
-    year_last: 1875
-    year_label: '1875'
-    ruler: Christian IX
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/492516
-        ref: KMM 492516 (Inv. FP 10686.14)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-492516
   - id: c-04b699ca
     class_id: c-04b699ca
     label: unified-kmk-492627
@@ -127124,28 +126979,6 @@ coins:
     composed_of:
       - kmk-78530
       - kmk-78531
-  - id: c-dfa16cdd
-    class_id: c-dfa16cdd
-    label: unified-kmk-79282
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Krone
-    year_first: 1875
-    year_last: 1875
-    year_label: '1875'
-    ruler: Christian IX
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/79282
-        ref: KMM 79282 (Inv. GP 722.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-79282
   - id: c-32740fa6
     class_id: c-32740fa6
     label: unified-kmk-80390
