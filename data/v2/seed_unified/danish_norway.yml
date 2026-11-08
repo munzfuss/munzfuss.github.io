@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 2751 per-source seed entries.
-# Output: 565 unified entries (one per physical coin).
+# Input: 2756 per-source seed entries.
+# Output: 563 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3837,59 +3837,6 @@ coins:
       - dk-galster-c3g-176
       - dk-numista-121758
       - kmk-139674
-  - id: c-d212d72e
-    class_id: c-d212d72e
-    label: unified-dk-bruun-9319
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1629
-    year_last: 1636
-    year_ranges:
-      -   - 1629
-          - 1629
-      -   - 1636
-          - 1636
-    year_label: 1629, 1636
-    ruler: Christian IV
-    mintmaster: Anders Pedersen
-    mint: Christiania
-    catalog:
-      km: '12'
-      bruun_collection_id: '9319'
-      sieg: '16.1'
-      schou:
-        - '2'
-        - '11'
-      hede: 5A
-      nmd: '29'
-      bruun_part: III
-      bruun_lot_no: 12046
-      bruun_page: 183
-      dav: '9319'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.55
-        source: bruun
-      - value: 28.84
-        source: kmk
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12046, p. 165
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131614
-        ref: KMM 131614 (Inv. FP 3537.19)
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-bruun-9319
-      - kmk-131614
   - id: c-0d7f036b
     class_id: c-0d7f036b
     label: unified-dk-bruun-9390
@@ -12233,12 +12180,8 @@ coins:
         - 5A
         - 5B
       hede_volume: nc4h
-      sieg:
-        - '16.1'
-        - '16.2'
-        - '16.3'
-        - '16.4'
       bruun_collection_id:
+        - '9319'
         - '9332'
         - '9334'
         - '9347'
@@ -12255,6 +12198,11 @@ coins:
         - '9533'
         - '9553'
         - '9573'
+      sieg:
+        - '16.1'
+        - '16.2'
+        - '16.3'
+        - '16.4'
       schou:
         - '2'
         - '3'
@@ -12264,6 +12212,7 @@ coins:
         - '7'
         - '8'
         - '9'
+        - '11'
         - '12'
         - '13'
         - '16'
@@ -12272,6 +12221,7 @@ coins:
         - '26'
         - '29'
       nmd:
+        - '29'
         - 30A
         - 30B
         - 32A
@@ -12286,16 +12236,19 @@ coins:
         - '47'
         - '48'
         - '49'
-      bruun_part: II
-      bruun_lot_no: 14012
-      bruun_page: 184
+      bruun_part: III
+      bruun_lot_no: 12046
+      bruun_page: 183
       others:
         - Delzanno# 47b
         - Rønning# 8
         - Brekke# 49
         - AAJT# 49
         - Thesen# 49
-      dav: EC II 3534
+        - B# 782
+      dav:
+        - EC II 3534
+        - EC II 9319
       numista:
         - '118914'
         - '55887'
@@ -12335,14 +12288,24 @@ coins:
     weight_rough_g:
       - value: 27.61
         source: bruun
+      - value: 28.03
+        source: kmk
+      - value: 28.28
+        source: kmk
       - value: 28.38
         source: kmk
+      - value: 28.5
+        source: kmk
+      - value: 28.55
+        source: bruun
       - value: 28.63
         source: kmk
       - value: 28.71
         source: bruun
       - value: 28.72
         source: bruun
+      - value: 28.72
+        source: kmk
       - value: 28.72
         source: ngc
         specimen: ngc-1114114
@@ -12352,14 +12315,20 @@ coins:
       - value: 28.72
         source: numista
         specimen: dk-numista-118914
+      - value: 28.77
+        source: kmk
       - value: 28.8
         source: bruun
       - value: 28.82
         source: bruun
       - value: 28.83
         source: bruun
+      - value: 28.83
+        source: kmk
       - value: 28.84
         source: bruun
+      - value: 28.84
+        source: kmk
       - value: 28.86
         source: bruun
       - value: 28.87
@@ -12409,6 +12378,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_110718
         ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12046, p. 165
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15006, p. 87
@@ -12467,8 +12439,35 @@ coins:
         url: https://en.numista.com/55887
         ref: Numista N#55887 — NO 1 Speciedaler - Christian IV 1629-1647
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131614
+        ref: KMM 131614 (Inv. FP 3537.19)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/131615
         ref: KMM 131615 (Inv. FP 3537.20)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137203
+        ref: KMM 137203 (Inv. RP 62.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149589
+        ref: KMM 149589 (Inv. KP 1656.724)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184399
+        ref: KMM 184399 (Inv. FP 3427.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184400
+        ref: KMM 184400 (Inv. FP 3427.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184401
+        ref: KMM 184401 (Inv. FP 3427.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184402
+        ref: KMM 184402 (Inv. FP 3427.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184403
+        ref: KMM 184403 (Inv. FP 3427.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184404
+        ref: KMM 184404 (Inv. FP 3427.1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190264
         ref: KMM 190264 (Inv. FP 3108.20)
@@ -12502,6 +12501,7 @@ coins:
     composed_of:
       - denmark-numismaster-110717
       - denmark-numismaster-110718
+      - dk-bruun-9319
       - dk-bruun-9332
       - dk-bruun-9334
       - dk-bruun-9347
@@ -12522,7 +12522,15 @@ coins:
       - dk-hede-nc4h5b
       - dk-numista-118914
       - dk-numista-55887
+      - kmk-131614
       - kmk-131615
+      - kmk-137203
+      - kmk-149589
+      - kmk-184399
+      - kmk-184400
+      - kmk-184401
+      - kmk-184402
+      - kmk-184404
       - kmk-190264
       - kmk-190265
       - kmk-190266
@@ -35025,41 +35033,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-137202
-  - id: c-ac353313
-    class_id: c-ac353313
-    label: unified-kmk-137203
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1629
-    year_last: 1629
-    year_label: '1629'
-    ruler: Christian IV
-    mint: Christiania
-    catalog:
-      others:
-        - B# 782
-      schou: '11'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.77
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137203
-        ref: KMM 137203 (Inv. RP 62.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149589
-        ref: KMM 149589 (Inv. KP 1656.724)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-137203
-      - kmk-149589
   - id: c-c5fcef8b
     class_id: c-c5fcef8b
     label: unified-kmk-139632

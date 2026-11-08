@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 565 active, 1225 retired.
+# 563 active, 1227 retired.
 
 id: danish_norway
 classes:
@@ -4865,6 +4865,7 @@ classes:
     members:
       - denmark-numismaster-110717
       - denmark-numismaster-110718
+      - dk-bruun-9319
       - dk-bruun-9332
       - dk-bruun-9334
       - dk-bruun-9347
@@ -4885,7 +4886,16 @@ classes:
       - dk-hede-nc4h5b
       - dk-numista-118914
       - dk-numista-55887
+      - kmk-131614
       - kmk-131615
+      - kmk-137203
+      - kmk-149589
+      - kmk-184399
+      - kmk-184400
+      - kmk-184401
+      - kmk-184402
+      - kmk-184403
+      - kmk-184404
       - kmk-190264
       - kmk-190265
       - kmk-190266
@@ -5240,14 +5250,6 @@ classes:
     legacy_id: unified-dk-numista-110342
     members:
       - dk-numista-110342
-  - id: c-ac353313
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-137203
-    legacy_id: unified-kmk-137203
-    members:
-      - kmk-137203
-      - kmk-149589
   - id: c-acdb90b3
     status: active
     created: '2026-10-22'
@@ -6233,14 +6235,6 @@ classes:
       - dk-numista-101117
       - dk-tid-145050
       - ngc-1114104
-  - id: c-d212d72e
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-9319
-    legacy_id: unified-dk-bruun-9319
-    members:
-      - dk-bruun-9319
-      - kmk-131614
   - id: c-d2897afd
     status: active
     created: '2026-10-22'
@@ -14324,6 +14318,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-715183
+  - id: c-ac353313
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-137203
+    legacy_id: unified-kmk-137203
+    merged_into: c-9a306004
+    retired: '2026-11-08'
+    members:
+      - kmk-137203
+      - kmk-149589
   - id: c-acaa4bbb
     status: retired
     created: '2026-10-22'
@@ -15911,6 +15915,16 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-428716
+  - id: c-d212d72e
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-9319
+    legacy_id: unified-dk-bruun-9319
+    merged_into: c-9a306004
+    retired: '2026-11-08'
+    members:
+      - dk-bruun-9319
+      - kmk-131614
   - id: c-d25445d3
     status: retired
     created: '2026-10-22'
