@@ -659,7 +659,10 @@ _TERRITORY_LEAD = re.compile(
     # A trading company named before the denom («DENMARK. Danish East India
     # Company. 2 Speciedaler, 1671»: lots 1100, 1130, 1152) is the issuer,
     # not the denomination (curator 2026-11-07).
-    r"danish\s+(?:east|west)\s+india\s+company|danish\s+asiatic\s+company)\b",
+    r"danish\s+(?:east|west)\s+india\s+company|danish\s+asiatic\s+company|"
+    # «DENMARK. Provisional Government in Schleswig-Holstein. Silver Schilling
+    # Pattern, 1851» (lot 13263): the issuer, not the denomination.
+    r"provisional\s+government)\b",
     re.IGNORECASE,
 )
 
@@ -770,9 +773,26 @@ def _bruun_display_nominal(raw: str | None) -> str | None:
     if not s:
         return None
     s = re.sub(r",?\s+Klippe\b", "", s)
+    # the klippe's shape («Octagonal Speciedaler Klippe», lot 1034) is not
+    # part of the nominal either
+    s = re.sub(r"^(?:Octagonal|Square|Round)\s+", "", s)
     # a metal word inside the denomination («8 Skilling Lead») is the metal,
     # read by parse_metal, not part of the nominal
     s = re.sub(r"\s+Lead\b", "", s)
+    # Catalogue description in the title is not on the coin (CLAUDE.md §1):
+    # «Silver Pattern 2 Rigsdaler», «Copper Trial Strike ½ Rigsdaler»,
+    # «2 Skilling Copper Klippe», «Experimental Commemorative 2 Krone». The
+    # metal word is read by parse_metal from the raw string; the nominal keeps
+    # only the denomination (lots admitted with pattern wording, 2026-11-08).
+    # A metal word goes only beside that wording or after the denomination —
+    # «Gold Krone», «Gold Gulden» are denomination names and stay.
+    _pat = r"\b(?:Experimental\s+Commemorative|Trial\s+Strike|Trial|Pattern)\b"
+    if re.search(_pat, s, re.IGNORECASE):
+        s = re.sub(_pat, " ", s, flags=re.IGNORECASE)
+        s = re.sub(r"\b(?:Silver|Copper|Gold|Bronze|Pewter|White\s+Metal|Uniface)\b",
+                   " ", s, flags=re.IGNORECASE)
+    s = re.sub(r"(\S)\s+(?:Silver|Copper)\s*$", r"\1", s.strip())
+    s = re.sub(r"\s+", " ", s).strip()
     s = re.sub(r"\s*\((?!\s*\d)[^)]*\)", "", s).strip()   # drop NAME-paren, keep VALUE-paren
     s = re.sub(
         r"(\d)[\s-]+(1/2|1/3|2/3|1/4|3/4|1/8|3/8)\b",
@@ -848,6 +868,10 @@ def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple
     # klipping in lead, Hede 133B) — the catalogue names the metal.
     if re.search(r"\blead\b", d):
         return ("lead", True)
+    # COPPER word: «2 Skilling Copper Klippe» (lot 14156, the Kristiansstad
+    # siege klipping, Hede 131) — the catalogue names the metal.
+    if re.search(r"\bcopper\b", d):
+        return ("copper", True)
     # (3) NGC/PCGS grade-COLOUR suffix → copper. NGC applies a colour code
     # (Red «RD» / Red-Brown «RB» / Brown «BN», or spelled-out «Brown» / «Red
     # Brown») ONLY to copper/bronze coins; silver and gold get a bare numeric

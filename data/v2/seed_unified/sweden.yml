@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sweden`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sweden.yml across all sources.
 #
-# Input: 259 per-source seed entries.
-# Output: 223 unified entries (one per physical coin).
+# Input: 260 per-source seed entries.
+# Output: 224 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sweden
-generated_at: '2026-11-07'
+generated_at: '2026-11-08'
 coins:
   - id: c-4225815c
     class_id: c-4225815c
@@ -6362,6 +6362,39 @@ coins:
     issuing_entity: sweden
     composed_of:
       - dk-bruun-13283
+  - id: c-241bab52
+    class_id: c-241bab52
+    label: unified-dk-bruun-13297
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Riksdaler
+    year_first: 1822
+    year_last: 1822
+    year_label: '1822'
+    ruler: Karl XIV Johan
+    mint: Stockholm
+    catalog:
+      bruun_collection_id: '13297'
+      others:
+        - Pn# Pn4
+        - SM# 180d
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 28.81
+        source: bruun
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15170, p. 146
+    issuing_entity: sweden
+    composed_of:
+      - dk-bruun-13297
   - id: c-6f29a724
     class_id: c-6f29a724
     label: unified-dk-bruun-13314

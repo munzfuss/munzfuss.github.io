@@ -109,6 +109,9 @@ def _ref_short(name: str) -> "re.Pattern":
 
 
 REF_PATTERNS = {
+    # A «cf. <Catalogue>-N» names the nearest OTHER type, never this coin's
+    # own number (CLAUDE.md anti-pattern 5): lot 17239 «KM-PnA63; cf. Hede-14A»
+    # had joined the 1875 circulation Krone on Hede 14A (2026-11-08).
     # PREFIX capture is `[A-Za-z]{0,3}` — Krause prefixes the number with a
     # register code on its non-circulation series: `Tn6` (token — the Danish
     # Rigsbanktegn), `PM13` (Swedish plate money), `A140`. The earlier
@@ -119,24 +122,24 @@ REF_PATTERNS = {
     # false unifying edges (§9.4 — `Pn10` recurs across reigns and volumes just
     # as bare numbers do, and a KM-base collision is exactly what the merger
     # treats as evidence of one coin).
-    "KM":      re.compile(r"\bKM[#\-]?\s*(?!Pn)([A-Za-z]{0,3}\d+(?:\.\d+)?[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
-    "Hede":    re.compile(r"\bHede[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
-    "Sieg":    re.compile(r"\bSieg[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)", re.IGNORECASE),
-    "Lange":   re.compile(r"\bLange[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    "KM":      re.compile(r"(?<!cf\. )(?<!cf\.)\bKM[#\-]?\s*(?!Pn)([A-Za-z]{0,3}\d+(?:\.\d+)?[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
+    "Hede":    re.compile(r"(?<!cf\. )(?<!cf\.)\bHede[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
+    "Sieg":    re.compile(r"(?<!cf\. )(?<!cf\.)\bSieg[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)", re.IGNORECASE),
+    "Lange":   re.compile(r"(?<!cf\. )(?<!cf\.)\bLange[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     # Bruun's 1928 numbering continues its letter suffixes into the Danish
     # alphabet (Part V lot 15186 «Bruun-15139ø», after 15139c … 15139ddd);
     # without æøå the ø was cut, the seed id became the bare «15139», and
     # merge_seed's bare-Hede «superseded» rule dropped it beside 15139c.
     "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-zæøåÆØÅ]*)", re.IGNORECASE),
-    "Fr":      re.compile(r"\bFr[\.\-:]?\s*(\d+[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
-    "Schou":   re.compile(r"\bSchou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
+    "Fr":      re.compile(r"(?<!cf\. )(?<!cf\.)\bFr[\.\-:]?\s*(\d+[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
+    "Schou":   re.compile(r"(?<!cf\. )(?<!cf\.)\bSchou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
     # Aagaard cites a die-combination in a trailing paren — «74.1 (49-2/49-5)»,
     # «117.7 (69-GK4/69-GK10)» (year[-mintmaster]die / year[-mintmaster]die).
     # That is meaningful die-study data and is kept. The paren group requires
     # a DIGIT-led interior (`\(\d`) so editorial prose — «(Aagaard erroneously
     # gives a reference to Bruun-6436)», «(this example)» — is NOT captured.
     "Aagaard": re.compile(r"\bAagaard[\-:]?\s*(\d+(?:\.\d+)?(?:\s*\(\d[^)]*\))?)", re.IGNORECASE),
-    "Dav":     re.compile(r"\bDav[\.\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    "Dav":     re.compile(r"(?<!cf\. )(?<!cf\.)\bDav[\.\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Wilcke":  re.compile(r"\bWilcke[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
     # Anders Harck, «Christian IV's mønter» (online catalogue) — cited on

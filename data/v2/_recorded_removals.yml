@@ -5238,3 +5238,28 @@ removals:
     kind: empty_duplicate
     hosts: [c-4f9c4838, c-e4b0ea48]
     reason: 'Curator (Serhii) 2026-11-08 («так, групи мають бути розділені коректно»): V1 foundation 4 Mark 1666 that bundled KM 271 (Hede 105B, NGC 1050641 / NumisMaster 65287) with sixteen KMM «Hede 116» records. KM 271 now sits in the Hede 105 class c-4f9c4838, the KMM records in the Hede 116 class (registry id c-e4b0ea48, which the larger KMM share inherits). Dropped with it: its note («Hede-105B, Roman-attire type · mintmaster Gotfred Krüger · considered a pattern …») and the Bruun 6504 / lot 11230 anchor, which no seed carries (the Bruun builder drops the lot as a pattern; under review).'
+  - seed: dk-bruun-5327
+    kind: field
+    field: lange
+    dropped: ['32']
+    reason: 'Curator (Serhii) 2026-11-08 («1 так»): Bruun Part II lot 13097 prints «Dav-3667; KM-16; Hede-157; Sieg- 184; Schou-7; cf. Lange-32» — a «cf.» reference to another type, not this coin''s number (CLAUDE.md anti-pattern 5); the parser now skips «cf.» references.'
+  - seed: dk-bruun-6439
+    kind: field
+    field: fr
+    dropped: ['101']
+    reason: 'Curator (Serhii) 2026-11-08 («1 так»): Bruun Part III lot 11227 prints «Cf. Fr-101; KM-265.1; Hede-24A» — a «cf.» reference to another type, not this coin''s number (CLAUDE.md anti-pattern 5); the parser now skips «cf.» references.'
+  - seed: dk-bruun-6910
+    kind: field
+    field: sieg
+    dropped: ['144.3']
+    reason: 'Curator (Serhii) 2026-11-08 («1 так»): Bruun Part III lot 11244 prints «Fr-141; KM-70.1; Hede-117; cf. Sieg-144.3-4» — a «cf.» reference to another type, not this coin''s number (CLAUDE.md anti-pattern 5); the parser now skips «cf.» references.'
+  - seed: dk-bruun-5530
+    kind: field
+    field: km
+    dropped: ['66']
+    reason: 'Curator (Serhii) 2026-11-08 («1 так»): Bruun Part II lot 13108 prints «Dav-7758D; cf. KM-66; Hede-3A» — a «cf.» reference to another type, not this coin''s number (CLAUDE.md anti-pattern 5); the parser now skips «cf.» references.'
+  - seed: dk-bruun-5533
+    kind: field
+    field: km
+    dropped: ['66']
+    reason: 'Curator (Serhii) 2026-11-08 («1 так»): Bruun Part V lot 14111 prints «Dav-7758D; cf. KM-66; Hede-3A» — a «cf.» reference to another type, not this coin''s number (CLAUDE.md anti-pattern 5); the parser now skips «cf.» references.'
