@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1209 per-source seed entries.
-# Output: 275 unified entries (one per physical coin).
+# Input: 1212 per-source seed entries.
+# Output: 273 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -10316,8 +10316,8 @@ coins:
       - ngc-1050418
       - ngc-1050465
       - ngc-1050981
-  - id: c-28391585
-    class_id: c-28391585
+  - id: c-d3ce70e2
+    class_id: c-d3ce70e2
     label: unified-dk-hede-c8h9
     fuss: seed_unsorted
     phase: hede
@@ -10329,7 +10329,12 @@ coins:
     ruler: Christian VIII
     mint: Altona
     catalog:
-      hede: '9'
+      km:
+        - '729'
+        - A730
+      hede:
+        - '9'
+        - 9A
       hede_volume: c8h
       schou:
         - '7'
@@ -10337,18 +10342,71 @@ coins:
       sieg:
         - '6'
         - '7'
+      numista:
+        - '42508'
+        - '47999'
+      others:
+        - JSJ# 263
     metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.229
         source: hede
+      - value: 0.229
+        source: ngc
+        specimen: ngc-1050316
+      - value: 0.229
+        source: ngc
+        specimen: ngc-1050417
+      - value: 0.229
+        source: numismaster
+        specimen: denmark-numismaster-66009
+      - value: 0.229
+        source: numismaster
+        specimen: denmark-numismaster-66010
+      - value: 0.229
+        source: ucoin
+        specimen: dk-tid-70750
+      - value: 0.229
+        source: ucoin
+        specimen: dk-tid-70751
     weight_rough_g:
       - value: 1.519
         source: hede
+      - value: 1.519
+        source: ngc
+        specimen: ngc-1050316
+      - value: 1.519
+        source: ngc
+        specimen: ngc-1050417
+      - value: 1.519
+        source: numismaster
+        specimen: denmark-numismaster-66009
+      - value: 1.519
+        source: numismaster
+        specimen: denmark-numismaster-66010
+      - value: 1.519
+        source: numista
+      - value: 1.52
+        source: ucoin
+        specimen: dk-tid-70750
+      - value: 1.52
+        source: ucoin
+        specimen: dk-tid-70751
+    diameter_mm:
+      - value: 15.0
+        source: numista
+      - value: 15.0
+        source: ucoin
+        specimen: dk-tid-70750
+      - value: 15.5
+        source: ucoin
+        specimen: dk-tid-70751
     catalog_alts:
       - register: hede
         value: 8C
@@ -10368,11 +10426,44 @@ coins:
             8)[/b], 4 Rigsbankskilling: [i]«C) 1842 (RR), Altona; møntmærke: rigsæble og FF (Hede 8C, Schou 6, Sieg 8)»[/i]."
     sources:
       - type: literature
+        url: https://numismaster.com/MC_66009
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66010
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/chr/c8h9.htm
         ref: danskmoent.dk (Hede c8h9)
+      - type: literature
+        url: https://en.numista.com/42508
+        ref: Numista N#42508 — 3 Rigsbankskilling - Christian VIII (Type II)
+      - type: literature
+        url: https://en.numista.com/47999
+        ref: Numista N#47999 — 3 Rigsbankskilling - Christian VIII (Type I)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1842/?tid=70750
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1842/?tid=70751
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/168061
         ref: KMM 168061 (Inv. FP 2448.27)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279181
+        ref: KMM 279181 (Inv. FP 3528.263)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78530
+        ref: KMM 78530 (Inv. GP 678.194)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78531
+        ref: KMM 78531 (Inv. GP 678.195)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-3-rigsbankskilling-km-729-1842-cuid-1050316-duid-1238224
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-3-rigsbankskilling-km-a730-1842-cuid-1050417-duid-1238225
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 21.0
@@ -10380,8 +10471,19 @@ coins:
       basis: fin
       unit_raw: rigsbankdalere
     composed_of:
+      - denmark-numismaster-66009
+      - denmark-numismaster-66010
       - dk-hede-c8h9
+      - dk-numista-42508
+      - dk-numista-47999
+      - dk-tid-70750
+      - dk-tid-70751
       - kmk-168061
+      - kmk-279181
+      - kmk-78530
+      - kmk-78531
+      - ngc-1050316
+      - ngc-1050417
   - id: c-6371da81
     class_id: c-6371da81
     label: unified-dk-hede-f3h142
@@ -17933,130 +18035,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-101329
-  - id: c-e40c23a1
-    class_id: c-e40c23a1
-    label: unified-ngc-1050316
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 3 Rigsbankskilling
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    ruler: Christian VIII
-    mint: Altona
-    catalog:
-      km: '729'
-      numista: '47999'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.229
-        source: ngc
-      - value: 0.229
-        source: numismaster
-      - value: 0.229
-        source: ucoin
-    weight_rough_g:
-      - value: 1.519
-        source: ngc
-      - value: 1.519
-        source: numismaster
-      - value: 1.519
-        source: numista
-      - value: 1.52
-        source: ucoin
-    diameter_mm:
-      - value: 15.0
-        source: numista
-      - value: 15.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66009
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/47999
-        ref: Numista N#47999 — 3 Rigsbankskilling - Christian VIII (Type I)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1842/?tid=70750
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-3-rigsbankskilling-km-729-1842-cuid-1050316-duid-1238224
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-66009
-      - dk-numista-47999
-      - dk-tid-70750
-      - ngc-1050316
-  - id: c-d3ce70e2
-    class_id: c-d3ce70e2
-    label: unified-ngc-1050417
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 3 Rigsbankskilling
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    ruler: Christian VIII
-    mint: Altona
-    catalog:
-      km: A730
-      numista: '42508'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.229
-        source: ngc
-      - value: 0.229
-        source: numismaster
-      - value: 0.229
-        source: ucoin
-    weight_rough_g:
-      - value: 1.519
-        source: ngc
-      - value: 1.519
-        source: numismaster
-      - value: 1.519
-        source: numista
-      - value: 1.52
-        source: ucoin
-    diameter_mm:
-      - value: 15.0
-        source: numista
-      - value: 15.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66010
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/42508
-        ref: Numista N#42508 — 3 Rigsbankskilling - Christian VIII (Type II)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1842/?tid=70751
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-3-rigsbankskilling-km-a730-1842-cuid-1050417-duid-1238225
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-66010
-      - dk-numista-42508
-      - dk-tid-70751
-      - ngc-1050417
   - id: c-f6bef30d
     class_id: c-f6bef30d
     label: unified-ngc-1051946
