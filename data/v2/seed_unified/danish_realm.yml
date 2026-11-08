@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8364 per-source seed entries.
-# Output: 1768 unified entries (one per physical coin).
+# Output: 1765 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3547,90 +3547,6 @@ coins:
     composed_of:
       - dk-bruun-5365
       - dk-numista-145802
-  - id: c-fa0ed1d9
-    class_id: c-fa0ed1d9
-    label: unified-dk-bruun-5391
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: ½ Krone
-    year_first: 1624
-    year_last: 1624
-    year_label: '1624'
-    ruler: Christian IV
-    mintmaster: Nicolaus Schwabe
-    mint:
-      - Frederiksborg
-      - Kopenhagen
-    catalog:
-      km: '94'
-      bruun_collection_id: '5391'
-      sieg: '80'
-      schou: '63'
-      hede: '126'
-      bruun_part: III
-      bruun_lot_no: 11195
-      bruun_page: 100
-      others:
-        - Harck# 23.9
-      numista: '197665'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.859
-        source: ngc
-      - value: 0.859
-        source: numismaster
-      - value: 0.859
-        source: numista
-      - value: 0.86
-        source: ucoin
-    weight_rough_g:
-      - value: 9.2
-        source: bruun
-      - value: 9.25
-        source: numista
-      - value: 9.455
-        source: ngc
-      - value: 9.455
-        source: numismaster
-      - value: 9.46
-        source: ucoin
-    diameter_mm:
-      - value: 30.0
-        source: ngc
-      - value: 30.6
-        source: numista
-      - value: 31.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65216
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11195, p. 82
-      - type: literature
-        url: https://en.numista.com/197665
-        ref: Numista N#197665 — ½ Krone - Christian IV (Open crown; standing King type)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-krone-1624/?tid=163057
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-krone-km-94-16z4-cuid-1049864-duid-1236854
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65216
-      - dk-bruun-5391
-      - dk-numista-197665
-      - dk-tid-163057
-      - ngc-1049864
   - id: c-18a88ce5
     class_id: c-18a88ce5
     label: unified-dk-bruun-5432
@@ -18643,32 +18559,36 @@ coins:
       - kmk-275664
       - kmk-714997
       - ngc-1050026
-  - id: c-a8378ea2
-    class_id: c-a8378ea2
+  - id: c-fa0ed1d9
+    class_id: c-fa0ed1d9
     label: unified-dk-hede-c4h126
     fuss: seed_unsorted
     phase: hede
     kind: tarif
     nominal: ½ Krone
     year_first: 1624
-    year_last: 1625
-    year_ranges:
-      -   - 1624
-          - 1625
-    year_label: 1624-1625
+    year_last: 1624
+    year_label: '1624'
     ruler: Christian IV
-    mint: Kopenhagen
+    mintmaster: Nicolaus Schwabe
+    mint:
+      - Frederiksborg
+      - Kopenhagen
     catalog:
-      km:
-        - '95.2'
-        - '95'
+      km: '94'
       hede: '126'
       hede_volume: c4h
       schou: '63'
-      sieg: '87'
-      numista: '107713'
+      sieg:
+        - '80'
+        - '87'
+      bruun_collection_id: '5391'
+      bruun_part: III
+      bruun_lot_no: 11195
+      bruun_page: 100
       others:
-        - B# 647
+        - Harck# 23.9
+      numista: '197665'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -18688,7 +18608,9 @@ coins:
       - value: 0.86
         source: ucoin
     weight_rough_g:
-      - value: 9.454
+      - value: 9.2
+        source: bruun
+      - value: 9.25
         source: numista
       - value: 9.455
         source: hede
@@ -18699,28 +18621,30 @@ coins:
       - value: 9.46
         source: ucoin
     diameter_mm:
-      - value: 24.34
+      - value: 30.0
+        source: ngc
+      - value: 30.6
         source: numista
-      - value: 25.0
+      - value: 31.0
         source: ucoin
     sources:
       - type: literature
-        url: https://numismaster.com/MC_117941
+        url: https://numismaster.com/MC_65216
         ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11195, p. 82
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h126.htm
         ref: danskmoent.dk (Hede c4h126)
       - type: literature
-        url: https://en.numista.com/107713
-        ref: Numista N#107713 — ½ "Dicke" Krone - Christian IV (Closed crown; King bust type)
+        url: https://en.numista.com/197665
+        ref: Numista N#197665 — ½ Krone - Christian IV (Open crown; standing King type)
       - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-krone-1624-1625/?tid=163058
+        url: https://en.ucoin.net/coin/denmark-1-2-krone-1624/?tid=163057
         ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139734
-        ref: KMM 139734 (Inv. RP 120.1)
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-krone-km-95.2-16z4-16z5-cuid-1055244-duid-1238760
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-krone-km-94-16z4-cuid-1049864-duid-1236854
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
@@ -18729,12 +18653,12 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
-      - denmark-numismaster-117941
+      - denmark-numismaster-65216
+      - dk-bruun-5391
       - dk-hede-c4h126
-      - dk-numista-107713
-      - dk-tid-163058
-      - kmk-139734
-      - ngc-1055244
+      - dk-numista-197665
+      - dk-tid-163057
+      - ngc-1049864
   - id: c-72daf7c2
     class_id: c-72daf7c2
     label: unified-dk-hede-c4h127
@@ -19036,18 +18960,25 @@ coins:
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
-      km: '95.3'
+      km:
+        - '95.1'
+        - '95.2'
+        - '95.3'
+        - '95'
       hede: '128'
       hede_volume: c4h
       schou:
         - 27-28
         - 64-73
       sieg: '88'
+      numista: '107713'
+      others:
+        - B# 647
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -19055,12 +18986,32 @@ coins:
         source: hede
       - value: 0.859
         source: ngc
+        specimen: ngc-1050638
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1055244
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1055245
       - value: 0.859
         source: numismaster
+        specimen: denmark-numismaster-117941
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-117942
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65218
+      - value: 0.859
+        source: numista
+      - value: 0.86
+        source: ucoin
     weight_rough_g:
       - value: 8.87
         source: kmk
       - value: 8.99
+        source: kmk
+      - value: 9.04
         source: kmk
       - value: 9.11
         source: kmk
@@ -19074,23 +19025,69 @@ coins:
         source: kmk
       - value: 9.25
         source: kmk
+      - value: 9.33
+        source: kmk
       - value: 9.42
         source: kmk
+      - value: 9.454
+        source: numista
       - value: 9.455
         source: hede
       - value: 9.455
         source: ngc
+        specimen: ngc-1050638
+      - value: 9.455
+        source: ngc
+        specimen: ngc-1055244
+      - value: 9.455
+        source: ngc
+        specimen: ngc-1055245
       - value: 9.455
         source: numismaster
+        specimen: denmark-numismaster-117941
+      - value: 9.455
+        source: numismaster
+        specimen: denmark-numismaster-117942
+      - value: 9.455
+        source: numismaster
+        specimen: denmark-numismaster-65218
+      - value: 9.46
+        source: ucoin
       - value: 9.49
         source: kmk
+    diameter_mm:
+      - value: 24.34
+        source: numista
+      - value: 25.0
+        source: ucoin
+      - value: 26.0
+        source: ngc
+        specimen: ngc-1050638
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_117941
+        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_117942
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_65218
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/chr/c4h128.htm
         ref: danskmoent.dk (Hede c4h128)
+      - type: literature
+        url: https://en.numista.com/107713
+        ref: Numista N#107713 — ½ "Dicke" Krone - Christian IV (Closed crown; King bust type)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-krone-1624-1625/?tid=163058
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139734
+        ref: KMM 139734 (Inv. RP 120.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/195985
+        ref: KMM 195985 (Inv. FP 3108.6299)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/195986
         ref: KMM 195986 (Inv. FP 3108.6298)
@@ -19134,6 +19131,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/276876
         ref: KMM 276876 (Inv. FP 4227.402)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714963
+        ref: KMM 714963 (Inv. FP 12405.87)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714964
+        ref: KMM 714964 (Inv. FP 12405.86)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714965
         ref: KMM 714965 (Inv. FP 12405.85)
       - type: museum
@@ -19146,6 +19149,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/714968
         ref: KMM 714968 (Inv. FP 12405.82)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-krone-km-95.1-16z4-cuid-1050638-duid-1236855
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-krone-km-95.2-16z4-16z5-cuid-1055244-duid-1238760
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-1-2-krone-km-95.3-16z4-cuid-1055245-duid-1238762
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
@@ -19155,8 +19164,14 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-117941
       - denmark-numismaster-117942
+      - denmark-numismaster-65218
       - dk-hede-c4h128
+      - dk-numista-107713
+      - dk-tid-163058
+      - kmk-139734
+      - kmk-195985
       - kmk-195986
       - kmk-195987
       - kmk-195988
@@ -19166,10 +19181,14 @@ coins:
       - kmk-275655
       - kmk-275656
       - kmk-276876
+      - kmk-714963
+      - kmk-714964
       - kmk-714965
       - kmk-714966
       - kmk-714967
       - kmk-714968
+      - ngc-1050638
+      - ngc-1055244
       - ngc-1055245
   - id: c-cfdfd8dc
     class_id: c-cfdfd8dc
@@ -116039,44 +116058,6 @@ coins:
       - kmk-195983
       - kmk-195984
       - kmk-714956
-  - id: c-3dd5a632
-    class_id: c-3dd5a632
-    label: unified-kmk-195985
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: ½ Krone
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Christian IV
-    catalog:
-      hede: '128'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 9.04
-        source: kmk
-      - value: 9.33
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/195985
-        ref: KMM 195985 (Inv. FP 3108.6299)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714963
-        ref: KMM 714963 (Inv. FP 12405.87)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714964
-        ref: KMM 714964 (Inv. FP 12405.86)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-195985
-      - kmk-714963
-      - kmk-714964
   - id: c-ab262600
     class_id: c-ab262600
     label: unified-kmk-203760
@@ -132560,49 +132541,6 @@ coins:
     composed_of:
       - denmark-numismaster-65177
       - ngc-1050587
-  - id: c-eba10b1e
-    class_id: c-eba10b1e
-    label: unified-ngc-1050638
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ½ Krone
-    year_first: 1624
-    year_last: 1624
-    year_label: '1624'
-    catalog:
-      km: '95.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.859
-        source: ngc
-      - value: 0.859
-        source: numismaster
-    weight_rough_g:
-      - value: 9.455
-        source: ngc
-      - value: 9.455
-        source: numismaster
-    diameter_mm:
-      - value: 26.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65218
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-krone-km-95.1-16z4-cuid-1050638-duid-1236855
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65218
-      - ngc-1050638
   - id: c-fa7d93da
     class_id: c-fa7d93da
     label: unified-ngc-1050639
