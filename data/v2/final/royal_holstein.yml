@@ -18523,15 +18523,21 @@ coins:
     nominal: 2 Frederik D'or
     ruler: Frederik VII.
     mintmaster: Johan Friedrich Freund (FF)
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     fraction: '2'
     id: c-5fa0e2c3
     year_first: 1850
     year_last: 1863
     year_ranges:
       -   - 1850
+          - 1857
+      -   - 1859
+          - 1859
+      -   - 1863
           - 1863
-    year_label: 1850-1863
+    year_label: 1850-1857, 1859, 1863
     mint:
       - Altona
       - Kopenhagen
@@ -18540,13 +18546,18 @@ coins:
         - '750.2'
         - '750'
         - '750.3'
+        - '750.1'
+        - '750.4'
       hede:
+        - 1A
         - 1B
         - 1C
+        - 1D
       hede_volume: f7h
       schou: '1'
       sieg:
         - '16'
+        - '16.1'
         - '16.2'
         - '16.3'
       bruun_collection_id:
@@ -18556,6 +18567,7 @@ coins:
         - '8261'
         - '8204'
         - '8248'
+        - '8200'
       bruun_part: IV
       bruun_lot_no: 17198
       bruun_page: 104
@@ -18571,10 +18583,31 @@ coins:
     fineness:
       - value: 0.896
         source: hede
+        specimen: dk-hede-f7h1a
+      - value: 0.896
+        source: hede
         specimen: dk-hede-f7h1b
       - value: 0.896
         source: hede
         specimen: dk-hede-f7h1c
+      - value: 0.896
+        source: hede
+        specimen: dk-hede-f7h1d
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050470
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050505
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050506
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1051030
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66105
       - value: 0.896
         source: numismaster
         specimen: denmark-numismaster-66106
@@ -18582,7 +18615,12 @@ coins:
         source: numismaster
         specimen: denmark-numismaster-66107
       - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66108
+      - value: 0.896
         source: numista
+      - value: 0.896
+        source: ucoin
     weight_rough_g:
       - value: 13.25
         source: bruun
@@ -18590,6 +18628,11 @@ coins:
         source: bruun
       - value: 13.28
         source: bruun
+      - value: 13.28
+        source: ucoin
+      - value: 13.284
+        source: hede
+        specimen: dk-hede-f7h1a
       - value: 13.284
         source: hede
         specimen: dk-hede-f7h1b
@@ -18597,11 +18640,32 @@ coins:
         source: hede
         specimen: dk-hede-f7h1c
       - value: 13.284
+        source: hede
+        specimen: dk-hede-f7h1d
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050470
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050505
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050506
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1051030
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66105
+      - value: 13.284
         source: numismaster
         specimen: denmark-numismaster-66106
       - value: 13.284
         source: numismaster
         specimen: denmark-numismaster-66107
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66108
       - value: 13.284
         source: numista
       - value: 13.29
@@ -18609,6 +18673,8 @@ coins:
     diameter_mm:
       - value: 27.0
         source: numista
+      - value: 27.1
+        source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_66106
@@ -18640,6 +18706,30 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14219, p. 80
+      - type: literature
+        url: https://numismaster.com/MC_66105
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66108
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1166, p. 204
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dor-1850-1863/?tid=130482
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.3-1856-1859-cuid-1050470-duid-1238403
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.2-1851-1855-cuid-1050505-duid-1238398
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.4-1863-cuid-1050506-duid-1238406
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.1-1850-cuid-1051030-duid-1238397
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 2 Frederik d'Or 1852, 1853, 1854 (KM-750.2, einheitliche Hede-1B / Fr-291) · drei Bruun-Specimina dokumentieren die fortgeführte Altona-Goldprägung Frederiks VII.
       en: 2 Frederik d'Or 1852, 1853, 1854 (KM-750.2, all Hede-1B / Fr-291) · three Bruun specimens document the continued Altona gold issue under Frederik VII.

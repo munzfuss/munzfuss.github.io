@@ -2,7 +2,7 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1212 per-source seed entries.
+# Input: 1222 per-source seed entries.
 # Output: 273 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -14558,7 +14558,7 @@ coins:
       - ngc-1051024
   - id: c-5fa0e2c3
     class_id: c-5fa0e2c3
-    label: unified-dk-hede-f7h1b
+    label: unified-dk-hede-f7h1a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -14567,37 +14567,47 @@ coins:
     year_last: 1863
     year_ranges:
       -   - 1850
+          - 1857
+      -   - 1859
+          - 1859
+      -   - 1863
           - 1863
-    year_label: 1850-1863
+    year_label: 1850-1857, 1859, 1863
     ruler: Frederik VII
-    mintmaster: Johan Friedrich Freund (FF)
+    mintmaster: Georg Vilhelm Svendsen (VS)
     mint:
       - Altona
       - Kopenhagen
     catalog:
       km:
+        - '750.1'
         - '750.2'
         - '750.3'
+        - '750.4'
         - '750'
       hede:
+        - 1A
         - 1B
         - 1C
+        - 1D
       hede_volume: f7h
       schou: '1'
       sieg:
         - '16'
+        - '16.1'
         - '16.2'
         - '16.3'
       bruun_collection_id:
+        - '8200'
         - '8204'
         - '8212'
         - '8216'
         - '8226'
         - '8248'
         - '8261'
-      bruun_part: IV
-      bruun_lot_no: 17198
-      bruun_page: 104
+      bruun_part: I
+      bruun_lot_no: 1166
+      bruun_page: 228
       numista: '83075'
       fr: '291'
     metal: gold
@@ -14610,10 +14620,31 @@ coins:
     fineness:
       - value: 0.896
         source: hede
+        specimen: dk-hede-f7h1a
+      - value: 0.896
+        source: hede
         specimen: dk-hede-f7h1b
       - value: 0.896
         source: hede
         specimen: dk-hede-f7h1c
+      - value: 0.896
+        source: hede
+        specimen: dk-hede-f7h1d
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050470
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050505
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1050506
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1051030
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66105
       - value: 0.896
         source: numismaster
         specimen: denmark-numismaster-66106
@@ -14621,7 +14652,12 @@ coins:
         source: numismaster
         specimen: denmark-numismaster-66107
       - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66108
+      - value: 0.896
         source: numista
+      - value: 0.896
+        source: ucoin
     weight_rough_g:
       - value: 13.25
         source: bruun
@@ -14629,6 +14665,11 @@ coins:
         source: bruun
       - value: 13.28
         source: bruun
+      - value: 13.28
+        source: ucoin
+      - value: 13.284
+        source: hede
+        specimen: dk-hede-f7h1a
       - value: 13.284
         source: hede
         specimen: dk-hede-f7h1b
@@ -14636,11 +14677,32 @@ coins:
         source: hede
         specimen: dk-hede-f7h1c
       - value: 13.284
+        source: hede
+        specimen: dk-hede-f7h1d
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050470
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050505
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1050506
+      - value: 13.284
+        source: ngc
+        specimen: ngc-1051030
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66105
+      - value: 13.284
         source: numismaster
         specimen: denmark-numismaster-66106
       - value: 13.284
         source: numismaster
         specimen: denmark-numismaster-66107
+      - value: 13.284
+        source: numismaster
+        specimen: denmark-numismaster-66108
       - value: 13.284
         source: numista
       - value: 13.29
@@ -14648,13 +14710,24 @@ coins:
     diameter_mm:
       - value: 27.0
         source: numista
+      - value: 27.1
+        source: ucoin
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_66105
+        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_66106
         ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_66107
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66108
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1166, p. 204
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14218, p. 79
@@ -14675,23 +14748,50 @@ coins:
         ref: Bruun Part III, lot 11308, p. 135
       - type: literature
         url: https://www.danskmoent.dk/fr/f7h1.htm
-        ref: danskmoent.dk (Hede f7h1B)
+        ref: danskmoent.dk (Hede f7h1A)
       - type: literature
         url: https://en.numista.com/83075
         ref: Numista N#83075 — 2 Frederiks d'Or - Frederik VII
-    issuing_entity: royal_holstein
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dor-1850-1863/?tid=130482
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.3-1856-1859-cuid-1050470-duid-1238403
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.2-1851-1855-cuid-1050505-duid-1238398
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.4-1863-cuid-1050506-duid-1238406
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-frederiks-dor-km-750.1-1850-cuid-1051030-duid-1238397
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     composed_of:
+      - denmark-numismaster-66105
       - denmark-numismaster-66106
       - denmark-numismaster-66107
+      - denmark-numismaster-66108
+      - dk-bruun-8200
       - dk-bruun-8204
       - dk-bruun-8212
       - dk-bruun-8216
       - dk-bruun-8226
       - dk-bruun-8248
       - dk-bruun-8261
+      - dk-hede-f7h1a
       - dk-hede-f7h1b
       - dk-hede-f7h1c
+      - dk-hede-f7h1d
       - dk-numista-83075
+      - dk-tid-130482
+      - ngc-1050470
+      - ngc-1050505
+      - ngc-1050506
+      - ngc-1051030
   - id: c-9224ec83
     class_id: c-9224ec83
     label: unified-dk-hede-f7h2
