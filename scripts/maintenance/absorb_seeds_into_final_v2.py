@@ -4010,6 +4010,12 @@ def process_entity(entity_id: str) -> dict:
             fid = fc["id"]
             if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                 continue  # curator no_merge: different coin — never absorb
+            # A final the curator recorded as an empty duplicate never hosts
+            # a new class: emptied by a merge, its catalogue shrinks to what no
+            # member gives and it matched an unrelated class on nominal + year
+            # alone (km-a445-chr-v-1696 took Hede 26, 2026-11-08).
+            if str(fid) in _empty_duplicate_removals():
+                continue
             if _u_carries and fc.get("fuss") in (None, "", "seed_unsorted"):
                 continue
             # An unclassified final with no catalogue index at all (a bare
@@ -4046,6 +4052,8 @@ def process_entity(entity_id: str) -> dict:
             for fid, fc in final_by_id.items():
                 if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                     continue  # curator no_merge: different coin — never absorb
+                if str(fid) in _empty_duplicate_removals():
+                    continue  # recorded empty duplicate: never a host
                 f_refs = _catalog_refs(fc, entity_id)
                 if not _shares_unique_id_ref(u_refs, f_refs):
                     continue
