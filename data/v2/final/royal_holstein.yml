@@ -1345,18 +1345,28 @@ coins:
     v1_home_location: schleswig_holstein
   - fuss: 11_333_thaler
     phase: I
-    kind: scheide
+    kind: kurant
     fraction: 1/48
     nominal: 1 Skilling Dansk
     ruler: Christian VII.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - royal_holstein
+      - danish_norway
+      - danish_realm
+    mintmaster: Hans Schierven Knoph
     id: km-616-chr-v-1771
     year_first: 1771
     year_last: 1785
     year_ranges:
       -   - 1771
+          - 1771
+      -   - 1779
+          - 1779
+      -   - 1782
+          - 1782
+      -   - 1784
           - 1785
-    year_label: 1771-1785
+    year_label: 1771, 1779, 1782, 1784-1785
     mint:
       - Altona
       - Kongsberg
@@ -1364,17 +1374,37 @@ coins:
     catalog:
       km:
         - '616'
-        - '616.1'
+        - '616.6'
+        - '616.8'
+        - '616.2'
         - '616.3'
-      hede: '37'
+        - '616.5'
+        - '616.1'
+        - '616.7'
+        - '616.4'
+        - 245a
       numista:
         - '958'
         - '565981'
+        - '81301'
       others:
         - KM# 616.1
         - KM# 616.2
         - C# 47
+        - Brekke# 98
       hede_volume: c7h
+      hede:
+        - '37'
+        - 37d
+      schou: 9-21
+      sieg:
+        - '2'
+        - '2.6'
+      bruun_collection_id: '7774'
+      bruun_part: III
+      bruun_lot_no: 11290
+      bruun_page: 145
+      fp: '2.17'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -1383,9 +1413,29 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 11.69
+        source: numista
+      - value: 11.69
+        source: ucoin
+      - value: 11.693
+        source: hede
+      - value: 11.7
+        source: kmk
       - value: 11.7
         source: numista
+      - value: 11.7
+        source: ucoin
+      - value: 11.81
+        source: kmk
+      - value: 11.894
+        source: kmk
     diameter_mm:
+      - value: 29.0
+        source: ngc
+      - value: 29.0
+        source: numista
+      - value: 29.0
+        source: ucoin
       - value: 30.0
         source: numista
     sources:
@@ -1399,8 +1449,364 @@ coins:
         url: https://en.numista.com/958
         ref: Numista N#958 — 1 Skilling - Christian VII (Copenhagen)
       - type: literature
+        url: https://numismaster.com/MC_58033
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_58037
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_85766
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_85767
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_85769
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_85805
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_85806
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_85807
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_86214
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11290, p. 127
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h37.htm
+        ref: danskmoent.dk (Hede c7h37)
+      - type: literature
         url: https://en.numista.com/565981
         ref: Numista N#565981 — 1 Skilling - Christian VII Altona
+      - type: literature
+        url: https://en.numista.com/81301
+        ref: Numista N#81301 — 1 Skilling - Christian VII (Kongsberg) - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-skilling-1771/?tid=88590
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148201
+        ref: KMM 148201 (Inv. KP 1656.2112)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148202
+        ref: KMM 148202 (Inv. KP 1656.2111)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148205
+        ref: KMM 148205 (Inv. KP 1656.2108)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160394
+        ref: KMM 160394 (Inv. FP 3326.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168062
+        ref: KMM 168062 (Inv. FP 2448.22)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292893
+        ref: KMM 292893 (Inv. FP 6109.18)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/96060
+        ref: KMM 96060 (Inv. GP 1942.10)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.8-1779-cuid-1052363-duid-1236310
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.2-1771-cuid-1052364-duid-1236311
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.3-1771-cuid-1052646-duid-1236312
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.6-1771-cuid-1052647-duid-1236315
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.5-1771-cuid-1062479-duid-1236314
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.1-1771-cuid-1068824-duid-1238817
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.7-1771-cuid-1068825-duid-1238818
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-616.4-1771-cuid-1069292-duid-1236313
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-245a-1771-cuid-1093502-duid-1445224
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306353
+        ref: KMM 306353 (Inv. FP 7856.3)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306745
+        ref: KMM 306745 (Inv. FP 7862.39)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122887
+        ref: KMM 122887 (Inv. FP 3712.12)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122888
+        ref: KMM 122888 (Inv. FP 3712.13)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291444
+        ref: KMM 291444 (Inv. FP 9687.34)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/741048
+        ref: KMM 741048 (Inv. FP 13018.4)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/295585
+        ref: KMM 295585 (Inv. FP 9137.8)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/301841
+        ref: KMM 301841 (Inv. FP 8410.89)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/301843
+        ref: KMM 301843 (Inv. FP 8410.87)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/578767
+        ref: KMM 578767 (Inv. FP 11505.17)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/578768
+        ref: KMM 578768 (Inv. FP 11505.18)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/578769
+        ref: KMM 578769 (Inv. FP 11505.19)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168323
+        ref: KMM 168323 (Inv. FP 1634.33)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168324
+        ref: KMM 168324 (Inv. FP 1634.32)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292904
+        ref: KMM 292904 (Inv. FP 905.120,2)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292943
+        ref: KMM 292943 (Inv. FP 905.120)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/133416
+        ref: KMM 133416 (Inv. FP 9374.40)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/301840
+        ref: KMM 301840 (Inv. FP 8410.90)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155270
+        ref: KMM 155270 (Inv. FP 3115.76)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155332
+        ref: KMM 155332 (Inv. FP 3383.9)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155333
+        ref: KMM 155333 (Inv. FP 3383.8)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155335
+        ref: KMM 155335 (Inv. FP 3383.7)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155337
+        ref: KMM 155337 (Inv. FP 3383.6)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155339
+        ref: KMM 155339 (Inv. FP 3383.5)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155340
+        ref: KMM 155340 (Inv. FP 3383.4)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155341
+        ref: KMM 155341 (Inv. FP 3383.13)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155342
+        ref: KMM 155342 (Inv. FP 3383.15)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155343
+        ref: KMM 155343 (Inv. FP 3383.14)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155344
+        ref: KMM 155344 (Inv. FP 3383.12)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156111
+        ref: KMM 156111 (Inv. FP 5339.3)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159725
+        ref: KMM 159725 (Inv. FP 3931.89)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159727
+        ref: KMM 159727 (Inv. FP 3931.88)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159729
+        ref: KMM 159729 (Inv. FP 3931.87)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159744
+        ref: KMM 159744 (Inv. FP 3931.90)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159746
+        ref: KMM 159746 (Inv. FP 3931.91)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159748
+        ref: KMM 159748 (Inv. FP 3931.92)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159750
+        ref: KMM 159750 (Inv. FP 3931.93)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296269
+        ref: KMM 296269 (Inv. FP 8988.12)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296270
+        ref: KMM 296270 (Inv. FP 8988.11)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296271
+        ref: KMM 296271 (Inv. FP 8988.10)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/301842
+        ref: KMM 301842 (Inv. FP 8410.88)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308805
+        ref: KMM 308805 (Inv. FP 7415.7)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331190
+        ref: KMM 331190 (Inv. FP 6200.71)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331191
+        ref: KMM 331191 (Inv. FP 6200.70)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348433
+        ref: KMM 348433 (Inv. FP 5405.12)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351617
+        ref: KMM 351617 (Inv. FP 5176.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/368761
+        ref: KMM 368761 (Inv. FP 4504.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369246
+        ref: KMM 369246 (Inv. FP 4492.23)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/371728
+        ref: KMM 371728 (Inv. FP 9925.10)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372854
+        ref: KMM 372854 (Inv. FP 4276.11)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/391792
+        ref: KMM 391792 (Inv. FP 4087.50)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/395564
+        ref: KMM 395564 (Inv. FP 4548.5)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/410707
+        ref: KMM 410707 (Inv. FP 3008.36)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/736271
+        ref: KMM 736271 (Inv. FP 12907.14)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740766
+        ref: KMM 740766 (Inv. FP 3383.11)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740767
+        ref: KMM 740767 (Inv. FP 3383.10)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152104
+        ref: KMM 152104 (Inv. FP 3574.190)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148200
+        ref: KMM 148200 (Inv. KP 1656.2113)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148203
+        ref: KMM 148203 (Inv. KP 1656.2110)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148204
+        ref: KMM 148204 (Inv. KP 1656.2109)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/175962
+        ref: KMM 175962 (Inv. FP 2920.48)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/622099
+        ref: KMM 622099 (Inv. FP 2533.52)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/622100
+        ref: KMM 622100 (Inv. FP 2533.51)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/622101
+        ref: KMM 622101 (Inv. FP 2533.50)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/622102
+        ref: KMM 622102 (Inv. FP 2533.49)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299618
+        ref: KMM 299618 (Inv. FP 8421.4)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299619
+        ref: KMM 299619 (Inv. FP 8421.3)
+        display: false
     note:
       de: «1 SKILLING DANSK K·M· 1771» (K·M· = Kongelige Mønt) · ca. 55 Mio. Stück
       en: «1 SKILLING DANSK K·M· 1771» (K·M· = Kongelige Mønt) · ca. 55 Mio. pieces
@@ -1411,7 +1817,7 @@ coins:
       uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
       da: 'ucoin-seed (V1-overførsel): V1-kuratorpost fra før cachen, uden cache-dækning.'
     composed_of:
-      - c-a77f029b
+      - c-3adade94
     label: km-616-chr-v-1771
     origin: foundation
     v1_home_location: schleswig_holstein

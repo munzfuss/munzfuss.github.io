@@ -696,10 +696,6 @@ coins:
           - 1682
     year_label: 1681-1682
     mint: Schleswig
-    catalog:
-      km: '139'
-      numista: '303372'
-      lange: '408'
     metal: billon
     metal_verified: true
     fineness_verified: false
@@ -717,9 +713,6 @@ coins:
       - type: numista
         url: https://en.numista.com/catalogue/pieces303372.html
         ref: Numista
-      - type: literature
-        url: https://en.numista.com/303372
-        ref: Numista N#303372 — 1 Sosling - Christian Albert
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/334030
         ref: KMM 334030 (Inv. GP 4581.4)
@@ -741,8 +734,7 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
       da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-713c3846
+    composed_of: []
     label: km-139-chr-a-1681
     origin: foundation
     v1_home_location: schleswig_holstein
@@ -7124,37 +7116,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Søsling lybsk
-    ruler: Christian Albert
-    issuing_entity: gottorp_duchy
-    mintmaster: Gottorp
-    id: c-2cd9d265
-    year_first: 1682
-    year_last: 1682
-    year_label: '1682'
-    mint: Gottorp
-    catalog:
-      lange: '408'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168043
-        ref: KMM 168043 (Inv. FP 2533.67)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/622083
-        ref: KMM 622083 (Inv. FP 2533.68)
-        display: false
-    verification_note: *id001
-    composed_of:
-      - c-2cd9d265
-    label: unified-kmk-168043
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Daler
     ruler: Frederik 3
     issuing_entity: gottorp_duchy
@@ -8237,19 +8198,32 @@ coins:
     issuing_entity: gottorp_duchy
     fraction: 1/64
     id: c-ea7e748c
-    year_first: 1682
+    year_first: 1681
     year_last: 1682
-    year_label: '1682'
+    year_ranges:
+      -   - 1681
+          - 1682
+    year_label: 1681-1682
+    mint:
+      - Gottorp
+      - Schleswig
     catalog:
       km: '139'
       lange: '408'
+      numista: '303372'
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 0.8
+        source: numista
+    diameter_mm:
+      - value: 16.0
+        source: numista
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-sechsling-km-139-1682-cuid-1186433-duid-1393791
@@ -8260,6 +8234,16 @@ coins:
       - type: numista
         url: https://en.numista.com/catalogue/pieces303372.html
         ref: Numista
+      - type: literature
+        url: https://en.numista.com/303372
+        ref: Numista N#303372 — 1 Sosling - Christian Albert
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168043
+        ref: KMM 168043 (Inv. FP 2533.67)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/622083
+        ref: KMM 622083 (Inv. FP 2533.68)
+        display: false
     note:
       de: 6 Pfennigs = 1/64 Thaler · Christian Albrecht von Gottorp, 1681-1682
       en: 6 Pfennigs = 1/64 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1681-1682

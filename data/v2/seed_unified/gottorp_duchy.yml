@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 550 per-source seed entries.
-# Output: 227 unified entries (one per physical coin).
+# Output: 225 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2424,45 +2424,6 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-numista-257985
-  - id: c-713c3846
-    class_id: c-713c3846
-    label: unified-dk-numista-303372
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 6 Pfennigs
-    year_first: 1681
-    year_last: 1682
-    year_ranges:
-      -   - 1681
-          - 1682
-    year_label: 1681-1682
-    ruler: Christian Albert
-    mint: Schleswig
-    catalog:
-      km: '139'
-      numista: '303372'
-      lange: '408'
-    metal: billon
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.8
-        source: numista
-    diameter_mm:
-      - value: 16.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/303372
-        ref: Numista N#303372 — 1 Sosling - Christian Albert
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - dk-numista-303372
   - id: c-94688f82
     class_id: c-94688f82
     label: unified-dk-numista-313116
@@ -3545,31 +3506,6 @@ coins:
       active: false
       agrees_with_active: true
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
-  - id: c-2cd9d265
-    class_id: c-2cd9d265
-    label: unified-kmk-168043
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling lybsk
-    year_first: 1682
-    year_last: 1682
-    year_label: '1682'
-    ruler: Christian Albert
-    mint: Gottorp
-    catalog:
-      lange: '408'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168043
-        ref: KMM 168043 (Inv. FP 2533.67)
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-168043
   - id: c-9b44029b
     class_id: c-9b44029b
     label: unified-kmk-184396
@@ -7816,21 +7752,40 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Sechsling
-    year_first: 1682
+    year_first: 1681
     year_last: 1682
-    year_label: '1682'
+    year_ranges:
+      -   - 1681
+          - 1682
+    year_label: 1681-1682
     ruler: Christian Albrecht
+    mint:
+      - Gottorp
+      - Schleswig
     catalog:
       km: '139'
       lange: '408'
+      numista: '303372'
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 0.8
+        source: numista
+    diameter_mm:
+      - value: 16.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/303372
+        ref: Numista N#303372 — 1 Sosling - Christian Albert
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168043
+        ref: KMM 168043 (Inv. FP 2533.67)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-sechsling-km-139-1682-cuid-1186433-duid-1393791
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -7839,6 +7794,8 @@ coins:
         ref: NumisMaster
     issuing_entity: gottorp_duchy
     composed_of:
+      - dk-numista-303372
+      - kmk-168043
       - ngc-1186433
       - schleswig_holstein-numismaster-167240
   - id: c-2751f8c3

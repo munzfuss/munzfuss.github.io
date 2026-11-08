@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 227 active, 227 retired.
+# 225 active, 229 retired.
 
 id: gottorp_duchy
 classes:
@@ -271,13 +271,6 @@ classes:
     members:
       - ngc-167310
       - schleswig_holstein-numismaster-167310
-  - id: c-2cd9d265
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-168043
-    legacy_id: unified-kmk-168043
-    members:
-      - kmk-168043
   - id: c-2f2d925b
     status: active
     created: '2026-10-22'
@@ -733,13 +726,6 @@ classes:
       - dk-bruun-14486
       - ngc-1159833
       - schleswig_holstein-numismaster-99488
-  - id: c-713c3846
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-303372
-    legacy_id: unified-dk-numista-303372
-    members:
-      - dk-numista-303372
   - id: c-716acd5e
     status: active
     created: '2026-10-22'
@@ -1907,6 +1893,8 @@ classes:
     label: unified-ngc-1186433
     legacy_id: unified-ngc-1186433
     members:
+      - dk-numista-303372
+      - kmk-168043
       - ngc-1186433
       - schleswig_holstein-numismaster-167240
   - id: c-eb076bb7
@@ -2409,6 +2397,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-290996
+  - id: c-2cd9d265
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-168043
+    legacy_id: unified-kmk-168043
+    merged_into: c-ea7e748c
+    retired: '2026-11-08'
+    members:
+      - kmk-168043
   - id: c-2d5a4dfb
     status: retired
     created: '2026-10-22'
@@ -2984,6 +2981,15 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-687773
+  - id: c-713c3846
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-303372
+    legacy_id: unified-dk-numista-303372
+    merged_into: c-ea7e748c
+    retired: '2026-11-08'
+    members:
+      - dk-numista-303372
   - id: c-71739fe0
     status: retired
     created: '2026-10-22'
