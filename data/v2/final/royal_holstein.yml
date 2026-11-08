@@ -14325,18 +14325,27 @@ coins:
     kind: scheide
     nominal: 1/5 Rigsbankskilling / 1/5 R.B.S
     ruler: Christian VIII.
-    issuing_entity:
-      - danish_realm
-      - royal_holstein
+    issuing_entity: royal_holstein
     fraction: 1/96
     mintmaster: FF
     id: c-da5b11f8
     year_first: 1842
     year_last: 1842
     year_label: '1842'
-    mint:
-      - Altona
-      - Kopenhagen
+    mint_alts:
+      - value: Kopenhagen
+        source: ucoin
+        kind: erroneous
+        reason:
+          de: 'Falsche Münzstätte. ucoin 70717 druckt «Copenhagen (FF)» («København (FF)»), doch FF ist das Altonaer Münzmeisterzeichen: danskmoent (Hede 13) nennt «1842, Altona, Kobber … Møntmester- og
+            medaillørmærke FF / K» («1842, Altona, Kupfer … Münzmeister- und Medailleurzeichen FF / K»), ucoin 70716 (KM 723) «Altona (FF)», Numista 41421 (KM 724) «Altona, Schleswig-Holstein».'
+          en: 'Wrong mint. ucoin 70717 prints «Copenhagen (FF)», but FF is the Altona mintmaster’s mark: danskmoent (Hede 13) gives «1842, Altona, Kobber … Møntmester- og medaillørmærke FF / K» («1842,
+            Altona, copper … mintmaster’s and medallist’s mark FF / K»), ucoin 70716 (KM 723) «Altona (FF)», Numista 41421 (KM 724) «Altona, Schleswig-Holstein».'
+          uk: 'Помилкове місце карбування. ucoin 70717 друкує «Copenhagen (FF)» («København (FF)»), але FF — знак мінцмейстера Altona: danskmoent (Hede 13) подає «1842, Altona, Kobber … Møntmester- og medaillørmærke
+            FF / K» («1842, Altona, мідь … знак мінцмейстера і медальєра FF / K»), ucoin 70716 (KM 723) — «Altona (FF)», Numista 41421 (KM 724) — «Altona, Schleswig-Holstein».'
+          da: 'Forkert møntsted. ucoin 70717 trykker «Copenhagen (FF)» («København (FF)»), men FF er møntmestermærket fra Altona: danskmoent (Hede 13) angiver «1842, Altona, Kobber … Møntmester- og medaillørmærke
+            FF / K», ucoin 70716 (KM 723) «Altona (FF)», Numista 41421 (KM 724) «Altona, Schleswig-Holstein».'
+    mint: Altona
     catalog:
       km:
         - '723'
