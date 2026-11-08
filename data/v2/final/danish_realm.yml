@@ -120133,17 +120133,50 @@ coins:
     year_verified: false
     uncertainty:
       year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1534-1559
+          seed: dk-hede-c3h23
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1547-1556
+          seed: kmk-279228
         - kind: hedged
           how: museum
           source: kmk
           value: 1534-1559
           seed: kmk-371906
+    mint_alts:
+      - value: Flensburg
+        source: kmk
+        kind: suspect
+        reason:
+          de: "Prägeort nach KMM.\n[b]danskmoent.dk (Hede 23)[/b] nach Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i] (Übers.: «das C ist gekrönt, daher muss die
+            Münze im Königreich (Malmø) geprägt sein»); in Schleswig und Holstein war der König nur Herzog, und Herzogskronen sind auf Münzen nicht bekannt.\n[b]Nöbbe (NNÅ 1938)[/b] zählt den Blaffert mit
+            gekröntem C zu den Flensburger Prägungen, nach danskmoent.dk [i]«uden særlige argumenter»[/i] (Übers.: «ohne besondere Argumente»). Ein Fund, der die Zuweisung entscheidet, ist nicht bekannt."
+          en: "Mint as given by KMM.\n[b]danskmoent.dk (Hede 23)[/b] after Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i] (transl.: «the C is crowned, so the coin
+            must have been struck in the kingdom (Malmø)»); in Schleswig and Holstein the king was only duke, and ducal crowns are not known on coins.\n[b]Nöbbe (NNÅ 1938)[/b] counts the blaffert with the
+            crowned C among the Flensborg strikes, according to danskmoent.dk [i]«uden særlige argumenter»[/i] (transl.: «without particular arguments»). No find that settles the attribution is known."
+          uk: "Місце карбування за KMM.\n[b]danskmoent.dk (Hede 23)[/b] за Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i] (перекл.: «C коронований, тож монету мусили
+            карбувати в королівстві (Malmø)»); у Шлезвігу й Гольштейні король був лише герцогом, а герцогських корон на монетах не знають.\n[b]Nöbbe (NNÅ 1938)[/b] зараховує блаферт із коронованим C до
+            флензбурзьких карбувань, за danskmoent.dk [i]«uden særlige argumenter»[/i] (перекл.: «без особливих аргументів»). Знахідки, яка розв'язала б атрибуцію, не відомо."
+          da: "Møntsted efter KMM.\n[b]danskmoent.dk (Hede 23)[/b] efter Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i]; i Slesvig og Holsten var kongen kun hertug,
+            og hertugkroner kendes ikke på mønter.\n[b]Nöbbe (NNÅ 1938)[/b] regner blafferten med det kronede C til de flensborgske prægninger, ifølge danskmoent.dk [i]«uden særlige argumenter»[/i]. Et
+            fund, der afgør henførelsen, kendes ikke."
+    mint: Malmø
     catalog:
       hede: '23'
+      hede_volume: c3h
+      schou: '8'
+      others:
+        - JSJ# 216
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
       - value: 0.38
@@ -120169,9 +120202,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/311756
         ref: KMM 311756 (Inv. FP 10311.1)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/371906
         ref: KMM 371906 (Inv. FP 10480.4)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/372308
         ref: KMM 372308 (Inv. FP 4324.4)
@@ -120179,6 +120214,102 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/725843
         ref: KMM 725843 (Inv. FP 5215.10,x6; die Webseite unter dieser Objektnummer zeigt Inv. FP 5215.10,3)
+        display: false
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3h23.htm
+        ref: danskmoent.dk (Hede c3h23)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152263
+        ref: KMM 152263 (Inv. FP 3574.31)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152264
+        ref: KMM 152264 (Inv. FP 3574.30)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279228
+        ref: KMM 279228 (Inv. FP 3528.216)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131768
+        ref: KMM 131768 (Inv. FP 4100.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/315093
+        ref: KMM 315093 (Inv. FP 6969.11)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348212
+        ref: KMM 348212 (Inv. FP 5409.204)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/639379
+        ref: KMM 639379 (Inv. FP 11770.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/646197
+        ref: KMM 646197 (Inv. FP 11877.3)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/698780
+        ref: KMM 698780 (Inv. FP 306.19)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/736276
+        ref: KMM 736276 (Inv. FP 12907.9)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/736278
+        ref: KMM 736278 (Inv. FP 12907.7)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/326313
+        ref: KMM 326313 (Inv. FP 6657.12)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/327892
+        ref: KMM 327892 (Inv. FP 6503.11)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/646196
+        ref: KMM 646196 (Inv. FP 11877.4)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348210
+        ref: KMM 348210 (Inv. FP 5409.206)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348211
+        ref: KMM 348211 (Inv. FP 5409.205)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348213
+        ref: KMM 348213 (Inv. FP 5409.203)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369835
+        ref: KMM 369835 (Inv. FP 4389.3)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/561
+        ref: KMM 561 (Inv. FP 5867.9)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/736277
+        ref: KMM 736277 (Inv. FP 12907.8)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/578455
+        ref: KMM 578455 (Inv. FP 11446.11)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/133118
+        ref: KMM 133118 (Inv. FP 9324.28)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/267340
+        ref: KMM 267340 (Inv. FP 10092.8)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292250
+        ref: KMM 292250 (Inv. FP 10164.12)
         display: false
     verification_note: *id008
     composed_of:
@@ -120392,55 +120523,6 @@ coins:
     composed_of:
       - c-414918a5
     label: unified-kmk-132461
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Lybsk Blaffert
-    ruler: Christian III.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-0a43ed18
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1534-1559
-    catalog:
-      hede: '23'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/133118
-        ref: KMM 133118 (Inv. FP 9324.28)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/267340
-        ref: KMM 267340 (Inv. FP 10092.8)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292250
-        ref: KMM 292250 (Inv. FP 10164.12)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152264
-        ref: KMM 152264 (Inv. FP 3574.30)
-    verification_note: *id009
-    composed_of:
-      - c-0a43ed18
-    label: unified-kmk-133118
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -166755,55 +166837,6 @@ coins:
     composed_of:
       - c-3dd4c2c1
     label: unified-dk-hede-c3h13
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Blaffert
-    ruler: Christian 2. (?).
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-16e8b3e7
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: hede
-          as_printed: u. år
-          value: 1534-1559
-          seed: dk-hede-c3h23
-    catalog:
-      hede: '23'
-      hede_volume: c3h
-      schou: '8'
-    metal: silver
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h23.htm
-        ref: danskmoent.dk (Hede c3h23)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/735928
-        ref: KMM 735928 (Inv. FP 12880.7)
-        display: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    composed_of:
-      - c-16e8b3e7
-    label: unified-dk-hede-c3h23
     origin: promoted
   - fuss: seed_unsorted
     phase: numista

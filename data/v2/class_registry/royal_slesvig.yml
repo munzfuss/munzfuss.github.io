@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 59 active, 17 retired.
+# 57 active, 19 retired.
 
 id: royal_slesvig
 classes:
@@ -128,13 +128,6 @@ classes:
     legacy_id: unified-dk-numista-301239
     members:
       - dk-numista-301239
-  - id: c-3a9380d1
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-279228
-    legacy_id: unified-kmk-131768
-    members:
-      - kmk-279228
   - id: c-41ae6959
     status: active
     created: '2026-10-22'
@@ -263,13 +256,6 @@ classes:
       - dk-bruun-14708
       - dk-galster-f1g-115
       - dk-numista-468620
-  - id: c-85553d44
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-152263
-    legacy_id: unified-kmk-152263
-    members:
-      - kmk-152263
   - id: c-8ae5600c
     status: active
     created: '2026-10-22'
@@ -584,6 +570,15 @@ classes:
       - kmk-306915
       - kmk-368091
       - kmk-391793
+  - id: c-3a9380d1
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-279228
+    legacy_id: unified-kmk-131768
+    merged_into: c-6b3750e4
+    retired: '2026-11-08'
+    members:
+      - kmk-279228
   - id: c-555e4c57
     status: retired
     created: '2026-10-22'
@@ -593,6 +588,15 @@ classes:
     retired: '2026-11-08'
     members:
       - kmk-411793
+  - id: c-85553d44
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-152263
+    legacy_id: unified-kmk-152263
+    merged_into: c-6b3750e4
+    retired: '2026-11-08'
+    members:
+      - kmk-152263
   - id: c-94c3a246
     status: retired
     created: '2026-10-22'

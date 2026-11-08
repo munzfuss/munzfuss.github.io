@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1785 active, 4639 retired.
+# 1783 active, 4641 retired.
 
 id: danish_realm
 classes:
@@ -869,13 +869,6 @@ classes:
     legacy_id: unified-ngc-65873
     members:
       - ngc-65873
-  - id: c-0a43ed18
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-152264
-    legacy_id: unified-kmk-133118
-    members:
-      - kmk-152264
   - id: c-0a481b96
     status: active
     created: '2026-10-22'
@@ -2969,13 +2962,6 @@ classes:
     legacy_id: unified-kmk-167346
     members:
       - kmk-167346
-  - id: c-16e8b3e7
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-c3h23
-    legacy_id: unified-dk-hede-c3h23
-    members:
-      - dk-hede-c3h23
   - id: c-16fd4eb6
     status: active
     created: '2026-10-22'
@@ -11445,12 +11431,16 @@ classes:
   - id: c-6b3750e4
     status: active
     created: '2026-10-22'
-    label: unified-kmk-131365
+    label: unified-dk-hede-c3h23
     legacy_id: unified-kmk-131365
     members:
+      - dk-hede-c3h23
       - kmk-131365
       - kmk-131366
       - kmk-131367
+      - kmk-152263
+      - kmk-152264
+      - kmk-279228
       - kmk-311756
       - kmk-371906
   - id: c-6b536fd7
@@ -28821,6 +28811,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-309470
+  - id: c-0a43ed18
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-152264
+    legacy_id: unified-kmk-133118
+    merged_into: c-6b3750e4
+    retired: '2026-11-08'
+    members:
+      - kmk-152264
   - id: c-0a7a31ed
     status: retired
     created: '2026-10-22'
@@ -30933,6 +30932,15 @@ classes:
       - kmk-423064
       - kmk-423065
       - kmk-423066
+  - id: c-16e8b3e7
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-c3h23
+    legacy_id: unified-dk-hede-c3h23
+    merged_into: c-6b3750e4
+    retired: '2026-11-08'
+    members:
+      - dk-hede-c3h23
   - id: c-16f5bb9d
     status: retired
     created: '2026-10-22'

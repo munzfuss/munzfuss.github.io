@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8447 per-source seed entries.
-# Output: 1785 unified entries (one per physical coin).
+# Input: 8449 per-source seed entries.
+# Output: 1783 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13671,8 +13671,8 @@ coins:
       - dk-hede-c3h2
       - dk-numista-427477
       - kmk-156724
-  - id: c-16e8b3e7
-    class_id: c-16e8b3e7
+  - id: c-6b3750e4
+    class_id: c-6b3750e4
     label: unified-dk-hede-c3h23
     fuss: seed_unsorted
     phase: hede
@@ -13685,14 +13685,26 @@ coins:
           - 1559
     year_label: 1534-1559
     ruler: Christian 2. (?).
+    mint: Malmø
     catalog:
       hede: '23'
       hede_volume: c3h
       schou: '8'
+      others:
+        - JSJ# 216
     metal: silver
-    mint_verified: false
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: true
     verified: false
     year_verified: false
+    weight_rough_g:
+      - value: 0.38
+        source: kmk
+      - value: 0.55
+        source: kmk
+      - value: 0.57
+        source: kmk
     uncertainty:
       year:
         - kind: inferred
@@ -13701,13 +13713,72 @@ coins:
           as_printed: u. år
           value: 1534-1559
           seed: dk-hede-c3h23
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1547-1556
+          seed: kmk-279228
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-371906
+    mint_alts:
+      - value: Flensburg
+        source: kmk
+        kind: suspect
+        reason:
+          de: "Prägeort nach KMM.\n[b]danskmoent.dk (Hede 23)[/b] nach Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i] (Übers.: «das C ist gekrönt, daher muss die
+            Münze im Königreich (Malmø) geprägt sein»); in Schleswig und Holstein war der König nur Herzog, und Herzogskronen sind auf Münzen nicht bekannt.\n[b]Nöbbe (NNÅ 1938)[/b] zählt den Blaffert mit
+            gekröntem C zu den Flensburger Prägungen, nach danskmoent.dk [i]«uden særlige argumenter»[/i] (Übers.: «ohne besondere Argumente»). Ein Fund, der die Zuweisung entscheidet, ist nicht bekannt."
+          en: "Mint as given by KMM.\n[b]danskmoent.dk (Hede 23)[/b] after Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i] (transl.: «the C is crowned, so the coin
+            must have been struck in the kingdom (Malmø)»); in Schleswig and Holstein the king was only duke, and ducal crowns are not known on coins.\n[b]Nöbbe (NNÅ 1938)[/b] counts the blaffert with the
+            crowned C among the Flensborg strikes, according to danskmoent.dk [i]«uden særlige argumenter»[/i] (transl.: «without particular arguments»). No find that settles the attribution is known."
+          uk: "Місце карбування за KMM.\n[b]danskmoent.dk (Hede 23)[/b] за Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i] (перекл.: «C коронований, тож монету мусили
+            карбувати в королівстві (Malmø)»); у Шлезвігу й Гольштейні король був лише герцогом, а герцогських корон на монетах не знають.\n[b]Nöbbe (NNÅ 1938)[/b] зараховує блаферт із коронованим C до
+            флензбурзьких карбувань, за danskmoent.dk [i]«uden særlige argumenter»[/i] (перекл.: «без особливих аргументів»). Знахідки, яка розв'язала б атрибуцію, не відомо."
+          da: "Møntsted efter KMM.\n[b]danskmoent.dk (Hede 23)[/b] efter Sømod: [i]«C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»[/i]; i Slesvig og Holsten var kongen kun hertug,
+            og hertugkroner kendes ikke på mønter.\n[b]Nöbbe (NNÅ 1938)[/b] regner blafferten med det kronede C til de flensborgske prægninger, ifølge danskmoent.dk [i]«uden særlige argumenter»[/i]. Et
+            fund, der afgør henførelsen, kendes ikke."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h23.htm
         ref: danskmoent.dk (Hede c3h23)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131365
+        ref: KMM 131365 (Inv. FP 4917.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131366
+        ref: KMM 131366 (Inv. FP 4917.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131367
+        ref: KMM 131367 (Inv. FP 4917.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152263
+        ref: KMM 152263 (Inv. FP 3574.31)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152264
+        ref: KMM 152264 (Inv. FP 3574.30)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279228
+        ref: KMM 279228 (Inv. FP 3528.216)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/311756
+        ref: KMM 311756 (Inv. FP 10311.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/371906
+        ref: KMM 371906 (Inv. FP 10480.4)
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-c3h23
+      - kmk-131365
+      - kmk-131366
+      - kmk-131367
+      - kmk-152263
+      - kmk-152264
+      - kmk-279228
+      - kmk-311756
+      - kmk-371906
   - id: c-7e44f75c
     class_id: c-7e44f75c
     label: unified-dk-hede-c3h3
@@ -105361,64 +105432,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-131175
-  - id: c-6b3750e4
-    class_id: c-6b3750e4
-    label: unified-kmk-131365
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Blaffert
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    ruler: Christian III
-    catalog:
-      hede: '23'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.38
-        source: kmk
-      - value: 0.55
-        source: kmk
-      - value: 0.57
-        source: kmk
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-371906
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131365
-        ref: KMM 131365 (Inv. FP 4917.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131366
-        ref: KMM 131366 (Inv. FP 4917.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131367
-        ref: KMM 131367 (Inv. FP 4917.11)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/311756
-        ref: KMM 311756 (Inv. FP 10311.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/371906
-        ref: KMM 371906 (Inv. FP 10480.4)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-131365
-      - kmk-131366
-      - kmk-131367
-      - kmk-311756
-      - kmk-371906
   - id: c-c64f8519
     class_id: c-c64f8519
     label: unified-kmk-131602
@@ -109249,28 +109262,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-152241
-  - id: c-0a43ed18
-    class_id: c-0a43ed18
-    label: unified-kmk-152264
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Lybsk blaffert
-    ruler: Christian III
-    catalog:
-      hede: '23'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152264
-        ref: KMM 152264 (Inv. FP 3574.30)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-152264
   - id: c-087330c2
     class_id: c-087330c2
     label: unified-kmk-152279
