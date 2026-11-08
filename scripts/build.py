@@ -265,7 +265,7 @@ _COIN_SCHEMA_FIELDS: frozenset[str] = frozenset(Coin.model_fields.keys())
 # Notgeld too (metal 'paper'), which the precious-metal mission excludes and
 # the schema can't represent. See the _assemble_v2_location seed-render pass.
 _VALID_COIN_METALS: frozenset[str] = frozenset(
-    {"silver", "gold", "billon", "silver_billon", "copper", "copper_nickel", "lead", "copper_lead", "bronze", "brass", "pewter"})
+    {"silver", "gold", "billon", "silver_billon", "copper", "copper_nickel", "nickel", "lead", "copper_lead", "bronze", "brass", "pewter"})
 
 
 def _parse_v2_file(path: str):

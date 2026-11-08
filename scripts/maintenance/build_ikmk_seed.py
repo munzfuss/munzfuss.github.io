@@ -60,6 +60,7 @@ _METAL = {
     "Billon": "billon",
     "Bronze": "bronze",
     "Blei": "lead",
+    "Nickel": "nickel",
 }
 
 # literatur catalogue authors → CatalogRefs typed key. Per-segment (split on

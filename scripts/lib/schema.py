@@ -1281,7 +1281,9 @@ class Coin(_StrictBase):
     # one record carrying both metals (curator 2026-11-07).
     # `copper_nickel`: Hede's «Kobbernikkel» (25 Øre 1913-1919), rendered as
     # a copper-tier coin (curator 2026-11-07).
-    metal: Literal["silver", "gold", "billon", "silver_billon", "copper", "copper_nickel", "lead", "copper_lead", "bronze", "brass", "pewter"] | None = None
+    # `nickel`: pure nickel (IKMK «Nickel», Hamburg 25 Pfennig 1909), a base
+    # metal like the copper tier (curator 2026-11-08).
+    metal: Literal["silver", "gold", "billon", "silver_billon", "copper", "copper_nickel", "nickel", "lead", "copper_lead", "bronze", "brass", "pewter"] | None = None
     # D49 class identity. `class_id` is the registry's opaque immutable id of
     # the class (data/v2/class_registry/<entity>.yml); `label` is the mutable
     # human-readable name (the `unified-<top-authority member>` string) the

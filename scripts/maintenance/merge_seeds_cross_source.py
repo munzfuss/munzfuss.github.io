@@ -325,7 +325,7 @@ def _normalise_metal(metal, fineness):
     # granularity difference must not block a merge or read as a real metal
     # disagreement. The precise stored value survives via `_collect_metal`
     # (authority-ranked), which reads the raw metal, not this normalised one.
-    if m in ("bronze", "brass", "copper_nickel"):
+    if m in ("bronze", "brass", "copper_nickel", "nickel"):
         return "copper"
     return m
 

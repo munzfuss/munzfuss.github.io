@@ -178,7 +178,7 @@ def _patch_rows(rows: list[dict], patch: dict[str, dict]) -> list[dict]:
 # `base_metals`), so the render never treats lead, pewter, bronze or brass as
 # precious metal.
 BASE_METALS: frozenset[str] = frozenset(
-    {"copper", "copper_nickel", "copper_lead", "bronze", "brass", "lead", "pewter"})
+    {"copper", "copper_nickel", "nickel", "copper_lead", "bronze", "brass", "lead", "pewter"})
 
 @dataclass
 class PhaseGroup:
