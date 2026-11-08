@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8417 per-source seed entries.
-# Output: 1808 unified entries (one per physical coin).
+# Input: 8403 per-source seed entries.
+# Output: 1806 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -23446,7 +23446,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Hvid. København
+    nominal: 1 Hvid
     year_first: 1624
     year_last: 1625
     year_ranges:
@@ -38864,7 +38864,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 1 Skilling. København og Helsingør
+    nominal: 1 Skilling
     year_first: 1605
     year_last: 1619
     year_ranges:
@@ -39022,7 +39022,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 1 Skilling. København og Helsingør
+    nominal: 1 Skilling
     year_first: 1615
     year_last: 1619
     year_ranges:
@@ -57722,7 +57722,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 4 Skilling Rigsmønt. København
+    nominal: 4 Skilling Rigsmønt
     year_first: 1867
     year_last: 1874
     year_ranges:
@@ -57805,7 +57805,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 4 Skilling Rigsmønt. København
+    nominal: 4 Skilling Rigsmønt
     year_first: 1869
     year_last: 1874
     year_ranges:
@@ -93008,11 +93008,12 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 16 Skilling Rigsmønt. København
+    nominal: 16 Skilling Rigsmønt
     year_first: 1854
     year_last: 1854
     year_label: '1854'
     ruler: Frederik VII
+    mint: Kopenhagen
     catalog:
       hede: 10A
       hede_volume: f7h
@@ -93022,7 +93023,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.5
@@ -93043,7 +93044,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 16 Skilling Rigsmønt. København
+    nominal: 16 Skilling Rigsmønt
     year_first: 1856
     year_last: 1858
     year_ranges:
@@ -93051,6 +93052,7 @@ coins:
           - 1858
     year_label: 1856-1858
     ruler: Frederik VII
+    mint: Kopenhagen
     catalog:
       hede: 10B
       hede_volume: f7h
@@ -93062,7 +93064,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.5
@@ -93077,160 +93079,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-f7h10b
-  - id: c-0008432e
-    class_id: c-0008432e
-    label: unified-dk-hede-f7h12c
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Rigsbankskilling. København og Altona
-    year_first: 1853
-    year_last: 1853
-    year_label: '1853'
-    ruler: Frederik VII
-    mintmaster: Georg Vilhelm Svendsen (VS)
-    mint: Kopenhagen
-    catalog:
-      km: '756'
-      hede: 12C
-      hede_volume: f7h
-      schou: '5'
-      sieg: '4'
-      bruun_collection_id: '8215'
-      bruun_part: IV
-      bruun_lot_no: 17200
-      bruun_page: 105
-      numista: '19001'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 7.18
-        source: ucoin
-      - value: 7.308
-        source: hede
-      - value: 7.32
-        source: numista
-    diameter_mm:
-      - value: 23.0
-        source: numista
-      - value: 23.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65995
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17200, p. 89
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f7h12.htm
-        ref: danskmoent.dk (Hede f7h12C)
-      - type: literature
-        url: https://en.numista.com/19001
-        ref: Numista N#19001 — 1 Rigsbankskilling - Frederik VII (type 2)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1853/?tid=70725
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152036
-        ref: KMM 152036 (Inv. FP 3574.258)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/160388
-        ref: KMM 160388 (Inv. FP 3326.7)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-756-1853-cuid-1050462-duid-1238210
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65995
-      - dk-bruun-8215
-      - dk-hede-f7h12c
-      - dk-numista-19001
-      - dk-tid-70725
-      - kmk-152036
-      - kmk-160388
-      - ngc-1050462
-  - id: c-274c5663
-    class_id: c-274c5663
-    label: unified-dk-hede-f7h13
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: ½ Rigsbankskilling. København og Altona
-    year_first: 1852
-    year_last: 1852
-    year_label: '1852'
-    ruler: Frederik VII
-    mintmaster: FK VS
-    mint: Kopenhagen
-    catalog:
-      km: '753'
-      hede: '13'
-      hede_volume: f7h
-      schou:
-        - '3'
-        - '5'
-      sieg: '1'
-      bruun_collection_id: '8210'
-      bruun_part: IV
-      bruun_lot_no: 17197
-      bruun_page: 104
-      numista: '26710'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.65
-        source: ucoin
-      - value: 3.654
-        source: hede
-      - value: 3.654
-        source: ngc
-      - value: 3.654
-        source: numismaster
-      - value: 3.654
-        source: numista
-    diameter_mm:
-      - value: 18.0
-        source: ucoin
-      - value: 18.2
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65983
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17197, p. 88
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f7h13.htm
-        ref: danskmoent.dk (Hede f7h13)
-      - type: literature
-        url: https://en.numista.com/26710
-        ref: Numista N#26710 — ½ Rigsbankskilling - Frederik VII
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-rigsbankskilling-1852/?tid=70720
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-rigsbankskilling-km-753-1852-cuid-1050459-duid-1238201
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65983
-      - dk-bruun-8210
-      - dk-hede-f7h13
-      - dk-numista-26710
-      - dk-tid-70720
-      - ngc-1050459
   - id: c-e2f1a501
     class_id: c-e2f1a501
     label: unified-dk-hede-f7h3
