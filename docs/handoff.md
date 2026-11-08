@@ -16,6 +16,24 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-08 — Hede 105 / 116 split, Bruun pattern rule narrowed; branch blissful-kirch landed in main (pushed)
+
+- **Shipped and pushed (main e255199, cache 2c7a1b9fb):** Hede 105 / 116 / 113 (KM 275) split with pinned
+  KM 272 / 273.1 / 285 merges and pairwise no_merges; Hede 12A / 12B split; Hede 24 / 26 / 102 / 159 decisions;
+  exclusions Hede F3 74 (off-strike, only weighed specimen deviates), Hede C4 159, Bruun 6437 / 5328 / 5439;
+  absorb clears composed_of of recorded empty duplicates (3917dc4); Bruun parser keeps «Pattern / Trial» lots
+  whose nominal and metal are right (lot 11230 back), excludes off-metal / off-nominal ones (e135675, ffbcba3);
+  «cf.» catalogue numbers skipped; branch `claude/blissful-kirch-7b7be3` fast-forwarded into main — the
+  branch and its worktree are deleted only on the curator's word.
+- **Open:**
+  1. Three KMM «Hede 95A» records still in the KM 222 class — align by their typeNumber tag.
+  2. KM 222 (Dav 3576A, «IIII MARK DANSKE») — possibly a Hede 100 variant.
+  3. KM 272 class vs Hede 112 / 113 class; KM 285 = Hede 113C?
+  4. Hede parser misreads «Schou 17-18, 19, Sieg 73,1 og 76» → Hede 12B has no seed of its own.
+  5. Notes queue (curator pass): stale note on the Hede 12A row, the Hede 105B note dropped by the split.
+  6. Basket B: Frederik IV Hede 11 (KM 481 / 484), Hede 43 (KM 495 / 504); Christian IV Hede 93 / 96 / 122;
+     Frederik III Hede 125 / 131.
+
 ## 2026-11-07 — Hede-base refusals worked type by type (В–Ж); open items (branch claude/blissful-kirch-7b7be3)
 
 - **Shipped (local, unpushed), through 9ce614a:** refusal types В4/В5/Г/Ґ/Д/Ж with per-item curator verdicts
