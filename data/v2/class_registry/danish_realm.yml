@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1825 active, 4599 retired.
+# 1821 active, 4602 retired.
 
 id: danish_realm
 classes:
@@ -4794,13 +4794,6 @@ classes:
     legacy_id: unified-kmk-122091
     members:
       - kmk-122091
-  - id: c-2b5ef4ad
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-66084
-    legacy_id: unified-ngc-66084
-    members:
-      - ngc-66084
   - id: c-2bcc1172
     status: active
     created: '2026-10-22'
@@ -7039,25 +7032,6 @@ classes:
       - dk-hede-c5h14ab
       - dk-tid-97400
       - ngc-1050353
-  - id: c-43e7dbd6
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-c8h3a
-    legacy_id: unified-dk-hede-c8h3a
-    members:
-      - denmark-numismaster-66082
-      - dk-bruun-8131
-      - dk-bruun-8137
-      - dk-bruun-8159
-      - dk-bruun-8172
-      - dk-hede-c8h3a
-      - dk-hede-c8h3d
-      - dk-hede-c8h3e
-      - dk-hede-c8h3f
-      - dk-tid-70768
-      - ikmk-18204757
-      - ngc-1050425
-      - ngc-66082
   - id: c-4420a99c
     status: active
     created: '2026-10-22'
@@ -20720,14 +20694,6 @@ classes:
       - dk-numista-342815
       - dk-tid-94321
       - ngc-1069068
-  - id: c-bc09ec5d
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1051027
-    legacy_id: unified-ngc-1051027
-    members:
-      - ngc-1051027
-      - ngc-66083
   - id: c-bc13c967
     status: active
     created: '2026-10-22'
@@ -21127,17 +21093,6 @@ classes:
     legacy_id: unified-dk-galster-hg-30
     members:
       - dk-galster-hg-30
-  - id: c-c0b81913
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-8191
-    legacy_id: unified-dk-bruun-8191
-    members:
-      - denmark-numismaster-66085
-      - dk-bruun-8191
-      - dk-numista-22191
-      - dk-tid-110651
-      - ngc-1051052
   - id: c-c0cb1641
     status: active
     created: '2026-10-22'
@@ -34740,6 +34695,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-422295
+  - id: c-2b5ef4ad
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-66084
+    legacy_id: unified-ngc-66084
+    merged_into: c-43e7dbd6
+    retired: '2026-11-08'
+    members:
+      - ngc-66084
   - id: c-2b65a50a
     status: retired
     created: '2026-10-22'
@@ -59552,6 +59516,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-740585
+  - id: c-bc09ec5d
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1051027
+    legacy_id: unified-ngc-1051027
+    merged_into: c-43e7dbd6
+    retired: '2026-11-08'
+    members:
+      - ngc-1051027
+      - ngc-66083
   - id: c-bc0b8413
     status: retired
     created: '2026-10-22'
@@ -60357,6 +60331,19 @@ classes:
     members:
       - kmk-264870
       - kmk-315009
+  - id: c-c0b81913
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-8191
+    legacy_id: unified-dk-bruun-8191
+    merged_into: c-43e7dbd6
+    retired: '2026-11-08'
+    members:
+      - denmark-numismaster-66085
+      - dk-bruun-8191
+      - dk-numista-22191
+      - dk-tid-110651
+      - ngc-1051052
   - id: c-c0bdb6a2
     status: retired
     created: '2026-10-22'

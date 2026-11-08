@@ -2946,19 +2946,19 @@ coins:
     fraction: '1'
     nominal: 1 Speciedaler
     ruler: Christian VIII.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     mintmaster: Johan Friedrich Freund (FF)
     id: km-720-2-chr-viii-1840
     year_first: 1840
-    year_last: 1847
+    year_last: 1848
     year_ranges:
       -   - 1840
-          - 1840
-      -   - 1844
-          - 1845
-      -   - 1847
-          - 1847
-    year_label: 1840, 1844-1845, 1847
+          - 1841
+      -   - 1843
+          - 1848
+    year_label: 1840-1841, 1843-1848
     mint:
       - Altona
       - Kopenhagen
@@ -2966,24 +2966,47 @@ coins:
       km:
         - '720.2'
         - '720'
-      bruun_collection_id: '8133'
+        - '720.1'
+        - '741'
+        - '720.3'
+      bruun_collection_id:
+        - '8133'
+        - '8131'
+        - '8137'
+        - '8159'
+        - '8172'
+        - '8191'
       bruun_part: IV
       bruun_lot_no: 17175
       bruun_page: 98
-      hede_volume: c8h
       sieg:
+        - '13.1'
         - '13.2'
         - '13.3'
+        - '13.4'
+        - '13.6'
+        - '14'
       schou:
+        - '1'
         - '2'
+        - '3'
         - '4'
       hede:
+        - 3A
         - 3B
         - 3C
+        - 3D
+        - 3E
+        - 3F
       dav:
         - EC IV 74
         - ECT 74
-      numista: '22116'
+      numista:
+        - '22116'
+        - '22191'
+      hede_volume: c8h
+      others:
+        - Schön# 49
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2994,30 +3017,124 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-c8h3a
+      - value: 0.875
+        source: hede
         specimen: dk-hede-c8h3b
       - value: 0.875
         source: hede
         specimen: dk-hede-c8h3c
       - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3d
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3e
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3f
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050425
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051027
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051052
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66082
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66083
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66084
+      - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66082
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66083
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66085
       - value: 0.875
         source: numista
+        specimen: dk-numista-22116
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-22191
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70768
     weight_rough_g:
+      - value: 28.79
+        source: bruun
+      - value: 28.86
+        source: ikmk
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-70768
       - value: 28.893
         source: hede
-        specimen: dk-hede-c8h3b
+        specimen: dk-hede-c8h3a
       - value: 28.893
         source: hede
-        specimen: dk-hede-c8h3c
+        specimen: dk-hede-c8h3d
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3f
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050425
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66082
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66084
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-66082
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66083
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66085
       - value: 28.893
         source: numista
-      - value: 28.91
+        specimen: dk-numista-22116
+      - value: 28.893
+        source: numista
+        specimen: dk-numista-22191
+      - value: 28.9
+        source: bruun
+      - value: 28.92
         source: bruun
     diameter_mm:
+      - value: 37.0
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 37.0
+        source: ucoin
+        specimen: dk-tid-70768
+      - value: 38.0
+        source: ikmk
+      - value: 38.3
+        source: numista
+        specimen: dk-numista-22191
       - value: 38.68
         source: numista
+        specimen: dk-numista-22116
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -3033,8 +3150,61 @@ coins:
         ref: KMM 437730 (Inv. FP 10604.1)
         display: false
       - type: literature
+        url: https://numismaster.com/MC_66082
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66085
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1162, p. 199
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14215, p. 79
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17183, p. 85
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17187, p. 86
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17192, p. 87
+      - type: literature
         url: https://www.danskmoent.dk/chr/c8h3.htm
-        ref: danskmoent.dk (Hede c8h3B)
+        ref: danskmoent.dk (Hede c8h3A)
+      - type: literature
+        url: https://en.numista.com/22191
+        ref: Numista N#22191 — 1 Speciedaler - Christian VIII (Type 2)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1846-1848/?tid=110651
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1840-1847/?tid=70768
+        ref: ucoin
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18204757
+        ref: IKMK Berlin 18204757
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.1-1840-1846-cuid-1050425-duid-1238334
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.2-1840-1847-cuid-1051027-duid-1238342
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-741-1846-1848-cuid-1051052-duid-1238346
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.1-1844-1847-cuid-66082-duid-184700
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.2-1841-cuid-66083-duid-184704
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.3-1840-1846-cuid-66084-duid-336098
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
+    inscription_rev: 1 SPE-CIES
     note:
       de: Speciedaler 1840 (KM-720.2) · erste Christian-VIII.-Speciedaler-Prägung in Altona
       en: Speciedaler 1840 (KM-720.2) · first Christian VIII Speciedaler issue at Altona
@@ -3049,11 +3219,22 @@ coins:
       unit: rigsbankdaler
       basis: fin
     composed_of:
-      - c-66323a33
+      - c-43e7dbd6
     label: km-720-2-chr-viii-1840
     origin: foundation
     v1_home_location: schleswig_holstein
     _migration_note: auto-mapped from gesamtstaat
+    _weights_thinned:
+      - value: 28.85
+        source: bruun
+      - value: 28.91
+        source: bruun
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3b
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051027
   - fuss: 18_5_thaler
     phase: II
     kind: scheide

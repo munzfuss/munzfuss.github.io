@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1187 per-source seed entries.
+# Input: 1208 per-source seed entries.
 # Output: 275 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-07'
+generated_at: '2026-11-08'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -9339,50 +9339,73 @@ coins:
       - dk-numista-275998
       - dk-tid-130239
       - ngc-1050399
-  - id: c-66323a33
-    class_id: c-66323a33
-    label: unified-dk-hede-c8h3b
+  - id: c-43e7dbd6
+    class_id: c-43e7dbd6
+    label: unified-dk-hede-c8h3a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Speciedaler
     year_first: 1840
-    year_last: 1847
+    year_last: 1848
     year_ranges:
       -   - 1840
-          - 1840
-      -   - 1844
-          - 1845
-      -   - 1847
-          - 1847
-    year_label: 1840, 1844-1845, 1847
+          - 1841
+      -   - 1843
+          - 1848
+    year_label: 1840-1841, 1843-1848
     ruler: Christian VIII
     mintmaster: Johan Friedrich Freund (FF)
+    inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
+    inscription_rev: 1 SPE-CIES
     mint:
       - Altona
       - Kopenhagen
     catalog:
       km:
+        - '720.1'
         - '720.2'
+        - '741'
+        - '720.3'
         - '720'
       hede:
+        - 3A
         - 3B
         - 3C
+        - 3D
+        - 3E
+        - 3F
       hede_volume: c8h
       schou:
+        - '1'
         - '2'
+        - '3'
         - '4'
       sieg:
+        - '13.1'
         - '13.2'
         - '13.3'
-      bruun_collection_id: '8133'
-      bruun_part: IV
-      bruun_lot_no: 17175
-      bruun_page: 98
-      numista: '22116'
+        - '13.4'
+        - '13.6'
+        - '14'
+      bruun_collection_id:
+        - '8131'
+        - '8133'
+        - '8137'
+        - '8159'
+        - '8172'
+        - '8191'
+      bruun_part: I
+      bruun_lot_no: 1162
+      bruun_page: 223
+      numista:
+        - '22116'
+        - '22191'
       dav:
         - EC IV 74
         - ECT 74
+      others:
+        - Schön# 49
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -9393,15 +9416,77 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-c8h3a
+      - value: 0.875
+        source: hede
         specimen: dk-hede-c8h3b
       - value: 0.875
         source: hede
         specimen: dk-hede-c8h3c
       - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3d
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3e
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-c8h3f
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050425
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051027
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051052
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66082
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66083
+      - value: 0.875
+        source: ngc
+        specimen: ngc-66084
+      - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66082
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66083
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66085
       - value: 0.875
         source: numista
+        specimen: dk-numista-22116
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-22191
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70768
     weight_rough_g:
+      - value: 28.79
+        source: bruun
+      - value: 28.85
+        source: bruun
+      - value: 28.86
+        source: ikmk
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-70768
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3a
       - value: 28.893
         source: hede
         specimen: dk-hede-c8h3b
@@ -9409,38 +9494,166 @@ coins:
         source: hede
         specimen: dk-hede-c8h3c
       - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3d
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3e
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-c8h3f
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050425
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051027
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1051052
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66082
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66083
+      - value: 28.893
+        source: ngc
+        specimen: ngc-66084
+      - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-66082
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66083
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66085
       - value: 28.893
         source: numista
+        specimen: dk-numista-22116
+      - value: 28.893
+        source: numista
+        specimen: dk-numista-22191
+      - value: 28.9
+        source: bruun
       - value: 28.91
         source: bruun
+      - value: 28.92
+        source: bruun
     diameter_mm:
+      - value: 37.0
+        source: ucoin
+        specimen: dk-tid-110651
+      - value: 37.0
+        source: ucoin
+        specimen: dk-tid-70768
+      - value: 38.0
+        source: ikmk
+      - value: 38.3
+        source: numista
+        specimen: dk-numista-22191
       - value: 38.68
         source: numista
+        specimen: dk-numista-22116
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_66082
+        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_66083
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66085
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1162, p. 199
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17175, p. 82
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14215, p. 79
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17183, p. 85
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17187, p. 86
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17192, p. 87
       - type: literature
         url: https://www.danskmoent.dk/chr/c8h3.htm
-        ref: danskmoent.dk (Hede c8h3B)
+        ref: danskmoent.dk (Hede c8h3A)
       - type: literature
         url: https://en.numista.com/22116
         ref: Numista N#22116 — 1 Speciedaler - Christian VIII (Type 1)
-    issuing_entity: royal_holstein
+      - type: literature
+        url: https://en.numista.com/22191
+        ref: Numista N#22191 — 1 Speciedaler - Christian VIII (Type 2)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1846-1848/?tid=110651
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1840-1847/?tid=70768
+        ref: ucoin
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18204757
+        ref: IKMK Berlin 18204757
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.1-1840-1846-cuid-1050425-duid-1238334
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.2-1840-1847-cuid-1051027-duid-1238342
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-741-1846-1848-cuid-1051052-duid-1238346
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.1-1844-1847-cuid-66082-duid-184700
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.2-1841-cuid-66083-duid-184704
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-720.3-1840-1846-cuid-66084-duid-336098
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     hede_muentzfuss_yield:
       value: 18.5
       unit: rigsbankdaler
       basis: fin
     composed_of:
+      - denmark-numismaster-66082
       - denmark-numismaster-66083
+      - denmark-numismaster-66085
+      - dk-bruun-8131
       - dk-bruun-8133
+      - dk-bruun-8137
+      - dk-bruun-8159
+      - dk-bruun-8172
+      - dk-bruun-8191
+      - dk-hede-c8h3a
       - dk-hede-c8h3b
       - dk-hede-c8h3c
+      - dk-hede-c8h3d
+      - dk-hede-c8h3e
+      - dk-hede-c8h3f
       - dk-numista-22116
+      - dk-numista-22191
+      - dk-tid-110651
+      - dk-tid-70768
+      - ikmk-18204757
+      - ngc-1050425
+      - ngc-1051027
+      - ngc-1051052
+      - ngc-66082
+      - ngc-66083
+      - ngc-66084
   - id: c-aa273162
     class_id: c-aa273162
     label: unified-dk-hede-c8h4a
