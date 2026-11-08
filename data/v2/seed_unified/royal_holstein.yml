@@ -2,7 +2,7 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1222 per-source seed entries.
+# Input: 1229 per-source seed entries.
 # Output: 273 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -14854,9 +14854,9 @@ coins:
       - dk-bruun-8217
       - dk-hede-f7h2
       - dk-numista-130110
-  - id: c-e90a691d
-    class_id: c-e90a691d
-    label: unified-dk-hede-f7h4b
+  - id: c-aa8321ea
+    class_id: c-aa8321ea
+    label: unified-dk-hede-f7h4a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -14865,26 +14865,41 @@ coins:
     year_last: 1854
     year_ranges:
       -   - 1849
+          - 1849
+      -   - 1851
+          - 1851
+      -   - 1853
           - 1854
-    year_label: 1849-1854
+    year_label: 1849, 1851, 1853-1854
     ruler: Frederik VII
+    mintmaster: Georg Vilhelm Svendsen (VS)
     mint:
       - Altona
       - Kopenhagen
     catalog:
       km:
+        - '744.1'
         - '744.2'
         - '744'
-      hede: 4B
+      hede:
+        - 4A
+        - 4B
       hede_volume: f7h
       schou:
+        - '1'
         - '2'
+        - '3'
         - '4'
-      sieg: '6.2'
-      bruun_collection_id: '8205'
-      bruun_part: III
-      bruun_lot_no: 11306
-      bruun_page: 152
+      sieg:
+        - '6.1'
+        - '6.2'
+      bruun_collection_id:
+        - '8197'
+        - '8205'
+        - '8213'
+      bruun_part: I
+      bruun_lot_no: 1165
+      bruun_page: 227
       numista: '83074'
       dav:
         - EC IV 76
@@ -14899,45 +14914,110 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f7h4a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f7h4b
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050426
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050467
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66087
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66088
       - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
+      - value: 28.77
+        source: bruun
       - value: 28.86
         source: bruun
+      - value: 28.89
+        source: ucoin
       - value: 28.893
         source: hede
+        specimen: dk-hede-f7h4a
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f7h4b
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050426
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050467
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-66087
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66088
       - value: 28.893
         source: numista
+      - value: 28.93
+        source: bruun
     diameter_mm:
+      - value: 37.0
+        source: ucoin
       - value: 37.88
         source: numista
     sources:
       - type: literature
+        url: https://numismaster.com/MC_66087
+        ref: NumisMaster
+      - type: literature
         url: https://numismaster.com/MC_66088
         ref: NumisMaster
       - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1165, p. 203
+      - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11306, p. 134
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17199, p. 89
       - type: literature
         url: https://www.danskmoent.dk/fr/f7h4.htm
-        ref: danskmoent.dk (Hede f7h4B)
+        ref: danskmoent.dk (Hede f7h4A)
       - type: literature
         url: https://en.numista.com/83074
         ref: Numista N#83074 — 1 Speciedaler "Våbenspecie" - Frederik VII
-    issuing_entity: royal_holstein
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1849-1854/?tid=70770
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-744.2-1851-1853-cuid-1050426-duid-1238353
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-744.1-1849-1854-cuid-1050467-duid-1238350
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     hede_muentzfuss_yield:
       value: 18.5
       unit: rigsbankdaler
       basis: fin
     composed_of:
+      - denmark-numismaster-66087
       - denmark-numismaster-66088
+      - dk-bruun-8197
       - dk-bruun-8205
+      - dk-bruun-8213
+      - dk-hede-f7h4a
       - dk-hede-f7h4b
       - dk-numista-83074
+      - dk-tid-70770
+      - ngc-1050426
+      - ngc-1050467
   - id: c-d75ea985
     class_id: c-d75ea985
     label: unified-dk-hede-f7h6a

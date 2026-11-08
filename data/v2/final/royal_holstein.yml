@@ -3719,14 +3719,21 @@ coins:
     fraction: '1'
     nominal: 1 Speciedaler
     ruler: Frederik VII.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     id: km-744-2-fr-vii-1851
+    mintmaster: Georg Vilhelm Svendsen (VS)
     year_first: 1849
     year_last: 1854
     year_ranges:
       -   - 1849
+          - 1849
+      -   - 1851
+          - 1851
+      -   - 1853
           - 1854
-    year_label: 1849-1854
+    year_label: 1849, 1851, 1853-1854
     mint:
       - Altona
       - Kopenhagen
@@ -3734,20 +3741,30 @@ coins:
       km:
         - '744.2'
         - '744'
-      bruun_collection_id: '8205'
+        - '744.1'
+      bruun_collection_id:
+        - '8205'
+        - '8197'
+        - '8213'
       bruun_part: III
       bruun_lot_no: 11306
       bruun_page: 152
-      hede_volume: f7h
-      sieg: '6.2'
-      schou:
-        - '2'
-        - '4'
-      hede: 4B
       numista: '83074'
       dav:
         - EC IV 76
         - ECT 76
+      hede:
+        - 4A
+        - 4B
+      hede_volume: f7h
+      schou:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+      sieg:
+        - '6.1'
+        - '6.2'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -3758,20 +3775,58 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f7h4a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f7h4b
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050426
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050467
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66087
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66088
       - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
+      - value: 28.77
+        source: bruun
       - value: 28.86
         source: bruun
+      - value: 28.89
+        source: ucoin
       - value: 28.893
         source: hede
+        specimen: dk-hede-f7h4a
+      - value: 28.893
+        source: hede
+        specimen: dk-hede-f7h4b
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050426
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050467
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-66087
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-66088
       - value: 28.893
         source: numista
+      - value: 28.93
+        source: bruun
     diameter_mm:
+      - value: 37.0
+        source: ucoin
       - value: 37.88
         source: numista
     sources:
@@ -3785,8 +3840,26 @@ coins:
         url: https://en.numista.com/83074
         ref: Numista N#83074 — 1 Speciedaler "Våbenspecie" - Frederik VII
       - type: literature
+        url: https://numismaster.com/MC_66087
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1165, p. 203
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17199, p. 89
+      - type: literature
         url: https://www.danskmoent.dk/fr/f7h4.htm
-        ref: danskmoent.dk (Hede f7h4B)
+        ref: danskmoent.dk (Hede f7h4A)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1849-1854/?tid=70770
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-744.2-1851-1853-cuid-1050426-duid-1238353
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-744.1-1849-1854-cuid-1050467-duid-1238350
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Speciedaler 1851 (KM-744.2) · erste Frederik-VII.-Speciedaler-Prägung in Altona
       en: Speciedaler 1851 (KM-744.2) · first Frederik VII Speciedaler issue at Altona
@@ -3801,7 +3874,7 @@ coins:
       unit: rigsbankdaler
       basis: fin
     composed_of:
-      - c-e90a691d
+      - c-aa8321ea
     label: km-744-2-fr-vii-1851
     origin: foundation
     v1_home_location: schleswig_holstein
