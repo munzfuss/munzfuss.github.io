@@ -92948,7 +92948,9 @@ coins:
         - '15.2'
         - '15.3'
         - '17.3'
-      numista: '200688'
+      numista:
+        - '200688'
+        - '62374'
       schou:
         - 22-25
         - 49-50
@@ -93004,6 +93006,8 @@ coins:
       - value: 1.218
         source: hede
         specimen: dk-hede-f3h126c
+      - value: 1.225
+        source: numista
       - value: 1.299
         source: ngc
       - value: 1.299
@@ -93012,11 +93016,31 @@ coins:
         source: ucoin
     diameter_mm:
       - value: 19.0
+        source: numista
+      - value: 19.0
         source: ucoin
       - value: 19.15
         source: numista
       - value: 19.15
         source: ucoin
+    catalog_alts:
+      - register: hede
+        value: 130B
+        source: numista
+        kind: erroneous
+        reason:
+          de: 'Nummer der Variante mit flachem Schild. Numista gibt für diesen Typ «Hede 130 B» an; ihr Foto zeigt aber den ovalen Schild in Kartusche und die Jahreszahl 1655 in der Umschrift, die Hede
+            126B kennzeichnen (danskmoent.dk, f3h126.htm: «Årstal i omskrift», Übers.: «Jahreszahl in der Umschrift»); Hede 130 hat den Schild mit flachem Oberrand (f3h130.htm). Numistas eigener Kommentar
+            ordnet KM A190 dem ovalen Schild zu, Bruun IV, Los 17068, gibt «KM-A190; Hede-126B».'
+          en: "Number of the flat-topped-shield variety. Numista gives «Hede 130 B» for this type; its own photograph shows the oval shield in a cartouche and the date 1655 in the legend, which mark Hede
+            126B (danskmoent.dk, f3h126.htm: «Årstal i omskrift», transl.: «date in the legend»); Hede 130 has the flat-topped shield (f3h130.htm). Numista's own comment assigns KM A190 to the oval shield,
+            and Bruun IV, lot 17068, gives «KM-A190; Hede-126B»."
+          uk: 'Номер різновиду з пласковерхим щитом. Numista подає для цього типу «Hede 130 B»; її власне фото показує овальний щит у картуші й рік 1655 у круговому написі, що позначають Hede 126B (danskmoent.dk,
+            f3h126.htm: «Årstal i omskrift», перекл.: «рік у круговому написі»); Hede 130 має щит із пласким верхом (f3h130.htm). Коментар самої Numista відносить KM A190 до овального щита, а Bruun IV,
+            лот 17068, подає «KM-A190; Hede-126B».'
+          da: 'Nummeret på varianten med fladt skjold. Numista angiver «Hede 130 B» for denne type; dens eget foto viser det ovale skjold i kartouche og årstallet 1655 i omskriften, som kendetegner Hede
+            126B (danskmoent.dk, f3h126.htm: «Årstal i omskrift»); Hede 130 har skjoldet med flad overkant (f3h130.htm). Numistas egen kommentar henfører KM A190 til det ovale skjold, og Bruun IV, lot 17068,
+            angiver «KM-A190; Hede-126B».'
     sources:
       - type: literature
         url: https://numismaster.com/MC_65054
@@ -95121,6 +95145,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/167259
         ref: KMM 167259 (Inv. FP 1780.326; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.325)
         display: false
+      - type: literature
+        url: https://en.numista.com/62374
+        ref: Numista N#62374 — 2 Skilling Dansk - Frederik III (Shield type IIb)
     note:
       de: Gekrönter ovaler Schild mit dem dänischen Wappen, von der Umschrift umgeben; der Schild mit komplexen Ornamenten rund um seinen Rand. / Wert in Buchstaben in drei Zeilen in einem Kreis; 
         Umschrift außen, mit einem Hellebarden-Müntzzeichen am Ende; das Datum kann am Ende der Umschrift oder nach dem Wert im Kreis stehen; die undatierten Varianten führen REX statt R in der 
@@ -110938,13 +110965,10 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - A190
         - '189.2'
         - '189.1'
         - '189'
-      numista:
-        - '62374'
-        - '135242'
+      numista: '135242'
       hede:
         - '130'
         - 130A
@@ -111006,8 +111030,6 @@ coins:
       - value: 1.218
         source: hede
         specimen: dk-hede-f3h130b
-      - value: 1.225
-        source: numista
       - value: 1.299
         source: ngc
         specimen: ngc-1049779
@@ -111038,9 +111060,6 @@ coins:
         source: ucoin
         specimen: dk-tid-96465
     sources:
-      - type: literature
-        url: https://en.numista.com/62374
-        ref: Numista N#62374 — 2 Skilling Dansk - Frederik III (Shield type IIb)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/155209
         ref: KMM 155209 (Inv. FP 3115.23)
