@@ -2,8 +2,8 @@
 # Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/provisional_govt.yml across all sources.
 #
-# Input: 11 per-source seed entries.
-# Output: 2 unified entries (one per physical coin).
+# Input: 12 per-source seed entries.
+# Output: 3 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13,6 +13,64 @@
 id: provisional_govt
 generated_at: '2026-11-07'
 coins:
+  - id: c-f668c446
+    class_id: c-f668c446
+    label: unified-dk-hede-f7h18
+    fuss: seed_unsorted
+    phase: hede
+    kind: scheide
+    nominal: 1 Schilling
+    year_first: 1851
+    year_last: 1851
+    year_label: '1851'
+    ruler: Prov. Regierung
+    mint: Altona
+    catalog:
+      hede: '18'
+      hede_volume: f7h
+      schou: '4'
+      sieg: '23'
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.25
+        source: hede
+    weight_rough_g:
+      - value: 1.462
+        source: hede
+    ruler_alts:
+      - value: Frederik VII.
+        source: hede
+        kind: erroneous
+        reason:
+          de: 'Kein Gepräge Frederiks VII. danskmoent.dk (Hede 18) führt die Münze unter «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (dt.: «Im Dreijährigen
+            Krieg 1848–50 prägte die Aufstandsregierung in Schleswig-Holstein eigene Münzen»).'
+          en: "Not a coinage of Frederik VII. danskmoent.dk (Hede 18) lists the coin under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (transl.: «During
+            the Three Years' War 1848–50 the rebel government in Schleswig-Holstein struck its own coins»)."
+          uk: 'Не карбування Frederik VII. danskmoent.dk (Hede 18) подає монету під «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (перекл.: «Під час
+            Трирічної війни 1848–50 повстанський уряд у Шлезвіг-Гольштейні карбував власні монети»).'
+          da: 'Ikke en mønt fra Frederik 7. danskmoent.dk (Hede 18) fører mønten under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter».'
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h18.htm
+        ref: danskmoent.dk (Hede f7h18)
+    issuing_entity: provisional_govt
+    hede_muentzfuss_yield:
+      value: 10.666
+      unit: rigsdaler
+      basis: fin
+      unit_raw: rd
+    composed_of:
+      - dk-hede-f7h18
+    _errata_applied:
+      - source: dk-hede-f7h18
+        field: ruler
+        printed: Frederik VII.
+        correct: Prov. Regierung
   - id: c-aeda0c4e
     class_id: c-aeda0c4e
     label: unified-dk-hede-f7h19

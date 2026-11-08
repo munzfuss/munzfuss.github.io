@@ -1588,6 +1588,10 @@ def unknown_mint_candidates(text: str) -> list[str]:
     return out
 
 
+_YEARS_LINE_MINT_RE = re.compile(
+    r"(?m)^\s*\d{4}[^\n]*?,\s*([A-ZÆØÅ][A-Za-zæøåÆØÅäöüÄÖÜ]+)\.")
+
+
 def _first_mint_in(segment: str) -> str | None:
     """First recognised mint name (verbatim) in a text segment, else None."""
     for cand in _MINT_CAND_RE.findall(segment or ""):
@@ -2108,6 +2112,16 @@ def parse_one(html: str, basename: str) -> dict:
                 out["mint"] = " og ".join(recovered)
         # by_hede field-swap pages (c4h53) are left for a per-spec-group mint
         # follow-up — each by_hede group can span different mints.
+
+    # Years-line mint. Some pages put the mint at the END of the year line,
+    # not in the H1: «32 Rigsbankskilling\n1842, 1843, Altona. Forside: …»
+    # (c8h5), «1624, 1625, København. Kobber.» (c4h137), «1818 (RRR), 1820,
+    # Altona.» (f6h29). Only a line that OPENS with a year, and only a name the
+    # mint registry knows, so prose is never read as a mint.
+    if out.get("nominal") and not out.get("mint"):
+        ym = _YEARS_LINE_MINT_RE.search(text)
+        if ym and canon_for_alias(ym.group(1)) is not None:
+            out["mint"] = ym.group(1)
 
     # Catalog refs
     refs = _extract_refs(text)

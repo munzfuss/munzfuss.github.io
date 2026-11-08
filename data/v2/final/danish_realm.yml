@@ -363,37 +363,24 @@ coins:
     issuing_entity: danish_realm
     fraction: '2'
     id: dk-tid-130240
-    year_first: 1841
+    year_first: 1842
     year_last: 1847
     year_ranges:
-      -   - 1841
+      -   - 1842
           - 1842
-      -   - 1844
+      -   - 1845
           - 1845
       -   - 1847
           - 1847
-    year_label: 1841-1842, 1844-1845, 1847
+    year_label: 1842, 1845, 1847
     mint: Kopenhagen
     catalog:
       km:
         - '722'
         - '722.1'
         - '722.2'
-        - '722.3'
-      hede:
-        - 1A
-        - 1C
-      hede_volume: c8h
-      sieg:
-        - '16.1'
-        - '16.3'
       fr: '289'
-      schou:
-        - '1'
-        - '2'
-      bruun_collection_id:
-        - '8136'
-        - '8166'
+      bruun_collection_id: '8136'
       bruun_part: I
       bruun_lot_no: 1163
       bruun_page: 224
@@ -452,17 +439,11 @@ coins:
         url: https://www.danskmoent.dk/chr/c9h1.htm
         ref: danskmoent.dk (Hede c9h1A)
       - type: literature
-        url: https://www.danskmoent.dk/chr/c8h1.htm
-        ref: danskmoent.dk (Hede c8h1A)
-      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-722.1-1841-cuid-1051031-duid-1238407
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-722.2-1842-1847-cuid-1050451-duid-1238408
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14216, p. 79
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-722.3-1844-cuid-1050452-duid-1238412
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -478,10 +459,7 @@ coins:
       en: Coinage-standard assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення стопи і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
       da: Tildeling af møntfod og verifikation af den enkelte mønt mod Hede / Schön / Bruun udestår stadig.
-    composed_of:
-      - c-6b87ba99
-      - c-d2566b2a
-      - c-f3a544ba
+    composed_of: []
     label: dk-tid-130240
     origin: foundation
     v1_home_location: denmark
@@ -21750,41 +21728,44 @@ coins:
   - fuss: 9_thaler
     phase: I
     kind: kurant
-    fraction: 3/2
-    nominal: 1½ Speciedaler
+    fraction: '2'
+    nominal: 2 Speciedaler
     ruler: Christian IV.
     issuing_entity: danish_realm
     mintmaster: Nicolaus Schwabe
     id: km-154-hede-64b-chr-iv-1611
-    year_first: 1611
-    year_last: 1611
-    year_label: '1611'
+    year_first: 1607
+    year_last: 1614
+    year_ranges:
+      -   - 1607
+          - 1614
+    year_label: 1607-1614
     year_verified: false
     uncertainty:
       year:
         - kind: hedged
           how: attributed
           source: numismaster
-          value: '1611'
-          seed: denmark-numismaster-65521
+          value: 1607-1614
+          seed: denmark-numismaster-65516
         - kind: hedged
           how: attributed
           source: bruun
-          as_printed: ND (1611)
-          value: '1611'
-          seed: dk-bruun-5850
+          as_printed: ND (1607-14)
+          value: 1607-1614
+          seed: dk-bruun-5851
         - kind: inferred
           how: reign
           source: hede
-          as_printed: u. år
+          as_printed: u.år
           value: 1588-1648
-          seed: dk-hede-c4h64c
+          seed: dk-hede-c4h63e
         - kind: hedged
-          how: circa
+          how: attributed
           source: ngc
-          as_printed: (ca.1611) Rare
-          value: '1611'
-          seed: ngc-1050078
+          as_printed: (1607-14) Rare
+          value: 1607-1614
+          seed: ngc-1060266
       fineness:
         - kind: inferred
           how: standard
@@ -21795,26 +21776,36 @@ coins:
             de: Prætorius hat angegeben, dass Schwabes Taler 14 4/18 Lot fein waren
             en: Prætorius stated that Schwabe's thalers were 14 4/18 lod fine
             uk: Prætorius повідомив, що талери Schwabe мали пробу 14 4/18 лота
-          seed: dk-hede-c4h64c
+          seed: dk-hede-c4h63e
       nominal:
         - kind: inferred
           how: other_source
-          source: Bruun Part II, lot 13124
-          as_printed: 1 1/2 Speciedaler … Hede-64C
+          source: Bruun Part V, lot 14127
+          as_printed: 1 1/2 Speciedaler … Hede-63E
           value: 1½ Speciedaler
-          seed: dk-hede-c4h64c
-    nominal_verified: false
-    mint: Kopenhagen
+          seed: dk-hede-c4h63e
+    mint:
+      - Helsingør
+      - Kopenhagen
     catalog:
-      km: '155'
+      km: '154'
+      bruun_part: IV
+      bruun_lot_no: 17062
+      bruun_page: 43
       others:
+        - Dav-LS533
+        - Harck-6.13.1
         - Dav-LS# 540
+        - Harck# 7.7.2
+        - Dav-LS# 530
+      dav: 3537A
+      bruun_collection_id:
+        - '5850'
+        - '5851'
+      sieg: '112.1'
+      schou: '27'
+      hede: 63E
       hede_volume: c4h
-      dav: 3538A
-      hede: 64C
-      bruun_collection_id: '5850'
-      sieg: '118'
-      schou: '28'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -21826,46 +21817,56 @@ coins:
       - value: 0.88889
         source: Wilcke 1919, s. 93
     weight_rough_g:
-      - value: 48.8
+      - value: 48.51
         source: bruun
     catalog_alts:
       - register: km
-        value: '154'
+        value: '115'
         source: bruun
         kind: erroneous
         reason:
-          de: "Die KM-Nummer gehört zu einem anderen Typ.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler
-            KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (Übers.: «ähnlich 2 Speciedaler, KM#147»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure
-            of king … Reverse: King on horseback … Dav. #3538A»[/i] (Übers.: «Vorderseite: Brustbild des Königs … Rückseite: der König zu Pferd»)."
-          en: "The KM number belongs to another type.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM#
-            154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure of king … Reverse: King on horseback …
-            Dav. #3538A»[/i]."
-          uk: "Номер KM належить іншому типу.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 154 (1607-14)
-            … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (перекл.: «подібний до 2 Speciedaler, KM#147»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure of king
-            … Reverse: King on horseback … Dav. #3538A»[/i] (перекл.: «аверс: погрудне зображення короля … реверс: король на коні»)."
-          da: "KM-nummeret hører til en anden type.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM#
-            154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (overs.: «ligner 2 Speciedaler, KM#147»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure
-            of king … Reverse: King on horseback … Dav. #3538A»[/i] (overs.: «forside: brystbillede af kongen … bagside: kongen til hest»)."
+          de: "Die KM-Nummer gehört zu einem anderen Nominal.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i] (Übers.:
+            «Gewicht: 48,51 g»).\n[b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i] (Übers.: «Gewicht: 115,62 g»).\n[b]NGC[/b]: [i]«Denmark
+            1-1/2 Speciedaler KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (Übers.: «ähnlich 2 Speciedaler, KM#147»)."
+          en: "The KM number belongs to another denomination.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i].\n\
+            [b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 154 (1607-14) … Similar to
+            2 Speciedaler, KM#147. Dav. #3537A»[/i]."
+          uk: "Номер KM належить іншому номіналу.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i] (перекл.: «вага:
+            48,51 г»).\n[b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i] (перекл.: «вага: 115,62 г»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler
+            KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (перекл.: «подібний до 2 Speciedaler, KM#147»)."
+          da: "KM-nummeret hører til et andet nominal.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i] (overs.:
+            «vægt: 48,51 g»).\n[b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i] (overs.: «vægt: 115,62 g»).\n[b]NGC[/b]: [i]«Denmark 1-1/2
+            Speciedaler KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (overs.: «ligner 2 Speciedaler, KM#147»)."
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1053, p. 68
+      - type: literature
+        url: https://numismaster.com/MC_65516
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-1-2-speciedaler-km-154-1607-14-cuid-1060266-duid-1237537
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13124, p. 66
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14127, p. 53
       - type: literature
-        url: https://www.danskmoent.dk/chr/c4h64.htm
-        ref: danskmoent.dk (Hede c4h64)
-      - type: literature
-        url: https://numismaster.com/MC_65521
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-1-2-speciedaler-km-155-ca.1611-cuid-1050078-duid-1237538
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
+        url: https://www.danskmoent.dk/chr/c4h63.htm
+        ref: danskmoent.dk (Hede c4h63)
+    note:
+      de: 2 Speciedaler ND (1611) Hede-64B · Münzmeister Nicolaus Schwabe · Stempelschneider Isaac Henniges (IH)
+      en: 2 Speciedaler ND (1611) Hede-64B · mintmaster Nicolaus Schwabe · engraver Isaac Henniges (IH)
+      uk: 2 Speciedaler ND (1611) Hede-64B · монетмейстер Nicolaus Schwabe · різьбар Isaac Henniges (IH)
     verification_note:
       de: Probe nicht direkt belegt; aus dem kanonischen Müntzfuß-Standard (9-Thaler-Fuß, Anker 0,8889) übernommen. Δ −1,51 % gegen den Soll-Wert liegt in der Spezimen-Toleranz.
       en: Fineness not directly attested; taken from the canonical coinage standard (9-Thaler-Fuß, anchor 0.8889). Δ −1.51 % against the soll value is within specimen tolerance.
       uk: Проба не засвідчена джерелом безпосередньо; узята з канонічного стандарту (9-Thaler-Fuß, якір 0,8889). Δ −1,51 % проти нормативу — у межах допуску зразка.
       da: Finheden er ikke direkte belagt; overtaget fra den kanoniske møntfodsstandard (9-Thaler-Fuß, anker 0,8889). Δ −1,51 % i forhold til sollværdien ligger inden for specimen-tolerancen.
     composed_of:
-      - c-9bc5e990
+      - c-d0d76be3
     label: km-154-hede-64b-chr-iv-1611
     origin: foundation
     v1_home_location: denmark
@@ -22434,6 +22435,10 @@ coins:
       - type: literature
         url: https://en.numista.com/111027
         ref: Numista N#111027 — ¼ Speciedaler - Frederik III Largesse issue
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149338
+        ref: KMM 149338 (Inv. KP 1656.975)
+        display: false
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-1-4-speciedaler-km-161-1648-cuid-1050691-duid-1237388
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -41729,119 +41734,6 @@ coins:
     composed_of:
       - c-ad2d5c6d
     label: unified-dk-hede-c8h12
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: scheide
-    nominal: 16 Rigsbankskilling
-    fraction: 1/6
-    ruler: Christian VIII.
-    issuing_entity: danish_realm
-    id: c-58969558
-    year_first: 1842
-    year_last: 1844
-    year_ranges:
-      -   - 1842
-          - 1842
-      -   - 1844
-          - 1844
-    year_label: 1842, 1844
-    mint: Kopenhagen
-    catalog:
-      km: '733'
-      hede: '6'
-      hede_volume: c8h
-      sieg: '10'
-      bruun_collection_id: '8140'
-      bruun_part: IV
-      bruun_lot_no: 17177
-      bruun_page: 99
-      numista: '24423'
-      schou:
-        - '4'
-        - '6'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.5
-        source: hede
-      - value: 0.5
-        source: ngc
-      - value: 0.5
-        source: numismaster
-      - value: 0.5
-        source: numista
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 4.21
-        source: bruun
-      - value: 4.21
-        source: ucoin
-      - value: 4.214
-        source: hede
-      - value: 4.214
-        source: ngc
-      - value: 4.214
-        source: numismaster
-      - value: 4.214
-        source: numista
-    diameter_mm:
-      - value: 21.5
-        source: numista
-      - value: 21.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66030
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c8h6.htm
-        ref: danskmoent.dk (Hede c8h6)
-      - type: numista
-        url: https://en.numista.com/24423
-        ref: Numista
-      - type: web
-        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238262
-        ref: NGC
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-16-rigsbankskilling-1842-1844/?tid=70755
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17177, p. 83
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575018
-        ref: KMM 575018 (Inv. FP 11167.24)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/78528
-        ref: KMM 78528 (Inv. GP 678.192)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238261
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Reverse trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
-      en: reverse trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
-      uk: реверс trägt beide Wertangaben · 16 RBS = 1/6 Rigsbankdaler · 5 Sch.C. = 1/12 Thaler Species
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-      unit_raw: rigsbankdalere
-    composed_of:
-      - c-58969558
-    label: unified-dk-hede-c8h6
     origin: promoted
   - fuss: pistolenfuss
     phase: I
@@ -132427,391 +132319,6 @@ coins:
     phase: kmk
     kind: kurant
     nominal: (?)
-    ruler: Christian VIII.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-74c8f7d0
-    year_first: 1839
-    year_last: 1848
-    year_ranges:
-      -   - 1839
-          - 1848
-    year_label: 1839-1848
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1839-1848
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292589
-        ref: KMM 292589 (Inv. FP 2854.131)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292592
-        ref: KMM 292592 (Inv. FP 2854.128)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292593
-        ref: KMM 292593 (Inv. FP 2854.127)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292594
-        ref: KMM 292594 (Inv. FP 2854.126)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292595
-        ref: KMM 292595 (Inv. FP 2854.125)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292596
-        ref: KMM 292596 (Inv. FP 2854.124)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292597
-        ref: KMM 292597 (Inv. FP 2854.123)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292598
-        ref: KMM 292598 (Inv. FP 2854.122)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292599
-        ref: KMM 292599 (Inv. FP 2854.121)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292600
-        ref: KMM 292600 (Inv. FP 2854.120)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292601
-        ref: KMM 292601 (Inv. FP 2854.119)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292602
-        ref: KMM 292602 (Inv. FP 2854.118)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292603
-        ref: KMM 292603 (Inv. FP 2854.117)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292604
-        ref: KMM 292604 (Inv. FP 2854.116)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292605
-        ref: KMM 292605 (Inv. FP 2854.115)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292606
-        ref: KMM 292606 (Inv. FP 2854.114)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292607
-        ref: KMM 292607 (Inv. FP 2854.113)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292608
-        ref: KMM 292608 (Inv. FP 2854.112)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292609
-        ref: KMM 292609 (Inv. FP 2854.111)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292610
-        ref: KMM 292610 (Inv. FP 2854.110)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292611
-        ref: KMM 292611 (Inv. FP 2854.109)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292612
-        ref: KMM 292612 (Inv. FP 2854.108)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292613
-        ref: KMM 292613 (Inv. FP 2854.107)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292614
-        ref: KMM 292614 (Inv. FP 2854.106)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292615
-        ref: KMM 292615 (Inv. FP 2854.105)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292616
-        ref: KMM 292616 (Inv. FP 2854.104)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292617
-        ref: KMM 292617 (Inv. FP 2854.103)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292618
-        ref: KMM 292618 (Inv. FP 2854.102)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292619
-        ref: KMM 292619 (Inv. FP 2854.101)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292620
-        ref: KMM 292620 (Inv. FP 2854.100)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292621
-        ref: KMM 292621 (Inv. FP 2854.99)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292622
-        ref: KMM 292622 (Inv. FP 2854.98)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292623
-        ref: KMM 292623 (Inv. FP 2854.97)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292624
-        ref: KMM 292624 (Inv. FP 2854.96)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292625
-        ref: KMM 292625 (Inv. FP 2854.95)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292626
-        ref: KMM 292626 (Inv. FP 2854.94)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292627
-        ref: KMM 292627 (Inv. FP 2854.93)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292628
-        ref: KMM 292628 (Inv. FP 2854.92)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292629
-        ref: KMM 292629 (Inv. FP 2854.91)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292630
-        ref: KMM 292630 (Inv. FP 2854.90)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292631
-        ref: KMM 292631 (Inv. FP 2854.89)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292632
-        ref: KMM 292632 (Inv. FP 2854.88)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292633
-        ref: KMM 292633 (Inv. FP 2854.87)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292634
-        ref: KMM 292634 (Inv. FP 2854.86)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292635
-        ref: KMM 292635 (Inv. FP 2854.85)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292636
-        ref: KMM 292636 (Inv. FP 2854.84)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292637
-        ref: KMM 292637 (Inv. FP 2854.83)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292638
-        ref: KMM 292638 (Inv. FP 2854.82)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292639
-        ref: KMM 292639 (Inv. FP 2854.81)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292640
-        ref: KMM 292640 (Inv. FP 2854.80)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292641
-        ref: KMM 292641 (Inv. FP 2854.79)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292642
-        ref: KMM 292642 (Inv. FP 2854.78)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292643
-        ref: KMM 292643 (Inv. FP 2854.77)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292644
-        ref: KMM 292644 (Inv. FP 2854.76)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292645
-        ref: KMM 292645 (Inv. FP 2854.75)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292646
-        ref: KMM 292646 (Inv. FP 2854.74)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292647
-        ref: KMM 292647 (Inv. FP 2854.73)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292648
-        ref: KMM 292648 (Inv. FP 2854.72)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292649
-        ref: KMM 292649 (Inv. FP 2854.71)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292650
-        ref: KMM 292650 (Inv. FP 2854.70)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292651
-        ref: KMM 292651 (Inv. FP 2854.69)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292652
-        ref: KMM 292652 (Inv. FP 2854.68)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292653
-        ref: KMM 292653 (Inv. FP 2854.67)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292654
-        ref: KMM 292654 (Inv. FP 2854.66)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292655
-        ref: KMM 292655 (Inv. FP 2854.65)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292656
-        ref: KMM 292656 (Inv. FP 2854.64)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292657
-        ref: KMM 292657 (Inv. FP 2854.63)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292658
-        ref: KMM 292658 (Inv. FP 2854.62)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292659
-        ref: KMM 292659 (Inv. FP 2854.61)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292660
-        ref: KMM 292660 (Inv. FP 2854.60)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292661
-        ref: KMM 292661 (Inv. FP 2854.59)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292662
-        ref: KMM 292662 (Inv. FP 2854.58)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292663
-        ref: KMM 292663 (Inv. FP 2854.57)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292664
-        ref: KMM 292664 (Inv. FP 2854.56)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292665
-        ref: KMM 292665 (Inv. FP 2854.55)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292666
-        ref: KMM 292666 (Inv. FP 2854.54)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292667
-        ref: KMM 292667 (Inv. FP 2854.53)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292668
-        ref: KMM 292668 (Inv. FP 2854.52)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292669
-        ref: KMM 292669 (Inv. FP 2854.51)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292670
-        ref: KMM 292670 (Inv. FP 2854.50)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292671
-        ref: KMM 292671 (Inv. FP 2854.49)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292672
-        ref: KMM 292672 (Inv. FP 2854.48)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292673
-        ref: KMM 292673 (Inv. FP 2854.47)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292674
-        ref: KMM 292674 (Inv. FP 2854.46)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292675
-        ref: KMM 292675 (Inv. FP 2854.45)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292676
-        ref: KMM 292676 (Inv. FP 2854.44)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292677
-        ref: KMM 292677 (Inv. FP 2854.43)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292678
-        ref: KMM 292678 (Inv. FP 2854.42)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/78532
-        ref: KMM 78532 (Inv. GP 678.196)
-        display: false
-    verification_note: *id010
-    composed_of:
-      - c-74c8f7d0
-    label: unified-kmk-292589
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
     ruler: Frederik VI.
     issuing_entity: danish_realm
     year_is_reign_span: true
@@ -137061,6 +136568,7 @@ coins:
     nominal: 1 Speciedaler
     ruler: Christian IV.
     issuing_entity: danish_realm
+    fraction: '1'
     id: c-bd171069
     year_first: 1607
     year_last: 1614
@@ -137143,7 +136651,6 @@ coins:
       - c-f8faede7
     label: unified-kmk-78341
     origin: promoted
-    fraction: '1'
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -139376,51 +138883,6 @@ coins:
     composed_of:
       - c-01e29c44
     label: unified-dk-hede-f5h27
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Rigsbankskilling
-    ruler: Christian VIII.
-    issuing_entity: danish_realm
-    id: c-a4423647
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    catalog:
-      hede: 11A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122620
-        ref: KMM 122620 (Inv. FP 3711.19)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122917
-        ref: KMM 122917 (Inv. FP 3712.42)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/203791
-        ref: KMM 203791 (Inv. FP 6588.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308682
-        ref: KMM 308682 (Inv. FP 7430.34)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/340429
-        ref: KMM 340429 (Inv. FP 5633.13)
-        display: false
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-a4423647
-    label: unified-kmk-122620
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -148813,6 +148275,126 @@ coins:
   - fuss: 9_thaler
     phase: I
     kind: kurant
+    nominal: 1½ Speciedaler
+    issuing_entity: danish_realm
+    ruler: Christian IV
+    mintmaster: Nicolaus Schwabe
+    id: c-3f7dc650
+    year_first: 1611
+    year_last: 1611
+    year_label: '1611'
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1611'
+          seed: denmark-numismaster-65521
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1611)
+          value: '1611'
+          seed: dk-bruun-5850
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1588-1648
+          seed: dk-hede-c4h64c
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1611) Rare
+          value: '1611'
+          seed: ngc-1050078
+      fineness:
+        - kind: inferred
+          how: standard
+          source: Wilcke 1919, s. 93
+          as_printed: Prætorius oplyst, at Schwabes Dalere var 14 4/18 lødige
+          value: '0.88889'
+          translation:
+            de: Prætorius hat angegeben, dass Schwabes Taler 14 4/18 Lot fein waren
+            en: Prætorius stated that Schwabe's thalers were 14 4/18 lod fine
+            uk: Prætorius повідомив, що талери Schwabe мали пробу 14 4/18 лота
+          seed: dk-hede-c4h64c
+      nominal:
+        - kind: inferred
+          how: other_source
+          source: Bruun Part II, lot 13124
+          as_printed: 1 1/2 Speciedaler … Hede-64C
+          value: 1½ Speciedaler
+          seed: dk-hede-c4h64c
+    nominal_verified: false
+    mint: Kopenhagen
+    catalog:
+      km: '155'
+      dav: 3538A
+      hede: 64C
+      hede_volume: c4h
+      bruun_collection_id: '5850'
+      sieg: '118'
+      schou: '28'
+      others:
+        - Dav-LS# 540
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.88889
+        source: Wilcke 1919, s. 93
+    weight_rough_g:
+      - value: 48.8
+        source: bruun
+    catalog_alts:
+      - register: km
+        value: '154'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die KM-Nummer gehört zu einem anderen Typ.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler
+            KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (Übers.: «ähnlich 2 Speciedaler, KM#147»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure
+            of king … Reverse: King on horseback … Dav. #3538A»[/i] (Übers.: «Vorderseite: Brustbild des Königs … Rückseite: der König zu Pferd»)."
+          en: "The KM number belongs to another type.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM#
+            154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure of king … Reverse: King on horseback …
+            Dav. #3538A»[/i]."
+          uk: "Номер KM належить іншому типу.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 154 (1607-14)
+            … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (перекл.: «подібний до 2 Speciedaler, KM#147»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure of king
+            … Reverse: King on horseback … Dav. #3538A»[/i] (перекл.: «аверс: погрудне зображення короля … реверс: король на коні»)."
+          da: "KM-nummeret hører til en anden type.\n[b]Bruun Part II, lot 13124[/b]: [i]«1 1/2 Speciedaler, ND (1611) … Dav-LS540; KM-154; Hede-64C»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM#
+            154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (overs.: «ligner 2 Speciedaler, KM#147»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 155 (ca.1611) … Obverse: 1/2-figure
+            of king … Reverse: King on horseback … Dav. #3538A»[/i] (overs.: «forside: brystbillede af kongen … bagside: kongen til hest»)."
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65521
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-1-2-speciedaler-km-155-ca.1611-cuid-1050078-duid-1237538
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13124, p. 66
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h64.htm
+        ref: danskmoent.dk (Hede c4h64)
+    verification_note:
+      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
+      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
+      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
+    composed_of:
+      - c-3f7dc650
+    label: unified-ngc-1050078
+    origin: promoted
+  - fuss: 9_thaler
+    phase: I
+    kind: kurant
     nominal: 6 Speciedaler
     ruler: Christian IV
     issuing_entity: danish_realm
@@ -150053,41 +149635,6 @@ coins:
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
-    nominal: 1/5 Rigsbankskilling
-    ruler: Christian VIII
-    issuing_entity: danish_realm
-    id: c-d42ccf7b
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    catalog:
-      km: '723'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.462
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-5-rigsbankskilling-km-723-1842-cuid-1050312-duid-1238197
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-d42ccf7b
-    label: unified-ngc-1050312
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
     nominal: 2 Rigsbankskilling
     ruler: Frederik VI
     issuing_entity: danish_realm
@@ -150374,56 +149921,6 @@ coins:
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
-    nominal: 1 Christians D'or
-    ruler: Christian VIII
-    issuing_entity: danish_realm
-    id: c-531c7069
-    year_first: 1843
-    year_last: 1847
-    year_ranges:
-      -   - 1843
-          - 1845
-      -   - 1847
-          - 1847
-    year_label: 1843-1845, 1847
-    catalog:
-      km: '730'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.896
-        source: ngc
-      - value: 0.896
-        source: ucoin
-    weight_rough_g:
-      - value: 6.64
-        source: ucoin
-      - value: 6.642
-        source: ngc
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dor-1843-1847/?tid=130239
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-christians-dor-km-730-1843-1847-cuid-1050399-duid-1238367
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-531c7069
-    label: unified-ngc-1050399
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
     nominal: 1 Frederiks D'or
     ruler: Frederik VI
     issuing_entity: danish_realm
@@ -150552,44 +150049,6 @@ coins:
     composed_of:
       - c-4fea5cf3
     label: unified-ngc-1050413
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    ruler: Frederik VI
-    issuing_entity: danish_realm
-    id: c-10a69c33
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    catalog:
-      km: '690.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.687
-        source: ngc
-    weight_rough_g:
-      - value: 6.129
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-690.1-1818-cuid-1050419-duid-1238267
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-10a69c33
-    label: unified-ngc-1050419
     origin: promoted
   - fuss: pistolenfuss
     phase: I
@@ -151242,38 +150701,6 @@ coins:
     composed_of:
       - c-993c93b8
     label: unified-ngc-1050531
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    issuing_entity: danish_realm
-    id: c-996e206f
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    mint: Altona
-    catalog:
-      km: PnA55
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-pna55-1842-cuid-1050534-duid-1238580
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-996e206f
-    label: unified-ngc-1050534
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc
@@ -152030,8 +151457,9 @@ coins:
     kind: kurant
     nominal: 1 Speciedaler
     issuing_entity: danish_realm
-    id: c-c7c30681
     ruler: Christian IV
+    fraction: '1'
+    id: c-c7c30681
     year_first: 1611
     year_last: 1611
     year_label: '1611'
@@ -152109,7 +151537,6 @@ coins:
       - c-c7c30681
     label: unified-ngc-1050713
     origin: promoted
-    fraction: '1'
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
@@ -152732,37 +152159,6 @@ coins:
     composed_of:
       - c-40e3f5c7
     label: unified-ngc-1051164
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Christians D'or
-    issuing_entity: danish_realm
-    id: c-26c73b7d
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    catalog:
-      km: PnB55
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-pnb55-1842-cuid-1051165-duid-1238581
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-26c73b7d
-    label: unified-ngc-1051165
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc
@@ -154972,70 +154368,6 @@ coins:
     composed_of:
       - c-c2c1fa83
     label: unified-ngc-1055247
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Christians D'or
-    ruler: Christian VIII
-    issuing_entity: danish_realm
-    id: c-8b68a55c
-    year_first: 1841
-    year_last: 1841
-    year_label: '1841'
-    catalog:
-      km: PnBA55
-    metal: pewter
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-christians-dor-km-pnba55-1841-cuid-1055952-duid-1238786
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-8b68a55c
-    label: unified-ngc-1055952
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    ruler: Christian VIII
-    issuing_entity: danish_realm
-    id: c-f1622356
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    catalog:
-      km: TSAB55
-    metal: pewter
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-tsab55-1842-cuid-1055958-duid-1238788
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-f1622356
-    label: unified-ngc-1055958
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc
@@ -158161,44 +157493,6 @@ coins:
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
-    nominal: 8 Rigsbankskilling
-    ruler: Christian VIII
-    issuing_entity: danish_realm
-    id: c-47ec247a
-    year_first: 1843
-    year_last: 1843
-    year_label: '1843'
-    catalog:
-      km: '737'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.375
-        source: ngc
-    weight_rough_g:
-      - value: 2.809
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-8-rigsbankskilling-km-737-1843-cuid-1069087-duid-1238260
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-47ec247a
-    label: unified-ngc-1069087
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
     nominal: 1 Speciedaler
     ruler: Frederik VI
     issuing_entity: danish_realm
@@ -158497,36 +157791,6 @@ coins:
     composed_of:
       - c-95879baf
     label: unified-ngc-1069111
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/5 Rigsbankskilling
-    issuing_entity: danish_realm
-    id: c-de9b4755
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    catalog:
-      km: PnE54
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-5-rigsbankskilling-km-pne54-1842-cuid-1069112-duid-1238578
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-de9b4755
-    label: unified-ngc-1069112
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc
@@ -158922,70 +158186,6 @@ coins:
     composed_of:
       - c-28d55a1b
     label: unified-ngc-1069328
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Rigsdaler Species
-    ruler: Christian VIII
-    issuing_entity: danish_realm
-    id: c-8cdf1b68
-    year_first: 1840
-    year_last: 1840
-    year_label: '1840'
-    catalog:
-      km: TSDA54
-    metal: pewter
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-rigsdaler-species-km-tsda54-1840-cuid-1069947-duid-1238784
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-8cdf1b68
-    label: unified-ngc-1069947
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    ruler: Christian VIII
-    issuing_entity: danish_realm
-    id: c-cfddf40e
-    year_first: 1842
-    year_last: 1842
-    year_label: '1842'
-    catalog:
-      km: PnAA55
-    metal: pewter
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-pnaa55-1842-cuid-1069948-duid-1238787
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-cfddf40e
-    label: unified-ngc-1069948
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc
@@ -161715,88 +160915,6 @@ coins:
       - c-1707f06a
     label: unified-dk-hede-c5h4
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    ruler: Christian VIII.
-    issuing_entity: danish_realm
-    fraction: 1/3
-    id: c-a5e1362b
-    year_first: 1842
-    year_last: 1843
-    year_ranges:
-      -   - 1842
-          - 1843
-    year_label: 1842-1843
-    mint: Kopenhagen
-    catalog:
-      km: '734'
-      hede: '5'
-      hede_volume: c8h
-      schou:
-        - '3'
-        - '6'
-      sieg: '11'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.68
-        source: ucoin
-      - value: 0.687
-        source: hede
-      - value: 0.687
-        source: ngc
-    weight_rough_g:
-      - value: 6.129
-        source: hede
-      - value: 6.129
-        source: ngc
-      - value: 6.13
-        source: ucoin
-    diameter_mm:
-      - value: 24.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c8h5.htm
-        ref: danskmoent.dk (Hede c8h5)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1842-1843/?tid=70757
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575016
-        ref: KMM 575016 (Inv. FP 11167.22)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575017
-        ref: KMM 575017 (Inv. FP 11167.23)
-        display: false
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-734-1842-1843-cuid-1050466-duid-1238269
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/78529
-        ref: KMM 78529 (Inv. GP 678.193)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-      unit_raw: rigsbankdalere
-    composed_of:
-      - c-a5e1362b
-    label: unified-dk-hede-c8h5
-    origin: promoted
   - fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -161911,67 +161029,6 @@ coins:
     composed_of:
       - c-1dfb0100
     label: unified-dk-hede-f6h1
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 32 Rigsbankskilling
-    ruler: Frederik VI.
-    issuing_entity: danish_realm
-    id: c-79711eb5
-    year_first: 1818
-    year_last: 1820
-    year_ranges:
-      -   - 1818
-          - 1818
-      -   - 1820
-          - 1820
-    year_label: 1818, 1820
-    catalog:
-      km: '690.2'
-      hede: '29'
-      hede_volume: f6h
-      schou:
-        - '2'
-        - '3'
-      sieg: '25'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.687
-        source: hede
-      - value: 0.687
-        source: ngc
-    weight_rough_g:
-      - value: 6.129
-        source: hede
-      - value: 6.129
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h29.htm
-        ref: danskmoent.dk (Hede f6h29)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-690.2-1820-cuid-1050317-duid-1238268
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-      unit_raw: rigsbankdalere
-    composed_of:
-      - c-79711eb5
-    label: unified-dk-hede-f6h29
     origin: promoted
   - fuss: seed_unsorted
     phase: hede
@@ -175421,6 +174478,130 @@ coins:
       - c-7f18f3a1
     label: unified-dk-hede-c7h24
     origin: promoted
+  - fuss: 18_5_thaler
+    phase: I
+    kind: kurant
+    nominal: 32 Rigsbankskilling
+    ruler: Frederik VI
+    mintmaster: Johan Friedrich Freund (IFF)
+    issuing_entity: danish_realm
+    fraction: 1/3
+    id: c-e8645e7a
+    year_first: 1818
+    year_last: 1820
+    year_ranges:
+      -   - 1818
+          - 1818
+      -   - 1820
+          - 1820
+    year_label: 1818, 1820
+    mint: Altona
+    catalog:
+      km:
+        - '690.2'
+        - '690.1'
+        - '690'
+      hede:
+        - '29'
+        - 29B
+      hede_volume: f6h
+      schou:
+        - '2'
+        - '3'
+      sieg:
+        - '25'
+        - '25.2'
+      bruun_collection_id: '8053'
+      bruun_part: IV
+      bruun_lot_no: 17161
+      bruun_page: 93
+      numista: '24424'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.68
+        source: ucoin
+      - value: 0.687
+        source: hede
+      - value: 0.687
+        source: ngc
+        specimen: ngc-1050317
+      - value: 0.687
+        source: ngc
+        specimen: ngc-1050419
+      - value: 0.687
+        source: numismaster
+        specimen: denmark-numismaster-66036
+      - value: 0.687
+        source: numismaster
+        specimen: denmark-numismaster-66038
+      - value: 0.687
+        source: numista
+    weight_rough_g:
+      - value: 6.07
+        source: bruun
+      - value: 6.129
+        source: hede
+      - value: 6.129
+        source: ngc
+        specimen: ngc-1050317
+      - value: 6.129
+        source: ngc
+        specimen: ngc-1050419
+      - value: 6.129
+        source: numismaster
+        specimen: denmark-numismaster-66036
+      - value: 6.129
+        source: numismaster
+        specimen: denmark-numismaster-66038
+      - value: 6.129
+        source: numista
+      - value: 6.13
+        source: ucoin
+    diameter_mm:
+      - value: 25.5
+        source: ucoin
+      - value: 26.12
+        source: numista
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_66036
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66038
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17161, p. 77
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h29.htm
+        ref: danskmoent.dk (Hede f6h29)
+      - type: literature
+        url: https://en.numista.com/24424
+        ref: Numista N#24424 — 32 Rigsbankskilling - Frederik VI
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-690.2-1820-cuid-1050317-duid-1238268
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-690.1-1818-cuid-1050419-duid-1238267
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+      unit_raw: rigsbankdalere
+    composed_of:
+      - c-e8645e7a
+    label: unified-dk-hede-f6h29
+    origin: promoted
   - fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -175485,124 +174666,4 @@ coins:
     composed_of:
       - c-057ec263
     label: unified-dk-hede-c4h75
-    origin: promoted
-  - fuss: 9_thaler
-    phase: I
-    kind: kurant
-    nominal: 1½ Speciedaler
-    ruler: Christian IV
-    issuing_entity: danish_realm
-    id: c-e5109ae8
-    year_first: 1607
-    year_last: 1614
-    year_ranges:
-      -   - 1607
-          - 1614
-    year_label: 1607-1614
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1607-1614
-          seed: denmark-numismaster-65516
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1607-14)
-          value: 1607-1614
-          seed: dk-bruun-5851
-        - kind: inferred
-          how: reign
-          source: hede
-          as_printed: u.år
-          value: 1588-1648
-          seed: dk-hede-c4h63e
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1607-14) Rare
-          value: 1607-1614
-          seed: ngc-1060266
-      fineness:
-        - kind: inferred
-          how: standard
-          source: Wilcke 1919, s. 93
-          as_printed: Prætorius oplyst, at Schwabes Dalere var 14 4/18 lødige
-          value: '0.88889'
-          translation:
-            de: Prætorius hat angegeben, dass Schwabes Taler 14 4/18 Lot fein waren
-            en: Prætorius stated that Schwabe's thalers were 14 4/18 lod fine
-            uk: Prætorius повідомив, що талери Schwabe мали пробу 14 4/18 лота
-          seed: dk-hede-c4h63e
-      nominal:
-        - kind: inferred
-          how: other_source
-          source: Bruun Part V, lot 14127
-          as_printed: 1 1/2 Speciedaler … Hede-63E
-          value: 1½ Speciedaler
-          seed: dk-hede-c4h63e
-    nominal_verified: false
-    mint:
-      - Helsingør
-      - Kopenhagen
-    catalog:
-      km: '154'
-      hede: 63E
-      hede_volume: c4h
-      sieg: '112.1'
-      bruun_collection_id: '5851'
-      schou: '27'
-      others:
-        - Harck# 7.7.2
-        - Dav-LS# 530
-      dav: 3537A
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.88889
-        source: Wilcke 1919, s. 93
-    weight_rough_g:
-      - value: 48.51
-        source: bruun
-    catalog_alts:
-      - register: km
-        value: '115'
-        source: bruun
-        kind: erroneous
-        reason:
-          de: "Die KM-Nummer gehört zu einem anderen Nominal.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i] (Übers.:
-            «Gewicht: 48,51 g»).\n[b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i] (Übers.: «Gewicht: 115,62 g»).\n[b]NGC[/b]: [i]«Denmark
-            1-1/2 Speciedaler KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (Übers.: «ähnlich 2 Speciedaler, KM#147»)."
-          en: "The KM number belongs to another denomination.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i].\n\
-            [b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i].\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler KM# 154 (1607-14) … Similar to
-            2 Speciedaler, KM#147. Dav. #3537A»[/i]."
-          uk: "Номер KM належить іншому номіналу.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i] (перекл.: «вага:
-            48,51 г»).\n[b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i] (перекл.: «вага: 115,62 г»).\n[b]NGC[/b]: [i]«Denmark 1-1/2 Speciedaler
-            KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (перекл.: «подібний до 2 Speciedaler, KM#147»)."
-          da: "KM-nummeret hører til et andet nominal.\n[b]Bruun Part V, lot 14127[/b]: [i]«1 1/2 Speciedaler, ND (1607-14) … Dav-LS530, 3537; KM-115; Hede-63E»[/i], [i]«Weight: 48.51 gms»[/i] (overs.:
-            «vægt: 48,51 g»).\n[b]Bruun Part IV, lot 17061[/b]: [i]«4 Speciedaler … Dav-3537D; KM-115; Hede-63B»[/i], [i]«Weight: 115.62 gms»[/i] (overs.: «vægt: 115,62 g»).\n[b]NGC[/b]: [i]«Denmark 1-1/2
-            Speciedaler KM# 154 (1607-14) … Similar to 2 Speciedaler, KM#147. Dav. #3537A»[/i] (overs.: «ligner 2 Speciedaler, KM#147»)."
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65516
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14127, p. 53
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h63.htm
-        ref: danskmoent.dk (Hede c4h63)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-1-2-speciedaler-km-154-1607-14-cuid-1060266-duid-1237537
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    composed_of:
-      - c-e5109ae8
-    label: unified-dk-hede-c4h63e
     origin: promoted

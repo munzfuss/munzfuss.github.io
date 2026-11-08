@@ -932,6 +932,30 @@ def _seed_classification(finals: dict[str, dict[str, dict]],
     return out
 
 
+def _load_finals_unified(ref: str | None) -> tuple[dict, dict]:
+    """({entity → {final id → coin}}, {unified id → member ids}) at `ref`
+    (None = the working tree)."""
+    finals: dict[str, dict[str, dict]] = {}
+    unified: dict[str, list[str]] = {}
+    if ref is None:
+        for p in sorted((ROOT / FINAL_REL).glob("*.yml")):
+            finals[p.stem] = (_LOADED_FINALS.get((None, p.stem))
+                              or _coins(_read_yaml(p)))
+        for p in sorted((ROOT / "data/v2/seed_unified").glob("*.yml")):
+            for uid, u in _coins(_read_yaml(p)).items():
+                unified[uid] = list(u.get("composed_of") or [])
+        return finals, unified
+    def ls(d):
+        return subprocess.run(["git", "ls-tree", "-r", "--name-only", ref, d],
+                              capture_output=True, text=True, cwd=ROOT).stdout.split()
+    for rel in ls(FINAL_REL + "/"):
+        finals[Path(rel).stem] = (_LOADED_FINALS.get((ref, Path(rel).stem))
+                                  or _coins(_git_show(ref, rel)))
+    unified = _head_unified_members(ref)
+    return finals, unified
+
+
+
 def seed_declassifications(base: str, entities: list[str]) -> list[str]:
     """Seeds that sat in a CLASSIFIED final at `base` and sit in a
     seed_unsorted final now.
@@ -949,34 +973,62 @@ def seed_declassifications(base: str, entities: list[str]) -> list[str]:
     Excused: seeds recorded as `kind: declassify` (curator-agreed), seeds a
     curator exclusion names, and seeds no final carries any more (thinning,
     exclusion — the coin-level checks own those)."""
-    def load(ref: str | None) -> tuple[dict, dict]:
-        finals: dict[str, dict[str, dict]] = {}
-        unified: dict[str, list[str]] = {}
-        if ref is None:
-            for p in sorted((ROOT / FINAL_REL).glob("*.yml")):
-                finals[p.stem] = (_LOADED_FINALS.get((None, p.stem))
-                                  or _coins(_read_yaml(p)))
-            for p in sorted((ROOT / "data/v2/seed_unified").glob("*.yml")):
-                for uid, u in _coins(_read_yaml(p)).items():
-                    unified[uid] = list(u.get("composed_of") or [])
-            return finals, unified
-        def ls(d):
-            return subprocess.run(["git", "ls-tree", "-r", "--name-only", ref, d],
-                                  capture_output=True, text=True, cwd=ROOT).stdout.split()
-        for rel in ls(FINAL_REL + "/"):
-            finals[Path(rel).stem] = (_LOADED_FINALS.get((ref, Path(rel).stem))
-                                      or _coins(_git_show(ref, rel)))
-        unified = _head_unified_members(ref)
-        return finals, unified
-
-    h_fin, h_uni = load(base)
-    c_fin, c_uni = load(None)
+    h_fin, h_uni = _load_finals_unified(base)
+    c_fin, c_uni = _load_finals_unified(None)
     excluded: set[str] = set()
     for ent in set(h_fin) | set(c_fin):
         excluded |= _excluded_ids(ent)
     return declassified(_seed_classification(h_fin, h_uni),
                         _seed_classification(c_fin, c_uni),
                         _declassify_recorded() | excluded, entities)
+
+
+def seed_orphans(base: str, entities: list[str]) -> list[str]:
+    """Seeds that sat in a final at `base`, are still members of a
+    seed_unified class now, and sit in NO final now.
+
+    The coin-level checks key on final ids and count a final that vanished
+    under a curator exclusion as «excluded». That hides one trap: absorb folds
+    a live class into a seedless pre-V2 foundation FIRST, and excluding the
+    foundation then drops the live class with it (2026-11-07, Hede 6 into
+    km-733-chr-v-1842 — every seed of the coin left the render and the gate
+    reported «no losses»). Keyed by seed, that is a plain loss.
+
+    Excused: a seed an exclusion names, or whose current class has a member an
+    exclusion names (the curator removed that coin on purpose). A seed in no
+    seed_unified class left the corpus (builder filter, scope rule) — the
+    coin-level checks own those."""
+    h_fin, h_uni = _load_finals_unified(base)
+    c_fin, c_uni = _load_finals_unified(None)
+    excluded: set[str] = set()
+    for ent in set(h_fin) | set(c_fin):
+        excluded |= _excluded_ids(ent)
+    return orphaned(_seed_classification(h_fin, h_uni),
+                    _seed_classification(c_fin, c_uni), c_uni, excluded, entities)
+
+
+def orphaned(was: dict, now: dict, unified_now: dict[str, list[str]],
+             excluded: set[str], entities: list[str] | None = None) -> list[str]:
+    """The comparison behind `seed_orphans`, kept pure for tests.
+    `was` / `now`: {seed → (entity, final id, fuss)}; `unified_now`:
+    {unified id → member seeds} of the working tree."""
+    class_of: dict[str, str] = {}
+    for uid, members in unified_now.items():
+        for m in members:
+            class_of[m] = uid
+    hits: dict[tuple, list[str]] = {}
+    for s, (ent, fid, fuss) in was.items():
+        if s in now or s not in class_of or s in excluded:
+            continue
+        if set(unified_now.get(class_of[s], [])) & excluded:
+            continue
+        if entities and ent not in entities:
+            continue
+        hits.setdefault((ent, fid, fuss, class_of[s]), []).append(s)
+    return [f"[{ent}] SEED ORPHANED  seed(s) {', '.join(sorted(v)[:4])}"
+            f"{' …' if len(v) > 4 else ''} of {fid} ({fuss!r}) are in class {uid} "
+            f"but in no final"
+            for (ent, fid, fuss, uid), v in sorted(hits.items())]
 
 
 def declassified(was: dict, now: dict, excused: set[str],
@@ -1661,6 +1713,11 @@ def main() -> int:
     if declass:
         print(f"\n✗ seed-level: {len(declass)} class(es) hold seeds that were "
               f"classified at {args.base} and are seed_unsorted now")
+    orphans = seed_orphans(args.base, [args.entity] if args.entity else [])
+    total_loss += orphans
+    if orphans:
+        print(f"\n✗ seed-level: {len(orphans)} group(s) of seeds were in a final at "
+              f"{args.base} and are in no final now")
 
     print(f"\nchanged coins: {total_changed}   gains: {total_gain}   "
           f"losses: {len(total_loss)}   moved: {total_moved}")

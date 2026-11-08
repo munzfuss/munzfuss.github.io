@@ -2358,7 +2358,7 @@ def _final_is_curated(fe: dict) -> bool:
     if fe.get("note") or fe.get("_curation_holds") or fe.get("promoted_to"):
         return True
     ph = fe.get("phase")
-    if ph and ph not in _SEED_TAG_PHASES:
+    if ph and (not isinstance(ph, str) or ph not in _SEED_TAG_PHASES):
         return True
     return False
 
@@ -3443,7 +3443,10 @@ def process_entity(entity_id: str) -> dict:
             cur = entry.get(field)
             if field == "fuss" and cur in (None, "seed_unsorted"):
                 entry[field] = value
-            elif field == "phase" and (cur is None or cur in _SEED_TAG_PHASES):
+            elif field == "phase" and (cur is None or (
+                    isinstance(cur, str) and cur in _SEED_TAG_PHASES)):
+                # A per-page phase dict ({denmark: I, …}) is a curator
+                # value, never a seed tag — and unhashable for the set test.
                 entry[field] = value
             elif field not in ("fuss", "phase") and cur in (None, "", [], {}):
                 entry[field] = value

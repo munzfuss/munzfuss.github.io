@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-07T16:55:45Z'
+generated_at: '2026-11-07T19:28:03Z'
 entity: royal_holstein
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -4707,6 +4707,46 @@ coins:
     metal_verified: true
     mint_verified: true
     year_last: 1818
+  - id: dk-hede-f6h29
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 32 Rigsbankskilling
+    year_label: 1818, 1820
+    year_first: 1818
+    year_last: 1820
+    year_ranges:
+      - [1818, 1818]
+      - [1820, 1820]
+    ruler: Frederik VI.
+    mint: Altona
+    catalog:
+      hede: '29'
+      hede_volume: f6h
+      schou:
+        - '2'
+        - '3'
+      sieg: '25'
+    metal: silver
+    fineness: 0.687
+    weight_rough_g: 6.129
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+      unit_raw: rigsbankdalere
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h29.htm
+        ref: danskmoent.dk (Hede f6h29)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    _source_note:
+      da: 'Forside: monogram, bagside: værdiangivelse. Møntmestermærke henholdsvis CB (1818) og IFF (1820) (Hede 29, Schou hhv. 2 og 3, Sieg 25)'
   - id: dk-hede-f6h24e
     fuss: seed_unsorted
     phase: hede
@@ -5163,6 +5203,47 @@ coins:
     _source_note:
       da: 'Forside: portræt, bagside: våbenskjold A) 1841 (R), København: møntmærke hjerte (Hede 1A, Schou 1, Sieg 16.1) B) 1842 (R), 1844, 1845 (R), 1847, Altona: møntmærke rigsæble; FF (Hede 1B, Schou
         1,1,1,1, Sieg 16.2) C) 1844 (S), København: møntmærke krone, bagside: VS (Hede 1C, Schou 2, Sieg 16.3)'
+  - id: dk-hede-c8h5
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 32 Rigsbankskilling
+    year_label: 1842–1843
+    year_first: 1842
+    year_last: 1843
+    year_ranges:
+      - [1842, 1842]
+      - [1843, 1843]
+    ruler: Christian VIII.
+    mint: Altona
+    catalog:
+      hede: '5'
+      hede_volume: c8h
+      schou:
+        - '3'
+        - '6'
+      sieg: '11'
+    metal: silver
+    fineness: 0.687
+    weight_rough_g: 6.129
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+      unit_raw: rigsbankdalere
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c8h5.htm
+        ref: danskmoent.dk (Hede c8h5)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    _source_note:
+      da: 'Forside: portræt, bagside: våbenskjold (Hede 5A, Schou 3, Sieg 11) Variant (RR): Medaillørens initialer FK under portrættet er fejlagtig blevet til FF , der således forekommer to gange på denne
+        variant. Se illustrationen. (1843; Hede 5B, Schou 6, Sieg 11). Stemplerne er skåret af Frederik Christopher Krohn'
   - id: dk-hede-c8h8bc
     fuss: seed_unsorted
     phase: hede
@@ -5524,7 +5605,7 @@ coins:
     year_label: '1851'
     year_first: 1851
     year_last: 1851
-    ruler: Frederik VII.
+    ruler: Prov. Regierung
     mint: Altona
     catalog:
       hede: '18'
@@ -5553,6 +5634,29 @@ coins:
       da: 'Forside: Slesvig-Holstens våben (2 løver for Slesvig samt Holstens nældeblad), bagside: værdiangivelse (Hede 18, Schou 4, Sieg 23) Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten
         egne mønter. Møntmester var Theodor C. W. Andersen (TA) og stempelskærer Heinrich Lorenz (HL). Oprørsregeringen nåede ikke at præge 1 Schillingen. Efter den danske sejr bragtes stemplerne til København.
         Mønten kendes i nypræg samt i nyere afstøbninger'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik VII.
+      reason:
+        de: 'Kein Gepräge Frederiks VII. danskmoent.dk (Hede 18) führt die Münze unter «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (dt.: «Im Dreijährigen
+          Krieg 1848–50 prägte die Aufstandsregierung in Schleswig-Holstein eigene Münzen»).'
+        en: "Not a coinage of Frederik VII. danskmoent.dk (Hede 18) lists the coin under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (transl.: «During
+          the Three Years' War 1848–50 the rebel government in Schleswig-Holstein struck its own coins»)."
+        uk: 'Не карбування Frederik VII. danskmoent.dk (Hede 18) подає монету під «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter» (перекл.: «Під час Трирічної
+          війни 1848–50 повстанський уряд у Шлезвіг-Гольштейні карбував власні монети»).'
+        da: 'Ikke en mønt fra Frederik 7. danskmoent.dk (Hede 18) fører mønten under «Treårskrigen»: «Under treårskrigen 1848-50 prægede oprørsregeringen i Slesvig-Holsten egne mønter».'
+    _source_errata:
+      - field: ruler
+        printed: Frederik VII.
+        correct: Prov. Regierung
+        curator: serg
+        reason: "Curator (Serhii) 2026-11-07: the type is the Schleswig-Holstein rebel government's. danskmoent's Frederik 7 volume lists Hede 18 under «Oprørsregeringen i Slesvig-Holsten» (f7hede), the
+          obverse carries «Slesvig-Holstens våben», and the page says «Oprørsregeringen nåede ikke at præge 1 Schillingen. Efter den danske sejr bragtes stemplerne til København». Frederik VII kept as an
+          erroneous (!) alternative via ruler_mark."
+    _errata_applied:
+      - field: ruler
+        printed: Frederik VII.
+        correct: Prov. Regierung
   - id: dk-hede-f7h1b
     fuss: seed_unsorted
     phase: hede
