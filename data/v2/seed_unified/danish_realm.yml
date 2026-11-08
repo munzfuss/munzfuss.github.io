@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8456 per-source seed entries.
-# Output: 1796 unified entries (one per physical coin).
+# Input: 8454 per-source seed entries.
+# Output: 1793 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -84114,6 +84114,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h97.htm
         ref: danskmoent.dk (Hede f3h97A)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122241
+        ref: KMM 122241 (Inv. FP 5051.45)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-mark-km-a191-cuid-1050149-duid-1236798
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -84127,6 +84130,7 @@ coins:
       - denmark-numismaster-65175
       - dk-hede-f3h97a
       - dk-hede-f3h97b
+      - kmk-122241
       - ngc-1050149
   - id: c-eff2f561
     class_id: c-eff2f561
@@ -103548,32 +103552,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-122102
-  - id: c-f0d8c29d
-    class_id: c-f0d8c29d
-    label: unified-kmk-122103
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1648
-    year_last: 1648
-    year_label: '1648'
-    ruler: Christian IV
-    catalog:
-      hede: 178B
-      others:
-        - LEB# 5838
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122103
-        ref: KMM 122103 (Inv. GP 4551.31)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-122103
   - id: c-b9fd40dd
     class_id: c-b9fd40dd
     label: unified-kmk-122105
@@ -104751,54 +104729,6 @@ coins:
       - kmk-122212
       - kmk-122213
       - kmk-122214
-  - id: c-e5093fe0
-    class_id: c-e5093fe0
-    label: unified-kmk-122229
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 6 Skilling lybsk
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Christian IV
-    catalog:
-      hede: '172'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122229
-        ref: KMM 122229 (Inv. FP 5051.33)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-122229
-  - id: c-670fd8e2
-    class_id: c-670fd8e2
-    label: unified-kmk-122241
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1657
-    year_last: 1657
-    year_label: '1657'
-    ruler: Frederik III
-    catalog:
-      hede: 97B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122241
-        ref: KMM 122241 (Inv. FP 5051.45)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-122241
   - id: c-427852bd
     class_id: c-427852bd
     label: unified-kmk-122246

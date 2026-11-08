@@ -2455,7 +2455,9 @@ coins:
       -   - 1723
           - 1724
     year_label: 1723-1724
-    mint: Tönning
+    mint:
+      - Gottorp
+      - Tönning
     catalog:
       km: '220'
       numista: '319268'
@@ -2484,6 +2486,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-sechsling-km-220-1723-1724-cuid-1177471-duid-1395676
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168042
+        ref: KMM 168042 (Inv. FP 2533.71)
     note:
       de: 6 Pfennigs = 1/64 Thaler · Karl Friedrich von Gottorp, 1723-1724
       en: 6 Pfennigs = 1/64 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1723-1724
@@ -7116,33 +7121,6 @@ coins:
       active: false
       agrees_with_active: true
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    ruler: Karl Frederik
-    issuing_entity: gottorp_duchy
-    mintmaster: Gottorp
-    id: c-71739fe0
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    mint: Gottorp
-    catalog:
-      lange: '479'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168042
-        ref: KMM 168042 (Inv. FP 2533.71)
-    verification_note: *id001
-    composed_of:
-      - c-71739fe0
-    label: unified-kmk-168042
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant

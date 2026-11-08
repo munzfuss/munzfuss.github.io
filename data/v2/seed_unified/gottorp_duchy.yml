@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 550 per-source seed entries.
-# Output: 228 unified entries (one per physical coin).
+# Output: 227 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-11-07'
+generated_at: '2026-11-08'
 coins:
   - id: c-3f6e23f9
     class_id: c-3f6e23f9
@@ -3545,31 +3545,6 @@ coins:
       active: false
       agrees_with_active: true
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'gottorp_duchy'.
-  - id: c-71739fe0
-    class_id: c-71739fe0
-    label: unified-kmk-168042
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    ruler: Karl Frederik
-    mint: Gottorp
-    catalog:
-      lange: '479'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168042
-        ref: KMM 168042 (Inv. FP 2533.71)
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-168042
   - id: c-2cd9d265
     class_id: c-2cd9d265
     label: unified-kmk-168043
@@ -6440,7 +6415,9 @@ coins:
           - 1724
     year_label: 1723-1724
     ruler: Karl Friedrich
-    mint: Tönning
+    mint:
+      - Gottorp
+      - Tönning
     catalog:
       km: '220'
       lange: '479'
@@ -6456,6 +6433,9 @@ coins:
       - type: literature
         url: https://en.numista.com/319268
         ref: Numista N#319268 — 1 Sechsling - Charles Frederick
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168042
+        ref: KMM 168042 (Inv. FP 2533.71)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-sechsling-km-220-1723-1724-cuid-1177471-duid-1395676
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -6465,6 +6445,7 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-numista-319268
+      - kmk-168042
       - ngc-1177471
       - schleswig_holstein-numismaster-167245
   - id: c-2ba2b976

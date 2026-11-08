@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 228 active, 226 retired.
+# 227 active, 227 retired.
 
 id: gottorp_duchy
 classes:
@@ -749,13 +749,6 @@ classes:
       - dk-numista-271046
       - ngc-1164990
       - schleswig_holstein-numismaster-99430
-  - id: c-71739fe0
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-168042
-    legacy_id: unified-kmk-168042
-    members:
-      - kmk-168042
   - id: c-72a454a4
     status: active
     created: '2026-10-22'
@@ -2087,6 +2080,7 @@ classes:
     legacy_id: unified-ngc-1177471
     members:
       - dk-numista-319268
+      - kmk-168042
       - ngc-1177471
       - schleswig_holstein-numismaster-167245
   - id: c-fc8ace75
@@ -2990,6 +2984,15 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-687773
+  - id: c-71739fe0
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-168042
+    legacy_id: unified-kmk-168042
+    merged_into: c-fc423a25
+    retired: '2026-11-08'
+    members:
+      - kmk-168042
   - id: c-729fbc9e
     status: retired
     created: '2026-10-22'

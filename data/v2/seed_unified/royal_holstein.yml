@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1190 per-source seed entries.
-# Output: 275 unified entries (one per physical coin).
+# Input: 1192 per-source seed entries.
+# Output: 274 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3697,6 +3697,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-6-skilling-lybsk-1625/?tid=163673
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122229
+        ref: KMM 122229 (Inv. FP 5051.33)
       - type: literature
         url: https://numismaster.com/MC_92988
         ref: NumisMaster
@@ -3709,6 +3712,7 @@ coins:
     composed_of:
       - dk-hede-c4h172
       - dk-tid-163673
+      - kmk-122229
       - schleswig_holstein-numismaster-92988
   - id: c-f5e31581
     class_id: c-f5e31581
@@ -4092,6 +4096,8 @@ coins:
         - 157-159
       sieg: '161'
       numista: '199146'
+      others:
+        - LEB# 5838
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -4111,6 +4117,8 @@ coins:
       - value: 0.312
         source: ucoin
     weight_rough_g:
+      - value: 0.58
+        source: kmk
       - value: 0.7
         source: ucoin
       - value: 0.704
@@ -4152,6 +4160,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-sosling-1640-1648/?tid=163580
         ref: ucoin
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122103
+        ref: KMM 122103 (Inv. GP 4551.31)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167030
         ref: KMM 167030 (Inv. FP 1780.113; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.112)
       - type: museum
@@ -4163,6 +4174,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167068
         ref: KMM 167068 (Inv. FP 1780.156; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.155)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693131
+        ref: KMM 693131 (Inv. FP 280.48)
       - type: literature
         url: https://numismaster.com/MC_92968
         ref: NumisMaster
@@ -4177,10 +4191,12 @@ coins:
       - dk-hede-c4h178b
       - dk-numista-199146
       - dk-tid-163580
+      - kmk-122103
       - kmk-167030
       - kmk-167040
       - kmk-167044
       - kmk-167068
+      - kmk-693131
       - schleswig_holstein-numismaster-92968
   - id: c-f15cd8f2
     class_id: c-f15cd8f2
@@ -17126,35 +17142,6 @@ coins:
     composed_of:
       - kmk-492892
       - kmk-492893
-  - id: c-240f262d
-    class_id: c-240f262d
-    label: unified-kmk-693131
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1645
-    year_last: 1645
-    year_label: '1645'
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      hede: 178B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.58
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693131
-        ref: KMM 693131 (Inv. FP 280.48)
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-693131
   - id: c-8678981c
     class_id: c-8678981c
     label: unified-kmk-693132
