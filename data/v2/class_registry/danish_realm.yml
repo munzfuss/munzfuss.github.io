@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1762 active, 4656 retired.
+# 1760 active, 4658 retired.
 
 id: danish_realm
 classes:
@@ -914,8 +914,6 @@ classes:
       - denmark-numismaster-65293
       - dk-numista-180706
       - dk-tid-99165
-      - kmk-276800
-      - kmk-276801
       - ngc-1049964
   - id: c-0a7c3232
     status: active
@@ -4688,18 +4686,6 @@ classes:
     legacy_id: unified-kmk-161241
     members:
       - kmk-161241
-  - id: c-2a7e07ed
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-f3h116
-    legacy_id: unified-dk-hede-f3h116
-    members:
-      - denmark-numismaster-65294
-      - dk-bruun-6517
-      - dk-hede-f3h116
-      - dk-numista-83028
-      - dk-tid-99134
-      - ngc-1050030
   - id: c-2aab670b
     status: active
     created: '2026-10-22'
@@ -7767,6 +7753,7 @@ classes:
     legacy_id: unified-dk-hede-f3h113a
     members:
       - denmark-numismaster-65291
+      - denmark-numismaster-65292
       - dk-bruun-6655
       - dk-bruun-6702
       - dk-hede-f3h113a
@@ -7954,6 +7941,7 @@ classes:
       - kmk-276992
       - kmk-276994
       - kmk-277010
+      - ngc-1050101
       - ngc-1050153
   - id: c-497440fd
     status: active
@@ -9092,6 +9080,7 @@ classes:
     legacy_id: unified-dk-hede-f3h105ab
     members:
       - denmark-numismaster-65286
+      - denmark-numismaster-65287
       - dk-bruun-6500
       - dk-hede-f3h105ab
       - dk-numista-111389
@@ -9102,6 +9091,7 @@ classes:
       - kmk-275356
       - kmk-275357
       - ngc-1049963
+      - ngc-1050641
   - id: c-4fe0a8f6
     status: active
     created: '2026-10-22'
@@ -14967,21 +14957,6 @@ classes:
       - dk-hede-c4h117b
       - ngc-1050283
       - ngc-1069012
-  - id: c-79371027
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1050101
-    legacy_id: unified-ngc-1050101
-    members:
-      - denmark-numismaster-65292
-      - kmk-276817
-      - kmk-276818
-      - kmk-276819
-      - kmk-276820
-      - kmk-276821
-      - kmk-276822
-      - kmk-276993
-      - ngc-1050101
   - id: c-7943c569
     status: active
     created: '2026-10-22'
@@ -25353,10 +25328,14 @@ classes:
   - id: c-e4b0ea48
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1050641
+    label: unified-dk-hede-f3h116
     legacy_id: unified-ngc-1050641
     members:
-      - denmark-numismaster-65287
+      - denmark-numismaster-65294
+      - dk-bruun-6517
+      - dk-hede-f3h116
+      - dk-numista-83028
+      - dk-tid-99134
       - kmk-275297
       - kmk-275298
       - kmk-275299
@@ -25373,10 +25352,19 @@ classes:
       - kmk-275310
       - kmk-275311
       - kmk-275312
+      - kmk-276800
+      - kmk-276801
+      - kmk-276817
+      - kmk-276818
+      - kmk-276819
+      - kmk-276820
+      - kmk-276821
+      - kmk-276822
       - kmk-276841
       - kmk-276842
+      - kmk-276993
       - kmk-276995
-      - ngc-1050641
+      - ngc-1050030
   - id: c-e4bd5eb8
     status: active
     created: '2026-10-22'
@@ -34149,6 +34137,20 @@ classes:
     members:
       - kmk-158008
       - kmk-275606
+  - id: c-2a7e07ed
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-f3h116
+    legacy_id: unified-dk-hede-f3h116
+    merged_into: c-e4b0ea48
+    retired: '2026-11-08'
+    members:
+      - denmark-numismaster-65294
+      - dk-bruun-6517
+      - dk-hede-f3h116
+      - dk-numista-83028
+      - dk-tid-99134
+      - ngc-1050030
   - id: c-2a7e5567
     status: retired
     created: '2026-10-22'
@@ -47799,6 +47801,23 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-306475
+  - id: c-79371027
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1050101
+    legacy_id: unified-ngc-1050101
+    merged_into: c-e4b0ea48
+    retired: '2026-11-08'
+    members:
+      - denmark-numismaster-65292
+      - kmk-276817
+      - kmk-276818
+      - kmk-276819
+      - kmk-276820
+      - kmk-276821
+      - kmk-276822
+      - kmk-276993
+      - ngc-1050101
   - id: c-79484e78
     status: retired
     created: '2026-10-22'
