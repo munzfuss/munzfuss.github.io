@@ -3942,6 +3942,13 @@ def process_entity(entity_id: str) -> dict:
     # Build: already-absorbed unified ids (across all final composed_of lists)
     already_absorbed: dict[str, str] = {}
     for fid, fc in final_by_id.items():
+        # A recorded empty duplicate keeps no class: the registry may hand
+        # the id it still lists to a class re-cut by a split (km-271-fr-iii-1666
+        # listed c-e4b0ea48, which the Hede 116 class inherited, 2026-11-08) —
+        # it must then go through the host search like any other class.
+        if str(fid) in _empty_duplicate_removals():
+            fc["composed_of"] = []
+            continue
         for cid in fc.get("composed_of") or []:
             already_absorbed[cid] = fid
 
