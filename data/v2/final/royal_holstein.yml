@@ -2497,7 +2497,9 @@ coins:
     fraction: '1'
     nominal: 1 Rigsbankdaler
     ruler: Frederik VI.
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     mintmaster: Johan Friedrich Freund (FF)
     id: km-696-1-fr-vi-1826
     year_first: 1826
@@ -2507,9 +2509,9 @@ coins:
           - 1828
       -   - 1833
           - 1836
-      -   - 1839
+      -   - 1838
           - 1839
-    year_label: 1826-1828, 1833-1836, 1839
+    year_label: 1826-1828, 1833-1836, 1838-1839
     mint:
       - Altona
       - Kopenhagen
@@ -2518,18 +2520,36 @@ coins:
         sh:
           - '696.1'
           - '696'
+          - '706.2'
+          - '706.1'
+          - '706.3'
+          - '696.2'
+          - '706'
         dk: '706.1'
-      bruun_collection_id: '8067'
+      bruun_collection_id:
+        - '8067'
+        - '8093'
+        - '8103'
       bruun_part: IV
       bruun_lot_no: 17164
       bruun_page: 94
-      hede_volume: f6h
       sieg:
         - '27.1'
         - '28.1'
-      schou: '3'
-      hede: 27A
-      numista: '152303'
+        - '28.2'
+        - '28.3'
+      schou:
+        - '3'
+        - 5-6
+        - '7'
+      hede:
+        - 27A
+        - 27B
+        - 27C
+      hede_volume: f6h
+      numista:
+        - '152303'
+        - '83070'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2540,22 +2560,114 @@ coins:
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f6h27a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h27b
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h27c
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050421
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051026
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051048
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051049
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1060680
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66050
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66051
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66052
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66055
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66057
       - value: 0.875
         source: numista
+        specimen: dk-numista-152303
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-83070
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70760
     weight_rough_g:
+      - value: 14.35
+        source: bruun
       - value: 14.43
         source: bruun
       - value: 14.447
         source: hede
+        specimen: dk-hede-f6h27a
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h27b
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h27c
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1050421
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051048
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1060680
       - value: 14.447
         source: numismaster
+        specimen: denmark-numismaster-66050
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66052
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66057
+      - value: 14.447
+        source: numista
+        specimen: dk-numista-83070
+      - value: 14.45
+        source: bruun
       - value: 14.45
         source: numista
+        specimen: dk-numista-152303
+      - value: 14.45
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 14.5
+        source: ucoin
+        specimen: dk-tid-70760
     diameter_mm:
+      - value: 31.0
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 32.0
+        source: numista
+        specimen: dk-numista-83070
+      - value: 32.0
+        source: ucoin
+        specimen: dk-tid-70760
       - value: 32.1
         source: numista
+        specimen: dk-numista-152303
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -2564,11 +2676,56 @@ coins:
         url: https://numismaster.com/MC_66050
         ref: NumisMaster
       - type: literature
-        url: https://en.numista.com/152303
-        ref: Numista N#152303 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut)
+        url: https://numismaster.com/MC_66051
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66052
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66055
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66057
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17169, p. 81
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17171, p. 81
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h27.htm
         ref: danskmoent.dk (Hede f6h27A)
+      - type: literature
+        url: https://en.numista.com/152303
+        ref: Numista N#152303 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut)
+      - type: literature
+        url: https://en.numista.com/83070
+        ref: Numista N#83070 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1826-1828/?tid=70759
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1833-1839/?tid=70760
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78504
+        ref: KMM 78504 (Inv. GP 678.168)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-696.1-1826-1834-cuid-1050421-duid-1238279
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.3-1835-1838-cuid-1051026-duid-1238292
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-696.2-1833-1834-cuid-1051048-duid-1238284
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.1-1833-1839-cuid-1051049-duid-1238286
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.2-1834-cuid-1060680-duid-1238291
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Rigsbankdaler (= ½ Speciedaler) 1826 (KM-696.1)
       en: Rigsbankdaler (= ½ Speciedaler) 1826 (KM-696.1)
@@ -2583,12 +2740,18 @@ coins:
       unit: rigsbankdaler
       basis: fin
     composed_of:
-      - c-c1fe61f5
-      - c-e6374257
+      - c-5825ae49
     label: km-696-1-fr-vi-1826
     origin: foundation
     v1_home_location: schleswig_holstein
     _migration_note: auto-mapped from gesamtstaat
+    _weights_thinned:
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051026
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66051
   - fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -15033,90 +15196,6 @@ coins:
     composed_of:
       - c-9300a9b6
     label: unified-dk-bruun-6485
-    origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Rigsbankdaler
-    ruler: Frederik VI.
-    mintmaster: Johan Friedrich Freund
-    issuing_entity: royal_holstein
-    fraction: '1'
-    id: c-849abc3a
-    year_first: 1833
-    year_last: 1839
-    year_ranges:
-      -   - 1833
-          - 1836
-      -   - 1838
-          - 1839
-    year_label: 1833-1836, 1838-1839
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km:
-        - '706.1'
-        - '706'
-      bruun_collection_id: '8103'
-      sieg: '28.1'
-      schou: '6'
-      hede: 27A
-      numista: '83070'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 14.447
-        source: numismaster
-      - value: 14.447
-        source: numista
-      - value: 14.45
-        source: bruun
-    diameter_mm:
-      - value: 32.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66052
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17171, p. 81
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1833-1839/?tid=70760
-        ref: ucoin
-      - type: literature
-        url: https://en.numista.com/83070
-        ref: Numista N#83070 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut)
-    note:
-      de: Bloßer Kopf König Frederik VI. nach rechts; Graveursignatur am gebrochenen Halsabschnitt. / Gekröntes großes Wappen von Dänemark und seinen Territorien. Wert oben in Buchstaben, während der 
-        Wert als Bruchteil eines Speciedalers zu den Seiten des Schildes geteilt ist. Darunter die Jahreszahl, an den Seiten von den Müntzmeisterinitialen geteilt.
-      en: Bare head of King Frederik VI facing right; engraver's initials on the broken neck-cut. / Crowned greater shield with the arms of Denmark and its territories. Value above in letters, while 
-        the value as a fraction of a Speciedaler is divided at the sides of the shield. Date below, divided at the sides by the mint master's initials.
-      uk: Непокрита голова короля Frederik VI праворуч; ініціали гравера на ламаному зрізі шиї. / Коронований великий герб Данії та її територій. Номінал угорі літерами, тоді як номінал у вигляді 
-        частки Speciedaler розділений по боках щита. Нижче дата, розділена по боках ініціалами монетмейстера.
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-849abc3a
-    label: unified-dk-bruun-8103
     origin: promoted
   - fuss: 9_thaler
     phase: I

@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1243 per-source seed entries.
-# Output: 274 unified entries (one per physical coin).
+# Input: 1257 per-source seed entries.
+# Output: 272 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1220,76 +1220,6 @@ coins:
       - denmark-numismaster-66101
       - dk-bruun-8065
       - dk-numista-152277
-  - id: c-849abc3a
-    class_id: c-849abc3a
-    label: unified-dk-bruun-8103
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Rigsbankdaler
-    year_first: 1833
-    year_last: 1839
-    year_ranges:
-      -   - 1833
-          - 1836
-      -   - 1838
-          - 1839
-    year_label: 1833-1836, 1838-1839
-    ruler: Frederik VI
-    mintmaster: Johan Friedrich Freund
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km:
-        - '706.1'
-        - '706'
-      bruun_collection_id: '8103'
-      sieg: '28.1'
-      schou: '6'
-      hede: 27A
-      numista: '83070'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 14.447
-        source: numismaster
-      - value: 14.447
-        source: numista
-      - value: 14.45
-        source: bruun
-    diameter_mm:
-      - value: 32.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66052
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17171, p. 81
-      - type: literature
-        url: https://en.numista.com/83070
-        ref: Numista N#83070 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut)
-    note:
-      de: ½ Speciedaler
-      en: ½ Speciedaler
-      uk: ½ Speciedaler
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-66052
-      - dk-bruun-8103
-      - dk-numista-83070
   - id: c-953420ee
     class_id: c-953420ee
     label: unified-dk-bruun-8105
@@ -13358,8 +13288,8 @@ coins:
       - ngc-1050424
       - ngc-1051050
       - ngc-1051051
-  - id: c-e6374257
-    class_id: c-e6374257
+  - id: c-5825ae49
+    class_id: c-5825ae49
     label: unified-dk-hede-f6h27a
     fuss: seed_unsorted
     phase: hede
@@ -13372,65 +13302,268 @@ coins:
           - 1828
       -   - 1833
           - 1836
-      -   - 1839
+      -   - 1838
           - 1839
-    year_label: 1826-1828, 1833-1836, 1839
+    year_label: 1826-1828, 1833-1836, 1838-1839
     ruler: Frederik VI
     mintmaster: Johan Friedrich Freund (FF)
-    mint: Altona
+    mint:
+      - Altona
+      - Kopenhagen
     catalog:
-      km: '696.1'
-      hede: 27A
+      km:
+        - '696.1'
+        - '706.2'
+        - '706.1'
+        - '706.3'
+        - '696.2'
+        - '696'
+        - '706'
+      hede:
+        - 27A
+        - 27B
+        - 27C
       hede_volume: f6h
       sieg:
         - '27.1'
         - '28.1'
-      bruun_collection_id: '8067'
-      schou: '3'
+        - '28.2'
+        - '28.3'
+      schou:
+        - '3'
+        - 5-6
+        - '7'
+      bruun_collection_id:
+        - '8067'
+        - '8093'
+        - '8103'
       bruun_part: IV
       bruun_lot_no: 17164
       bruun_page: 94
+      numista:
+        - '152303'
+        - '83070'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f6h27a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h27b
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f6h27c
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050421
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051026
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051048
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1051049
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1060680
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-66050
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66051
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66052
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66055
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-66057
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-152303
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-83070
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-70760
     weight_rough_g:
+      - value: 14.35
+        source: bruun
       - value: 14.43
         source: bruun
       - value: 14.447
         source: hede
+        specimen: dk-hede-f6h27a
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h27b
+      - value: 14.447
+        source: hede
+        specimen: dk-hede-f6h27c
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1050421
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051026
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051048
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1051049
+      - value: 14.447
+        source: ngc
+        specimen: ngc-1060680
       - value: 14.447
         source: numismaster
+        specimen: denmark-numismaster-66050
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66051
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66052
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66055
+      - value: 14.447
+        source: numismaster
+        specimen: denmark-numismaster-66057
+      - value: 14.447
+        source: numista
+        specimen: dk-numista-83070
+      - value: 14.45
+        source: bruun
+      - value: 14.45
+        source: numista
+        specimen: dk-numista-152303
+      - value: 14.45
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 14.5
+        source: ucoin
+        specimen: dk-tid-70760
+    diameter_mm:
+      - value: 31.0
+        source: ucoin
+        specimen: dk-tid-70759
+      - value: 32.0
+        source: numista
+        specimen: dk-numista-83070
+      - value: 32.0
+        source: ucoin
+        specimen: dk-tid-70760
+      - value: 32.1
+        source: numista
+        specimen: dk-numista-152303
     sources:
       - type: literature
         url: https://numismaster.com/MC_66050
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66051
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66052
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66055
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66057
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17164, p. 78
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17169, p. 81
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17171, p. 81
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h27.htm
         ref: danskmoent.dk (Hede f6h27A)
+      - type: literature
+        url: https://en.numista.com/152303
+        ref: Numista N#152303 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut)
+      - type: literature
+        url: https://en.numista.com/83070
+        ref: Numista N#83070 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1826-1828/?tid=70759
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1833-1839/?tid=70760
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78504
+        ref: KMM 78504 (Inv. GP 678.168)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-696.1-1826-1834-cuid-1050421-duid-1238279
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.3-1835-1838-cuid-1051026-duid-1238292
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-696.2-1833-1834-cuid-1051048-duid-1238284
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.1-1833-1839-cuid-1051049-duid-1238286
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankdaler-km-706.2-1834-cuid-1060680-duid-1238291
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: ½ Speciedaler
       en: ½ Speciedaler
       uk: ½ Speciedaler
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     hede_muentzfuss_yield:
       value: 18.5
       unit: rigsbankdaler
       basis: fin
     composed_of:
       - denmark-numismaster-66050
+      - denmark-numismaster-66051
+      - denmark-numismaster-66052
+      - denmark-numismaster-66055
+      - denmark-numismaster-66057
       - dk-bruun-8067
+      - dk-bruun-8093
+      - dk-bruun-8103
       - dk-hede-f6h27a
+      - dk-hede-f6h27b
+      - dk-hede-f6h27c
+      - dk-numista-152303
+      - dk-numista-83070
+      - dk-tid-70759
+      - dk-tid-70760
+      - kmk-78504
+      - ngc-1050421
+      - ngc-1051026
+      - ngc-1051048
+      - ngc-1051049
+      - ngc-1060680
   - id: c-96361fac
     class_id: c-96361fac
     label: unified-dk-hede-f6h3
@@ -16153,51 +16286,6 @@ coins:
       - dk-numista-145748
       - dk-tid-163662
       - schleswig_holstein-numismaster-93024
-  - id: c-c1fe61f5
-    class_id: c-c1fe61f5
-    label: unified-dk-numista-152303
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 6 Rigsdaler courant
-    year_first: 1826
-    year_last: 1834
-    year_ranges:
-      -   - 1826
-          - 1828
-      -   - 1833
-          - 1834
-    year_label: 1826-1828, 1833-1834
-    ruler: Frederik VI
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km: '696'
-      numista: '152303'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 14.45
-        source: numista
-    diameter_mm:
-      - value: 32.1
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/152303
-        ref: Numista N#152303 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut)
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-152303
   - id: c-5e81b057
     class_id: c-5e81b057
     label: unified-dk-numista-181803
