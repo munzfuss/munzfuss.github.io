@@ -2,8 +2,8 @@
 # Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8449 per-source seed entries.
-# Output: 1789 unified entries (one per physical coin).
+# Input: 8447 per-source seed entries.
+# Output: 1785 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1295,6 +1295,7 @@ coins:
       galster_volume: c2g
       others:
         - LEB# 3942
+        - B# 7
       hede: 39A
     metal: silver_billon
     metal_verified: true
@@ -1347,6 +1348,8 @@ coins:
     weight_rough_g:
       - value: 1.11
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 88
+      - value: 1.14
+        source: kmk
       - value: 1.46
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 91
         fragment:
@@ -1358,6 +1361,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 92
       - value: 1.67
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 90
+      - value: 1.93
+        source: kmk
       - value: 1.94
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 89
       - value: 2.0
@@ -1440,6 +1445,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/267206
         ref: KMM 267206 (Inv. FP 10077.19)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354175
+        ref: KMM 354175 (Inv. FP 4957.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684506
+        ref: KMM 684506 (Inv. RP 1551.1)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/726209
         ref: KMM 726209 (Inv. FP 12608.20)
       - type: literature
@@ -1502,6 +1513,8 @@ coins:
       - dk-numista-153125
       - kmk-122108
       - kmk-267206
+      - kmk-354175
+      - kmk-684506
       - kmk-726209
       - metallanalyser-2017-1-g39
   - id: c-414f326f
@@ -119924,37 +119937,6 @@ coins:
     composed_of:
       - kmk-279183
       - kmk-279184
-  - id: c-56a73ad5
-    class_id: c-56a73ad5
-    label: unified-kmk-291045
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1545
-    year_last: 1545
-    year_label: '1545'
-    ruler: Christian III
-    catalog:
-      hede: 21B
-      schou: '19'
-      others:
-        - Auk.Kat.# 1057
-        - B# 148d
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.16
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/291045
-        ref: KMM 291045 (Inv. KP 1590.25)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-291045
   - id: c-26c2f184
     class_id: c-26c2f184
     label: unified-kmk-291974
@@ -121732,30 +121714,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-351417
-  - id: c-55f8bfff
-    class_id: c-55f8bfff
-    label: unified-kmk-354175
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian II
-    catalog:
-      galster: 39B
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.14
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/354175
-        ref: KMM 354175 (Inv. FP 4957.3)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-354175
   - id: c-47e6339e
     class_id: c-47e6339e
     label: unified-kmk-354179
@@ -125602,37 +125560,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-680608
-  - id: c-c65316ab
-    class_id: c-c65316ab
-    label: unified-kmk-684506
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1515
-    year_last: 1515
-    year_label: '1515'
-    ruler: Chrsitian 2
-    catalog:
-      galster: 39B
-      schou: '1'
-      others:
-        - B# 7
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.93
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/684506
-        ref: KMM 684506 (Inv. RP 1551.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-684506
   - id: c-81cf98ee
     class_id: c-81cf98ee
     label: unified-kmk-692607
@@ -125663,36 +125590,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-692607
-  - id: c-3395bd78
-    class_id: c-3395bd78
-    label: unified-kmk-692608
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling lybsk
-    year_first: 1545
-    year_last: 1545
-    year_label: '1545'
-    ruler: Christian III
-    catalog:
-      hede: 21A
-      schou: '18'
-      others:
-        - B# 148aa
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.08
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/692608
-        ref: KMM 692608 (Inv. FP 129.164)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-692608
   - id: c-022a9f44
     class_id: c-022a9f44
     label: unified-kmk-693108

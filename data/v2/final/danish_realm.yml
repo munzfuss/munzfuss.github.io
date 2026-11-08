@@ -35943,6 +35943,7 @@ coins:
         - 39C
       others:
         - LEB# 3942
+        - B# 7
       numista: '153125'
       galster_volume: c2g
       hede: 39A
@@ -35996,6 +35997,8 @@ coins:
     weight_rough_g:
       - value: 1.11
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 88
+      - value: 1.14
+        source: kmk
       - value: 1.46
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 91
         fragment:
@@ -36007,6 +36010,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 92
       - value: 1.67
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 90
+      - value: 1.93
+        source: kmk
       - value: 1.94
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 89
       - value: 2.0
@@ -36194,6 +36199,12 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cb/1759930031611/Metallanalyser%20av%20mynt%202017:1_APPENDIXMetallanalyser%20av%20mynt_2017_1_APPENDIX.pdf
         ref: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 104, Appendix (XRF)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354175
+        ref: KMM 354175 (Inv. FP 4957.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684506
+        ref: KMM 684506 (Inv. RP 1551.1)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -131880,38 +131891,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Søsling
-    ruler: Christian III.
-    issuing_entity: danish_realm
-    id: c-56a73ad5
-    year_first: 1545
-    year_last: 1545
-    year_label: '1545'
-    catalog:
-      hede: 21B
-      schou: '19'
-      others:
-        - Auk.Kat.# 1057
-        - B# 148d
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.16
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/291045
-        ref: KMM 291045 (Inv. KP 1590.25)
-    verification_note: *id008
-    composed_of:
-      - c-56a73ad5
-    label: unified-kmk-291045
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: (?)
     ruler: Frederik VI.
     issuing_entity: danish_realm
@@ -132730,45 +132709,6 @@ coins:
     composed_of:
       - c-5444898f
     label: unified-kmk-351417
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian II.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-55f8bfff
-    year_first: 1513
-    year_last: 1523
-    year_ranges:
-      -   - 1513
-          - 1523
-    year_label: 1513-1523
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1513-1523
-    catalog:
-      galster: 39B
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.14
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/354175
-        ref: KMM 354175 (Inv. FP 4957.3)
-    verification_note: *id008
-    composed_of:
-      - c-55f8bfff
-    label: unified-kmk-354175
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -135226,69 +135166,6 @@ coins:
     composed_of:
       - c-6aeda52f
     label: unified-kmk-680608
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Chrsitian 2
-    issuing_entity: danish_realm
-    id: c-c65316ab
-    year_first: 1515
-    year_last: 1515
-    year_label: '1515'
-    catalog:
-      galster: 39B
-      schou: '1'
-      others:
-        - B# 7
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.93
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/684506
-        ref: KMM 684506 (Inv. RP 1551.1)
-    verification_note: *id008
-    composed_of:
-      - c-c65316ab
-    label: unified-kmk-684506
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling lybsk
-    ruler: Christian III.
-    issuing_entity: danish_realm
-    id: c-3395bd78
-    year_first: 1545
-    year_last: 1545
-    year_label: '1545'
-    catalog:
-      hede: 21A
-      schou: '18'
-      others:
-        - B# 148aa
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.08
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/692608
-        ref: KMM 692608 (Inv. FP 129.164)
-    verification_note: *id008
-    composed_of:
-      - c-3395bd78
-    label: unified-kmk-692608
     origin: promoted
   - fuss: 9_thaler
     phase: I

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_slesvig`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
-# Input: 140 per-source seed entries.
-# Output: 62 unified entries (one per physical coin).
+# Input: 142 per-source seed entries.
+# Output: 59 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_slesvig
-generated_at: '2026-11-07'
+generated_at: '2026-11-08'
 coins:
   - id: c-7c72fcb2
     class_id: c-7c72fcb2
@@ -1639,6 +1639,11 @@ coins:
         - '44.1'
         - '44.2'
         - '44.3'
+      others:
+        - Auk.Kat.# 1057
+        - B# 148d
+        - B# 148aa
+        - B# 148c
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -1656,6 +1661,16 @@ coins:
         source: hede
         specimen: dk-hede-c3h21c
     weight_rough_g:
+      - value: 0.85
+        source: kmk
+      - value: 0.86
+        source: kmk
+      - value: 0.99
+        source: kmk
+      - value: 1.08
+        source: kmk
+      - value: 1.16
+        source: kmk
       - value: 1.292
         source: hede
         specimen: dk-hede-c3h21a
@@ -1669,6 +1684,21 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h21.htm
         ref: danskmoent.dk (Hede c3h21A)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139673
+        ref: KMM 139673 (Inv. KP 1715.46)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291045
+        ref: KMM 291045 (Inv. KP 1590.25)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/411793
+        ref: KMM 411793 (Inv. FP 2950.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/692608
+        ref: KMM 692608 (Inv. FP 129.164)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83085
+        ref: KMM 83085 (Inv. GP 982.109)
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 9.287
@@ -1679,6 +1709,11 @@ coins:
       - dk-hede-c3h21a
       - dk-hede-c3h21b
       - dk-hede-c3h21c
+      - kmk-139673
+      - kmk-291045
+      - kmk-411793
+      - kmk-692608
+      - kmk-83085
   - id: c-c4b899ff
     class_id: c-c4b899ff
     label: unified-dk-hede-c3h22
@@ -3384,34 +3419,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - kmk-123178
-  - id: c-94c3a246
-    class_id: c-94c3a246
-    label: unified-kmk-139673
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1545
-    year_last: 1545
-    year_label: '1545'
-    ruler: Christian III
-    mint: Flensburg
-    catalog:
-      hede: 21B
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.86
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139673
-        ref: KMM 139673 (Inv. KP 1715.46)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - kmk-139673
   - id: c-85553d44
     class_id: c-85553d44
     label: unified-kmk-152263
@@ -3495,36 +3502,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - kmk-355345
-  - id: c-555e4c57
-    class_id: c-555e4c57
-    label: unified-kmk-411793
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling lybsk
-    year_first: 1545
-    year_last: 1545
-    year_label: '1545'
-    ruler: Christian III
-    mint: Flensburg
-    catalog:
-      hede: 21A
-      schou: '16'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.85
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/411793
-        ref: KMM 411793 (Inv. FP 2950.2)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - kmk-411793
   - id: c-9adc3aa0
     class_id: c-9adc3aa0
     label: unified-kmk-81438
@@ -3558,38 +3535,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - kmk-81438
-  - id: c-db50790e
-    class_id: c-db50790e
-    label: unified-kmk-83085
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1545
-    year_last: 1545
-    year_label: '1545'
-    ruler: Christian III
-    mint: Flensburg
-    catalog:
-      hede: 21A
-      schou: '15'
-      others:
-        - B# 148c
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.99
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/83085
-        ref: KMM 83085 (Inv. GP 982.109)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - kmk-83085
   - id: c-693ddf04
     class_id: c-693ddf04
     label: unified-ngc-167729

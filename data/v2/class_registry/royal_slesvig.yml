@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 62 active, 14 retired.
+# 59 active, 17 retired.
 
 id: royal_slesvig
 classes:
@@ -162,6 +162,11 @@ classes:
       - dk-hede-c3h21a
       - dk-hede-c3h21b
       - dk-hede-c3h21c
+      - kmk-139673
+      - kmk-291045
+      - kmk-411793
+      - kmk-692608
+      - kmk-83085
   - id: c-50bd4e0b
     status: active
     created: '2026-10-22'
@@ -184,13 +189,6 @@ classes:
       - dk-tid-163398
       - kmk-137161
       - kmk-137162
-  - id: c-555e4c57
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-411793
-    legacy_id: unified-kmk-411793
-    members:
-      - kmk-411793
   - id: c-5943770b
     status: active
     created: '2026-10-22'
@@ -313,13 +311,6 @@ classes:
     members:
       - ngc-167747
       - schleswig_holstein-numismaster-167747
-  - id: c-94c3a246
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-139673
-    legacy_id: unified-kmk-139673
-    members:
-      - kmk-139673
   - id: c-989a832d
     status: active
     created: '2026-10-22'
@@ -451,13 +442,6 @@ classes:
     members:
       - dk-hede-c3h25
       - kmk-81475
-  - id: c-db50790e
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-83085
-    legacy_id: unified-kmk-83085
-    members:
-      - kmk-83085
   - id: c-ddb8ee63
     status: active
     created: '2026-11-06'
@@ -600,6 +584,24 @@ classes:
       - kmk-306915
       - kmk-368091
       - kmk-391793
+  - id: c-555e4c57
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-411793
+    legacy_id: unified-kmk-411793
+    merged_into: c-4c78a36d
+    retired: '2026-11-08'
+    members:
+      - kmk-411793
+  - id: c-94c3a246
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-139673
+    legacy_id: unified-kmk-139673
+    merged_into: c-4c78a36d
+    retired: '2026-11-08'
+    members:
+      - kmk-139673
   - id: c-b5d4486d
     status: retired
     created: '2026-10-22'
@@ -626,6 +628,15 @@ classes:
     retired: '2026-11-06'
     members:
       - denmark-numismaster-65630
+  - id: c-db50790e
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-83085
+    legacy_id: unified-kmk-83085
+    merged_into: c-4c78a36d
+    retired: '2026-11-08'
+    members:
+      - kmk-83085
   - id: c-e02516e9
     status: retired
     created: '2026-10-22'
