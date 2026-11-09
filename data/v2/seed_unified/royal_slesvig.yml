@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_slesvig`.
-# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
-# Input: 141 per-source seed entries.
-# Output: 57 unified entries (one per physical coin).
+# Input: 139 per-source seed entries.
+# Output: 55 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_slesvig
-generated_at: '2026-11-08'
+generated_at: '2026-11-09'
 coins:
   - id: c-7c72fcb2
     class_id: c-7c72fcb2
@@ -2937,51 +2937,6 @@ coins:
     composed_of:
       - dk-galster-f1g-124
       - dk-numista-153257
-  - id: c-2498e9c9
-    class_id: c-2498e9c9
-    label: unified-dk-numista-153825
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1534
-    year_last: 1537
-    year_ranges:
-      -   - 1534
-          - 1534
-      -   - 1536
-          - 1537
-    year_label: 1534, 1536-1537
-    ruler: Christian III
-    mint: Gottorp
-    catalog:
-      numista: '153825'
-      sieg: '21'
-      mb: '36'
-      lange: 21 - 22
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.473
-        source: numista
-    weight_rough_g:
-      - value: 3.54
-        source: numista
-    diameter_mm:
-      - value: 29.77
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/153825
-        ref: Numista N#153825 — 2 Schillings - Christian III (Gottorp)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-numista-153825
   - id: c-f273b0a9
     class_id: c-f273b0a9
     label: unified-dk-numista-153862
@@ -3298,45 +3253,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-309411
-  - id: c-de577e08
-    class_id: c-de577e08
-    label: unified-dk-numista-309415
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Schilling
-    year_first: 1534
-    year_last: 1537
-    year_ranges:
-      -   - 1534
-          - 1534
-      -   - 1536
-          - 1537
-    year_label: 1534, 1536-1537
-    ruler: Christian III
-    mint: Schleswig
-    catalog:
-      numista: '309415'
-      mb: '36'
-      galster: '132'
-      lange: 21A
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.82
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/309415
-        ref: Numista N#309415 — 2 Schillings - Christian III
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-numista-309415
   - id: c-70c27b86
     class_id: c-70c27b86
     label: unified-dk-numista-309419

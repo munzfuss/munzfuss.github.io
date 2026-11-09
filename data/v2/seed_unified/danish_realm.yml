@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8392 per-source seed entries.
+# Input: 8394 per-source seed entries.
 # Output: 1722 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-08'
+generated_at: '2026-11-09'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -10190,70 +10190,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-c2g-44
-  - id: c-78ef3adc
-    class_id: c-78ef3adc
-    label: unified-dk-galster-c3g-132
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1534
-    year_last: 1537
-    year_ranges:
-      -   - 1534
-          - 1534
-      -   - 1536
-          - 1537
-    year_label: 1534, 1536-1537
-    ruler: Christian III
-    mint: Kopenhagen
-    catalog:
-      galster: '132'
-      galster_volume: c3g
-      schou:
-        - 1-25
-        - 1-7
-        - 8-12
-      sieg: '21'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.473
-        source: galster
-    weight_rough_g:
-      - value: 3.9
-        source: galster
-    diameter_mm:
-      - value: 30.0
-        source: danskmoent.dk chr/c3g132.htm
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 2 Skilling
-          value: billon
-          seed: dk-galster-c3g-132
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3g132.htm
-        ref: Galster 132 (c3g) — danskmoent.dk chr_c3g132.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
-        ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 19 (1536, 2 ß l., Slesvig; Schou 8—12; tungeste Ex. 3.90 g, letteste Ex. 3.40 g, 
-          gennemsnit 3.70 g; Af Exx. i MK 6); Tavle XX, fig. 19
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
-        ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 22 (1537, 2 ß, Slesvig; Schou 1—25; tungeste Ex. 4.20 g, letteste Ex. 2.95 g, 
-          gennemsnit 3.74 g; Af Exx. i MK 17); Tavle XX, fig. 22
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-c3g-132
   - id: c-29707f67
     class_id: c-29707f67
     label: unified-dk-galster-epomg-12
@@ -98337,6 +98273,121 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-153173
+  - id: c-2498e9c9
+    class_id: c-2498e9c9
+    label: unified-dk-numista-153825
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Skilling
+    year_first: 1534
+    year_last: 1537
+    year_ranges:
+      -   - 1534
+          - 1534
+      -   - 1536
+          - 1537
+    year_label: 1534, 1536-1537
+    ruler: Christian III
+    mint: Kopenhagen
+    catalog:
+      numista:
+        - '153825'
+        - '309415'
+      sieg: '21'
+      mb: '36'
+      lange:
+        - 21 - 22
+        - 21A
+      galster: '132'
+      galster_volume: c3g
+      schou:
+        - 1-25
+        - 1-7
+        - 8-12
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.473
+        source: galster
+      - value: 0.473
+        source: numista
+        specimen: dk-numista-153825
+    weight_rough_g:
+      - value: 3.54
+        source: numista
+        specimen: dk-numista-153825
+      - value: 3.82
+        source: numista
+        specimen: dk-numista-309415
+      - value: 3.9
+        source: galster
+    diameter_mm:
+      - value: 29.77
+        source: numista
+        specimen: dk-numista-153825
+      - value: 30.0
+        source: danskmoent.dk chr/c3g132.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Skilling
+          value: billon
+          seed: dk-galster-c3g-132
+    mint_alts:
+      - value: Gottorp
+        source: numista
+        kind: erroneous
+        reason:
+          de: "Falsche Münzstätte. [b]Numista 153825[/b] gibt «Gottorp» an.\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført til Gottorp»[/i]
+            (Übers.: «Christian III., 2 Skilling, København» … «von Galster irrtümlich Gottorp zugewiesen»)."
+          en: "Wrong mint. [b]Numista 153825[/b] gives «Gottorp».\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført til Gottorp»[/i] (transl.:
+            «Christian III, 2 Skilling, København» … «wrongly assigned to Gottorp by Galster»)."
+          uk: "Помилкове місце карбування. [b]Numista 153825[/b] подає «Gottorp».\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført til
+            Gottorp»[/i] (перекл.: «Крістіан III, 2 скілінги, København» … «Galster помилково відніс до Gottorp»)."
+          da: "Forkert møntsted. [b]Numista 153825[/b] angiver «Gottorp».\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført til Gottorp»[/i]."
+      - value: Schleswig
+        source: numista
+        kind: erroneous
+        reason:
+          de: "Falsche Münzstätte. [b]Numista 309415[/b] gibt «Schleswig» an.\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført til Gottorp»[/i]
+            (Übers.: «Christian III., 2 Skilling, København» … «von Galster irrtümlich Gottorp zugewiesen»)."
+          en: "Wrong mint. [b]Numista 309415[/b] gives «Schleswig».\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført til Gottorp»[/i]
+            (transl.: «Christian III, 2 Skilling, København» … «wrongly assigned to Gottorp by Galster»)."
+          uk: "Помилкове місце карбування. [b]Numista 309415[/b] подає «Schleswig».\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført
+            til Gottorp»[/i] (перекл.: «Крістіан III, 2 скілінги, København» … «Galster помилково відніс до Gottorp»)."
+          da: "Forkert møntsted. [b]Numista 309415[/b] angiver «Schleswig».\n[b]danskmoent.dk (Galster 132)[/b]: [i]«Christian 3., 2 Skilling, København»[/i] … [i]«af Galster fejlagtigt henført til Gottorp»[/i]."
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g132.htm
+        ref: Galster 132 (c3g) — danskmoent.dk chr_c3g132.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
+        ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 19 (1536, 2 ß l., Slesvig; Schou 8—12; tungeste Ex. 3.90 g, letteste Ex. 3.40 g, 
+          gennemsnit 3.70 g; Af Exx. i MK 6); Tavle XX, fig. 19
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
+        ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 22 (1537, 2 ß, Slesvig; Schou 1—25; tungeste Ex. 4.20 g, letteste Ex. 2.95 g, 
+          gennemsnit 3.74 g; Af Exx. i MK 17); Tavle XX, fig. 22
+      - type: literature
+        url: https://en.numista.com/153825
+        ref: Numista N#153825 — 2 Schillings - Christian III (Gottorp)
+      - type: literature
+        url: https://en.numista.com/309415
+        ref: Numista N#309415 — 2 Schillings - Christian III
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-galster-c3g-132
+      - dk-numista-153825
+      - dk-numista-309415
   - id: c-572c0cfa
     class_id: c-572c0cfa
     label: unified-dk-numista-182027

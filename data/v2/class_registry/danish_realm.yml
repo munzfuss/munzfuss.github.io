@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1722 active, 4708 retired.
+# 1722 active, 4709 retired.
 
 id: danish_realm
 classes:
@@ -4042,6 +4042,15 @@ classes:
       - denmark-numismaster-65577
       - dk-hede-f3h70
       - ngc-1060270
+  - id: c-2498e9c9
+    status: active
+    created: '2026-10-22'
+    label: unified-dk-numista-153825
+    legacy_id: unified-dk-numista-153825
+    members:
+      - dk-galster-c3g-132
+      - dk-numista-153825
+      - dk-numista-309415
   - id: c-24c2f137
     status: active
     created: '2026-10-22'
@@ -14750,13 +14759,6 @@ classes:
     legacy_id: unified-kmk-122252
     members:
       - kmk-122252
-  - id: c-78ef3adc
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-galster-c3g-132
-    legacy_id: unified-dk-galster-c3g-132
-    members:
-      - dk-galster-c3g-132
   - id: c-78f3ad24
     status: active
     created: '2026-10-22'
@@ -47850,6 +47852,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-290
+  - id: c-78ef3adc
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-galster-c3g-132
+    legacy_id: unified-dk-galster-c3g-132
+    merged_into: c-2498e9c9
+    retired: '2026-11-09'
+    members:
+      - dk-galster-c3g-132
   - id: c-7922307f
     status: retired
     created: '2026-10-22'
