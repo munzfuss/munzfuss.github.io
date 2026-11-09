@@ -5308,3 +5308,7 @@ removals:
     field: hede
     dropped: ['12AB']
     reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 12AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 12AB gives way to the letter tags it stands for.'
+  - final: dk-tid-94310
+    kind: empty_duplicate
+    hosts: [c-b765c45a]
+    reason: 'Curator (Serhii) 2026-11-09 («Зливай»): 1 Dukat Christiansborg 1704-1706, Frederik IV, Hede 11A / KM 481 — foundation in danish_realm emptied by the Hede 11 merge; find_empty_duplicates.py shows every URL, catalogue value and reading in c-b765c45a. Numista span 1704-1706 survives there as a hedged year entry.'

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8405 per-source seed entries.
-# Output: 1717 unified entries (one per physical coin).
+# Output: 1716 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -85658,40 +85658,57 @@ coins:
       - dk-tid-94343
       - kmk-201997
       - ngc-1050332
-  - id: c-ee31bf95
-    class_id: c-ee31bf95
+  - id: c-b765c45a
+    class_id: c-b765c45a
     label: unified-dk-hede-f4h11a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Dukat
     year_first: 1704
-    year_last: 1706
+    year_last: 1725
     year_ranges:
       -   - 1704
-          - 1706
-    year_label: 1704-1706
+          - 1705
+      -   - 1708
+          - 1708
+      -   - 1725
+          - 1725
+    year_label: 1704-1705, 1708, 1725
     ruler: Frederik IV
     mintmaster: Christian Wineke
     mint: Kopenhagen
     catalog:
-      km: '481'
-      hede: 11A
+      km:
+        - '481'
+        - '484'
+      hede:
+        - 11A
+        - 11B
       hede_volume: f4h
-      schou: 4-5
+      schou:
+        - '1'
+        - 4-5
       sieg:
         - '42'
         - '42.1'
+        - '42.2'
       bruun_collection_id:
         - '7330'
+        - '7357'
+        - '7522'
         - '7543'
       bruun_part: I
       bruun_lot_no: 1128
       bruun_page: 182
-      numista: '183049'
+      numista:
+        - '183049'
+        - '183157'
       fr:
         - '244'
         - '244.1'
+        - '244.2'
+        - '244.3'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -85705,15 +85722,30 @@ coins:
         - seed: dk-hede-f4h11a
           source: hede
           years: '1704'
+        - seed: dk-hede-f4h11b
+          source: hede
+          years: 1708, 1725
         - seed: dk-bruun-7330
           source: bruun
           years: '1704'
+        - seed: dk-bruun-7357
+          source: bruun
+          years: '1708'
+        - seed: dk-bruun-7522
+          source: bruun
+          years: '1725'
         - seed: ngc-1060342
           source: ngc
           years: '1704'
+        - seed: ngc-1069066
+          source: ngc
+          years: 1708, 1725
         - seed: denmark-numismaster-65809
           source: numismaster
           years: '1704'
+        - seed: denmark-numismaster-65811
+          source: numismaster
+          years: 1708, 1725
         - seed: dk-tid-94310
           source: ucoin
           years: '1704'
@@ -85724,32 +85756,84 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f4h11a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f4h11b
       - value: 0.979
         source: ngc
+        specimen: ngc-1060342
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1069066
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-65809
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65811
       - value: 0.979
         source: numista
+        specimen: dk-numista-183049
+      - value: 0.979
+        source: numista
+        specimen: dk-numista-183157
       - value: 0.98
         source: ucoin
+        specimen: dk-tid-94310
+      - value: 0.98
+        source: ucoin
+        specimen: dk-tid-94312
     weight_rough_g:
+      - value: 3.4
+        source: numista
+        specimen: dk-numista-183157
+      - value: 3.42
+        source: bruun
       - value: 3.44
         source: bruun
       - value: 3.46
+        source: bruun
+      - value: 3.46
         source: numista
+        specimen: dk-numista-183049
       - value: 3.49
         source: hede
+        specimen: dk-hede-f4h11a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-f4h11b
       - value: 3.49
         source: ngc
+        specimen: ngc-1060342
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1069066
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-65809
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-65811
       - value: 3.49
         source: ucoin
+        specimen: dk-tid-94310
+      - value: 3.49
+        source: ucoin
+        specimen: dk-tid-94312
     diameter_mm:
+      - value: 21.0
+        source: ucoin
+        specimen: dk-tid-94312
       - value: 21.3
         source: numista
+        specimen: dk-numista-183049
+      - value: 21.32
+        source: numista
+        specimen: dk-numista-183157
       - value: 21.6
         source: ucoin
+        specimen: dk-tid-94310
     uncertainty:
       year:
         - kind: hedged
@@ -85763,13 +85847,32 @@ coins:
           source: numista
           value: 1704-1706
           seed: dk-numista-183049
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1708-1725
+          seed: dk-numista-183157
+        - kind: hedged
+          how: span
+          source: ucoin
+          value: 1708–1725
+          seed: dk-tid-94312
     sources:
       - type: literature
         url: https://numismaster.com/MC_65809
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65811
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1128, p. 158
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13208, p. 126
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17118, p. 63
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14188, p. 72
@@ -85779,128 +85882,36 @@ coins:
       - type: literature
         url: https://en.numista.com/183049
         ref: Numista N#183049 — 1 Ducat - Frederik IV (Christiansborg; "GUINEA" in exergue)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dukat-1704/?tid=94310
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-481-1704-1704-cuid-1060342-duid-1238048
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65809
-      - dk-bruun-7330
-      - dk-bruun-7543
-      - dk-hede-f4h11a
-      - dk-numista-183049
-      - dk-tid-94310
-      - ngc-1060342
-  - id: c-b765c45a
-    class_id: c-b765c45a
-    label: unified-dk-hede-f4h11b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Dukat
-    year_first: 1708
-    year_last: 1725
-    year_ranges:
-      -   - 1708
-          - 1708
-      -   - 1725
-          - 1725
-    year_label: 1708, 1725
-    ruler: Frederik IV
-    mintmaster: Christian Wineke, the younger
-    mint: Kopenhagen
-    catalog:
-      km: '484'
-      hede: 11B
-      hede_volume: f4h
-      schou:
-        - '1'
-        - '5'
-      sieg:
-        - '42'
-        - '42.2'
-      bruun_collection_id:
-        - '7357'
-        - '7522'
-      bruun_part: II
-      bruun_lot_no: 13208
-      bruun_page: 152
-      numista: '183157'
-      fr:
-        - '244'
-        - '244.2'
-        - '244.3'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: hede
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.979
-        source: numista
-      - value: 0.98
-        source: ucoin
-    weight_rough_g:
-      - value: 3.4
-        source: numista
-      - value: 3.42
-        source: bruun
-      - value: 3.46
-        source: bruun
-      - value: 3.49
-        source: hede
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-      - value: 3.49
-        source: ucoin
-    diameter_mm:
-      - value: 21.0
-        source: ucoin
-      - value: 21.32
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65811
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13208, p. 126
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17118, p. 63
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f4h11.htm
-        ref: danskmoent.dk (Hede f4h11B)
       - type: literature
         url: https://en.numista.com/183157
         ref: Numista N#183157 — 1 Ducat - Frederik IV (Christiansborg; "GUINEA" in legend)
       - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dukat-1704/?tid=94310
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dukat-1708-1725/?tid=94312
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-481-1704-1704-cuid-1060342-duid-1238048
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-484-1708-1725-cuid-1069066-duid-1238050
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65809
       - denmark-numismaster-65811
+      - dk-bruun-7330
       - dk-bruun-7357
       - dk-bruun-7522
+      - dk-bruun-7543
+      - dk-hede-f4h11a
       - dk-hede-f4h11b
+      - dk-numista-183049
       - dk-numista-183157
+      - dk-tid-94310
       - dk-tid-94312
+      - ngc-1060342
       - ngc-1069066
   - id: c-89696977
     class_id: c-89696977
