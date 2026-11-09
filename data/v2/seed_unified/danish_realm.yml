@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8392 per-source seed entries.
-# Output: 1721 unified entries (one per physical coin).
+# Input: 8405 per-source seed entries.
+# Output: 1719 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-08'
+generated_at: '2026-11-09'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -6362,60 +6362,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-7091
-  - id: c-89885bd3
-    class_id: c-89885bd3
-    label: unified-dk-bruun-7096
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1692
-    year_last: 1692
-    year_label: '1692'
-    ruler: Christian V
-    mintmaster: Christian Wineke the Elder (CW)
-    mint: Kopenhagen
-    catalog:
-      km: '412.2'
-      hede: 26B
-      sieg: '100'
-      bruun_collection_id: '7096'
-      schou: '7'
-      fr: '145'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.45
-        source: bruun
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65786
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14164, p. 66
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-412.2-1692-cuid-1060341-duid-1238008
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65786
-      - dk-bruun-7096
-      - ngc-1060341
   - id: c-ddf14b31
     class_id: c-ddf14b31
     label: unified-dk-bruun-7126
@@ -6728,101 +6674,6 @@ coins:
       - denmark-numismaster-65888
       - dk-bruun-7242
       - ngc-1051018
-  - id: c-9182b7e3
-    class_id: c-9182b7e3
-    label: unified-dk-bruun-7249
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1685
-    year_last: 1685
-    year_label: '1685'
-    ruler: Christian V
-    mintmaster: Gregorius Sesemann
-    mint: Kopenhagen
-    catalog:
-      km: '375'
-      bruun_collection_id: '7249'
-      sieg: '76'
-      schou: '19'
-      hede: 12B
-      fr: '186'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: ngc-1050898
-          source: ngc
-          years: '1685'
-        - seed: denmark-numismaster-65779
-          source: numismaster
-          years: '1685'
-      uncertain:
-        - seed: dk-bruun-7249
-          source: bruun
-          years: '1685'
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.43
-        source: bruun
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1685)
-          value: '1685'
-          seed: dk-bruun-7249
-    catalog_alts:
-      - register: km
-        value: '374.2'
-        source: bruun
-        kind: erroneous
-        reason:
-          de: "Die KM-Nummer gehört zu einer anderen Variante.\n[b]Bruun Part I, lot 1123, S. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; das Foto des Loses zeigt den Reiter nach links zwischen
-            Bäumen.\n[b]NGC[/b]: [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i] (Übers.: «Reiterfigur Christians V. nach rechts, Stab nach vorn»); [i]«KM# 375 … Equestrian
-            figure of Christian V left, amongst trees»[/i] (Übers.: «Reiterfigur Christians V. nach links, zwischen Bäumen»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i]
-            (Übers.: «Reiter (nach rechts: A, nach links: B)»)."
-          en: "The KM number belongs to another variant.\n[b]Bruun Part I, lot 1123, p. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; the lot's photograph shows the rider to the left among trees.\n\
-            [b]NGC[/b]: [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i]; [i]«KM# 375 … Equestrian figure of Christian V left, amongst trees»[/i].\n[b]danskmoent.dk[/b]
-            (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i] (transl.: «rider (to the right: A, to the left: B)»)."
-          uk: "Номер KM належить іншому варіанту.\n[b]Bruun Part I, lot 1123, с. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; на фото лота вершник ліворуч серед дерев.\n[b]NGC[/b]: [i]«KM# 374.2
-            … Equistrian figure of Christian V right, baton points forward»[/i] (перекл.: «кінна фігура Christian V праворуч, жезл уперед»); [i]«KM# 375 … Equestrian figure of Christian V left, amongst
-            trees»[/i] (перекл.: «кінна фігура Christian V ліворуч, серед дерев»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i] (перекл.: «вершник (праворуч: A, ліворуч:
-            B)»)."
-          da: "KM-nummeret hører til en anden variant.\n[b]Bruun Part I, lot 1123, s. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; lottets foto viser rytteren mod venstre mellem træer.\n[b]NGC[/b]:
-            [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i] (overs.: «rytterfigur af Christian V mod højre, stav fremad»); [i]«KM# 375 … Equestrian figure of Christian
-            V left, amongst trees»[/i] (overs.: «rytterfigur af Christian V mod venstre, mellem træer»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i]."
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65779
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1123, p. 150
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-375-1685-cuid-1050898-duid-1238000
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65779
-      - dk-bruun-7249
-      - ngc-1050898
   - id: c-054f8d2c
     class_id: c-054f8d2c
     label: unified-dk-bruun-7296
@@ -7571,91 +7422,6 @@ coins:
       - denmark-numismaster-65820
       - dk-bruun-7602
       - ngc-1050368
-  - id: c-2280739d
-    class_id: c-2280739d
-    label: unified-dk-bruun-7604
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Ducats
-    year_first: 1746
-    year_last: 1746
-    year_label: '1746'
-    ruler: Frederik V
-    mintmaster: I
-    mint: Kopenhagen
-    catalog:
-      km: '555'
-      bruun_collection_id: '7604'
-      sieg: '25.1'
-      schou: '4'
-      hede: 4A
-      bruun_part: I
-      bruun_lot_no: 1142
-      bruun_page: 199
-      numista: '342760'
-      fr: '253'
-      others:
-        - B# 2
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.979
-        source: numista
-      - value: 0.98
-        source: ucoin
-    weight_rough_g:
-      - value: 6.95
-        source: kmk
-      - value: 6.97
-        source: bruun
-      - value: 6.98
-        source: numista
-      - value: 6.98
-        source: ucoin
-      - value: 6.981
-        source: ngc
-      - value: 6.981
-        source: numismaster
-    diameter_mm:
-      - value: 25.7
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65903
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1142, p. 175
-      - type: literature
-        url: https://en.numista.com/342760
-        ref: Numista N#342760 — 2 Ducats - Frederik V (Armored bust)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-dukat-1746/?tid=94364
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/330456
-        ref: KMM 330456 (Inv. RP 920.1)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-555-1746-cuid-1051021-duid-1238158
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65903
-      - dk-bruun-7604
-      - dk-numista-342760
-      - dk-tid-94364
-      - kmk-330456
-      - ngc-1051021
   - id: c-7c26e226
     class_id: c-7c26e226
     label: unified-dk-bruun-7605
@@ -7800,85 +7566,6 @@ coins:
       - denmark-numismaster-65906
       - dk-bruun-7606
       - ngc-1060346
-  - id: c-8e7e1b6b
-    class_id: c-8e7e1b6b
-    label: unified-dk-bruun-7607
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1746
-    year_last: 1746
-    year_label: '1746'
-    ruler: Frederik V
-    mintmaster: I
-    mint: Kopenhagen
-    catalog:
-      km: '548'
-      bruun_collection_id: '7607'
-      sieg: '24.1'
-      schou: '8'
-      hede: 3A
-      bruun_part: II
-      bruun_lot_no: 13219
-      bruun_page: 159
-      numista: '322523'
-      fr: '254'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.979
-        source: numista
-      - value: 0.98
-        source: ucoin
-    weight_rough_g:
-      - value: 3.47
-        source: numista
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-      - value: 3.49
-        source: ucoin
-      - value: 3.51
-        source: bruun
-    diameter_mm:
-      - value: 21.0
-        source: numista
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65821
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13219, p. 133
-      - type: literature
-        url: https://en.numista.com/322523
-        ref: Numista N#322523 — 1 Ducat - Frederik V (Armored bust)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dukat-1746/?tid=94334
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-548-1746-cuid-1050326-duid-1238065
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65821
-      - dk-bruun-7607
-      - dk-numista-322523
-      - dk-tid-94334
-      - ngc-1050326
   - id: c-f7b815cf
     class_id: c-f7b815cf
     label: unified-dk-bruun-7609
@@ -46224,7 +45911,7 @@ coins:
       - ngc-1052597
   - id: c-be08b195
     class_id: c-be08b195
-    label: unified-dk-hede-c5h12ab
+    label: unified-dk-hede-c5h12a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -46240,13 +45927,11 @@ coins:
         - '374.1'
         - '374.2'
         - '374'
-      hede:
-        - 12A
-        - 12AB
+      hede: 12A
       hede_volume: c5h
       schou: 17-18
       sieg:
-        - '73'
+        - '73.1'
         - '73.2'
       bruun_collection_id: '7247'
       others:
@@ -46261,7 +45946,7 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-c5h12ab
+        - seed: dk-hede-c5h12a
           source: hede
           years: '1685'
         - seed: ngc-1060256
@@ -46339,7 +46024,7 @@ coins:
         ref: Bruun Part IV, lot 17107, p. 55
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h12.htm
-        ref: danskmoent.dk (Hede c5h12AB)
+        ref: danskmoent.dk (Hede c5h12A)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dukat-1685/?tid=97534
         ref: ucoin
@@ -46354,10 +46039,117 @@ coins:
       - denmark-numismaster-165458
       - denmark-numismaster-65778
       - dk-bruun-7247
-      - dk-hede-c5h12ab
+      - dk-hede-c5h12a
       - dk-tid-97534
       - ngc-1060256
       - ngc-1060339
+  - id: c-9182b7e3
+    class_id: c-9182b7e3
+    label: unified-dk-hede-c5h12b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Dukat
+    year_first: 1685
+    year_last: 1685
+    year_label: '1685'
+    ruler: Christian V
+    mintmaster: Gregorius Sesemann
+    mint: Kopenhagen
+    catalog:
+      km: '375'
+      hede: 12B
+      hede_volume: c5h
+      schou: '19'
+      sieg: '76'
+      bruun_collection_id: '7249'
+      fr: '186'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-hede-c5h12b
+          source: hede
+          years: '1685'
+        - seed: ngc-1050898
+          source: ngc
+          years: '1685'
+        - seed: denmark-numismaster-65779
+          source: numismaster
+          years: '1685'
+      uncertain:
+        - seed: dk-bruun-7249
+          source: bruun
+          years: '1685'
+    fineness:
+      - value: 0.979
+        source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+    weight_rough_g:
+      - value: 3.43
+        source: bruun
+      - value: 3.49
+        source: hede
+      - value: 3.49
+        source: ngc
+      - value: 3.49
+        source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1685)
+          value: '1685'
+          seed: dk-bruun-7249
+    catalog_alts:
+      - register: km
+        value: '374.2'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die KM-Nummer gehört zu einer anderen Variante.\n[b]Bruun Part I, lot 1123, S. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; das Foto des Loses zeigt den Reiter nach links zwischen
+            Bäumen.\n[b]NGC[/b]: [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i] (Übers.: «Reiterfigur Christians V. nach rechts, Stab nach vorn»); [i]«KM# 375 … Equestrian
+            figure of Christian V left, amongst trees»[/i] (Übers.: «Reiterfigur Christians V. nach links, zwischen Bäumen»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i]
+            (Übers.: «Reiter (nach rechts: A, nach links: B)»)."
+          en: "The KM number belongs to another variant.\n[b]Bruun Part I, lot 1123, p. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; the lot's photograph shows the rider to the left among trees.\n\
+            [b]NGC[/b]: [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i]; [i]«KM# 375 … Equestrian figure of Christian V left, amongst trees»[/i].\n[b]danskmoent.dk[/b]
+            (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i] (transl.: «rider (to the right: A, to the left: B)»)."
+          uk: "Номер KM належить іншому варіанту.\n[b]Bruun Part I, lot 1123, с. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; на фото лота вершник ліворуч серед дерев.\n[b]NGC[/b]: [i]«KM# 374.2
+            … Equistrian figure of Christian V right, baton points forward»[/i] (перекл.: «кінна фігура Christian V праворуч, жезл уперед»); [i]«KM# 375 … Equestrian figure of Christian V left, amongst
+            trees»[/i] (перекл.: «кінна фігура Christian V ліворуч, серед дерев»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i] (перекл.: «вершник (праворуч: A, ліворуч:
+            B)»)."
+          da: "KM-nummeret hører til en anden variant.\n[b]Bruun Part I, lot 1123, s. 150[/b]: [i]«KM-374.2; Hede-12B; Sieg-76; Schou-19»[/i]; lottets foto viser rytteren mod venstre mellem træer.\n[b]NGC[/b]:
+            [i]«KM# 374.2 … Equistrian figure of Christian V right, baton points forward»[/i] (overs.: «rytterfigur af Christian V mod højre, stav fremad»); [i]«KM# 375 … Equestrian figure of Christian
+            V left, amongst trees»[/i] (overs.: «rytterfigur af Christian V mod venstre, mellem træer»).\n[b]danskmoent.dk[/b] (Hede 12): [i]«rytter (mod højre: A, mod venstre: B)»[/i]."
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65779
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1123, p. 150
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h12.htm
+        ref: danskmoent.dk (Hede c5h12B)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-375-1685-cuid-1050898-duid-1238000
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_realm
+    composed_of:
+      - denmark-numismaster-65779
+      - dk-bruun-7249
+      - dk-hede-c5h12b
+      - ngc-1050898
   - id: c-1c5e2813
     class_id: c-1c5e2813
     label: unified-dk-hede-c5h131
@@ -46749,7 +46541,7 @@ coins:
       - ngc-1050969
   - id: c-43d2bcf5
     class_id: c-43d2bcf5
-    label: unified-dk-hede-c5h14ab
+    label: unified-dk-hede-c5h14a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -46761,7 +46553,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '355'
-      hede: 14AB
+      hede:
+        - 14A
+        - 14B
       hede_volume: c5h
       schou: 36-37
       sieg:
@@ -46777,6 +46571,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-c5h14a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h14b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -46786,6 +46584,10 @@ coins:
     weight_rough_g:
       - value: 1.745
         source: hede
+        specimen: dk-hede-c5h14a
+      - value: 1.745
+        source: hede
+        specimen: dk-hede-c5h14b
       - value: 1.745
         source: ngc
       - value: 1.745
@@ -46801,7 +46603,7 @@ coins:
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h12.htm
-        ref: danskmoent.dk (Hede c5h14AB)
+        ref: danskmoent.dk (Hede c5h14A)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-dukat-1685/?tid=97400
         ref: ucoin
@@ -46811,7 +46613,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-65706
-      - dk-hede-c5h14ab
+      - dk-hede-c5h14a
+      - dk-hede-c5h14b
       - dk-tid-97400
       - ngc-1050353
   - id: c-dd68bd61
@@ -47612,7 +47415,7 @@ coins:
       - dk-hede-c5h25
   - id: c-b3ff6cf5
     class_id: c-b3ff6cf5
-    label: unified-dk-hede-c5h26ab
+    label: unified-dk-hede-c5h26a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -47629,14 +47432,10 @@ coins:
       km:
         - '415.2'
         - '415'
-      hede: 26AB
+      hede: 26A
       hede_volume: c5h
-      schou:
-        - '5'
-        - '7'
-      sieg:
-        - '98'
-        - '100'
+      schou: '5'
+      sieg: '98'
       numista: '343564'
       fr: '156'
     metal: gold
@@ -47677,7 +47476,7 @@ coins:
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h26.htm
-        ref: danskmoent.dk (Hede c5h26AB)
+        ref: danskmoent.dk (Hede c5h26A)
       - type: literature
         url: https://en.numista.com/343564
         ref: Numista N#343564 — 1 Ducat - Christian V
@@ -47690,13 +47489,76 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-204376
-      - dk-hede-c5h26ab
+      - dk-hede-c5h26a
       - dk-numista-343564
       - dk-tid-97540
       - ngc-1062783
+  - id: c-89885bd3
+    class_id: c-89885bd3
+    label: unified-dk-hede-c5h26b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Dukat
+    year_first: 1692
+    year_last: 1692
+    year_label: '1692'
+    ruler: Christian V
+    mintmaster: Christian Wineke the Elder (CW)
+    mint: Kopenhagen
+    catalog:
+      km: '412.2'
+      hede: 26B
+      hede_volume: c5h
+      schou: '7'
+      sieg: '100'
+      bruun_collection_id: '7096'
+      fr: '145'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.979
+        source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+    weight_rough_g:
+      - value: 3.45
+        source: bruun
+      - value: 3.49
+        source: hede
+      - value: 3.49
+        source: ngc
+      - value: 3.49
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65786
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14164, p. 66
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h26.htm
+        ref: danskmoent.dk (Hede c5h26B)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-412.2-1692-cuid-1060341-duid-1238008
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_realm
+    composed_of:
+      - denmark-numismaster-65786
+      - dk-bruun-7096
+      - dk-hede-c5h26b
+      - ngc-1060341
   - id: c-1b1c71b8
     class_id: c-1b1c71b8
-    label: unified-dk-hede-c5h27ab
+    label: unified-dk-hede-c5h27a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -47717,7 +47579,6 @@ coins:
         - '416'
       hede:
         - 27A
-        - 27AB
         - 27B
       hede_volume: c5h
       schou:
@@ -47744,6 +47605,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-c5h27a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h27b
       - value: 0.979
         source: ngc
         specimen: ngc-1050970
@@ -47781,6 +47646,10 @@ coins:
         source: ucoin
       - value: 6.981
         source: hede
+        specimen: dk-hede-c5h27a
+      - value: 6.981
+        source: hede
+        specimen: dk-hede-c5h27b
     diameter_mm:
       - value: 25.0
         source: ucoin
@@ -47801,7 +47670,7 @@ coins:
         ref: Bruun Part IV, lot 17095, p. 49
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h26.htm
-        ref: danskmoent.dk (Hede c5h27AB)
+        ref: danskmoent.dk (Hede c5h27A)
       - type: literature
         url: https://en.numista.com/82690
         ref: Numista N#82690 — 2 Ducats - Christian V
@@ -47820,7 +47689,8 @@ coins:
       - denmark-numismaster-65882
       - dk-bruun-7058
       - dk-bruun-7059
-      - dk-hede-c5h27ab
+      - dk-hede-c5h27a
+      - dk-hede-c5h27b
       - dk-numista-82690
       - dk-tid-101250
       - ngc-1050970
@@ -49533,7 +49403,7 @@ coins:
       - ngc-1069058
   - id: c-b956f8e7
     class_id: c-b956f8e7
-    label: unified-dk-hede-c5h49ab
+    label: unified-dk-hede-c5h49a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -49548,7 +49418,7 @@ coins:
         - A445
         - '444'
       hede:
-        - 49AB
+        - 49A
         - 49B
       hede_volume: c5h
       schou:
@@ -49570,7 +49440,10 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-c5h49ab
+        - seed: dk-hede-c5h49a
+          source: hede
+          years: '1696'
+        - seed: dk-hede-c5h49b
           source: hede
           years: '1696'
         - seed: ngc-1050272
@@ -49598,6 +49471,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-c5h49a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h49b
       - value: 0.979
         source: ngc
         specimen: ngc-1050272
@@ -49621,6 +49498,10 @@ coins:
         source: bruun
       - value: 3.49
         source: hede
+        specimen: dk-hede-c5h49a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-c5h49b
       - value: 3.49
         source: ngc
         specimen: ngc-1050272
@@ -49660,7 +49541,7 @@ coins:
         ref: Bruun Part III, lot 11257, p. 114
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h49.htm
-        ref: danskmoent.dk (Hede c5h49AB)
+        ref: danskmoent.dk (Hede c5h49A)
       - type: literature
         url: https://en.numista.com/146234
         ref: Numista N#146234 — 1 Ducat - Christian V
@@ -49678,7 +49559,8 @@ coins:
       - denmark-numismaster-65799
       - denmark-numismaster-65800
       - dk-bruun-7253
-      - dk-hede-c5h49ab
+      - dk-hede-c5h49a
+      - dk-hede-c5h49b
       - dk-numista-146234
       - dk-tid-99078
       - ngc-1050272
@@ -49767,7 +49649,7 @@ coins:
       - ngc-1050893
   - id: c-82842e6b
     class_id: c-82842e6b
-    label: unified-dk-hede-c5h50ab
+    label: unified-dk-hede-c5h50a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -49781,7 +49663,7 @@ coins:
       km: A447
       hede:
         - 50A
-        - 50AB
+        - 50B
       hede_volume: c5h
       schou:
         - '9'
@@ -49802,7 +49684,10 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-c5h50ab
+        - seed: dk-hede-c5h50a
+          source: hede
+          years: '1696'
+        - seed: dk-hede-c5h50b
           source: hede
           years: '1696'
         - seed: denmark-numismaster-65887
@@ -49815,6 +49700,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-c5h50a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h50b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -49828,6 +49717,10 @@ coins:
         source: numismaster
       - value: 6.981
         source: hede
+        specimen: dk-hede-c5h50a
+      - value: 6.981
+        source: hede
+        specimen: dk-hede-c5h50b
     uncertainty:
       year:
         - kind: hedged
@@ -49845,7 +49738,7 @@ coins:
         ref: Bruun Part V, lot 14174, p. 69
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h49.htm
-        ref: danskmoent.dk (Hede c5h50AB)
+        ref: danskmoent.dk (Hede c5h50A)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-a447-cuid-1050971-duid-1238138
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -49853,7 +49746,8 @@ coins:
     composed_of:
       - denmark-numismaster-65887
       - dk-bruun-7241
-      - dk-hede-c5h50ab
+      - dk-hede-c5h50a
+      - dk-hede-c5h50b
       - ngc-1050971
   - id: c-b518b572
     class_id: c-b518b572
@@ -78367,7 +78261,7 @@ coins:
       - ngc-1069079
   - id: c-a7cc4f05
     class_id: c-a7cc4f05
-    label: unified-dk-hede-f3h33ab
+    label: unified-dk-hede-f3h33a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -78387,7 +78281,6 @@ coins:
       km: '244'
       hede:
         - 33A
-        - 33AB
         - 33B
       hede_volume: f3h
       schou: 6-7
@@ -78419,6 +78312,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f3h33a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f3h33b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -78444,6 +78341,10 @@ coins:
         source: ucoin
       - value: 6.981
         source: hede
+        specimen: dk-hede-f3h33a
+      - value: 6.981
+        source: hede
+        specimen: dk-hede-f3h33b
     diameter_mm:
       - value: 28.0
         source: ikmk
@@ -78466,7 +78367,7 @@ coins:
         ref: Bruun Part II, lot 13148, p. 83
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h33.htm
-        ref: danskmoent.dk (Hede f3h33AB)
+        ref: danskmoent.dk (Hede f3h33A)
       - type: literature
         url: https://en.numista.com/82683
         ref: Numista N#82683 — 2 Ducats - Frederik III
@@ -78485,7 +78386,8 @@ coins:
       - dk-bruun-6384
       - dk-bruun-6400
       - dk-bruun-6401
-      - dk-hede-f3h33ab
+      - dk-hede-f3h33a
+      - dk-hede-f3h33b
       - dk-numista-82683
       - dk-tid-101247
       - ikmk-18219558
@@ -90274,7 +90176,7 @@ coins:
       - ngc-1060347
   - id: c-36fe5128
     class_id: c-36fe5128
-    label: unified-dk-hede-f5h11ab
+    label: unified-dk-hede-f5h11a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -90288,7 +90190,7 @@ coins:
       km: '565'
       hede:
         - 11A
-        - 11AB
+        - 11B
       hede_volume: f5h
       schou:
         - '7'
@@ -90315,6 +90217,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f5h11a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f5h11b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -90328,6 +90234,10 @@ coins:
         source: bruun
       - value: 3.49
         source: hede
+        specimen: dk-hede-f5h11a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-f5h11b
       - value: 3.49
         source: ngc
       - value: 3.49
@@ -90350,7 +90260,7 @@ coins:
         ref: Bruun Part III, lot 11280, p. 126
       - type: literature
         url: https://www.danskmoent.dk/fr/f5h11.htm
-        ref: danskmoent.dk (Hede f5h11AB)
+        ref: danskmoent.dk (Hede f5h11A)
       - type: literature
         url: https://en.numista.com/322683
         ref: Numista N#322683 — 1 Ducat - Frederik V (Coronation)
@@ -90364,13 +90274,14 @@ coins:
     composed_of:
       - denmark-numismaster-65826
       - dk-bruun-7617
-      - dk-hede-f5h11ab
+      - dk-hede-f5h11a
+      - dk-hede-f5h11b
       - dk-numista-322683
       - dk-tid-94339
       - ngc-1050369
   - id: c-44fc0b29
     class_id: c-44fc0b29
-    label: unified-dk-hede-f5h12ab
+    label: unified-dk-hede-f5h12a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -90384,7 +90295,7 @@ coins:
     catalog:
       km: '569'
       hede:
-        - 12AB
+        - 12A
         - 12B
       hede_volume: f5h
       schou:
@@ -90411,6 +90322,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f5h12a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f5h12b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -90428,6 +90343,10 @@ coins:
         source: ucoin
       - value: 6.981
         source: hede
+        specimen: dk-hede-f5h12a
+      - value: 6.981
+        source: hede
+        specimen: dk-hede-f5h12b
       - value: 6.981
         source: ngc
       - value: 6.981
@@ -90447,7 +90366,7 @@ coins:
         ref: Bruun Part V, lot 14192, p. 73
       - type: literature
         url: https://www.danskmoent.dk/fr/f5h11.htm
-        ref: danskmoent.dk (Hede f5h12AB)
+        ref: danskmoent.dk (Hede f5h12A)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-dukat-1747/?tid=94405
         ref: ucoin
@@ -90462,7 +90381,8 @@ coins:
       - denmark-numismaster-65909
       - dk-bruun-7613
       - dk-bruun-7614
-      - dk-hede-f5h12ab
+      - dk-hede-f5h12a
+      - dk-hede-f5h12b
       - dk-tid-94405
       - kmk-332101
       - ngc-1050973
@@ -92151,9 +92071,9 @@ coins:
       - dk-tid-94158
       - kmk-391993
       - ngc-1050156
-  - id: c-54af9b6b
-    class_id: c-54af9b6b
-    label: unified-dk-hede-f5h2ab
+  - id: c-f43dc9e7
+    class_id: c-f43dc9e7
+    label: unified-dk-hede-f5h2a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -92163,7 +92083,9 @@ coins:
     year_label: '1746'
     ruler: Frederik V
     catalog:
-      hede: 2AB
+      hede:
+        - 2A
+        - 2B
       hede_volume: f5h
       schou:
         - '1'
@@ -92178,16 +92100,25 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f5h2a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f5h2b
     weight_rough_g:
       - value: 6.981
         source: hede
+        specimen: dk-hede-f5h2a
+      - value: 6.981
+        source: hede
+        specimen: dk-hede-f5h2b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f5h1.htm
-        ref: danskmoent.dk (Hede f5h2AB)
+        ref: danskmoent.dk (Hede f5h2A)
     issuing_entity: danish_realm
     composed_of:
-      - dk-hede-f5h2ab
+      - dk-hede-f5h2a
+      - dk-hede-f5h2b
   - id: c-9a249ca5
     class_id: c-9a249ca5
     label: unified-dk-hede-f5h30
@@ -93279,44 +93210,114 @@ coins:
       - dk-numista-85142
       - dk-tid-78931
       - ngc-1048906
-  - id: c-cddfb50f
-    class_id: c-cddfb50f
-    label: unified-dk-hede-f5h3ab
+  - id: c-8e7e1b6b
+    class_id: c-8e7e1b6b
+    label: unified-dk-hede-f5h3a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Dukat
     year_first: 1646
-    year_last: 1646
-    year_label: '1646'
+    year_last: 1746
+    year_ranges:
+      -   - 1646
+          - 1646
+      -   - 1746
+          - 1746
+    year_label: 1646, 1746
     ruler: Frederik V
+    mintmaster: I
     mint: Kopenhagen
     catalog:
-      hede: 3AB
+      km: '548'
+      hede:
+        - 3A
+        - 3B
       hede_volume: f5h
       schou:
         - '8'
         - '11'
-      sieg: '24'
+      sieg:
+        - '24'
+        - '24.1'
+      bruun_collection_id: '7607'
+      bruun_part: II
+      bruun_lot_no: 13219
+      bruun_page: 159
+      numista: '322523'
+      fr: '254'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f5h3a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f5h3b
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+      - value: 0.979
+        source: numista
+      - value: 0.98
+        source: ucoin
     weight_rough_g:
+      - value: 3.47
+        source: numista
       - value: 3.49
         source: hede
+        specimen: dk-hede-f5h3a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-f5h3b
+      - value: 3.49
+        source: ngc
+      - value: 3.49
+        source: numismaster
+      - value: 3.49
+        source: ucoin
+      - value: 3.51
+        source: bruun
+    diameter_mm:
+      - value: 21.0
+        source: numista
+      - value: 21.0
+        source: ucoin
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65821
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13219, p. 133
+      - type: literature
         url: https://www.danskmoent.dk/fr/f5h3.htm
-        ref: danskmoent.dk (Hede f5h3AB)
+        ref: danskmoent.dk (Hede f5h3A)
+      - type: literature
+        url: https://en.numista.com/322523
+        ref: Numista N#322523 — 1 Ducat - Frederik V (Armored bust)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dukat-1746/?tid=94334
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-548-1746-cuid-1050326-duid-1238065
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
-      - dk-hede-f5h3ab
+      - denmark-numismaster-65821
+      - dk-bruun-7607
+      - dk-hede-f5h3a
+      - dk-hede-f5h3b
+      - dk-numista-322523
+      - dk-tid-94334
+      - ngc-1050326
   - id: c-5a16e25b
     class_id: c-5a16e25b
     label: unified-dk-hede-f5h40a
@@ -93451,45 +93452,123 @@ coins:
       - denmark-numismaster-58026
       - dk-hede-f5h40b
       - ngc-1068822
-  - id: c-0d732b23
-    class_id: c-0d732b23
-    label: unified-dk-hede-f5h4ab
+  - id: c-2280739d
+    class_id: c-2280739d
+    label: unified-dk-hede-f5h4a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 2 Dukat
     year_first: 1646
-    year_last: 1646
-    year_label: '1646'
+    year_last: 1746
+    year_ranges:
+      -   - 1646
+          - 1646
+      -   - 1746
+          - 1746
+    year_label: 1646, 1746
     ruler: Frederik V
+    mintmaster: I
     mint: Kopenhagen
     catalog:
-      hede: 4AB
+      km: '555'
+      hede:
+        - 4A
+        - 4B
       hede_volume: f5h
-      schou: '4'
-      sieg: '25'
+      schou:
+        - '4'
+        - '7'
+      sieg:
+        - '25'
+        - '25.1'
+      bruun_collection_id: '7604'
+      bruun_part: I
+      bruun_lot_no: 1142
+      bruun_page: 199
+      numista: '342760'
+      fr: '253'
+      others:
+        - B# 2
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f5h4a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f5h4b
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+      - value: 0.979
+        source: numista
+      - value: 0.98
+        source: ucoin
     weight_rough_g:
+      - value: 6.95
+        source: kmk
+      - value: 6.97
+        source: bruun
+      - value: 6.98
+        source: numista
+      - value: 6.98
+        source: ucoin
       - value: 6.981
         source: hede
+        specimen: dk-hede-f5h4a
+      - value: 6.981
+        source: hede
+        specimen: dk-hede-f5h4b
+      - value: 6.981
+        source: ngc
+      - value: 6.981
+        source: numismaster
+    diameter_mm:
+      - value: 25.7
+        source: ucoin
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65903
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1142, p. 175
+      - type: literature
         url: https://www.danskmoent.dk/fr/f5h3.htm
-        ref: danskmoent.dk (Hede f5h4AB)
+        ref: danskmoent.dk (Hede f5h4A)
+      - type: literature
+        url: https://en.numista.com/342760
+        ref: Numista N#342760 — 2 Ducats - Frederik V (Armored bust)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dukat-1746/?tid=94364
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/330456
+        ref: KMM 330456 (Inv. RP 920.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-555-1746-cuid-1051021-duid-1238158
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
-      - dk-hede-f5h4ab
+      - denmark-numismaster-65903
+      - dk-bruun-7604
+      - dk-hede-f5h4a
+      - dk-hede-f5h4b
+      - dk-numista-342760
+      - dk-tid-94364
+      - kmk-330456
+      - ngc-1051021
   - id: c-34396427
     class_id: c-34396427
-    label: unified-dk-hede-f5h5ab
+    label: unified-dk-hede-f5h5a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -93505,7 +93584,7 @@ coins:
       km: '549'
       hede:
         - 5A
-        - 5AB
+        - 5B
       hede_volume: f5h
       schou:
         - '9'
@@ -93526,6 +93605,10 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-f5h5a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-f5h5b
       - value: 0.979
         source: ngc
       - value: 0.979
@@ -93541,6 +93624,10 @@ coins:
         source: ikmk
       - value: 3.49
         source: hede
+        specimen: dk-hede-f5h5a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-f5h5b
       - value: 3.49
         source: ngc
       - value: 3.49
@@ -93565,7 +93652,7 @@ coins:
         ref: Bruun Part V, lot 14191, p. 73
       - type: literature
         url: https://www.danskmoent.dk/fr/f5h5.htm
-        ref: danskmoent.dk (Hede f5h5AB)
+        ref: danskmoent.dk (Hede f5h5A)
       - type: literature
         url: https://en.numista.com/113946
         ref: Numista N#113946 — 1 Ducat - Frederik V (Danish Asiatic Co. Gold)
@@ -93582,7 +93669,8 @@ coins:
     composed_of:
       - denmark-numismaster-65822
       - dk-bruun-7608
-      - dk-hede-f5h5ab
+      - dk-hede-f5h5a
+      - dk-hede-f5h5b
       - dk-numista-113946
       - dk-tid-94335
       - ikmk-18227330
