@@ -30,8 +30,17 @@
   3. F2 20 («Hede 20AB, Schou 2 og 1-7» inside the description) not split by the new rule.
   4. NGC «Glückstadt 4 Mark Danske KM A43 / B43» records sit in the Hede 98 and Hede 100 classes — unchecked.
   5. KM 272 class vs Hede 112/113; KM 285 = Hede 113C? (from 2026-11-08).
-  6. Basket B, the notes queue, the 2026-11-07 list below; branch claude/blissful-kirch-7b7be3 deletion on the
-     curator's word.
+  6. The notes queue, the 2026-11-07 list below. Branch claude/blissful-kirch-7b7be3 is still in use (curator
+     2026-11-09) — do not delete.
+- **Basket B closed (fcd2e50..6e2f053):** Frederik IV Hede 11 (KM 481 / 484) and Hede 43 (KM 495 / 504, «follow
+  Hede») each one class; Christian IV 8 Skilling sorted into Hede 93 (A+B), Hede 96 (Helsingør; KM 42 = later
+  KM 32.4, NumisMaster «Prev. KM#42») and Hede 122 — the 2026-10-17 decision had put ucoin 163034 / Numista
+  15669 (Helsingør) into Hede 93A; Hede 93 / 96 finals rebuilt from members. verify_reflow now excuses a reading
+  whose `specimen` tag went away when the seed's current final shows the same source + value (202b715, test).
+  Hede parser drops «Sieg N/year» die references (f3h131 mule line; Sieg 5 / 1650 / 1655 off Hede 131);
+  KMM 693100 «Hede 125» (object page) marked (!) — label and typeNumber «Hede 131», dated 1654.
+  Open from it: 33 citations of scope-dropped KMM records (no weight, no image) still ride on the Hede 96 V1
+  final `dk-tid-163034` / Hede 93 / Hede 122 rows through the self-union — cleared when 9_thaler is rebuilt.
 
 ## 2026-11-08 — Hede 105 / 116 split, Bruun pattern rule narrowed; branch blissful-kirch landed in main (pushed)
 
