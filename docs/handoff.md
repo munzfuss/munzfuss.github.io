@@ -16,6 +16,23 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-09 — KM 222 / A224, Hede letter split, Christian V 1 Dukat sorted (local, unpushed)
+
+- **Shipped (main 4b5cba3..87f8846, cache af24c5141):** KM 222 = Hede 100B (Hede 100 one class); KMM «Hede 95A»
+  krone records to Hede 95; KM A224 mule (NumisMaster 65284, NGC 1060171) excluded; Hede parser splits a
+  combined block «Hede 12AB, Schou 17-18, 19, Sieg 73,1 og 76» into one seed per letter (8 pages, 13 → 26 seeds;
+  Hede 12B has its own seed); F5 4B joins 4A (KM 555); Christian V 1 Dukat 1691-1696: KM 412.X = Hede 26X,
+  413 = 28 (by elimination), 414 = 29, 415.X = 31X, 418 = 32 — stale self-union KM / citations removed from
+  three finals (incl. a danskmoent c5h94 «1 Krone» link on Hede 31); stale test test_hede_multi_value_pages fixed.
+- **Open:**
+  1. Push (cache first, then main).
+  2. no_merges KM A224 ↔ Hede 95 are inert since the exclusion — remove if the curator agrees.
+  3. F2 20 («Hede 20AB, Schou 2 og 1-7» inside the description) not split by the new rule.
+  4. NGC «Glückstadt 4 Mark Danske KM A43 / B43» records sit in the Hede 98 and Hede 100 classes — unchecked.
+  5. KM 272 class vs Hede 112/113; KM 285 = Hede 113C? (from 2026-11-08).
+  6. Basket B, the notes queue, the 2026-11-07 list below; branch claude/blissful-kirch-7b7be3 deletion on the
+     curator's word.
+
 ## 2026-11-08 — Hede 105 / 116 split, Bruun pattern rule narrowed; branch blissful-kirch landed in main (pushed)
 
 - **Shipped and pushed (main e255199, cache 2c7a1b9fb):** Hede 105 / 116 / 113 (KM 275) split with pinned
