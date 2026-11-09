@@ -5312,3 +5312,8 @@ removals:
     kind: empty_duplicate
     hosts: [c-b765c45a]
     reason: 'Curator (Serhii) 2026-11-09 («Зливай»): 1 Dukat Christiansborg 1704-1706, Frederik IV, Hede 11A / KM 481 — foundation in danish_realm emptied by the Hede 11 merge; find_empty_duplicates.py shows every URL, catalogue value and reading in c-b765c45a. Numista span 1704-1706 survives there as a hedged year entry.'
+  - seed: dk-hede-f3h131
+    kind: field
+    field: sieg
+    dropped: ['5', '1650', '1655']
+    reason: 'Curator (Serhii) 2026-11-09 («1 так»): danskmoent f3h131 describes the mule as «tvepræg af forside Sieg 5/1650 og bagside Sieg 8.2/1655 (… Sieg 8.3)» — «Sieg N/year» names the dies of other coins (Sieg 5 is Hede 125), not Hede 131''s own number; the parser split them into Sieg 5, 1650 and 1655. Sieg 8.2 stays (group C gives it). The parser now drops «Sieg N/year» tokens.'

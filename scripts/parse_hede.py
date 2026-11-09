@@ -503,6 +503,13 @@ def _strip_year_tokens(num: str, catalogue: str) -> str:
         head = t.split("-")[0]
         if head.isdigit() and 1500 <= int(head) <= top:
             continue
+        # «Sieg 5/1650» = Sieg number / year: the page NAMES A DIE of another
+        # coin, it is not this coin's number. f3h131's mule line «tvepræg af
+        # forside Sieg 5/1650 og bagside Sieg 8.2/1655 (… Sieg 8.3)» put Sieg 5
+        # (Hede 125's number) and the years 1650 / 1655 into Hede 131's Sieg
+        # list (curator 2026-11-09). The only such token in the Hede cache.
+        if catalogue == "Sieg" and re.fullmatch(r"\d+(?:\.\d+)?/1[5-9]\d\d", t.strip()):
+            continue
         kept.append(t)
     return ",".join(kept)
 
