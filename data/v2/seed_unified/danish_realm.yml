@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8405 per-source seed entries.
-# Output: 1715 unified entries (one per physical coin).
+# Output: 1709 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -18361,6 +18361,16 @@ coins:
       - value: 0.888
         source: ucoin
     weight_rough_g:
+      - value: 1.59
+        source: kmk
+      - value: 1.6
+        source: kmk
+      - value: 1.61
+        source: kmk
+      - value: 1.72
+        source: kmk
+      - value: 1.75
+        source: kmk
       - value: 1.84
         source: kmk
       - value: 1.87
@@ -18469,6 +18479,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190634
         ref: KMM 190634 (Inv. FP 3108.650)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190635
+        ref: KMM 190635 (Inv. FP 3108.649)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190636
         ref: KMM 190636 (Inv. FP 3108.648)
       - type: museum
@@ -18495,6 +18508,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190646
         ref: KMM 190646 (Inv. FP 3108.638)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190647
+        ref: KMM 190647 (Inv. FP 3108.637)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190648
         ref: KMM 190648 (Inv. FP 3108.636)
@@ -18550,11 +18566,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190677
         ref: KMM 190677 (Inv. FP 3108.607)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190683
+        ref: KMM 190683 (Inv. FP 3108.601)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190684
         ref: KMM 190684 (Inv. FP 3108.600)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190688
         ref: KMM 190688 (Inv. FP 3108.596)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190689
+        ref: KMM 190689 (Inv. FP 3108.595)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190691
         ref: KMM 190691 (Inv. FP 3108.593)
@@ -18579,6 +18601,15 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714952
         ref: KMM 714952 (Inv. FP 12405.98)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714926
+        ref: KMM 714926 (Inv. FP 12405.124)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714929
+        ref: KMM 714929 (Inv. FP 12405.121)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714933
+        ref: KMM 714933 (Inv. FP 12405.117)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714927
         ref: KMM 714927 (Inv. FP 12405.123)
@@ -18652,6 +18683,7 @@ coins:
       - dk-tid-163027
       - kmk-190633
       - kmk-190634
+      - kmk-190635
       - kmk-190636
       - kmk-190637
       - kmk-190638
@@ -18661,6 +18693,7 @@ coins:
       - kmk-190643
       - kmk-190645
       - kmk-190646
+      - kmk-190647
       - kmk-190648
       - kmk-190652
       - kmk-190653
@@ -18679,10 +18712,13 @@ coins:
       - kmk-190670
       - kmk-190672
       - kmk-190677
+      - kmk-190683
       - kmk-190684
       - kmk-190688
+      - kmk-190689
       - kmk-190691
       - kmk-693173
+      - kmk-714926
       - kmk-714927
       - kmk-714928
       - kmk-714930
@@ -40324,24 +40360,25 @@ coins:
           - 1609
     year_label: 1606-1609
     ruler: Christian IV
-    mint:
-      - Helsingør
-      - Kopenhagen
+    mint: Kopenhagen
     catalog:
       km:
         - '32'
         - '32.3'
-        - '42'
-      hede: 93A
+        - '32.6'
+        - '32.2'
+        - '32.5'
+      hede:
+        - 93A
+        - 93B
       hede_volume: c4h
       schou:
         - 8-16
+        - 18-24
         - 20-28
         - 31-63
       sieg: '61'
-      numista:
-        - '15669'
-        - '71974'
+      numista: '71974'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -40352,6 +40389,10 @@ coins:
     fineness:
       - value: 0.888
         source: hede
+        specimen: dk-hede-c4h93a
+      - value: 0.888
+        source: hede
+        specimen: dk-hede-c4h93b
       - value: 0.888
         source: ngc
         specimen: ngc-1049936
@@ -40359,25 +40400,36 @@ coins:
         source: ngc
         specimen: ngc-1062437
       - value: 0.888
+        source: ngc
+        specimen: ngc-1062438
+      - value: 0.888
+        source: ngc
+        specimen: ngc-1066806
+      - value: 0.888
+        source: ngc
+        specimen: ngc-1066807
+      - value: 0.888
         source: numismaster
         specimen: denmark-numismaster-204166
+      - value: 0.888
+        source: numismaster
+        specimen: denmark-numismaster-204167
+      - value: 0.888
+        source: numismaster
+        specimen: denmark-numismaster-204168
       - value: 0.888
         source: numismaster
         specimen: denmark-numismaster-65115
       - value: 0.888
         source: numista
-        specimen: dk-numista-15669
-      - value: 0.888
-        source: numista
-        specimen: dk-numista-71974
       - value: 0.888
         source: ucoin
-        specimen: dk-tid-163031
-      - value: 0.888
-        source: ucoin
-        specimen: dk-tid-163034
     weight_rough_g:
       - value: 1.78
+        source: kmk
+      - value: 2.35
+        source: kmk
+      - value: 2.57
         source: kmk
       - value: 2.65
         source: kmk
@@ -40427,12 +40479,12 @@ coins:
         source: kmk
       - value: 2.92
         source: ucoin
-        specimen: dk-tid-163031
-      - value: 2.92
-        source: ucoin
-        specimen: dk-tid-163034
       - value: 2.923
         source: hede
+        specimen: dk-hede-c4h93a
+      - value: 2.923
+        source: hede
+        specimen: dk-hede-c4h93b
       - value: 2.923
         source: ngc
         specimen: ngc-1049936
@@ -40440,17 +40492,28 @@ coins:
         source: ngc
         specimen: ngc-1062437
       - value: 2.923
+        source: ngc
+        specimen: ngc-1062438
+      - value: 2.923
+        source: ngc
+        specimen: ngc-1066806
+      - value: 2.923
+        source: ngc
+        specimen: ngc-1066807
+      - value: 2.923
         source: numismaster
         specimen: denmark-numismaster-204166
+      - value: 2.923
+        source: numismaster
+        specimen: denmark-numismaster-204167
+      - value: 2.923
+        source: numismaster
+        specimen: denmark-numismaster-204168
       - value: 2.923
         source: numismaster
         specimen: denmark-numismaster-65115
       - value: 2.923
         source: numista
-        specimen: dk-numista-15669
-      - value: 2.923
-        source: numista
-        specimen: dk-numista-71974
       - value: 2.93
         source: kmk
       - value: 2.94
@@ -40480,19 +40543,17 @@ coins:
     diameter_mm:
       - value: 25.0
         source: numista
-        specimen: dk-numista-15669
-      - value: 25.0
-        source: numista
-        specimen: dk-numista-71974
       - value: 25.0
         source: ucoin
-        specimen: dk-tid-163031
-      - value: 25.0
-        source: ucoin
-        specimen: dk-tid-163034
     sources:
       - type: literature
         url: https://numismaster.com/MC_204166
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_204167
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_204168
         ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_65115
@@ -40501,16 +40562,10 @@ coins:
         url: https://www.danskmoent.dk/chr/c4h93.htm
         ref: danskmoent.dk (Hede c4h93A)
       - type: literature
-        url: https://en.numista.com/15669
-        ref: Numista N#15669 — 8 Skilling Dansk - Christian IV Helsingør
-      - type: literature
         url: https://en.numista.com/71974
         ref: Numista N#71974 — 8 Skilling Dansk - Christian IV
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-8-skilling-1606-1609/?tid=163031
-        ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-8-skilling-1608/?tid=163034
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122198
@@ -40624,6 +40679,18 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/189876
         ref: KMM 189876 (Inv. FP 3108.408)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190692
+        ref: KMM 190692 (Inv. FP 3108.592)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190693
+        ref: KMM 190693 (Inv. FP 3108.591)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190694
+        ref: KMM 190694 (Inv. FP 3108.590)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190695
+        ref: KMM 190695 (Inv. FP 3108.589)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190729
         ref: KMM 190729 (Inv. FP 3108.555)
       - type: museum
@@ -40734,6 +40801,15 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-32.3-1608-nd-cuid-1062437-duid-1238920
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-32.6-1609-cuid-1062438-duid-1238923
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-32.2-1606-1608-cuid-1066806-duid-1238917
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-32.5-1609-cuid-1066807-duid-1238922
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 10.909
@@ -40742,12 +40818,13 @@ coins:
       unit_raw: daler
     composed_of:
       - denmark-numismaster-204166
+      - denmark-numismaster-204167
+      - denmark-numismaster-204168
       - denmark-numismaster-65115
       - dk-hede-c4h93a
-      - dk-numista-15669
+      - dk-hede-c4h93b
       - dk-numista-71974
       - dk-tid-163031
-      - dk-tid-163034
       - kmk-122198
       - kmk-189785
       - kmk-189786
@@ -40782,6 +40859,10 @@ coins:
       - kmk-189874
       - kmk-189875
       - kmk-189876
+      - kmk-190692
+      - kmk-190693
+      - kmk-190694
+      - kmk-190695
       - kmk-190729
       - kmk-190730
       - kmk-190731
@@ -40818,76 +40899,8 @@ coins:
       - kmk-275997
       - ngc-1049936
       - ngc-1062437
-  - id: c-028048c3
-    class_id: c-028048c3
-    label: unified-dk-hede-c4h93b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1609
-    year_last: 1609
-    year_label: '1609'
-    ruler: Christian IV
-    mint: Kopenhagen
-    catalog:
-      km: '32.5'
-      hede: 93B
-      hede_volume: c4h
-      schou: 18-24
-      sieg: '61'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.888
-        source: hede
-      - value: 0.888
-        source: ngc
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 2.83
-        source: kmk
-      - value: 2.88
-        source: kmk
-      - value: 2.923
-        source: hede
-      - value: 2.923
-        source: ngc
-      - value: 2.923
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_204167
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h93.htm
-        ref: danskmoent.dk (Hede c4h93B)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190693
-        ref: KMM 190693 (Inv. FP 3108.591)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190695
-        ref: KMM 190695 (Inv. FP 3108.589)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-32.5-1609-cuid-1066807-duid-1238922
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    hede_muentzfuss_yield:
-      value: 10.909
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - denmark-numismaster-204167
-      - dk-hede-c4h93b
-      - kmk-190693
-      - kmk-190695
+      - ngc-1062438
+      - ngc-1066806
       - ngc-1066807
   - id: c-e62e35a9
     class_id: c-e62e35a9
@@ -41489,16 +41502,19 @@ coins:
     ruler: Christian IV
     mint: Helsingør
     catalog:
-      km: '32.4'
+      km:
+        - '32.4'
+        - '42'
       hede: '96'
       hede_volume: c4h
       schou: 64-111
       sieg: '62'
+      numista: '15669'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -41508,7 +41524,13 @@ coins:
         source: ngc
       - value: 0.888
         source: numismaster
+      - value: 0.888
+        source: numista
+      - value: 0.888
+        source: ucoin
     weight_rough_g:
+      - value: 2.56
+        source: kmk
       - value: 2.66
         source: kmk
       - value: 2.67
@@ -41547,12 +41569,21 @@ coins:
         source: kmk
       - value: 2.87
         source: kmk
+      - value: 2.92
+        source: ucoin
       - value: 2.923
         source: hede
       - value: 2.923
         source: ngc
       - value: 2.923
         source: numismaster
+      - value: 2.923
+        source: numista
+    diameter_mm:
+      - value: 25.0
+        source: numista
+      - value: 25.0
+        source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_65116
@@ -41560,6 +41591,12 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h96.htm
         ref: danskmoent.dk (Hede c4h96)
+      - type: literature
+        url: https://en.numista.com/15669
+        ref: Numista N#15669 — 8 Skilling Dansk - Christian IV Helsingør
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-8-skilling-1608/?tid=163034
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190696
         ref: KMM 190696 (Inv. FP 3108.588)
@@ -41596,6 +41633,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190707
         ref: KMM 190707 (Inv. FP 3108.577)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190708
+        ref: KMM 190708 (Inv. FP 3108.576)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190709
         ref: KMM 190709 (Inv. FP 3108.575)
@@ -41674,6 +41714,8 @@ coins:
     composed_of:
       - denmark-numismaster-65116
       - dk-hede-c4h96
+      - dk-numista-15669
+      - dk-tid-163034
       - kmk-190696
       - kmk-190697
       - kmk-190698
@@ -41686,6 +41728,7 @@ coins:
       - kmk-190705
       - kmk-190706
       - kmk-190707
+      - kmk-190708
       - kmk-190709
       - kmk-190710
       - kmk-190711
@@ -116521,70 +116564,6 @@ coins:
     composed_of:
       - kmk-190599
       - kmk-591523
-  - id: c-e7ddf3ca
-    class_id: c-e7ddf3ca
-    label: unified-kmk-190635
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1622
-    year_last: 1623
-    year_ranges:
-      -   - 1622
-          - 1623
-    year_label: 1622-1623
-    ruler: Christian IV
-    catalog:
-      hede: '122'
-      schou:
-        - '12'
-        - '52'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.59
-        source: kmk
-      - value: 1.6
-        source: kmk
-      - value: 1.61
-        source: kmk
-      - value: 1.72
-        source: kmk
-      - value: 1.75
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190635
-        ref: KMM 190635 (Inv. FP 3108.649)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190647
-        ref: KMM 190647 (Inv. FP 3108.637)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190683
-        ref: KMM 190683 (Inv. FP 3108.601)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190689
-        ref: KMM 190689 (Inv. FP 3108.595)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714926
-        ref: KMM 714926 (Inv. FP 12405.124)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714929
-        ref: KMM 714929 (Inv. FP 12405.121)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714933
-        ref: KMM 714933 (Inv. FP 12405.117)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190635
-      - kmk-190647
-      - kmk-190683
-      - kmk-190689
-      - kmk-714926
   - id: c-6d7ba586
     class_id: c-6d7ba586
     label: unified-kmk-190657
@@ -116662,72 +116641,6 @@ coins:
     composed_of:
       - kmk-190657
       - kmk-190690
-  - id: c-8bfda45a
-    class_id: c-8bfda45a
-    label: unified-kmk-190692
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1609
-    year_last: 1609
-    year_label: '1609'
-    ruler: Christian IV
-    catalog:
-      hede: 93B
-      schou:
-        - '21'
-        - '24'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 2.35
-        source: kmk
-      - value: 2.57
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190692
-        ref: KMM 190692 (Inv. FP 3108.592)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190694
-        ref: KMM 190694 (Inv. FP 3108.590)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190692
-      - kmk-190694
-  - id: c-f168ad06
-    class_id: c-f168ad06
-    label: unified-kmk-190708
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1608
-    year_last: 1608
-    year_label: '1608'
-    ruler: Christian IV
-    catalog:
-      hede: '96'
-      schou: '89'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 2.56
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190708
-        ref: KMM 190708 (Inv. FP 3108.576)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190708
   - id: c-2ec7e040
     class_id: c-2ec7e040
     label: unified-kmk-191245
@@ -138000,46 +137913,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1060690
-  - id: c-5ad5add6
-    class_id: c-5ad5add6
-    label: unified-ngc-1062438
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1609
-    year_last: 1609
-    year_label: '1609'
-    catalog:
-      km: '32.6'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: ngc
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 2.923
-        source: ngc
-      - value: 2.923
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_204168
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-32.6-1609-cuid-1062438-duid-1238923
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-204168
-      - ngc-1062438
   - id: c-cb3e8f38
     class_id: c-cb3e8f38
     label: unified-ngc-1063127
@@ -138576,41 +138449,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1065413
-  - id: c-4ce1392c
-    class_id: c-4ce1392c
-    label: unified-ngc-1066806
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1606
-    year_last: 1608
-    year_ranges:
-      -   - 1606
-          - 1608
-    year_label: 1606-1608
-    catalog:
-      km: '32.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: ngc
-    weight_rough_g:
-      - value: 2.923
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-32.2-1606-1608-cuid-1066806-duid-1238917
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1066806
   - id: c-9e46c385
     class_id: c-9e46c385
     label: unified-ngc-1068826
