@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8405 per-source seed entries.
-# Output: 1718 unified entries (one per physical coin).
+# Output: 1717 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -47580,8 +47580,8 @@ coins:
       - dk-tid-101250
       - ngc-1050970
       - ngc-1069075
-  - id: c-523481d1
-    class_id: c-523481d1
+  - id: c-516d5bd3
+    class_id: c-516d5bd3
     label: unified-dk-hede-c5h28
     fuss: seed_unsorted
     phase: hede
@@ -47596,17 +47596,37 @@ coins:
     ruler: Christian V
     mint: Kopenhagen
     catalog:
+      km: '413'
       hede: '28'
       hede_volume: c5h
       sieg: '103'
     metal: gold
     metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+    weight_rough_g:
+      - value: 3.49
+        source: ngc
+      - value: 3.49
+        source: numismaster
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65788
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/c5hede1.htm
         ref: danskmoent.dk overview c5hede1 (Hede c5h28 — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-413-1691-1692-cuid-1050270-duid-1238009
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c5hede1.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «CW»'
@@ -47618,7 +47638,9 @@ coins:
         1965. Bemærkning i indekset: «CW»'
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65788
       - dk-hede-c5h28
+      - ngc-1050270
   - id: c-3d59bb60
     class_id: c-3d59bb60
     label: unified-dk-hede-c5h29
@@ -130500,49 +130522,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050253
-  - id: c-516d5bd3
-    class_id: c-516d5bd3
-    label: unified-ngc-1050270
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1691
-    year_last: 1692
-    year_ranges:
-      -   - 1691
-          - 1692
-    year_label: 1691-1692
-    catalog:
-      km: '413'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65788
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-413-1691-1692-cuid-1050270-duid-1238009
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65788
-      - ngc-1050270
   - id: c-45e11fe6
     class_id: c-45e11fe6
     label: unified-ngc-1050278
