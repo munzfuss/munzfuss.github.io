@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1716 active, 4715 retired.
+# 1715 active, 4716 retired.
 
 id: danish_realm
 classes:
@@ -2960,18 +2960,6 @@ classes:
     members:
       - kmk-122203
       - kmk-122204
-  - id: c-17d10736
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-f4h43b
-    legacy_id: unified-dk-hede-f4h43b
-    members:
-      - denmark-numismaster-58066
-      - dk-hede-f4h43b
-      - dk-numista-49177
-      - dk-tid-94113
-      - kmk-122407
-      - ngc-1048770
   - id: c-180fb717
     status: active
     created: '2026-10-22'
@@ -17236,12 +17224,18 @@ classes:
     legacy_id: unified-dk-hede-f4h43a
     members:
       - denmark-numismaster-58065
+      - denmark-numismaster-58066
       - dk-hede-f4h43a
+      - dk-hede-f4h43b
+      - dk-numista-49177
       - dk-numista-83236
       - dk-tid-94112
+      - dk-tid-94113
+      - kmk-122407
       - kmk-148438
       - kmk-148439
       - ngc-1048769
+      - ngc-1048770
   - id: c-9f36bcce
     status: active
     created: '2026-10-22'
@@ -30722,6 +30716,20 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149290
+  - id: c-17d10736
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-f4h43b
+    legacy_id: unified-dk-hede-f4h43b
+    merged_into: c-9ed09b8d
+    retired: '2026-11-09'
+    members:
+      - denmark-numismaster-58066
+      - dk-hede-f4h43b
+      - dk-numista-49177
+      - dk-tid-94113
+      - kmk-122407
+      - ngc-1048770
   - id: c-17efdba9
     status: retired
     created: '2026-10-22'

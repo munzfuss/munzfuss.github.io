@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8405 per-source seed entries.
-# Output: 1716 unified entries (one per physical coin).
+# Output: 1715 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -88230,22 +88230,34 @@ coins:
     kind: kurant
     nominal: 12 Skilling
     year_first: 1710
-    year_last: 1711
+    year_last: 1719
     year_ranges:
       -   - 1710
-          - 1711
-    year_label: 1710-1711
+          - 1719
+    year_label: 1710-1719
     ruler: Frederik IV
     mint: Kopenhagen
     catalog:
-      km: '495'
-      hede: 43A
+      km:
+        - '495'
+        - '504'
+      hede:
+        - 43A
+        - 43B
       hede_volume: f4h
       schou:
-        - '3'
+        - '1'
+        - 2-3
+        - 4-5
+        - '6'
+        - '7'
+        - 9-10
+      sieg:
         - '9'
-      sieg: '9'
-      numista: '83236'
+        - '10'
+      numista:
+        - '49177'
+        - '83236'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -88256,43 +88268,103 @@ coins:
     fineness:
       - value: 0.562
         source: hede
+        specimen: dk-hede-f4h43a
+      - value: 0.562
+        source: hede
+        specimen: dk-hede-f4h43b
       - value: 0.562
         source: ngc
+        specimen: ngc-1048769
+      - value: 0.562
+        source: ngc
+        specimen: ngc-1048770
       - value: 0.562
         source: numismaster
+        specimen: denmark-numismaster-58065
+      - value: 0.562
+        source: numismaster
+        specimen: denmark-numismaster-58066
       - value: 0.562
         source: numista
+        specimen: dk-numista-49177
+      - value: 0.562
+        source: numista
+        specimen: dk-numista-83236
       - value: 0.562
         source: ucoin
+        specimen: dk-tid-94112
+      - value: 0.562
+        source: ucoin
+        specimen: dk-tid-94113
     weight_rough_g:
       - value: 3.898
         source: hede
+        specimen: dk-hede-f4h43a
+      - value: 3.898
+        source: hede
+        specimen: dk-hede-f4h43b
       - value: 3.898
         source: ngc
+        specimen: ngc-1048769
+      - value: 3.898
+        source: ngc
+        specimen: ngc-1048770
       - value: 3.898
         source: numismaster
+        specimen: denmark-numismaster-58065
+      - value: 3.898
+        source: numismaster
+        specimen: denmark-numismaster-58066
       - value: 3.898
         source: numista
+        specimen: dk-numista-49177
+      - value: 3.898
+        source: numista
+        specimen: dk-numista-83236
       - value: 3.9
         source: ucoin
+        specimen: dk-tid-94112
+      - value: 3.9
+        source: ucoin
+        specimen: dk-tid-94113
     diameter_mm:
+      - value: 23.79
+        source: numista
+        specimen: dk-numista-49177
       - value: 24.3
         source: numista
+        specimen: dk-numista-83236
       - value: 24.3
         source: ucoin
+        specimen: dk-tid-94112
+      - value: 24.3
+        source: ucoin
+        specimen: dk-tid-94113
     sources:
       - type: literature
         url: https://numismaster.com/MC_58065
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_58066
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/fr/f4h43.htm
         ref: danskmoent.dk (Hede f4h43A)
+      - type: literature
+        url: https://en.numista.com/49177
+        ref: Numista N#49177 — 12 Skilling Dansk - Frederik IV
       - type: literature
         url: https://en.numista.com/83236
         ref: Numista N#83236 — 12 Skilling Dansk - Frederik IV ("TOLF" Type)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-12-skilling-1710-1711/?tid=94112
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-12-skilling-1712-1719/?tid=94113
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122407
+        ref: KMM 122407 (Inv. FP 2668.551)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148438
         ref: KMM 148438 (Inv. KP 1656.1875)
@@ -88302,98 +88374,6 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-12-skilling-km-495-1710-1711-cuid-1048769-duid-1238867
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    hede_muentzfuss_yield:
-      value: 13.333
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - denmark-numismaster-58065
-      - dk-hede-f4h43a
-      - dk-numista-83236
-      - dk-tid-94112
-      - kmk-148438
-      - kmk-148439
-      - ngc-1048769
-  - id: c-17d10736
-    class_id: c-17d10736
-    label: unified-dk-hede-f4h43b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 12 Skilling
-    year_first: 1712
-    year_last: 1719
-    year_ranges:
-      -   - 1712
-          - 1719
-    year_label: 1712-1719
-    ruler: Frederik IV
-    mint: Kopenhagen
-    catalog:
-      km: '504'
-      hede: 43B
-      hede_volume: f4h
-      schou:
-        - '1'
-        - 2-3
-        - 4-5
-        - '6'
-        - '7'
-        - 9-10
-      sieg: '10'
-      numista: '49177'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.562
-        source: hede
-      - value: 0.562
-        source: ngc
-      - value: 0.562
-        source: numismaster
-      - value: 0.562
-        source: numista
-      - value: 0.562
-        source: ucoin
-    weight_rough_g:
-      - value: 3.898
-        source: hede
-      - value: 3.898
-        source: ngc
-      - value: 3.898
-        source: numismaster
-      - value: 3.898
-        source: numista
-      - value: 3.9
-        source: ucoin
-    diameter_mm:
-      - value: 23.79
-        source: numista
-      - value: 24.3
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_58066
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f4h43.htm
-        ref: danskmoent.dk (Hede f4h43B)
-      - type: literature
-        url: https://en.numista.com/49177
-        ref: Numista N#49177 — 12 Skilling Dansk - Frederik IV
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-12-skilling-1712-1719/?tid=94113
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122407
-        ref: KMM 122407 (Inv. FP 2668.551)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-12-skilling-km-504-1712-1719-cuid-1048770-duid-1238869
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -88404,11 +88384,18 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-58065
       - denmark-numismaster-58066
+      - dk-hede-f4h43a
       - dk-hede-f4h43b
       - dk-numista-49177
+      - dk-numista-83236
+      - dk-tid-94112
       - dk-tid-94113
       - kmk-122407
+      - kmk-148438
+      - kmk-148439
+      - ngc-1048769
       - ngc-1048770
   - id: c-73caaf55
     class_id: c-73caaf55
