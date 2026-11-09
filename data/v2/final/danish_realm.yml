@@ -112287,6 +112287,7 @@ coins:
     issuing_entity: danish_realm
     fraction: '1'
     id: c-b3ff6cf5
+    mintmaster: Christian Wineke the Elder (CW)
     year_first: 1691
     year_last: 1696
     year_ranges:
@@ -112298,12 +112299,22 @@ coins:
       km:
         - '415'
         - '415.2'
-      hede: 26A
+        - '412.2'
+      hede:
+        - 26A
+        - 26B
       hede_volume: c5h
-      schou: '5'
-      sieg: '98'
+      schou:
+        - '5'
+        - '7'
+      sieg:
+        - '98'
+        - '100'
       numista: '343564'
-      fr: '156'
+      fr:
+        - '145'
+        - '156'
+      bruun_collection_id: '7096'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -112314,21 +112325,47 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-c5h26a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h26b
       - value: 0.979
         source: ngc
+        specimen: ngc-1060341
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1062783
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-204376
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65786
       - value: 0.979
         source: numista
       - value: 0.98
         source: ucoin
     weight_rough_g:
+      - value: 3.45
+        source: bruun
       - value: 3.49
         source: hede
+        specimen: dk-hede-c5h26a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-c5h26b
       - value: 3.49
         source: ngc
+        specimen: ngc-1060341
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1062783
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-204376
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-65786
       - value: 3.49
         source: numista
       - value: 3.49
@@ -112351,6 +112388,15 @@ coins:
         ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-415.2-1691-cuid-1062783-duid-1238925
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_65786
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14164, p. 66
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-412.2-1692-cuid-1060341-duid-1238008
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Brustbild Christians V. nach rechts. / Dreifach gekröntes Monogramm Christians, Jahreszahl darunter.
@@ -162216,76 +162262,6 @@ coins:
     composed_of:
       - c-a0e3c20c
     label: unified-dk-bruun-7091
-    origin: promoted
-  - fuss: reichsdukatenfuss
-    phase: III
-    kind: kurant
-    nominal: 1 Ducat
-    ruler: Christian V
-    mintmaster: Christian Wineke the Elder (CW)
-    issuing_entity: danish_realm
-    fraction: '1'
-    id: c-89885bd3
-    year_first: 1692
-    year_last: 1692
-    year_label: '1692'
-    mint: Kopenhagen
-    catalog:
-      km: '412.2'
-      hede: 26B
-      sieg: '100'
-      bruun_collection_id: '7096'
-      schou: '7'
-      fr: '145'
-      hede_volume: c5h
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: hede
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.45
-        source: bruun
-      - value: 3.49
-        source: hede
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65786
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14164, p. 66
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-412.2-1692-cuid-1060341-duid-1238008
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h26.htm
-        ref: danskmoent.dk (Hede c5h26B)
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-89885bd3
-    label: unified-dk-bruun-7096
     origin: promoted
   - fuss: 9_25_thaler
     phase: II

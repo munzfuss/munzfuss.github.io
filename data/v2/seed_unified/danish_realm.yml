@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8405 per-source seed entries.
-# Output: 1719 unified entries (one per physical coin).
+# Output: 1718 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -47427,17 +47427,28 @@ coins:
           - 1696
     year_label: 1691-1696
     ruler: Christian V
+    mintmaster: Christian Wineke the Elder (CW)
     mint: Kopenhagen
     catalog:
       km:
+        - '412.2'
         - '415.2'
         - '415'
-      hede: 26A
+      hede:
+        - 26A
+        - 26B
       hede_volume: c5h
-      schou: '5'
-      sieg: '98'
+      schou:
+        - '5'
+        - '7'
+      sieg:
+        - '98'
+        - '100'
+      bruun_collection_id: '7096'
       numista: '343564'
-      fr: '156'
+      fr:
+        - '145'
+        - '156'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -47448,21 +47459,47 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+        specimen: dk-hede-c5h26a
+      - value: 0.979
+        source: hede
+        specimen: dk-hede-c5h26b
       - value: 0.979
         source: ngc
+        specimen: ngc-1060341
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1062783
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-204376
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65786
       - value: 0.979
         source: numista
       - value: 0.98
         source: ucoin
     weight_rough_g:
+      - value: 3.45
+        source: bruun
       - value: 3.49
         source: hede
+        specimen: dk-hede-c5h26a
+      - value: 3.49
+        source: hede
+        specimen: dk-hede-c5h26b
       - value: 3.49
         source: ngc
+        specimen: ngc-1060341
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1062783
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-204376
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-65786
       - value: 3.49
         source: numista
       - value: 3.49
@@ -47475,6 +47512,12 @@ coins:
         url: https://numismaster.com/MC_204376
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_65786
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14164, p. 66
+      - type: literature
         url: https://www.danskmoent.dk/chr/c5h26.htm
         ref: danskmoent.dk (Hede c5h26A)
       - type: literature
@@ -47484,78 +47527,22 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-dukat-1691-1696/?tid=97540
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-412.2-1692-cuid-1060341-duid-1238008
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-415.2-1691-cuid-1062783-duid-1238925
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-204376
-      - dk-hede-c5h26a
-      - dk-numista-343564
-      - dk-tid-97540
-      - ngc-1062783
-  - id: c-89885bd3
-    class_id: c-89885bd3
-    label: unified-dk-hede-c5h26b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Dukat
-    year_first: 1692
-    year_last: 1692
-    year_label: '1692'
-    ruler: Christian V
-    mintmaster: Christian Wineke the Elder (CW)
-    mint: Kopenhagen
-    catalog:
-      km: '412.2'
-      hede: 26B
-      hede_volume: c5h
-      schou: '7'
-      sieg: '100'
-      bruun_collection_id: '7096'
-      fr: '145'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: hede
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.45
-        source: bruun
-      - value: 3.49
-        source: hede
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65786
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14164, p. 66
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h26.htm
-        ref: danskmoent.dk (Hede c5h26B)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-412.2-1692-cuid-1060341-duid-1238008
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
       - denmark-numismaster-65786
       - dk-bruun-7096
+      - dk-hede-c5h26a
       - dk-hede-c5h26b
+      - dk-numista-343564
+      - dk-tid-97540
       - ngc-1060341
+      - ngc-1062783
   - id: c-1b1c71b8
     class_id: c-1b1c71b8
     label: unified-dk-hede-c5h27a
