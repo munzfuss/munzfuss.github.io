@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 55 active, 20 retired.
+# 54 active, 21 retired.
 
 id: royal_slesvig
 classes:
@@ -60,7 +60,7 @@ classes:
   - id: c-1728e8b0
     status: active
     created: '2026-10-22'
-    label: unified-dk-numista-301215
+    label: unified-dk-galster-f1g-126
     legacy_id: unified-dk-numista-301215
     members:
       - dk-galster-f1g-126
@@ -253,11 +253,13 @@ classes:
   - id: c-8ae5600c
     status: active
     created: '2026-10-22'
-    label: unified-dk-numista-153257
+    label: unified-dk-galster-f1g-124
     legacy_id: unified-dk-numista-153257
     members:
       - dk-galster-f1g-124
       - dk-numista-153257
+      - dk-numista-301214
+      - ngc-167733
   - id: c-8c9db0b1
     status: active
     created: '2026-10-22'
@@ -359,14 +361,6 @@ classes:
     legacy_id: unified-dk-numista-301237
     members:
       - dk-numista-301237
-  - id: c-b8b19e58
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-167733
-    legacy_id: unified-ngc-167733
-    members:
-      - dk-numista-301214
-      - ngc-167733
   - id: c-c32f2572
     status: active
     created: '2026-10-22'
@@ -402,7 +396,7 @@ classes:
   - id: c-cc2a70ac
     status: active
     created: '2026-10-22'
-    label: unified-dk-numista-309409
+    label: unified-dk-galster-f1g-114
     legacy_id: unified-dk-numista-309409
     members:
       - dk-galster-f1g-114
@@ -601,6 +595,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-131480
+  - id: c-b8b19e58
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-167733
+    legacy_id: unified-ngc-167733
+    merged_into: c-8ae5600c
+    retired: '2026-11-09'
+    members:
+      - dk-numista-301214
+      - ngc-167733
   - id: c-c4209752
     status: retired
     created: '2026-10-22'

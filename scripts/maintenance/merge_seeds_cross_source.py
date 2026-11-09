@@ -43,7 +43,7 @@ Idempotent — fresh re-runs on unchanged input produce zero file changes
 
 Unified entry id rule (V2_PIPELINE.md §5.2 authority-based):
   Priority order for source-id prefixes: dk-hede- > dk-bruun- >
-  dk-numismaster- > dk-numista- > dk-galster-. The unified entry's id
+  dk-galster- > ngc- > dk-numismaster- > dk-numista-. The unified entry's id
   is `unified-<top-authority-member-id>`. Prefix prevents collision
   with the seed-side id; remains readable for debugging.
 
@@ -184,6 +184,11 @@ _OTHERS_CF_RE = re.compile(
 _ID_AUTHORITY_ORDER = [
     "dk-hede-",          # Hede 1971 (primary scholarly DK)
     "dk-bruun-",         # Stack's Bowers Bruun auction
+    # Galster (Unionstidens Udmøntninger / danskmoent.dk Galster pages) — the
+    # specialist catalogue for the coinage before 1541; ranked above NGC,
+    # NumisMaster and Numista (curator 2026-11-09). Its Danish nominals still
+    # pass through canonical_nominal_display («Rhinsk gylden» → «Goldgulden»).
+    "dk-galster-",
     # NGC World Coin Price Guide — the LIVE custodian of the Krause-Mishler
     # catalogue after NumisMaster went offline (docs/SOURCES.md §1.4). It ranks
     # ABOVE NumisMaster because it is that source's successor and current
@@ -192,17 +197,34 @@ _ID_AUTHORITY_ORDER = [
     "ngc-",
     "dk-numismaster-",   # Krause-Mishler canonical
     "dk-numista-",       # community Numista
-    "dk-galster-",       # Galster pre-1541
 ]
 
 
-def _authority_score(coin_id: str) -> int:
+# The score each prefix carries. The absolute values matter, not only the
+# order: `_thin_line_consensus_metal` adds them up as vote weights against the
+# floor weight 1 of an unlisted source. When Galster moved above NGC
+# (2026-11-09) the other prefixes kept the values they had (Hede 6, Bruun 5,
+# NGC 4, NumisMaster 3, Numista 2); deriving them from list positions instead
+# dropped Numista to 1 and flipped silver/billon votes in classes with no
+# Galster member at all. Galster takes 4.5, between NGC and Bruun.
+_ID_AUTHORITY_SCORE = {
+    "dk-hede-": 6,
+    "dk-bruun-": 5,
+    "dk-galster-": 4.5,
+    "ngc-": 4,
+    "dk-numismaster-": 3,
+    "dk-numista-": 2,
+}
+assert list(_ID_AUTHORITY_SCORE) == _ID_AUTHORITY_ORDER
+
+
+def _authority_score(coin_id: str) -> float:
     """Higher = more authority. Used to choose unified id."""
     if not coin_id:
         return -1
-    for i, prefix in enumerate(_ID_AUTHORITY_ORDER):
+    for prefix in _ID_AUTHORITY_ORDER:
         if coin_id.startswith(prefix):
-            return len(_ID_AUTHORITY_ORDER) - i
+            return _ID_AUTHORITY_SCORE[prefix]
     return 0
 
 

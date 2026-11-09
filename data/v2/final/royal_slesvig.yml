@@ -1443,12 +1443,12 @@ coins:
       bruun_collection_id: '14741'
       schou: 1-4
       galster: '122'
+      galster_volume: f1g
       mb: '30'
       fr: '14'
       others:
         - Sch# 1337
       numista: '417865'
-      galster_volume: f1g
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -1581,10 +1581,10 @@ coins:
       schou: 1-2
       galster: '130'
       lange: '17'
+      galster_volume: c3g
       mb: '39'
       fr: '16'
       numista: '461448'
-      galster_volume: c3g
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -1670,11 +1670,11 @@ coins:
     origin: promoted
     year_conflict:
       confident:
-        - seed: dk-numista-461448
-          source: numista
-          years: '1534'
         - seed: dk-galster-c3g-130
           source: galster
+          years: '1534'
+        - seed: dk-numista-461448
+          source: numista
           years: '1534'
       uncertain:
         - seed: dk-bruun-14783
@@ -2075,8 +2075,8 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: II
     kind: kurant
-    nominal: 1 Sechsling
-    ruler: Frederick I (Frederik I)
+    nominal: 1 Søsling
+    ruler: Frederik I
     issuing_entity: royal_slesvig
     id: c-1728e8b0
     year_first: 1516
@@ -2107,15 +2107,15 @@ coins:
       - Husum
       - Schleswig
     catalog:
-      numista: '301215'
-      mb: '24'
-      lange: 16b
       galster: '126'
       schou:
         - 1-5
         - 50-71
         - ej
       galster_volume: f1g
+      numista: '301215'
+      mb: '24'
+      lange: 16b
       others:
         - B# 116d
     metal: silver
@@ -2441,14 +2441,23 @@ coins:
           as_printed: 2 Skilling
           value: billon
           seed: dk-galster-f1g-124
-    mint: Gottorp
+    mint:
+      - Gottorp
+      - Schleswig
     catalog:
-      numista: '153257'
-      sieg: '43.5'
-      mb: '10'
-      galster: 124A-C
+      galster:
+        - '124'
+        - 124A-C
       schou: varia
       galster_volume: f1g
+      mb: '10'
+      lange: 13-16
+      others:
+        - Sch# 1542-43
+      numista:
+        - '153257'
+        - '301214'
+      sieg: '43.5'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -2476,10 +2485,71 @@ coins:
       - type: literature
         url: https://en.numista.com/153257
         ref: Numista N#153257 — 2 Schillings - Frederik I (Gottorp; year above shield)
+      - type: literature
+        url: https://en.numista.com/301214
+        ref: Numista N#301214 — 2 Schillings - Frederick I
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-mb-10-15z5-15zz-cuid-167733-duid-380807
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     composed_of:
       - c-8ae5600c
     label: unified-dk-numista-153257
     origin: promoted
+    year_alts:
+      - value: 1514, 1520, 1522
+        source: numista
+        kind: erroneous
+        reason:
+          de: "Diese Jahre gehören nicht zu diesem Typ. [b]Numista 301214[/b] gibt 1514, 1520, 1522 wie der Typ MB 10, der beide Galster-Typen umfasst. Galster trennt die herzogliche Prägung (Galster 119,
+            Husum) von der königlichen (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (Übers.: «Frederik I., 2 Skilling, Husum» … «1514, 1518, 1520, 1522 und ohne Jahr», «Die Müntze ist geschlagen,
+            als Frederik noch Herzog von Gottorp war; den dänischen Königstitel erhielt er erst 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (Übers.:
+            «2 Skilling, Gottorp» … «1523–33 und ohne Jahr»)."
+          en: "These years do not belong to this type. [b]Numista 301214[/b] gives 1514, 1520, 1522, as does the type MB 10, which covers both Galster types. Galster separates the ducal coinage (Galster
+            119, Husum) from the royal (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (transl.: «Frederik I, 2 Skilling, Husum» … «1514, 1518, 1520, 1522 and undated», «The coin was struck while
+            Frederik was still Duke of Gottorp; he received the Danish royal title only in 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (transl.:
+            «2 Skilling, Gottorp» … «1523–33 and undated»)."
+          uk: "Ці роки не належать до цього типу. [b]Numista 301214[/b] подає 1514, 1520, 1522, як і тип MB 10, що охоплює обидва типи Galster. Galster відокремлює герцогське карбування (Galster 119, Husum)
+            від королівського (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået, mens
+            Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (перекл.: «Фредерік I, 2 скілінги, Husum» … «1514, 1518, 1520, 1522 і без року», «Монету карбовано, коли Фредерік
+            був ще герцогом Готторпським; данський королівський титул він отримав лише 1523 р.»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (перекл.:
+            «2 скілінги, Gottorp» … «1523–33 і без року»)."
+          da: "Disse år hører ikke til denne type. [b]Numista 301214[/b] angiver 1514, 1520, 1522 ligesom typen MB 10, der omfatter begge Galster-typer. Galster adskiller den hertugelige udmøntning (Galster
+            119, Husum) fra den kongelige (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er
+            slået, mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i].\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i]."
+      - value: 1514, 1520, 1522
+        source: ngc
+        kind: erroneous
+        reason:
+          de: "Diese Jahre gehören nicht zu diesem Typ. [b]NGC 167733 (MB 10)[/b] gibt 1514, 1520, 1522 wie der Typ MB 10, der beide Galster-Typen umfasst. Galster trennt die herzogliche Prägung (Galster
+            119, Husum) von der königlichen (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten
+            er slået, mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (Übers.: «Frederik I., 2 Skilling, Husum» … «1514, 1518, 1520, 1522 und ohne Jahr», «Die Müntze
+            ist geschlagen, als Frederik noch Herzog von Gottorp war; den dänischen Königstitel erhielt er erst 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og
+            uden år»[/i] (Übers.: «2 Skilling, Gottorp» … «1523–33 und ohne Jahr»)."
+          en: "These years do not belong to this type. [b]NGC 167733 (MB 10)[/b] gives 1514, 1520, 1522, as does the type MB 10, which covers both Galster types. Galster separates the ducal coinage (Galster
+            119, Husum) from the royal (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (transl.: «Frederik I, 2 Skilling, Husum» … «1514, 1518, 1520, 1522 and undated», «The coin was struck while
+            Frederik was still Duke of Gottorp; he received the Danish royal title only in 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (transl.:
+            «2 Skilling, Gottorp» … «1523–33 and undated»)."
+          uk: "Ці роки не належать до цього типу. [b]NGC 167733 (MB 10)[/b] подає 1514, 1520, 1522, як і тип MB 10, що охоплює обидва типи Galster. Galster відокремлює герцогське карбування (Galster 119,
+            Husum) від королівського (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (перекл.: «Фредерік I, 2 скілінги, Husum» … «1514, 1518, 1520, 1522 і без року», «Монету карбовано, коли Фредерік
+            був ще герцогом Готторпським; данський королівський титул він отримав лише 1523 р.»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (перекл.:
+            «2 скілінги, Gottorp» … «1523–33 і без року»)."
+          da: "Disse år hører ikke til denne type. [b]NGC 167733 (MB 10)[/b] angiver 1514, 1520, 1522 ligesom typen MB 10, der omfatter begge Galster-typer. Galster adskiller den hertugelige udmøntning
+            (Galster 119, Husum) fra den kongelige (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten
+            er slået, mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i].\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i]."
+    note:
+      de: Stehende Figur König Friedrichs I. in voller Rüstung, beide Arme gesenkt, in der linken Hand ein Streitkolben oder Schwert (bärtiges Bildnis); Holsteiner Wappen auf den Beintaschen; die 
+        Figur teilweise im Perlkreis, Umschrift außen / Schild mit Schleswiger Wappen im Perlkreis, Umschrift außen
+      en: Full standing figure of King Frederik I in armour, both arms lowered, a mace or sword in the left hand (bearded portrait); Holstein arms on the tassets; figure partly within a beaded circle,
+        legend outside / Shield with Schleswig arms within a beaded circle, legend outside
+      uk: Повна стояча постать короля Фредеріка I у повному обладунку, обидві руки опущені, у лівій руці булава або меч (портрет із бородою); гольштейнський герб на набедрениках; постать частково в 
+        перлинному колі, легенда назовні / Щит зі шлезвізьким гербом у перлинному колі, легенда назовні
+    _curation_holds:
+      issuing_entity: Absorb does not overwrite a final's issuing_entity or mint, so the corrected values in seed_unified cannot reach here on their own. The reasoning is on each contributing seed 
+        entry's own _curation_holds.
   - fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -2844,62 +2914,6 @@ coins:
         entry's own _curation_holds.
       mint: Absorb does not overwrite a final's issuing_entity or mint, so the corrected values in seed_unified cannot reach here on their own. The reasoning is on each contributing seed entry's own 
         _curation_holds.
-  - fuss: luebischer_muenzfuss
-    phase: II
-    kind: kurant
-    nominal: 2 Schilling, Doppelschilling
-    ruler: Friedrich I
-    issuing_entity: royal_slesvig
-    id: c-b8b19e58
-    year_first: 1514
-    year_last: 1533
-    year_ranges:
-      -   - 1514
-          - 1514
-      -   - 1520
-          - 1520
-      -   - 1522
-          - 1527
-      -   - 1533
-          - 1533
-    year_label: 1514, 1520, 1522-1527, 1533
-    year_verified: false
-    mint: Schleswig
-    catalog:
-      mb: '10'
-      lange: 13-16
-      others:
-        - Sch# 1542-43
-      numista: '301214'
-      galster: '124'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/301214
-        ref: Numista N#301214 — 2 Schillings - Frederick I
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-mb-10-15z5-15zz-cuid-167733-duid-380807
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Stehende Figur König Friedrichs I. in voller Rüstung, beide Arme gesenkt, in der linken Hand ein Streitkolben oder Schwert (bärtiges Bildnis); Holsteiner Wappen auf den Beintaschen; die 
-        Figur teilweise im Perlkreis, Umschrift außen / Schild mit Schleswiger Wappen im Perlkreis, Umschrift außen
-      en: Full standing figure of King Frederik I in armour, both arms lowered, a mace or sword in the left hand (bearded portrait); Holstein arms on the tassets; figure partly within a beaded circle,
-        legend outside / Shield with Schleswig arms within a beaded circle, legend outside
-      uk: Повна стояча постать короля Фредеріка I у повному обладунку, обидві руки опущені, у лівій руці булава або меч (портрет із бородою); гольштейнський герб на набедрениках; постать частково в 
-        перлинному колі, легенда назовні / Щит зі шлезвізьким гербом у перлинному колі, легенда назовні
-    composed_of:
-      - c-b8b19e58
-    label: unified-ngc-167733
-    origin: promoted
-    _curation_holds:
-      issuing_entity: Absorb does not overwrite a final's issuing_entity or mint, so the corrected values in seed_unified cannot reach here on their own. The reasoning is on each contributing seed 
-        entry's own _curation_holds.
   - fuss: reichsdukatenfuss
     phase: I
     kind: kurant

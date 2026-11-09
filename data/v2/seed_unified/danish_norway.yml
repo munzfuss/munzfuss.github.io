@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-08 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2757 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-08'
+generated_at: '2026-11-09'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -3417,6 +3417,7 @@ coins:
         - XVI.5
       nmd: '3'
       jensen_skjoldager: N-13
+      galster_volume: f1g
       numista: '121754'
       skaare: '311'
       others:
@@ -3426,7 +3427,6 @@ coins:
         - Brekke# 1
         - Brekke# 2
         - Thesen# 1
-      galster_volume: f1g
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -3558,16 +3558,16 @@ coins:
       galster: '170'
       nmd: '7'
       jensen_skjoldager: N-07
-      numista: '120175'
       schive:
         - XVI.14
         - XVI.14-17
+      galster_volume: f1g
+      numista: '120175'
       skaare: '314'
       others:
         - Galster UU# 170
         - AAJT# 7
         - Brekke# 7
-      galster_volume: f1g
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -3899,11 +3899,12 @@ coins:
       bruun_page: 180
       galster: '176'
       nmd: 1A
-      numista: '121758'
       schive:
         - XVII.6
         - XVII.6-7 og 10-12
         - XVII.7
+      galster_volume: c3g
+      numista: '121758'
       skaare: '326'
       others:
         - Brekke# 1
@@ -3913,7 +3914,6 @@ coins:
         - Galster UU# 176
         - Thesen# 1A
         - Thesen# 1B
-      galster_volume: c3g
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -6009,6 +6009,81 @@ coins:
     composed_of:
       - dk-bruun-9986
       - dk-numista-10494
+  - id: c-479727a0
+    class_id: c-479727a0
+    label: unified-dk-galster-c2g-163
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1513
+    year_last: 1523
+    year_ranges:
+      -   - 1513
+          - 1523
+    year_label: 1513-1523
+    _year_demoted: true
+    ruler: Christian II
+    catalog:
+      galster: '163'
+      schou: '17'
+      schive: XV.6
+      galster_volume: c2g
+      numista: '124914'
+      skaare: '307'
+      others:
+        - Brekke# 1
+        - AAJT# 1
+        - Galster UU# 163
+        - Thesen# 1
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: false
+    fineness:
+      - value: 0.375
+        source: numista
+    weight_rough_g:
+      - value: 2.61
+        source: numista
+    diameter_mm:
+      - value: 25.0
+        source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1513-1523
+          seed: dk-galster-c2g-163
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1513-1523
+          seed: dk-numista-124914
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-c2g-163
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c2galst.htm
+        ref: Galster 163 (c2g) — danskmoent.dk c2galst.htm
+      - type: literature
+        url: https://en.numista.com/124914
+        ref: Numista N#124914 — 1 Skilling - Christian II - Norway
+    issuing_entity: danish_norway
+    composed_of:
+      - dk-galster-c2g-163
+      - dk-numista-124914
   - id: c-9bb794e9
     class_id: c-9bb794e9
     label: unified-dk-galster-c2g-165
@@ -6064,6 +6139,127 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-galster-c2g-165
+  - id: c-dc9e2e0b
+    class_id: c-dc9e2e0b
+    label: unified-dk-galster-f1g-166
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1525
+    year_last: 1525
+    year_label: '1525'
+    ruler: Frederik I
+    mint: Christiania
+    catalog:
+      galster: '166'
+      schive: XVI.1
+      schou: '11'
+      jensen_skjoldager: N-11
+      galster_volume: f1g
+      numista: '477551'
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.219
+        source: numista
+    weight_rough_g:
+      - value: 2.05
+        source: numista
+    diameter_mm:
+      - value: 24.0
+        source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 skilling (Firehvid)
+          value: billon
+          seed: dk-galster-f1g-166
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf1g166.htm
+        ref: Galster 166 (f1g) — danskmoent.dk norge_nf1g166.htm
+      - type: literature
+        url: https://en.numista.com/477551
+        ref: Numista N#477551 — 1 Skilling - Frederik I (Oslo)
+    note:
+      de: Firehvid
+      en: Firehvid
+      uk: Firehvid
+    issuing_entity: danish_norway
+    composed_of:
+      - dk-galster-f1g-166
+      - dk-numista-477551
+  - id: c-9841ffbf
+    class_id: c-9841ffbf
+    label: unified-dk-galster-f1g-168
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1531
+    year_last: 1531
+    year_label: '1531'
+    ruler: Frederik I
+    mint: Christiania
+    catalog:
+      galster: '168'
+      schou: '6'
+      jensen_skjoldager: N-15
+      galster_volume: f1g
+      numista: '444429'
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.219
+        source: numista
+    weight_rough_g:
+      - value: 1.44
+        source: galster
+      - value: 1.44
+        source: kmk
+      - value: 2.05
+        source: numista
+    diameter_mm:
+      - value: 24.0
+        source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 skilling
+          value: billon
+          seed: dk-galster-f1g-168
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf1g168.htm
+        ref: Galster 168 (f1g) — danskmoent.dk norge_nf1g168.htm
+      - type: literature
+        url: https://en.numista.com/444429
+        ref: Numista N#444429 — 1 Skilling - Frederik I (Oslo)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139717
+        ref: KMM 139717 (Inv. KP 1715.420)
+    issuing_entity: danish_norway
+    composed_of:
+      - dk-galster-f1g-168
+      - dk-numista-444429
+      - kmk-139717
   - id: c-058bce98
     class_id: c-058bce98
     label: unified-dk-galster-hg-150
@@ -6778,6 +6974,94 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-galster-hg-162
+  - id: c-2d8327a8
+    class_id: c-2d8327a8
+    label: unified-dk-galster-hg-gej
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1505
+    year_last: 1510
+    year_ranges:
+      -   - 1505
+          - 1510
+    year_label: 1505-1510
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      numista: '444264'
+      others:
+        - AAJT# 1A
+        - Thesen# 1
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: false
+    fineness:
+      - value: 0.739
+        source: numista
+        template:
+          de: 'Numista gibt 3,278 g und 0,739, die Sollwerte des Guldens unter Hans: 233,856 g / 71⅓ und 17¾ Karat. Das bekannte Stück, nach danskmoent.dk (Nordbø 1978) ein Unikum im Dresdner Münzkabinett,
+            wiegt 3,172 g.'
+          en: "Numista gives 3.278 g and 0.739, the target values of Hans's gulden: 233.856 g / 71⅓ and 17¾ carats. The known specimen, according to danskmoent.dk (Nordbø 1978) unique, in the Dresden coin
+            cabinet, weighs 3.172 g."
+          uk: 'Numista подає 3,278 г і 0,739 — цільові значення гульдена Hans: 233,856 г / 71⅓ і 17¾ карата. Відомий екземпляр, за danskmoent.dk (Nordbø 1978) єдиний, зберігається в Дрезденському монетному
+            кабінеті й важить 3,172 г.'
+          da: "Numista angiver 3,278 g og 0,739, målværdierne for Hans' gylden: 233,856 g / 71⅓ og 17¾ karat. Det kendte eksemplar, ifølge danskmoent.dk (Nordbø 1978) unikt, i Dresdens møntkabinet, vejer
+            3,172 g."
+    weight_rough_g:
+      - value: 3.172
+        source: galster
+      - value: 3.278
+        source: numista
+        template:
+          de: 'Numista gibt 3,278 g und 0,739, die Sollwerte des Guldens unter Hans: 233,856 g / 71⅓ und 17¾ Karat. Das bekannte Stück, nach danskmoent.dk (Nordbø 1978) ein Unikum im Dresdner Münzkabinett,
+            wiegt 3,172 g.'
+          en: "Numista gives 3.278 g and 0.739, the target values of Hans's gulden: 233.856 g / 71⅓ and 17¾ carats. The known specimen, according to danskmoent.dk (Nordbø 1978) unique, in the Dresden coin
+            cabinet, weighs 3.172 g."
+          uk: 'Numista подає 3,278 г і 0,739 — цільові значення гульдена Hans: 233,856 г / 71⅓ і 17¾ карата. Відомий екземпляр, за danskmoent.dk (Nordbø 1978) єдиний, зберігається в Дрезденському монетному
+            кабінеті й важить 3,172 г.'
+          da: "Numista angiver 3,278 g og 0,739, målværdierne for Hans' gylden: 233,856 g / 71⅓ og 17¾ karat. Det kendte eksemplar, ifølge danskmoent.dk (Nordbø 1978) unikt, i Dresdens møntkabinet, vejer
+            3,172 g."
+    diameter_mm:
+      - value: 22.5
+        source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-gej
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1505-1510
+          seed: dk-numista-444264
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Rhinsk gylden
+          value: gold
+          seed: dk-galster-hg-gej
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/hansGej.htm
+        ref: danskmoent.dk norge_hansGej.htm
+      - type: literature
+        url: https://en.numista.com/444264
+        ref: Numista N#444264 — Norway 1 Goldgulden - Hans 1505-1510
+    issuing_entity: danish_norway
+    composed_of:
+      - dk-galster-hg-gej
+      - dk-numista-444264
   - id: c-a433dc0e
     class_id: c-a433dc0e
     label: unified-dk-hede-f3h39
@@ -34799,81 +35083,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-121900
-  - id: c-479727a0
-    class_id: c-479727a0
-    label: unified-dk-numista-124914
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1513
-    year_last: 1523
-    year_ranges:
-      -   - 1513
-          - 1523
-    year_label: 1513-1523
-    _year_demoted: true
-    ruler: Christian II
-    catalog:
-      numista: '124914'
-      skaare: '307'
-      schive: XV.6
-      galster: '163'
-      others:
-        - Brekke# 1
-        - AAJT# 1
-        - Galster UU# 163
-        - Thesen# 1
-      schou: '17'
-      galster_volume: c2g
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.375
-        source: numista
-    weight_rough_g:
-      - value: 2.61
-        source: numista
-    diameter_mm:
-      - value: 25.0
-        source: numista
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: galster
-          as_printed: u.år
-          value: 1513-1523
-          seed: dk-galster-c2g-163
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1513-1523
-          seed: dk-numista-124914
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Skilling
-          value: billon
-          seed: dk-galster-c2g-163
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/c2galst.htm
-        ref: Galster 163 (c2g) — danskmoent.dk c2galst.htm
-      - type: literature
-        url: https://en.numista.com/124914
-        ref: Numista N#124914 — 1 Skilling - Christian II - Norway
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-galster-c2g-163
-      - dk-numista-124914
   - id: c-63d96cb6
     class_id: c-63d96cb6
     label: unified-dk-numista-417633
@@ -35088,94 +35297,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-421408
-  - id: c-2d8327a8
-    class_id: c-2d8327a8
-    label: unified-dk-numista-444264
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Goldgulden
-    year_first: 1505
-    year_last: 1510
-    year_ranges:
-      -   - 1505
-          - 1510
-    year_label: 1505-1510
-    ruler: Hans
-    mint: Bergen
-    catalog:
-      numista: '444264'
-      others:
-        - AAJT# 1A
-        - Thesen# 1
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.739
-        source: numista
-        template:
-          de: 'Numista gibt 3,278 g und 0,739, die Sollwerte des Guldens unter Hans: 233,856 g / 71⅓ und 17¾ Karat. Das bekannte Stück, nach danskmoent.dk (Nordbø 1978) ein Unikum im Dresdner Münzkabinett,
-            wiegt 3,172 g.'
-          en: "Numista gives 3.278 g and 0.739, the target values of Hans's gulden: 233.856 g / 71⅓ and 17¾ carats. The known specimen, according to danskmoent.dk (Nordbø 1978) unique, in the Dresden coin
-            cabinet, weighs 3.172 g."
-          uk: 'Numista подає 3,278 г і 0,739 — цільові значення гульдена Hans: 233,856 г / 71⅓ і 17¾ карата. Відомий екземпляр, за danskmoent.dk (Nordbø 1978) єдиний, зберігається в Дрезденському монетному
-            кабінеті й важить 3,172 г.'
-          da: "Numista angiver 3,278 g og 0,739, målværdierne for Hans' gylden: 233,856 g / 71⅓ og 17¾ karat. Det kendte eksemplar, ifølge danskmoent.dk (Nordbø 1978) unikt, i Dresdens møntkabinet, vejer
-            3,172 g."
-    weight_rough_g:
-      - value: 3.172
-        source: galster
-      - value: 3.278
-        source: numista
-        template:
-          de: 'Numista gibt 3,278 g und 0,739, die Sollwerte des Guldens unter Hans: 233,856 g / 71⅓ und 17¾ Karat. Das bekannte Stück, nach danskmoent.dk (Nordbø 1978) ein Unikum im Dresdner Münzkabinett,
-            wiegt 3,172 g.'
-          en: "Numista gives 3.278 g and 0.739, the target values of Hans's gulden: 233.856 g / 71⅓ and 17¾ carats. The known specimen, according to danskmoent.dk (Nordbø 1978) unique, in the Dresden coin
-            cabinet, weighs 3.172 g."
-          uk: 'Numista подає 3,278 г і 0,739 — цільові значення гульдена Hans: 233,856 г / 71⅓ і 17¾ карата. Відомий екземпляр, за danskmoent.dk (Nordbø 1978) єдиний, зберігається в Дрезденському монетному
-            кабінеті й важить 3,172 г.'
-          da: "Numista angiver 3,278 g og 0,739, målværdierne for Hans' gylden: 233,856 g / 71⅓ og 17¾ karat. Det kendte eksemplar, ifølge danskmoent.dk (Nordbø 1978) unikt, i Dresdens møntkabinet, vejer
-            3,172 g."
-    diameter_mm:
-      - value: 22.5
-        source: numista
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: galster
-          as_printed: u.år
-          value: 1483-1513
-          seed: dk-galster-hg-gej
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1505-1510
-          seed: dk-numista-444264
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Rhinsk gylden
-          value: gold
-          seed: dk-galster-hg-gej
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/norge/hansGej.htm
-        ref: danskmoent.dk norge_hansGej.htm
-      - type: literature
-        url: https://en.numista.com/444264
-        ref: Numista N#444264 — Norway 1 Goldgulden - Hans 1505-1510
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-galster-hg-gej
-      - dk-numista-444264
   - id: c-cc583ed7
     class_id: c-cc583ed7
     label: unified-dk-numista-444409
@@ -35275,68 +35396,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-444416
-  - id: c-9841ffbf
-    class_id: c-9841ffbf
-    label: unified-dk-numista-444429
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1531
-    year_last: 1531
-    year_label: '1531'
-    ruler: Frederik I
-    mint: Christiania
-    catalog:
-      numista: '444429'
-      galster: '168'
-      schou: '6'
-      jensen_skjoldager: N-15
-      galster_volume: f1g
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.219
-        source: numista
-    weight_rough_g:
-      - value: 1.44
-        source: galster
-      - value: 1.44
-        source: kmk
-      - value: 2.05
-        source: numista
-    diameter_mm:
-      - value: 24.0
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 1 skilling
-          value: billon
-          seed: dk-galster-f1g-168
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nf1g168.htm
-        ref: Galster 168 (f1g) — danskmoent.dk norge_nf1g168.htm
-      - type: literature
-        url: https://en.numista.com/444429
-        ref: Numista N#444429 — 1 Skilling - Frederik I (Oslo)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139717
-        ref: KMM 139717 (Inv. KP 1715.420)
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-galster-f1g-168
-      - dk-numista-444429
-      - kmk-139717
   - id: c-9481a9fb
     class_id: c-9481a9fb
     label: unified-dk-numista-444482
@@ -35589,65 +35648,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-463166
-  - id: c-dc9e2e0b
-    class_id: c-dc9e2e0b
-    label: unified-dk-numista-477551
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1525
-    year_last: 1525
-    year_label: '1525'
-    ruler: Frederik I
-    mint: Christiania
-    catalog:
-      numista: '477551'
-      galster: '166'
-      schive: XVI.1
-      schou: '11'
-      jensen_skjoldager: N-11
-      galster_volume: f1g
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.219
-        source: numista
-    weight_rough_g:
-      - value: 2.05
-        source: numista
-    diameter_mm:
-      - value: 24.0
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 1 skilling (Firehvid)
-          value: billon
-          seed: dk-galster-f1g-166
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nf1g166.htm
-        ref: Galster 166 (f1g) — danskmoent.dk norge_nf1g166.htm
-      - type: literature
-        url: https://en.numista.com/477551
-        ref: Numista N#477551 — 1 Skilling - Frederik I (Oslo)
-    note:
-      de: Firehvid
-      en: Firehvid
-      uk: Firehvid
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-galster-f1g-166
-      - dk-numista-477551
   - id: c-e22e829d
     class_id: c-e22e829d
     label: unified-dk-numista-483814

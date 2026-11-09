@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
 # Input: 139 per-source seed entries.
-# Output: 55 unified entries (one per physical coin).
+# Output: 54 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -35,9 +35,9 @@ coins:
       bruun_lot_no: 14255
       bruun_page: 319
       galster: '115'
+      galster_volume: f1g
       numista: '468620'
       mb: '20'
-      galster_volume: f1g
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -151,12 +151,12 @@ coins:
       bruun_collection_id: '14741'
       schou: 1-4
       galster: '122'
+      galster_volume: f1g
       mb: '30'
       fr: '14'
       others:
         - Sch# 1337
       numista: '417865'
-      galster_volume: f1g
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -283,10 +283,10 @@ coins:
       schou: 1-2
       galster: '130'
       lange: '17'
+      galster_volume: c3g
       mb: '39'
       fr: '16'
       numista: '461448'
-      galster_volume: c3g
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -297,11 +297,11 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-numista-461448
-          source: numista
-          years: '1534'
         - seed: dk-galster-c3g-130
           source: galster
+          years: '1534'
+        - seed: dk-numista-461448
+          source: numista
           years: '1534'
       uncertain:
         - seed: dk-bruun-14783
@@ -477,6 +477,72 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-galster-c3g-133
+  - id: c-cc2a70ac
+    class_id: c-cc2a70ac
+    label: unified-dk-galster-f1g-114
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Sølvgylden
+    year_first: 1522
+    year_last: 1522
+    year_label: '1522'
+    ruler: Frederik I
+    mint: Husum
+    catalog:
+      galster: '114'
+      schou: '1'
+      galster_volume: f1g
+      numista: '309409'
+      lange: '12'
+      sieg: '47'
+      mb: '27'
+      dav: EC I 8235
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: true
+    weight_rough_g:
+      - value: 28.78
+        source: numista
+    weight_range_g:
+      - min: 28.9
+        max:
+        approx: true
+        source: danskmoent.dk husumdal.htm
+        url: https://www.danskmoent.dk/gif/f1_g114.gif
+    diameter_mm:
+      - value: 38.2
+        source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Sølvgylden
+          value: silver
+          seed: dk-galster-f1g-114
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '28.9'
+          seed: dk-galster-f1g-114
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/husumdal.htm
+        ref: Galster 114 (f1g) — danskmoent.dk husumdal.htm
+      - type: literature
+        url: https://en.numista.com/309409
+        ref: Numista N#309409 — 1 Thaler - Frederick I
+    issuing_entity: royal_slesvig
+    composed_of:
+      - dk-galster-f1g-114
+      - dk-numista-309409
   - id: c-a0189f11
     class_id: c-a0189f11
     label: unified-dk-galster-f1g-116
@@ -840,6 +906,132 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-galster-f1g-123
+  - id: c-8ae5600c
+    class_id: c-8ae5600c
+    label: unified-dk-galster-f1g-124
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 2 Skilling
+    year_first: 1523
+    year_last: 1533
+    year_ranges:
+      -   - 1523
+          - 1527
+      -   - 1533
+          - 1533
+    year_label: 1523-1527, 1533
+    ruler: Frederik I
+    mint:
+      - Gottorp
+      - Schleswig
+    catalog:
+      galster:
+        - '124'
+        - 124A-C
+      schou: varia
+      galster_volume: f1g
+      mb: '10'
+      lange: 13-16
+      others:
+        - Sch# 1542-43
+      numista:
+        - '153257'
+        - '301214'
+      sieg: '43.5'
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.469
+        source: galster
+      - value: 0.484
+        source: numista
+    weight_rough_g:
+      - value: 4.06
+        source: numista
+      - value: 4.17
+        source: galster
+    diameter_mm:
+      - value: 30.33
+        source: numista
+    year_alts:
+      - value: 1514, 1520, 1522
+        source: numista
+        kind: erroneous
+        reason:
+          de: "Diese Jahre gehören nicht zu diesem Typ. [b]Numista 301214[/b] gibt 1514, 1520, 1522 wie der Typ MB 10, der beide Galster-Typen umfasst. Galster trennt die herzogliche Prägung (Galster 119,
+            Husum) von der königlichen (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (Übers.: «Frederik I., 2 Skilling, Husum» … «1514, 1518, 1520, 1522 und ohne Jahr», «Die Müntze ist geschlagen,
+            als Frederik noch Herzog von Gottorp war; den dänischen Königstitel erhielt er erst 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (Übers.:
+            «2 Skilling, Gottorp» … «1523–33 und ohne Jahr»)."
+          en: "These years do not belong to this type. [b]Numista 301214[/b] gives 1514, 1520, 1522, as does the type MB 10, which covers both Galster types. Galster separates the ducal coinage (Galster
+            119, Husum) from the royal (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (transl.: «Frederik I, 2 Skilling, Husum» … «1514, 1518, 1520, 1522 and undated», «The coin was struck while
+            Frederik was still Duke of Gottorp; he received the Danish royal title only in 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (transl.:
+            «2 Skilling, Gottorp» … «1523–33 and undated»)."
+          uk: "Ці роки не належать до цього типу. [b]Numista 301214[/b] подає 1514, 1520, 1522, як і тип MB 10, що охоплює обидва типи Galster. Galster відокремлює герцогське карбування (Galster 119, Husum)
+            від королівського (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået, mens
+            Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (перекл.: «Фредерік I, 2 скілінги, Husum» … «1514, 1518, 1520, 1522 і без року», «Монету карбовано, коли Фредерік
+            був ще герцогом Готторпським; данський королівський титул він отримав лише 1523 р.»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (перекл.:
+            «2 скілінги, Gottorp» … «1523–33 і без року»)."
+          da: "Disse år hører ikke til denne type. [b]Numista 301214[/b] angiver 1514, 1520, 1522 ligesom typen MB 10, der omfatter begge Galster-typer. Galster adskiller den hertugelige udmøntning (Galster
+            119, Husum) fra den kongelige (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er
+            slået, mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i].\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i]."
+      - value: 1514, 1520, 1522
+        source: ngc
+        kind: erroneous
+        reason:
+          de: "Diese Jahre gehören nicht zu diesem Typ. [b]NGC 167733 (MB 10)[/b] gibt 1514, 1520, 1522 wie der Typ MB 10, der beide Galster-Typen umfasst. Galster trennt die herzogliche Prägung (Galster
+            119, Husum) von der königlichen (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten
+            er slået, mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (Übers.: «Frederik I., 2 Skilling, Husum» … «1514, 1518, 1520, 1522 und ohne Jahr», «Die Müntze
+            ist geschlagen, als Frederik noch Herzog von Gottorp war; den dänischen Königstitel erhielt er erst 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og
+            uden år»[/i] (Übers.: «2 Skilling, Gottorp» … «1523–33 und ohne Jahr»)."
+          en: "These years do not belong to this type. [b]NGC 167733 (MB 10)[/b] gives 1514, 1520, 1522, as does the type MB 10, which covers both Galster types. Galster separates the ducal coinage (Galster
+            119, Husum) from the royal (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (transl.: «Frederik I, 2 Skilling, Husum» … «1514, 1518, 1520, 1522 and undated», «The coin was struck while
+            Frederik was still Duke of Gottorp; he received the Danish royal title only in 1523»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (transl.:
+            «2 Skilling, Gottorp» … «1523–33 and undated»)."
+          uk: "Ці роки не належать до цього типу. [b]NGC 167733 (MB 10)[/b] подає 1514, 1520, 1522, як і тип MB 10, що охоплює обидва типи Galster. Galster відокремлює герцогське карбування (Galster 119,
+            Husum) від королівського (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten er slået,
+            mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i] (перекл.: «Фредерік I, 2 скілінги, Husum» … «1514, 1518, 1520, 1522 і без року», «Монету карбовано, коли Фредерік
+            був ще герцогом Готторпським; данський королівський титул він отримав лише 1523 р.»).\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i] (перекл.:
+            «2 скілінги, Gottorp» … «1523–33 і без року»)."
+          da: "Disse år hører ikke til denne type. [b]NGC 167733 (MB 10)[/b] angiver 1514, 1520, 1522 ligesom typen MB 10, der omfatter begge Galster-typer. Galster adskiller den hertugelige udmøntning
+            (Galster 119, Husum) fra den kongelige (Galster 124, Gottorp).\n[b]danskmoent.dk (Galster 119)[/b]: [i]«Frederik 1., 2 Skilling, Husum»[/i] … [i]«1514, 1518, 1520, 1522 og uden år»[/i], [i]«Mønten
+            er slået, mens Frederik endnu var Hertug af Gottorp; dansk kongetitel fik han først 1523»[/i].\n[b]danskmoent.dk (Galster 124)[/b]: [i]«2 Skilling, Gottorp»[/i] … [i]«1523-33 og uden år»[/i]."
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Skilling
+          value: billon
+          seed: dk-galster-f1g-124
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f1g124.htm
+        ref: Galster 124 (f1g) — danskmoent.dk fr_f1g124.htm
+      - type: literature
+        url: https://en.numista.com/153257
+        ref: Numista N#153257 — 2 Schillings - Frederik I (Gottorp; year above shield)
+      - type: literature
+        url: https://en.numista.com/301214
+        ref: Numista N#301214 — 2 Schillings - Frederick I
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-mb-10-15z5-15zz-cuid-167733-duid-380807
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: royal_slesvig
+    composed_of:
+      - dk-galster-f1g-124
+      - dk-numista-153257
+      - dk-numista-301214
+      - ngc-167733
   - id: c-05f10cb1
     class_id: c-05f10cb1
     label: unified-dk-galster-f1g-125
@@ -898,6 +1090,89 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-galster-f1g-125
+  - id: c-1728e8b0
+    class_id: c-1728e8b0
+    label: unified-dk-galster-f1g-126
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Søsling
+    year_first: 1516
+    year_last: 1533
+    year_ranges:
+      -   - 1516
+          - 1516
+      -   - 1532
+          - 1533
+    year_label: 1516, 1532-1533
+    ruler: Frederik I
+    mint:
+      - Gottorp
+      - Husum
+      - Schleswig
+    catalog:
+      galster: '126'
+      schou:
+        - 1-5
+        - 50-71
+        - ej
+      galster_volume: f1g
+      numista: '301215'
+      mb: '24'
+      lange: 16b
+      others:
+        - B# 116d
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    weight_rough_g:
+      - value: 1.39
+        source: kmk
+      - value: 1.55
+        source: numista
+    weight_range_g:
+      - min: 1.12
+        max:
+        approx: false
+        source: danskmoent.dk fr/f1g126.htm
+        url: https://www.danskmoent.dk/gif/f1_g126.gif
+    diameter_mm:
+      - value: 21.0
+        source: danskmoent.dk fr/f1g126.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1514-1533
+          seed: kmk-83081
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Søsling u.år
+          value: billon
+          seed: dk-galster-f1g-126
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f1g126.htm
+        ref: Galster 126 (f1g) — danskmoent.dk fr_f1g126.htm
+      - type: literature
+        url: https://en.numista.com/301215
+        ref: Numista N#301215 — 1 Sechsling - Frederick I
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83081
+        ref: KMM 83081 (Inv. GP 982.105)
+    issuing_entity: royal_slesvig
+    composed_of:
+      - dk-galster-f1g-126
+      - dk-numista-301215
+      - kmk-83081
   - id: c-cea1fa0e
     class_id: c-cea1fa0e
     label: unified-dk-galster-f1g-127
@@ -2873,70 +3148,6 @@ coins:
       - dk-hede-f2h33
       - ngc-166851
       - schleswig_holstein-numismaster-166851
-  - id: c-8ae5600c
-    class_id: c-8ae5600c
-    label: unified-dk-numista-153257
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1523
-    year_last: 1533
-    year_ranges:
-      -   - 1523
-          - 1527
-      -   - 1533
-          - 1533
-    year_label: 1523-1527, 1533
-    ruler: Frederik I
-    mint: Gottorp
-    catalog:
-      numista: '153257'
-      sieg: '43.5'
-      mb: '10'
-      galster: 124A-C
-      schou: varia
-      galster_volume: f1g
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.469
-        source: galster
-      - value: 0.484
-        source: numista
-    weight_rough_g:
-      - value: 4.06
-        source: numista
-      - value: 4.17
-        source: galster
-    diameter_mm:
-      - value: 30.33
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 2 Skilling
-          value: billon
-          seed: dk-galster-f1g-124
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f1g124.htm
-        ref: Galster 124 (f1g) — danskmoent.dk fr_f1g124.htm
-      - type: literature
-        url: https://en.numista.com/153257
-        ref: Numista N#153257 — 2 Schillings - Frederik I (Gottorp; year above shield)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-galster-f1g-124
-      - dk-numista-153257
   - id: c-f273b0a9
     class_id: c-f273b0a9
     label: unified-dk-numista-153862
@@ -2974,89 +3185,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-153862
-  - id: c-1728e8b0
-    class_id: c-1728e8b0
-    label: unified-dk-numista-301215
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1516
-    year_last: 1533
-    year_ranges:
-      -   - 1516
-          - 1516
-      -   - 1532
-          - 1533
-    year_label: 1516, 1532-1533
-    ruler: Frederick I (Frederik I)
-    mint:
-      - Gottorp
-      - Husum
-      - Schleswig
-    catalog:
-      numista: '301215'
-      mb: '24'
-      lange: 16b
-      galster: '126'
-      schou:
-        - 1-5
-        - 50-71
-        - ej
-      galster_volume: f1g
-      others:
-        - B# 116d
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: true
-    weight_rough_g:
-      - value: 1.39
-        source: kmk
-      - value: 1.55
-        source: numista
-    weight_range_g:
-      - min: 1.12
-        max:
-        approx: false
-        source: danskmoent.dk fr/f1g126.htm
-        url: https://www.danskmoent.dk/gif/f1_g126.gif
-    diameter_mm:
-      - value: 21.0
-        source: danskmoent.dk fr/f1g126.htm
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1514-1533
-          seed: kmk-83081
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 1 Søsling u.år
-          value: billon
-          seed: dk-galster-f1g-126
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f1g126.htm
-        ref: Galster 126 (f1g) — danskmoent.dk fr_f1g126.htm
-      - type: literature
-        url: https://en.numista.com/301215
-        ref: Numista N#301215 — 1 Sechsling - Frederick I
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/83081
-        ref: KMM 83081 (Inv. GP 982.105)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-galster-f1g-126
-      - dk-numista-301215
-      - kmk-83081
   - id: c-b5ba5b1a
     class_id: c-b5ba5b1a
     label: unified-dk-numista-301237
@@ -3147,72 +3275,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-301239
-  - id: c-cc2a70ac
-    class_id: c-cc2a70ac
-    label: unified-dk-numista-309409
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1522
-    year_last: 1522
-    year_label: '1522'
-    ruler: Frederick I (Frederik I)
-    mint: Husum
-    catalog:
-      numista: '309409'
-      lange: '12'
-      sieg: '47'
-      mb: '27'
-      dav: EC I 8235
-      galster: '114'
-      schou: '1'
-      galster_volume: f1g
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    weight_rough_g:
-      - value: 28.78
-        source: numista
-    weight_range_g:
-      - min: 28.9
-        max:
-        approx: true
-        source: danskmoent.dk husumdal.htm
-        url: https://www.danskmoent.dk/gif/f1_g114.gif
-    diameter_mm:
-      - value: 38.2
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Sølvgylden
-          value: silver
-          seed: dk-galster-f1g-114
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '28.9'
-          seed: dk-galster-f1g-114
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/husumdal.htm
-        ref: Galster 114 (f1g) — danskmoent.dk husumdal.htm
-      - type: literature
-        url: https://en.numista.com/309409
-        ref: Numista N#309409 — 1 Thaler - Frederick I
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-galster-f1g-114
-      - dk-numista-309409
   - id: c-8c9db0b1
     class_id: c-8c9db0b1
     label: unified-dk-numista-309411
@@ -3440,52 +3502,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - ngc-167729
-  - id: c-b8b19e58
-    class_id: c-b8b19e58
-    label: unified-ngc-167733
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Schilling, Doppelschilling
-    year_first: 1514
-    year_last: 1533
-    year_ranges:
-      -   - 1514
-          - 1514
-      -   - 1520
-          - 1520
-      -   - 1522
-          - 1527
-      -   - 1533
-          - 1533
-    year_label: 1514, 1520, 1522-1527, 1533
-    ruler: Friedrich I
-    mint: Schleswig
-    catalog:
-      mb: '10'
-      lange: 13-16
-      others:
-        - Sch# 1542-43
-      numista: '301214'
-      galster: '124'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/301214
-        ref: Numista N#301214 — 2 Schillings - Frederick I
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-mb-10-15z5-15zz-cuid-167733-duid-380807
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-numista-301214
-      - ngc-167733
   - id: c-93a46e02
     class_id: c-93a46e02
     label: unified-ngc-167747

@@ -10,6 +10,19 @@
 # swallow the dated discrete year of the SAME type. Surfaced by the 2026-06-17
 # coordinated re-flow curation-loss gate (ND-swallow class).
 year_demote:
+  - member_id: dk-numista-301214
+    reason: |
+      Numista 301214 (2 Schillings Frederik I, MB 10, «Galster 124») lists
+      1514, 1520, 1522, 1523-1527, 1533 after the Krause MB 10 type. Galster
+      splits the coin into Galster 119 (Husum 1514-1522, struck while Frederik
+      was still duke) and Galster 124 (Gottorp, «1523-33 og uden år», as king);
+      the curator keeps the Galster split. 1514, 1520, 1522 are marked (!) on
+      the seed (year_mark); demoted so Galster 124 and Numista 153257 drive the
+      displayed year. Curator (Serhii) 2026-11-09.
+  - member_id: ngc-167733
+    reason: |
+      NGC MB 10, same year line as Numista 301214 («1514, 15Z0, 15ZZ, 15Z3 ...
+      1533», Z = 2). Same reason as above. Curator (Serhii) 2026-11-09.
   - member_id: ngc-166852
     reason: |
       NGC MB 2 (Hede 32, Blaffert «II D»), «1560, 1566, 1570-1571» after Lange.
@@ -78,3 +91,16 @@ year_demote:
       RELOCATED 2026-10-09 from merge_decisions/gottorp_duchy.yml — the member now merges
       in royal_slesvig (its _cross_entity target), so the year_demote filed under
       gottorp_duchy was never applied by the merger.
+merges:
+  - members:
+      - dk-galster-f1g-124
+      - dk-numista-153257
+      - dk-numista-301214
+      - ngc-167733
+    reason: |
+      One coin - Frederik I 2 Skilling, Gottorp, 1523-33 (Galster 124). Numista
+      301214 cites Galster 124; MB 10 ties it, NGC 167733 and Numista 153257.
+      The Krause MB 10 type also covers Galster 119 (Husum, 1514-1522, ducal);
+      the curator keeps Galster's split into ducal and royal coinage, so those
+      years are marked (!) on the two seeds and demoted. Galster 119 stays its
+      own class. Curator (Serhii) 2026-11-09.
