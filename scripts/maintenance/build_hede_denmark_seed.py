@@ -1894,14 +1894,19 @@ def main() -> int:
                     by_hede.items(),
                     key=lambda kv: kv[1].get("bruttovægt_g", 0) or 0,
                 )
-                count = len(sub_items)
-                nominal_parts = _split_multi_nominal(d.get("nominal") or "", count)
+                # One nominal per distinct WEIGHT, not per entry: the letters
+                # of one combined block («12AB» split into 12A / 12B by the
+                # parser) share the block's weight and its nominal.
+                weights = sorted({kv[1].get("bruttovægt_g", 0) or 0 for kv in sub_items})
+                nominal_parts = _split_multi_nominal(d.get("nominal") or "", len(weights))
                 if nominal_parts is None:
                     # Can't split cleanly — skip the whole page for
                     # manual review.
                     stats["skipped_multi_nominal_unparseable"] += 1
                     continue
-                sub_items_paired = list(zip(sub_items, nominal_parts))
+                by_weight = dict(zip(weights, nominal_parts))
+                sub_items_paired = [
+                    (kv, by_weight[kv[1].get("bruttovægt_g", 0) or 0]) for kv in sub_items]
             for (sub_num, sub_spec), nominal in sub_items_paired:
                 if sub_num.lower() not in owned_subs:
                     stats["skipped_cross_reference_subhede"] += 1

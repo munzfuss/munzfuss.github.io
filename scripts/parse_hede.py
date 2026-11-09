@@ -1080,6 +1080,7 @@ def _extract_specs(text: str, basename: str = "") -> dict:
         # them indiscriminately to every sub-Hede entry — observed bug
         # on 68 multi-Hede pages.
         per_hede_refs = _extract_per_hede_refs(label_window, tag) if tag else None
+        letter_groups = _label_letter_groups(label_window, tag) if tag else None
 
         if tag:
             key = tag.replace(" ", "")
@@ -1102,6 +1103,8 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                         spec = {**spec, "nominal": noms.pop()}
             if per_hede_refs:
                 spec = {**spec, "catalog_refs": per_hede_refs}
+            if letter_groups:
+                spec = {**spec, "_letter_groups": letter_groups}
             # The first block under a number is its own spec; a later block
             # attributed to the same number by the look-back is a repeat
             # further down the page (f3h68: the unlabelled 1-Speciedaler block
@@ -1268,6 +1271,8 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                 merged = {**(by_hede[key].get("catalog_refs") or {}), **agg_refs}
                 by_hede[key] = {**by_hede[key], "catalog_refs": merged}
 
+    by_hede = _split_combined_letter_keys(by_hede, desc_groups)
+
     # Period-variant consolidation may leave by_hede with exactly one
     # entry (e.g. c4h107 has 2 Bruttovægt blocks for pre-/post-reform
     # but only Hede 107 — second skipped). Downstream consumers (seed
@@ -1345,6 +1350,83 @@ def _extract_per_hede_refs(label_window: str, hede_tag: str) -> dict:
         refs["Fr"] = [fr_match.group(1).strip()]
     return refs
 
+
+
+_LETTER_REG_RE = re.compile(
+    r"\b(Schou|Sieg|Fr)\.?\s+(.+?)(?=\s*,?\s*\b(?:Schou|Sieg|Fr|KM|Dav)\b|\)|$)")
+
+
+def _split_ref_groups(register: str, value: str) -> list[str]:
+    """Split one register's value run into its groups. «17-18, 19» → [17-18, 19];
+    «2 og 1-7» → [2, 1-7]; «81,83» → [81, 83]. In Sieg a comma followed by ONE
+    digit is the Danish decimal of a sub-number («73,1» = Sieg 73.1), not a list."""
+    v = value.strip()
+    if register == "Sieg":
+        v = re.sub(r"(\d),(\d)(?!\d)", r"\1.\2", v)
+    return [g.strip() for g in re.split(r"\s*,\s*|\s+og\s+", v) if g.strip()]
+
+
+def _label_letter_groups(label_window: str, hede_tag: str) -> dict:
+    """Per-register value groups of a COMBINED label line («Hede 12AB, Schou
+    17-18, 19, Sieg 73,1 og 76»), for a tag with two or more letters. Hede lists
+    the letters' values in letter order: A = Schou 17-18, Sieg 73.1; B = Schou
+    19, Sieg 76. Returns {} for a single-letter / bare tag or no refs."""
+    base, letters = _split_hede_key(hede_tag or "")
+    if len(letters) < 2 or not label_window:
+        return {}
+    m = re.search(_HEDE_ANCHOR + rf"{re.escape(hede_tag)}\b", label_window)
+    if not m:
+        return {}
+    seg = label_window[m.end():]
+    nxt = re.search(_HEDE_ANCHOR + r"\d", seg)
+    if nxt:
+        seg = seg[:nxt.start()]
+    for stop in ("Bruttov", "Finhed", "Finv", _HR_SENTINEL, "\n"):
+        i = seg.find(stop)
+        if i >= 0:
+            seg = seg[:i]
+    out: dict = {}
+    for reg, val in _LETTER_REG_RE.findall(seg):
+        out.setdefault(reg, _split_ref_groups(reg, val))
+    return out
+
+
+def _split_combined_letter_keys(by_hede: dict, desc_groups: dict) -> dict:
+    """Split a combined spec key («12AB») into one entry per letter when its
+    label line lists, for at least one register, exactly one group per letter
+    (curator 2026-11-09). Each letter keeps the block's weight and fineness and
+    takes its own refs: from the descriptive «(Hede 12A, Schou …)» group when the
+    page has one, else the label group in letter order; a register with a single
+    group applies to every letter. Years come from the letter's descriptive group
+    when present, else the block's. Without a matching count the key stays."""
+    out: dict = {}
+    for key, spec in by_hede.items():
+        groups = spec.get("_letter_groups") if isinstance(spec, dict) else None
+        clean = ({k: v for k, v in spec.items() if k != "_letter_groups"}
+                 if isinstance(spec, dict) else spec)
+        base, letters = _split_hede_key(key)
+        if not groups or len(letters) < 2 or not any(
+                len(g) == len(letters) for g in groups.values()):
+            out[key] = clean
+            continue
+        for i, letter in enumerate(letters):
+            refs: dict = {}
+            for reg, g in groups.items():
+                if len(g) == len(letters):
+                    refs[reg] = [g[i]]
+                elif len(g) == 1:
+                    refs[reg] = list(g)
+                else:
+                    refs[reg] = list(g)
+            dg = (desc_groups or {}).get(f"{base}{letter}")
+            sub = {**clean}
+            if dg:
+                refs = {**refs, **(dg.get("catalog_refs") or {})}
+                if dg.get("years"):
+                    sub["years"] = dg["years"]
+            sub["catalog_refs"] = refs
+            out[f"{base}{letter}"] = sub
+    return out
 
 # Pages whose spec TABLE lists sub-Hede blocks in an order that mis-resolves
 # the weight-to-tag mapping — usually an INVERTED Hede numbering where the
@@ -2085,7 +2167,11 @@ def parse_one(html: str, basename: str) -> dict:
                         # by_hede keys may be upper / lower case
                         for k in list(specs["by_hede"].keys()):
                             if k.lower() == sub_key.lower():
-                                specs["by_hede"][k]["years"] = lv["years"]
+                                # A letter line without a year («A) Forside:
+                                # kongens brystbillede», f5h5) leaves the
+                                # block's years in place.
+                                if lv["years"]:
+                                    specs["by_hede"][k]["years"] = lv["years"]
                                 break
 
     # Per-letter (sub-variant) mint. A Hede page's letters can name DIFFERENT
@@ -2657,6 +2743,13 @@ def main() -> int:
             if bare_hede != stub["catalog_refs"]["Hede"][0].lower():
                 bare_key = f"{stub['ruler_volume']}{bare_hede}"
                 if bare_key in deep_index:
+                    stub_skipped_covered += 1
+                    continue
+                # «14ab» covered by a deep page that split it into «14a» +
+                # «14b» (`_split_combined_letter_keys`).
+                letters = stub["catalog_refs"]["Hede"][0].lower()[len(bare_hede):]
+                if len(letters) > 1 and all(
+                        f"{stub['ruler_volume']}{bare_hede}{x}" in deep_index for x in letters):
                     stub_skipped_covered += 1
                     continue
             stub_path = CACHE_DIR / f"{stub['id']}.json"
