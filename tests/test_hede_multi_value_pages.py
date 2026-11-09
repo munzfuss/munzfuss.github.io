@@ -63,8 +63,11 @@ class SplitPage(unittest.TestCase):
         self.assertFalse(b["nominal_verified"])
         self.assertEqual(dict(b["catalog"]), {"hede": "64B", "hede_volume": "c4h"})
         self.assertEqual({e["how"] for e in b["uncertainty"]["nominal"]}, {"other_source"})
-        self.assertEqual(by["dk-hede-c4h64a"]["nominal"], "Breddaler")
-        self.assertNotIn("uncertainty", by["dk-hede-c4h64a"])
+        # 64A from the page's list of values (curator 2026-11-07, «Б»).
+        a = by["dk-hede-c4h64a"]
+        self.assertEqual(a["nominal"], "3 Speciedaler")
+        self.assertFalse(a["nominal_verified"])
+        self.assertEqual({e["how"] for e in a["uncertainty"]["nominal"]}, {"page_values"})
 
 
 if __name__ == "__main__":
