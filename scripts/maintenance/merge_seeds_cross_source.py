@@ -42,8 +42,8 @@ Idempotent — fresh re-runs on unchanged input produce zero file changes
 (deterministic id ordering + sorted output).
 
 Unified entry id rule (V2_PIPELINE.md §5.2 authority-based):
-  Priority order for source-id prefixes: dk-hede- > dk-bruun- >
-  dk-galster- > ngc- > dk-numismaster- > dk-numista-. The unified entry's id
+  Priority order for source-id prefixes: dk-hede- > dk-galster- >
+  dk-bruun- > dk-numista- > ngc- > dk-numismaster-. The unified entry's id
   is `unified-<top-authority-member-id>`. Prefix prevents collision
   with the seed-side id; remains readable for debugging.
 
@@ -183,37 +183,30 @@ _OTHERS_CF_RE = re.compile(
 
 _ID_AUTHORITY_ORDER = [
     "dk-hede-",          # Hede 1971 (primary scholarly DK)
+    "dk-galster-",       # Galster (pre-1541 specialist catalogue)
     "dk-bruun-",         # Stack's Bowers Bruun auction
-    # Galster (Unionstidens Udmøntninger / danskmoent.dk Galster pages) — the
-    # specialist catalogue for the coinage before 1541; ranked above NGC,
-    # NumisMaster and Numista (curator 2026-11-09). Its Danish nominals still
-    # pass through canonical_nominal_display («Rhinsk gylden» → «Goldgulden»).
-    "dk-galster-",
-    # NGC World Coin Price Guide — the LIVE custodian of the Krause-Mishler
-    # catalogue after NumisMaster went offline (docs/SOURCES.md §1.4). It ranks
-    # ABOVE NumisMaster because it is that source's successor and current
-    # editorial state, while our NumisMaster cache is a frozen 2026-05 snapshot
-    # that can never be refreshed. Curator direction 2026-08-10.
-    "ngc-",
-    "dk-numismaster-",   # Krause-Mishler canonical
     "dk-numista-",       # community Numista
+    # NGC World Coin Price Guide — the live custodian of the Krause-Mishler
+    # catalogue after NumisMaster went offline (docs/SOURCES.md §1.4); above
+    # our frozen 2026-05 NumisMaster snapshot.
+    "ngc-",
+    "dk-numismaster-",   # Krause-Mishler, frozen 2026-05 snapshot
 ]
 
 
 # The score each prefix carries. The absolute values matter, not only the
 # order: `_thin_line_consensus_metal` adds them up as vote weights against the
-# floor weight 1 of an unlisted source. When Galster moved above NGC
-# (2026-11-09) the other prefixes kept the values they had (Hede 6, Bruun 5,
-# NGC 4, NumisMaster 3, Numista 2); deriving them from list positions instead
-# dropped Numista to 1 and flipped silver/billon votes in classes with no
-# Galster member at all. Galster takes 4.5, between NGC and Bruun.
+# floor weight 1 of an unlisted source, so a reorder must be measured on every
+# final (deriving the scores from list positions once flipped silver/billon in
+# classes with no member of the moved source). Order, curator 2026-11-09:
+# Hede > Galster > Bruun > Numista > NGC > NumisMaster.
 _ID_AUTHORITY_SCORE = {
     "dk-hede-": 6,
+    "dk-galster-": 5.5,
     "dk-bruun-": 5,
-    "dk-galster-": 4.5,
+    "dk-numista-": 4.5,
     "ngc-": 4,
     "dk-numismaster-": 3,
-    "dk-numista-": 2,
 }
 assert list(_ID_AUTHORITY_SCORE) == _ID_AUTHORITY_ORDER
 
@@ -3536,7 +3529,7 @@ def _collect_marked_alts(members: list[dict], key: str, label_field: str) -> lis
             continue
         kind = mark.get("kind")
         reason = mark.get("reason")
-        if kind not in ("suspect", "erroneous", "approximate", "variant") or not isinstance(reason, dict):
+        if kind not in ("suspect", "erroneous", "approximate", "variant", "hedged") or not isinstance(reason, dict):
             continue
         src = _source_label_of(m)
         k = (str(label), src)

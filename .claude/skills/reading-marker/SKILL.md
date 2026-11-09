@@ -119,6 +119,16 @@ Frederik I Gottorp Goldgulden, Galster 122):
 4. Re-flow (merger + absorb), rebuild, hover the marker. The reason is
    reader-facing prose with sources named (§0z), not a project note.
 
+## A «hedged» mark on the NOMINAL (or year / ruler / mint)
+
+`kind: hedged` (curator 2026-11-09, founding case Galster 174 «Søsling(?)»):
+the source gives the value with its own reservation. On the seed write
+`nominal_mark: {kind: hedged, value: <value without «(?)»>, reason}`;
+`apply_nominal_mark` takes it out of the class's nominal like «erroneous», and
+it is shown beside the class's value with «(?)», read as «the source gives it
+uncertainly» (headline from `MARK_HEAD.hedged`, class `.hedged-mark`). Use it
+when another source gives the value plainly and the curator follows that one.
+
 ## A mark on the RULER
 
 Same shape as the year (2026-10-16, founding case KMM 331973 «Hans» on a

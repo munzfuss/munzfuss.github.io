@@ -184,16 +184,20 @@ def apply_nominal_mark(entry) -> None:
     class takes its nominal from the other members (curator 2026-11-06,
     founding case dk-hede-c5h59: «1 Dukat» on a 2 Dukat). A nominal that a
     `_source_errata` already replaced is kept. Idempotent. A «suspect» mark
-    changes nothing here."""
+    changes nothing here. A «hedged» mark (the source's own «(?)», curator
+    2026-11-09) is neutralised the same way: the value is shown beside the
+    class's nominal with «(?)», not taken as the class's nominal."""
     mark = entry.get("nominal_mark")
-    if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
+    if not isinstance(mark, dict) or mark.get("kind") not in ("erroneous", "hedged"):
         return
     printed = entry.get("nominal")
     if printed is None:
         return
     if not mark.get("value"):
         mark["value"] = str(printed)
-    if str(mark["value"]) == str(printed):
+    if str(mark["value"]) == str(printed) or (
+            mark.get("kind") == "hedged"
+            and str(printed).replace("(?)", "").strip() == str(mark["value"]).strip()):
         entry["nominal"] = None
 
 

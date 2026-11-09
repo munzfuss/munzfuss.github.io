@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `christian_ii_supporters`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/christian_ii_supporters.yml across all sources.
 #
 # Input: 28 per-source seed entries.
@@ -11,13 +11,13 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: christian_ii_supporters
-generated_at: '2026-11-07'
+generated_at: '2026-11-09'
 coins:
   - id: c-6f17b704
     class_id: c-6f17b704
-    label: unified-dk-bruun-4116
+    label: unified-dk-galster-c2g-80
     fuss: seed_unsorted
-    phase: bruun
+    phase: galster
     kind: kurant
     nominal: 1 Skilling
     year_first: 1525
@@ -26,11 +26,11 @@ coins:
     ruler: Christian II
     mint: Landskrona
     catalog:
+      galster: '80'
+      galster_volume: c2g
       sieg: '1'
       bruun_collection_id: '4116'
       schou: '4'
-      galster: '80'
-      galster_volume: c2g
     metal: billon
     metal_verified: false
     fineness_verified: false
@@ -69,210 +69,6 @@ coins:
     composed_of:
       - dk-bruun-4116
       - dk-galster-c2g-80
-  - id: c-85449902
-    class_id: c-85449902
-    label: unified-dk-bruun-4147
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian II
-    mintmaster: Jørgen Kock
-    mint: Kopenhagen
-    catalog:
-      sieg:
-        - '1'
-        - '5'
-      bruun_collection_id: '4147'
-      schou: 37-39
-      galster: '87'
-      galster_volume: c2g
-      others:
-        - B# 33a
-    metal: billon
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    weight_rough_g:
-      - value: 0.41
-        source: bruun
-    weight_range_g:
-      - min: 0.29
-        max: 0.41
-        approx: false
-        source: danskmoent.dk chr/c2g87.htm
-        url: https://www.danskmoent.dk/gif/grevefejden_g87.gif
-    diameter_mm:
-      - value: 14.0
-        source: danskmoent.dk chr/c2g87.htm
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 1 Hvid
-          value: billon
-          seed: dk-galster-c2g-87
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11160, p. 68
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c2g87.htm
-        ref: Galster 87 (c2g) — danskmoent.dk chr_c2g87.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156734
-        ref: KMM 156734 (Inv. RP 374.1)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - dk-bruun-4147
-      - dk-galster-c2g-87
-      - kmk-156734
-  - id: c-21c98e53
-    class_id: c-21c98e53
-    label: unified-dk-bruun-4149
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian II
-    mintmaster: Jørgen Kock
-    mint:
-      - Kopenhagen
-      - Malmø
-    catalog:
-      sieg:
-        - '1'
-        - '5'
-      bruun_collection_id: '4149'
-      schou:
-        - 1-12
-        - 3-8
-      galster: '91'
-      galster_volume: c2g
-      others:
-        - B# 28
-        - B# 26
-    metal: billon
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-galster-c2g-91
-          source: galster
-          years: '1535'
-        - seed: kmk-132277
-          source: kmk
-          years: '1535'
-        - seed: kmk-156730
-          source: kmk
-          years: '1535'
-        - seed: kmk-156731
-          source: kmk
-          years: '1535'
-      uncertain:
-        - seed: dk-bruun-4149
-          source: bruun
-          years: '1535'
-    weight_rough_g:
-      - value: 3.56
-        source: bruun
-      - value: 3.69
-        source: kmk
-    weight_range_g:
-      - min: 4.1
-        max:
-        approx: true
-        source: danskmoent.dk chr/c2g91.htm
-        url: https://www.danskmoent.dk/gif/grevefejden_g91.gif
-    diameter_mm:
-      - value: 28.0
-        source: danskmoent.dk chr/c2g91.htm
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1535)
-          value: '1535'
-          seed: dk-bruun-4149
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1535'
-          seed: kmk-132277
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1535'
-          seed: kmk-156730
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1535'
-          seed: kmk-156731
-      mint:
-        - kind: hedged
-          how: alternatives
-          source: bruun
-          as_printed: Malmø or Copenhagen
-          value: Malmø, Copenhagen
-          seed: dk-bruun-4149
-        - kind: hedged
-          how: alternatives
-          source: kmk
-          as_printed: Malmø/København
-          value: Malmø, København
-          seed: kmk-132277
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 4 Skilling
-          value: billon
-          seed: dk-galster-c2g-91
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '4.1'
-          seed: dk-galster-c2g-91
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11161, p. 68
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c2g91.htm
-        ref: Galster 91 (c2g) — danskmoent.dk chr_c2g91.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/132277
-        ref: KMM 132277 (Inv. FP 9623.28)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156730
-        ref: KMM 156730 (Inv. RP 370.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156731
-        ref: KMM 156731 (Inv. RP 371.1)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - dk-bruun-4149
-      - dk-galster-c2g-91
-      - kmk-132277
-      - kmk-156730
-      - kmk-156731
   - id: c-ddefc984
     class_id: c-ddefc984
     label: unified-dk-galster-c2g-82
@@ -609,6 +405,71 @@ coins:
     composed_of:
       - dk-galster-c2g-86
       - kmk-150193
+  - id: c-85449902
+    class_id: c-85449902
+    label: unified-dk-galster-c2g-87
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian II
+    mintmaster: Jørgen Kock
+    mint: Kopenhagen
+    catalog:
+      galster: '87'
+      schou: 37-39
+      sieg:
+        - '1'
+        - '5'
+      galster_volume: c2g
+      bruun_collection_id: '4147'
+      others:
+        - B# 33a
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: true
+    weight_rough_g:
+      - value: 0.41
+        source: bruun
+    weight_range_g:
+      - min: 0.29
+        max: 0.41
+        approx: false
+        source: danskmoent.dk chr/c2g87.htm
+        url: https://www.danskmoent.dk/gif/grevefejden_g87.gif
+    diameter_mm:
+      - value: 14.0
+        source: danskmoent.dk chr/c2g87.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-c2g-87
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11160, p. 68
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c2g87.htm
+        ref: Galster 87 (c2g) — danskmoent.dk chr_c2g87.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156734
+        ref: KMM 156734 (Inv. RP 374.1)
+    issuing_entity: christian_ii_supporters
+    composed_of:
+      - dk-bruun-4147
+      - dk-galster-c2g-87
+      - kmk-156734
   - id: c-29c7d651
     class_id: c-29c7d651
     label: unified-dk-galster-c2g-88
@@ -823,3 +684,142 @@ coins:
     composed_of:
       - dk-galster-c2g-90
       - kmk-156727
+  - id: c-21c98e53
+    class_id: c-21c98e53
+    label: unified-dk-galster-c2g-91
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 4 Skilling
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian II
+    mintmaster: Jørgen Kock
+    mint:
+      - Kopenhagen
+      - Malmø
+    catalog:
+      galster: '91'
+      schou:
+        - 1-12
+        - 3-8
+      sieg:
+        - '1'
+        - '5'
+      galster_volume: c2g
+      bruun_collection_id: '4149'
+      others:
+        - B# 28
+        - B# 26
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-galster-c2g-91
+          source: galster
+          years: '1535'
+        - seed: kmk-132277
+          source: kmk
+          years: '1535'
+        - seed: kmk-156730
+          source: kmk
+          years: '1535'
+        - seed: kmk-156731
+          source: kmk
+          years: '1535'
+      uncertain:
+        - seed: dk-bruun-4149
+          source: bruun
+          years: '1535'
+    weight_rough_g:
+      - value: 3.56
+        source: bruun
+      - value: 3.69
+        source: kmk
+    weight_range_g:
+      - min: 4.1
+        max:
+        approx: true
+        source: danskmoent.dk chr/c2g91.htm
+        url: https://www.danskmoent.dk/gif/grevefejden_g91.gif
+    diameter_mm:
+      - value: 28.0
+        source: danskmoent.dk chr/c2g91.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1535)
+          value: '1535'
+          seed: dk-bruun-4149
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1535'
+          seed: kmk-132277
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1535'
+          seed: kmk-156730
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1535'
+          seed: kmk-156731
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Malmø or Copenhagen
+          value: Malmø, Copenhagen
+          seed: dk-bruun-4149
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-132277
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-91
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '4.1'
+          seed: dk-galster-c2g-91
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11161, p. 68
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c2g91.htm
+        ref: Galster 91 (c2g) — danskmoent.dk chr_c2g91.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/132277
+        ref: KMM 132277 (Inv. FP 9623.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156730
+        ref: KMM 156730 (Inv. RP 370.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156731
+        ref: KMM 156731 (Inv. RP 371.1)
+    issuing_entity: christian_ii_supporters
+    composed_of:
+      - dk-bruun-4149
+      - dk-galster-c2g-91
+      - kmk-132277
+      - kmk-156730
+      - kmk-156731

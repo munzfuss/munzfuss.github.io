@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-10-31 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 504 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-10-31'
+generated_at: '2026-11-09'
 coins:
   - id: c-a208b610
     class_id: c-a208b610
@@ -342,8 +342,8 @@ coins:
       others:
         - Weinmeister# 130
         - Weinm# 139
-      dav: EC II 3738
       numista: '278294'
+      dav: EC II 3738
       lange: '862'
     metal: silver
     metal_verified: true
@@ -465,10 +465,10 @@ coins:
     catalog:
       km: '130'
       bruun_collection_id: '14907'
+      numista: '137400'
       dav:
         - EC II 3746
         - EC II 3746a
-      numista: '137400'
       lange:
         - 944A
         - 944c
@@ -1714,6 +1714,116 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137309
+  - id: c-6e7dad66
+    class_id: c-6e7dad66
+    label: unified-dk-numista-137315
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 3 Pfennigs (3 Pfennige)
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    ruler: Ernst III
+    catalog:
+      km: '87'
+      numista: '137315'
+      others:
+        - Weinm# 314
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-numista-137315
+          source: numista
+          years: '1620'
+        - seed: schleswig_holstein-numismaster-96058
+          source: numismaster
+          years: '1620'
+      uncertain:
+        - seed: ngc-1159632
+          source: ngc
+          years: '1620'
+    weight_rough_g:
+      - value: 1.41
+        source: numista
+    diameter_mm:
+      - value: 17.0
+        source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1620)
+          value: '1620'
+          seed: ngc-1159632
+    sources:
+      - type: literature
+        url: https://en.numista.com/137315
+        ref: Numista N#137315 — 3 Pfennigs - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-pfennig-km-87-ca.1620-cuid-1159632-duid-1386904
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96058
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-137315
+      - ngc-1159632
+      - schleswig_holstein-numismaster-96058
+  - id: c-79b1c012
+    class_id: c-79b1c012
+    label: unified-dk-numista-137320
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 4 Pfennigs (4 Pfennige)
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    ruler: Ernst III
+    catalog:
+      km: '88'
+      numista: '137320'
+      lange: '942'
+      others:
+        - Weinm# 313
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.45
+        source: numista
+    diameter_mm:
+      - value: 18.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/137320
+        ref: Numista N#137320 — 4 Pfennigs - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-pfennig-km-88-16z0-1620-cuid-1154785-duid-1385141
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96060
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-137320
+      - ngc-1154785
+      - schleswig_holstein-numismaster-96060
   - id: c-72b88eb2
     class_id: c-72b88eb2
     label: unified-dk-numista-137325
@@ -1837,6 +1947,54 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137336
+  - id: c-d0ba8c63
+    class_id: c-d0ba8c63
+    label: unified-dk-numista-137341
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 3 Kreuzers
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    ruler: Ernst III
+    catalog:
+      km: '97'
+      numista: '137341'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.78
+        source: ngc
+      - value: 0.78
+        source: numismaster
+      - value: 0.87
+        source: numista
+    diameter_mm:
+      - value: 17.0
+        source: ngc
+      - value: 17.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/137341
+        ref: Numista N#137341 — 3 Kreuzers - Ernest III (Kipper) - County of Holstein-Schaumburg-Pinneberg – Numista
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-kreuzer-km-97-1620-cuid-1156773-duid-1387169
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96069
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-137341
+      - ngc-1156773
+      - schleswig_holstein-numismaster-96069
   - id: c-4f3062ec
     class_id: c-4f3062ec
     label: unified-dk-numista-137342
@@ -2008,6 +2166,171 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137346
+  - id: c-0fe23243
+    class_id: c-0fe23243
+    label: unified-dk-numista-137347
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Groschen
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    ruler: Ernst III
+    catalog:
+      km: '116'
+      numista: '137347'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 2.84
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/137347
+        ref: Numista N#137347 — 1 Fürstengroschen - Ernest III (Kipper) - County of Holstein-Schaumburg-Pinneberg – Numista
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-21-thaler-km-116-1621-cuid-1206092-duid-1387283
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96089
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-137347
+      - ngc-1206092
+      - schleswig_holstein-numismaster-96089
+  - id: c-d8a3bcea
+    class_id: c-d8a3bcea
+    label: unified-dk-numista-137348
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Groschen
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    ruler: Ernst III
+    catalog:
+      km: '117'
+      numista: '137348'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 2.45
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/137348
+        ref: Numista N#137348 — 1 Groschen - Ernest III - Holstein-Schaumburg-Pinneberg
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-21-thaler-km-117-1621-cuid-1154790-duid-1385178
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-137348
+      - ngc-1154790
+  - id: c-fd6b5a50
+    class_id: c-fd6b5a50
+    label: unified-dk-numista-137397
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 3 Pfennigs (3 Pfennige)
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    ruler: Jobst Hermann
+    catalog:
+      km: '123'
+      numista: '137397'
+      others:
+        - Weinm# 373
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.78
+        source: numista
+    diameter_mm:
+      - value: 18.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/137397
+        ref: Numista N#137397 — 3 Pfennigs - Ernest III - HS-Pinneberg
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-pfennig-km-123-16zz-cuid-1154784-duid-1385140
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96059
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-137397
+      - ngc-1154784
+      - schleswig_holstein-numismaster-96059
+  - id: c-e6c5a1b6
+    class_id: c-e6c5a1b6
+    label: unified-dk-numista-137399
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Groschen = 1/24 Thaler
+    year_first: 1622
+    year_last: 1635
+    year_ranges:
+      -   - 1622
+          - 1627
+      -   - 1630
+          - 1633
+      -   - 1635
+          - 1635
+    year_label: 1622-1627, 1630-1633, 1635
+    ruler: Jobst Hermann
+    catalog:
+      km: '124'
+      numista: '137399'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.7
+        source: ngc
+      - value: 1.7
+        source: numista
+    diameter_mm:
+      - value: 23.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/137399
+        ref: Numista N#137399 — 1 Groschen - Justus Hermann - HS-Pinneberg
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-24-thaler-km-124-1630-16zz-cuid-1162545-duid-1385170
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-137399
+      - ngc-1162545
   - id: c-4e108ae8
     class_id: c-4e108ae8
     label: unified-dk-numista-137410
@@ -2377,6 +2700,63 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-268868
+  - id: c-9809cc15
+    class_id: c-9809cc15
+    label: unified-dk-numista-270483
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1603
+    year_last: 1612
+    year_ranges:
+      -   - 1603
+          - 1604
+      -   - 1608
+          - 1608
+      -   - 1610
+          - 1610
+      -   - 1612
+          - 1612
+    year_label: 1603-1604, 1608, 1610, 1612
+    ruler: Ernst III
+    mint:
+      - Altona
+      - Rinteln
+    catalog:
+      km: '27'
+      numista: '270483'
+      fr: '3062'
+      others:
+        - Weinm# 83
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.9
+        source: numista
+    weight_rough_g:
+      - value: 3.22
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/270483
+        ref: Numista N#270483 — 1 Goldgulden - Ernest III - HS-Pinneberg
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-goldgulden-km-27-1603-161z-cuid-1154841-duid-1385454
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96183
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-270483
+      - ngc-1154841
+      - schleswig_holstein-numismaster-96183
   - id: c-6211da66
     class_id: c-6211da66
     label: unified-dk-numista-270484
@@ -2418,6 +2798,57 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-270484
+  - id: c-0bacc4e8
+    class_id: c-0bacc4e8
+    label: unified-dk-numista-276028
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 4 Ducats
+    year_first: 1624
+    year_last: 1624
+    year_label: '1624'
+    ruler: Jobst Hermann
+    catalog:
+      km: A139
+      numista: '276028'
+      lange: 946A
+      fr: 3067a
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numista
+    weight_rough_g:
+      - value: 13.04
+        source: numista
+      - value: 14.52
+        source: ngc
+      - value: 14.52
+        source: numismaster
+    diameter_mm:
+      - value: 42.0
+        source: ngc
+    sources:
+      - type: literature
+        url: https://en.numista.com/276028
+        ref: Numista N#276028 — 4 Ducats - Justus Hermann - HS-Pinneberg
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-ducat-km-a139-16z4-cuid-1188401-duid-1396631
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_171268
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-276028
+      - ngc-1188401
+      - schleswig_holstein-numismaster-171268
   - id: c-1005b5e7
     class_id: c-1005b5e7
     label: unified-dk-numista-278276
@@ -2726,6 +3157,100 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278285
+  - id: c-aab0ade0
+    class_id: c-aab0ade0
+    label: unified-dk-numista-278286
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1608
+    year_last: 1608
+    year_label: '1608'
+    ruler: Ernst III
+    mint: Altona
+    catalog:
+      km: '49'
+      numista: '278286'
+      dav: EC II 3729
+      others:
+        - Weinm# 125
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 28.86
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/278286
+        ref: Numista N#278286 — 1 Thaler - Ernest III - HS-Pinneberg 1608
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-49-1608-1608-cuid-1153533-duid-1386674
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96127
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278286
+      - ngc-1153533
+      - schleswig_holstein-numismaster-96127
+  - id: c-27a24f6a
+    class_id: c-27a24f6a
+    label: unified-dk-numista-278287
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1611
+    year_last: 1618
+    year_ranges:
+      -   - 1611
+          - 1611
+      -   - 1614
+          - 1616
+      -   - 1618
+          - 1618
+    year_label: 1611, 1614-1616, 1618
+    ruler: Ernst III
+    mint: Altona
+    catalog:
+      km: '68'
+      numista: '278287'
+      dav: EC II 3737
+      lange: '850'
+      others:
+        - Weinm# 141
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 28.78
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/278287
+        ref: Numista N#278287 — 1 Thaler - Ernest III - HS-Pinneberg 1611-1618
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-68-6141-cuid-1153534-duid-1387367
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96135
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278287
+      - ngc-1153534
+      - schleswig_holstein-numismaster-96135
   - id: c-b08c32f3
     class_id: c-b08c32f3
     label: unified-dk-numista-278289
@@ -2795,6 +3320,57 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278290
+  - id: c-32076095
+    class_id: c-32076095
+    label: unified-dk-numista-278291
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1608
+    year_last: 1613
+    year_ranges:
+      -   - 1608
+          - 1609
+      -   - 1611
+          - 1611
+      -   - 1613
+          - 1613
+    year_label: 1608-1609, 1611, 1613
+    ruler: Ernst III
+    mint: Altona
+    catalog:
+      km: '50'
+      numista: '278291'
+      dav: EC II 3730
+      lange: '844'
+      others:
+        - Weinm# 115
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 27.53
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/278291
+        ref: Numista N#278291 — 1 Thaler - Ernest III - HS-Pinneberg 1608-1613
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-50-1608-1613-cuid-1154839-duid-1387329
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96128
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278291
+      - ngc-1154839
+      - schleswig_holstein-numismaster-96128
   - id: c-cb84b6ad
     class_id: c-cb84b6ad
     label: unified-dk-numista-278292
@@ -2829,6 +3405,47 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278292
+  - id: c-363b7701
+    class_id: c-363b7701
+    label: unified-dk-numista-278293
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1612
+    year_last: 1612
+    year_label: '1612'
+    ruler: Ernst III
+    mint: Altona
+    catalog:
+      km: '70'
+      numista: '278293'
+      dav: EC II 3735
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 28.79
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/278293
+        ref: Numista N#278293 — 1 Thaler - Ernest III - HS-Pinneberg 1612
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-70-1612-cuid-1159737-duid-1387331
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96136
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278293
+      - ngc-1159737
+      - schleswig_holstein-numismaster-96136
   - id: c-af44242b
     class_id: c-af44242b
     label: unified-dk-numista-278295
@@ -2862,6 +3479,221 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278295
+  - id: c-d2c95e4f
+    class_id: c-d2c95e4f
+    label: unified-dk-numista-278297
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ¼ Thaler
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    ruler: Ernst III
+    catalog:
+      km: '125'
+      numista: '278297'
+      others:
+        - Weinm# 346
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-numista-278297
+          source: numista
+          years: '1622'
+      uncertain:
+        - seed: ngc-1159634
+          source: ngc
+          years: '1622'
+        - seed: schleswig_holstein-numismaster-96076
+          source: numismaster
+          years: '1622'
+    weight_rough_g:
+      - value: 7.0
+        source: ngc
+      - value: 7.0
+        source: numismaster
+      - value: 7.09
+        source: numista
+    diameter_mm:
+      - value: 31.0
+        source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1622)
+          value: '1622'
+          seed: ngc-1159634
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1622'
+          seed: schleswig_holstein-numismaster-96076
+    sources:
+      - type: literature
+        url: https://en.numista.com/278297
+        ref: Numista N#278297 — 1/4 Thaler - Justus Hermann - HS-Pinneberg 1622
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-4-thaler-km-125-ca.1622-cuid-1159634-duid-1386909
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96076
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278297
+      - ngc-1159634
+      - schleswig_holstein-numismaster-96076
+  - id: c-13ac5f9a
+    class_id: c-13ac5f9a
+    label: unified-dk-numista-278298
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    ruler: Ernst III
+    catalog:
+      km: '127'
+      numista: '278298'
+      lange: 945b
+      others:
+        - Weinm# 163
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-numista-278298
+          source: numista
+          years: '1622'
+        - seed: schleswig_holstein-numismaster-96113
+          source: numismaster
+          years: '1622'
+      uncertain:
+        - seed: ngc-1156901
+          source: ngc
+          years: '1622'
+    weight_rough_g:
+      - value: 14.0
+        source: ngc
+      - value: 14.0
+        source: numismaster
+      - value: 14.3
+        source: numista
+    diameter_mm:
+      - value: 36.0
+        source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: MDCXXII (1622) Rare
+          value: '1622'
+          seed: ngc-1156901
+    sources:
+      - type: literature
+        url: https://en.numista.com/278298
+        ref: Numista N#278298 — 1/2 Thaler - Ernest III Death commem - HS-Pinneberg 1622
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-2-thaler-km-127-mdcxxii-1622-cuid-1156901-duid-1386672
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96113
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278298
+      - ngc-1156901
+      - schleswig_holstein-numismaster-96113
+  - id: c-f7cc9dc2
+    class_id: c-f7cc9dc2
+    label: unified-dk-numista-278299
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    ruler: Ernst III
+    catalog:
+      km: '129'
+      numista: '278299'
+      dav: EC II 3745
+      lange: '943'
+      others:
+        - Weinm# 154
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-numista-278299
+          source: numista
+          years: '1622'
+        - seed: schleswig_holstein-numismaster-96148
+          source: numismaster
+          years: '1622'
+      uncertain:
+        - seed: ngc-1156628
+          source: ngc
+          years: '1622'
+    weight_rough_g:
+      - value: 28.0
+        source: ngc
+      - value: 28.0
+        source: numismaster
+      - value: 28.83
+        source: numista
+    diameter_mm:
+      - value: 43.0
+        source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: MDCXXII (1622)
+          value: '1622'
+          seed: ngc-1156628
+    sources:
+      - type: literature
+        url: https://en.numista.com/278299
+        ref: Numista N#278299 — 1 Thaler - Ernest III Death commem - HS-Pinneberg 1622
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-129-mdcxxii-1622-cuid-1156628-duid-1387333
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96148
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278299
+      - ngc-1156628
+      - schleswig_holstein-numismaster-96148
   - id: c-59ffad96
     class_id: c-59ffad96
     label: unified-dk-numista-278300
@@ -2895,6 +3727,153 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278300
+  - id: c-2611d3b0
+    class_id: c-2611d3b0
+    label: unified-dk-numista-278302
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ¼ Thaler
+    year_first: 1610
+    year_last: 1610
+    year_label: '1610'
+    ruler: Ernst III
+    mint: Altona
+    catalog:
+      km: '57'
+      numista: '278302'
+      lange: '867'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 7.01
+        source: numista
+      - value: 7.1
+        source: ngc
+      - value: 7.1
+        source: numismaster
+    diameter_mm:
+      - value: 30.0
+        source: ngc
+    sources:
+      - type: literature
+        url: https://en.numista.com/278302
+        ref: Numista N#278302 — 1/4 Thaler - Ernest III - HS-Pinneberg 1610
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-4-thaler-km-57-1610-1610-cuid-1156899-duid-1385156
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96105
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278302
+      - ngc-1156899
+      - schleswig_holstein-numismaster-96105
+  - id: c-360a2ccc
+    class_id: c-360a2ccc
+    label: unified-dk-numista-278793
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1622
+    year_last: 1623
+    year_ranges:
+      -   - 1622
+          - 1623
+    year_label: 1622-1623
+    ruler: Jobst Hermann
+    catalog:
+      km: '134'
+      numista: '278793'
+      dav: EC II 3749
+      lange: 949a
+      others:
+        - Weinm# 328
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.7
+        source: numista
+    diameter_mm:
+      - value: 43.0
+        source: ngc
+      - value: 43.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/278793
+        ref: Numista N#278793 — 1 Thaler - Justus Hermann - HS-Pinneberg 1622
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-134-16zz-cuid-1159742-duid-1385398
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96153
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278793
+      - ngc-1159742
+      - schleswig_holstein-numismaster-96153
+  - id: c-8e4cf968
+    class_id: c-8e4cf968
+    label: unified-dk-numista-278795
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ¼ Thaler
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    ruler: Jobst Hermann
+    catalog:
+      km: '126'
+      numista: '278795'
+      others:
+        - Weinm# 345
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 6.95
+        source: numista
+      - value: 7.0
+        source: ngc
+      - value: 7.0
+        source: numismaster
+    diameter_mm:
+      - value: 31.0
+        source: ngc
+    sources:
+      - type: literature
+        url: https://en.numista.com/278795
+        ref: Numista N#278795 — 1/4 Thaler - Justus Hermann - HS-Pinneberg 1622
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-4-thaler-km-126-16zz-cuid-1156512-duid-1385182
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96106
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-278795
+      - ngc-1156512
+      - schleswig_holstein-numismaster-96106
   - id: c-d9cb922e
     class_id: c-d9cb922e
     label: unified-dk-numista-278796
@@ -2929,6 +3908,107 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278796
+  - id: c-3d44353d
+    class_id: c-3d44353d
+    label: unified-dk-numista-309994
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Pfennig
+    year_first: 1626
+    year_last: 1628
+    year_ranges:
+      -   - 1626
+          - 1628
+    year_label: 1626-1628
+    ruler: Jobst Hermann
+    catalog:
+      km: B139
+      numista: '309994'
+      others:
+        - Weinm# 378
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.3
+        source: ngc
+      - value: 0.3
+        source: numismaster
+      - value: 0.31
+        source: numista
+    diameter_mm:
+      - value: 14.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/309994
+        ref: Numista N#309994 — Pfennig Schüsselpfennig - Justus Herman - HS-Pinneberg 1626-1628
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-pfennig-km-b139-16z7-16z7-cuid-1191087-duid-1397163
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_175509
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-309994
+      - ngc-1191087
+      - schleswig_holstein-numismaster-175509
+  - id: c-24313438
+    class_id: c-24313438
+    label: unified-dk-numista-319276
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Pfennig
+    year_first: 1624
+    year_last: 1625
+    year_ranges:
+      -   - 1624
+          - 1625
+    year_label: 1624-1625
+    ruler: Jobst Hermann
+    catalog:
+      km: A135
+      numista: '319276'
+      lange: '975'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.3
+        source: ngc
+      - value: 0.3
+        source: numismaster
+      - value: 0.3
+        source: numista
+    diameter_mm:
+      - value: 13.5
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/319276
+        ref: Numista N#319276 — 1 Pfennig - Justus Hermann - HS-Pinneberg 1624
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-pfennig-km-a135-16z4-16z5-cuid-1180940-duid-1399730
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_175508
+        ref: NumisMaster
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - dk-numista-319276
+      - ngc-1180940
+      - schleswig_holstein-numismaster-175508
   - id: c-ba72e562
     class_id: c-ba72e562
     label: unified-dk-numista-331920
@@ -4939,100 +6019,6 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153532
-  - id: c-aab0ade0
-    class_id: c-aab0ade0
-    label: unified-ngc-1153533
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1608
-    year_last: 1608
-    year_label: '1608'
-    ruler: Ernst III
-    mint: Altona
-    catalog:
-      km: '49'
-      dav: EC II 3729
-      numista: '278286'
-      others:
-        - Weinm# 125
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.86
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/278286
-        ref: Numista N#278286 — 1 Thaler - Ernest III - HS-Pinneberg 1608
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-49-1608-1608-cuid-1153533-duid-1386674
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96127
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278286
-      - ngc-1153533
-      - schleswig_holstein-numismaster-96127
-  - id: c-27a24f6a
-    class_id: c-27a24f6a
-    label: unified-ngc-1153534
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1611
-    year_last: 1618
-    year_ranges:
-      -   - 1611
-          - 1611
-      -   - 1614
-          - 1616
-      -   - 1618
-          - 1618
-    year_label: 1611, 1614-1616, 1618
-    ruler: Ernst III
-    mint: Altona
-    catalog:
-      km: '68'
-      dav: EC II 3737
-      numista: '278287'
-      lange: '850'
-      others:
-        - Weinm# 141
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.78
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/278287
-        ref: Numista N#278287 — 1 Thaler - Ernest III - HS-Pinneberg 1611-1618
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-68-6141-cuid-1153534-duid-1387367
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96135
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278287
-      - ngc-1153534
-      - schleswig_holstein-numismaster-96135
   - id: c-5a123629
     class_id: c-5a123629
     label: unified-ngc-1153536
@@ -5422,95 +6408,6 @@ coins:
     composed_of:
       - ngc-1153654
       - schleswig_holstein-numismaster-96187
-  - id: c-fd6b5a50
-    class_id: c-fd6b5a50
-    label: unified-ngc-1154784
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 3 Pfennig
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Jobst Hermann
-    catalog:
-      km: '123'
-      numista: '137397'
-      others:
-        - Weinm# 373
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.78
-        source: numista
-    diameter_mm:
-      - value: 18.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/137397
-        ref: Numista N#137397 — 3 Pfennigs - Ernest III - HS-Pinneberg
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-pfennig-km-123-16zz-cuid-1154784-duid-1385140
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96059
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-137397
-      - ngc-1154784
-      - schleswig_holstein-numismaster-96059
-  - id: c-79b1c012
-    class_id: c-79b1c012
-    label: unified-ngc-1154785
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Pfennig
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III
-    catalog:
-      km: '88'
-      numista: '137320'
-      lange: '942'
-      others:
-        - Weinm# 313
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.45
-        source: numista
-    diameter_mm:
-      - value: 18.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/137320
-        ref: Numista N#137320 — 4 Pfennigs - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-pfennig-km-88-16z0-1620-cuid-1154785-duid-1385141
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96060
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-137320
-      - ngc-1154785
-      - schleswig_holstein-numismaster-96060
   - id: c-fe7236fa
     class_id: c-fe7236fa
     label: unified-ngc-1154786
@@ -5720,41 +6617,6 @@ coins:
       - ikmk-18286841
       - ngc-1154789
       - schleswig_holstein-numismaster-96088
-  - id: c-d8a3bcea
-    class_id: c-d8a3bcea
-    label: unified-ngc-1154790
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/21 Thaler
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    ruler: Ernst III
-    catalog:
-      km: '117'
-      numista: '137348'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 2.45
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/137348
-        ref: Numista N#137348 — 1 Groschen - Ernest III - Holstein-Schaumburg-Pinneberg
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-21-thaler-km-117-1621-cuid-1154790-duid-1385178
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-137348
-      - ngc-1154790
   - id: c-50b2098e
     class_id: c-50b2098e
     label: unified-ngc-1154791
@@ -5895,57 +6757,6 @@ coins:
     composed_of:
       - ngc-1154838
       - schleswig_holstein-numismaster-96123
-  - id: c-32076095
-    class_id: c-32076095
-    label: unified-ngc-1154839
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1608
-    year_last: 1613
-    year_ranges:
-      -   - 1608
-          - 1609
-      -   - 1611
-          - 1611
-      -   - 1613
-          - 1613
-    year_label: 1608-1609, 1611, 1613
-    ruler: Ernst III
-    mint: Altona
-    catalog:
-      km: '50'
-      dav: EC II 3730
-      numista: '278291'
-      lange: '844'
-      others:
-        - Weinm# 115
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 27.53
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/278291
-        ref: Numista N#278291 — 1 Thaler - Ernest III - HS-Pinneberg 1608-1613
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-50-1608-1613-cuid-1154839-duid-1387329
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96128
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278291
-      - ngc-1154839
-      - schleswig_holstein-numismaster-96128
   - id: c-395a000f
     class_id: c-395a000f
     label: unified-ngc-1154840
@@ -5983,63 +6794,6 @@ coins:
     composed_of:
       - ngc-1154840
       - schleswig_holstein-numismaster-96169
-  - id: c-9809cc15
-    class_id: c-9809cc15
-    label: unified-ngc-1154841
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Goldgulden
-    year_first: 1603
-    year_last: 1612
-    year_ranges:
-      -   - 1603
-          - 1604
-      -   - 1608
-          - 1608
-      -   - 1610
-          - 1610
-      -   - 1612
-          - 1612
-    year_label: 1603-1604, 1608, 1610, 1612
-    ruler: Ernst III
-    mint:
-      - Altona
-      - Rinteln
-    catalog:
-      km: '27'
-      fr: '3062'
-      numista: '270483'
-      others:
-        - Weinm# 83
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.9
-        source: numista
-    weight_rough_g:
-      - value: 3.22
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/270483
-        ref: Numista N#270483 — 1 Goldgulden - Ernest III - HS-Pinneberg
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-goldgulden-km-27-1603-161z-cuid-1154841-duid-1385454
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96183
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-270483
-      - ngc-1154841
-      - schleswig_holstein-numismaster-96183
   - id: c-6ead3cc9
     class_id: c-6ead3cc9
     label: unified-ngc-1156510
@@ -6130,54 +6884,6 @@ coins:
     composed_of:
       - ngc-1156511
       - schleswig_holstein-numismaster-96094
-  - id: c-8e4cf968
-    class_id: c-8e4cf968
-    label: unified-ngc-1156512
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ¼ Thaler
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Jobst Hermann
-    catalog:
-      km: '126'
-      numista: '278795'
-      others:
-        - Weinm# 345
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 6.95
-        source: numista
-      - value: 7.0
-        source: ngc
-      - value: 7.0
-        source: numismaster
-    diameter_mm:
-      - value: 31.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://en.numista.com/278795
-        ref: Numista N#278795 — 1/4 Thaler - Justus Hermann - HS-Pinneberg 1622
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-4-thaler-km-126-16zz-cuid-1156512-duid-1385182
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96106
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278795
-      - ngc-1156512
-      - schleswig_holstein-numismaster-96106
   - id: c-8fae7406
     class_id: c-8fae7406
     label: unified-ngc-1156513
@@ -6585,77 +7291,6 @@ coins:
     composed_of:
       - ngc-1156627
       - schleswig_holstein-numismaster-96144
-  - id: c-f7cc9dc2
-    class_id: c-f7cc9dc2
-    label: unified-ngc-1156628
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Ernst III
-    catalog:
-      km: '129'
-      dav: EC II 3745
-      numista: '278299'
-      lange: '943'
-      others:
-        - Weinm# 154
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-numista-278299
-          source: numista
-          years: '1622'
-        - seed: schleswig_holstein-numismaster-96148
-          source: numismaster
-          years: '1622'
-      uncertain:
-        - seed: ngc-1156628
-          source: ngc
-          years: '1622'
-    weight_rough_g:
-      - value: 28.0
-        source: ngc
-      - value: 28.0
-        source: numismaster
-      - value: 28.83
-        source: numista
-    diameter_mm:
-      - value: 43.0
-        source: ngc
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCXXII (1622)
-          value: '1622'
-          seed: ngc-1156628
-    sources:
-      - type: literature
-        url: https://en.numista.com/278299
-        ref: Numista N#278299 — 1 Thaler - Ernest III Death commem - HS-Pinneberg 1622
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-129-mdcxxii-1622-cuid-1156628-duid-1387333
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96148
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278299
-      - ngc-1156628
-      - schleswig_holstein-numismaster-96148
   - id: c-273bba33
     class_id: c-273bba33
     label: unified-ngc-1156662
@@ -6871,54 +7506,6 @@ coins:
     composed_of:
       - ngc-1156749
       - schleswig_holstein-numismaster-96188
-  - id: c-d0ba8c63
-    class_id: c-d0ba8c63
-    label: unified-ngc-1156773
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 3 Kreuzer
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III
-    catalog:
-      km: '97'
-      numista: '137341'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.78
-        source: ngc
-      - value: 0.78
-        source: numismaster
-      - value: 0.87
-        source: numista
-    diameter_mm:
-      - value: 17.0
-        source: ngc
-      - value: 17.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/137341
-        ref: Numista N#137341 — 3 Kreuzers - Ernest III (Kipper) - County of Holstein-Schaumburg-Pinneberg – Numista
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-kreuzer-km-97-1620-cuid-1156773-duid-1387169
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96069
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-137341
-      - ngc-1156773
-      - schleswig_holstein-numismaster-96069
   - id: c-1124226b
     class_id: c-1124226b
     label: unified-ngc-1156774
@@ -7073,124 +7660,6 @@ coins:
     composed_of:
       - ngc-1156898
       - schleswig_holstein-numismaster-96104
-  - id: c-2611d3b0
-    class_id: c-2611d3b0
-    label: unified-ngc-1156899
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ¼ Thaler
-    year_first: 1610
-    year_last: 1610
-    year_label: '1610'
-    ruler: Ernst III
-    mint: Altona
-    catalog:
-      km: '57'
-      numista: '278302'
-      lange: '867'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 7.01
-        source: numista
-      - value: 7.1
-        source: ngc
-      - value: 7.1
-        source: numismaster
-    diameter_mm:
-      - value: 30.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://en.numista.com/278302
-        ref: Numista N#278302 — 1/4 Thaler - Ernest III - HS-Pinneberg 1610
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-4-thaler-km-57-1610-1610-cuid-1156899-duid-1385156
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96105
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278302
-      - ngc-1156899
-      - schleswig_holstein-numismaster-96105
-  - id: c-13ac5f9a
-    class_id: c-13ac5f9a
-    label: unified-ngc-1156901
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ½ Thaler
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Ernst III
-    catalog:
-      km: '127'
-      numista: '278298'
-      lange: 945b
-      others:
-        - Weinm# 163
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-numista-278298
-          source: numista
-          years: '1622'
-        - seed: schleswig_holstein-numismaster-96113
-          source: numismaster
-          years: '1622'
-      uncertain:
-        - seed: ngc-1156901
-          source: ngc
-          years: '1622'
-    weight_rough_g:
-      - value: 14.0
-        source: ngc
-      - value: 14.0
-        source: numismaster
-      - value: 14.3
-        source: numista
-    diameter_mm:
-      - value: 36.0
-        source: ngc
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCXXII (1622) Rare
-          value: '1622'
-          seed: ngc-1156901
-    sources:
-      - type: literature
-        url: https://en.numista.com/278298
-        ref: Numista N#278298 — 1/2 Thaler - Ernest III Death commem - HS-Pinneberg 1622
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-2-thaler-km-127-mdcxxii-1622-cuid-1156901-duid-1386672
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96113
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278298
-      - ngc-1156901
-      - schleswig_holstein-numismaster-96113
   - id: c-d8dbbde4
     class_id: c-d8dbbde4
     label: unified-ngc-1156902
@@ -7463,71 +7932,6 @@ coins:
     composed_of:
       - ngc-1156972
       - schleswig_holstein-numismaster-96178
-  - id: c-6e7dad66
-    class_id: c-6e7dad66
-    label: unified-ngc-1159632
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 3 Pfennig
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III
-    catalog:
-      km: '87'
-      numista: '137315'
-      others:
-        - Weinm# 314
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-numista-137315
-          source: numista
-          years: '1620'
-        - seed: schleswig_holstein-numismaster-96058
-          source: numismaster
-          years: '1620'
-      uncertain:
-        - seed: ngc-1159632
-          source: ngc
-          years: '1620'
-    weight_rough_g:
-      - value: 1.41
-        source: numista
-    diameter_mm:
-      - value: 17.0
-        source: numista
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: ngc
-          as_printed: (ca.1620)
-          value: '1620'
-          seed: ngc-1159632
-    sources:
-      - type: literature
-        url: https://en.numista.com/137315
-        ref: Numista N#137315 — 3 Pfennigs - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-pfennig-km-87-ca.1620-cuid-1159632-duid-1386904
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96058
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-137315
-      - ngc-1159632
-      - schleswig_holstein-numismaster-96058
   - id: c-56ff8e35
     class_id: c-56ff8e35
     label: unified-ngc-1159633
@@ -7564,80 +7968,6 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159633
-  - id: c-d2c95e4f
-    class_id: c-d2c95e4f
-    label: unified-ngc-1159634
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ¼ Thaler
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Ernst III
-    catalog:
-      km: '125'
-      numista: '278297'
-      others:
-        - Weinm# 346
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-numista-278297
-          source: numista
-          years: '1622'
-      uncertain:
-        - seed: ngc-1159634
-          source: ngc
-          years: '1622'
-        - seed: schleswig_holstein-numismaster-96076
-          source: numismaster
-          years: '1622'
-    weight_rough_g:
-      - value: 7.0
-        source: ngc
-      - value: 7.0
-        source: numismaster
-      - value: 7.09
-        source: numista
-    diameter_mm:
-      - value: 31.0
-        source: ngc
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: ngc
-          as_printed: (ca.1622)
-          value: '1622'
-          seed: ngc-1159634
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: '1622'
-          seed: schleswig_holstein-numismaster-96076
-    sources:
-      - type: literature
-        url: https://en.numista.com/278297
-        ref: Numista N#278297 — 1/4 Thaler - Justus Hermann - HS-Pinneberg 1622
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-4-thaler-km-125-ca.1622-cuid-1159634-duid-1386909
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96076
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278297
-      - ngc-1159634
-      - schleswig_holstein-numismaster-96076
   - id: c-a27271ba
     class_id: c-a27271ba
     label: unified-ngc-1159635
@@ -7977,47 +8307,6 @@ coins:
     composed_of:
       - ngc-1159736
       - schleswig_holstein-numismaster-96130
-  - id: c-363b7701
-    class_id: c-363b7701
-    label: unified-ngc-1159737
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1612
-    year_last: 1612
-    year_label: '1612'
-    ruler: Ernst III
-    mint: Altona
-    catalog:
-      km: '70'
-      dav: EC II 3735
-      numista: '278293'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.79
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/278293
-        ref: Numista N#278293 — 1 Thaler - Ernest III - HS-Pinneberg 1612
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-70-1612-cuid-1159737-duid-1387331
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96136
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278293
-      - ngc-1159737
-      - schleswig_holstein-numismaster-96136
   - id: c-1d2e2bae
     class_id: c-1d2e2bae
     label: unified-ngc-1159738
@@ -8079,57 +8368,6 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159740
-  - id: c-360a2ccc
-    class_id: c-360a2ccc
-    label: unified-ngc-1159742
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1622
-    year_last: 1623
-    year_ranges:
-      -   - 1622
-          - 1623
-    year_label: 1622-1623
-    ruler: Jobst Hermann
-    catalog:
-      km: '134'
-      dav: EC II 3749
-      numista: '278793'
-      lange: 949a
-      others:
-        - Weinm# 328
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.7
-        source: numista
-    diameter_mm:
-      - value: 43.0
-        source: ngc
-      - value: 43.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/278793
-        ref: Numista N#278793 — 1 Thaler - Justus Hermann - HS-Pinneberg 1622
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-134-16zz-cuid-1159742-duid-1385398
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96153
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-278793
-      - ngc-1159742
-      - schleswig_holstein-numismaster-96153
   - id: c-4cec46e7
     class_id: c-4cec46e7
     label: unified-ngc-1159743
@@ -8281,53 +8519,6 @@ coins:
     composed_of:
       - ngc-1159747
       - schleswig_holstein-numismaster-96182
-  - id: c-e6c5a1b6
-    class_id: c-e6c5a1b6
-    label: unified-ngc-1162545
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/24 Thaler
-    year_first: 1622
-    year_last: 1635
-    year_ranges:
-      -   - 1622
-          - 1627
-      -   - 1630
-          - 1633
-      -   - 1635
-          - 1635
-    year_label: 1622-1627, 1630-1633, 1635
-    ruler: Jobst Hermann
-    catalog:
-      km: '124'
-      numista: '137399'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.7
-        source: ngc
-      - value: 1.7
-        source: numista
-    diameter_mm:
-      - value: 23.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/137399
-        ref: Numista N#137399 — 1 Groschen - Justus Hermann - HS-Pinneberg
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-24-thaler-km-124-1630-16zz-cuid-1162545-duid-1385170
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-137399
-      - ngc-1162545
   - id: c-1f1b6fb6
     class_id: c-1f1b6fb6
     label: unified-ngc-1162546
@@ -8631,56 +8822,6 @@ coins:
     composed_of:
       - ngc-1162634
       - schleswig_holstein-numismaster-96173
-  - id: c-24313438
-    class_id: c-24313438
-    label: unified-ngc-1180940
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Pfennig
-    year_first: 1624
-    year_last: 1625
-    year_ranges:
-      -   - 1624
-          - 1625
-    year_label: 1624-1625
-    ruler: Jobst Hermann
-    catalog:
-      km: A135
-      numista: '319276'
-      lange: '975'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.3
-        source: ngc
-      - value: 0.3
-        source: numismaster
-      - value: 0.3
-        source: numista
-    diameter_mm:
-      - value: 13.5
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/319276
-        ref: Numista N#319276 — 1 Pfennig - Justus Hermann - HS-Pinneberg 1624
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-pfennig-km-a135-16z4-16z5-cuid-1180940-duid-1399730
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_175508
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-319276
-      - ngc-1180940
-      - schleswig_holstein-numismaster-175508
   - id: c-134b9e6c
     class_id: c-134b9e6c
     label: unified-ngc-1181030
@@ -8877,57 +9018,6 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1188253
-  - id: c-0bacc4e8
-    class_id: c-0bacc4e8
-    label: unified-ngc-1188401
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Ducat
-    year_first: 1624
-    year_last: 1624
-    year_label: '1624'
-    ruler: Jobst Hermann
-    catalog:
-      km: A139
-      numista: '276028'
-      lange: 946A
-      fr: 3067a
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.986
-        source: numista
-    weight_rough_g:
-      - value: 13.04
-        source: numista
-      - value: 14.52
-        source: ngc
-      - value: 14.52
-        source: numismaster
-    diameter_mm:
-      - value: 42.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://en.numista.com/276028
-        ref: Numista N#276028 — 4 Ducats - Justus Hermann - HS-Pinneberg
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-ducat-km-a139-16z4-cuid-1188401-duid-1396631
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_171268
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-276028
-      - ngc-1188401
-      - schleswig_holstein-numismaster-171268
   - id: c-3c85dac6
     class_id: c-3c85dac6
     label: unified-ngc-1189194
@@ -8964,57 +9054,6 @@ coins:
     composed_of:
       - ngc-1189194
       - schleswig_holstein-numismaster-175586
-  - id: c-3d44353d
-    class_id: c-3d44353d
-    label: unified-ngc-1191087
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Pfennig
-    year_first: 1626
-    year_last: 1628
-    year_ranges:
-      -   - 1626
-          - 1628
-    year_label: 1626-1628
-    ruler: Jobst Hermann
-    catalog:
-      km: B139
-      numista: '309994'
-      others:
-        - Weinm# 378
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.3
-        source: ngc
-      - value: 0.3
-        source: numismaster
-      - value: 0.31
-        source: numista
-    diameter_mm:
-      - value: 14.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/309994
-        ref: Numista N#309994 — Pfennig Schüsselpfennig - Justus Herman - HS-Pinneberg 1626-1628
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-pfennig-km-b139-16z7-16z7-cuid-1191087-duid-1397163
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_175509
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-309994
-      - ngc-1191087
-      - schleswig_holstein-numismaster-175509
   - id: c-867ede55
     class_id: c-867ede55
     label: unified-ngc-1191088
@@ -9138,45 +9177,6 @@ coins:
     composed_of:
       - ngc-1206089
       - schleswig_holstein-numismaster-96063
-  - id: c-0fe23243
-    class_id: c-0fe23243
-    label: unified-ngc-1206092
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/21 Thaler
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    ruler: Ernst III
-    catalog:
-      km: '116'
-      numista: '137347'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 2.84
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/137347
-        ref: Numista N#137347 — 1 Fürstengroschen - Ernest III (Kipper) - County of Holstein-Schaumburg-Pinneberg – Numista
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-21-thaler-km-116-1621-cuid-1206092-duid-1387283
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96089
-        ref: NumisMaster
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - dk-numista-137347
-      - ngc-1206092
-      - schleswig_holstein-numismaster-96089
   - id: c-96c3900c
     class_id: c-96c3900c
     label: unified-ngc-1206093

@@ -52,7 +52,7 @@
     that carries the numeric value can be struck through while `mark()` still
     emits the «(*)»/«(!)» sign beside it. -#}
 {%- set mrank = {'approximate': 0, 'template': 1, 'fragment': 2, 'suspect': 3, 'erroneous': 4} -%}
-{%- set msign = {'approximate': '(~)', 'template': '(§)', 'fragment': '(f)', 'suspect': '(*)', 'erroneous': '(!)'} -%}
+{%- set msign = {'approximate': '(~)', 'template': '(§)', 'fragment': '(f)', 'suspect': '(*)', 'erroneous': '(!)', 'hedged': '(?)'} -%}
 {%- macro mkind(sources, marks) -%}
   {%- set ns = namespace(kind='') -%}
   {%- if marks and sources -%}

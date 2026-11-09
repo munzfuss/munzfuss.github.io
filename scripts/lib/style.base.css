@@ -2567,6 +2567,12 @@ tr.msr-sh .msr-cut { display: none; }
    (The `.approximate` value class gets no rule on purpose.) */
 .approximate-mark { color: var(--text-muted); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); }
+/* (?) .hedged-mark — a member source gives this value with its own reservation
+   («Søsling(?)»), shown beside the class's value. Same look as «(?)»
+   (.unverified): the source is unsure, nothing is struck (curator 2026-11-09). */
+.hedged-mark { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600;
+                  font-family: var(--font-sans); }
+[data-theme="v1"] .hedged-mark { color: var(--accent); }
 /* .variant-mark — a second metal the sources attest for the same coin
    («Мідь, латунь»). Not an error: the word itself carries the tooltip, no sign
    (curator 2026-11-07). */

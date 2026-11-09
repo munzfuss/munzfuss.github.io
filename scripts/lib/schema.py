@@ -77,8 +77,12 @@ class YearMark(_StrictBase):
     (see Coin.year_mark, Coin.ruler_mark, Coin.mint_mark, Coin.nominal_mark,
     Coin.metal_mark). «variant» (metal only): a second metal the sources
     attest for the same coin — shown beside the class's metal, not as an
-    error (curator 2026-11-07, the brass Sechsling 1850, ucoin 187884)."""
-    kind: Literal["suspect", "erroneous", "approximate", "variant"]
+    error (curator 2026-11-07, the brass Sechsling 1850, ucoin 187884).
+    «hedged»: the source gives the value with its own reservation («Søsling(?)»);
+    shown beside the class's value with «(?)», read as «the source gives it
+    uncertainly», and kept out of the class's value like «erroneous»
+    (curator 2026-11-09, Galster 174)."""
+    kind: Literal["suspect", "erroneous", "approximate", "variant", "hedged"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
     # The year the source printed, when a curator `_source_errata` has replaced
@@ -93,7 +97,7 @@ class YearAlt(_StrictBase):
     Coin.ruler_alts, Coin.mint_alts)."""
     value: str = Field(..., min_length=1)
     source: str = Field(..., min_length=1)
-    kind: Literal["suspect", "erroneous", "approximate", "variant"]
+    kind: Literal["suspect", "erroneous", "approximate", "variant", "hedged"]
     reason: I18nText
 
 

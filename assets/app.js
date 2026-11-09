@@ -484,7 +484,7 @@
     // Coin.uncertainty: «(?)» a source's own reservation, «[ ]» an inference.
     var u = /(?:^|\s)unc-(hedged|inferred|derived)(?:\s|$)/.exec(c);
     if (u) return u[1];
-    var m = /(?:^|\s)(suspect|erroneous|template|fragment|approximate|variant)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(c);
+    var m = /(?:^|\s)(suspect|erroneous|template|fragment|approximate|variant|hedged)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(c);
     return m ? (m[1] || m[2]) : null;
   }
   // Tooltip text may carry [b]…[/b] (the work / source) and [i]…[/i] (its

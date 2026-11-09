@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
 # Input: 127 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-11-07'
+generated_at: '2026-11-09'
 coins:
   - id: c-ae8e0de0
     class_id: c-ae8e0de0
@@ -32,8 +32,8 @@ coins:
       lange: 529a
       others:
         - JSJ# 19a
-      dav: EC II 3714
       numista: '151530'
+      dav: EC II 3714
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -191,8 +191,8 @@ coins:
       lange: '544'
       others:
         - JSJ# 23
-      dav: EC II 3715
       numista: '151531'
+      dav: EC II 3715
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -343,8 +343,8 @@ coins:
       bruun_collection_id: '14678'
       sieg: '5'
       lange: '560'
-      dav: EC II 3717
       numista: '151536'
+      dav: EC II 3717
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -382,6 +382,44 @@ coins:
       - dk-numista-151536
       - ngc-1161493
       - schleswig_holstein-numismaster-101379
+  - id: c-241b2ebd
+    class_id: c-241b2ebd
+    label: unified-dk-numista-131934
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ¼ Thaler
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    ruler: Hans
+    mint: Reinfeld
+    catalog:
+      km: '16'
+      numista: '131934'
+      lange: '546'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/131934
+        ref: Numista N#131934 — ¼ Thaler - John (Death)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-4-thaler-km-16-1622-cuid-1157219-duid-1406649
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_101371
+        ref: NumisMaster
+    issuing_entity: sonderburg_duchy
+    composed_of:
+      - dk-numista-131934
+      - ngc-1157219
+      - schleswig_holstein-numismaster-101371
   - id: c-45622576
     class_id: c-45622576
     label: unified-dk-numista-151521
@@ -411,6 +449,90 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - dk-numista-151521
+  - id: c-291dbc74
+    class_id: c-291dbc74
+    label: unified-dk-numista-151523
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Schilling Lübisch
+    year_first: 1618
+    year_last: 1622
+    year_ranges:
+      -   - 1618
+          - 1622
+    year_label: 1618-1622
+    ruler: Hans
+    mint: Reinfeld
+    catalog:
+      km: '4'
+      numista: '151523'
+      lange: '540'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    weight_rough_g:
+      - value: 0.919
+        source: kmk
+      - value: 0.96
+        source: kmk
+    uncertainty:
+      year:
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1618-1622
+          seed: dk-numista-151523
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1618-22)
+          value: 1618-1622
+          seed: ngc-1171377
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1618-1622
+          seed: schleswig_holstein-numismaster-120991
+    sources:
+      - type: literature
+        url: https://en.numista.com/151523
+        ref: Numista N#151523 — 2 Schillings Lübisch - John
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714771
+        ref: KMM 714771 (Inv. FP 12405.279)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714772
+        ref: KMM 714772 (Inv. FP 12405.278)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-4-1618-22-cuid-1171377-duid-1391553
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120991
+        ref: NumisMaster
+    note:
+      de: rytterpenning
+      en: rytterpenning
+      uk: rytterpenning
+    issuing_entity: sonderburg_duchy
+    composed_of:
+      - dk-numista-151523
+      - kmk-714771
+      - kmk-714772
+      - ngc-1171377
+      - schleswig_holstein-numismaster-120991
+    _entity_routing_hint:
+      rule_id: sonderburg_ducal_lineage
+      matched_on:
+        ruler_lineage: hans den yngre
+      would_route_to: sonderburg_duchy
+      active: true
+      reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
   - id: c-4630dec2
     class_id: c-4630dec2
     label: unified-dk-numista-151525
@@ -446,6 +568,314 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - dk-numista-151525
+  - id: c-e5ec0060
+    class_id: c-e5ec0060
+    label: unified-dk-numista-151527
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Schilling
+    year_first: 1619
+    year_last: 1620
+    year_ranges:
+      -   - 1619
+          - 1620
+    year_label: 1619-1620
+    ruler: Hans
+    mint: Reinfeld
+    catalog:
+      km: '9'
+      numista: '151527'
+      lange: 533a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/151527
+        ref: Numista N#151527 — 2 Schillings - John
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-16-thaler-km-9-1619-1620-cuid-1157218-duid-1387255
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_101368
+        ref: NumisMaster
+    issuing_entity: sonderburg_duchy
+    composed_of:
+      - dk-numista-151527
+      - ngc-1157218
+      - schleswig_holstein-numismaster-101368
+  - id: c-cd88eb54
+    class_id: c-cd88eb54
+    label: unified-dk-numista-151528
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Schilling Lübisch
+    year_first: 1620
+    year_last: 1625
+    year_ranges:
+      -   - 1620
+          - 1621
+      -   - 1623
+          - 1623
+      -   - 1625
+          - 1625
+    year_label: 1620-1621, 1623, 1625
+    ruler: Hans
+    mintmaster: Christoph Mittelbach
+    inscription_obv: IOHAN[S] / VAN GOTT / GNA ERWE / ZV NORW[E] / HER ZV SC/HL HOL
+    mint:
+      - Reinfeld
+      - Sønderborg
+    catalog:
+      km: '11'
+      numista: '151528'
+      lange:
+        - 541-42
+        - 541-542
+        - 542C
+        - 547-48
+      others:
+        - JSJ# 13
+        - JSJ# 13a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.72
+        source: kmk
+      - value: 0.88
+        source: ikmk
+      - value: 0.89
+        source: kmk
+      - value: 0.9
+        source: ikmk
+      - value: 0.9
+        source: kmk
+      - value: 0.9
+        source: ngc
+      - value: 0.9
+        source: numismaster
+      - value: 0.91
+        source: kmk
+      - value: 0.919
+        source: kmk
+      - value: 0.946
+        source: kmk
+      - value: 0.95
+        source: kmk
+      - value: 1.0
+        source: kmk
+      - value: 1.01
+        source: numista
+    diameter_mm:
+      - value: 13.9
+        source: ngc
+      - value: 13.9
+        source: numista
+      - value: 15.0
+        source: ikmk
+      - value: 16.0
+        source: ikmk
+    sources:
+      - type: literature
+        url: https://en.numista.com/151528
+        ref: Numista N#151528 — 2 Schillings Lübisch "Reuterpfennig" - John
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284712
+        ref: IKMK Berlin 18284712
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284714
+        ref: IKMK Berlin 18284714
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284716
+        ref: IKMK Berlin 18284716
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296097
+        ref: KMM 296097 (Inv. FP 9040.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296098
+        ref: KMM 296098 (Inv. FP 9040.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/370043
+        ref: KMM 370043 (Inv. FP 4345.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714773
+        ref: KMM 714773 (Inv. FP 12405.277)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714774
+        ref: KMM 714774 (Inv. FP 12405.276)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714775
+        ref: KMM 714775 (Inv. FP 12405.275)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714776
+        ref: KMM 714776 (Inv. FP 12405.274)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714777
+        ref: KMM 714777 (Inv. FP 12405.273)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714780
+        ref: KMM 714780 (Inv. FP 12405.270)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201032
+        ref: KMM 201032 (Inv. FP 3108.11518)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201033
+        ref: KMM 201033 (Inv. FP 3108.11517)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201034
+        ref: KMM 201034 (Inv. FP 3108.11516)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201035
+        ref: KMM 201035 (Inv. FP 3108.11515)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201036
+        ref: KMM 201036 (Inv. FP 3108.11514)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201037
+        ref: KMM 201037 (Inv. FP 3108.11513)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201038
+        ref: KMM 201038 (Inv. FP 3108.11512)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201039
+        ref: KMM 201039 (Inv. FP 3108.11511)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201040
+        ref: KMM 201040 (Inv. FP 3108.11510)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201041
+        ref: KMM 201041 (Inv. FP 3108.11509)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201042
+        ref: KMM 201042 (Inv. FP 3108.11508)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201043
+        ref: KMM 201043 (Inv. FP 3108.11507)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201044
+        ref: KMM 201044 (Inv. FP 3108.11506)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201045
+        ref: KMM 201045 (Inv. FP 3108.11505)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201046
+        ref: KMM 201046 (Inv. FP 3108.11504)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201047
+        ref: KMM 201047 (Inv. FP 3108.11503)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201048
+        ref: KMM 201048 (Inv. FP 3108.11502)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201049
+        ref: KMM 201049 (Inv. FP 3108.11501)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201050
+        ref: KMM 201050 (Inv. FP 3108.11500)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201051
+        ref: KMM 201051 (Inv. FP 3108.11499)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714781
+        ref: KMM 714781 (Inv. FP 12405.269)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714783
+        ref: KMM 714783 (Inv. FP 12405.267)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201059
+        ref: KMM 201059 (Inv. FP 3108.11491)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201060
+        ref: KMM 201060 (Inv. FP 3108.11490)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201061
+        ref: KMM 201061 (Inv. FP 3108.11489)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201062
+        ref: KMM 201062 (Inv. FP 3108.11488)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201063
+        ref: KMM 201063 (Inv. FP 3108.11487)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201064
+        ref: KMM 201064 (Inv. FP 3108.11486)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201065
+        ref: KMM 201065 (Inv. FP 3108.11485)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201066
+        ref: KMM 201066 (Inv. FP 3108.11484)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201067
+        ref: KMM 201067 (Inv. FP 3108.11483)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201068
+        ref: KMM 201068 (Inv. FP 3108.11482)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201069
+        ref: KMM 201069 (Inv. FP 3108.11481)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201070
+        ref: KMM 201070 (Inv. FP 3108.11480)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201071
+        ref: KMM 201071 (Inv. FP 3108.11479)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201072
+        ref: KMM 201072 (Inv. FP 3108.11478)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714782
+        ref: KMM 714782 (Inv. FP 12405.268)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714784
+        ref: KMM 714784 (Inv. FP 12405.266)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-11-16z0-16z5-cuid-1172866-duid-1391554
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120993
+        ref: NumisMaster
+    note:
+      de: Reuterpfennig
+      en: Reuterpfennig
+      uk: Reuterpfennig
+    issuing_entity: sonderburg_duchy
+    composed_of:
+      - dk-numista-151528
+      - ikmk-18284712
+      - ikmk-18284714
+      - ikmk-18284716
+      - kmk-296097
+      - kmk-296098
+      - kmk-370043
+      - kmk-714773
+      - kmk-714775
+      - kmk-714776
+      - kmk-714777
+      - kmk-714780
+      - kmk-714781
+      - kmk-714782
+      - kmk-714784
+      - ngc-1172866
+      - schleswig_holstein-numismaster-120993
+    _entity_routing_hint:
+      rule_id: sonderburg_ducal_lineage
+      matched_on:
+        ruler_lineage: hans den yngre
+      would_route_to: sonderburg_duchy
+      active: true
+      reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
   - id: c-40cdbf0e
     class_id: c-40cdbf0e
     label: unified-dk-numista-151529
@@ -479,6 +909,46 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - dk-numista-151529
+  - id: c-91f9b800
+    class_id: c-91f9b800
+    label: unified-dk-numista-151534
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Düttchen
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
+    ruler: Alexander
+    catalog:
+      km: '25'
+      numista: '151534'
+      lange: 559a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.44
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/151534
+        ref: Numista N#151534 — 1 Düttchen - Alexander
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-16-thaler-km-25-16z5-cuid-1166181-duid-1388970
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_101369
+        ref: NumisMaster
+    issuing_entity: sonderburg_duchy
+    composed_of:
+      - dk-numista-151534
+      - ngc-1166181
+      - schleswig_holstein-numismaster-101369
   - id: c-401b7621
     class_id: c-401b7621
     label: unified-ikmk-18284272
@@ -1178,85 +1648,6 @@ coins:
       would_route_to: sonderburg_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
-  - id: c-e5ec0060
-    class_id: c-e5ec0060
-    label: unified-ngc-1157218
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/16 Thaler
-    year_first: 1619
-    year_last: 1620
-    year_ranges:
-      -   - 1619
-          - 1620
-    year_label: 1619-1620
-    ruler: Hans
-    mint: Reinfeld
-    catalog:
-      km: '9'
-      numista: '151527'
-      lange: 533a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/151527
-        ref: Numista N#151527 — 2 Schillings - John
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-16-thaler-km-9-1619-1620-cuid-1157218-duid-1387255
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_101368
-        ref: NumisMaster
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - dk-numista-151527
-      - ngc-1157218
-      - schleswig_holstein-numismaster-101368
-  - id: c-241b2ebd
-    class_id: c-241b2ebd
-    label: unified-ngc-1157219
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ¼ Thaler
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Hans
-    mint: Reinfeld
-    catalog:
-      km: '16'
-      numista: '131934'
-      lange: '546'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/131934
-        ref: Numista N#131934 — ¼ Thaler - John (Death)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-4-thaler-km-16-1622-cuid-1157219-duid-1406649
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_101371
-        ref: NumisMaster
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - dk-numista-131934
-      - ngc-1157219
-      - schleswig_holstein-numismaster-101371
   - id: c-81850baa
     class_id: c-81850baa
     label: unified-ngc-1157220
@@ -1619,46 +2010,6 @@ coins:
     composed_of:
       - ngc-1164739
       - schleswig_holstein-numismaster-120996
-  - id: c-91f9b800
-    class_id: c-91f9b800
-    label: unified-ngc-1166181
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/16 Thaler
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Alexander
-    catalog:
-      km: '25'
-      numista: '151534'
-      lange: 559a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.44
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/151534
-        ref: Numista N#151534 — 1 Düttchen - Alexander
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-16-thaler-km-25-16z5-cuid-1166181-duid-1388970
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_101369
-        ref: NumisMaster
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - dk-numista-151534
-      - ngc-1166181
-      - schleswig_holstein-numismaster-101369
   - id: c-86e03a80
     class_id: c-86e03a80
     label: unified-ngc-1166275
@@ -1772,357 +2123,6 @@ coins:
     composed_of:
       - ngc-1171100
       - schleswig_holstein-numismaster-120997
-  - id: c-291dbc74
-    class_id: c-291dbc74
-    label: unified-ngc-1171377
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Schilling
-    year_first: 1618
-    year_last: 1622
-    year_ranges:
-      -   - 1618
-          - 1622
-    year_label: 1618-1622
-    ruler: Johann
-    mint: Reinfeld
-    catalog:
-      km: '4'
-      lange: '540'
-      numista: '151523'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 0.919
-        source: kmk
-      - value: 0.96
-        source: kmk
-    uncertainty:
-      year:
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1618-1622
-          seed: dk-numista-151523
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1618-22)
-          value: 1618-1622
-          seed: ngc-1171377
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1618-1622
-          seed: schleswig_holstein-numismaster-120991
-    sources:
-      - type: literature
-        url: https://en.numista.com/151523
-        ref: Numista N#151523 — 2 Schillings Lübisch - John
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714771
-        ref: KMM 714771 (Inv. FP 12405.279)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714772
-        ref: KMM 714772 (Inv. FP 12405.278)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-4-1618-22-cuid-1171377-duid-1391553
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120991
-        ref: NumisMaster
-    note:
-      de: rytterpenning
-      en: rytterpenning
-      uk: rytterpenning
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - dk-numista-151523
-      - kmk-714771
-      - kmk-714772
-      - ngc-1171377
-      - schleswig_holstein-numismaster-120991
-    _entity_routing_hint:
-      rule_id: sonderburg_ducal_lineage
-      matched_on:
-        ruler_lineage: hans den yngre
-      would_route_to: sonderburg_duchy
-      active: true
-      reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
-  - id: c-cd88eb54
-    class_id: c-cd88eb54
-    label: unified-ngc-1172866
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Schilling
-    year_first: 1620
-    year_last: 1625
-    year_ranges:
-      -   - 1620
-          - 1621
-      -   - 1623
-          - 1623
-      -   - 1625
-          - 1625
-    year_label: 1620-1621, 1623, 1625
-    ruler: Johann
-    mintmaster: Christoph Mittelbach
-    inscription_obv: IOHAN[S] / VAN GOTT / GNA ERWE / ZV NORW[E] / HER ZV SC/HL HOL
-    mint:
-      - Reinfeld
-      - Sønderborg
-    catalog:
-      km: '11'
-      lange:
-        - 541-42
-        - 541-542
-        - 542C
-        - 547-48
-      numista: '151528'
-      others:
-        - JSJ# 13
-        - JSJ# 13a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.72
-        source: kmk
-      - value: 0.88
-        source: ikmk
-      - value: 0.89
-        source: kmk
-      - value: 0.9
-        source: ikmk
-      - value: 0.9
-        source: kmk
-      - value: 0.9
-        source: ngc
-      - value: 0.9
-        source: numismaster
-      - value: 0.91
-        source: kmk
-      - value: 0.919
-        source: kmk
-      - value: 0.946
-        source: kmk
-      - value: 0.95
-        source: kmk
-      - value: 1.0
-        source: kmk
-      - value: 1.01
-        source: numista
-    diameter_mm:
-      - value: 13.9
-        source: ngc
-      - value: 13.9
-        source: numista
-      - value: 15.0
-        source: ikmk
-      - value: 16.0
-        source: ikmk
-    sources:
-      - type: literature
-        url: https://en.numista.com/151528
-        ref: Numista N#151528 — 2 Schillings Lübisch "Reuterpfennig" - John
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284712
-        ref: IKMK Berlin 18284712
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284714
-        ref: IKMK Berlin 18284714
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284716
-        ref: IKMK Berlin 18284716
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/296097
-        ref: KMM 296097 (Inv. FP 9040.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/296098
-        ref: KMM 296098 (Inv. FP 9040.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/370043
-        ref: KMM 370043 (Inv. FP 4345.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714773
-        ref: KMM 714773 (Inv. FP 12405.277)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714774
-        ref: KMM 714774 (Inv. FP 12405.276)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714775
-        ref: KMM 714775 (Inv. FP 12405.275)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714776
-        ref: KMM 714776 (Inv. FP 12405.274)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714777
-        ref: KMM 714777 (Inv. FP 12405.273)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714780
-        ref: KMM 714780 (Inv. FP 12405.270)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201032
-        ref: KMM 201032 (Inv. FP 3108.11518)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201033
-        ref: KMM 201033 (Inv. FP 3108.11517)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201034
-        ref: KMM 201034 (Inv. FP 3108.11516)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201035
-        ref: KMM 201035 (Inv. FP 3108.11515)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201036
-        ref: KMM 201036 (Inv. FP 3108.11514)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201037
-        ref: KMM 201037 (Inv. FP 3108.11513)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201038
-        ref: KMM 201038 (Inv. FP 3108.11512)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201039
-        ref: KMM 201039 (Inv. FP 3108.11511)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201040
-        ref: KMM 201040 (Inv. FP 3108.11510)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201041
-        ref: KMM 201041 (Inv. FP 3108.11509)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201042
-        ref: KMM 201042 (Inv. FP 3108.11508)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201043
-        ref: KMM 201043 (Inv. FP 3108.11507)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201044
-        ref: KMM 201044 (Inv. FP 3108.11506)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201045
-        ref: KMM 201045 (Inv. FP 3108.11505)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201046
-        ref: KMM 201046 (Inv. FP 3108.11504)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201047
-        ref: KMM 201047 (Inv. FP 3108.11503)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201048
-        ref: KMM 201048 (Inv. FP 3108.11502)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201049
-        ref: KMM 201049 (Inv. FP 3108.11501)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201050
-        ref: KMM 201050 (Inv. FP 3108.11500)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201051
-        ref: KMM 201051 (Inv. FP 3108.11499)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714781
-        ref: KMM 714781 (Inv. FP 12405.269)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714783
-        ref: KMM 714783 (Inv. FP 12405.267)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201059
-        ref: KMM 201059 (Inv. FP 3108.11491)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201060
-        ref: KMM 201060 (Inv. FP 3108.11490)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201061
-        ref: KMM 201061 (Inv. FP 3108.11489)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201062
-        ref: KMM 201062 (Inv. FP 3108.11488)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201063
-        ref: KMM 201063 (Inv. FP 3108.11487)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201064
-        ref: KMM 201064 (Inv. FP 3108.11486)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201065
-        ref: KMM 201065 (Inv. FP 3108.11485)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201066
-        ref: KMM 201066 (Inv. FP 3108.11484)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201067
-        ref: KMM 201067 (Inv. FP 3108.11483)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201068
-        ref: KMM 201068 (Inv. FP 3108.11482)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201069
-        ref: KMM 201069 (Inv. FP 3108.11481)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201070
-        ref: KMM 201070 (Inv. FP 3108.11480)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201071
-        ref: KMM 201071 (Inv. FP 3108.11479)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201072
-        ref: KMM 201072 (Inv. FP 3108.11478)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714782
-        ref: KMM 714782 (Inv. FP 12405.268)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714784
-        ref: KMM 714784 (Inv. FP 12405.266)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-11-16z0-16z5-cuid-1172866-duid-1391554
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120993
-        ref: NumisMaster
-    note:
-      de: Reuterpfennig
-      en: Reuterpfennig
-      uk: Reuterpfennig
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - dk-numista-151528
-      - ikmk-18284712
-      - ikmk-18284714
-      - ikmk-18284716
-      - kmk-296097
-      - kmk-296098
-      - kmk-370043
-      - kmk-714773
-      - kmk-714775
-      - kmk-714776
-      - kmk-714777
-      - kmk-714780
-      - kmk-714781
-      - kmk-714782
-      - kmk-714784
-      - ngc-1172866
-      - schleswig_holstein-numismaster-120993
-    _entity_routing_hint:
-      rule_id: sonderburg_ducal_lineage
-      matched_on:
-        ruler_lineage: hans den yngre
-      would_route_to: sonderburg_duchy
-      active: true
-      reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
   - id: c-d721bcaa
     class_id: c-d721bcaa
     label: unified-ngc-1175224
