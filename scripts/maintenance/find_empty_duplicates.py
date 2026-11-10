@@ -27,7 +27,7 @@ OUT = sys.argv[2] if len(sys.argv) > 2 else None
 DENMARK = ['christian_ii_reconquest', 'christian_ii_supporters', 'danish_norway', 'danish_realm',
            'glucksburg_duchy', 'gottorp_duchy', 'norburg_plon_duchy', 'norby_gotland',
            'royal_holstein', 'royal_slesvig', 'sonderburg_duchy']
-SKIP_CAT = {'hede_volume', 'bruun_part', 'bruun_page', 'bruun_lot_no'}
+SKIP_CAT = {'hede_volume'}
 
 
 def base_coins(ent):

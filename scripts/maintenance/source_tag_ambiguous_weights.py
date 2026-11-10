@@ -110,19 +110,16 @@ def ucoin_weight(coin: dict, source_url: str, ucoin_idx: dict) -> float | None:
 
 
 def bruun_weight(coin: dict, source_ref: str, bruun_lots: dict) -> float | None:
-    cat = coin.get("catalog") or {}
-    # First preference: explicit catalog.bruun_part / bruun_lot_no
-    part = cat.get("bruun_part")
-    lot_no = cat.get("bruun_lot_no")
-    # Or parse "Bruun Part II, lot 14224, p. 301" from source ref
-    if not (part and lot_no):
-        m = re.search(r"Part\s+(I{1,3}V?|IV|\d+).*?lot\s+(\d+)", source_ref or "", re.IGNORECASE)
-        if m:
-            part = m.group(1).upper()
-            try:
-                lot_no = int(m.group(2))
-            except ValueError:
-                lot_no = None
+    # Part and lot from the citation itself («Bruun Part II, lot 14224,
+    # p. 301») — the former catalog anchor was retired 2026-11-10.
+    part = lot_no = None
+    m = re.search(r"Part\s+(I{1,3}V?|IV|\d+).*?lot\s+(\d+)", source_ref or "", re.IGNORECASE)
+    if m:
+        part = m.group(1).upper()
+        try:
+            lot_no = int(m.group(2))
+        except ValueError:
+            lot_no = None
     if not (part and lot_no):
         return None
     lot = bruun_lots.get((str(part), int(lot_no)))

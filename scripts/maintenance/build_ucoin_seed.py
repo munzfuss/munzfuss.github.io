@@ -593,8 +593,8 @@ def _build_entry_from_v1(v1_coin: dict, entity: str) -> dict | None:
     # Strip non-schema catalog keys that V1 may carry
     cat = {k: v for k, v in cat.items()
            if k in {"km", "lange", "hede", "sieg", "schou", "fr", "dav", "mb",
-                    "bruun_collection_id", "bruun_part", "bruun_lot_no",
-                    "bruun_page", "bruun_lot", "numista", "hede_volume", "others"}}
+                    "bruun_collection_id", "bruun_lot", "numista",
+                    "hede_volume", "others"}}
 
     entry: dict = {
         "id": cid,
@@ -854,8 +854,7 @@ def build_seed(entity: str, dry_run: bool,
                 v1_cat = v1.get("catalog") or {}
                 for k, v in v1_cat.items():
                     if k in {"km", "lange", "hede", "sieg", "schou", "fr",
-                             "dav", "mb", "bruun_collection_id", "bruun_part",
-                             "bruun_lot_no", "bruun_page", "bruun_lot",
+                             "dav", "mb", "bruun_collection_id", "bruun_lot",
                              "numista", "hede_volume"}:
                         entry["catalog"].setdefault(k, v)
             if entry:

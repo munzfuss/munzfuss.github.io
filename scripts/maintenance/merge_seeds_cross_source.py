@@ -999,8 +999,6 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
     # variants (Numista) and should NOT auto-merge without curator
     # decision via merge_decisions/<entity>.yml.
     #
-    # Bruun_part / bruun_lot_no / bruun_page are SPECIMEN-level — two
-    # lots can be the same type; excluded from match comparison.
     # Catalog-key synonym table. Different parsers / catalogues use different
     # short tokens for the same publication; map them all to one canonical
     # ref-key so the cross-source matcher sees overlap. Without this:
@@ -4441,7 +4439,7 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
 
     Returns (merged_catalog, conflicts). `conflicts` only logs cases
     where two members disagreed on a STRICTLY single-value field (e.g.
-    bruun_part Literal — can't list-form).
+    hede_volume — can't list-form).
     """
     sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
     out: dict = {}
@@ -4481,20 +4479,7 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
     # schema (§dup-audit T-fix 2026-05-30). Unlike `galster_volume`
     # (`str | list[str]`, list-allowed), `hede_volume` is strictly scalar.
     _SINGLE_VALUE_FIELDS = {
-        "bruun_part", "bruun_lot_no", "bruun_page",
         "sieg_hede1971", "schou_hede1971", "hede_volume",
-    }
-    # SPECIMEN-level single-value fields: a coin TYPE legitimately has many
-    # Bruun specimens (different part/lot/page), so a disagreement here is
-    # EXPECTED, not a real conflict — the anchor scalar keeps the top-
-    # authority specimen and every other specimen's full citation lives in
-    # `sources[]` + `bruun_collection_id` (§9a, verified 0 loss 2026-06-03).
-    # §9a already excludes these from MATCHING; we likewise keep them OUT of
-    # the conflict log so the audit surfaces only GENUINE single-value
-    # disagreements (sieg_hede1971 / schou_hede1971 / hede_volume — e.g. the
-    # KM-461 c5h-vs-f4h reign mix-up). Output (chosen anchor) is unchanged.
-    _SPECIMEN_LEVEL_SINGLE_FIELDS = {
-        "bruun_part", "bruun_lot_no", "bruun_page",
     }
     # `others` is already list-form; just union.
 
@@ -4542,9 +4527,7 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
         elif k in _SINGLE_VALUE_FIELDS:
             # Single-value forced (schema constraint). Top-auth wins.
             out[k] = values[0]
-            # Specimen-level bruun part/lot/page disagreements are expected
-            # (multi-specimen) and lossless — don't log them as conflicts.
-            if len(values) > 1 and k not in _SPECIMEN_LEVEL_SINGLE_FIELDS:
+            if len(values) > 1:
                 for extra in values[1:]:
                     all_conflicts.append((f"catalog.{k}", values[0], extra))
         else:
@@ -4553,13 +4536,6 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
             if len(values) > 1:
                 for extra in values[1:]:
                     all_conflicts.append((f"catalog.{k}", values[0], extra))
-
-    # `bruun_lot_no` is int in schema, `bruun_page` is int — re-cast when
-    # values are numeric strings (pydantic would accept str→int coercion
-    # but writing the YAML cleanly is nicer)
-    for k in ("bruun_lot_no", "bruun_page"):
-        if k in out and isinstance(out[k], str) and out[k].isdigit():
-            out[k] = int(out[k])
 
     # Catalog-key synonym canonicalisation on OUTPUT (the same canonical
     # map used for matcher input in `_catalog_refs`). When per-source data

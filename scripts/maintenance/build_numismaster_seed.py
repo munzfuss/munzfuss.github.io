@@ -247,15 +247,14 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
 
     # Catalog refs — schema-clean subset only. Coin.catalog (CatalogRefs)
     # accepts: km, lange, hede, sieg, fr, dav, mb, bruun_collection_id,
-    # bruun_part, bruun_lot_no, bruun_page, bruun_lot, numista. NumisMaster's
+    # bruun_lot, numista. NumisMaster's
     # extra-vocabulary refs (schive / numismaster_mc / generic bruun-number)
     # are dropped here — the canonical raw record lives in
     # `MC_<N>.parsed.json`, so curators who want them open the cache. The
     # parser's `friedberg` key maps to schema `fr`.
     _ALLOWED_CATALOG_KEYS = {
         "km", "lange", "hede", "sieg", "fr", "dav", "mb",
-        "bruun_collection_id", "bruun_part", "bruun_lot_no", "bruun_page",
-        "bruun_lot", "numista",
+        "bruun_collection_id", "bruun_lot", "numista",
     }
     catalog: dict = {}
     if data.get("catalog_number"):

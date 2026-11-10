@@ -115,8 +115,7 @@ def _subvariant_key(coin: dict) -> tuple:
 # Catalogue keys that identify a SPECIMEN (auction lot, museum part), not a
 # TYPE — these are intentionally NOT salvaged from dropped specimens (they're
 # the redundant per-specimen provenance the thinning is meant to shed).
-_PER_SPECIMEN_KEYS = ("bruun_lot_no", "bruun_collection_id", "bruun_part",
-                      "bruun_page")
+_PER_SPECIMEN_KEYS = ("bruun_collection_id",)
 
 
 def _norm(x) -> str:

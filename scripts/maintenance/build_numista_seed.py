@@ -76,8 +76,7 @@ except Exception:  # pragma: no cover — defensive
         "schou_hede1971", "fr", "dav", "davenport", "mb", "galster",
         "galster_volume", "friedberg", "jensen_skjoldager", "schive",
         "skaare", "nmd", "fp", "hede_volume", "numista", "others",
-        "bruun_collection_id", "bruun_part", "bruun_lot_no", "bruun_page",
-        "bruun_lot",
+        "bruun_collection_id", "bruun_lot",
     }
 
 

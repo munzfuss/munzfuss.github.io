@@ -30,9 +30,8 @@ source entry whose ref-text matches the OLD-format regex:
 
   1. Parses out part (roman numeral) + lot_no + collection_id.
   2. Looks up the canonical PDF URL from the matching `_BRUUN_PART_PDF_URL`.
-  3. Looks up the page number on the SAME coin entry (from
-     `catalog.bruun_page` when set, otherwise from the matching Bruun
-     parser cache `scripts/cache/bruun/lots/part<N>.json`).
+  3. Looks up the page number in the Bruun parser cache
+     `scripts/cache/bruun/lots/part<N>.json` (printed page).
   4. Rewrites the source as:
        `{type: auction, url: <PDF URL>, ref: "Bruun Part <N>, lot
         <lot_no>, p. <page>"}`

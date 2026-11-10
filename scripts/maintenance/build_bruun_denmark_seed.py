@@ -32,7 +32,7 @@ merger compatibility:
   - id: `dk-bruun-<bruun-coll-id>` (or `dk-bruun-pt<N>-<lot-no>` if no coll-id)
   - catalog: dict of all attested cross-refs from lot.refs
   - sources: Bruun-lot citation block + Stack's Bowers auction reference
-  - bruun_collection_id / bruun_part / bruun_lot_no for fast lookup
+  - bruun_collection_id in catalog; part / lot / page in the citation
   - verified: false on all per §AF/§4 (specimens are auction-grade, not
     project-verified)
   - fineness_verified / weight_rough_verified per attestation status
@@ -1293,10 +1293,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # the coin type. They appear in the Bruun citation `sources[*].ref`
     # text already (Stack's Bowers prints rarity inline) and don't
     # need separate fields.
-    # bruun_collection_id / bruun_part / bruun_lot_no / bruun_page
-    # belong in catalog (already populated above via REF_FIELDS map);
-    # don't duplicate at coin top-level. Schema-strict validation
-    # would reject them otherwise.
+    # bruun_collection_id belongs in catalog (already populated above
+    # via REF_FIELDS map); part / lot / page live in the citation
+    # (`sources[].ref`), the catalog anchor was retired 2026-11-10.
 
     if lot_errata:
         entry["_source_errata"] = [dict(r) for r in lot_errata]

@@ -63,7 +63,7 @@ RESTORE = {"e210ed6", "e851d3f", "4831c21", "10850ab", "9cb33bd", "b9e45f7", "21
 V1STYLE = re.compile(r"catalogue/pieces\d+\.html|/ danskmoent\.dk'|', 'ucoin'\)|', 'ucoin tid|', 'Numista'\)|ngccoin\.com/price-guide|"
                      r"coins\.ha\.com|coinvarieties|worldcoingallery|kuenker\.de|'KM-DK# |\('jesse'|'Hede / danskmoent|"
                      r"stacksbowers\.com/wp-content|\('bruun_lot'|\('bruun_(lot_no|page|collection_id|part)'")
-BRUUN_ANCHORS = {"bruun_lot_no", "bruun_page", "bruun_collection_id", "bruun_part", "bruun_lot"}
+BRUUN_ANCHORS = {"bruun_collection_id", "bruun_lot"}
 TEMPLATE_MIN = 5   # a note text shared by this many base finals is a template, not curated prose
 
 GROUPS = {

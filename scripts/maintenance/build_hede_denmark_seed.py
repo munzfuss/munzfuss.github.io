@@ -195,8 +195,8 @@ CURATED_FIELDS = frozenset({
 # replaced. Keys present in the existing entry are preserved;
 # keys present in fresh but missing in existing are added.
 # `catalog` is the only such field in practice — curation often
-# adds Bruun citation keys (km, dav, bruun_collection_id,
-# bruun_part, bruun_lot_no, bruun_page) on top of the Hede /
+# adds Bruun citation keys (km, dav, bruun_collection_id) on top
+# of the Hede /
 # Schou / Sieg keys the parser supplies.
 DEEP_MERGE_FIELDS = frozenset({
     "catalog",

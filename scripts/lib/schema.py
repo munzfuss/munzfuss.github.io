@@ -1010,12 +1010,11 @@ class CatalogRefs(_StrictBase):
     # Bruun citation. collection-id IS list-form: same physical coin
     # type can appear in MULTIPLE Bruun lots (different specimens) with
     # their own collection ids — the merger preserves every distinct id.
-    # part / lot_no / page are specimen-level — top-auth wins for the
-    # display tuple but the per-member detail lives in `sources[]`.
+    # The former specimen anchor (bruun_part / bruun_lot_no / bruun_page)
+    # was retired 2026-11-10: nothing rendered it, every lot is cited in
+    # `sources[]`, and the stored anchor rode onto other coins through the
+    # self-union. A part / lot / page is read from the citation.
     bruun_collection_id: str | list[str] | None = None
-    bruun_part: Literal["I", "II", "III", "IV", "V", "VI"] | None = None
-    bruun_lot_no: int | None = None
-    bruun_page: int | None = None   # PDF page of the cached catalogue (machine locator); citations give the printed page (lib.bruun_pages)
     bruun_lot: str | list[str] | None = None
     # Numista N#: list-form when two N#s describe the same physical
     # coin (rare but happens — sub-variants Numista chose to split that

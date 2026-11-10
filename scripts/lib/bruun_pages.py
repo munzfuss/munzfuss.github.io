@@ -10,7 +10,7 @@ www.StacksBowers.com P age 95» — letter-spaced by pypdf). The offset is const
 within a part (I −24, II −26, III −18, IV −16, V −16), but the head is read per
 page and the offset is only a cross-check.
 
-`catalog.bruun_page` and the parser's `page` / `page_span` stay PDF pages: they
+The parser's `page` / `page_span` stay PDF pages: they
 are machine locators into the cache, never rendered.
 """
 from __future__ import annotations

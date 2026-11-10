@@ -206,7 +206,7 @@ def schema_list_catalog_fields() -> set[str]:
     attests MULTIPLE distinct values for such a field (e.g. danskmoent's
     Galster 68 → «Schou 3» + «Schou 4» inscription variants) emits a list
     directly, instead of overflowing the extras into `others` as
-    «schou# 4». Scalar-only fields (hede_volume, bruun_part, …) are
+    «schou# 4». Scalar-only fields (hede_volume, …) are
     excluded so they keep the first-wins behaviour."""
     global _SCHEMA_LIST_CATALOG_FIELDS
     if _SCHEMA_LIST_CATALOG_FIELDS is None:
