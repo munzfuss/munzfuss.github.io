@@ -16,6 +16,36 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-10 — A43 / B43, Hede 112 / 113 split, Dav marks, Bruun off-metal headline (local, unpushed)
+
+- **Shipped (main b02f55e..0bdbd0a, cache 4c782ff9c; main 6 ahead of origin at 0bdbd0a):**
+  - NGC «Glückstadt 4 Mark Danske KM A43 / B43» → Hede 153 (A43 = 153B, B43 = 153A), `_cross_entity.yml`
+    royal_holstein entry (a1801d1); km-223 lost them.
+  - Hede 112 and 113 kept apart (curator: «112 і 113 не склеювати»). KM 272 = Hede 112A (tv / tv, G K at the
+    sides), KM 273.1 = 112B — an earlier reason text had it reversed, corrected publicly in 7d88595 (tv =
+    counterclockwise, checked on Zinck images). 32 KMM tag records → Hede 113 with pairwise no_merges against
+    the KM 272 / 273.1 records. KM 285 (NumisMaster 65293, Numista 180706, ucoin 99165, NGC 1049964) joins
+    Hede 113 as 113C (0bdbd0a); its seed_unsorted final with a Numista design note is gone (note never
+    rendered). Hede 112C (single source, hede-112a-fr-iii-1666) stays — curator «не виключаємо».
+  - Bruun prints its own collection number in the Dav slot on lots 11193 / 11231 / 12046 → catalog_marks
+    `dav` erroneous on dk-bruun-6505 / 5371 / 9319; `apply_catalog_marks` now resolves a register alias
+    (`dav` mark removes a `davenport` key, 441ff2e + test_catalog_mark_register_alias).
+  - Bruun parser: «Off-Metal» in a lot's headline alone excludes it (OFF_METAL_TITLE_RE, f9c11e3; lot 11269);
+    Bruun 7376 (gold 2 Skilling 1711, Hede 44A) excluded off_strike (652465d).
+  - Stale KMM 149338 citation dropped from km-161-fr-iii-1648 (f6e8218). Tests: Bruun bare-Pn and KMK
+    joint-mint tests fixed (b02f55e, b802487).
+  - Correction of the 2026-11-09 item 2: the KM A224 ↔ Hede 95 no_merges are NOT inert — a plain exclusion
+    removes the whole class its seed lands in, the no_merges keep Hede 95 out of it. Keep them.
+- **Measured, not acted on (item «Hede-base rule»):** HEDE_BASE=1 dry-run joins 294 groups / 762 classes with
+  15 refusals (type Е gold-from-silver-dies: Hede 98, 99, 100A, 61, 62, 68, 72, 44A, Oldenburg 4B, Holstein
+  156; curator no_merges: Norge 8A–D, 9A / 9B, Hede 12A / 12B, F2 7A–G, C5 69A / 69B). Awaits the curator:
+  review the 294 groups, and whether to add an «exclude only the conflicting class» mode.
+- **Closed:** legacy Bruun fields `bruun_part` / `bruun_lot_no` / `bruun_page` are read by nothing (render and
+  builder use only `bruun_collection_id`) — the old item is obsolete; optional cleanup only if the curator asks.
+- **Open:** push (cache first, then main); the Hede-base review above; notes queue (stale Hede 112C note).
+  Branch claude/blissful-kirch-7b7be3 still in use by another session — do not delete; the untracked files in
+  `scripts/cache` are that session's.
+
 ## 2026-11-09 — KM 222 / A224, Hede letter split, Christian V 1 Dukat sorted (local, unpushed)
 
 - **Shipped (main 4b5cba3..87f8846, cache af24c5141):** KM 222 = Hede 100B (Hede 100 one class); KMM «Hede 95A»
