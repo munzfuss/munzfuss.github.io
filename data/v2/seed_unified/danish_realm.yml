@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8405 per-source seed entries.
-# Output: 1704 unified entries (one per physical coin).
+# Output: 1703 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -68612,6 +68612,7 @@ coins:
     catalog:
       km:
         - '274'
+        - '285'
         - '275'
       hede:
         - 113A
@@ -68639,10 +68640,13 @@ coins:
       others:
         - Aagaard# 116.3
         - Aagaard# 117.7 (69-GK4/69-GK10)
-      numista: '111392'
+      numista:
+        - '111392'
+        - '180706'
       dav:
         - EC II 3581
         - EC II 3581A
+        - EC II 3581B
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -68662,6 +68666,9 @@ coins:
         specimen: dk-hede-f3h113c
       - value: 0.671
         source: ngc
+        specimen: ngc-1049964
+      - value: 0.671
+        source: ngc
         specimen: ngc-1050101
       - value: 0.671
         source: ngc
@@ -68673,9 +68680,20 @@ coins:
         source: numismaster
         specimen: denmark-numismaster-65292
       - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65293
+      - value: 0.671
         source: numista
+        specimen: dk-numista-111392
+      - value: 0.671
+        source: numista
+        specimen: dk-numista-180706
       - value: 0.671
         source: ucoin
+        specimen: dk-tid-97239
+      - value: 0.671
+        source: ucoin
+        specimen: dk-tid-99165
     weight_rough_g:
       - value: 20.94
         source: kmk
@@ -68895,6 +68913,10 @@ coins:
         source: kmk
       - value: 22.27
         source: ucoin
+        specimen: dk-tid-97239
+      - value: 22.27
+        source: ucoin
+        specimen: dk-tid-99165
       - value: 22.272
         source: hede
         specimen: dk-hede-f3h113a
@@ -68904,6 +68926,9 @@ coins:
       - value: 22.272
         source: hede
         specimen: dk-hede-f3h113c
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1049964
       - value: 22.272
         source: ngc
         specimen: ngc-1050101
@@ -68917,7 +68942,11 @@ coins:
         source: numismaster
         specimen: denmark-numismaster-65292
       - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65293
+      - value: 22.272
         source: numista
+        specimen: dk-numista-111392
       - value: 22.28
         source: kmk
       - value: 22.287
@@ -68996,19 +69025,33 @@ coins:
         source: kmk
       - value: 22.82
         source: kmk
+      - value: 22.84
+        source: numista
+        specimen: dk-numista-180706
       - value: 22.93
         source: kmk
     diameter_mm:
       - value: 40.0
         source: ucoin
+        specimen: dk-tid-97239
+      - value: 40.0
+        source: ucoin
+        specimen: dk-tid-99165
       - value: 40.76
         source: numista
+        specimen: dk-numista-111392
+      - value: 41.3
+        source: numista
+        specimen: dk-numista-180706
     sources:
       - type: literature
         url: https://numismaster.com/MC_65291
         ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_65292
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65293
         ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -69022,8 +69065,14 @@ coins:
       - type: literature
         url: https://en.numista.com/111392
         ref: Numista N#111392 — 4 Mark Danske - Frederik III (Motto on obverse; type I)
+      - type: literature
+        url: https://en.numista.com/180706
+        ref: Numista N#180706 — 4 Mark Danske - Frederik III (Motto on obverse; type III)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1666-1669/?tid=97239
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1667-1669/?tid=99165
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156827
@@ -69662,6 +69711,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/277010
         ref: KMM 277010 (Inv. FP 4227.970)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-285-1667-1669-cuid-1049964-duid-1237007
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-275-1666-1668-cuid-1050101-duid-1237005
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -69680,13 +69732,16 @@ coins:
     composed_of:
       - denmark-numismaster-65291
       - denmark-numismaster-65292
+      - denmark-numismaster-65293
       - dk-bruun-6655
       - dk-bruun-6702
       - dk-hede-f3h113a
       - dk-hede-f3h113b
       - dk-hede-f3h113c
       - dk-numista-111392
+      - dk-numista-180706
       - dk-tid-97239
+      - dk-tid-99165
       - kmk-156827
       - kmk-156870
       - kmk-275155
@@ -69855,6 +69910,7 @@ coins:
       - kmk-276991
       - kmk-276992
       - kmk-277010
+      - ngc-1049964
       - ngc-1050101
       - ngc-1050153
   - id: c-3cc51a74
@@ -104690,76 +104746,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-153173
-  - id: c-0a78a6ab
-    class_id: c-0a78a6ab
-    label: unified-dk-numista-180706
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Krone
-    year_first: 1667
-    year_last: 1669
-    year_ranges:
-      -   - 1667
-          - 1667
-      -   - 1669
-          - 1669
-    year_label: 1667, 1669
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '285'
-      numista: '180706'
-      dav: EC II 3581B
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: numista
-      - value: 0.671
-        source: ucoin
-    weight_rough_g:
-      - value: 22.27
-        source: ucoin
-      - value: 22.272
-        source: ngc
-      - value: 22.272
-        source: numismaster
-      - value: 22.84
-        source: numista
-    diameter_mm:
-      - value: 40.0
-        source: ucoin
-      - value: 41.3
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65293
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/180706
-        ref: Numista N#180706 — 4 Mark Danske - Frederik III (Motto on obverse; type III)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-krone-1667-1669/?tid=99165
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-285-1667-1669-cuid-1049964-duid-1237007
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65293
-      - dk-numista-180706
-      - dk-tid-99165
-      - ngc-1049964
   - id: c-7345dc86
     class_id: c-7345dc86
     label: unified-dk-numista-181856
