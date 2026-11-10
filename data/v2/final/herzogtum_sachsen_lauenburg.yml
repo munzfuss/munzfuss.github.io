@@ -28,6 +28,7 @@ coins:
         - Jaeg 6 FHI# 14
         - Kahnt/Schön# 280
         - Dorfmann# 140
+      hede_volume: f6hl
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -37,10 +38,14 @@ coins:
     verified: false
     fineness:
       - value: 0.75
+        source: hede
+      - value: 0.75
         source: numista
       - value: 0.75
         source: ucoin
     weight_rough_g:
+      - value: 17.32
+        source: hede
       - value: 17.32
         source: numista
       - value: 17.32
@@ -60,6 +65,9 @@ coins:
       - type: literature
         url: https://en.numista.com/31393
         ref: Numista N#31393 — ⅔ Thaler - Frederick VI - Duchy of Saxe-Lauenburg
+      - type: literature
+        url: https://www.danskmoent.dk/lauenbor.htm
+        ref: danskmoent.dk (Hede Lauenborg 1)
     note:
       de: Zweidrittel
       en: Zweidrittel
@@ -71,6 +79,10 @@ coins:
         ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
       uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+    hede_muentzfuss_yield:
+      value: 12.0
+      unit: thaler
+      basis: fin
     composed_of:
       - c-da05cf4b
     label: unified-dk-bruun-8082
