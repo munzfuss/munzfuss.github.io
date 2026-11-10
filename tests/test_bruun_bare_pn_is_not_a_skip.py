@@ -26,8 +26,10 @@ Two things this test pins down, because both were got wrong on the way here:
 
   * the `Pn` alternative stays OUT of the suppression pattern;
   * every OTHER suppression is untouched — those rest on Bruun's own wording
-    («Pattern», «off-metal strike», «Trial», «Piefort», «Guldafslag», and the
-    plain-prose «gold planchet» phrasing added the same day).
+    («off-metal strike», «Piefort», «Guldafslag», and the plain-prose «gold
+    planchet» phrasing added the same day). «Pattern» / «Trial» were here too
+    until 2026-11-08, when the curator made the wording alone insufficient
+    (see test_bruun_pattern_wording).
 
 The measurement that produced the five is worth remembering too: it must run
 against the FULL lot body, not the cached `body_excerpt`, which is `body[:600]`.
@@ -83,10 +85,11 @@ class TestBarePnDoesNotSuppress(unittest.TestCase):
 
 class TestEveryOtherSuppressionSurvives(unittest.TestCase):
     def test_bruun_own_wording_still_suppresses(self):
+        # «Pattern» / «Trial» left PATTERN_RE on 2026-11-08 (curator, e135675):
+        # the wording alone no longer excludes a lot, only together with an
+        # off-metal or off-nominal sign — pinned in test_bruun_pattern_wording.
         for text, marker in (
-            ("DENMARK. Silver Pattern 6 Skilling, 1812.", "Pattern"),
             ("DENMARK. Gold Off-Metal Strike 2 Skilling, 1778-CHL.", "off-metal"),
-            ("NORWAY. Gold Mark Trial Strike, 1684.", "Trial"),
             ("DENMARK. Speciedaler Piefort, 1624.", "Piefort"),
             ("… Guldafslag af 1 Speciedaler …", "Guldafslag"),
             ("… a gold planchet struck to a Double Ducat weight standard …",
