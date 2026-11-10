@@ -12,6 +12,7 @@ a quote right before `scripts`, so prose in docstrings («`scripts/cache/x`»)
 does not trip it.
 """
 import re
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -23,10 +24,24 @@ ALLOWED = {
 }
 
 
+def tracked_py_files() -> list[Path]:
+    """Python files git tracks under scripts/ and tests/.
+
+    Read from the index, not the disk: the ignored `scripts/oneoff/` scratch
+    files exist only in the checkout that wrote them, so a disk walk makes the
+    test pass in one checkout and fail in another."""
+    out = subprocess.run(
+        ["git", "ls-files", "-z", "--", "scripts/*.py", "tests/*.py"],
+        cwd=ROOT, capture_output=True, check=True,
+    ).stdout.decode("utf-8")
+    return [ROOT / p for p in out.split("\0") if p]
+
+
 def offenders() -> list[str]:
     out = []
-    files = list((ROOT / "scripts").rglob("*.py")) + list((ROOT / "tests").glob("*.py"))
-    for f in files:
+    for f in tracked_py_files():
+        if not f.is_file():
+            continue
         if f.resolve() in ALLOWED or "cache" in f.relative_to(ROOT).parts[1:2]:
             continue
         for n, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
