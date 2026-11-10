@@ -5341,3 +5341,13 @@ removals:
     field: sieg
     dropped: ['5', '1650', '1655']
     reason: 'Curator (Serhii) 2026-11-09 («1 так»): danskmoent f3h131 describes the mule as «tvepræg af forside Sieg 5/1650 og bagside Sieg 8.2/1655 (… Sieg 8.3)» — «Sieg N/year» names the dies of other coins (Sieg 5 is Hede 125), not Hede 131''s own number; the parser split them into Sieg 5, 1650 and 1655. Sieg 8.2 stays (group C gives it). The parser now drops «Sieg N/year» tokens.'
+  - seed: dk-hede-f3hej
+    kind: field
+    field: hede
+    dropped: ['ej']
+    reason: 'Curator (Serhii) 2026-11-10 («парсер має відкидати індекс якщо він з ej … не дати індекс який йому не належить»): danskmoent heads the page «Hede ej» when Hede gives the coin no number of its own (Danish «ej» = «not»; the Frederik III index row reads «ej · ej · 5 Dukat · Guld · 1665 … Slået med samme stempler som Hede 72»). A negative claim, not an index. The page stays a source of the Hede 72 gold class; the Hede builder no longer writes «ej».'
+  - seed: dk-hede-c7hej
+    kind: field
+    field: hede
+    dropped: ['ej']
+    reason: 'Curator (Serhii) 2026-11-10: danskmoent c7hej «(Hede ej, Schou ej)» — the 1/2 Speciedaler 1776 is in neither Hede nor Schou; «ej» is no Hede number. The Hede builder no longer writes it.'
