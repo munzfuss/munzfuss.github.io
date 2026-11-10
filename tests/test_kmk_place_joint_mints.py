@@ -16,6 +16,7 @@ from __future__ import annotations
 import importlib.util
 import sys
 import unittest
+from unittest import mock
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,6 +49,15 @@ class JointMints(unittest.TestCase):
 
 
 class DisputedPair(unittest.TestCase):
+    # The synthetic records carry no weight; since the KMM stub rule
+    # (curator 2026-11-05) such a record with no image is dropped, which made
+    # build_entry return None wherever the harvest cache is present
+    # (2026-11-10). The stub rule is not under test here: image unknown.
+    def setUp(self):
+        p = mock.patch.object(bk, "_kmm_has_image", lambda rid: None)
+        p.start()
+        self.addCleanup(p.stop)
+
     def test_frederiksborg_pair_unverified(self):
         src = {"id": 699135, "place": "København & Frederiksborg", "nominal": "skilling"}
         e = bk.build_entry(src) or {}
