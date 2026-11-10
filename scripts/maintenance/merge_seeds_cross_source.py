@@ -2315,10 +2315,17 @@ def _hede_base_groups(uf, seeds_by_id, entity_id):
     info: dict[str, dict] = {}
     key_roots: dict[tuple, set] = defaultdict(set)
     for root, members in uf.classes().items():
-        # A curator-excluded seed is an isolated singleton that absorb drops;
-        # it is no member of any group (curator 2026-11-07).
+        # A curator-excluded seed is no member of any group (curator
+        # 2026-11-07). A plain exclusion removes the WHOLE class its seed sits
+        # in (absorb `_coin_exclusion_hit`), so a class holding even ONE such
+        # seed is already gone from final: it must neither count as a refusal
+        # nor be joined to a live class, which absorb would then drop with it
+        # (curator 2026-11-10; the gold off-strikes of Hede 98 / 99 / 100A /
+        # 61 sat in classes with an NGC or Numista record of the same piece,
+        # so the former `all(...)` test kept them in and reported 6 false
+        # refusals).
         _excl = _all_excluded_seed_ids()
-        if all(m in uf.isolated or m in _excl for m in members):
+        if any(m in uf.isolated or m in _excl for m in members):
             continue
         bases: dict[str, set] = defaultdict(set)
         # Hede series of the members giving each base (`_hede_series`: Norge,
