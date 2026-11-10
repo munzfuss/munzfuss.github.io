@@ -5283,3 +5283,7 @@ removals:
     field: mint
     dropped: [Glückstadt]
     reason: 'Curator (Serhii) 2026-11-08 («3 і 4 прибрати взагалі, джерела не дають це як мінт»): only the KMM object page names «Slesvig-Holsten - Glückstadt»; no catalogue (Numista 278267/278268, NumisMaster MC_73972-73979) gives a mint for Hans Adolf''s 2/3 Thaler 1690, and KMM 290997 of the same issue reads «Pløn».'
+  - final: km-17-ja-i-plon-1690
+    kind: empty_duplicate
+    hosts: [c-43bd27ef]
+    reason: 'Curator (Serhii) 2026-11-10 («Тоді треба фікс»): 2/3 Thaler 1690 Ploen KM 17 — the NGC / NumisMaster KM 17 pair joined the Numista 278267 class (merge_decisions/norburg_plon_duchy.yml); the V1 foundation lost its only member and kept a skeleton. find_empty_duplicates.py: every URL, catalogue value and reading sits on c-43bd27ef.'

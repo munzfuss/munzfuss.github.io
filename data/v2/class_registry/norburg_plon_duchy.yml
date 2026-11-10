@@ -3,17 +3,10 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 25 active, 9 retired.
+# 23 active, 11 retired.
 
 id: norburg_plon_duchy
 classes:
-  - id: c-051538d1
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-278268
-    legacy_id: unified-dk-numista-278268
-    members:
-      - dk-numista-278268
   - id: c-06ce6dac
     status: active
     created: '2026-10-22'
@@ -76,13 +69,6 @@ classes:
     members:
       - ngc-1140213
       - schleswig_holstein-numismaster-73972
-  - id: c-4089ef48
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-278267
-    legacy_id: unified-dk-numista-278267
-    members:
-      - dk-numista-278267
   - id: c-42e17642
     status: active
     created: '2026-10-22'
@@ -102,9 +88,10 @@ classes:
   - id: c-43bd27ef
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1141408
+    label: unified-dk-numista-278267
     legacy_id: unified-ngc-1141408
     members:
+      - dk-numista-278267
       - ngc-1141408
       - schleswig_holstein-numismaster-73979
   - id: c-5278bf19
@@ -168,9 +155,10 @@ classes:
   - id: c-b751a64a
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1141407
+    label: unified-dk-numista-278268
     legacy_id: unified-ngc-1141407
     members:
+      - dk-numista-278268
       - ngc-1141407
       - schleswig_holstein-numismaster-73977
   - id: c-bfa7b85c
@@ -213,6 +201,24 @@ classes:
     members:
       - ngc-1142091
       - schleswig_holstein-numismaster-73968
+  - id: c-051538d1
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-278268
+    legacy_id: unified-dk-numista-278268
+    merged_into: c-b751a64a
+    retired: '2026-11-10'
+    members:
+      - dk-numista-278268
+  - id: c-4089ef48
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-278267
+    legacy_id: unified-dk-numista-278267
+    merged_into: c-43bd27ef
+    retired: '2026-11-10'
+    members:
+      - dk-numista-278267
   - id: c-4807cf28
     status: retired
     created: '2026-10-22'
