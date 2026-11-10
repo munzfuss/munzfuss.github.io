@@ -45,6 +45,14 @@ coins:
         source: bruun
       - value: 9.58
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Mark
+          value: silver
+          seed: dk-bruun-14709
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -390,6 +398,12 @@ coins:
         source: danskmoent.dk fr/f1g115.htm
     uncertainty:
       metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-14708
         - kind: inferred
           how: from_name
           source: galster

@@ -815,7 +815,7 @@ _NGC_GRADE_COLOUR_RE = re.compile(
 )
 
 
-def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple[str, bool]:
+def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple[str | None, bool]:
     """Best-effort metal classification from denomination.
 
     Returns (metal, verified) tuple. **Bruun does not state the metal
@@ -887,8 +887,10 @@ def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple
     if body and _NGC_GRADE_COLOUR_RE.search(body):
         return ("copper", False)
     # --- denomination-NAME heuristics below: weak guess → verified=False ---
+    # No denomination and no signal above: no metal (curator 2026-11-10 — a
+    # default «silver» read as a fact beside a gold Frederik d'Or).
     if not d:
-        return ("silver", False)  # safest default — no source signal
+        return (None, False)
     if "10 kroner" in d or "20 kroner" in d:  # Danish gold-standard gold coins
         return ("gold", False)
     if any(t in d for t in [
@@ -897,7 +899,7 @@ def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple
         "sovereign",  # Christian IV 1608 Sovereign (Hede 19) — gold prestige
         "d'or", "d’or", "dor",  # Pistolen-family (Christian/Frederik d'Or)
         "pistol",  # Pistole, Half Pistole etc.
-    ]):
+    ]) or re.search(r"\bd\s*['’]\s*or\b", d):  # «Frederik d’ or» (Part V)
         return ("gold", False)
     if "klipping" in d or "klippe" in d:
         return ("silver", False)
@@ -907,7 +909,15 @@ def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple
         return ("billon", False)  # most pre-1541 skillinge are debased
     if "mark" in d:
         return ("silver", False)
-    return ("silver", False)
+    # The daler / taler and krone families and the Guldengroschen (the silver
+    # Guldiner) are silver coins (the gold Kroner and Guldkrone are caught
+    # above).
+    if re.search(r"daler|taler|thaler|guldengroschen|\bkron(e|er|a|or)\b", d):
+        return ("silver", False)
+    # A denomination none of the names above covers: no metal rather than a
+    # default «silver» (curator 2026-11-10); another member of the class, or
+    # the class inference, supplies it.
+    return (None, False)
 
 
 def parse_mintmaster(body: str | None) -> str | None:
@@ -1310,6 +1320,13 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     wmark = _BRUUN_LOT_WEIGHT_MARKS.get((part, lot.get("lot_no")))
     if wmark and entry.get("weight_rough_g") is not None:
         entry["weight_rough_g"] = [{"value": entry["weight_rough_g"], "source": "bruun", **wmark}]
+    # A metal read from the denomination's name is inferred: «[ ]», with the
+    # printed denomination as the basis (curator 2026-11-10). The NGC
+    # grade-colour reading is a physical signal, not the name.
+    if (entry.get("metal") and entry.get("metal_verified") is False
+            and not (body and _NGC_GRADE_COLOUR_RE.search(body))):
+        unc.add(entry, "metal", "from_name", "bruun", as_printed=raw_denom,
+                value=entry["metal"])
     if year_unc and entry.get("year_verified") is False:
         unc.add(entry, "year", year_unc[0], "bruun", as_printed=year_unc[1],
                 value=year_unc[2])

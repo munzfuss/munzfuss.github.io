@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `herzogtum_braunschweig_lueneburg`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 2948 per-source seed entries.
-# Output: 2423 unified entries (one per physical coin).
+# Output: 2424 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_braunschweig_lueneburg
-generated_at: '2026-11-07'
+generated_at: '2026-11-10'
 coins:
   - id: c-3ae84baf
     class_id: c-3ae84baf
@@ -24,44 +24,28 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
-    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
     mint: Wolfenbüttel
     catalog:
       km: '65.1'
-      hede:
-        - '6'
-        - 6A
+      hede: 6A
       sieg: '192.1'
       bruun_collection_id: '5537'
       schou: '14'
       others:
         - Aagaard# 16.3
         - Harck# 27.8.2
-    metal: silver
-    metal_verified: true
+    metal_verified: false
     fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
+    weight_rough_verified: false
     mint_verified: true
     verified: false
-    weight_rough_g:
-      - value: 2.04
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14112, p. 45
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18250999
-        ref: IKMK Berlin 18250999
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-bruun-5537
-      - ikmk-18250999
   - id: c-08c0fcf7
     class_id: c-08c0fcf7
     label: unified-dk-bruun-5538
@@ -83,7 +67,6 @@ coins:
       others:
         - Aagaard# 15.3
         - Harck# 27.8.1
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
@@ -17140,6 +17123,41 @@ coins:
     composed_of:
       - ikmk-18236491
       - ikmk-18236492
+  - id: c-67287e0f
+    class_id: c-67287e0f
+    label: unified-ikmk-18250999
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Groschen
+    year_first: 1627
+    year_last: 1627
+    year_label: '1627'
+    ruler: Christian IV.
+    inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
+    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
+    mint: Wolfenbüttel
+    catalog:
+      hede: '6'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.04
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250999
+        ref: IKMK Berlin 18250999
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    composed_of:
+      - ikmk-18250999
   - id: c-f0988087
     class_id: c-f0988087
     label: unified-ikmk-18251000

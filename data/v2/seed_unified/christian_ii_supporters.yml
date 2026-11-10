@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `christian_ii_supporters`.
-# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/christian_ii_supporters.yml across all sources.
 #
 # Input: 28 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: christian_ii_supporters
-generated_at: '2026-11-09'
+generated_at: '2026-11-10'
 coins:
   - id: c-6f17b704
     class_id: c-6f17b704
@@ -52,6 +52,12 @@ coins:
         source: danskmoent.dk chr/c2g80.htm
     uncertainty:
       metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Skilling
+          value: billon
+          seed: dk-bruun-4116
         - kind: inferred
           how: from_name
           source: galster
@@ -451,6 +457,12 @@ coins:
       metal:
         - kind: inferred
           how: from_name
+          source: bruun
+          as_printed: Hvid
+          value: billon
+          seed: dk-bruun-4147
+        - kind: inferred
+          how: from_name
           source: galster
           as_printed: 1 Hvid
           value: billon
@@ -788,6 +800,12 @@ coins:
           value: Malmø, København
           seed: kmk-132277
       metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-bruun-4149
         - kind: inferred
           how: from_name
           source: galster

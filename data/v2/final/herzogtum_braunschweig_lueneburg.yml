@@ -21317,7 +21317,9 @@ coins:
     mint: Wolfenbüttel
     catalog:
       km: '65.2'
-      hede: 6B
+      hede:
+        - '6'
+        - 6B
       sieg: '192.2'
       bruun_collection_id: '5538'
       schou: '15'
@@ -21331,10 +21333,19 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 2.04
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11200, p. 84
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250999
+        ref: IKMK Berlin 18250999
     inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
     inscription_rev: QVID NON PRO RELIGIONE -/ C 4
     verification_note:
@@ -21346,6 +21357,7 @@ coins:
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
     composed_of:
       - c-08c0fcf7
+      - c-67287e0f
     label: unified-dk-bruun-5538
     origin: promoted
   - fuss: seed_unsorted
@@ -91851,9 +91863,7 @@ coins:
     mint: Wolfenbüttel
     catalog:
       km: '65.1'
-      hede:
-        - '6'
-        - 6A
+      hede: 6A
       sieg: '192.1'
       bruun_collection_id: '5537'
       schou: '14'
@@ -91867,19 +91877,10 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
-    weight_rough_g:
-      - value: 2.04
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14112, p. 45
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18250999
-        ref: IKMK Berlin 18250999
     inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
     inscription_rev: QVID NON PRO RELIGIONE -/ C 4
     verification_note:

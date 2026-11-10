@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sweden`.
-# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sweden.yml across all sources.
 #
 # Input: 260 per-source seed entries.
-# Output: 224 unified entries (one per physical coin).
+# Output: 225 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,70 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sweden
-generated_at: '2026-11-09'
+generated_at: '2026-11-10'
 coins:
+  - id: c-4225815c
+    class_id: c-4225815c
+    label: unified-dk-bruun-11316p
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Örtug
+    year_first: 1497
+    year_last: 1501
+    year_ranges:
+      -   - 1497
+          - 1501
+    year_label: 1497-1501
+    ruler: Hans
+    mint: Stockholm
+    catalog:
+      bruun_collection_id:
+        - 11316p
+        - 11316q
+      others:
+        - Llt# 1
+        - Delzanno# 423
+        - Frösell# 281
+        - Llt# 2
+        - Delzanno# 424
+        - Frösell# 282
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: false
+    weight_rough_g:
+      - value: 1.37
+        source: bruun
+      - value: 1.45
+        source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1497-1501)
+          value: 1497-1501
+          seed: dk-bruun-11316p
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1497-1501)
+          value: 1497-1501
+          seed: dk-bruun-11316q
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12145, p. 212
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14128, p. 230
+    issuing_entity: sweden
+    composed_of:
+      - dk-bruun-11316p
+      - dk-bruun-11316q
   - id: c-44c1d31d
     class_id: c-44c1d31d
     label: unified-dk-bruun-11413
@@ -32,7 +94,6 @@ coins:
         - SM# 6a
         - Delzanno# 163
         - Appelgren# 14
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -66,7 +127,6 @@ coins:
       others:
         - SM# 52
         - Delzanno# 188
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -113,6 +173,14 @@ coins:
     weight_rough_g:
       - value: 28.88
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-11443
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -149,6 +217,14 @@ coins:
     weight_rough_g:
       - value: 28.66
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11444
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -186,6 +262,14 @@ coins:
     weight_rough_g:
       - value: 29.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler “Spiran”
+          value: silver
+          seed: dk-bruun-11445
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -221,6 +305,14 @@ coins:
     weight_rough_g:
       - value: 6.59
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Mark
+          value: silver
+          seed: dk-bruun-11447
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -257,6 +349,14 @@ coins:
     weight_rough_g:
       - value: 28.88
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Salvator Daler
+          value: silver
+          seed: dk-bruun-11462
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -292,6 +392,14 @@ coins:
     weight_rough_g:
       - value: 22.15
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 15 Öre Klippe
+          value: silver
+          seed: dk-bruun-11464
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -326,6 +434,14 @@ coins:
     weight_rough_g:
       - value: 14.18
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Salvator Daler
+          value: silver
+          seed: dk-bruun-11469
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -360,6 +476,14 @@ coins:
     weight_rough_g:
       - value: 10.3
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-11486
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -396,6 +520,14 @@ coins:
     weight_rough_g:
       - value: 28.92
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11490
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -431,6 +563,14 @@ coins:
     weight_rough_g:
       - value: 2.9
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Öre Klippe
+          value: silver
+          seed: dk-bruun-11493
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -465,6 +605,14 @@ coins:
     weight_rough_g:
       - value: 11.32
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-11494
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -495,6 +643,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 16 Öre / 2 Mark
+          value: silver
+          seed: dk-bruun-11503
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -538,6 +694,14 @@ coins:
     diameter_mm:
       - value: 43.0
         source: ikmk
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 3 Mark
+          value: silver
+          seed: dk-bruun-11513
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -577,6 +741,14 @@ coins:
     weight_rough_g:
       - value: 28.6
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11543
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -612,6 +784,14 @@ coins:
     weight_rough_g:
       - value: 28.74
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11550
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -645,6 +825,14 @@ coins:
     weight_rough_g:
       - value: 6.25
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark Klippe
+          value: silver
+          seed: dk-bruun-11557
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -670,7 +858,6 @@ coins:
       others:
         - SM# 66
         - Delzanno# 55
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -713,6 +900,14 @@ coins:
     weight_rough_g:
       - value: 17.54
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 3 Mark
+          value: silver
+          seed: dk-bruun-11622
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -757,6 +952,13 @@ coins:
           as_printed: ND (1587)
           value: '1587'
           seed: dk-bruun-11642
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 3 Riksdaler
+          value: silver
+          seed: dk-bruun-11642
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -790,6 +992,14 @@ coins:
     weight_rough_g:
       - value: 7.59
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-11647
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -825,6 +1035,14 @@ coins:
     weight_rough_g:
       - value: 28.58
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11651
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -861,6 +1079,14 @@ coins:
     weight_rough_g:
       - value: 28.07
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11658
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -895,6 +1121,14 @@ coins:
     weight_rough_g:
       - value: 28.91
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11666
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -927,6 +1161,14 @@ coins:
     weight_rough_g:
       - value: 14.09
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-11679
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -962,6 +1204,14 @@ coins:
     weight_rough_g:
       - value: 28.75
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11680
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -996,6 +1246,14 @@ coins:
     weight_rough_g:
       - value: 28.85
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11681
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -1032,6 +1290,14 @@ coins:
     weight_rough_g:
       - value: 28.83
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-11682
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -1064,6 +1330,14 @@ coins:
     weight_rough_g:
       - value: 5.65
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark Klippe
+          value: silver
+          seed: dk-bruun-11684
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1098,6 +1372,14 @@ coins:
     weight_rough_g:
       - value: 29.26
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Daler
+          value: silver
+          seed: dk-bruun-11686
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -1122,7 +1404,6 @@ coins:
       others:
         - SM# 18a
         - Delzanno# 21
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -1157,7 +1438,6 @@ coins:
         - SM# 19
         - Delzanno# 23
         - Bruun auction# 661
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -1199,6 +1479,14 @@ coins:
     weight_rough_g:
       - value: 9.48
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark Klippe
+          value: silver
+          seed: dk-bruun-11693
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1282,6 +1570,14 @@ coins:
     weight_rough_g:
       - value: 14.49
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Daler Largesse
+          value: silver
+          seed: dk-bruun-11705
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -1314,6 +1610,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 20 Mark
+          value: silver
+          seed: dk-bruun-11710
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -1350,6 +1654,14 @@ coins:
     weight_rough_g:
       - value: 39.44
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Mark
+          value: silver
+          seed: dk-bruun-11711
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1496,6 +1808,14 @@ coins:
     weight_rough_g:
       - value: 96.53
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 20 Mark
+          value: silver
+          seed: dk-bruun-11735
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1533,6 +1853,14 @@ coins:
     weight_rough_g:
       - value: 31.37
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1 Riksdaler
+          value: silver
+          seed: dk-bruun-11743
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1605,6 +1933,14 @@ coins:
     weight_rough_g:
       - value: 2.39
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Mark
+          value: silver
+          seed: dk-bruun-11763
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1649,6 +1985,13 @@ coins:
           as_printed: ND (1617)
           value: '1617'
           seed: dk-bruun-11766
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 12 Mark
+          value: silver
+          seed: dk-bruun-11766
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -1685,6 +2028,14 @@ coins:
     weight_rough_g:
       - value: 30.98
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler (Salvatordaler)
+          value: silver
+          seed: dk-bruun-11767
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1720,6 +2071,14 @@ coins:
     weight_rough_g:
       - value: 19.1
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Mark
+          value: silver
+          seed: dk-bruun-11774
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1784,7 +2143,6 @@ coins:
         - Hagander# 96
         - Bruun auction# 888
       dav: '4565'
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -1832,6 +2190,14 @@ coins:
     weight_rough_g:
       - value: 28.78
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-11839
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1868,6 +2234,14 @@ coins:
     weight_rough_g:
       - value: 28.87
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Salvator Riksdaler
+          value: silver
+          seed: dk-bruun-11850
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1905,6 +2279,14 @@ coins:
     weight_rough_g:
       - value: 28.46
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-11852
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -1933,7 +2315,6 @@ coins:
         - Delzanno# 373
         - Bruun auction# 930
       dav: '4544'
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -1969,7 +2350,6 @@ coins:
         - Hagander# 139
         - Bruun auction# 978
       dav: 4559a
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -2114,7 +2494,6 @@ coins:
         - Delzanno# 361
         - Bruun auction# 947
       dav: '4549'
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -2225,7 +2604,6 @@ coins:
         - Hagander# 127
         - Bruun auction# 965
       dav: '4550'
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -2321,6 +2699,13 @@ coins:
           as_printed: Stockholm or Nürnberg
           value: Stockholm, Nürnberg
           seed: dk-bruun-11889
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Taler
+          value: silver
+          seed: dk-bruun-11889
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2350,7 +2735,6 @@ coins:
         - Hagander# 135
         - Hild# 189
       dav: '5272'
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -2385,7 +2769,6 @@ coins:
         - SB# 44
         - Delzanno# 446
         - Bruun auction# 945
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -2430,6 +2813,14 @@ coins:
     weight_rough_g:
       - value: 56.77
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Riksdaler
+          value: silver
+          seed: dk-bruun-11904
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -2506,7 +2897,6 @@ coins:
         - Delzanno# 461
         - Hagander# 143
       dav: '4561'
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -2599,6 +2989,14 @@ coins:
     weight_rough_g:
       - value: 28.66
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-11946
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -2634,6 +3032,14 @@ coins:
     weight_rough_g:
       - value: 28.42
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-11951
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -2671,6 +3077,14 @@ coins:
     weight_rough_g:
       - value: 28.71
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-11958
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2706,6 +3120,14 @@ coins:
     weight_rough_g:
       - value: 28.26
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-11959
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2743,6 +3165,14 @@ coins:
     weight_rough_g:
       - value: 7.05
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/4 Riksdaler
+          value: silver
+          seed: dk-bruun-11963
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -2829,6 +3259,20 @@ coins:
         source: bruun
       - value: 28.83
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-11977
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-12021
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -2868,6 +3312,14 @@ coins:
     weight_rough_g:
       - value: 14.24
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Taler
+          value: silver
+          seed: dk-bruun-11979
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2977,6 +3429,14 @@ coins:
     weight_rough_g:
       - value: 28.66
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-11985
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -3015,6 +3475,14 @@ coins:
     weight_rough_g:
       - value: 28.83
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-11994
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -3086,6 +3554,14 @@ coins:
     weight_rough_g:
       - value: 29.04
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-12002
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -3154,6 +3630,14 @@ coins:
     weight_rough_g:
       - value: 3.56
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/8 Taler
+          value: silver
+          seed: dk-bruun-12071
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -3200,6 +3684,13 @@ coins:
           as_printed: ND (1652-1654)
           value: 1652-1654
           seed: dk-bruun-12072
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-12072
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -3234,6 +3725,14 @@ coins:
     weight_rough_g:
       - value: 9.73
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark Largesse
+          value: silver
+          seed: dk-bruun-12078
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -3272,6 +3771,14 @@ coins:
     weight_rough_g:
       - value: 28.45
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12079
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -3344,6 +3851,14 @@ coins:
     weight_rough_g:
       - value: 57.45
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Talers
+          value: silver
+          seed: dk-bruun-12088
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -3380,6 +3895,14 @@ coins:
     weight_rough_g:
       - value: 28.53
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-12089
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -3564,6 +4087,14 @@ coins:
     weight_rough_g:
       - value: 28.55
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-12138
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -3596,6 +4127,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Mark
+          value: silver
+          seed: dk-bruun-12174
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -3631,6 +4170,14 @@ coins:
     weight_rough_g:
       - value: 10.22
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-12176
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -3754,6 +4301,14 @@ coins:
     weight_rough_g:
       - value: 30.53
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Mark
+          value: silver
+          seed: dk-bruun-12209
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -3862,6 +4417,14 @@ coins:
     weight_rough_g:
       - value: 31.1
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Mark
+          value: silver
+          seed: dk-bruun-12257
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -3897,6 +4460,14 @@ coins:
     weight_rough_g:
       - value: 20.26
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Mark
+          value: silver
+          seed: dk-bruun-12298
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -3932,6 +4503,14 @@ coins:
     weight_rough_g:
       - value: 5.15
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-12300
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -3970,6 +4549,14 @@ coins:
     weight_rough_g:
       - value: 28.89
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-12310
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -4043,6 +4630,14 @@ coins:
     weight_rough_g:
       - value: 28.98
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-12333
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -4114,6 +4709,14 @@ coins:
     weight_rough_g:
       - value: 29.66
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12340
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -4291,6 +4894,14 @@ coins:
     weight_rough_g:
       - value: 19.19
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-12363
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -4457,6 +5068,14 @@ coins:
     weight_rough_g:
       - value: 17.43
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-12544
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -4494,6 +5113,14 @@ coins:
     weight_rough_g:
       - value: 31.13
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Mark
+          value: silver
+          seed: dk-bruun-12584
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -4566,6 +5193,14 @@ coins:
     weight_rough_g:
       - value: 31.98
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Mark
+          value: silver
+          seed: dk-bruun-12594
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -4678,6 +5313,14 @@ coins:
     weight_rough_g:
       - value: 28.88
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12629
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -4712,6 +5355,14 @@ coins:
     weight_rough_g:
       - value: 29.06
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-12653
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -4833,6 +5484,14 @@ coins:
     weight_rough_g:
       - value: 20.7
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Mark
+          value: silver
+          seed: dk-bruun-12683
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -4908,6 +5567,14 @@ coins:
     weight_rough_g:
       - value: 29.23
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12708
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -4942,6 +5609,14 @@ coins:
     weight_rough_g:
       - value: 10.23
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark Largesse
+          value: silver
+          seed: dk-bruun-12714
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -5063,6 +5738,14 @@ coins:
     weight_rough_g:
       - value: 21.14
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Mark
+          value: silver
+          seed: dk-bruun-12734
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -5098,6 +5781,14 @@ coins:
     weight_rough_g:
       - value: 29.16
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12756
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -5170,6 +5861,14 @@ coins:
     weight_rough_g:
       - value: 57.96
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Riksdaler
+          value: silver
+          seed: dk-bruun-12775
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -5206,6 +5905,14 @@ coins:
     weight_rough_g:
       - value: 28.67
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12777
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -5280,6 +5987,14 @@ coins:
     weight_rough_g:
       - value: 29.24
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12791
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -5487,6 +6202,14 @@ coins:
     weight_rough_g:
       - value: 29.02
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12871
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -5613,6 +6336,14 @@ coins:
     weight_rough_g:
       - value: 28.98
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-12930
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -5912,6 +6643,14 @@ coins:
     weight_rough_g:
       - value: 29.35
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-13090
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -6299,6 +7038,14 @@ coins:
     weight_rough_g:
       - value: 28.81
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Pattern Riksdaler
+          value: silver
+          seed: dk-bruun-13297
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -6332,6 +7079,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Riksdaler
+          value: silver
+          seed: dk-bruun-13314
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -6714,7 +7469,6 @@ coins:
       others:
         - SM# 35a
         - Delzanno# 27
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -6797,6 +7551,14 @@ coins:
     weight_rough_g:
       - value: 34.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Riksdaler
+          value: silver
+          seed: dk-bruun-13604
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -6884,6 +7646,14 @@ coins:
     weight_rough_g:
       - value: 15.03
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Kronor
+          value: silver
+          seed: dk-bruun-13675
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -6915,6 +7685,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Krona
+          value: silver
+          seed: dk-bruun-13688
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -6950,6 +7728,14 @@ coins:
     weight_rough_g:
       - value: 14.98
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Kronor
+          value: silver
+          seed: dk-bruun-13789
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -6981,6 +7767,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Daler Plate Money
+          value: silver
+          seed: dk-bruun-13813
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7016,6 +7810,14 @@ coins:
     weight_rough_g:
       - value: 691.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Daler Plate Money
+          value: silver
+          seed: dk-bruun-13817
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7051,6 +7853,14 @@ coins:
     weight_rough_g:
       - value: 3057.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Daler Plate Money
+          value: silver
+          seed: dk-bruun-13818
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7086,6 +7896,14 @@ coins:
     weight_rough_g:
       - value: 2160.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Daler Plate Money
+          value: silver
+          seed: dk-bruun-13819
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7121,6 +7939,14 @@ coins:
     weight_rough_g:
       - value: 2237.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Daler Octagonal Plate Money
+          value: silver
+          seed: dk-bruun-13820
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7156,6 +7982,14 @@ coins:
     weight_rough_g:
       - value: 1491.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Daler Plate Money
+          value: silver
+          seed: dk-bruun-13822
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7191,6 +8025,14 @@ coins:
     weight_rough_g:
       - value: 1474.0
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Daler Plate Money
+          value: silver
+          seed: dk-bruun-13823
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7216,7 +8058,6 @@ coins:
       others:
         - SB# 69
         - Delzanno# 327
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -7262,6 +8103,14 @@ coins:
     weight_rough_g:
       - value: 2.46
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-bruun-4234
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7777,6 +8626,12 @@ coins:
       metal:
         - kind: inferred
           how: from_name
+          source: bruun
+          as_printed: 8 Skilling (4 Skilling)
+          value: billon
+          seed: dk-bruun-4232
+        - kind: inferred
+          how: from_name
           source: galster
           as_printed: 4 Skilling
           value: billon
@@ -8237,8 +9092,8 @@ coins:
     issuing_entity: sweden
     composed_of:
       - dk-galster-epomg-202
-  - id: c-4225815c
-    class_id: c-4225815c
+  - id: c-222db9e8
+    class_id: c-222db9e8
     label: unified-dk-galster-hg-230
     fuss: seed_unsorted
     phase: galster
@@ -8260,41 +9115,15 @@ coins:
         - Sømod# 175
         - Hildebrand# 712
         - Rasmusson# ill. 13
-        - Llt# 1
-        - Delzanno# 423
-        - Frösell# 281
-        - Llt# 2
-        - Delzanno# 424
-        - Frösell# 282
-      bruun_collection_id:
-        - 11316p
-        - 11316q
     metal: silver
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: true
+    weight_rough_verified: false
     mint_verified: true
     verified: false
     year_verified: false
-    weight_rough_g:
-      - value: 1.37
-        source: bruun
-      - value: 1.45
-        source: bruun
     uncertainty:
       year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1497-1501)
-          value: 1497-1501
-          seed: dk-bruun-11316p
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1497-1501)
-          value: 1497-1501
-          seed: dk-bruun-11316q
         - kind: inferred
           how: reign
           source: galster
@@ -8309,12 +9138,6 @@ coins:
           value: silver
           seed: dk-galster-hg-230
     sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12145, p. 212
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14128, p. 230
       - type: literature
         url: https://www.danskmoent.dk/hans.htm
         ref: Galster 230 (hg) — danskmoent.dk hans.htm
@@ -8323,8 +9146,6 @@ coins:
         ref: Galster 230 (hg) — danskmoent.dk hansgals.htm
     issuing_entity: sweden
     composed_of:
-      - dk-bruun-11316p
-      - dk-bruun-11316q
       - dk-galster-hg-230
   - id: c-20242dfd
     class_id: c-20242dfd

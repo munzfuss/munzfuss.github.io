@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 504 per-source seed entries.
-# Output: 259 unified entries (one per physical coin).
+# Output: 260 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-11-09'
+generated_at: '2026-11-10'
 coins:
   - id: c-a208b610
     class_id: c-a208b610
@@ -47,6 +47,14 @@ coins:
     diameter_mm:
       - value: 41.0
         source: ngc
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14788
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -99,6 +107,14 @@ coins:
     diameter_mm:
       - value: 41.0
         source: ngc
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14793
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -140,6 +156,14 @@ coins:
     weight_rough_g:
       - value: 57.38
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Double Taler
+          value: silver
+          seed: dk-bruun-14799
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -170,6 +194,14 @@ coins:
     weight_rough_g:
       - value: 88.35
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 3 Taler
+          value: silver
+          seed: dk-bruun-14813
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -207,6 +239,14 @@ coins:
     diameter_mm:
       - value: 57.0
         source: ngc
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1 1/2 Taler
+          value: silver
+          seed: dk-bruun-14815
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -288,36 +328,21 @@ coins:
       others:
         - Weinmeister# 95
         - Dav-LS# 470
-      dav: LS470
-    metal: silver
-    metal_verified: true
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: false
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 58.0
-        source: ngc
-      - value: 58.0
-        source: numismaster
       - value: 58.22
         source: bruun
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14263, p. 299
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-37-1606-cuid-1162554-duid-1387373
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96171
-        ref: NumisMaster
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-bruun-14846
-      - ngc-1162554
-      - schleswig_holstein-numismaster-96171
   - id: c-2bdace36
     class_id: c-2bdace36
     label: unified-dk-bruun-14871
@@ -357,6 +382,14 @@ coins:
         source: numista
       - value: 28.81
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14871
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -403,6 +436,14 @@ coins:
     weight_rough_g:
       - value: 28.82
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14891
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -440,6 +481,14 @@ coins:
     weight_rough_g:
       - value: 28.93
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14906
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -527,6 +576,13 @@ coins:
           as_printed: MDCXXII (1622)
           value: '1622'
           seed: ngc-1159741
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14907
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -601,6 +657,13 @@ coins:
           as_printed: ND (ca. 1606)
           value: '1606'
           seed: dk-bruun-14912
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Taler
+          value: silver
+          seed: dk-bruun-14912
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -668,6 +731,13 @@ coins:
           as_printed: ND (ca. 1606)
           value: '1606'
           seed: dk-bruun-14913
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Taler
+          value: silver
+          seed: dk-bruun-14913
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -733,6 +803,13 @@ coins:
           source: bruun
           as_printed: ND (ca. 1606)
           value: '1606'
+          seed: dk-bruun-14914
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Taler
+          value: silver
           seed: dk-bruun-14914
     sources:
       - type: auction
@@ -803,6 +880,13 @@ coins:
           as_printed: ND (ca. 1606)
           value: '1606'
           seed: dk-bruun-14915
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14915
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -869,6 +953,14 @@ coins:
     diameter_mm:
       - value: 36.0
         source: ngc
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Taler
+          value: silver
+          seed: dk-bruun-14918
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -927,6 +1019,14 @@ coins:
     diameter_mm:
       - value: 42.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14953
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -3296,6 +3396,7 @@ coins:
     year_first: 1606
     year_last: 1606
     year_label: '1606'
+    ruler: Ernst III
     catalog:
       km: '37'
       numista: '278290'
@@ -3311,15 +3412,21 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 58.0
+        source: numismaster
       - value: 58.12
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/278290
         ref: Numista N#278290 — 2 Thalers - Ernest III - HS-Pinneberg 1606
+      - type: literature
+        url: https://numismaster.com/MC_96171
+        ref: NumisMaster
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278290
+      - schleswig_holstein-numismaster-96171
   - id: c-32076095
     class_id: c-32076095
     label: unified-dk-numista-278291
@@ -8784,6 +8891,37 @@ coins:
     composed_of:
       - ngc-1162553
       - schleswig_holstein-numismaster-96152
+  - id: c-f105bcfe
+    class_id: c-f105bcfe
+    label: unified-ngc-1162554
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
+    ruler: Ernst III
+    catalog:
+      km: '37'
+      dav: LS470
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 58.0
+        source: ngc
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-37-1606-cuid-1162554-duid-1387373
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - ngc-1162554
   - id: c-a22454b1
     class_id: c-a22454b1
     label: unified-ngc-1162634

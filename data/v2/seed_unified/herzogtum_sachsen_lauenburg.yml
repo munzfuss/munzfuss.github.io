@@ -66,6 +66,14 @@ coins:
         source: numista
       - value: 34.0
         source: ucoin
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-8082
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf

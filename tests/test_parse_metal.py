@@ -97,9 +97,22 @@ class TestHeuristicsAreWeak(unittest.TestCase):
 
 
 class TestEdgeCases(unittest.TestCase):
-    def test_no_denom_no_ref_silver_unverified(self):
-        self.assertEqual(parse_metal(None, {}), ("silver", False))
-        self.assertEqual(parse_metal("", {}), ("silver", False))
+    def test_no_signal_gives_no_metal(self):
+        """No denomination, or one no rule covers: no metal, never a default
+        «silver» (curator 2026-11-10 — a default silver sat beside a gold
+        Frederik d'Or, Bruun 8074)."""
+        for nom in (None, "", "1 Penny", "50 Øre", "16 Reichsbankschilling",
+                    "1 Örtug"):
+            self.assertEqual(parse_metal(nom, {}), (None, False), nom)
+
+    def test_daler_taler_families_silver_from_the_name(self):
+        for nom in ("1 Speciedaler", "1 Taler", "2 Rigsdaler", "1 Riksdaler",
+                    "Double Taler", "1 Rigsbankdaler", "1 Krona", "2 Kronor"):
+            self.assertEqual(parse_metal(nom, {}), ("silver", False), nom)
+
+    def test_d_or_with_a_space_is_gold(self):
+        # Bruun Part V lot 14209 prints «1 Frederik d’ or»
+        self.assertEqual(parse_metal("1 Frederik d’ or", {}), ("gold", False))
 
 
 if __name__ == "__main__":
