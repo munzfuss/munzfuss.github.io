@@ -282,6 +282,15 @@ def apply_catalog_marks(entry) -> None:
         if not isinstance(mk, dict) or not mk.get("register") or mk.get("value") is None:
             continue
         reg, val = mk["register"], str(mk["value"]).strip()
+        if reg not in cat:
+            # The mark names the CatalogRefs field («dav»), the seed may still
+            # hold the source's alias key («davenport», Bruun builder): take
+            # the number out of that key (2026-11-10, Bruun Dav = Bruun no.).
+            from lib.catalog_codes import CATALOG_CODE_MAP
+            alias = next((k for k in cat if k != reg
+                          and CATALOG_CODE_MAP.get(str(k).lower()) == reg), None)
+            if alias is not None:
+                reg = alias
         cur = cat.get(reg)
         if cur is None:
             # A register with no field of its own lives in `others` as
