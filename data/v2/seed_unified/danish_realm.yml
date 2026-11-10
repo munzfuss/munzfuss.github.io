@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8405 per-source seed entries.
-# Output: 1703 unified entries (one per physical coin).
+# Output: 1702 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2654,8 +2654,8 @@ coins:
       - dk-tid-101248
       - kmk-122098
       - ngc-1060344
-  - id: c-4dc09034
-    class_id: c-4dc09034
+  - id: c-6fd03c19
+    class_id: c-6fd03c19
     label: unified-dk-bruun-6435
     fuss: seed_unsorted
     phase: bruun
@@ -2668,7 +2668,6 @@ coins:
     mintmaster: Frederik Caspar Herbach
     mint: Kopenhagen
     catalog:
-      km: '253'
       hede: 68A
       sieg: '86.1'
       bruun_collection_id: '6435'
@@ -2685,81 +2684,23 @@ coins:
     verified: false
     fineness:
       - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.979
         source: numista
     weight_rough_g:
       - value: 17.3
         source: bruun
-      - value: 17.452
-        source: ngc
-      - value: 17.452
-        source: numismaster
       - value: 17.5
         source: numista
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_138061
-        ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13153, p. 86
       - type: literature
         url: https://en.numista.com/469145
         ref: Numista N#469145 — 5 Ducats - Frederik III
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-5-ducat-km-253-1665-cuid-1056661-duid-1238726
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
-      - denmark-numismaster-138061
       - dk-bruun-6435
       - dk-numista-469145
-      - ngc-1056661
-  - id: c-8d668407
-    class_id: c-8d668407
-    label: unified-dk-bruun-6436
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: ½ Portugaløser
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '253'
-      hede: '72'
-      sieg: 140A
-      bruun_collection_id: '6436'
-      schou: '4'
-      others:
-        - Aagaard# 147.1
-      fr: '81'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 17.46
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1081, p. 103
-    note:
-      de: 5 Ducats
-      en: 5 Ducats
-      uk: 5 Ducats
-      da: 5 Ducats
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-bruun-6436
   - id: c-2329dbb7
     class_id: c-2329dbb7
     label: unified-dk-bruun-6437
@@ -91919,8 +91860,8 @@ coins:
       - dk-bruun-6278
       - dk-hede-f3h99
       - ngc-1050169
-  - id: c-179f5410
-    class_id: c-179f5410
+  - id: c-4dc09034
+    class_id: c-4dc09034
     label: unified-dk-hede-f3hej
     fuss: seed_unsorted
     phase: hede
@@ -91932,28 +91873,64 @@ coins:
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
-      hede: ej
+      km: '253'
+      hede:
+        - '72'
+        - ej
       hede_volume: f3h
       schou: '4'
+      sieg: 140A
+      bruun_collection_id: '6436'
+      others:
+        - Aagaard# 147.1
+      fr: '81'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
     weight_rough_g:
       - value: 17.452
         source: hede
+      - value: 17.452
+        source: ngc
+      - value: 17.452
+        source: numismaster
+      - value: 17.46
+        source: bruun
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_138061
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1081, p. 103
       - type: literature
         url: https://www.danskmoent.dk/fr/f3hej.htm
         ref: danskmoent.dk (Hede f3hej)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-5-ducat-km-253-1665-cuid-1056661-duid-1238726
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: 5 Ducats
+      en: 5 Ducats
+      uk: 5 Ducats
+      da: 5 Ducats
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-138061
+      - dk-bruun-6436
       - dk-hede-f3hej
+      - ngc-1056661
   - id: c-75cf5f97
     class_id: c-75cf5f97
     label: unified-dk-hede-f4h1

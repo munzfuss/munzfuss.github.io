@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1703 active, 4729 retired.
+# 1702 active, 4731 retired.
 
 id: danish_realm
 classes:
@@ -2924,13 +2924,6 @@ classes:
       - denmark-numismaster-65427
       - dk-tid-99106
       - ngc-1050176
-  - id: c-179f5410
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-f3hej
-    legacy_id: unified-dk-hede-f3hej
-    members:
-      - dk-hede-f3hej
   - id: c-17c98697
     status: active
     created: '2026-10-22'
@@ -8708,14 +8701,15 @@ classes:
   - id: c-4dc09034
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-6435
+    label: unified-dk-hede-f3hej
     legacy_id: unified-dk-bruun-6435
     split_into:
+      - c-6fd03c19
       - c-8d668407
     members:
       - denmark-numismaster-138061
-      - dk-bruun-6435
-      - dk-numista-469145
+      - dk-bruun-6436
+      - dk-hede-f3hej
       - ngc-1056661
   - id: c-4e05a360
     status: active
@@ -11462,6 +11456,13 @@ classes:
     legacy_id: unified-kmk-591524
     members:
       - kmk-591524
+  - id: c-6fd03c19
+    status: active
+    created: '2026-11-10'
+    label: unified-dk-bruun-6435
+    members:
+      - dk-bruun-6435
+      - dk-numista-469145
   - id: c-6fff65b3
     status: active
     created: '2026-10-22'
@@ -15877,12 +15878,6 @@ classes:
     members:
       - denmark-numismaster-65296
       - ngc-1060172
-  - id: c-8d668407
-    status: active
-    created: '2026-11-08'
-    label: unified-dk-bruun-6436
-    members:
-      - dk-bruun-6436
   - id: c-8d89dbcb
     status: active
     created: '2026-10-22'
@@ -30624,6 +30619,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149190
+  - id: c-179f5410
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-f3hej
+    legacy_id: unified-dk-hede-f3hej
+    merged_into: c-4dc09034
+    retired: '2026-11-10'
+    members:
+      - dk-hede-f3hej
   - id: c-179ff27d
     status: retired
     created: '2026-10-22'
@@ -51392,6 +51396,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-148624
+  - id: c-8d668407
+    status: retired
+    created: '2026-11-08'
+    label: unified-dk-bruun-6436
+    merged_into: c-4dc09034
+    retired: '2026-11-10'
+    members:
+      - dk-bruun-6436
   - id: c-8d6e2f66
     status: retired
     created: '2026-10-22'

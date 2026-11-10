@@ -15618,7 +15618,6 @@ coins:
     year_label: '1665'
     mint: Kopenhagen
     catalog:
-      km: '253'
       bruun_collection_id: '6435'
       bruun_part: II
       bruun_lot_no: 13153
@@ -15628,12 +15627,8 @@ coins:
       others:
         - Aagaard# 106.1
       hede_volume: f3h
-      hede:
-        - 68A
-        - ej
-      schou:
-        - '3'
-        - '4'
+      hede: 68A
+      schou: '3'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -15643,22 +15638,10 @@ coins:
     verified: false
     fineness:
       - value: 0.979
-        source: hede
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.979
         source: numista
     weight_rough_g:
       - value: 17.3
         source: bruun
-      - value: 17.452
-        source: hede
-      - value: 17.452
-        source: ngc
-      - value: 17.452
-        source: numismaster
       - value: 17.5
         source: numista
     sources:
@@ -15666,17 +15649,8 @@ coins:
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13153, p. 86
       - type: literature
-        url: https://www.danskmoent.dk/fr/f3hej.htm
-        ref: danskmoent.dk (Hede f3hej)
-      - type: literature
-        url: https://numismaster.com/MC_138061
-        ref: NumisMaster
-      - type: literature
         url: https://en.numista.com/469145
         ref: Numista N#469145 — 5 Ducats - Frederik III
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-5-ducat-km-253-1665-cuid-1056661-duid-1238726
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 5 Ducats 1665-FCH (Hede-68A) · Münzmeister Frederik Caspar Herbach · Stempelschneider Jeremias Hercules
       en: 5 Ducats 1665-FCH (Hede-68A) · mintmaster Frederik Caspar Herbach · engraver Jeremias Hercules
@@ -15690,8 +15664,7 @@ coins:
       da: Finheden er ikke direkte belagt; overtaget fra den kanoniske møntfodsstandard (Reichsdukatenfuß, anker 0,9861) — denne fod kender kun én enkelt finhed. Δ −0,87 % i forhold til sollværdien 
         ligger inden for specimen-tolerancen.
     composed_of:
-      - c-179f5410
-      - c-4dc09034
+      - c-6fd03c19
     label: hede-68a-fr-iii-1665
     origin: foundation
     v1_home_location: denmark
@@ -168044,49 +168017,6 @@ coins:
       - c-9182b7e3
     label: unified-ngc-1050898
     origin: promoted
-  - fuss: reichsdukatenfuss
-    phase: III
-    kind: kurant
-    nominal: ½ Portugaløser
-    ruler: Frederik III
-    issuing_entity: danish_realm
-    fraction: '5'
-    id: c-8d668407
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    mint: Kopenhagen
-    catalog:
-      km: '253'
-      hede: '72'
-      sieg: 140A
-      bruun_collection_id: '6436'
-      schou: '4'
-      others:
-        - Aagaard# 147.1
-      fr: '81'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 17.46
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1081, p. 103
-    note:
-      de: 5 Ducats
-      en: 5 Ducats
-      uk: 5 Ducats
-      da: 5 Ducats
-    composed_of:
-      - c-8d668407
-    label: unified-dk-bruun-6436
-    origin: promoted
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
@@ -170261,6 +170191,75 @@ coins:
       - value: 22.82
         source: kmk
         display: false
+  - fuss: reichsdukatenfuss
+    phase: III
+    kind: kurant
+    nominal: 5 Dukat
+    ruler: Frederik III
+    issuing_entity: danish_realm
+    fraction: '5'
+    id: c-4dc09034
+    year_first: 1665
+    year_last: 1665
+    year_label: '1665'
+    mint: Kopenhagen
+    catalog:
+      km: '253'
+      hede:
+        - '72'
+        - ej
+      hede_volume: f3h
+      schou: '4'
+      sieg: 140A
+      bruun_collection_id: '6436'
+      others:
+        - Aagaard# 147.1
+      fr: '81'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.979
+        source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+    weight_rough_g:
+      - value: 17.452
+        source: hede
+      - value: 17.452
+        source: ngc
+      - value: 17.452
+        source: numismaster
+      - value: 17.46
+        source: bruun
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_138061
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1081, p. 103
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3hej.htm
+        ref: danskmoent.dk (Hede f3hej)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-5-ducat-km-253-1665-cuid-1056661-duid-1238726
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: 5 Ducats
+      en: 5 Ducats
+      uk: 5 Ducats
+      da: 5 Ducats
+    composed_of:
+      - c-4dc09034
+    label: unified-dk-hede-f3hej
+    origin: promoted
   - fuss: reichsdukatenfuss
     phase: III
     kind: kurant
