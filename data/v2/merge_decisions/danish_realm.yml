@@ -330,7 +330,7 @@ merges:
       - denmark-numismaster-65799
       - denmark-numismaster-65800
       - dk-bruun-7253
-      - dk-hede-c5h49ab
+      - dk-hede-c5h49
       - dk-numista-146234
       - dk-tid-99078
       - ngc-1050272
@@ -446,18 +446,19 @@ merges:
       - denmark-numismaster-165458
       - denmark-numismaster-65778
       - dk-bruun-7247
-      - dk-hede-c5h12ab
+      - dk-hede-c5h12a
       - dk-tid-97534
       - ngc-1060256
       - ngc-1060339
     reason: >-
       Christian V 1 Dukat 1685, Hede 12A (rider to the right) = KM 374
       (374.1 baton backwards, Schou 18; 374.2 baton forward, Schou 17), Sieg
-      73. The Hede seed carries the 12A values of the page line «Hede 12AB,
-      Schou 17-18, 19, Sieg 73,1 og 76» (Schou 17-18, Sieg 73). Whole class
+      73.1. The page line «Hede 12AB, Schou 17-18, 19, Sieg 73,1 og 76» gives
+      the letters in order; the Hede parser splits it into seeds c5h12a (Schou
+      17-18, Sieg 73.1) and c5h12b (Schou 19, Sieg 76), 2026-11-09. Whole class
       named. Curator (Serhii) 2026-11-08, basket A; 12B split off the same day
       («12А 12B розділи»).
-  - members: [denmark-numismaster-65779, dk-bruun-7249, ngc-1050898]
+  - members: [denmark-numismaster-65779, dk-bruun-7249, ngc-1050898, dk-hede-c5h12b]
     reason: >-
       Christian V 1 Dukat 1685, Hede 12B (rider to the left among trees) = KM
       375 (NGC 1050898, NumisMaster 65779: «Equestrian figure of Christian V
@@ -850,8 +851,6 @@ merges:
       «ensidigt präglade (brakteat)» (Galster 5; the halvpenning is Galster
       6). One type named by fabric and by denomination. Curator 2026-10-26.
   - members:
-      - dk-numista-15669
-      - dk-tid-163034
       - kmk-189792
       - kmk-190729
       - kmk-190764
@@ -871,6 +870,9 @@ merges:
       over-merge (Hede 93 ≠ 96 is an explicit curator no_merge below). The
       members are cut back to the class as it stood before 155cb6c (5 seeds,
       Hede 93A) plus the two approved records.
+      CORRECTED 2026-11-09: dk-tid-163034 (ucoin) and dk-numista-15669 removed
+      from this entry; both print «Helsingør 1608, KM# 42» = Hede 96, not Hede
+      93A (curator, «так»). They now sit in the Hede 96 merge.
   - members:
       - dk-galster-f1g-49       # danskmoent f1g49, Galster 49, «Halv Sølvgylden» 1532
       - kmk-80395               # the KMM record already in the Galster 49 class
@@ -1047,7 +1049,7 @@ merges:
       [65908, dk-hede-f5h14] frees f5h14.
   - members:
       - kmk-332101       # KMM museum «1 Dobbeldukat» 1747, Schou 3 (= Hede 12B)
-      - dk-hede-f5h12ab  # Hede 12 head (Frederik V «2 Dukat»)
+      - dk-hede-f5h12  # Hede 12 head (Frederik V «2 Dukat»)
     reason: |
       Curator decision 2026-06-26 (Serhii): the KMM museum specimen kmk-332101
       («1 Dobbeldukat» = 2 Dukat, Schou 3 only) is Hede 12B (Schou 3 = Hede 12B,
@@ -1071,7 +1073,7 @@ merges:
       inconsistent (568.1 vs 570). With 568.1 moved out (above), make the Hede-14
       union explicit.
   - members:
-      - dk-hede-c5h27ab          # Hede 27 head (Christian V «2 Dukat», KM 416/416.1)
+      - dk-hede-c5h27            # Hede 27 head (Christian V «2 Dukat», KM 416/416.1)
       - denmark-numismaster-65882  # KM 416.2 «smaller bust» (NumisMaster MC_65882, 1691)
     reason: |
       Curator decision 2026-06-23 (Serhii, by image + Numista N#82690): KM 416.2
@@ -1495,10 +1497,24 @@ merges:
       - dk-hede-c5h67b
     reason: 'Curator 2026-06-28: c5h67 «1 Krone» Christian V — Hede 67 is ONE type, two variants: 67A (KM 330, 1671-1680) + 67B (KM 370, 1681-1682). Hede groups both under 67 despite different KM. Merge + accumulate KM [330, 370] per §9.'
   - members:
-      - dk-bruun-7061
-      - dk-bruun-7118
       - dk-hede-c5h31a
-    reason: 'Curator 2026-06-28: c5h31 «1 Dukat» Christian V — Hede 31. KM 415 = Hede 31 (415.1=31A, 415.3=31C); KM 412 corresponds to a Hede-31 sub-variant (31A/31B). Merge the three clusters into one Hede-31 entity; accumulate KM [412, 415] per §9.'
+      - dk-hede-c5h31b
+      - dk-hede-c5h31c
+      - dk-bruun-7061
+      - dk-bruun-7094
+      - dk-bruun-7118
+      - dk-bruun-7119
+      - dk-bruun-7209
+      - denmark-numismaster-65791
+      - denmark-numismaster-65793
+      - denmark-numismaster-204376
+      - ngc-1050271
+      - ngc-1050900
+      - ngc-1062783
+      - dk-numista-343564
+      - dk-tid-97540
+      - kmk-492194
+    reason: 'Curator 2026-06-28: c5h31 «1 Dukat» Christian V — Hede 31. KM 415 = Hede 31 (415.1=31A, 415.3=31C). Corrected by the curator (Serhii) 2026-11-09: KM 415.X = Hede 31X (NumisMaster / NGC: 415.1 «breaks legend at top», 415.2 «breaks legend at bottom», 415.3 «at top and bottom»; Bruun 7061 / 7094 «KM-415.1; Hede-31A», 7209 / 7119 «KM-415.3; Hede-31C», all Fr-156), KM 412.X = Hede 26X, KM 414 = Hede 29 — KM 412 is not a Hede 31 sub-variant. ucoin 97540 (KM 415), Numista 343564 (KM 415, Fr 156), NGC 1062783 and NumisMaster 204376 (KM 415.2) join from the Hede 26 class. Whole class named.'
   - members:
       - dk-hede-c9h1a
       - dk-bruun-8282
@@ -1919,6 +1935,9 @@ merges:
       - kmk-149229
       - kmk-149230
       - kmk-149231
+      - kmk-275389
+      - kmk-275390
+      - kmk-275373
     reason: 'Curator (Serhii) 2026-10-19, by the record-vs-candidate table: Hede 87, Hede 91 and Hede 95 are three coins — three Hede numbers with three reverse designs (87 «våbenskjold med bue foroven og forneden», 91 «ligesidet våbenskjold» with the chain of the Order of St Michael, 95 «ligesidet våbenskjold på kors»), one standard (22,272 g / 0,671). Supersedes the 2026-06-07 Component 1 merge, whose Hede 95 link came from KMM «Hede 95A» 1653 records auto-merged into the Numista 143477 (KM 186) class, not from a source. Hede 95 (1653–1661) = KM 194: Bruun 6144 prints «KM-194; Hede-95A». KMM records tagged Hede 95/95A, and the KMM «1 krone» 1654–1659 records placed by year + Schou on 2026-10-18 (95A 1654 «12-31», 1655 «16-25 og 30», 1659 «38-43»; 95B 1656 «20-21», 1657 «33-35»), belong here.'
   - members:
       - denmark-numismaster-65052
@@ -3229,7 +3248,320 @@ merges:
       - kmk-693108
       - kmk-168086
     reason: '2 Skilling, Frederik III, København 1653-1655 = Hede 130 (danskmoent f3h130: «A) 1653 (S); Ring om skjold (Hede 130A …) B) 1653, 1654, 1655; Ingen ring om skjold (Hede 130B …)»). Joins the Hede 130A/B class (KM 189), the class of Numista 62374 with the KMM Hede 130B records (KM A190 after Numista), the KMM «Hede 130» class and KMM 168086 («sch 47; H 130B»). Krause and Numista split by shield shape; Hede gives one number. KM A190 is also printed by Bruun for Hede 126B (dk-bruun-6201); that class is not touched here. Curator (Serhii) 2026-11-08. Numista 62374 removed 2026-11-08: its «Hede 130 B» is marked (!) — its photo shows the oval shield and the date in the legend of Hede 126B, and KM A190 = Hede 126B (Bruun IV lot 17068); curator «Так».'
+  - members:
+      - dk-hede-f3h100ab
+      - dk-bruun-6284
+      - denmark-numismaster-65281
+      - dk-numista-82946
+      - ngc-1050391
+      - denmark-numismaster-65282
+      - dk-numista-143625
+      - ngc-1050640
+    reason: 'Hede 100 (Ebenezerkrone 1659-1660, København) is one coin; KM 221 and KM 222 are its two variants. Bruun Part V lot 14136 prints «KM-221; Hede-100A». KM 222 (Dav 3576A, 1659-1660; NumisMaster 65282 «mound between EBEN-EZER within circle», KM 221 «mound breaks circle») = Hede 100B («stenen bryder ikke ringen», 1659, 1660); no source prints KM 222 with a Hede number. Curator (Serhii) 2026-11-08: «Беремо як Хеде, 100 не розділяємо, 222 приймаємо як 100B».'
+  - members:
+      - dk-hede-f5h4a
+      - dk-hede-f5h4b
+      - denmark-numismaster-65903
+      - dk-bruun-7604
+      - dk-numista-342760
+      - dk-tid-94364
+      - kmk-330456
+      - ngc-1051021
+    reason: 'Frederik V 2 Dukat 1746, Hede 4 (danskmoent f5h3: «Hede 4AB, Schou 4, 7, Sieg 25»; A) kongens brystbillede, B) kongens hoved) = KM 555 (Bruun Part I lot 1142). The Hede parser split the block into seeds f5h4a (Schou 4) and f5h4b (Schou 7), 2026-11-09; 4B joins the 4A class, as the combined 4AB seed did before. Whole class named. Curator (Serhii) 2026-11-09: «ті що відділились мають приєднатись в ту ж сімʼю».'
+  - members:
+      - dk-hede-c5h26a
+      - dk-hede-c5h26b
+      - denmark-numismaster-65785
+      - ngc-1050269
+      - denmark-numismaster-65786
+      - dk-bruun-7096
+      - ngc-1060341
+    reason: 'Christian V 1 Dukat 1691-1692, Hede 26 (danskmoent c5h26: A) 1691 (Unik) «Årstallet ved våbnet», Schou 5, Sieg 98; B) 1692 «Årstallet i omskriften», Schou 7, Sieg 100) = KM 412 (NumisMaster / NGC: 412.1 «Crowned oval arms divide date», 1691 Unique; 412.2 «Crowned oval arms, date in legend», 1692). Bruun Part V lot 14164 (Bruun 7096) prints «Fr-145; KM-unlisted; Hede-26B». Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 414 = Hede 29, KM 415.X = Hede 31X. Whole class named.'
+  - members:
+      - dk-hede-c5h29
+      - dk-bruun-7062
+      - denmark-numismaster-65789
+      - dk-numista-112811
+      - dk-tid-99074
+      - ngc-1069063
+    reason: 'Christian V 1 Dukat 1691, Hede 29 (danskmoent c5h29: «Forside: kronet dobbelt, slynget monogram, bagside: våbenskjold (Hede 29, Schou 8, Sieg 102)») = KM 414 (Bruun Part I lot 1112 «Fr-201; KM-414; Hede-29; Sieg-102; Schou-8»; NumisMaster 65789 «Crowned double C5 monograms» / «Crowned arms divide date»). Curator (Serhii) 2026-11-09: KM 414 = Hede 29. Whole class named.'
+  - members:
+      - dk-hede-c5h32
+      - dk-bruun-7097
+      - denmark-numismaster-65795
+      - dk-numista-343462
+      - dk-tid-99075
+      - ngc-1050219
+    reason: 'Christian V 1 Dukat 1692, Hede 32 (danskmoent c5h32: «Forside: rytter (hest i spring), bagside: kronede, slyngede monogrammer (Hede 32, Schou 8, Sieg 105)») = KM 418 (Bruun Part I lot 1115 «Fr-186; KM-418; Hede-32; Sieg-105; Schou-8»). Whole class named; keeps the Hede seed with its KM 418 class while the KM 412 / 413 / 414 / 415 records are sorted (curator 2026-11-09).'
+  - members:
+      - dk-hede-c5h28
+      - denmark-numismaster-65788
+      - ngc-1050270
+    reason: 'Christian V 1 Dukat 1691-1692, Hede 28 (danskmoent Galster «1 Dukat»: «1691 (RR), 1692 Unik), København. Forside: portræt, bagside: våbenskjold (Hede 28, Schou hhv. 6 og 4, Sieg 103)») = KM 413 (NumisMaster 65788 «Smaller draped bust of Christian V right», 1691-1692; NGC 1050270). By elimination: of the 1 Dukat types of 1691-1692 Krause numbers 412 (= Hede 26), 413, 414 (= Hede 29, Bruun 7062), 415 (= Hede 31, Bruun 7061 / 7094 / 7119 / 7209) and 418 (= Hede 32, Bruun 7097); Hede 28 is the only Hede number left without a KM, KM 413 the only KM left without a Hede number; years and the portrait obverse agree. No source prints the two numbers together. Curator (Serhii) 2026-11-09: «а».'
+  - members:
+      - denmark-numismaster-65809
+      - denmark-numismaster-65811
+      - dk-bruun-7330
+      - dk-bruun-7357
+      - dk-bruun-7522
+      - dk-bruun-7543
+      - dk-hede-f4h11a
+      - dk-hede-f4h11b
+      - dk-numista-183049
+      - dk-numista-183157
+      - dk-tid-94310
+      - dk-tid-94312
+      - ngc-1060342
+      - ngc-1069066
+    reason: >-
+      Frederik IV 1 Dukat Christiansborg, København, Hede 11: A 1704 / undated
+      with IN GUINEA in the exergue, B 1708 / 1725 with IN GUINEA in the
+      legend; danskmoent f4h11 gives Sieg 42 for both and one specification
+      (3,490 g, .979), Friedberg one base 244. Krause parts B off as KM 484
+      (A = KM 481). Curator (Serhii) merged the whole Hede 11 after the table
+      and images (2026-11-09).
+  - members:
+      - denmark-numismaster-58065
+      - denmark-numismaster-58066
+      - dk-hede-f4h43a
+      - dk-hede-f4h43b
+      - dk-numista-49177
+      - dk-numista-83236
+      - dk-tid-94112
+      - dk-tid-94113
+      - kmk-122407
+      - kmk-148438
+      - kmk-148439
+      - ngc-1048769
+      - ngc-1048770
+    reason: >-
+      Frederik IV 12 Skilling, København, mintmaster CW, Hede 43: A 1710-1711
+      TOLF SKILLING with the titles legend (Sieg 9, KM 495), B 1712-1719 XII
+      SKILLING with DOMINUS MIHI ADIUTOR (Sieg 10, KM 504); one specification
+      (3,898 g, .562). danskmoent f4h43 questions Hede's grouping («Det er
+      aldeles uforståeligt, at Hede opererer med de to mønter som undertyper
+      af samme mønt»). Curator (Serhii) 2026-11-09: «тут йдемо за Хеде, тому
+      зливай в одне».
+  - members:
+      - denmark-numismaster-204166
+      - denmark-numismaster-204167
+      - denmark-numismaster-204168
+      - denmark-numismaster-65115
+      - dk-hede-c4h93a
+      - dk-hede-c4h93b
+      - dk-numista-71974
+      - dk-tid-163031
+      - kmk-122198
+      - kmk-189785
+      - kmk-189786
+      - kmk-189787
+      - kmk-189790
+      - kmk-189791
+      - kmk-189792
+      - kmk-189793
+      - kmk-189794
+      - kmk-189795
+      - kmk-189797
+      - kmk-189803
+      - kmk-189805
+      - kmk-189810
+      - kmk-189814
+      - kmk-189816
+      - kmk-189820
+      - kmk-189823
+      - kmk-189824
+      - kmk-189839
+      - kmk-189840
+      - kmk-189842
+      - kmk-189843
+      - kmk-189845
+      - kmk-189847
+      - kmk-189853
+      - kmk-189855
+      - kmk-189857
+      - kmk-189861
+      - kmk-189862
+      - kmk-189865
+      - kmk-189874
+      - kmk-189875
+      - kmk-189876
+      - kmk-190692
+      - kmk-190693
+      - kmk-190694
+      - kmk-190695
+      - kmk-190729
+      - kmk-190730
+      - kmk-190731
+      - kmk-190739
+      - kmk-190740
+      - kmk-190741
+      - kmk-190743
+      - kmk-190745
+      - kmk-190747
+      - kmk-190748
+      - kmk-190749
+      - kmk-190750
+      - kmk-190752
+      - kmk-190753
+      - kmk-190754
+      - kmk-190755
+      - kmk-190756
+      - kmk-190757
+      - kmk-190759
+      - kmk-190760
+      - kmk-190763
+      - kmk-190764
+      - kmk-190765
+      - kmk-190766
+      - kmk-190767
+      - kmk-190769
+      - kmk-190771
+      - kmk-190772
+      - kmk-190773
+      - kmk-190775
+      - kmk-190777
+      - kmk-190778
+      - kmk-190783
+      - kmk-275997
+      - ngc-1049936
+      - ngc-1062437
+      - ngc-1062438
+      - ngc-1066806
+      - ngc-1066807
+    reason: >-
+      Christian IV 8 Skilling, København, Hede 93 (danskmoent c4h93): A 1606-1608
+      year below the portrait, B 1609 year in the legend; one specification
+      (2,923 g, .888), Sieg 61 for both, Krause one base KM 32 (32.2 / 32.3 /
+      32.5 / 32.6). KMM records join by their own typeNumber «H:93A» / «H:93B».
+      Curator (Serhii) 2026-11-09 («так»): whole class named; the two Helsingør
+      records (ucoin 163034, Numista 15669, KM# 42) belong to Hede 96.
+  - members:
+      - denmark-numismaster-65116
+      - dk-hede-c4h96
+      - dk-numista-15669
+      - dk-tid-163034
+      - kmk-190696
+      - kmk-190697
+      - kmk-190698
+      - kmk-190699
+      - kmk-190700
+      - kmk-190701
+      - kmk-190702
+      - kmk-190703
+      - kmk-190704
+      - kmk-190705
+      - kmk-190706
+      - kmk-190707
+      - kmk-190708
+      - kmk-190709
+      - kmk-190710
+      - kmk-190711
+      - kmk-190712
+      - kmk-190713
+      - kmk-190714
+      - kmk-190715
+      - kmk-190716
+      - kmk-190717
+      - kmk-190718
+      - kmk-190719
+      - kmk-190720
+      - kmk-190721
+      - kmk-190722
+      - kmk-190723
+      - kmk-190724
+      - kmk-190725
+      - kmk-190726
+      - kmk-190727
+      - kmk-275968
+      - kmk-275969
+      - kmk-308028
+      - ngc-1050381
+    reason: >-
+      Christian IV 8 Skilling 1608, Helsingør, Hede 96 (danskmoent c4h96:
+      «brystbillede, bagside: værdiangivelse, ligesidet skjold», Sieg 62).
+      ucoin 163034 and Numista 15669 print «Helsingør», KM# 42; NumisMaster
+      65116 (and NGC 1050381, which reproduces it) print KM# 32.4 with the note
+      «Prev. KM#42.» — the same type renumbered in a later Krause edition.
+      KMM records join by their typeNumber «H:96». Curator (Serhii) 2026-11-09
+      («так»): whole class named; Hede 93 ≠ Hede 96 stands (no_merge).
+  - members:
+      - denmark-numismaster-65123
+      - dk-hede-c4h122
+      - dk-numista-92044
+      - dk-tid-163027
+      - kmk-190633
+      - kmk-190634
+      - kmk-190635
+      - kmk-190636
+      - kmk-190637
+      - kmk-190638
+      - kmk-190640
+      - kmk-190641
+      - kmk-190642
+      - kmk-190643
+      - kmk-190645
+      - kmk-190646
+      - kmk-190647
+      - kmk-190648
+      - kmk-190652
+      - kmk-190653
+      - kmk-190656
+      - kmk-190658
+      - kmk-190659
+      - kmk-190660
+      - kmk-190661
+      - kmk-190662
+      - kmk-190663
+      - kmk-190664
+      - kmk-190665
+      - kmk-190666
+      - kmk-190668
+      - kmk-190669
+      - kmk-190670
+      - kmk-190672
+      - kmk-190677
+      - kmk-190683
+      - kmk-190684
+      - kmk-190688
+      - kmk-190689
+      - kmk-190691
+      - kmk-693173
+      - kmk-714926
+      - kmk-714927
+      - kmk-714928
+      - kmk-714930
+      - kmk-714931
+      - kmk-714932
+      - kmk-714934
+      - kmk-714935
+      - kmk-714936
+      - kmk-714937
+      - kmk-714939
+      - kmk-714940
+      - kmk-714941
+      - kmk-714942
+      - kmk-714943
+      - kmk-714944
+      - kmk-714948
+      - kmk-714949
+      - kmk-714951
+      - kmk-714953
+      - ngc-1050062
+    reason: >-
+      Christian IV 8 Skilling 1622-1623, Frederiksborg, Hede 122 (danskmoent
+      c4h122: «Forside: monogram, RFP», 2,016 g, Sieg 65) = KM 84. The five KMM
+      records with typeNumber «H:122» that sat in a V1 foundation together with
+      Hede 93B and Hede 96 records join this class. Curator (Serhii) 2026-11-09
+      («так»): whole class named.
 no_merges:
+  - members:
+      - dk-hede-c4h93
+      - dk-tid-163034
+    reason: 'ucoin 163034 «8 skilling 1608», mint «Denmark, Helsingør», KM# 42 = Hede 96, not Hede 93. Curator (Serhii) 2026-11-09 («так»).'
+  - members:
+      - dk-hede-c4h93
+      - dk-numista-15669
+    reason: 'Numista 15669 «8 Skilling Dansk - Christian IV Helsingør» 1608, KM# 42 = Hede 96, not Hede 93. Curator (Serhii) 2026-11-09 («так»).'
   - members: [dk-hede-f3h102, denmark-numismaster-65282]
     reason: Hede 102 (Sieg 55, KM-Pn15) is kept apart from the KM 222 / KM A43-B43 records. Curator (Serhii) 2026-11-08 («окремо»).
   - members: [dk-hede-f3h102, dk-numista-143625]
@@ -3292,7 +3624,7 @@ no_merges:
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
   - members: [denmark-numismaster-65779, dk-bruun-7247]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
-  - members: [denmark-numismaster-65779, dk-hede-c5h12ab]
+  - members: [denmark-numismaster-65779, dk-hede-c5h12a]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
   - members: [denmark-numismaster-65779, dk-tid-97534]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
@@ -3306,7 +3638,7 @@ no_merges:
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
   - members: [dk-bruun-7249, dk-bruun-7247]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
-  - members: [dk-bruun-7249, dk-hede-c5h12ab]
+  - members: [dk-bruun-7249, dk-hede-c5h12a]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
   - members: [dk-bruun-7249, dk-tid-97534]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
@@ -3320,7 +3652,7 @@ no_merges:
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
   - members: [ngc-1050898, dk-bruun-7247]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
-  - members: [ngc-1050898, dk-hede-c5h12ab]
+  - members: [ngc-1050898, dk-hede-c5h12a]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
   - members: [ngc-1050898, dk-tid-97534]
     reason: Hede 12B (rider left, KM 375) and Hede 12A (rider right, KM 374) are kept apart. Curator (Serhii) 2026-11-08.
@@ -4789,7 +5121,7 @@ no_merges:
       - denmark-numismaster-65043
       - kmk-191584
     reason: Block 65043 from the Hede-67 museum wanderer kmk-191584 so a stray «67» does not follow 65043 into the Hede-117 entry.
-  - members: [denmark-numismaster-65907, dk-hede-f5h12ab]
+  - members: [denmark-numismaster-65907, dk-hede-f5h12]
     reason: |
       Companion to merges [65907, dk-hede-f5h10ab]. KM 567 (no Hede) matches the
       Hede-12 head f5h12ab «confident» on metal+nominal+ruler (no catalog to
@@ -4809,7 +5141,7 @@ no_merges:
       transitively unites f5h10ab with f5h14, violating the pre-existing
       no_merge [dk-hede-f5h10ab, dk-hede-f5h14] (Hede 10 ≠ 14 verdict) and the
       forced merge is refused «left separate».
-  - members: [denmark-numismaster-65908, dk-hede-f5h12ab]
+  - members: [denmark-numismaster-65908, dk-hede-f5h12]
     reason: |
       Second companion to merges [65908, dk-hede-f5h10ab]. KM 568.1 (no Hede) also
       matches the Hede-12 head f5h12ab «confident»; block it so it stays in Hede 10
@@ -4886,18 +5218,18 @@ no_merges:
   # only one would exile that one source from the KM-564 group instead).
   - members:
       - dk-tid-94338
-      - dk-hede-f5h11ab
+      - dk-hede-f5h11
     reason: |
       KM 564 (ucoin/Numista/NumisMaster, no Hede) is a different coin from
       Hede 11AB (danskmoent f5h11, no KM) per curator verdict.
   - members:
       - dk-numista-342563
-      - dk-hede-f5h11ab
+      - dk-hede-f5h11
     reason: |
       KM 564 (Numista 342563, no Hede) ≠ Hede 11AB (no KM) per curator.
   - members:
       - denmark-numismaster-65825
-      - dk-hede-f5h11ab
+      - dk-hede-f5h11
     reason: |
       KM 564 (NumisMaster MC_65825, no Hede) ≠ Hede 11AB (no KM) per curator.
   - members:
@@ -4924,12 +5256,12 @@ no_merges:
   # i.e. it never asked which KM Hede 9 carries. The other nine no_merges of this
   # cluster were correct and remain in force.
   - members:
-      - dk-hede-f5h11ab
+      - dk-hede-f5h11
       - dk-hede-f5h13
     reason: |
       Hede 11AB and Hede 13 are distinct 1 Dukat 1747 types.
   - members:
-      - dk-hede-f5h11ab
+      - dk-hede-f5h11
       - dk-hede-f5h9
     reason: |
       Hede 11AB and Hede 9 are distinct 1 Dukat 1747 types.
@@ -5014,13 +5346,13 @@ no_merges:
 
   # Component 7 — 1 Dukat Christian V: Hede 26, 29, 31, 32 are FOUR distinct coins.
   # (Hede 31 represented by its primary 31A/B entry c5h31a.)
-  - members: [dk-hede-c5h26ab, dk-hede-c5h29]
+  - members: [dk-hede-c5h26, dk-hede-c5h29]
     reason: |
       1 Dukat Christian V: Hede 26 ≠ Hede 29. catalog_graph comp 7.
-  - members: [dk-hede-c5h26ab, dk-hede-c5h31a]
+  - members: [dk-hede-c5h26, dk-hede-c5h31a]
     reason: |
       1 Dukat Christian V: Hede 26 ≠ Hede 31. catalog_graph comp 7.
-  - members: [dk-hede-c5h26ab, dk-hede-c5h32]
+  - members: [dk-hede-c5h26, dk-hede-c5h32]
     reason: |
       1 Dukat Christian V: Hede 26 ≠ Hede 32. catalog_graph comp 7.
   - members: [dk-hede-c5h29, dk-hede-c5h31a]
@@ -5035,10 +5367,10 @@ no_merges:
       1 Dukat Christian V: Hede 31 ≠ Hede 32. catalog_graph comp 7.
 
   # Component 8 — 2 Dukat Christian V: Hede 27, 56, 58 are three distinct coins.
-  - members: [dk-hede-c5h27ab, dk-hede-c5h56]
+  - members: [dk-hede-c5h27, dk-hede-c5h56]
     reason: |
       2 Dukat Christian V: Hede 27 ≠ Hede 56. catalog_graph comp 8.
-  - members: [dk-hede-c5h27ab, dk-hede-c5h58]
+  - members: [dk-hede-c5h27, dk-hede-c5h58]
     reason: |
       2 Dukat Christian V: Hede 27 ≠ Hede 58. catalog_graph comp 8.
   - members: [dk-hede-c5h56, dk-hede-c5h58]
@@ -5549,6 +5881,154 @@ no_merges:
       and 1654 is a Hede 131 year (danskmoent f3h131: 1650, 1652-1655), while
       Hede 125 is 1648-1650. The object page's «Hede 125» joined it to the
       Hede 125 class on the re-flow of 2026-11-06. Curator (Serhii) 2026-11-06.
+  - members: [kmk-275389, denmark-numismaster-65282]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275389, dk-numista-143625]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275389, ngc-1050640]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275389, dk-hede-f3h100ab]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275390, denmark-numismaster-65282]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275390, dk-numista-143625]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275390, ngc-1050640]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275390, dk-hede-f3h100ab]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275373, denmark-numismaster-65282]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275373, dk-numista-143625]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275373, ngc-1050640]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [kmk-275373, dk-hede-f3h100ab]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [dk-hede-f3h95ab, denmark-numismaster-65282]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [dk-hede-f3h95ab, dk-numista-143625]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [dk-hede-f3h95ab, ngc-1050640]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [dk-hede-f3h95ab, dk-hede-f3h100ab]
+    reason: KMM records tagged «Hede 95A» (Hede 95, KM 194) are kept apart from the Hede 100 Ebenezerkrone class (KM 221 / KM 222), which a year + nominal auto-match had joined them to. Curator (Serhii) 2026-11-08 («Беремо як Хеде»).
+  - members: [denmark-numismaster-65284, kmk-275389]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [denmark-numismaster-65284, kmk-275390]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [denmark-numismaster-65284, kmk-275373]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [denmark-numismaster-65284, dk-hede-f3h95ab]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [ngc-1060171, kmk-275389]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [ngc-1060171, kmk-275390]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [ngc-1060171, kmk-275373]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [ngc-1060171, dk-hede-f3h95ab]
+    reason: KM A224 (NumisMaster 65284 «Mule», obverse KM 194.5 with EBEN-EZER, reverse KM 223) stays apart from the Hede 95 class until the curator decides; a year + nominal auto-match joined it once the KMM «Hede 95A» 1659-1660 records moved there. 2026-11-08.
+  - members: [dk-hede-c5h12b, denmark-numismaster-165458]
+    reason: Hede 12B seed (rider left, Schou 19, Sieg 76) kept apart from the Hede 12A class (rider right, KM 374). Curator (Serhii) 2026-11-08 («12А 12B розділи»); seed split by the Hede parser 2026-11-09.
+  - members: [dk-hede-c5h12b, denmark-numismaster-65778]
+    reason: Hede 12B seed (rider left, Schou 19, Sieg 76) kept apart from the Hede 12A class (rider right, KM 374). Curator (Serhii) 2026-11-08 («12А 12B розділи»); seed split by the Hede parser 2026-11-09.
+  - members: [dk-hede-c5h12b, dk-bruun-7247]
+    reason: Hede 12B seed (rider left, Schou 19, Sieg 76) kept apart from the Hede 12A class (rider right, KM 374). Curator (Serhii) 2026-11-08 («12А 12B розділи»); seed split by the Hede parser 2026-11-09.
+  - members: [dk-hede-c5h12b, dk-hede-c5h12a]
+    reason: Hede 12B seed (rider left, Schou 19, Sieg 76) kept apart from the Hede 12A class (rider right, KM 374). Curator (Serhii) 2026-11-08 («12А 12B розділи»); seed split by the Hede parser 2026-11-09.
+  - members: [dk-hede-c5h12b, dk-tid-97534]
+    reason: Hede 12B seed (rider left, Schou 19, Sieg 76) kept apart from the Hede 12A class (rider right, KM 374). Curator (Serhii) 2026-11-08 («12А 12B розділи»); seed split by the Hede parser 2026-11-09.
+  - members: [dk-hede-c5h12b, ngc-1060256]
+    reason: Hede 12B seed (rider left, Schou 19, Sieg 76) kept apart from the Hede 12A class (rider right, KM 374). Curator (Serhii) 2026-11-08 («12А 12B розділи»); seed split by the Hede parser 2026-11-09.
+  - members: [dk-hede-c5h12b, ngc-1060339]
+    reason: Hede 12B seed (rider left, Schou 19, Sieg 76) kept apart from the Hede 12A class (rider right, KM 374). Curator (Serhii) 2026-11-08 («12А 12B розділи»); seed split by the Hede parser 2026-11-09.
+  - members: [denmark-numismaster-204376, dk-hede-c5h26a]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-204376, dk-hede-c5h26b]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [dk-numista-343564, dk-hede-c5h26a]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [dk-numista-343564, dk-hede-c5h26b]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [dk-tid-97540, dk-hede-c5h26a]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [dk-tid-97540, dk-hede-c5h26b]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [ngc-1062783, dk-hede-c5h26a]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [ngc-1062783, dk-hede-c5h26b]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 26 (KM 412). Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X, KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-65788, dk-hede-c5h29]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29.'
+  - members: [denmark-numismaster-65788, dk-bruun-7062]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29.'
+  - members: [ngc-1050270, dk-hede-c5h29]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29.'
+  - members: [ngc-1050270, dk-bruun-7062]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29.'
+  - members: [denmark-numismaster-65785, dk-hede-c5h28]
+    reason: 'KM 412.1 (1691 Unique, «Crowned oval arms divide date») is Hede 26A, not Hede 28. Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X.'
+  - members: [ngc-1050269, dk-hede-c5h28]
+    reason: 'KM 412.1 (1691 Unique, «Crowned oval arms divide date») is Hede 26A, not Hede 28. Curator (Serhii) 2026-11-09: KM 412.X = Hede 26X.'
+  - members: [dk-hede-c5h28, dk-hede-c5h31]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [dk-hede-c5h28, dk-bruun-7061]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [dk-hede-c5h28, denmark-numismaster-65793]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-65788, dk-hede-c5h31]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-65788, dk-bruun-7061]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-65788, denmark-numismaster-65793]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [ngc-1050270, dk-hede-c5h31]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [ngc-1050270, dk-bruun-7061]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [ngc-1050270, denmark-numismaster-65793]
+    reason: 'Hede 28 (index stub, Sieg 103) and KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) are not Hede 31 (= KM 415). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-204376, dk-hede-c5h28]
+    reason: 'KM 415 records (Hede 31) kept apart from the Hede 28 index stub (Sieg 103). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [dk-numista-343564, dk-hede-c5h28]
+    reason: 'KM 415 records (Hede 31) kept apart from the Hede 28 index stub (Sieg 103). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [dk-tid-97540, dk-hede-c5h28]
+    reason: 'KM 415 records (Hede 31) kept apart from the Hede 28 index stub (Sieg 103). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [ngc-1062783, dk-hede-c5h28]
+    reason: 'KM 415 records (Hede 31) kept apart from the Hede 28 index stub (Sieg 103). Curator (Serhii) 2026-11-09: KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-65788, dk-hede-c5h32]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 32 (= KM 418, Bruun 7097). Curator (Serhii) 2026-11-09.'
+  - members: [denmark-numismaster-65788, dk-bruun-7097]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 32 (= KM 418, Bruun 7097). Curator (Serhii) 2026-11-09.'
+  - members: [ngc-1050270, dk-hede-c5h32]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 32 (= KM 418, Bruun 7097). Curator (Serhii) 2026-11-09.'
+  - members: [ngc-1050270, dk-bruun-7097]
+    reason: 'KM 413 (NumisMaster 65788 «Smaller draped bust», 1691-1692) is not Hede 32 (= KM 418, Bruun 7097). Curator (Serhii) 2026-11-09.'
+  - members: [denmark-numismaster-204376, dk-hede-c5h29]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-204376, dk-bruun-7062]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [denmark-numismaster-204376, denmark-numismaster-65789]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [dk-numista-343564, dk-hede-c5h29]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [dk-numista-343564, dk-bruun-7062]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [dk-numista-343564, denmark-numismaster-65789]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [dk-tid-97540, dk-hede-c5h29]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [dk-tid-97540, dk-bruun-7062]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [dk-tid-97540, denmark-numismaster-65789]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [ngc-1062783, dk-hede-c5h29]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [ngc-1062783, dk-bruun-7062]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
+  - members: [ngc-1062783, denmark-numismaster-65789]
+    reason: 'KM 415 records (Hede 31) kept apart from Hede 29 (= KM 414). Curator (Serhii) 2026-11-09: KM 414 = Hede 29, KM 415.X = Hede 31X.'
 year_demote:
   - member_id: dk-numista-152728
     reason: |

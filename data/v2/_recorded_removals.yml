@@ -5287,3 +5287,57 @@ removals:
     kind: empty_duplicate
     hosts: [c-43bd27ef]
     reason: 'Curator (Serhii) 2026-11-10 («Тоді треба фікс»): 2/3 Thaler 1690 Ploen KM 17 — the NGC / NumisMaster KM 17 pair joined the Numista 278267 class (merge_decisions/norburg_plon_duchy.yml); the V1 foundation lost its only member and kept a skeleton. find_empty_duplicates.py: every URL, catalogue value and reading sits on c-43bd27ef.'
+  - seed: dk-hede-c5h12a
+    kind: field
+    field: hede
+    dropped: ['12AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 12AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 12AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-c5h14a
+    kind: field
+    field: hede
+    dropped: ['14AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 14AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 14AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-c5h26a
+    kind: field
+    field: hede
+    dropped: ['26AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 26AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 26AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-c5h27a
+    kind: field
+    field: hede
+    dropped: ['27AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 27AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 27AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-c5h49a
+    kind: field
+    field: hede
+    dropped: ['49AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 49AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 49AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-f3h33a
+    kind: field
+    field: hede
+    dropped: ['33AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 33AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 33AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-f5h5a
+    kind: field
+    field: hede
+    dropped: ['5AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 5AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 5AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-f5h11a
+    kind: field
+    field: hede
+    dropped: ['11AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 11AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 11AB gives way to the letter tags it stands for.'
+  - seed: dk-hede-f5h12a
+    kind: field
+    field: hede
+    dropped: ['12AB']
+    reason: 'Curator (Serhii) 2026-11-09 («A», «1 ок»): the Hede parser splits a combined spec block «Hede 12AB, Schou …, Sieg …» into one seed per letter, values in letter order; the combined tag 12AB gives way to the letter tags it stands for.'
+  - final: dk-tid-94310
+    kind: empty_duplicate
+    hosts: [c-b765c45a]
+    reason: 'Curator (Serhii) 2026-11-09 («Зливай»): 1 Dukat Christiansborg 1704-1706, Frederik IV, Hede 11A / KM 481 — foundation in danish_realm emptied by the Hede 11 merge; find_empty_duplicates.py shows every URL, catalogue value and reading in c-b765c45a. Numista span 1704-1706 survives there as a hedged year entry.'
+  - seed: dk-hede-f3h131
+    kind: field
+    field: sieg
+    dropped: ['5', '1650', '1655']
+    reason: 'Curator (Serhii) 2026-11-09 («1 так»): danskmoent f3h131 describes the mule as «tvepræg af forside Sieg 5/1650 og bagside Sieg 8.2/1655 (… Sieg 8.3)» — «Sieg N/year» names the dies of other coins (Sieg 5 is Hede 125), not Hede 131''s own number; the parser split them into Sieg 5, 1650 and 1655. Sieg 8.2 stays (group C gives it). The parser now drops «Sieg N/year» tokens.'

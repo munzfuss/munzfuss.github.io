@@ -1220,6 +1220,19 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
     for f, vals in (elsewhere or {}).items():
         attested.setdefault(f, set()).update(vals)
 
+    # {seed or class id → the current final that holds it}; a seed is found
+    # directly in a final's composed_of or through its live seed_unified class.
+    _final_of: dict[str, str] = {}
+    for _fid, _c in cur.items():
+        for _m in (_fid, *(_c.get("composed_of") or [])):
+            _final_of.setdefault(str(_m), _fid)
+
+    def _specimen_home(seed: str) -> str | None:
+        if seed in _final_of:
+            return _final_of[seed]
+        cls = _seed_class_map().get(seed)
+        return _final_of.get(cls) if cls else None
+
     # --- coins that vanished -------------------------------------------------
     # A vanished coin is fine ONLY if a survivor absorbed it: either it is named
     # in a survivor's composed_of, or a survivor carries all of its source URLs.
@@ -1505,6 +1518,33 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                         changes.append(
                             f"{cid}.{f}: value changed under {ident_of.get(k, k)[:60]}")
                 gone = (dropped - modified) - attested[f]
+                # A reading tagged with its specimen (`specimen: <seed>`, set by
+                # the merger only when one source gives SEVERAL readings to a
+                # class) whose tag went away: the seed left for another final,
+                # or the source now gives this class a single reading and the
+                # tag is dropped. Value-only attestation cannot see it (the tag
+                # is part of the key). Excused only when the final that holds
+                # the seed NOW (this one or another of the entity) shows the same
+                # source with the same value. A seed in no final, a changed
+                # value, another source, or a reading gone from the seed's own
+                # final still block (curator 2026-11-09, Hede 93 / 96 split).
+                if gone and f != "sources":
+                    hd = {_key(x): x for x in _as_list(h.get(f))}
+                    carried = set()
+                    for k in gone:
+                        x = hd.get(k)
+                        if not (isinstance(x, dict) and x.get("specimen")):
+                            continue
+                        home = _specimen_home(str(x["specimen"]))
+                        if not home:
+                            continue
+                        if any(isinstance(y, dict) and y.get("source") == x.get("source")
+                               and y.get("value") == x.get("value")
+                               for y in _as_list(cur[home].get(f))):
+                            carried.add(k)
+                            changes.append(f"{cid}.{f}: {x.get('source')} {x.get('value')} "
+                                           f"of {x['specimen']} now untagged on {home}")
+                    gone -= carried
                 # A source whose URL another coin still cites moved with its
                 # member and was de-duplicated there under that coin's label
                 # (one danskmoent page, «Hede c4h79C» vs «Hede c4h79A»).
