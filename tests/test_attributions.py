@@ -47,6 +47,25 @@ class Attributions(unittest.TestCase):
         M.apply_attribution(u, a)
         self.assertEqual(u["uncertainty"]["year"][0]["kind"], "inferred")
 
+    def test_several_spans_each_work_its_own_dating(self):
+        # Galster 174: Schive 1865 dates the type 1518, Galster 1531-32 (curator 2026-11-10)
+        a = dict(ATTR, value=[[1531, 1532], [1518, 1518]], works=[
+            {"work": "Schive 1865", "page": 140, "how": "possibly", "value": 1518, "quote": "q1"},
+            {"work": "danskmoent.dk (Galster 174)", "how": "query", "value": [1531, 1532],
+             "quote": "u. år (1531-32)?"}])
+        self.assertEqual(M.validate_attributions_doc({"attributions": [a]}), [])
+        u = {"sources": []}
+        M.apply_attribution(u, a)
+        self.assertEqual((u["year_label"], u["year_first"], u["year_last"], u["year_ranges"]),
+                         ("1518, 1531-1532", 1518, 1532, [[1518, 1518], [1531, 1532]]))
+        self.assertFalse(u["year_verified"])
+        self.assertEqual([e["value"] for e in u["uncertainty"]["year"]], ["1518", "1531-1532"])
+
+    def test_malformed_spans_rejected(self):
+        for v in ([[1532, 1531]], [1518, [1531]], [], True):
+            self.assertTrue(M.validate_attributions_doc(
+                {"attributions": [dict(ATTR, value=v)]}), v)
+
     def test_validation(self):
         self.assertEqual(M.validate_attributions_doc({"attributions": [ATTR]}), [])
         bad = dict(ATTR, works=[{"work": "X", "how": "guess", "quote": "q"}])

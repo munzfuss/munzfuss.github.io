@@ -9,24 +9,37 @@ coins:
     ruler: Christian II
     issuing_entity: christian_ii_reconquest
     id: c-b6cb4ca2
-    year_first: 1531
+    year_first: 1518
     year_last: 1532
     year_ranges:
+      -   - 1518
+          - 1518
       -   - 1531
           - 1532
-    year_label: 1531-1532
+    year_label: 1518, 1531-1532
     year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-galster-c2g-174
-          source: galster
-          years: '1531'
-      uncertain:
-        - seed: dk-bruun-9285
-          source: bruun
-          years: 1531-1532
     uncertainty:
       year:
+        - kind: hedged
+          how: possibly
+          source: Schive, Norges Mynter i Middelalderen (Christiania 1865), s. 140
+          as_printed: Afgjörende for Christian II. synes det historiske Datum at være, at i en Qvittering af 6te Februar 1518 til Jörgen Kock, Myntmester i Malmö
+          value: '1518'
+          translation:
+            de: Entscheidend für Christian II. scheint das historische Datum zu sein, daß in einer Quittung vom 6. Februar 1518 an Jørgen Kock, Müntzmeister in Malmø
+            en: Decisive for Christian II appears to be the historical date that in a receipt of 6 February 1518 to Jørgen Kock, mintmaster in Malmø
+            uk: 'Вирішальним на користь Christian II видається історична дата: у квитанції від 6 лютого 1518 року Jørgen Kock, монетному майстрові в Malmø'
+          seed: attribution
+        - kind: hedged
+          how: query
+          source: danskmoent.dk (Galster 174)
+          as_printed: u. år (1531-32)?
+          value: 1531-1532
+          translation:
+            de: o. J. (1531-32)?
+            en: undated (1531-32)?
+            uk: без року (1531–32)?
+          seed: attribution
         - kind: hedged
           how: attributed
           source: bruun

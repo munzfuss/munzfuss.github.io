@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `christian_ii_reconquest`.
-# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/christian_ii_reconquest.yml across all sources.
 #
 # Input: 12 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: christian_ii_reconquest
-generated_at: '2026-11-09'
+generated_at: '2026-11-10'
 coins:
   - id: c-bb6f8611
     class_id: c-bb6f8611
@@ -195,12 +195,14 @@ coins:
     phase: galster
     kind: kurant
     nominal: 2 Skilling
-    year_first: 1531
+    year_first: 1518
     year_last: 1532
     year_ranges:
+      -   - 1518
+          - 1518
       -   - 1531
           - 1532
-    year_label: 1531-1532
+    year_label: 1518, 1531-1532
     ruler: Christian II
     mint: Christiania
     catalog:
@@ -234,15 +236,6 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-galster-c2g-174
-          source: galster
-          years: '1531'
-      uncertain:
-        - seed: dk-bruun-9285
-          source: bruun
-          years: 1531-1532
     fineness:
       - value: 0.875
         source: galster
@@ -280,6 +273,26 @@ coins:
         specimen: dk-numista-124917
     uncertainty:
       year:
+        - kind: hedged
+          how: possibly
+          source: Schive, Norges Mynter i Middelalderen (Christiania 1865), s. 140
+          as_printed: Afgjörende for Christian II. synes det historiske Datum at være, at i en Qvittering af 6te Februar 1518 til Jörgen Kock, Myntmester i Malmö
+          value: '1518'
+          translation:
+            de: Entscheidend für Christian II. scheint das historische Datum zu sein, daß in einer Quittung vom 6. Februar 1518 an Jørgen Kock, Müntzmeister in Malmø
+            en: Decisive for Christian II appears to be the historical date that in a receipt of 6 February 1518 to Jørgen Kock, mintmaster in Malmø
+            uk: 'Вирішальним на користь Christian II видається історична дата: у квитанції від 6 лютого 1518 року Jørgen Kock, монетному майстрові в Malmø'
+          seed: attribution
+        - kind: hedged
+          how: query
+          source: danskmoent.dk (Galster 174)
+          as_printed: u. år (1531-32)?
+          value: 1531-1532
+          translation:
+            de: o. J. (1531-32)?
+            en: undated (1531-32)?
+            uk: без року (1531–32)?
+          seed: attribution
         - kind: hedged
           how: attributed
           source: bruun

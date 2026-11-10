@@ -5461,11 +5461,9 @@ def validate_attributions_doc(doc: dict, path: str = "<attributions>") -> list[s
             errs.append(f"{w} 'field' must be one of {ATTRIBUTION_FIELDS}")
         if a.get("basis") not in ATTRIBUTION_BASES:
             errs.append(f"{w} 'basis' must be one of {ATTRIBUTION_BASES}")
-        v = a.get("value")
-        if a.get("field") == "year" and not (
-                isinstance(v, int) or (isinstance(v, list) and len(v) == 2
-                                       and all(isinstance(y, int) for y in v) and v[0] <= v[1])):
-            errs.append(f"{w} year 'value' must be a year or [first, last]")
+        if a.get("field") == "year" and _attribution_year_ranges(a.get("value")) is None:
+            errs.append(f"{w} year 'value' must be a year, [first, last], "
+                        f"or a list of [first, last]")
         works = a.get("works")
         if not isinstance(works, list) or not works:
             errs.append(f"{w} needs 'works'")
@@ -5475,6 +5473,9 @@ def validate_attributions_doc(doc: dict, path: str = "<attributions>") -> list[s
                 errs.append(f"{w}.works[{j}] needs 'work' and 'quote'")
             elif wk.get("how") not in _u.HEDGED | {"plain"}:
                 errs.append(f"{w}.works[{j}] 'how' must be 'plain' or a hedged basis")
+            if isinstance(wk, dict) and "value" in wk and _attribution_year_ranges(wk["value"]) is None:
+                errs.append(f"{w}.works[{j}] 'value' must be a year, [first, last], "
+                            f"or a list of [first, last]")
             tr = wk.get("translation") if isinstance(wk, dict) else None
             if tr is not None and not (isinstance(tr, dict) and all(tr.get(k) for k in ("de", "en", "uk"))):
                 errs.append(f"{w}.works[{j}] 'translation' needs de/en/uk")
@@ -5482,6 +5483,32 @@ def validate_attributions_doc(doc: dict, path: str = "<attributions>") -> list[s
         if note is not None and not (isinstance(note, dict) and all(note.get(k) for k in ("de", "en", "uk", "da"))):
             errs.append(f"{w} 'note' needs de/en/uk/da")
     return errs
+
+
+def _attribution_year_ranges(v) -> list[list[int]] | None:
+    """An attribution's year value as sorted year_ranges, or None if malformed.
+
+    Accepted: a year (1497), one span ([1496, 1497]), or several spans
+    ([[1518, 1518], [1531, 1532]]) when the works give different datings
+    and the curator keeps them all (Galster 174: Schive 1865 dates the type
+    1518, Galster 1531-32; curator 2026-11-10)."""
+    def span(x):
+        if (isinstance(x, list) and len(x) == 2 and all(isinstance(y, int) for y in x)
+                and x[0] <= x[1]):
+            return [x[0], x[1]]
+        return None
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, int):
+        return [[v, v]]
+    one = span(v)
+    if one:
+        return [one]
+    if isinstance(v, list) and v:
+        spans = [span(x) if not isinstance(x, int) or isinstance(x, bool) else [x, x] for x in v]
+        if all(spans):
+            return sorted(spans)
+    return None
 
 
 def _attribution_matches(attr: dict, member_coins: list[dict], entity_id: str) -> bool:
@@ -5510,11 +5537,10 @@ def apply_attribution(unified: dict, attr: dict) -> None:
     """Set the class's field from the attribution, record each work in
     Coin.uncertainty (with its quote). The works do not enter `sources`."""
     from lib import uncertainty as _u
-    v = attr["value"]
-    first, last = (v, v) if isinstance(v, int) else (v[0], v[1])
-    unified["year_first"], unified["year_last"] = first, last
-    unified["year_ranges"] = [[first, last]]
-    unified["year_label"] = str(first) if first == last else f"{first}-{last}"
+    ranges = _attribution_year_ranges(attr["value"])
+    unified["year_first"], unified["year_last"] = ranges[0][0], max(r[1] for r in ranges)
+    unified["year_ranges"] = ranges
+    unified["year_label"] = _format_year_label(ranges)
     plain = attr["basis"] == "given" and all(wk.get("how") == "plain" for wk in attr["works"])
     unified["year_verified"] = plain
     unified.pop("year_conflict", None)
@@ -5524,14 +5550,15 @@ def apply_attribution(unified: dict, attr: dict) -> None:
         unified.pop("year_note", None)
     entries = []
     for wk in attr["works"]:
+        # a work may date the type to one part of the class's years
+        val = (_format_year_label(_attribution_year_ranges(wk["value"]))
+               if "value" in wk else unified["year_label"])
         if attr["basis"] == "compiled":
-            e = _u.make("compiled", _work_label(wk), as_printed=wk["quote"],
-                        value=unified["year_label"])
+            e = _u.make("compiled", _work_label(wk), as_printed=wk["quote"], value=val)
         elif wk.get("how") == "plain":
             continue
         else:
-            e = _u.make(wk["how"], _work_label(wk), as_printed=wk["quote"],
-                        value=unified["year_label"])
+            e = _u.make(wk["how"], _work_label(wk), as_printed=wk["quote"], value=val)
         if wk.get("translation"):
             e["translation"] = dict(wk["translation"])
         e["seed"] = "attribution"
