@@ -1270,7 +1270,9 @@ def _build_coin(
     # own (c8h8b.htm, c8h11a.htm, c5h112a.htm, f5h37b.htm), which glued to
     # the sub-letter gave «8bA», «11aA», «112aA», «37bA» (2026-11-07). The
     # seed id keeps the file-based form so every decision that names it holds.
-    catalog["hede"] = hede_printed or hede_number
+    _hede_idx = _hede_index_or_none(hede_printed or hede_number)
+    if _hede_idx is not None:
+        catalog["hede"] = _hede_idx
     catalog["hede_volume"] = hede_volume
     refs = catalog_refs_override or parsed.get("catalog_refs") or {}
     # GENERIC catalogue mapping (§CJ): Schou/Sieg/Fr/Dav/Km/Galster/Bruun →
@@ -1623,6 +1625,23 @@ def _merge_seed(coins_fresh: list[CommentedMap]) -> tuple[
         stats["orphan_curated"] += 1
 
     return out, stats
+
+
+# danskmoent names a page «Hede ej» (f3hej.htm, c7hej.htm) when Hede gives the
+# coin NO number of its own: «ej» is Danish «not», as in «(Hede ej, Schou ej)».
+# It is a negative claim like «KM-unlisted» (CLAUDE.md anti-pattern 5), never
+# a catalogue index. The page stays a source of the seed; it just carries no
+# Hede number (curator 2026-11-10).
+_HEDE_NOT_LISTED = {"ej"}
+
+
+def _hede_index_or_none(value):
+    """The Hede number to store, or None when the page says Hede lists none."""
+    if value is None:
+        return None
+    if str(value).strip().lower() in _HEDE_NOT_LISTED:
+        return None
+    return value
 
 
 def main() -> int:
