@@ -157,7 +157,12 @@ def _extract_links(html: str) -> set[str]:
 # The value is the cache basename. It is set to the sibling convention
 # (f2h7d.htm, not engelot.htm) so the parser derives the same id shape
 # and the seed entry lands as `dk-hede-f2h7d` next to its set-mates.
-IRREGULAR_COIN_PAGES = {"/engelot.htm": "f2h7d.htm"}
+#   /lauenbor.htm — Frederik VI ⅔ Thaler 1830 for Lauenburg, Hede's own
+#   «Lauenborg» section of f6hede.htm, row «L1». The link sits in the Hede
+#   cell, not the nominal cell, so the scan above does not see it (fetched
+#   by hand 2026-11-09). Named after the overview metal key: volume f6h +
+#   «l», number 1.
+IRREGULAR_COIN_PAGES = {"/engelot.htm": "f2h7d.htm", "/lauenbor.htm": "f6hl1.htm"}
 
 _ANCHOR_RE = re.compile(r'(?is)<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>')
 _COIN_BASENAME_RE = re.compile(

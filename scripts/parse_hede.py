@@ -236,13 +236,18 @@ def _ruler_volume(basename: str) -> tuple[str | None, str]:
     physically different Hede entries — same Hede number under separate
     Danish-royal and Norwegian-royal volumes of the same monarch's reign).
     The ruler_label stays the monarch's name (he ruled both kingdoms in
-    personal union)."""
-    m = re.match(r"^(n?)(c|f)(\d+)h", basename)
+    personal union).
+
+    Hede's «Lauenborg» section (f6hede.htm, row «L1») is cached as `f6hl1`
+    (fetch_hede.IRREGULAR_COIN_PAGES) and gets the volume `f6hl`, so its
+    «Hede 1» keys as `f6hl1` and not as the Danish Hede 1 (`f6h1`), whose
+    page would otherwise own the key and leave this page non-canonical."""
+    m = re.match(r"^(n?)(c|f)(\d+)h(l(?=\d))?", basename)
     if not m:
         return None, ""
-    norge_prefix, letter, num = m.groups()
+    norge_prefix, letter, num, series = m.groups()
     label_base = "Christian" if letter == "c" else "Frederik"
-    return f"{label_base} {num}.", f"{norge_prefix}{letter}{num}h"
+    return f"{label_base} {num}.", f"{norge_prefix}{letter}{num}h{series or ''}"
 
 
 # Year + rarity inside parens: «1620, 1621 (R)» / «1663 (RR)» /

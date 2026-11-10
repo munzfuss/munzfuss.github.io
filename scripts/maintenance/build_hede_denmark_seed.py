@@ -968,6 +968,26 @@ def _split_multi_value_pages(coins: list) -> tuple[int, set[str]]:
 # (Kongsberg; Hede Danmark 15B, Schou 8, Sieg Norge 2 type II). Denne variant
 # regnedes tidligere for dansk, men må nu anses for norsk … Hede Norge 6».
 # One seed per letter, each routed by its own mint; the page seed is dropped.
+# Hede's own sub-series pages that are not Danish coins of the volume's king
+# and whose page heading names the territory, not the mint. Keyed by the cache
+# basename (fetch_hede.IRREGULAR_COIN_PAGES).
+#   f6hl1 — danskmoent lauenbor.htm, «Frederik 6., 2/3 Thaler 1830, Lauenborg»:
+#   the heading's «Lauenborg» is the duchy; the page says «Mønterne er præget i
+#   Altona» and f6hede.htm's «Lauenborg» section gives «Prægested Altona». The
+#   coin is the Duchy of Lauenburg's (curator 2026-11-07,
+#   merge_decisions/herzogtum_sachsen_lauenburg.yml); routing by the Altona mint
+#   would put it in royal_holstein. hede_volume «f6hl» keeps its «Hede 1» apart
+#   from the Danish Hede 1 of Frederik VI (same key as _overview_metal).
+_SERIES_PAGES: dict[str, dict[str, str]] = {
+    "f6hl1": {
+        "mint": "Altona",
+        "issuing_entity": "herzogtum_sachsen_lauenburg",
+        "hede_volume": "f6hl",
+        "ref": "danskmoent.dk (Hede Lauenborg 1)",
+    },
+}
+
+
 _LETTER_SPLIT_PAGES: dict[str, dict[str, dict]] = {
     "f6h15": {
         "15A": {"mint": "Altona", "mintmaster": "MF", "diameter_mm": 15,
@@ -1347,6 +1367,13 @@ def _build_coin(
     cm["issuing_entity"] = _classify_hede_entity(
         mint_normalised, hede_volume, cm.get("year_first")
     )
+    _series = _SERIES_PAGES.get(parsed["id"])
+    if _series:
+        mint_normalised = _series["mint"]
+        cm["mint"] = _series["mint"]
+        cm["issuing_entity"] = _series["issuing_entity"]
+        catalog["hede_volume"] = _series["hede_volume"]
+        src["ref"] = _series["ref"]
     cm["verified"] = False
     if fineness is not None:
         cm["fineness_verified"] = True   # Hede page directly publishes
@@ -1655,7 +1682,9 @@ def main() -> int:
         # Extract the sub-Hede portion from composite key
         # «c4h111» → «111», «f3h62ab» → «62ab», «c10h35» → «35»,
         # «nc5h42» → «42» (Norge — same shape, optional `n` prefix).
-        m = re.match(r"^n?[cf]\d+h(.+)$", composite_key)
+        # The Lauenborg series volume `f6hl` (parse_hede._ruler_volume) is
+        # one letter longer: «f6hl1» → «1», not «l1».
+        m = re.match(r"^n?[cf]\d+h(?:l(?=\d))?(.+)$", composite_key)
         if not m:
             continue
         sub_num = m.group(1).lower()
