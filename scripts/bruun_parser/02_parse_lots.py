@@ -526,6 +526,15 @@ def page_sections(pages: list[tuple[int, str]]) -> dict[int, str | None]:
 # exclude a lot: Bruun calls full-value coins of a correct nominal and metal
 # «pattern» or «trial» (lot 11230, the Roman-attire 4 Mark 1666, Hede 105B).
 # A decorative «pattern of crowned arms» / «trefoil pattern» is not a marker.
+# «Off-Metal» in the lot's HEADLINE (curator 2026-11-10). Lot 11269 (Bruun
+# 7376) is titled «Gold Off-Metal. 2 Skilling, 1711» without the word
+# «strike», so PATTERN_RE's «off-metal strike» missed it. In the headline the
+# term marks an off-metal piece on every one of the 29 lots that carry it; in
+# the description it does not — lot 1206 (⅛ Speciedaler 1660) says it «was
+# likely produced as such instead of being an off-metal striking of a Ducat».
+OFF_METAL_TITLE_RE = re.compile(r"\boff[\- ]metal\b", re.IGNORECASE)
+
+
 PATTERN_WORD_RE = re.compile(
     r"(?<!alternating )(?<!trefoil )\b(Pattern|Probe|Probestrike|Essai|Trial(?:\s+Strike)?)\b(?!\s+of\b)",
     re.IGNORECASE,
@@ -750,7 +759,8 @@ def parse_part(slug: str) -> list[dict]:
         # A «pattern» / «trial» wording alone no longer excludes the lot
         # (curator 2026-11-08): a pattern whose nominal and metal are those of
         # the coin stays; only an off-metal or off-nominal piece goes.
-        is_pattern = bool(PATTERN_RE.search(desc_match)) or (
+        is_pattern = bool(PATTERN_RE.search(desc_match)) or bool(
+            OFF_METAL_TITLE_RE.search(meta_line or "")) or (
             bool(PATTERN_WORD_RE.search(desc_match))
             and _pattern_off_metal_or_nominal(meta_line or "", desc_match)
         )

@@ -12,7 +12,7 @@ _spec.loader.exec_module(P)
 
 
 def excluded(meta, desc):
-    return bool(P.PATTERN_RE.search(desc)) or (
+    return bool(P.PATTERN_RE.search(desc)) or bool(P.OFF_METAL_TITLE_RE.search(meta)) or (
         bool(P.PATTERN_WORD_RE.search(desc))
         and P._pattern_off_metal_or_nominal(meta, desc))
 
@@ -51,6 +51,21 @@ class PatternWording(unittest.TestCase):
     def test_off_metal_strike_still_excluded_without_pattern_word(self):
         meta = "DENMARK. Gold Off-Metal 2 Skilling, 1711."
         self.assertTrue(excluded(meta, meta + " off-metal strike"))
+
+
+class OffMetalHeadline(unittest.TestCase):
+    """«Off-Metal» in the headline excludes; in the description alone it does
+    not (curator 2026-11-10)."""
+
+    def test_headline_without_strike_excluded(self):
+        meta = "DENMARK. Gold Off-Metal. 2 Skilling, 1711. Frederik IV . NGC Unc Details—Obverse Scratched."
+        self.assertTrue(excluded(meta, meta + " Fr-unlisted; KM-502 (silver); Hede-44A"))
+
+    def test_description_mention_kept(self):
+        meta = "NORW AY . 1/8 Speciedaler, 1660. Christiania Mint. Frederik III. NGC EF-45."
+        desc = meta + (" The weight is consistent with a 1/8 Speciedaler, and was likely produced"
+                       " as such instead of being an off-metal striking of a Ducat.")
+        self.assertFalse(excluded(meta, desc))
 
 
 if __name__ == "__main__":
