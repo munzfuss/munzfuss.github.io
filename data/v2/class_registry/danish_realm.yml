@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1705 active, 4727 retired.
+# 1704 active, 4728 retired.
 
 id: danish_realm
 classes:
@@ -4018,10 +4018,11 @@ classes:
   - id: c-240158cf
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1050107
+    label: unified-dk-bruun-5371
     legacy_id: unified-ngc-1050107
     members:
       - denmark-numismaster-65408
+      - dk-bruun-5371
       - ngc-1050107
   - id: c-24404ef1
     status: active
@@ -24253,12 +24254,6 @@ classes:
       - dk-bruun-6417
       - dk-hede-f3h23
       - ngc-1050266
-  - id: c-e0da8d42
-    status: active
-    created: '2026-11-08'
-    label: unified-dk-bruun-5371
-    members:
-      - dk-bruun-5371
   - id: c-e1012e0e
     status: active
     created: '2026-10-25'
@@ -66605,6 +66600,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-430355
+  - id: c-e0da8d42
+    status: retired
+    created: '2026-11-08'
+    label: unified-dk-bruun-5371
+    merged_into: c-240158cf
+    retired: '2026-11-10'
+    members:
+      - dk-bruun-5371
   - id: c-e11e0562
     status: retired
     created: '2026-10-22'
