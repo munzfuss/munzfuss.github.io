@@ -63,6 +63,17 @@ class ApplyNominalMark(unittest.TestCase):
         apply_nominal_mark(e)
         self.assertEqual(e["nominal"], "2 Dukat")
 
+    def test_hedged_mark_matches_the_builders_count_of_one(self):
+        # Galster 174: the page prints «Søsling(?)», the builder writes «1 Søsling(?)»
+        e = {"nominal": "1 Søsling(?)",
+             "nominal_mark": {"kind": "hedged", "value": "Søsling", "reason": {}}}
+        apply_nominal_mark(e)
+        self.assertIsNone(e["nominal"])
+        e = {"nominal": "2 Skilling(?)",
+             "nominal_mark": {"kind": "hedged", "value": "Skilling", "reason": {}}}
+        apply_nominal_mark(e)
+        self.assertEqual(e["nominal"], "2 Skilling(?)")
+
     def test_shown_as_an_alt(self):
         e = marked()
         apply_nominal_mark(e)

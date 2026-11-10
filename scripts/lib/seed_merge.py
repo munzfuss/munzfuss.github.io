@@ -197,8 +197,16 @@ def apply_nominal_mark(entry) -> None:
         mark["value"] = str(printed)
     if str(mark["value"]) == str(printed) or (
             mark.get("kind") == "hedged"
-            and str(printed).replace("(?)", "").strip() == str(mark["value"]).strip()):
+            and _bare_nominal(printed) == _bare_nominal(mark["value"])):
         entry["nominal"] = None
+
+
+def _bare_nominal(v) -> str:
+    """A nominal without the source's «(?)» and without an implicit count of
+    one: the seed builder writes «1 Søsling(?)» where the page prints
+    «Søsling(?)» (Galster 174), and both name the same printed value."""
+    s = str(v).replace("(?)", "").strip()
+    return re.sub(r"^1\s+", "", s)
 
 
 def apply_metal_mark(entry) -> None:

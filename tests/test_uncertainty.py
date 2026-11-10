@@ -66,6 +66,8 @@ class GalsterPrinted(unittest.TestCase):
         self.assertEqual(G._printed_dating(d), ("circa", "ca. 1380"))
         d = {"raw_text_excerpt": "Søsling u. år (1440-1442), Lund"}
         self.assertEqual(G._printed_dating(d), ("attributed", "u. år (1440-1442)"))
+        d = {"raw_text_excerpt": "Søsling(?) (klipping), u. år (1531-32)?\n"}
+        self.assertEqual(G._printed_dating(d), ("query", "u. år (1531-32)?"))
 
 
 class BruunPrinted(unittest.TestCase):

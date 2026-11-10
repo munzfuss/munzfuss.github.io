@@ -806,9 +806,11 @@ def _issuer_year_hints() -> dict[str, tuple[str, str]]:
 # The page's own dating phrase, read verbatim from the cached page text so the
 # tooltip can quote it (Coin.uncertainty, curator 2026-10-29). First match wins.
 _PRINTED_DATING = [
-    ("query", re.compile(r"[Uu]\.\s*år\.?\s*\(\s*1[3-6]\d{2}\s*\?\s*\)")),
+    # «u. år (1523?)», «u. år (1531-32)?» — the query inside or after the parenthesis
+    ("query", re.compile(r"[Uu]\.\s*år\.?\s*\(\s*1[3-6]\d{2}(?:\s*[-–]\s*\d{2,4})?"
+                         r"\s*(?:\?\s*\)|\)\s*\?)")),
     ("attributed", re.compile(r"[Uu]\.\s*år\.?\s*\(\s*(?:ca\.?\s*)?1[3-6]\d{2}"
-                              r"(?:\s*[-–]\s*1[3-6]\d{2})?\s*\)")),
+                              r"(?:\s*[-–]\s*\d{2,4})?\s*\)")),
     ("century", re.compile(r"\b1[3-6]00-tallet\b")),
     ("decade", re.compile(r"(?:i\s+)?\b1[3-6]\d0erne\b")),
     ("circa", re.compile(r"\bca\.?\s*1[3-6]\d{2}(?:\s*[-–]\s*\d{2,4})?")),

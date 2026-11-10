@@ -1670,13 +1670,13 @@ coins:
     origin: promoted
     year_conflict:
       confident:
-        - seed: dk-galster-c3g-130
-          source: galster
-          years: '1534'
         - seed: dk-numista-461448
           source: numista
           years: '1534'
       uncertain:
+        - seed: dk-galster-c3g-130
+          source: galster
+          years: '1534'
         - seed: dk-bruun-14783
           source: bruun
           years: '1534'
@@ -1692,6 +1692,12 @@ coins:
           value: '1534'
           seed: dk-bruun-14783
         - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: u.år (1534)
+          value: '1534'
+          seed: dk-galster-c3g-130
+        - kind: hedged
           how: circa
           source: ngc
           as_printed: (ca1535) Rare
@@ -1706,7 +1712,7 @@ coins:
         - kind: inferred
           how: from_name
           source: galster
-          as_printed: 1 Rhinsk gylden, u.år ()
+          as_printed: 1 Rhinsk gylden
           value: gold
           seed: dk-galster-c3g-130
   - fuss: seed_unsorted

@@ -161,14 +161,20 @@ def _parse_header_h1(text: str) -> dict:
     # Elided century «4 Skilling, (15)35, Stockholm» (chr/c3g250) → 1535.
     rest_clean = re.sub(r"\((1[4-6])\)(\d{2})\b", r"\1\2", rest_clean)
     # «Søsling u. år (1440-1442)» (bajg17): the page's tentative dating of an
-    # undated coin, in parentheses — kept as `year_hint`, never as a year.
-    # A single year in those parentheses («u.år (1534)», chr/c3g130) stays the
-    # coin's year, as before; only a span is a dating window.
-    hm = re.search(r"u\.\s*år\s*\(\s*(?:ca\.\s*)?"
-                   r"(1[3-6]\d{2}\s*[-–]\s*1[3-6]\d{2})\s*\)",
+    # undated coin, in parentheses — kept as `year_hint`, never as a year, so
+    # the builder writes it unverified. Every form counts, not only a full
+    # span (curator 2026-11-10: «такі випадки мають бути прочитані нами як
+    # невпевнені»): a single year «u. år (1534)» (chr/c3g130), an elided end
+    # with a query «u. år (1531-32)?» (norge/nc2g174). Before, those two were
+    # read as the coin's own year — the second as «1531» only.
+    hm = re.search(r"u\.\s*år\s*\(\s*(?:ca\.\s*)?(1[3-6]\d{2})"
+                   r"(?:\s*[-–]\s*(\d{2,4}))?\s*\??\s*\)\s*\??",
                    rest_clean, re.IGNORECASE)
     if hm:
-        out["year_hint"] = re.sub(r"\s+", "", hm.group(1)).replace("–", "-")
+        lo, hi = hm.group(1), hm.group(2)
+        if hi and len(hi) < 4:
+            hi = lo[:4 - len(hi)] + hi
+        out["year_hint"] = f"{lo}-{hi}" if hi and hi != lo else lo
         rest_clean = rest_clean[:hm.start()] + "u.år" + rest_clean[hm.end():]
         # The same header line is often repeated as the first body line
         # (bare-ruler H1, bajg17): do not read the window back as years.

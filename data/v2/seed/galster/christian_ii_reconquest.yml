@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-11-05T17:04:17Z'
+generated_at: '2026-11-10T08:49:34Z'
 entity: christian_ii_reconquest
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -118,14 +118,14 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: Søsling(?)
-    year_label: '1531'
+    nominal: 1 Søsling(?)
+    year_label: '1531-1532'
     year_first: 1531
-    year_last: 1531
+    year_last: 1532
     year_ranges:
       -   - 1531
-          - 1531
-    year_verified: true
+          - 1532
+    year_verified: false
     ruler: Christian II
     mint:
       - Hamar
@@ -154,8 +154,14 @@ coins:
         - kind: inferred
           how: from_name
           source: galster
-          as_printed: Hamar (Norge) eller København, Søsling(?) (klipping), u. år (-32)?
+          as_printed: Hamar (Norge) eller København, Søsling(?) (klipping)
           value: billon
+      year:
+        - kind: hedged
+          how: query
+          source: galster
+          as_printed: u. år (1531-32)?
+          value: 1531-1532
       mint:
         - kind: hedged
           how: alternatives

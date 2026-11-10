@@ -56,6 +56,21 @@ class UnionPageHeaders(unittest.TestCase):
                           d["year_hint"]),
                          ("Christoffer III", "Søsling", "u.år", "1440-1442"))
 
+    def test_every_undated_dating_is_a_hint(self):
+        """A year in parentheses after «u. år» is the page's tentative dating
+        in every form, never the coin's own year (curator 2026-11-10)."""
+        d = _parse("norge_nc2g174.htm",
+                   "Christian 2., Galster 174 \n\n## Christian 2. Hamar (Norge) eller "
+                   "København, Søsling(?) (klipping), u. år (1531-32)?\n\n"
+                   "A) Forside: kronet C (Galster 174; Schou 1)\n")
+        self.assertEqual((d["year_label"], d["year_hint"]), ("u.år", "1531-1532"))
+        self.assertNotIn("u. år", d["denomination"])
+        d = _parse("chr_c3g130.htm", "Christian 3., Galster 130 \n\n"
+                                     "## Christian 3., 1 Rhinsk gylden, u.år (1534) Gottorp\n\n"
+                                     "Forside: våbenskjolde (Galster 130, Schou 1-2)\n")
+        self.assertEqual((d["year_label"], d["year_hint"], d["denomination"]),
+                         ("u.år", "1534", "1 Rhinsk gylden"))
+
     def test_decade_in_prose_is_a_window(self):
         """epomg13: «indførtes af Erik af Pommern i 1430erne» is no year."""
         d = _parse("epomg13.htm", "## Erik af Pommern, Gros (9 penning), Lund\n\n"
@@ -63,10 +78,11 @@ class UnionPageHeaders(unittest.TestCase):
                                   "Denne mønttype … indførtes af Erik af Pommern i 1430erne.\n")
         self.assertEqual((d["year_label"], d["year_hint"]), ("u.år", "1430-1439"))
 
-    def test_single_year_in_parentheses_stays_the_year(self):
-        """chr/c3g130 «u.år (1534)» — unchanged behaviour."""
+    def test_single_year_in_parentheses_is_a_hint(self):
+        """chr/c3g130 «u.år (1534)»: the year is the page's tentative dating,
+        not an attested one (curator 2026-11-10; it used to stay the year)."""
         h = standard._parse_header_h1("## Christian 3., 1 Rhinsk gylden, u.år (1534) Gottorp\n")
-        self.assertEqual(h["year_label"], "1534")
+        self.assertEqual((h["year_label"], h["year_hint"]), ("u.år", "1534"))
 
     def test_joint_mint_kept_whole(self):
         d = _parse("epomg5.htm", "## Erik af Pommern\n\n"

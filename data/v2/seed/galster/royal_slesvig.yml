@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-11-04T14:11:29Z'
+generated_at: '2026-11-10T08:49:35Z'
 entity: royal_slesvig
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -844,7 +844,7 @@ coins:
     year_ranges:
       -   - 1534
           - 1534
-    year_verified: true
+    year_verified: false
     ruler: Christian III
     mint: Gottorp
     catalog:
@@ -892,8 +892,14 @@ coins:
         - kind: inferred
           how: from_name
           source: galster
-          as_printed: 1 Rhinsk gylden, u.år ()
+          as_printed: 1 Rhinsk gylden
           value: gold
+      year:
+        - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: u.år (1534)
+          value: '1534'
   - id: dk-galster-c3g-133
     fuss: seed_unsorted
     phase: galster
