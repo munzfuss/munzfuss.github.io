@@ -62,7 +62,9 @@ from pathlib import Path
 from ruamel.yaml import YAML
 
 PROJECT = Path(__file__).resolve().parents[2]
-CACHE_DIR = PROJECT / "scripts" / "cache" / "numista"
+sys.path.insert(0, str(PROJECT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
+CACHE_DIR = HARVEST_ROOT / "numista"
 
 TARGET_GLOBS = [
     "data/v2/final/*.yml",

@@ -14,6 +14,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 
 import parse_hede as ph  # noqa: E402
 
@@ -98,7 +99,7 @@ class LooksLikeDenom(unittest.TestCase):
         self.assertFalse(ph._looks_like_denom("speciedaler"))  # no leading number
 
 
-_CACHE = Path(__file__).resolve().parents[1] / "scripts" / "cache" / "hede"
+_CACHE = HARVEST_ROOT / "hede"
 
 
 @unittest.skipUnless((_CACHE / "f3h62.htm").exists(),

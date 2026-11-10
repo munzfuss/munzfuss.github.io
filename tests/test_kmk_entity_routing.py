@@ -16,6 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 sys.path.insert(0, str(ROOT / "scripts" / "maintenance"))
 
 _spec = importlib.util.spec_from_file_location(
@@ -24,7 +25,7 @@ bk = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(bk)
 
 
-_SRC = ROOT / "scripts" / "cache" / "kmk" / "353471.json"
+_SRC = HARVEST_ROOT / "kmk" / "353471.json"
 
 
 # scripts/cache is a private submodule; CI checks out without it.

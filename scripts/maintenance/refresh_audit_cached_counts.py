@@ -53,7 +53,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-CACHE = ROOT / "scripts" / "cache"
+sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
+CACHE = HARVEST_ROOT
 UCOIN_DIR = CACHE / "ucoin"
 NUMISTA_DIR = CACHE / "numista"
 

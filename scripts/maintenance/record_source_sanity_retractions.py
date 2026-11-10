@@ -52,11 +52,12 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 
 from lib import yaml_io  # noqa: E402
 
 LEDGER = ROOT / "data" / "v2" / "_source_sanity_retractions.yml"
-NGC_CACHE = ROOT / "scripts" / "cache" / "ngc"
+NGC_CACHE = HARVEST_ROOT / "ngc"
 
 _HEADER = """# Readings a SOURCE-SANITY gate refused at parse, and the finals therefore lost.
 #

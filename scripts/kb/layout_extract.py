@@ -26,7 +26,9 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
-CACHE = REPO / "scripts" / "cache"
+sys.path.insert(0, str(REPO / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
+CACHE = HARVEST_ROOT
 OUT = CACHE / "_derived" / "layout"
 
 

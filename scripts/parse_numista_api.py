@@ -47,6 +47,7 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
+from lib.paths import NUMISTA_CACHE  # noqa: E402
 from lib.numista_canonical import (  # noqa: E402
     extract_mint,
     extract_nominal_from_title,
@@ -202,7 +203,7 @@ def parse_api_to_canonical(d: dict[str, Any]) -> dict[str, Any] | None:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--nid", help="Parse only this NID and dump to stdout")
-    ap.add_argument("--cache-dir", default="scripts/cache/numista",
+    ap.add_argument("--cache-dir", default=str(NUMISTA_CACHE),
                     help="Cache root (default scripts/cache/numista)")
     args = ap.parse_args()
 

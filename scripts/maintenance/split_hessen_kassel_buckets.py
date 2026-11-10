@@ -29,8 +29,12 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
-MANIFEST = ROOT / "scripts/cache/numista/_BO7_audit_2026-05-24.json"
-NUMISTA_DIR = ROOT / "scripts/cache/numista"
+import sys
+
+sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
+MANIFEST = HARVEST_ROOT / "numista/_BO7_audit_2026-05-24.json"
+NUMISTA_DIR = HARVEST_ROOT / "numista"
 BOUNDARY = 1803
 LANDGR = "hessen_kassel_landgraviate"
 ELECT = "hessen_kassel_electorate"

@@ -46,9 +46,11 @@ from pathlib import Path
 import yaml
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 FINAL = REPO / "data" / "v2" / "final"
-HEDE = REPO / "scripts" / "cache" / "hede"
-NUMISTA = REPO / "scripts" / "cache" / "numista"
+HEDE = HARVEST_ROOT / "hede"
+NUMISTA = HARVEST_ROOT / "numista"
 FOLD_WIDTH = 200
 
 # entity -> inclusive year cap, per `denmark.yml::consumes_entities`.

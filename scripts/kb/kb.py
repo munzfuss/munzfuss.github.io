@@ -47,7 +47,9 @@ from pathlib import Path
 import yaml
 
 REPO = Path(__file__).resolve().parents[2]
-CACHE = REPO / "scripts" / "cache"
+sys.path.insert(0, str(REPO / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
+CACHE = HARVEST_ROOT
 MANIFEST = CACHE / "_corpus.yml"
 DERIVED = CACHE / "_derived"
 VARIANTS = Path(__file__).resolve().parent / "variants.yml"
@@ -82,8 +84,16 @@ def all_works(man: dict) -> list[dict]:
 
 
 def passage_path(path: str) -> str:
-    """Where a passage's `path` lives on disk, relative to the repo root."""
-    return path if path.startswith("docs/") else f"scripts/cache/{path}"
+    """Where a passage's `path` lives on disk: relative to the repo root when
+    the cache sits inside it, absolute when `lib.paths` resolved it elsewhere
+    (a git worktree reads the main checkout's cache)."""
+    if path.startswith("docs/"):
+        return path
+    p = CACHE / path
+    try:
+        return str(p.relative_to(REPO))
+    except ValueError:
+        return str(p)
 
 
 _MD_HEADING = re.compile(r"^(#{1,4})\s+(.*)$")

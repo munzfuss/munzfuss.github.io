@@ -42,10 +42,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 
 from lib import yaml_io  # noqa: E402
 
-CACHE = ROOT / "scripts" / "cache" / "hede"
+CACHE = HARVEST_ROOT / "hede"
 SEED = ROOT / "data" / "v2" / "seed" / "hede"
 
 # parser ref name -> seed catalog field

@@ -74,7 +74,9 @@ except ImportError:
     sys.exit(2)
 
 ROOT = Path(__file__).resolve().parent.parent
-CACHE = ROOT / "scripts" / "cache" / "hede"
+sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
+CACHE = HARVEST_ROOT / "hede"
 LOCATIONS = ROOT / "data" / "locations"
 
 OFFSTRIKE_PATTERN = re.compile(

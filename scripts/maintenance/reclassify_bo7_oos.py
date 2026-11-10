@@ -36,11 +36,12 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 sys.path.insert(0, str(ROOT))
 from lib.numista_canonical import classify_numista_scope  # noqa: E402
 
-MANIFEST = ROOT / "scripts/cache/numista/_BO7_audit_2026-05-24.json"
-NUMISTA_DIR = ROOT / "scripts/cache/numista"
+MANIFEST = HARVEST_ROOT / "numista/_BO7_audit_2026-05-24.json"
+NUMISTA_DIR = HARVEST_ROOT / "numista"
 
 # Bucketing-drift markers — anomalies about bucket OVERLAP (not OOS content)
 # must NOT be folded as exclusions (their affected NIDs are real coins).

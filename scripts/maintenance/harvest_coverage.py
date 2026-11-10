@@ -42,10 +42,10 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from lib.paths import PROJECT_ROOT  # noqa: E402
+from lib.paths import HARVEST_ROOT, PROJECT_ROOT  # noqa: E402
 from lib import yaml_io  # noqa: E402
 
-CACHE = PROJECT_ROOT / "scripts" / "cache"
+CACHE = HARVEST_ROOT
 V2_SEED = PROJECT_ROOT / "data" / "v2" / "seed"
 
 # Sources that have a V2 seed builder → their seed coin counts ARE the

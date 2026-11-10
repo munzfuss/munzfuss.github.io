@@ -23,10 +23,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 
 import parse_hede as ph  # noqa: E402
 
-CACHE = ROOT / "scripts" / "cache" / "hede"
+CACHE = HARVEST_ROOT / "hede"
 
 
 def _text(basename: str) -> str:

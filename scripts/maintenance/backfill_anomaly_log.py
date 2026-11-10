@@ -58,6 +58,7 @@ _REPO_ROOT = _THIS_DIR.parent.parent
 sys.path.insert(0, str(_REPO_ROOT))
 
 from scripts.lib import anomaly_log as al
+from scripts.lib.paths import HARVEST_ROOT  # noqa: E402
 
 
 def _extract_mds_ids(text: str) -> list[int]:
@@ -288,11 +289,11 @@ def _backfill_failed_open_ids() -> tuple[int, int, int]:
     seen_ids_emitted: set[tuple[str, str]] = set()  # (source, id_str)
 
     for source in ("numista", "ucoin"):
-        p = _REPO_ROOT / f"scripts/cache/{source}/_failed_open_ids.json"
+        p = HARVEST_ROOT / f"{source}/_failed_open_ids.json"
         if not p.exists():
             continue
         arr = json.loads(p.read_text())
-        cache_dir = _REPO_ROOT / f"scripts/cache/{source}"
+        cache_dir = HARVEST_ROOT / f"{source}"
         for record in arr:
             walked += 1
             id_ = record["id"]
@@ -340,7 +341,7 @@ def _backfill_failed_open_ids() -> tuple[int, int, int]:
 
 
 def main():
-    handoff_path = _REPO_ROOT / "scripts/cache/_harvest_handoff.json"
+    handoff_path = HARVEST_ROOT / "_harvest_handoff.json"
     if not handoff_path.exists():
         print(f"ERROR: handoff file missing at {handoff_path}", file=sys.stderr)
         sys.exit(1)

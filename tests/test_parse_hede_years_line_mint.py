@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 
 import parse_hede as P  # noqa: E402
 
@@ -22,7 +23,7 @@ class YearsLineMint(unittest.TestCase):
 
     def test_cached_pages(self):
         for page, mint in (("c8h5", "Altona"), ("c4h137", "København"), ("f6h29", "Altona")):
-            p = ROOT / "scripts" / "cache" / "hede" / f"{page}.htm"
+            p = HARVEST_ROOT / "hede" / f"{page}.htm"
             if not p.exists():
                 self.skipTest("harvest cache not checked out")
             d = P.parse_one(p.read_text(encoding="latin-1"), page)

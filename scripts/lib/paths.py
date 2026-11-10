@@ -17,15 +17,20 @@ from this module instead of declaring its own ``Path(...)``. That gives:
 
 ``HARVEST_ROOT`` resolves in this order:
 
-1. ``$MUNZFUSS_HARVEST_DIR`` from the environment (set in shell or via
-   ``local.env`` after ``load_local_env()`` has run).
-2. ``<repo>/scripts/cache`` — the default submodule mount point.
+1. ``$MUNZFUSS_HARVEST_DIR`` from the process environment.
+2. ``MUNZFUSS_HARVEST_DIR`` in ``<repo>/local.env`` — read HERE, at import
+   time (only that key), so the override no longer depends on a script
+   calling ``load_local_env()`` before it imports this module.
+3. ``<repo>/scripts/cache`` when it holds files — the submodule checkout.
+4. In a git worktree (``.claude/worktrees/<name>``), whose ``scripts/cache``
+   is an empty, uninitialised submodule directory: the main checkout's
+   ``scripts/cache``, found through ``.git`` → ``gitdir`` → ``commondir``
+   (file reads only, no git process). A worktree therefore needs no setup.
+5. ``<repo>/scripts/cache`` — the default, even when empty.
 
-Note: ``local.env`` is loaded lazily by individual scripts (not at module-
-import time here), so callers that rely on the override must call
-``load_local_env()`` BEFORE reading constants from this module. In
-practice, scripts that hit ``HARVEST_ROOT`` already call
-``load_local_env()`` near the top of their ``main()``.
+Every script reaches the cache through ``HARVEST_ROOT`` (or a per-source
+constant below), never through a spelled-out ``scripts/cache`` path:
+``tests/test_cache_paths_via_lib.py`` fails on a new one.
 
 Import pattern:
 
@@ -39,16 +44,70 @@ from pathlib import Path
 PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
 
 
-def _resolve_harvest_root() -> Path:
-    """Resolve harvest cache root, honouring the env override.
+def _local_env_override() -> str:
+    """``MUNZFUSS_HARVEST_DIR`` from ``<repo>/local.env``, or "" — that key
+    only; the rest of the file is left to ``lib.env.load_local_env()``."""
+    f = PROJECT_ROOT / "local.env"
+    try:
+        lines = f.read_text().splitlines()
+    except OSError:
+        return ""
+    for raw in lines:
+        line = raw.strip()
+        if line.startswith("MUNZFUSS_HARVEST_DIR") and "=" in line:
+            k, v = line.split("=", 1)
+            if k.strip() == "MUNZFUSS_HARVEST_DIR":
+                return v.strip().strip('"').strip("'")
+    return ""
 
-    Called lazily on each constant lookup so a ``load_local_env()`` call
-    that happens after ``lib.paths`` is first imported still takes effect.
-    """
-    override = os.environ.get("MUNZFUSS_HARVEST_DIR", "").strip()
+
+def _has_files(d: Path) -> bool:
+    try:
+        return d.is_dir() and any(d.iterdir())
+    except OSError:
+        return False
+
+
+def _main_checkout_root() -> Path | None:
+    """The main checkout when PROJECT_ROOT is a git worktree, else None.
+
+    A worktree's ``.git`` is a file «gitdir: <common>/worktrees/<name>»;
+    that directory's ``commondir`` names the shared git dir, whose parent is
+    the main checkout."""
+    dot_git = PROJECT_ROOT / ".git"
+    try:
+        if not dot_git.is_file():
+            return None
+        text = dot_git.read_text().strip()
+        if not text.startswith("gitdir:"):
+            return None
+        gitdir = Path(text.split(":", 1)[1].strip())
+        if not gitdir.is_absolute():
+            gitdir = (PROJECT_ROOT / gitdir).resolve()
+        common = (gitdir / "commondir").read_text().strip()
+        common_dir = Path(common)
+        if not common_dir.is_absolute():
+            common_dir = (gitdir / common_dir).resolve()
+        if common_dir.name != ".git":
+            return None
+        return common_dir.parent
+    except OSError:
+        return None
+
+
+def _resolve_harvest_root() -> Path:
+    """Resolve the harvest cache root (order in the module docstring)."""
+    override = (os.environ.get("MUNZFUSS_HARVEST_DIR", "").strip()
+                or _local_env_override())
     if override:
         return Path(override).expanduser().resolve()
-    return PROJECT_ROOT / "scripts" / "cache"
+    own = PROJECT_ROOT / "scripts" / "cache"
+    if _has_files(own):
+        return own
+    main = _main_checkout_root()
+    if main is not None and _has_files(main / "scripts" / "cache"):
+        return main / "scripts" / "cache"
+    return own
 
 
 # Eagerly compute the default at import-time AND expose a refresh hook

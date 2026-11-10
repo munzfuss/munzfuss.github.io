@@ -55,8 +55,10 @@ except ImportError:
     sys.exit(2)
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 DATA = ROOT / "data"
-CACHE = ROOT / "scripts" / "cache"
+CACHE = HARVEST_ROOT
 
 VENV_PY = str(ROOT / ".venv" / "bin" / "python") if (ROOT / ".venv" / "bin" / "python").exists() else sys.executable
 
@@ -510,10 +512,10 @@ def section_git() -> Section:
     submod_dirty = submod_status.startswith(("+", "U"))
     submod_uninit = submod_status.startswith("-")
     submod_ahead = ""
-    if (ROOT / "scripts" / "cache" / ".git").exists() or (ROOT / "scripts" / "cache").is_dir():
+    if (HARVEST_ROOT / ".git").exists() or (HARVEST_ROOT).is_dir():
         sub_ahead = subprocess.run(
             ["git", "rev-list", "--count", "origin/main..HEAD"],
-            cwd=ROOT / "scripts" / "cache",
+            cwd=HARVEST_ROOT,
             capture_output=True, text=True
         ).stdout.strip() or "0"
         submod_ahead = sub_ahead

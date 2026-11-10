@@ -32,6 +32,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 from lib.bruun_pages import PART_OF_ROMAN, printed_page  # noqa: E402
 
 GLOBS = ["data/v2/**/*.yml", "data/shared/*.yml", "data/i18n/*.yml",
@@ -50,7 +51,7 @@ _PART = re.compile(r"(?:Part|Bruun)\s+(IV|V|III|II|I)\b")
 def _lots() -> dict[int, list[tuple[int, list[int]]]]:
     out: dict[int, list[tuple[int, list[int]]]] = defaultdict(list)
     for part in range(1, 6):
-        data = json.loads((ROOT / f"scripts/cache/bruun/lots/part{part}.json").read_text(encoding="utf-8"))
+        data = json.loads((HARVEST_ROOT / f"bruun/lots/part{part}.json").read_text(encoding="utf-8"))
         for lot in data if isinstance(data, list) else data["lots"]:
             if isinstance(lot.get("lot_no"), int):
                 span = lot.get("page_span") or ([lot["page"]] if lot.get("page") else [])

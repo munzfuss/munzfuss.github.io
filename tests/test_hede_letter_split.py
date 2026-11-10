@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 import parse_hede as P  # noqa: E402
 
 
@@ -35,7 +36,7 @@ class LetterGroups(unittest.TestCase):
         self.assertEqual(sorted(P._split_combined_letter_keys({"14AB": keep}, {})), ["14AB"])
 
     def test_page_c5h12(self):
-        html = (ROOT / "scripts/cache/hede/c5h12.htm").read_text(encoding="latin-1")
+        html = (HARVEST_ROOT / "hede/c5h12.htm").read_text(encoding="latin-1")
         bh = P.parse_one(html, "c5h12")["specs"]["by_hede"]
         self.assertEqual(bh["12A"]["catalog_refs"], {"Schou": ["17-18"], "Sieg": ["73.1"]})
         self.assertEqual(bh["12B"]["catalog_refs"], {"Schou": ["19"], "Sieg": ["76"]})

@@ -56,6 +56,7 @@ from ruamel.yaml import YAML
 
 PROJECT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT / "scripts"))
+from lib.paths import HARVEST_ROOT  # noqa: E402
 from lib.bruun_pages import printed_page  # noqa: E402
 from maintenance.build_bruun_denmark_seed import (  # noqa: E402
     _BRUUN_PART_PDF_URL, _BRUUN_PART_ROMAN,
@@ -100,7 +101,7 @@ def _load_page_caches() -> tuple[dict[str, int], dict[tuple[int, int], int]]:
     # Pages are the PRINTED catalogue pages (lib.bruun_pages, curator 2026-10-19);
     # the parser cache holds PDF pages.
     for part_n in (1, 2, 3, 4, 5):
-        p = PROJECT / "scripts" / "cache" / "bruun" / "lots" / f"part{part_n}.json"
+        p = HARVEST_ROOT / "bruun" / "lots" / f"part{part_n}.json"
         if not p.exists():
             continue
         for lot in json.loads(p.read_text(encoding="utf-8")):
