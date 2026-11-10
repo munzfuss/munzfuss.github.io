@@ -42,7 +42,17 @@
   review the 294 groups, and whether to add an «exclude only the conflicting class» mode.
 - **Closed:** legacy Bruun fields `bruun_part` / `bruun_lot_no` / `bruun_page` are read by nothing (render and
   builder use only `bruun_collection_id`) — the old item is obsolete; optional cleanup only if the curator asks.
-- **Open:** push (cache first, then main); the Hede-base review above; notes queue (stale Hede 112C note).
+- **Later the same day (81ad322..aff24da):** Hede-base rule skips a class holding ANY excluded seed (was
+  `all`, 81ad322; refusals 15 → 11, all metal refusals of already-excluded off-strikes gone). KM 253 records
+  (NGC 1056661, NumisMaster 138061) + danskmoent f3hej → Hede 72 gold class (Bruun 6436); the three 5 Dukat
+  1665 gold types pinned apart (68A FC H / 72 GK arms / 107A GK crown) with merges + pairwise no_merges; the
+  68A foundation catalog reset by hand (90d93a2). Excluded as off-strikes: Hede 61 4 Dukat, 62B, 68A, Oldenburg
+  4B (e1a8473); C4 156 gold Portugaløser 1623 excluded as a pattern (aff24da); Hede 72 kept (Fornitz in Zinck
+  VIII: Hede «noget misvisende» calls it a guldafslag). Hede builder writes no index for «Hede ej» pages
+  (56d68e8); the old `hede: ej` removed from f3hej / c7hej seeds by hand — catalog deep-merge keeps old keys
+  across a rebuild (0797d30).
+- **Open:** push (cache first, then main); the Hede-base review above (remaining refusals: curator no_merges
+  groups + Hede 72 silver / gold, which the metal split handles); notes queue (stale Hede 112C note).
   Branch claude/blissful-kirch-7b7be3 still in use by another session — do not delete; the untracked files in
   `scripts/cache` are that session's.
 
