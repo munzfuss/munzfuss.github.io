@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 260 active, 7 retired.
+# 259 active, 8 retired.
 
 id: schauenburg_pinneberg
 classes:
@@ -231,6 +231,8 @@ classes:
       - c-f105bcfe
     members:
       - dk-bruun-14846
+      - ngc-1162554
+      - schleswig_holstein-numismaster-96171
   - id: c-176f53b6
     status: active
     created: '2026-10-22'
@@ -1903,7 +1905,6 @@ classes:
     legacy_id: unified-dk-numista-278290
     members:
       - dk-numista-278290
-      - schleswig_holstein-numismaster-96171
   - id: c-e597f328
     status: active
     created: '2026-10-22'
@@ -1975,12 +1976,6 @@ classes:
     members:
       - ikmk-18285792
       - ikmk-18285818
-  - id: c-f105bcfe
-    status: active
-    created: '2026-11-10'
-    label: unified-ngc-1162554
-    members:
-      - ngc-1162554
   - id: c-f11c0ea7
     status: active
     created: '2026-10-22'
@@ -2144,3 +2139,11 @@ classes:
       - ikmk-18286798
       - ngc-1154789
       - schleswig_holstein-numismaster-96088
+  - id: c-f105bcfe
+    status: retired
+    created: '2026-11-10'
+    label: unified-ngc-1162554
+    merged_into: c-16d7565a
+    retired: '2026-11-11'
+    members:
+      - ngc-1162554

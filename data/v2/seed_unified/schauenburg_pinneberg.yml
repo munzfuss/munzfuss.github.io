@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-11 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 504 per-source seed entries.
-# Output: 260 unified entries (one per physical coin).
+# Output: 259 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-11-10'
+generated_at: '2026-11-11'
 coins:
   - id: c-a208b610
     class_id: c-a208b610
@@ -268,7 +268,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 1 S chleswig-Holstein-Schaumburg-Pinneberg
+    nominal: 1 Double Taler
     year_first: 1603
     year_last: 1603
     year_label: '1603'
@@ -295,6 +295,14 @@ coins:
         source: ngc
       - value: 58.0
         source: numismaster
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Double Taler
+          value: silver
+          seed: dk-bruun-14834
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -316,7 +324,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 1 S chleswig-Holstein-Schaumburg-Pinneberg
+    nominal: 1 Double Taler
     year_first: 1606
     year_last: 1606
     year_label: '1606'
@@ -328,21 +336,44 @@ coins:
       others:
         - Weinmeister# 95
         - Dav-LS# 470
-    metal_verified: false
+      dav: LS470
+    metal: silver
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 58.0
+        source: ngc
+      - value: 58.0
+        source: numismaster
       - value: 58.22
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Double Taler
+          value: silver
+          seed: dk-bruun-14846
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14263, p. 299
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-37-1606-cuid-1162554-duid-1387373
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96171
+        ref: NumisMaster
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-bruun-14846
+      - ngc-1162554
+      - schleswig_holstein-numismaster-96171
   - id: c-2bdace36
     class_id: c-2bdace36
     label: unified-dk-bruun-14871
@@ -3396,7 +3427,6 @@ coins:
     year_first: 1606
     year_last: 1606
     year_label: '1606'
-    ruler: Ernst III
     catalog:
       km: '37'
       numista: '278290'
@@ -3412,21 +3442,15 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 58.0
-        source: numismaster
       - value: 58.12
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/278290
         ref: Numista N#278290 — 2 Thalers - Ernest III - HS-Pinneberg 1606
-      - type: literature
-        url: https://numismaster.com/MC_96171
-        ref: NumisMaster
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278290
-      - schleswig_holstein-numismaster-96171
   - id: c-32076095
     class_id: c-32076095
     label: unified-dk-numista-278291
@@ -8891,37 +8915,6 @@ coins:
     composed_of:
       - ngc-1162553
       - schleswig_holstein-numismaster-96152
-  - id: c-f105bcfe
-    class_id: c-f105bcfe
-    label: unified-ngc-1162554
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Ernst III
-    catalog:
-      km: '37'
-      dav: LS470
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 58.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-37-1606-cuid-1162554-duid-1387373
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ngc-1162554
   - id: c-a22454b1
     class_id: c-a22454b1
     label: unified-ngc-1162634

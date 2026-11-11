@@ -697,7 +697,10 @@ def _denom_from_text(text: str) -> str | None:
     # Error — …» → «Skilling», not the trailing error annotation).
     while ". " in d:
         head, rest = d.split(". ", 1)
-        if _TERRITORY_LEAD.match(head):
+        # The PDF text layer splits an initial capital off its word
+        # («S chleswig-Holstein-Schaumburg-Pinneberg», lots 14262 / 14269):
+        # rejoin it before asking whether the segment is a territory.
+        if _TERRITORY_LEAD.match(re.sub(r"^([A-ZÀ-Þ]) (?=[a-zß-ÿ])", r"\1", head)):
             d = rest.strip()
         else:
             d = head.strip()
