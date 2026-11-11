@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 504 per-source seed entries.
-# Output: 259 unified entries (one per physical coin).
+# Output: 258 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2126,8 +2126,8 @@ coins:
       - dk-numista-137341
       - ngc-1156773
       - schleswig_holstein-numismaster-96069
-  - id: c-4f3062ec
-    class_id: c-4f3062ec
+  - id: c-3915d816
+    class_id: c-3915d816
     label: unified-dk-numista-137342
     fuss: seed_unsorted
     phase: numista
@@ -2136,9 +2136,15 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
+    ruler: Ernst III
+    inscription_obv: '[E] P E C - H S E S'
+    inscription_rev: FERDI D G R I S A Z0
     catalog:
       km: '99'
       numista: '137342'
+      others:
+        - Weinmeister# 290
+        - Weinmeister# 292
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -2147,18 +2153,66 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 0.8
+        source: ngc
+      - value: 0.8
+        source: numismaster
+      - value: 0.81
+        source: ikmk
+      - value: 0.82
+        source: ikmk
       - value: 0.84
         source: numista
+      - value: 0.86
+        source: ikmk
     diameter_mm:
+      - value: 17.0
+        source: ikmk
+      - value: 18.0
+        source: ikmk
+      - value: 18.0
+        source: ngc
       - value: 18.0
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/137342
         ref: Numista N#137342 — 1 Groschen - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286782
+        ref: IKMK Berlin 18286782
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286784
+        ref: IKMK Berlin 18286784
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286829
+        ref: IKMK Berlin 18286829
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286838
+        ref: IKMK Berlin 18286838
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286841
+        ref: IKMK Berlin 18286841
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-24-thaler-km-99-16z0-1620-cuid-1154789-duid-1385151
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96088
+        ref: NumisMaster
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137342
+      - ikmk-18286782
+      - ikmk-18286784
+      - ikmk-18286829
+      - ikmk-18286838
+      - ikmk-18286841
+      - ngc-1154789
+      - schleswig_holstein-numismaster-96088
   - id: c-2c35e24f
     class_id: c-2c35e24f
     label: unified-dk-numista-137343
@@ -6670,84 +6724,6 @@ coins:
       - ikmk-18286251
       - ikmk-18286294
       - ngc-1154788
-  - id: c-3915d816
-    class_id: c-3915d816
-    label: unified-ngc-1154789
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/24 Thaler
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III
-    inscription_obv: '[E] P E C - H S E S'
-    inscription_rev: FERDI D G R I S A Z0
-    catalog:
-      km: '99'
-      others:
-        - Weinmeister# 290
-        - Weinmeister# 292
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.8
-        source: ngc
-      - value: 0.8
-        source: numismaster
-      - value: 0.81
-        source: ikmk
-      - value: 0.82
-        source: ikmk
-      - value: 0.86
-        source: ikmk
-    diameter_mm:
-      - value: 17.0
-        source: ikmk
-      - value: 18.0
-        source: ikmk
-      - value: 18.0
-        source: ngc
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286782
-        ref: IKMK Berlin 18286782
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286784
-        ref: IKMK Berlin 18286784
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286829
-        ref: IKMK Berlin 18286829
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286838
-        ref: IKMK Berlin 18286838
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286841
-        ref: IKMK Berlin 18286841
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-24-thaler-km-99-16z0-1620-cuid-1154789-duid-1385151
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96088
-        ref: NumisMaster
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ikmk-18286782
-      - ikmk-18286784
-      - ikmk-18286829
-      - ikmk-18286838
-      - ikmk-18286841
-      - ngc-1154789
-      - schleswig_holstein-numismaster-96088
   - id: c-50b2098e
     class_id: c-50b2098e
     label: unified-ngc-1154791

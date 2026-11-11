@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-11 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1304 per-source seed entries.
-# Output: 274 unified entries (one per physical coin).
+# Output: 266 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-10'
+generated_at: '2026-11-11'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -1157,17 +1157,34 @@ coins:
       numista: '38173'
       others:
         - Schön DM# 6
-    metal: billon
+    metal: silver
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.375
+        source: ngc
+      - value: 0.375
+        source: numismaster
+      - value: 0.375
+        source: ucoin
     weight_rough_g:
+      - value: 2.809
+        source: ngc
+      - value: 2.809
+        source: numismaster
       - value: 2.81
         source: numista
+      - value: 2.81
+        source: ucoin
     diameter_mm:
+      - value: 21.0
+        source: ngc
+      - value: 21.0
+        source: ucoin
       - value: 22.0
         source: numista
     uncertainty:
@@ -1195,11 +1212,23 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152093
         ref: KMM 152093 (Inv. FP 3574.201)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-1-2-schilling-km-124-1787-1801-cuid-1172031-duid-1406941
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120080
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-2-1-2-schillng-1787-1801/?tid=90572
+        ref: ucoin
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-7877
       - dk-numista-38173
       - kmk-152093
+      - ngc-1172031
+      - schleswig_holstein-numismaster-120080
+      - sh-tid-90572
   - id: c-961f34f4
     class_id: c-961f34f4
     label: unified-dk-bruun-7894
@@ -4124,7 +4153,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Mark
+    nominal: 1 Mark Danske
     year_first: 1617
     year_last: 1629
     year_ranges:
@@ -4292,7 +4321,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 2 Skilling
+    nominal: 2 Skilling dansk
     year_first: 1627
     year_last: 1627
     year_label: '1627'
@@ -4608,7 +4637,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 2 Mark
+    nominal: 2 Mark Dansk
     year_first: 1645
     year_last: 1645
     year_label: '1645'
@@ -5233,7 +5262,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Marck
+    nominal: 4 Mark Danske
     year_first: 1671
     year_last: 1682
     year_ranges:
@@ -5396,7 +5425,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 2 Marck
+    nominal: 2 Mark Dansk
     year_first: 1679
     year_last: 1682
     year_ranges:
@@ -5552,7 +5581,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Marck
+    nominal: 4 Mark Danske
     year_first: 1692
     year_last: 1696
     year_ranges:
@@ -5748,7 +5777,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 2 Marck
+    nominal: 2 Mark Dansk
     year_first: 1693
     year_last: 1696
     year_ranges:
@@ -5845,7 +5874,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 8 Skilling
+    nominal: 8 Skilling Danske
     year_first: 1694
     year_last: 1697
     year_ranges:
@@ -5941,7 +5970,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 4 Skilling
+    nominal: 4 Skilling dansk
     year_first: 1693
     year_last: 1694
     year_ranges:
@@ -6047,7 +6076,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 1 Skilling
+    nominal: 1 Skilling dansk
     year_first: 1694
     year_last: 1694
     year_label: '1694'
@@ -6871,10 +6900,14 @@ coins:
         - '20'
         - '27'
       bruun_collection_id: '7951'
+      numista: '109008'
+      others:
+        - Kahnt/Schön# 5
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -6882,11 +6915,18 @@ coins:
         source: hede
       - value: 0.5
         source: numismaster
+      - value: 0.5
+        source: numista
     weight_rough_g:
       - value: 3.37
         source: hede
       - value: 3.37
         source: numismaster
+      - value: 3.37
+        source: numista
+    diameter_mm:
+      - value: 24.0
+        source: numista
     uncertainty:
       metal:
         - kind: inferred
@@ -6905,6 +6945,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h15.htm
         ref: danskmoent.dk (Hede c7h15)
+      - type: literature
+        url: https://en.numista.com/109008
+        ref: Numista N#109008 — 1⁄12 Speciedaler - Christian VII
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 9.25
@@ -6914,6 +6957,7 @@ coins:
       - denmark-numismaster-65371
       - dk-bruun-7951
       - dk-hede-c7h15
+      - dk-numista-109008
   - id: c-b20deed6
     class_id: c-b20deed6
     label: unified-dk-hede-c7h22ab
@@ -7688,7 +7732,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 1 Skilling
+    nominal: 1 Skilling dansk
     year_first: 1771
     year_last: 1785
     year_ranges:
@@ -8070,6 +8114,9 @@ coins:
         specimen: dk-hede-c7h39g
       - value: 0.875
         source: ngc
+        specimen: ngc-1164121
+      - value: 0.875
+        source: ngc
         specimen: ngc-1170114
       - value: 0.875
         source: ngc
@@ -8086,6 +8133,9 @@ coins:
       - value: 0.875
         source: numismaster
         specimen: schleswig_holstein-numismaster-120087
+      - value: 0.875
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120088
       - value: 0.875
         source: numismaster
         specimen: schleswig_holstein-numismaster-120090
@@ -8133,6 +8183,9 @@ coins:
         specimen: dk-hede-c7h39g
       - value: 28.893
         source: ngc
+        specimen: ngc-1164121
+      - value: 28.893
+        source: ngc
         specimen: ngc-1170114
       - value: 28.893
         source: ngc
@@ -8149,6 +8202,9 @@ coins:
       - value: 28.893
         source: numismaster
         specimen: schleswig_holstein-numismaster-120087
+      - value: 28.893
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120088
       - value: 28.893
         source: numismaster
         specimen: schleswig_holstein-numismaster-120090
@@ -8244,6 +8300,9 @@ coins:
         url: https://en.numista.com/32842
         ref: Numista N#32842 — 1 Speciesthaler / 60 Schilling Courant - Christian VII
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-60-schilling-km-138.3-1787-1788-cuid-1164121-duid-1390306
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-60-schilling-km-138.1-1787-1808-cuid-1170114-duid-1391800
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -8260,6 +8319,9 @@ coins:
         ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_120087
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_120088
         ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_120090
@@ -8289,12 +8351,14 @@ coins:
       - dk-hede-c7h39g
       - dk-numista-309993
       - dk-numista-32842
+      - ngc-1164121
       - ngc-1170114
       - ngc-1170551
       - ngc-120087
       - ngc-1207930
       - schleswig_holstein-numismaster-120086
       - schleswig_holstein-numismaster-120087
+      - schleswig_holstein-numismaster-120088
       - schleswig_holstein-numismaster-120090
       - sh-tid-90687
   - id: c-c7b832e1
@@ -8358,6 +8422,10 @@ coins:
         source: hede
         specimen: dk-hede-c7h40b
       - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
         source: numista
       - value: 0.875
         source: ucoin
@@ -8376,6 +8444,10 @@ coins:
       - value: 19.263
         source: hede
         specimen: dk-hede-c7h40b
+      - value: 19.263
+        source: ngc
+      - value: 19.263
+        source: numismaster
     diameter_mm:
       - value: 35.0
         source: numista
@@ -8415,6 +8487,12 @@ coins:
       - type: literature
         url: https://en.numista.com/188236
         ref: Numista N#188236 — ⅔ Speciesthaler / 40 Schilling Courant - Christian VII
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-40-schilling-km-135-1787-1808-cuid-1207929-duid-1390938
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120085
+        ref: NumisMaster
       - type: ucoin
         url: https://en.ucoin.net/coin/schleswig_holstein-2-3-speciedaler-1787-1808/?tid=90617
         ref: ucoin
@@ -8430,6 +8508,8 @@ coins:
       - dk-hede-c7h40a
       - dk-hede-c7h40b
       - dk-numista-188236
+      - ngc-1207929
+      - schleswig_holstein-numismaster-120085
       - sh-tid-90617
   - id: c-f624971d
     class_id: c-f624971d
@@ -8457,6 +8537,7 @@ coins:
       km:
         - '130'
         - 130a
+        - 130b
       hede:
         - '41'
         - 41A
@@ -8509,6 +8590,24 @@ coins:
         source: hede
         specimen: dk-hede-c7h41d
       - value: 0.875
+        source: ngc
+        specimen: ngc-1166842
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1168011
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1186040
+      - value: 0.875
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120083
+      - value: 0.875
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120084
+      - value: 0.875
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-187160
+      - value: 0.875
         source: numista
         specimen: dk-numista-325284
       - value: 0.875
@@ -8539,6 +8638,24 @@ coins:
       - value: 9.631
         source: hede
         specimen: dk-hede-c7h41d
+      - value: 9.631
+        source: ngc
+        specimen: ngc-1166842
+      - value: 9.631
+        source: ngc
+        specimen: ngc-1168011
+      - value: 9.631
+        source: ngc
+        specimen: ngc-1186040
+      - value: 9.631
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120083
+      - value: 9.631
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120084
+      - value: 9.631
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-187160
     diameter_mm:
       - value: 31.75
         source: ucoin
@@ -8588,6 +8705,24 @@ coins:
       - type: literature
         url: https://en.numista.com/60090
         ref: Numista N#60090 — ⅓ Speciesthaler / 20 Schilling Courant - Christian VII
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-20-schilling-km-130a-1787-cuid-1166842-duid-1391602
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-20-schilling-km-130-1787-1808-cuid-1168011-duid-1406943
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-20-schilling-km-130b-1789-cuid-1186040-duid-1404390
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120083
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_120084
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_187160
+        ref: NumisMaster
       - type: ucoin
         url: https://en.ucoin.net/coin/schleswig_holstein-1-3-speciedaler-1787-1808/?tid=90616
         ref: ucoin
@@ -8606,9 +8741,15 @@ coins:
       - dk-hede-c7h41d
       - dk-numista-325284
       - dk-numista-60090
+      - ngc-1166842
+      - ngc-1168011
+      - ngc-1186040
+      - schleswig_holstein-numismaster-120083
+      - schleswig_holstein-numismaster-120084
+      - schleswig_holstein-numismaster-187160
       - sh-tid-90616
-  - id: c-e7dd05a2
-    class_id: c-e7dd05a2
+  - id: c-ed8d3a13
+    class_id: c-ed8d3a13
     label: unified-dk-hede-c7h42
     fuss: seed_unsorted
     phase: hede
@@ -8641,20 +8782,46 @@ coins:
         - '42'
       bruun_collection_id: '7872'
       fp: '6.1'
+      numista: '108979'
+      lange: '138'
+      others:
+        - Jaeg 6 NWD# 7
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.687
         source: hede
+      - value: 0.687
+        source: ngc
+      - value: 0.687
+        source: numismaster
+      - value: 0.687
+        source: numista
+      - value: 0.687
+        source: ucoin
     weight_rough_g:
       - value: 6.1
         source: bruun
       - value: 6.129
         source: hede
+      - value: 6.129
+        source: ngc
+      - value: 6.129
+        source: numismaster
+      - value: 6.13
+        source: ucoin
+      - value: 8.428
+        source: numista
+    diameter_mm:
+      - value: 27.0
+        source: numista
+      - value: 27.0
+        source: ucoin
     uncertainty:
       mint:
         - kind: hedged
@@ -8677,6 +8844,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h42.htm
         ref: danskmoent.dk (Hede c7h42)
+      - type: literature
+        url: https://en.numista.com/108979
+        ref: Numista N#108979 — 10 Schilling Courant / ⅙ Speciesthaler - Christian VII
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-10-schilling-km-128-1787-1796-cuid-1207928-duid-1389888
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120082
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-10-schilling-1787-1796/?tid=90615
+        ref: ucoin
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 9.25
@@ -8686,8 +8865,12 @@ coins:
     composed_of:
       - dk-bruun-7872
       - dk-hede-c7h42
-  - id: c-6f137e38
-    class_id: c-6f137e38
+      - dk-numista-108979
+      - ngc-1207928
+      - schleswig_holstein-numismaster-120082
+      - sh-tid-90615
+  - id: c-c7fd343b
+    class_id: c-c7fd343b
     label: unified-dk-hede-c7h43
     fuss: seed_unsorted
     phase: hede
@@ -8720,18 +8903,41 @@ coins:
         - '38'
         - '41'
       bruun_collection_id: '7875'
+      numista: '43459'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.5
         source: hede
+      - value: 0.5
+        source: ngc
+      - value: 0.5
+        source: numismaster
+      - value: 0.5
+        source: numista
+      - value: 0.5
+        source: ucoin
     weight_rough_g:
+      - value: 4.21
+        source: ucoin
       - value: 4.214
         source: hede
+      - value: 4.214
+        source: ngc
+      - value: 4.214
+        source: numismaster
+      - value: 4.214
+        source: numista
+    diameter_mm:
+      - value: 23.4
+        source: numista
+      - value: 23.5
+        source: ucoin
     uncertainty:
       mint:
         - kind: hedged
@@ -8754,6 +8960,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h43.htm
         ref: danskmoent.dk (Hede c7h43)
+      - type: literature
+        url: https://en.numista.com/43459
+        ref: Numista N#43459 — 5 Schilling Courant / 1⁄12 Speciesthaler - Christian VII
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-5-schilling-km-126-1787-1801-cuid-1164017-duid-1391256
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120081
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-5-schilling-1787-1801/?tid=90573
+        ref: ucoin
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 9.25
@@ -8763,6 +8981,10 @@ coins:
     composed_of:
       - dk-bruun-7875
       - dk-hede-c7h43
+      - dk-numista-43459
+      - ngc-1164017
+      - schleswig_holstein-numismaster-120081
+      - sh-tid-90573
   - id: c-ab298d00
     class_id: c-ab298d00
     label: unified-dk-hede-c7h44
@@ -12111,22 +12333,33 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.305
+        source: ucoin
       - value: 0.312
         source: hede
       - value: 0.312
         source: numismaster
     weight_rough_g:
+      - value: 0.7
+        source: ucoin
       - value: 0.704
         source: hede
       - value: 0.704
         source: numismaster
+    diameter_mm:
+      - value: 17.0
+        source: ucoin
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h150.htm
         ref: danskmoent.dk (Hede f3h150)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-sosling-1658-1660/?tid=163581
+        ref: ucoin
       - type: literature
         url: https://numismaster.com/MC_92969
         ref: NumisMaster
@@ -12138,6 +12371,7 @@ coins:
       unit_raw: daler
     composed_of:
       - dk-hede-f3h150
+      - dk-tid-163581
       - schleswig_holstein-numismaster-92969
   - id: c-7195f0d5
     class_id: c-7195f0d5
@@ -12339,7 +12573,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 4 Mark
+    nominal: 4 Mark Danske
     year_first: 1659
     year_last: 1660
     year_ranges:
@@ -12856,7 +13090,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 8 Skilling
+    nominal: 8 Skilling Danske
     year_first: 1702
     year_last: 1713
     year_ranges:
@@ -12950,7 +13184,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: scheide
-    nominal: 2 Skilling
+    nominal: 2 Skilling Danske
     year_first: 1714
     year_last: 1716
     year_ranges:
@@ -17142,125 +17376,6 @@ coins:
     composed_of:
       - dk-numista-108733
       - schleswig_holstein-numismaster-92995
-  - id: c-ed8d3a13
-    class_id: c-ed8d3a13
-    label: unified-dk-numista-108979
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅙ Speciesthaler
-    year_first: 1787
-    year_last: 1796
-    year_ranges:
-      -   - 1787
-          - 1789
-      -   - 1796
-          - 1796
-    year_label: 1787-1789, 1796
-    ruler: Christian VII
-    mint: Altona
-    catalog:
-      km: '128'
-      numista: '108979'
-      lange: '138'
-      sieg: '42'
-      hede: '42'
-      others:
-        - Jaeg 6 NWD# 7
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.687
-        source: ngc
-      - value: 0.687
-        source: numismaster
-      - value: 0.687
-        source: numista
-      - value: 0.687
-        source: ucoin
-    weight_rough_g:
-      - value: 6.129
-        source: ngc
-      - value: 6.129
-        source: numismaster
-      - value: 6.13
-        source: ucoin
-      - value: 8.428
-        source: numista
-    diameter_mm:
-      - value: 27.0
-        source: numista
-      - value: 27.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/108979
-        ref: Numista N#108979 — 10 Schilling Courant / ⅙ Speciesthaler - Christian VII
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-10-schilling-km-128-1787-1796-cuid-1207928-duid-1389888
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120082
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-10-schilling-1787-1796/?tid=90615
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-108979
-      - ngc-1207928
-      - schleswig_holstein-numismaster-120082
-      - sh-tid-90615
-  - id: c-312df171
-    class_id: c-312df171
-    label: unified-dk-numista-109008
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1⁄12 Rigsdaler courant
-    year_first: 1796
-    year_last: 1799
-    year_ranges:
-      -   - 1796
-          - 1797
-      -   - 1799
-          - 1799
-    year_label: 1796-1797, 1799
-    ruler: Christian VII
-    mint: Altona
-    catalog:
-      km: '652'
-      numista: '109008'
-      others:
-        - Kahnt/Schön# 5
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.5
-        source: numista
-    weight_rough_g:
-      - value: 3.37
-        source: numista
-    diameter_mm:
-      - value: 24.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/109008
-        ref: Numista N#109008 — 1⁄12 Speciedaler - Christian VII
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-109008
   - id: c-7a4f86ae
     class_id: c-7a4f86ae
     label: unified-dk-numista-109009
@@ -17828,7 +17943,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 4 Schilling
+    nominal: 4 Skilling lybsk
     year_first: 1640
     year_last: 1640
     year_label: '1640'
@@ -18024,7 +18139,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 2 Schilling
+    nominal: 2 Skilling lybsk
     year_first: 1640
     year_last: 1640
     year_label: '1640'
@@ -18254,77 +18369,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-41864
-  - id: c-c7fd343b
-    class_id: c-c7fd343b
-    label: unified-dk-numista-43459
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1⁄12 Speciesthaler
-    year_first: 1787
-    year_last: 1801
-    year_ranges:
-      -   - 1787
-          - 1788
-      -   - 1797
-          - 1797
-      -   - 1800
-          - 1801
-    year_label: 1787-1788, 1797, 1800-1801
-    ruler: Christian VII
-    mint: Altona
-    catalog:
-      km: '126'
-      numista: '43459'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.5
-        source: ngc
-      - value: 0.5
-        source: numismaster
-      - value: 0.5
-        source: numista
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 4.21
-        source: ucoin
-      - value: 4.214
-        source: ngc
-      - value: 4.214
-        source: numismaster
-      - value: 4.214
-        source: numista
-    diameter_mm:
-      - value: 23.4
-        source: numista
-      - value: 23.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/43459
-        ref: Numista N#43459 — 5 Schilling Courant / 1⁄12 Speciesthaler - Christian VII
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-5-schilling-km-126-1787-1801-cuid-1164017-duid-1391256
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120081
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-5-schilling-1787-1801/?tid=90573
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-43459
-      - ngc-1164017
-      - schleswig_holstein-numismaster-120081
-      - sh-tid-90573
   - id: c-71b96a8e
     class_id: c-71b96a8e
     label: unified-dk-numista-468623
@@ -18545,45 +18589,6 @@ coins:
       - denmark-numismaster-66008
       - dk-numista-97292
       - dk-tid-70749
-  - id: c-72406d03
-    class_id: c-72406d03
-    label: unified-dk-tid-163581
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1658
-    year_last: 1660
-    year_ranges:
-      -   - 1658
-          - 1660
-    year_label: 1658-1660
-    ruler: Frederik III
-    catalog:
-      km: '41'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.305
-        source: ucoin
-    weight_rough_g:
-      - value: 0.7
-        source: ucoin
-    diameter_mm:
-      - value: 17.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-sosling-1658-1660/?tid=163581
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-tid-163581
   - id: c-e0bdd066
     class_id: c-e0bdd066
     label: unified-dk-tid-163585
@@ -20102,145 +20107,6 @@ coins:
     composed_of:
       - ngc-1051947
       - schleswig_holstein-numismaster-92966
-  - id: c-2dab5fc3
-    class_id: c-2dab5fc3
-    label: unified-ngc-1164121
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 60 Schilling
-    year_first: 1787
-    year_last: 1788
-    year_ranges:
-      -   - 1787
-          - 1788
-    year_label: 1787-1788
-    ruler: Christian VII
-    catalog:
-      km: '138.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 28.893
-        source: ngc
-      - value: 28.893
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-60-schilling-km-138.3-1787-1788-cuid-1164121-duid-1390306
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120088
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-1164121
-      - schleswig_holstein-numismaster-120088
-  - id: c-73974b70
-    class_id: c-73974b70
-    label: unified-ngc-1166842
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 20 Schilling
-    year_first: 1787
-    year_last: 1808
-    year_ranges:
-      -   - 1787
-          - 1789
-      -   - 1797
-          - 1797
-      -   - 1808
-          - 1808
-    year_label: 1787-1789, 1797, 1808
-    ruler: Christian VII
-    catalog:
-      km:
-        - 130a
-        - '130'
-        - 130b
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-        specimen: ngc-1166842
-      - value: 0.875
-        source: ngc
-        specimen: ngc-1168011
-      - value: 0.875
-        source: ngc
-        specimen: ngc-1186040
-      - value: 0.875
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-120083
-      - value: 0.875
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-120084
-      - value: 0.875
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-187160
-    weight_rough_g:
-      - value: 9.631
-        source: ngc
-        specimen: ngc-1166842
-      - value: 9.631
-        source: ngc
-        specimen: ngc-1168011
-      - value: 9.631
-        source: ngc
-        specimen: ngc-1186040
-      - value: 9.631
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-120083
-      - value: 9.631
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-120084
-      - value: 9.631
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-187160
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-20-schilling-km-130a-1787-cuid-1166842-duid-1391602
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-20-schilling-km-130-1787-1808-cuid-1168011-duid-1406943
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-20-schilling-km-130b-1789-cuid-1186040-duid-1404390
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120083
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_120084
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_187160
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-1166842
-      - ngc-1168011
-      - ngc-1186040
-      - schleswig_holstein-numismaster-120083
-      - schleswig_holstein-numismaster-120084
-      - schleswig_holstein-numismaster-187160
   - id: c-09703a83
     class_id: c-09703a83
     label: unified-ngc-1170550
@@ -20285,67 +20151,6 @@ coins:
     composed_of:
       - ngc-1170550
       - schleswig_holstein-numismaster-120089
-  - id: c-766f115e
-    class_id: c-766f115e
-    label: unified-ngc-1172031
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2½ Schilling
-    year_first: 1787
-    year_last: 1801
-    year_ranges:
-      -   - 1787
-          - 1787
-      -   - 1796
-          - 1796
-      -   - 1799
-          - 1801
-    year_label: 1787, 1796, 1799-1801
-    ruler: Christian VII
-    catalog:
-      km: '124'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.375
-        source: ngc
-      - value: 0.375
-        source: numismaster
-      - value: 0.375
-        source: ucoin
-    weight_rough_g:
-      - value: 2.809
-        source: ngc
-      - value: 2.809
-        source: numismaster
-      - value: 2.81
-        source: ucoin
-    diameter_mm:
-      - value: 21.0
-        source: ngc
-      - value: 21.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-1-2-schilling-km-124-1787-1801-cuid-1172031-duid-1406941
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120080
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-2-1-2-schillng-1787-1801/?tid=90572
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-1172031
-      - schleswig_holstein-numismaster-120080
-      - sh-tid-90572
   - id: c-a045f3de
     class_id: c-a045f3de
     label: unified-ngc-1174494
@@ -20434,54 +20239,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-1199959
-  - id: c-fab67287
-    class_id: c-fab67287
-    label: unified-ngc-1207929
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 40 Schilling
-    year_first: 1787
-    year_last: 1808
-    year_ranges:
-      -   - 1787
-          - 1787
-      -   - 1797
-          - 1797
-      -   - 1808
-          - 1808
-    year_label: 1787, 1797, 1808
-    ruler: Christian VII
-    catalog:
-      km: '135'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 19.263
-        source: ngc
-      - value: 19.263
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-40-schilling-km-135-1787-1808-cuid-1207929-duid-1390938
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_120085
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-1207929
-      - schleswig_holstein-numismaster-120085
   - id: c-0bf076b2
     class_id: c-0bf076b2
     label: unified-ngc-121093

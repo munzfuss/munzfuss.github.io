@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-11 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
 # Input: 487 per-source seed entries.
-# Output: 325 unified entries (one per physical coin).
+# Output: 324 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-11-10'
+generated_at: '2026-11-11'
 coins:
   - id: c-c114e202
     class_id: c-c114e202
@@ -1143,31 +1143,44 @@ coins:
           - 1635
     year_label: 1627-1635
     ruler: Ferdinand II
+    inscription_obv: MONE NOVA - LVBECENS
+    inscription_rev: FERDINAND II D G ROM IM SEMP AV
+    mint: Lübeck
     catalog:
       km: A61
       numista: '266132'
       others:
         - Behr# 160 e/b
-      dav: 5449C
+        - Behrens# 161 b
+      dav:
+        - 5449C
+        - '5449'
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
       - value: 28.74
         source: numista
       - value: 29.0
         source: ucoin
+      - value: 29.01
+        source: ikmk
     diameter_mm:
       - value: 41.0
         source: ucoin
+      - value: 43.0
+        source: ikmk
     sources:
       - type: literature
         url: https://en.numista.com/266132
         ref: Numista N#266132 — 32 Schilling - Free Hanseatic city of Lübeck
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18202373
+        ref: IKMK Berlin 18202373
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1627-1635/?tid=102702
         ref: ucoin
@@ -1182,6 +1195,7 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - dk-numista-266132
+      - ikmk-18202373
       - lu-tid-102702
       - ngc-1138066
   - id: c-9b62f441
@@ -5757,42 +5771,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18201883
-  - id: c-9acd8508
-    class_id: c-9acd8508
-    label: unified-ikmk-18202373
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Taler (32 Schillinge)
-    year_first: 1631
-    year_last: 1631
-    year_label: '1631'
-    inscription_obv: MONE NOVA - LVBECENS
-    inscription_rev: FERDINAND II D G ROM IM SEMP AV
-    mint: Lübeck
-    catalog:
-      dav: '5449'
-      others:
-        - Behrens# 161 b
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 29.01
-        source: ikmk
-    diameter_mm:
-      - value: 43.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18202373
-        ref: IKMK Berlin 18202373
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ikmk-18202373
   - id: c-f121cc31
     class_id: c-f121cc31
     label: unified-ikmk-18219826

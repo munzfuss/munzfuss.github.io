@@ -2476,7 +2476,8 @@ _SKILLING_NUMBER_WORDS = {
 _SKILLING_WORD_RE = re.compile(
     r"\b(" + "|".join(sorted(_SKILLING_NUMBER_WORDS, key=len, reverse=True)) + r")skilling\b")
 _NOMINAL_QUALIFIERS = {
-    "lybsk": "lybsk", "lybske": "lybsk", "norsk": "norsk", "norske": "norsk",
+    "lybsk": "lybsk", "lybske": "lybsk", "lubisch": "lybsk", "lubsch": "lybsk",
+    "lubische": "lybsk", "lubsche": "lybsk", "norsk": "norsk", "norske": "norsk",
     "dansk": "dansk", "danske": "dansk", "kurant": "kurant", "courant": "kurant",
     "rigsmont": "rigsmont", "hebraeisk": "hebraeisk",
     "rigsbanktegn": "rigsbank", "rigbanktegn": "rigsbank",
@@ -2603,6 +2604,98 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
                 (like(na, b, strict) and like(nb, a, strict)):
             return f"source {src}"
     return None
+
+
+_RECKONING_QUALIFIERS = frozenset({"lybsk", "norsk", "dansk"})
+
+
+def _adds_reckoning(base_raw, cand_raw) -> bool:
+    """True when `cand_raw` is `base_raw` plus one reckoning qualifier —
+    lybsk / norsk / dansk(e), any spelling (curator 2026-11-11: the class
+    nominal must not lose it). The qualifier names the unit: the Lübeck
+    schilling is two Danish ones (Hede c4h167 «4 skilling lybsk svarer til 8
+    skilling dansk»), so «2 Skilling» beside a source's «2 Skilling Lybsk»
+    drops what tells the two coins apart. A base that already carries a
+    reckoning qualifier is left alone, as is an off-strike or forgery name."""
+    if not isinstance(base_raw, str) or not isinstance(cand_raw, str):
+        return False
+    nb, nc = _normalise_nominal(base_raw), _normalise_nominal(cand_raw)
+    if not nb or not nc or base_raw.strip() == cand_raw.strip():
+        return False
+    if _NOMINAL_SPECIAL_RE.search(nb) or _NOMINAL_SPECIAL_RE.search(nc):
+        return False
+    # A dual name («1 Denning = ½ Skilling Dansk») carries the qualifier on
+    # its other name, not on this one.
+    if len(_NOMINAL_GLOSS_SPLIT.split(cand_raw)) > 1:
+        return False
+    rc = set(re.findall(r"[a-zæøåäöü]+", cand_raw.lower()))
+    # the normaliser folds «Danske» away: read the printed qualifier
+    printed = {_NOMINAL_QUALIFIERS.get(w.replace("ü", "u"), w) for w in rc} & _RECKONING_QUALIFIERS
+    kb, kc = _hede_base_nominal_key(nb), _hede_base_nominal_key(nc)
+    if not kb or not kc or kb[0] != kc[0]:
+        return False
+    if kb[1] & _RECKONING_QUALIFIERS:
+        return False
+    base_printed = {_NOMINAL_QUALIFIERS.get(w.replace("ü", "u"), w)
+                    for w in re.findall(r"[a-zæøåäöü]+", base_raw.lower())} & _RECKONING_QUALIFIERS
+    if base_printed:
+        return False
+    return len(printed | (kc[1] & _RECKONING_QUALIFIERS)) == 1
+
+
+def _reckoning_nominal(base_raw, members: list[dict]):
+    """The first member nominal (members in authority order) that is
+    `base_raw` plus one reckoning qualifier, when every such member names the
+    same qualifier; else None."""
+    found, quals = None, set()
+    for m in members:
+        c = m.get("nominal")
+        if _adds_reckoning(base_raw, c):
+            words = {_NOMINAL_QUALIFIERS.get(w.replace("ü", "u"), w)
+                     for w in re.findall(r"[a-zæøåäöü]+", c.lower())}
+            quals |= words & _RECKONING_QUALIFIERS
+            found = found or c
+    if len(quals) != 1:
+        return None
+    # KMM separates the qualifier with a comma («2 Skilling, norsk»).
+    return re.sub(r",\s*(?=(?:lybsk|lybske|norsk|norske|dansk|danske)\b)", " ",
+                  found, flags=re.IGNORECASE)
+
+
+def _match_nominal_compatible(na: str, nb: str, raw_a: str = "", raw_b: str = "") -> bool:
+    """Two NORMALISED nominals the pair matcher must not read as two coins
+    (curator 2026-11-11): the names the Hede-base check already accepts —
+    (1) a source declares both names of one coin («⅛ Reichsdaler (6 Skilling
+    Lybsk)», a Numista «A / B» title, a dual name kept whole); (2) one name
+    simplifies the other («8 skilling» ~ «8 krone-skilling», «4 skilling
+    rigsmont» ~ «4 skilling», «speciedaler» ~ «daler», «rigsbanktegn 2
+    skilling» ~ «2 rigsbankskilling rigsbanktegn»); (3) a spelling of one name
+    («2 christian d'or» ~ «2 christiandor», «toskilling» ~ «2 skilling»).
+    It only lifts the nominal veto: the pair is then judged on its other
+    signals, the names count for nothing (Krone ≡ 4 Mark taught that a
+    name-equivalence as evidence fuses different coins, 2026-10-17).
+
+    «lybsk» (curator 2026-11-11): «X lybsk» ~ «X» is one name — a source
+    that leaves the qualifier out does not name another coin. Every other
+    equivalence that involves lybsk (a declared «⅛ Reichsdaler (6 Skilling
+    Lybsk)», a bare-unit wildcard) is left out for now. «lybsk» against
+    «dansk» / «norsk» still separates: the Lübeck schilling is two Danish
+    ones (Hede c4h167 «4 skilling lybsk svarer til 8 skilling dansk»). An
+    off-strike, forgery or metal word still separates
+    (`_hede_base_nominal_equiv`)."""
+    if not na or not nb or na == nb:
+        return False
+    if "lybsk" in na or "lybsk" in nb:
+        if _NOMINAL_SPECIAL_RE.search(na) or _NOMINAL_SPECIAL_RE.search(nb):
+            return False
+        # The normaliser folds «2 Skilling Danske» to «2 skilling»: read the
+        # printed name for the other reckoning (`raw_a` / `raw_b`, lower case).
+        other = re.compile(r"\bdansk|\bnorsk")
+        if (other.search(raw_a) and "lybsk" in nb) or (other.search(raw_b) and "lybsk" in na):
+            return False
+        ka, kb = _hede_base_nominal_key(na), _hede_base_nominal_key(nb)
+        return bool(ka and kb and ka[0] == kb[0] and (ka[1] ^ kb[1]) <= {"lybsk"})
+    return _hede_base_nominal_equiv(na, nb) is not None
 
 
 def _hede_base_conflicts(group, info, uf, equivs: list | None = None) -> list[str]:
@@ -2894,6 +2987,12 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
         # Bare ambiguous unit («daler»/«gylden») vs a specific compound of
         # the same unit + quantity — can't be a genuine difference.
         primary["nominal"] = None
+    elif _match_nominal_compatible(na, nb, str(coin_a.get("nominal") or "").lower(),
+                                   str(coin_b.get("nominal") or "").lower()):
+        # Two names of one denomination (`_match_nominal_compatible`): no
+        # veto, and no vote either.
+        primary["nominal"] = None
+        why.append(f"nominal: {na!r} ~ {nb!r} — one denomination under two names")
     else:
         primary["nominal"] = False
 
@@ -5120,6 +5219,12 @@ def build_unified(members: list[dict], unified_id: str,
                     conflicts.append((field, seen[0], mv_repr))
 
     _canonical_ruler_out(out, members, entity_id)
+    # A member's lybsk / norsk / dansk on the same name is kept (curator
+    # 2026-11-11; `_adds_reckoning`) — after the scalar loop above, which
+    # re-takes the top-authority nominal.
+    _rk = _reckoning_nominal(out.get("nominal"), sorted_members)
+    if _rk and not any("nominal" in (m.get("_curation_holds") or {}) for m in members):
+        out["nominal"] = _rk
     _canonical_nominal_out(out, members, entity_id)
 
     # Multi-mint union
@@ -5952,6 +6057,7 @@ def _string_memo(fn):
 
 _lange_numbers = _string_memo(_lange_numbers)
 _nominal_wildcard_match = _string_memo(_nominal_wildcard_match)
+_match_nominal_compatible = _string_memo(_match_nominal_compatible)
 
 
 _MP_IDS: list = []

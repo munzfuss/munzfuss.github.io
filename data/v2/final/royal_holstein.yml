@@ -4850,7 +4850,7 @@ coins:
     phase: I
     kind: scheide
     fraction: 1/96
-    nominal: 1 Sechsling
+    nominal: 1 Søsling Lybsk
     ruler: Christian IV.
     issuing_entity: royal_holstein
     id: km-79-chr-iv-1623
@@ -5107,7 +5107,7 @@ coins:
     phase: I
     kind: scheide
     fraction: 1/24
-    nominal: 2 Schilling
+    nominal: 2 Skilling lybsk
     ruler: Christian IV.
     issuing_entity: royal_holstein
     id: km-82-chr-iv-1640
@@ -6774,7 +6774,7 @@ coins:
   - fuss: 9_thaler
     phase: I
     kind: kurant
-    nominal: 1 Mark
+    nominal: 1 Mark Danske
     fraction: 1/3
     ruler: Christian IV.
     issuing_entity: royal_holstein
@@ -6976,7 +6976,7 @@ coins:
   - fuss: kronemont
     phase: I
     kind: kurant
-    nominal: 2 Mark
+    nominal: 2 Mark Dansk
     fraction: 1/2
     ruler: Christian IV.
     issuing_entity: royal_holstein
@@ -7621,7 +7621,7 @@ coins:
   - fuss: kronemont
     phase: II
     kind: kurant
-    nominal: 4 Marck
+    nominal: 4 Mark Danske
     ruler: Christian V.
     issuing_entity: royal_holstein
     fraction: '1'
@@ -7856,7 +7856,7 @@ coins:
   - fuss: kronemont
     phase: II
     kind: kurant
-    nominal: 2 Marck
+    nominal: 2 Mark Dansk
     ruler: Christian V.
     issuing_entity: royal_holstein
     fraction: 1/2
@@ -7965,7 +7965,7 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
-    nominal: 8 Skilling
+    nominal: 8 Skilling Danske
     fraction: 1/12
     ruler: Christian V.
     issuing_entity: royal_holstein
@@ -8575,7 +8575,6 @@ coins:
       basis: fin
     composed_of:
       - c-1f34e6b5
-      - c-312df171
     label: unified-dk-hede-c7h15
     origin: promoted
   - fuss: 11_333_thaler
@@ -8826,7 +8825,6 @@ coins:
       unit_raw: speciedalere
     composed_of:
       - c-c7b832e1
-      - c-fab67287
     label: unified-dk-hede-c7h40a
     origin: promoted
     _curation_holds:
@@ -9083,152 +9081,11 @@ coins:
       basis: fin
       unit_raw: speciedalere
     composed_of:
-      - c-73974b70
       - c-f624971d
     label: unified-dk-hede-c7h41a
     origin: promoted
     _curation_holds:
       note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-c7h41a (matched via seed-unified-bridge; V1→V2 bootstrap had dropped the note field — see 
-        restore_v1_notes_to_v2_final.py).
-  - fuss: 9_25_thaler
-    phase: II
-    kind: scheide
-    nominal: 1/12 Speciedaler/5 Schilling Schleswig-holsteinischer Courant
-    fraction: 1/12
-    ruler: Christian VII.
-    issuing_entity: royal_holstein
-    id: c-6f137e38
-    year_first: 1787
-    year_last: 1801
-    year_ranges:
-      -   - 1787
-          - 1788
-      -   - 1797
-          - 1797
-      -   - 1800
-          - 1801
-    year_label: 1787-1788, 1797, 1800-1801
-    uncertainty:
-      mint:
-        - kind: hedged
-          how: alternatives
-          source: bruun
-          as_printed: Altona/Poppenbüttel
-          value: Altona, Poppenbüttel
-          seed: dk-bruun-7875
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/12 Speciedaler
-          value: silver
-          seed: dk-bruun-7875
-    mint:
-      - Altona
-      - Poppenbüttel
-    catalog:
-      km: '126'
-      hede: '43'
-      hede_volume: c7h
-      schou:
-        - 6-7
-        - 10-11
-        - 10-12
-        - 13-14
-      sieg:
-        - '38'
-        - '41'
-      bruun_collection_id: '7875'
-      numista: '43459'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.5
-        source: hede
-      - value: 0.5
-        source: ngc
-      - value: 0.5
-        source: numismaster
-      - value: 0.5
-        source: numista
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 4.21
-        source: ucoin
-      - value: 4.214
-        source: hede
-      - value: 4.214
-        source: ngc
-      - value: 4.214
-        source: numismaster
-      - value: 4.214
-        source: numista
-    diameter_mm:
-      - value: 23.4
-        source: numista
-      - value: 23.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h43.htm
-        ref: danskmoent.dk (Hede c7h43)
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17144, p. 73
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-5-schilling-1787-1801/?tid=90573
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_120081
-        ref: NumisMaster
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces43459.html
-        ref: Numista
-      - type: literature
-        url: https://en.numista.com/43459
-        ref: Numista N#43459 — 5 Schilling Courant / 1⁄12 Speciesthaler - Christian VII
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122602
-        ref: KMM 122602 (Inv. FP 3711.1)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575000
-        ref: KMM 575000 (Inv. FP 11167.6)
-        display: false
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-5-schilling-km-126-1787-1801-cuid-1164017-duid-1391256
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575007
-        ref: KMM 575007 (Inv. FP 11167.13)
-        display: false
-    note:
-      de: «5 SCHILLING COURANT 1/12 SP» · Poppenbüttel · 1/12 Thaler Species = 2,10681 g fein · 5 Sch.C. = 1/12 Thaler Species
-      en: «5 SCHILLING COURANT 1/12 SP» · Poppenbüttel · 1/12 Thaler Species = 2.10681 g fine · 5 Sch.C. = 1/12 Thaler Species
-      uk: «5 SCHILLING COURANT 1/12 SP» · Poppenbüttel · 1/12 Thaler Species = 2,10681 г чистого · 5 Sch.C. = 1/12 Thaler Species
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 9.25
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
-      - c-6f137e38
-      - c-c7fd343b
-    label: unified-dk-hede-c7h43
-    origin: promoted
-    _curation_holds:
-      note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-c7h43 (matched via seed-unified-bridge; V1→V2 bootstrap had dropped the note field — see 
         restore_v1_notes_to_v2_final.py).
   - fuss: 9_25_thaler
     phase: II
@@ -9389,7 +9246,7 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
-    nominal: 8 Skilling
+    nominal: 8 Skilling Danske
     fraction: 1/12
     ruler: Frederik IV.
     issuing_entity: royal_holstein
@@ -10038,7 +9895,7 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
-    nominal: 1 Skilling
+    nominal: 1 Skilling dansk
     fraction: 1/96
     ruler: Christian V.
     issuing_entity: royal_holstein
@@ -11956,7 +11813,7 @@ coins:
   - fuss: kronemont
     phase: II
     kind: kurant
-    nominal: 4 Marck
+    nominal: 4 Mark Danske
     ruler: Christian V.
     issuing_entity: royal_holstein
     fraction: '1'
@@ -12176,7 +12033,7 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
-    nominal: 4 Skilling
+    nominal: 4 Skilling dansk
     fraction: 1/24
     ruler: Christian V.
     issuing_entity: royal_holstein
@@ -12513,6 +12370,7 @@ coins:
         specimen: dk-hede-c7h39g
       - value: 0.875
         source: ngc
+        specimen: ngc-1164121
       - value: 0.875
         source: ngc
         specimen: ngc-1170114
@@ -12527,12 +12385,13 @@ coins:
         specimen: ngc-1207930
       - value: 0.875
         source: numismaster
-      - value: 0.875
-        source: numismaster
         specimen: schleswig_holstein-numismaster-120086
       - value: 0.875
         source: numismaster
         specimen: schleswig_holstein-numismaster-120087
+      - value: 0.875
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120088
       - value: 0.875
         source: numismaster
         specimen: schleswig_holstein-numismaster-120090
@@ -12564,6 +12423,7 @@ coins:
         specimen: dk-hede-c7h39g
       - value: 28.893
         source: ngc
+        specimen: ngc-1164121
       - value: 28.893
         source: ngc
         specimen: ngc-1170551
@@ -12572,12 +12432,13 @@ coins:
         specimen: ngc-1207930
       - value: 28.893
         source: numismaster
-      - value: 28.893
-        source: numismaster
         specimen: schleswig_holstein-numismaster-120086
       - value: 28.893
         source: numismaster
         specimen: schleswig_holstein-numismaster-120087
+      - value: 28.893
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-120088
       - value: 28.893
         source: numismaster
         specimen: schleswig_holstein-numismaster-120090
@@ -12693,7 +12554,6 @@ coins:
       basis: fin
       unit_raw: speciedalere
     composed_of:
-      - c-2dab5fc3
       - c-56c70a71
     label: unified-dk-hede-c7h39a
     origin: promoted
@@ -12708,148 +12568,6 @@ coins:
       - value: 28.893
         source: ngc
         specimen: ngc-1170114
-  - fuss: 9_25_thaler
-    phase: II
-    kind: kurant
-    nominal: 1/6 Speciedaler/10 Schilling Schleswig-holsteinischer Courant
-    fraction: 1/6
-    ruler: Christian VII.
-    issuing_entity: royal_holstein
-    mintmaster: Michael Flor
-    id: c-e7dd05a2
-    year_first: 1787
-    year_last: 1796
-    year_ranges:
-      -   - 1787
-          - 1789
-      -   - 1796
-          - 1796
-    year_label: 1787-1789, 1796
-    uncertainty:
-      mint:
-        - kind: hedged
-          how: alternatives
-          source: bruun
-          as_printed: Altona/Poppenbüttel
-          value: Altona, Poppenbüttel
-          seed: dk-bruun-7872
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/6 Speciedaler
-          value: silver
-          seed: dk-bruun-7872
-    mint:
-      - Altona
-      - Poppenbüttel
-    catalog:
-      km: '128'
-      hede: '42'
-      hede_volume: c7h
-      schou:
-        - 6-7
-        - '9'
-        - '10'
-        - 11-12
-      sieg:
-        - '39'
-        - '42'
-      lange: '138'
-      numista: '108979'
-      bruun_collection_id: '7872'
-      fp: '6.1'
-      others:
-        - Jaeg 6 NWD# 7
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.687
-        source: hede
-      - value: 0.687
-        source: ngc
-      - value: 0.687
-        source: numismaster
-      - value: 0.687
-        source: numista
-      - value: 0.687
-        source: ucoin
-    weight_rough_g:
-      - value: 6.1
-        source: bruun
-      - value: 6.129
-        source: hede
-      - value: 6.129
-        source: ngc
-      - value: 6.129
-        source: numismaster
-      - value: 6.13
-        source: ucoin
-      - value: 8.428
-        source: numista
-    diameter_mm:
-      - value: 27.0
-        source: numista
-      - value: 27.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h42.htm
-        ref: danskmoent.dk (Hede c7h42)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-10-schilling-1787-1796/?tid=90615
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_120082
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13246, p. 143
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces108979.html
-        ref: Numista
-      - type: web
-        url: https://www.coinfactswiki.com/wiki/Schleswig-Holstein_1787_10_schilling
-        ref: CoinFactsWiki
-      - type: literature
-        url: https://en.numista.com/108979
-        ref: Numista N#108979 — 10 Schilling Courant / ⅙ Speciesthaler - Christian VII
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-10-schilling-km-128-1787-1796-cuid-1207928-duid-1389888
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: "«10 SCHILLING COURANT ⅙ SP» · Münzmeister MF (Michael Flor; 1788 Poppenbüttel unter D. C. Liebst) · 9¼-Speciesfuß: 1 Cöllnische Marck fein → 9¼ Speciedaler → ⅙ Speciedaler · Bruttovægt nach Hede
-        42 (danskmoent.dk): 6,129 g, Finhed 0,687, Finvægt 4,214 g — bestätigt durch ucoin (6,13 g) und Bruun II/13246 (6,10 g).\n\nNumista N#108979 gibt für denselben Typ 8,428 g an — der Wert weicht von
-        den übrigen Belegen ab."
-      en: "«10 SCHILLING COURANT ⅙ SP» · mintmaster MF (Michael Flor; 1788 Poppenbüttel under D. C. Liebst) · 9¼-Specie-Fuß: 1 Cölln. Marck fine silver → 9¼ Speciedaler → ⅙ Speciedaler · Bruttovægt per
-        Hede 42 (danskmoent.dk): 6.129 g, Finhed 0.687, Finvægt 4.214 g — confirmed by ucoin (6.13 g) and Bruun II/13246 (6.10 g).\n\nNumista N#108979 reports 8.428 g for the same type — the value deviates
-        from the other readings."
-      uk: "«10 SCHILLING COURANT ⅙ SP» · монетмайстер MF (Michael Flor; 1788 Poppenbüttel під D. C. Liebst) · 9¼-Specie-Fuß: 1 Кельнська марка чистого срібла → 9¼ Speciedaler → ⅙ Speciedaler · Bruttovægt
-        за Hede 42 (danskmoent.dk): 6,129 г, Finhed 0,687, Finvægt 4,214 г — підтверджено ucoin (6,13 г) і Bruun II/13246 (6,10 г).\n\nNumista N#108979 для того ж типу наводить 8,428 г — значення відхиляється
-        від інших."
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 9.25
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
-      - c-e7dd05a2
-      - c-ed8d3a13
-    label: unified-dk-hede-c7h42
-    origin: promoted
-    _curation_holds:
-      note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-c7h42 (matched via seed-unified-bridge; V1→V2 bootstrap had dropped the note field — see 
-        restore_v1_notes_to_v2_final.py).
   - fuss: 11_333_thaler
     phase: I
     kind: scheide
@@ -13290,7 +13008,6 @@ coins:
       unit_raw: daler
     composed_of:
       - c-1ca3c112
-      - c-72406d03
     label: unified-dk-hede-f3h150
     origin: promoted
     _curation_holds:
@@ -13299,7 +13016,7 @@ coins:
   - fuss: kronemont
     phase: I
     kind: tarif
-    nominal: 4 Mark
+    nominal: 4 Mark Danske
     fraction: '1'
     ruler: Frederik III.
     issuing_entity: royal_holstein
@@ -14445,7 +14162,7 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
-    nominal: 2 Skilling
+    nominal: 2 Skilling Danske
     fraction: 1/48
     ruler: Frederik IV.
     issuing_entity: royal_holstein
@@ -15790,7 +15507,6 @@ coins:
         specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - c-1d4f183a
-      - c-766f115e
     label: unified-dk-bruun-7877
     origin: promoted
   - fuss: 9_thaler
@@ -25833,4 +25549,268 @@ coins:
     composed_of:
       - c-f64cfbae
     label: unified-dk-bruun-8255
+    origin: promoted
+  - fuss: 9_25_thaler
+    phase: II
+    kind: kurant
+    nominal: 1/6 Speciedaler/10 Schilling Schleswig-holsteinischer Courant
+    ruler: Christian VII
+    mintmaster: Michael Flor
+    issuing_entity: royal_holstein
+    fraction: 1/6
+    id: c-ed8d3a13
+    year_first: 1787
+    year_last: 1796
+    year_ranges:
+      -   - 1787
+          - 1789
+      -   - 1796
+          - 1796
+    year_label: 1787-1789, 1796
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
+          seed: dk-bruun-7872
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/6 Speciedaler
+          value: silver
+          seed: dk-bruun-7872
+    mint:
+      - Altona
+      - Poppenbüttel
+    catalog:
+      km: '128'
+      hede: '42'
+      hede_volume: c7h
+      schou:
+        - 6-7
+        - '9'
+        - '10'
+        - 11-12
+      sieg:
+        - '39'
+        - '42'
+      bruun_collection_id: '7872'
+      fp: '6.1'
+      numista: '108979'
+      lange: '138'
+      others:
+        - Jaeg 6 NWD# 7
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.687
+        source: hede
+      - value: 0.687
+        source: ngc
+      - value: 0.687
+        source: numismaster
+      - value: 0.687
+        source: numista
+      - value: 0.687
+        source: ucoin
+    weight_rough_g:
+      - value: 6.1
+        source: bruun
+      - value: 6.129
+        source: hede
+      - value: 6.129
+        source: ngc
+      - value: 6.129
+        source: numismaster
+      - value: 6.13
+        source: ucoin
+      - value: 8.428
+        source: numista
+    diameter_mm:
+      - value: 27.0
+        source: numista
+      - value: 27.0
+        source: ucoin
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13246, p. 143
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h42.htm
+        ref: danskmoent.dk (Hede c7h42)
+      - type: literature
+        url: https://en.numista.com/108979
+        ref: Numista N#108979 — 10 Schilling Courant / ⅙ Speciesthaler - Christian VII
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-10-schilling-km-128-1787-1796-cuid-1207928-duid-1389888
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120082
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-10-schilling-1787-1796/?tid=90615
+        ref: ucoin
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces108979.html
+        ref: Numista
+      - type: web
+        url: https://www.coinfactswiki.com/wiki/Schleswig-Holstein_1787_10_schilling
+        ref: CoinFactsWiki
+    note:
+      de: "«10 SCHILLING COURANT ⅙ SP» · Münzmeister MF (Michael Flor; 1788 Poppenbüttel unter D. C. Liebst) · 9¼-Speciesfuß: 1 Cöllnische Marck fein → 9¼ Speciedaler → ⅙ Speciedaler · Bruttovægt nach Hede
+        42 (danskmoent.dk): 6,129 g, Finhed 0,687, Finvægt 4,214 g — bestätigt durch ucoin (6,13 g) und Bruun II/13246 (6,10 g).\n\nNumista N#108979 gibt für denselben Typ 8,428 g an — der Wert weicht von
+        den übrigen Belegen ab."
+      en: "«10 SCHILLING COURANT ⅙ SP» · mintmaster MF (Michael Flor; 1788 Poppenbüttel under D. C. Liebst) · 9¼-Specie-Fuß: 1 Cölln. Marck fine silver → 9¼ Speciedaler → ⅙ Speciedaler · Bruttovægt per
+        Hede 42 (danskmoent.dk): 6.129 g, Finhed 0.687, Finvægt 4.214 g — confirmed by ucoin (6.13 g) and Bruun II/13246 (6.10 g).\n\nNumista N#108979 reports 8.428 g for the same type — the value deviates
+        from the other readings."
+      uk: "«10 SCHILLING COURANT ⅙ SP» · монетмайстер MF (Michael Flor; 1788 Poppenbüttel під D. C. Liebst) · 9¼-Specie-Fuß: 1 Кельнська марка чистого срібла → 9¼ Speciedaler → ⅙ Speciedaler · Bruttovægt
+        за Hede 42 (danskmoent.dk): 6,129 г, Finhed 0,687, Finvægt 4,214 г — підтверджено ucoin (6,13 г) і Bruun II/13246 (6,10 г).\n\nNumista N#108979 для того ж типу наводить 8,428 г — значення відхиляється
+        від інших."
+    hede_muentzfuss_yield:
+      value: 9.25
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
+    composed_of:
+      - c-ed8d3a13
+    label: unified-dk-hede-c7h42
+    origin: promoted
+  - fuss: 9_25_thaler
+    phase: II
+    kind: scheide
+    nominal: 1/12 Speciedaler/5 Schilling Schleswig-holsteinischer Courant
+    ruler: Christian VII
+    issuing_entity: royal_holstein
+    fraction: 1/12
+    id: c-c7fd343b
+    year_first: 1787
+    year_last: 1801
+    year_ranges:
+      -   - 1787
+          - 1788
+      -   - 1797
+          - 1797
+      -   - 1800
+          - 1801
+    year_label: 1787-1788, 1797, 1800-1801
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel
+          value: Altona, Poppenbüttel
+          seed: dk-bruun-7875
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/12 Speciedaler
+          value: silver
+          seed: dk-bruun-7875
+    mint:
+      - Altona
+      - Poppenbüttel
+    catalog:
+      km: '126'
+      hede: '43'
+      hede_volume: c7h
+      schou:
+        - 6-7
+        - 10-11
+        - 10-12
+        - 13-14
+      sieg:
+        - '38'
+        - '41'
+      bruun_collection_id: '7875'
+      numista: '43459'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.5
+        source: hede
+      - value: 0.5
+        source: ngc
+      - value: 0.5
+        source: numismaster
+      - value: 0.5
+        source: numista
+      - value: 0.5
+        source: ucoin
+    weight_rough_g:
+      - value: 4.21
+        source: ucoin
+      - value: 4.214
+        source: hede
+      - value: 4.214
+        source: ngc
+      - value: 4.214
+        source: numismaster
+      - value: 4.214
+        source: numista
+    diameter_mm:
+      - value: 23.4
+        source: numista
+      - value: 23.5
+        source: ucoin
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17144, p. 73
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h43.htm
+        ref: danskmoent.dk (Hede c7h43)
+      - type: literature
+        url: https://en.numista.com/43459
+        ref: Numista N#43459 — 5 Schilling Courant / 1⁄12 Speciesthaler - Christian VII
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-5-schilling-km-126-1787-1801-cuid-1164017-duid-1391256
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120081
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-5-schilling-1787-1801/?tid=90573
+        ref: ucoin
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces43459.html
+        ref: Numista
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122602
+        ref: KMM 122602 (Inv. FP 3711.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575000
+        ref: KMM 575000 (Inv. FP 11167.6)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575007
+        ref: KMM 575007 (Inv. FP 11167.13)
+        display: false
+    note:
+      de: «5 SCHILLING COURANT 1/12 SP» · Poppenbüttel · 1/12 Thaler Species = 2,10681 g fein · 5 Sch.C. = 1/12 Thaler Species
+      en: «5 SCHILLING COURANT 1/12 SP» · Poppenbüttel · 1/12 Thaler Species = 2.10681 g fine · 5 Sch.C. = 1/12 Thaler Species
+      uk: «5 SCHILLING COURANT 1/12 SP» · Poppenbüttel · 1/12 Thaler Species = 2,10681 г чистого · 5 Sch.C. = 1/12 Thaler Species
+    hede_muentzfuss_yield:
+      value: 9.25
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
+    composed_of:
+      - c-c7fd343b
+    label: unified-dk-hede-c7h43
     origin: promoted
