@@ -117,6 +117,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     # as genuine mismatches and get false-evicted.
     _normalise_nominal as _mg_normalise_nominal,
     _reckoning_nominal,
+    _danske_form,
 )
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
 from lib.ruler_reigns import (  # noqa: E402
@@ -892,6 +893,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         _rk = _reckoning_nominal(out.get("nominal"), members[1:])
         if _rk:
             out["nominal"] = _rk
+        out["nominal"] = _danske_form(out.get("nominal"))
 
     # «non-None wins over None» gap-fill: when a foundation descriptive field
     # is None, adopt the first composed_of member's non-None value. Members are

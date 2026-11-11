@@ -78,5 +78,14 @@ class Compatible(unittest.TestCase):
         self.assertNotEqual(r["decision"], "no_match")
 
 
+class DanskeForm(unittest.TestCase):
+    def test_one_spelling(self):
+        for n in ("8 Skilling dansk", "8 Skilling Dansk", "8 Skilling danske", "8 Skilling, dansk"):
+            self.assertEqual(M._danske_form(n), "8 Skilling Danske", n)
+        self.assertEqual(M._danske_form("4 Marck dansk"), "4 Marck Danske")
+        self.assertEqual(M._danske_form("2 Skilling Lybsk"), "2 Skilling Lybsk")
+        self.assertEqual(M._danske_form("1 Denning = ½ Skilling Dansk"), "1 Denning = ½ Skilling Danske")
+
+
 if __name__ == "__main__":
     unittest.main()

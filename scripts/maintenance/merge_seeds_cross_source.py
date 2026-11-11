@@ -2643,6 +2643,19 @@ def _adds_reckoning(base_raw, cand_raw) -> bool:
     return len(printed | (kc[1] & _RECKONING_QUALIFIERS)) == 1
 
 
+_DANSKE_RE = re.compile(r"\b(skilling|skil|mark|marck)\s*,?\s+danske?\b", re.IGNORECASE)
+
+
+def _danske_form(nominal):
+    """«dansk», «Dansk», «danske» after the unit → «Danske», the form the coins
+    carry («VIII SKILLING DANSKE», «IIII MARCK DANSKE»; Numista legends;
+    CLAUDE.md §1 «8 Skilling Danske»). One spelling on the page (curator
+    2026-11-11)."""
+    if not isinstance(nominal, str):
+        return nominal
+    return _DANSKE_RE.sub(lambda m: f"{m.group(1)} Danske", nominal)
+
+
 def _reckoning_nominal(base_raw, members: list[dict]):
     """The first member nominal (members in authority order) that is
     `base_raw` plus one reckoning qualifier, when every such member names the
@@ -5225,6 +5238,7 @@ def build_unified(members: list[dict], unified_id: str,
     _rk = _reckoning_nominal(out.get("nominal"), sorted_members)
     if _rk and not any("nominal" in (m.get("_curation_holds") or {}) for m in members):
         out["nominal"] = _rk
+    out["nominal"] = _danske_form(out.get("nominal"))
     _canonical_nominal_out(out, members, entity_id)
 
     # Multi-mint union
