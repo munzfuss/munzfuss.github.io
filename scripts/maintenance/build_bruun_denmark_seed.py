@@ -909,6 +909,10 @@ def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple
         return ("billon", False)  # most pre-1541 skillinge are debased
     if "mark" in d:
         return ("silver", False)
+    # Swedish plate money («2 Daler Plate Money», plåtmynt) is struck on
+    # copper plates; the daler in its name is the copper daler, not silver.
+    if "plate money" in d or "plåtmynt" in d:
+        return ("copper", False)
     # The daler / taler and krone families and the Guldengroschen (the silver
     # Guldiner) are silver coins (the gold Kroner and Guldkrone are caught
     # above).
