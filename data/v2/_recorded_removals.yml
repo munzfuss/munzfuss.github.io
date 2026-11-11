@@ -5361,3 +5361,18 @@ removals:
     field: metal
     dropped: ['silver']
     reason: 'Curator (Serhii) 2026-11-10 («роби з порожньо»): Bruun gives no metal; the builder wrote «silver» as a default when no rule recognised the denomination («1 Schilling», Part V lot 15180). The default is gone: a record without a metal signal carries no metal. The class has no other member, so the coin shows no metal.'
+  - seed: dk-hede-c4h5a
+    kind: field
+    field: mint
+    dropped: ['Odense']
+    reason: 'Curator (Serhii) 2026-11-11 («Так, прибери»): danskmoent c4h5 (Christian IV, 1 Portugaløser (15)92, Haderslev) names Odense only as where the lost 5A specimen was kept («Det eneste kendte eksemplar bortkom 1922 fra Odense Museum»); the Hede parser read it as the mint. Parser fixed (58ee48a); the seed reads Haderslev, the final kept the stale union.'
+  - seed: dk-hede-c4h5b
+    kind: field
+    field: mint
+    dropped: ['Kopenhagen']
+    reason: 'Curator (Serhii) 2026-11-11 («Так, прибери»): danskmoent c4h5 names København only as where the shown 5B specimen is kept («Den Kgl. Mønt- og Medaillesamling, København»); the Hede parser read it as the mint of a Haderslev Portugaløser. Parser fixed (58ee48a).'
+  - seed: dk-hede-c4h8b
+    kind: field
+    field: mint
+    dropped: ['Kopenhagen']
+    reason: 'Curator (Serhii) 2026-11-11 («Так, прибери»): danskmoent c4h8 (Ungersk Gylden, Haderslev 1591-1593) names København only as where the shown specimen is kept («Den Kgl. Mønt- og Medaillesamling, København»); the Hede parser read it as the 8B mint. Parser fixed (58ee48a).'
