@@ -1715,10 +1715,26 @@ def _mint_per_letter_block(text: str) -> dict[str, str]:
     aligns with its years/refs (78A København, 78B Helsingør)."""
     out: dict[str, str] = {}
     for m in _LETTER_GROUP_BLOCK_RE.finditer(text):
-        mint = _first_mint_in(m.group(2))
+        mint = _first_mint_in(_letter_line(m.group(2)))
         if mint:
             out[m.group(1)] = mint
     return out
+
+
+def _letter_line(body: str) -> str:
+    """The letter's own description: its block up to its «(Hede …)» reference
+    (else up to the first sentence end). The prose after it names where a
+    specimen is kept or was lost, not where it was struck — c4h5 «Det eneste
+    kendte eksemplar bortkom 1922 fra Odense Museum» and «Det viste eksemplar
+    (Hede 5B) befinder sig i Den Kgl. Mønt- og Medaillesamling, København»
+    gave 5A «Odense» and 5B «København» for a Haderslev Portugaløser
+    (curator 2026-11-11). The stripped page text breaks lines at every tag
+    («1813\n, København. Forside», f6h24), so whitespace is collapsed first."""
+    s = re.sub(r"\s+", " ", body or "")
+    m = re.search(r"\(\s*Hede\b", s)
+    if m:
+        return s[:m.start()]
+    return re.split(r"(?<=[a-zæøå0-9)])\.\s+(?=[A-ZÆØÅ])", s, maxsplit=1)[0]
 
 
 def _parse_header(html: str) -> dict:
