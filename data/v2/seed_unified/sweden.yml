@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/sweden.yml across all sources.
 #
 # Input: 260 per-source seed entries.
-# Output: 225 unified entries (one per physical coin).
+# Output: 224 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13,68 +13,6 @@
 id: sweden
 generated_at: '2026-11-11'
 coins:
-  - id: c-4225815c
-    class_id: c-4225815c
-    label: unified-dk-bruun-11316p
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Örtug
-    year_first: 1497
-    year_last: 1501
-    year_ranges:
-      -   - 1497
-          - 1501
-    year_label: 1497-1501
-    ruler: Hans
-    mint: Stockholm
-    catalog:
-      bruun_collection_id:
-        - 11316p
-        - 11316q
-      others:
-        - Llt# 1
-        - Delzanno# 423
-        - Frösell# 281
-        - Llt# 2
-        - Delzanno# 424
-        - Frösell# 282
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 1.37
-        source: bruun
-      - value: 1.45
-        source: bruun
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1497-1501)
-          value: 1497-1501
-          seed: dk-bruun-11316p
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1497-1501)
-          value: 1497-1501
-          seed: dk-bruun-11316q
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12145, p. 212
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14128, p. 230
-    issuing_entity: sweden
-    composed_of:
-      - dk-bruun-11316p
-      - dk-bruun-11316q
   - id: c-44c1d31d
     class_id: c-44c1d31d
     label: unified-dk-bruun-11413
@@ -9115,15 +9053,28 @@ coins:
         - Sømod# 175
         - Hildebrand# 712
         - Rasmusson# ill. 13
+        - Llt# 2
+        - Delzanno# 424
+        - Frösell# 282
+      bruun_collection_id: 11316q
     metal: silver
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    weight_rough_g:
+      - value: 1.37
+        source: bruun
     uncertainty:
       year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1497-1501)
+          value: 1497-1501
+          seed: dk-bruun-11316q
         - kind: inferred
           how: reign
           source: galster
@@ -9138,6 +9089,9 @@ coins:
           value: silver
           seed: dk-galster-hg-230
     sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14128, p. 230
       - type: literature
         url: https://www.danskmoent.dk/hans.htm
         ref: Galster 230 (hg) — danskmoent.dk hans.htm
@@ -9146,6 +9100,7 @@ coins:
         ref: Galster 230 (hg) — danskmoent.dk hansgals.htm
     issuing_entity: sweden
     composed_of:
+      - dk-bruun-11316q
       - dk-galster-hg-230
   - id: c-20242dfd
     class_id: c-20242dfd
@@ -9170,15 +9125,28 @@ coins:
         - Sømod# 174
         - Hildebrand# 714
         - Rasmusson# ill. 14
+        - Llt# 1
+        - Delzanno# 423
+        - Frösell# 281
+      bruun_collection_id: 11316p
     metal: silver
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    weight_rough_g:
+      - value: 1.45
+        source: bruun
     uncertainty:
       year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1497-1501)
+          value: 1497-1501
+          seed: dk-bruun-11316p
         - kind: inferred
           how: reign
           source: galster
@@ -9193,6 +9161,9 @@ coins:
           value: silver
           seed: dk-galster-hg-231
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12145, p. 212
       - type: literature
         url: https://www.danskmoent.dk/hans.htm
         ref: Galster 231 (hg) — danskmoent.dk hans.htm
@@ -9201,6 +9172,7 @@ coins:
         ref: Galster 231 (hg) — danskmoent.dk hansgals.htm
     issuing_entity: sweden
     composed_of:
+      - dk-bruun-11316p
       - dk-galster-hg-231
   - id: c-57d9da01
     class_id: c-57d9da01
