@@ -35,6 +35,7 @@ class LetterGroups(unittest.TestCase):
         keep = {"bruttovægt_g": 1, "_letter_groups": {"Schou": ["36-37"]}}
         self.assertEqual(sorted(P._split_combined_letter_keys({"14AB": keep}, {})), ["14AB"])
 
+    @unittest.skipUnless((HARVEST_ROOT / "hede/c5h12.htm").exists(), "harvest cache (scripts/cache submodule) not attached")
     def test_page_c5h12(self):
         html = (HARVEST_ROOT / "hede/c5h12.htm").read_text(encoding="latin-1")
         bh = P.parse_one(html, "c5h12")["specs"]["by_hede"]

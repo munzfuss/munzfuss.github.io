@@ -24,6 +24,7 @@ def _nominal(source_file, vol, n, nominal="Hulpenning"):
         {"source_file": source_file, "ruler_volume": vol, "galster_number": n}, nominal)
 
 
+@unittest.skipUnless((b.GALSTER_CACHE / "1penning.htm").exists(), "harvest cache (scripts/cache submodule) not attached")
 class HollowPennyNominal(unittest.TestCase):
     def test_listed_as_penning(self):
         self.assertEqual(_nominal("fr_f1g129.htm", "f1g", "129"), ("1 Penning", None))

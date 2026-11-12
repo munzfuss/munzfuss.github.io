@@ -38,6 +38,10 @@ class ErikAfterDeposition(unittest.TestCase):
         self.assertEqual(erik_gotland_entity("sweden", "Erik VII", 1448), "sweden")
 
 
+_NO_CACHE = "harvest cache (scripts/cache submodule) not attached"
+
+
+@unittest.skipUnless((GALSTER_CACHE / "pommgals.htm").exists(), _NO_CACHE)
 class PommgalsRows(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -59,6 +63,7 @@ class PommgalsRows(unittest.TestCase):
         self.assertFalse(any(int(n) > 100 for n in self.rows))
 
 
+@unittest.skipUnless((GALSTER_CACHE / "philsosl.json").exists(), _NO_CACHE)
 class PhilippaSosling(unittest.TestCase):
     def test_parse(self):
         d = json.loads((GALSTER_CACHE / "philsosl.json").read_text(encoding="utf-8"))
@@ -78,6 +83,7 @@ class GalsterMetalGuess(unittest.TestCase):
         self.assertEqual(bg.detect_metal("Hvid"), "billon")
 
 
+@unittest.skipUnless(GALSTER_CACHE.is_dir(), _NO_CACHE)
 class NaestvedHvidYear(unittest.TestCase):
     """Galster 2 / 3: the coin pages' «ca. 1424» is marked erroneous «(!)» and
     the seed carries the Næstved window 1403-1413 (?) after Stefke 1995 and

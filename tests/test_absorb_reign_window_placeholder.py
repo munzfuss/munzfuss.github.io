@@ -30,6 +30,7 @@ AB = importlib.util.module_from_spec(_spec)
 sys.modules["absorb_seeds_into_final_v2"] = AB
 _spec.loader.exec_module(AB)
 from lib.ruler_reigns import reign_window, reign_window_placeholder  # noqa: E402
+from lib.paths import KONKORDANS_CACHE  # noqa: E402
 
 
 def enrich(ruler="Hans", member_years=None, holds=None, entity="danish_realm"):
@@ -70,6 +71,7 @@ class TestReignPlaceholder(unittest.TestCase):
         self.assertIsNone(enrich(holds={"year_first": "kept undated"}).get("year_first"))
 
 
+@unittest.skipUnless((KONKORDANS_CACHE / "konkord.json").exists(), "harvest cache (scripts/cache submodule) not attached")
 class TestMbAndNominalPlaceholder(unittest.TestCase):
     """Row 3 (curator 2026-10-17): no ruler, but an MB number or a one-period
     nominal dates the coin; MB beats the ruler (MB 640 = Magnus Smek)."""
