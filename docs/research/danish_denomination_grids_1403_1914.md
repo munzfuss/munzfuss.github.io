@@ -1,17 +1,21 @@
-# Danish denomination grids 1403–1700 — common and separate grids, transitions, the ratios behind them
+# Danish denomination grids 1403–1914 — common and separate grids, transitions, the ratios behind them
 
-> **Status:** research dossier (role-1), opened 2026-11-12 at the curator's request: «вичленувати в
-> періоді (не обмежуйсь 1541 роком, йди далі аж до кінця 17 століття) спільні та окремі сітки, більш
-> повно з урахуванням всіх номіналів в періодах, роки переходів, обрахунки співвідношень».
+> **Status:** research dossier (role-1), opened 2026-11-12 at the curator's request. The brief:
+> - separate the common and the separate denomination grids through the whole period, not stopping at 1541;
+> - cover every denomination of each period;
+> - give the transition years and the ratio computations each conclusion rests on.
+>
+> First written to 1700; extended to 1914 the same day at the curator's request.
 > **Scope:** which Danish (and Norwegian) denominations formed ONE grid and which stood in SEPARATE
-> grids, period by period from 1403 to 1700; the year of each transition; the set ratios and the
-> silver computations each conclusion rests on. The Danish : Lübeck tie is treated as a grid question.
+> grids, period by period from 1403 to 1914; the year of each transition; the set ratios and the
+> silver computations each conclusion rests on. The Danish : Lübeck tie is treated as a grid question;
+> the duchies enter from 1788, when they form their own monetary area.
 > **Excluded:** the full ratio chains per act to 1625 — `denomination_ratio_chains_1403_1625.md` (this
 > dossier reads them and extends to 1700); the formula series of each line —
 > `danish_small_coin_lines_1497_1660.md`; act-by-act parameters — `instruments/<yyyy>_*.md` (every grid
 > figure below is taken from the §4 of the instrument dossier named, recomputed there); gold standards
-> (only where gold is tariffed against a grid); the 18th century (the 1726 Kurantdaler and the 1737
-> Krone agio are named only as the end of the last split).
+> (only where gold is tariffed against a grid); paper money except where a set rate ties notes to coin;
+> the duchies before 1788 (they follow the Lübeck chain, §9).
 > «[C]» = computed here. Cologne mark 233,855 g. Fine silver per Skilling (g/ß) is the comparison unit
 > for the metal test: the coin's fine weight divided by its value in ß as SET.
 
@@ -38,10 +42,16 @@
 | 1537/1541 – 1601 | **one:** Pf – Hvid – ß – M – Daler (12 / 3 / 16 / 3, then 2 and 4 M) | none set; 1563–71 the Klipping grid beside the round coin | the Mark piece leaves the ß in 1602 |
 | 1602 – Nov 1619 | **two:** (C) Rdl – ½ – Ort – Mark piece (¼ Rdl to 1617) – Krone (1½ Rdl, 1618–19); (D) Blaffert – Hvid – Søsling – ß – 2/4/8 ß – Mark of account (16 ß) | Rdl : ß = 66 → 68 → 74 → 80 → 84; Apr–Nov 1619 a third: Kron-ß grid (Krone = 96 Kron-ß) | Frdg. 16 Nov 1619 (Rdl = 96 ß = 6 M), Frdg. 4 May 1625 |
 | 1625 – 1647 | **one:** Hvid (⅓) – Søsling (½) – ß – M (16) – Sletdaler (64) – Rdl (96) – Krone (128); the 1628–30 coin integer fractions of the Rdl | old pieces tariffed off-grid (13⅓, 6⅔, 5⅓ ß) | the Hebræer coin 1644, Frdg. 10 Dec 1647 |
-| 1647 – 1700 | **two daler units:** (E) specie — Speciedaler, ½, ¼, ⅛; (F) kurant — Krone / Sletdaler (4 M), 2 M, 1 M, 8, 4, 2, 1 ß, Søsling, Hvid | specie Rdl in kurant: 104 ß (1647, set) → 96 (1648) → agio caps 4 % (1674), 4–6 % (1684–95) → 104 ß (Kongsberg specie, 1693) → 12 % (1699, customs) | 1726 Kurantdaler (outside scope); inside (F) the Krone line parts from the small coin (agio set 1737) |
+| 1647 – 1700 | **two daler units, from the late 1660s three tiers:** (E) specie — Speciedaler, ½, ¼, ⅛; (F) kurant — Krone / Sletdaler (4 M), 2 M, 1 M, 8, 4, 2, 1 ß, Søsling, Hvid; inside F the Krone against the small coin (agio 4 %, Galster, obs.) | specie Rdl in kurant: 104 ß (1647, set) → 96 (1648) → agio caps 4 % (1674), 4–6 % (1684–95) → 104 ß (Kongsberg specie, 1693) → 12 % (1699, customs) | not closed in the 17th c. |
+| 1700 – 1788 | **three:** (E) specie (Speciedaler at 9¼, no seam set until 1776); (F1) Krone — Krone 4 M, ½ Krone, Mark (10¾ and 13⅓ lod, to 1771); (F2) kurant at 11⅓ — 24, 16, 12, 8, 4, 2, 1, ½ ß, Rigsdaler Courant (1788), Kurantdukat (12, then 11 M) | specie : kurant 120 ß by convention, ≈ 117½–118 ß by market and silver; specie set at 118 ß (1776); Krone = 68 ß kurant (1737) | 1794 (specie = 120 ß) and 1813 |
+| 1788 – 1813 | **duchies apart:** (G) S.-H. Courant — Speciedaler = 60 ß S.-H. C. = 48 ß l.; ⅔ ⅓ ⅙ 1/12 1/24 Spd = 40 20 10 5 2½ ß; kingdom: (E) specie and (F2) kurant | kingdom: specie = 120 ß kurant (set 1794); duchies: specie : kurant 4 : 5 (1788); ß S.-H. = 2 ß d. by the two conventions | Forordning 5 Jan 1813 |
+| 1813 – 1873 | kingdom: **one** — Rigsbankdaler = 96 Rbß = ½ Speciedaler (from 1854 «Rigsmønt»); paper beside it at a course (1813–35/45); duchies: **two** — Rbß grid against S.-H. Courant (16 Rbß = 5 ß S.-H. C.); Norway: **one** — Speciedaler = 5 Ort = 120 ß (1816) | Rbd = 6 Rdl kurant (1813); notes «navneværdi» : «sølvværdi» (315 in 1818, par 1835); duchies 5 : 16 | Møntlov 23 May 1873, in force 1875 |
+| 1873/75 – 1914 | **one decimal grid:** Krone = 100 øre (gold 20, 10, 5 kr; silver 2, 1 kr, 25, 10 øre; bronze 5, 2, 1 øre), common to DK, SE, NO | old units by conversion only: 1 Rdl = 2 kr, 1 Spd = 4 kr (computed: 1 ß DK = 2 1/12 øre, 1 ß NO = 3⅓ øre); 8 kr = 9 Mark by gold | gold convertibility suspended 2 Aug 1914 |
 
 The Danish : Lübeck tie runs across all of this as a separate question (§9): two incommensurable
-currencies before 1541, one lattice at the exact factor 2 from 1602 (SET) to the end of the period.
+currencies before 1541, one lattice at the exact factor 2 from 1602 (SET) to the end of the 18th
+century; in 1788 the duchies re-divide the Speciedaler 60 instead of 48, and the factor 2 passes to the
+S.-H. Courant (ß S.-H. = 2 ß d.).
 
 ## 3. 1403/1424 – c. 1481: one grid
 
@@ -206,6 +216,16 @@ Metal [C], g/ß (specie at 96 ß):
 | 1692 | — | 0,234 (10 Rdl 38 ß) | — | 0,228 (10⅔) | — | copper | — |
 | 1695 (hypothesis) | — | — | 0,215 (11⅓) | — | — | — | — |
 
+Galster (1973 s. 34–36, observations, no act) gives the market seams: under Frederik III's last years
+«*Opgælden på specier mod kroner var steget til 8 % og opgælden på kroner imod kurant (d.v.s.
+småmønt, hovedsagelig toskilling) 4 %*» («the agio of specie against Kroner had risen to 8 % and the
+agio of Kroner against kurant, i.e. small coin, mainly 2-ß pieces, to 4 %»); after the Scanian War
+specie against Kroner 10 %; at Frederik IV's accession (1699) 12 % «*12 skilling på daleren*» («12 ß on
+the daler»). So the three tiers specie — Krone — small coin each carry a market seam already in the
+late 1660s; only the first is set by acts before 1700. The same page: Lübeck's «*32 Schillinge
+Stadtgeld efter 1671 var nøjagtig som de danske kroner*» («were exactly like the Danish Kroner») —
+the Krone = 32 ß l. = 64 ß d., factor 2.
+
 The specie stands 12–14 % above the Krone line by silver from 1652 to 1671; the acts set the gap first
 as a cap (4–6 %), then as a course (104 ß = 8,3 %), then 12 % in customs. Inside grid F the Krone line
 (10 Rdl 38–40 ß per fine mark) and the small coin (10⅔–17 1/15 Rdl) differ by metal tier only; their
@@ -216,6 +236,119 @@ scope.
 1673 Christiania 2 ß on two grids in one year (Hede Norge 48 / 49); Kongsberg from 1686 on the 1671 and
 1686 grids. No separate Norwegian grid of denominations is set; the Rdl «reckoned at 4 Mark» in the
 Christiania account of 1630–31 (`1630_…` §4) is not explained in the dossiers read (open, §11).
+
+## 8a. 1700 – 1788: specie, Krone, kurant
+
+Sources: `instruments/1695_…`, `1726_…`, `1731_…`, `1734_1756_…` (§4 each); `fuesse.yml` cards
+`11_333_thaler`, `kronemont`, `kronemont_fine`, `courantdukatenfuss`; Galster 1973 s. 36–39.
+
+**Grid F2 (kurant, 11⅓ Rdl per fine mark):** 24 ß (Rigsort, from 1731), 16 ß (1713–16), 12 ß (1710–25),
+8 ß (from 1694/95), 4 ß (1727–30), 2 ß, 1 ß, copper ½ ß; Rigsdaler Courant (Altona 1788); Kurantdukat
+at 12 M = 2 Rdl kurant (1714–17, 1757–96), reduced to 11 M in 1727 (Galster s. 37). Rdl kurant = 6 M =
+96 ß, 1 ß = 0,21494 g fine at the foot (= 233,855 × 3 / 34 / 96 [C]). One grid; Kurantbank notes from
+1736 «*dominerende i omsætningen*» («dominant in circulation», Galster s. 38).
+**Grid F1 (Krone):** Krone (4 M), ½ Krone, Mark piece on the 10¾-lot grid (to 1732) and the 13⅓-lot
+fine grid (1693–1771); nominally 64 ß, set at **68 ß kurant** by the Forordning of 23 Nov 1737
+(½ Krone 34, Kronemark 17).
+**Grid E (specie):** Speciedaler at 9¼ (8 3/32 to the 14-lot mark, 25,281 g fine), halves, Rigsort of
+specie silver only in 1648; rarely struck in this period (one specie under Frederik IV, 1704, 309
+pieces — Galster s. 36; 170 000 in 1764–65, s. 38).
+
+| Seam | Value | Status | Source |
+|---|---|---|---|
+| specie : kurant | 120 ß («1 RSp = 1¼ RCour») | crown convention | card `11_333_thaler` |
+| specie : kurant | ≈ 122½ RCour per 100 RSp = 117,6 ß | market | card `11_333_thaler` |
+| specie : kurant | 1 Rdl 22 ß = **118 ß** | SET 1776 | Galster s. 39: «*1776 blev specien sat i fast forhold til kurantmønten, den blev lovlig betaling for 1 rd. 22 sk. kurant*» («in 1776 the specie was fixed against the kurant coin and became legal tender for 1 rd. 22 sk. kurant») |
+| Krone : kurant | 68 ß (17 : 16) | SET 1737 | register row 1737; `1734_1756_…` §4.2 |
+| 1726 war coin | 16 ß → 15, 12 ß → 10, six 2 ß → 10 ß (one 2 ß = 1⅔ ß) | SET (tariff) | `1726_…` §4.1 — off-grid values |
+
+Metal [C], g per kurant ß at 0,21494:
+- specie 25,281 g = **117,6 ß** — the market rate and the 1776 act (118) follow the silver, not the
+  convention (120);
+- Krone 10¾ lod 14,964 g = 69,6 ß, fine Krone 14,991 g = 69,7 ß against the 1737 tariff 68 (−2,3 %);
+- 1 ß of 1734–56 (3 lod) 0,1439 g = 0,67 ß (Scheidemünze); 2 ß 5½ lod 0,4187 g = 1,95 ß.
+
+**Three grids by criterion (b)/(c):** each integer inside (specie: 1, ½, ¼, ⅛; Krone: 64 ß, 32, 16;
+kurant: 96 ß Rdl and its sorts), joined only by a convention the market did not follow (specie) and by
+an agio set at a non-integer ratio 17 : 16 (Krone). The Krone grid ends with the last Krone, 1771
+(Galster s. 32, s. 39).
+
+## 8b. 1788 – 1813: the duchies' own grid; specie and kurant set at 4 : 5 in the kingdom
+
+**Duchies, grid G (S.-H. Courant), from the reform of 7 July 1788** (Speciesbank in Altona):
+Speciedaler at 9¼ = 60 ß S.-H. Courant = 48 ß lybsk; struck parts ⅔, ⅓, ⅙, 1/12, 1/24 Spd = 40, 20, 10,
+5, 2½ ß S.-H. C.; Sechsling (½ ß, 2-Sechsling piece), Dreiling (¼ ß) — Galster s. 39: «*Specien deltes i
+48 skilling lybsk eller 60 skilling slesvigholstensk kurant. Dertil udmøntedes underafdelinger … = 40,
+20, 10, 5 og 2½ skill. sl.-h. kurant*» («the specie was divided into 48 ß lybsk or 60 ß S.-H. kurant;
+parts were struck … = 40, 20, 10, 5 and 2½ ß S.-H. kurant»). Specie : kurant 4 : 5 «*100 specier = 125
+daler kurant*». Reichsthaler S.-H. Courant = 48 ß S.-H. = ⅘ Spd (card `9_25_thaler` IV, accounting
+unit only).
+- Inside G: the 1/24 Spd = 2½ ß is a half-Skilling value — integer only in Sechslinge (5).
+- G against Lübeck: 60 ß S.-H. = 48 ß l. → 1 ß S.-H. = ⅘ ß l. — **non-integer**; the Hanseatic Mark–
+  Schilling division of the specie ends for the duchies.
+- G against the Danish kurant: 60 ß S.-H. = 1¼ Rdl kurant = 120 ß d. by the two conventions → 1 ß
+  S.-H. = 2 ß d. exactly [C]; by silver 0,42136 against 2 × 0,21494 = 0,42988 g (the 2 % of the kurant
+  convention).
+
+**Kingdom:** the Danish-Norwegian Speciesbank 1791; specie received «*i samme forhold som i
+hertugdømmerne*» («at the same ratio as in the duchies») by the Forordning of 11 July 1794 (Galster
+s. 40) — 120 ß kurant, i.e. the 1776 118 raised to the convention. ⚠ Card `11_333_thaler` and
+`9_25_thaler` date this to the «Placard of 3 December 1794» — two dates for the one settlement, not
+resolved here. From 1794 the Rigsort (24 ß) is «*anvendelig som ⅕ specie*» (Galster s. 38): the seam
+specie : kurant becomes integer (1 : 120, Rigsort = ⅕), so E and F2 are one grid from 1794 by
+criterion — with the kurant coin 2 % better in silver than the specie at that rate [C]. War from 1807:
+the note course falls, coin disappears; 1812 the kurant 1 ß of 1771 restruck to 12 ß (Galster s. 40) —
+a tariff off any grid.
+
+## 8c. 1813 – 1873: Rigsbankdaler; duchies on two grids; Norway back to the specie
+
+**Kingdom, one grid:** Forordning 5 Jan 1813 — Rigsbankdaler «*18½ stk. à 6 mark à 16 skilling af en
+kølnsk mark fint sølv*» («18½ pieces of 6 Mark of 16 ß to the Cologne mark of fine silver», Galster
+s. 41) = 12,641 g fine = ½ Speciedaler (card `18_5_thaler`, set constructively); 1 Rbd = 6 M = 96 Rbß;
+Rigsbanktegn 16, 12, 6, 4, 3, 2 ß (1813–15); Speciedaler = 2 Rbd = 192 Rbß. Renamed 1854 «Rigsmønt»
+with no change of standard (Galster s. 42). Old money: 1 Rbd = 6 Rdl kurant (card `18_5_thaler`, ref
+`forordning-pengevaesenet-1813`) — a conversion of the paper kurant, integer.
+- Metal [C]: Rbd 12,641 / 96 = 0,1317 g per Rbß; Speciedaler 25,281 / 192 = 0,1317 — exact.
+- Beside the coin, a note scale: «*rigsbankpenge navneværdi og rigsbankpenge sølvværdi*» («Rigsbank
+  money at face value and at silver value»), course set twice a year; 315 in 1818, par 1835, notes
+  convertible 1845 (Galster s. 41). A separate (paper) scale with a floating link until 1835/45.
+
+**Duchies, two grids:** the Rbß grid against the S.-H. Courant (G). Rbd = 30 ß S.-H. C. (card
+`18_5_thaler`) → 1 Rbß = 5/16 ß S.-H. — integer only at 16 Rbß = 5 ß = 1/12 Spd. Coins carry both scales
+at those points: in our data «1/12 Speciedaler / 5 Schilling Schleswig-holsteinischer Courant», «1/6 … / 10
+Schilling …», «1/24 … / 2½ Schilling …», «16 Reichsbank Schilling». Galster s. 42: in the duchies «*der her
+stadig regnedes med kurantmønt, og man ikke ville vide af rigsbankmønten*» («here they still reckoned
+in kurant coin and would have nothing to do with the Rigsbank coin»); 1848 the provisional government
+strikes Sechslinge and Dreilinge (G); 1854 the renaming to «Rigsmønt» partly because «*rigsbanknavnet
+[var] ilde lidt i hertugdømmerne*» («the Rigsbank name was disliked in the duchies»). Two grids until
+the duchies leave Denmark, 1864.
+
+**Norway, one grid:** Aug 1813 «*200 rigsbankdaler (100 specier i sølv) = 375 rigsbankdaler
+›navneværdi‹*»; no coin struck, the Rbd «*delt … i 60 specieskilling*» («divided into 60
+specie-skilling»); the money law of 14 June 1816 returns to the specie at 9¼ «*delt i 5 orter à 24
+skilling, hvorved man kunne lade den ældre mønt circulere efter pålydende værdi*» («divided into 5
+Ort of 24 ß, so that the older coin could circulate at face value», Galster s. 49). The 1816 grid is
+the 1794 specie grid continued (Speciedaler = 120 ß, Rigsort / Ort = 24 ß = ⅕). Against the Danish Rbß:
+120 ß N = 192 Rbß → 1 ß N = 1,6 Rbß, non-integer.
+
+## 8d. 1873/75 – 1914: the decimal Krone
+
+Møntlov 23 May 1873, in force 1875 (`dk_kronefod_1873_research.md`); union Denmark–Sweden, Norway
+joining 16 Oct 1875. Galster s. 43: two gold coins, «*248 stykker … 124 stykker indeholdt et kilogram
+fint guld*» («248 pieces … 124 pieces contained a kilogram of fine gold»), the tenth / twentieth part
+the unit, «*kaldtes en krone. Denne deltes i 100 øre*» («called a Krone, divided into 100 øre»); silver
+2 and 1 kr (12 and 6 g fine), 25 and 10 øre (1,45 and 0,58 g fine); bronze 5, 2, 1 øre.
+- **One grid** in all three kingdoms, every denomination a decimal multiple of the øre.
+- Old units enter only by conversion: 1 Rdl = 2 kr (`dk_kronefod_1873_research.md`; card `kronefod`
+  «1 Krone = ½ Rigsdaler»), 1 Spd = 4 kr (card `kronefod`); hence 1 ß rigsmønt = 200/96 = **2 1/12
+  øre**, 1 ß N = 400/120 = **3⅓ øre** [C] — the last non-integer link of the old grids. Galster s. 17:
+  the copper skilling «*omregnet 1874 til 2 øre*» («converted in 1874 to 2 øre») — the rounded value.
+- Metal [C]: silver per krone in the 2 kr / 1 kr 6,00 g, in 25 øre 5,81 g, in 10 øre 5,80 g — the
+  Scheidemünze gradient now 3 %; the old Rdl's 12,641 g silver = 6,32 g per krone, the silver krone
+  5 % under it.
+- Germany: 8 kr = 9 Mark by the two gold parities (card `kronefod`; 0,4032 / 0,3584 g) — a fixed but
+  non-integer link to the Mark grid, which the duchies (Prussian from 1867) used from 1873/75.
+- ⚠ Union date: `dk_kronefod_1873_research.md` 5 May 1873 (signature), Galster s. 43 27 May 1873.
 
 ## 9. The Danish : Lübeck tie as a grid question
 
@@ -236,10 +369,18 @@ Christiania account of 1630–31 (`1630_…` §4) is not explained in the dossie
 | 1630, 1640 | Dütken 3 ß l. = 6 ß d.; 8 ß l. = 1 Mark d.; Sechsling ½ ß l. = 1 ß d.; Rdl = 48 ß l. = 96 ß d. | SET | factor 2 |
 | 1676 | Gottorp and Glückstadt Dütken 6 ß dansk | SET | factor 2 |
 | 1680 | foreign Dütken 5 ß d. | SET (tariff) | foreign coin off-grid |
+| 1694/95 | the 8 ß at 11⅓ = «4-schill. lybsk», the kurant foot «*som både Lybæk og Hamborg gav sin tilslutning*» («which both Lübeck and Hamburg joined», Galster s. 36) | author | factor 2 |
+| 1726 | Hamburg's new kurant at 11⅓ = the Danish foot | `1726_…` §4.3 | factor 2 |
+| 1788 | duchies: specie = 48 ß l. = 60 ß S.-H. C. | SET (reform) | ß S.-H. = ⅘ ß l. — **non-integer**; ß S.-H. = 2 ß d. |
+| 1813–64 | Rbß against ß S.-H. C. | card `18_5_thaler` | 5 : 16 |
+| 1873/75 | Lübeck and Hamburg in the German Mark; 8 kr = 9 Mark | gold parity | fixed, non-integer |
 
 From 1602 every Lübeck unit is an integer multiple of a Danish one (ß l. = 2 ß d., Mark l. = 2 Mark d.,
 Sechsling l. = ß d.): the «Lybsk» and «Dansk» names denote two scales on ONE lattice, not two grids.
-Before 1541 they were two grids (non-integer 1⅓, 3 : 5).
+Before 1541 they were two grids (non-integer 1⅓, 3 : 5). The factor 2 holds through the 11⅓ kurant (shared with Lübeck
+and Hamburg from 1694–1726). In 1788 the duchies divide the specie into 60 instead of 48 ß: the Lübeck
+Schilling then stands at ⅘ of the S.-H. one, and the factor 2 passes to the S.-H. Courant against the
+Danish kurant.
 
 ## 10. Transitions
 
@@ -268,11 +409,26 @@ Before 1541 they were two grids (non-integer 1⅓, 3 : 5).
 | 1674 | agio cap 4 % | seam acknowledged |
 | 1693 | Kongsberg specie 104 ß | seam set as a course |
 | 1699 | customs Kroner + 12 % | seam widened |
+| 1726 | war coin reduced to 11 1/9 and 11¼ (off-grid values 15, 10, 1⅔ ß); 11⅓ kept (1727) | inside the kurant grid |
+| 1737 | Krone = 68 ß kurant | Krone grid set at 17 : 16 |
+| 1771 | last Krone | Krone grid ends |
+| 1776 | specie = 118 ß kurant | specie seam set at the silver |
+| 1788 | duchies: specie = 60 ß S.-H. C. = 48 ß l.; 4 : 5 | **duchies' own grid**; Lübeck division ends there |
+| 1794 | kingdom: specie = 120 ß; Rigsort = ⅕ specie | specie and kurant on one integer grid |
+| 1813 | Rbd = ½ Spd = 96 Rbß; 1 Rbd = 6 Rdl kurant; notes at a course | **one coin grid** (kingdom); paper scale beside it |
+| 1813–64 | duchies: Rbß against S.-H. C. (16 : 5) | two grids, dual-inscribed coins at 1/24, 1/12, ⅙ Spd |
+| 1816 | Norway: Spd = 5 Ort = 120 ß | 1794 specie grid continued |
+| 1835 / 1845 | notes at par / convertible | paper scale closes |
+| 1854 | «Rigsmønt» | renaming only |
+| 1873/75 | Krone = 100 øre; 1 Rdl = 2 kr, 1 Spd = 4 kr | **one decimal grid**; old ß = 2 1/12 / 3⅓ øre |
 
 Pattern [reading, not a source term]: three times a large-coin unit and a small-coin unit run on separate
 grids joined by a floating link (Gylden / Mark dansk against ß, 1497–1536; Rdl against ß, 1602–1619;
-specie Rdl against kurant, 1647–1700+), and twice a reform restores one integer chain (1537/41, 1619/25).
-Whether 1726 closes the third is for its own dossier.
+specie Rdl against kurant, 1647–1794), and each time an act restores one integer chain (1537/41,
+1619/25, 1794). The kurant period adds a fourth seam inside the coin of account (Krone 17 : 16 against
+kurant, 1737–71). After 1794 the seams are no longer between denominations of one realm but between
+monetary areas (duchies 1788–1864, Norway from 1814) and between coin and paper (1813–45); the decimal
+Krone of 1873/75 closes the last of them.
 
 ## 11. Open questions
 
@@ -289,6 +445,12 @@ Whether 1726 closes the third is for its own dossier.
 | The 1647 / 1693 104 ß: the same «8 ß Opgæld» or two separate settlements | Wilcke II kap. A.4 and the 1693 act's preamble |
 | Was the 1699 12 % the agio of specie or a customs surcharge | the 1699 act's text |
 | Kurant Krone vs small coin: a set agio before 1737? | Mordhorst c5–f4 digests 1700–1737 |
+| 1794: Forordning 11 July (Galster s. 40) or Plakat 3 Dec (cards `11_333_thaler`, `9_25_thaler`) | the two acts' texts (Mordhorst c7) — perhaps two acts, one for the specie's reception, one for the market rate |
+| The 1813 «1 Rbd = 6 Rdl kurant» and «Rbd = 30 ß S.-H. C.» rest on the cards, not on an act read here | the Forordning of 5 Jan 1813 (`forordning-pengevaesenet-1813`) |
+| The card's «1 Krone = 60 Kroneskilling = 64 ß» (`11_333_thaler` I) — a Kroneskilling of account in the 18th c.? | a source naming it; not used above |
+| 1873: «1 Rdl = 2 kr» and «1 Spd = 4 kr» are in our dossiers / cards without a quoted act | Møntlov 23 May 1873 § on conversion; the Norwegian law of 1875 |
+| The duchies' S.-H. Courant → Prussian Thaler → Mark conversion (1864–75) | the Prussian and Reich acts for Schleswig-Holstein |
+| Union date 5 or 27 May 1873 | the convention's text |
 
 ## Sources
 
@@ -297,4 +459,9 @@ All figures come from the dossiers named, which carry the verbatim quotes and pa
 `danish_standard_chronology_1396_1541.md` §2j, `ordinances_register.md` (rows 1674, 1684–95, 1692, 1693,
 1695, 1699, 1737), and `instruments/` 1602, 1618, 1619, 1624, 1627, 1628 (both), 1630, 1640, 1643, 1647,
 1651, 1658, 1671, 1673, 1675, 1684–1690, 1692, 1695 (each §4). Quotes repeated here were taken from those
-dossiers, not re-opened.
+dossiers, not re-opened. For 1700–1914 also: `instruments/` 1726, 1731, 1734–1756 (§4 each);
+`dk_kronefod_1873_research.md`; `data/shared/fuesse.yml` cards `11_333_thaler`, `9_25_thaler`,
+`18_5_thaler`, `kronemont`, `kronemont_fine`, `courantdukatenfuss`, `kronefod` (their own refs); and
+Galster, G.: *Mønt* (Dansk historisk Fællesforenings håndbøger, 2. rev. oplag, 1973), s. 17, 32,
+34–43, 49 — corpus `galster-1973-moent` (printed = pdf); the fractions on s. 38–39 read from the page
+images (the OCR renders them as «%»).
