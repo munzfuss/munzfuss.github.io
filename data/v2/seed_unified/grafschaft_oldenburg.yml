@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `grafschaft_oldenburg`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/grafschaft_oldenburg.yml across all sources.
 #
 # Input: 153 per-source seed entries.
-# Output: 137 unified entries (one per physical coin).
+# Output: 136 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: grafschaft_oldenburg
-generated_at: '2026-11-10'
+generated_at: '2026-11-13'
 coins:
   - id: c-8522ce4c
     class_id: c-8522ce4c
@@ -549,6 +549,7 @@ coins:
         - 15139d
         - 15139ddd
         - 15139e
+        - 15139ø
       schou:
         - '17'
         - '19'
@@ -565,6 +566,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 16.81
+        source: bruun
       - value: 17.34
         source: bruun
       - value: 17.35
@@ -601,6 +604,12 @@ coins:
           as_printed: 2/3 Taler (Zweidrittel)
           value: silver
           seed: dk-bruun-15139e
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-15139ø
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -614,6 +623,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15184, p. 151
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15186, p. 154
       - type: literature
         url: https://en.numista.com/268600
         ref: Numista N#268600 — ⅔ Thaler - Frederick V of Dänemark - County of Oldenburg
@@ -623,6 +635,7 @@ coins:
       - dk-bruun-15139d
       - dk-bruun-15139ddd
       - dk-bruun-15139e
+      - dk-bruun-15139ø
       - dk-numista-268600
   - id: c-629ea59e
     class_id: c-629ea59e
@@ -717,49 +730,6 @@ coins:
     issuing_entity: grafschaft_oldenburg
     composed_of:
       - dk-bruun-15139i
-  - id: c-37427b56
-    class_id: c-37427b56
-    label: unified-dk-bruun-15139ø
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: ⅔ Taler
-    year_first: 1762
-    year_last: 1762
-    year_label: '1762'
-    ruler: Frederik V
-    mintmaster: Johan Henrik Madelung (IHM)
-    mint: Oldenburg
-    catalog:
-      km: '122'
-      hede: 2C
-      sieg: '57.3'
-      bruun_collection_id: 15139ø
-      schou: '25'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 16.81
-        source: bruun
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2/3 Taler (Zweidrittel)
-          value: silver
-          seed: dk-bruun-15139ø
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15186, p. 154
-    issuing_entity: grafschaft_oldenburg
-    composed_of:
-      - dk-bruun-15139ø
   - id: c-90d2ccac
     class_id: c-90d2ccac
     label: unified-dk-numista-112022

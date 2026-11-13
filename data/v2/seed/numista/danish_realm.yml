@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-11-05T15:05:31Z'
+generated_at: '2026-11-12T13:35:44Z'
 entity: danish_realm
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -3355,11 +3355,11 @@ coins:
     mint_verified: false
     sources:
       - type: literature
-        url: https://en.numista.com/426503
-        ref: Numista N#426503 — Gold coin - Christian IV 1588-1648 (denomination undetermined)
-      - type: literature
         url: https://www.danskmoent.dk/chr/c4h21.htm
         ref: danskmoent.dk (Hede c4h21)
+      - type: literature
+        url: https://en.numista.com/426503
+        ref: Numista N#426503 — Gold coin - Christian IV 1588-1648 (denomination undetermined)
     year_verified: false
     _curation_holds:
       year_label: 'Curator narrowed Numista bare full-reign placeholder (1588-1648, "denomination undetermined") to the ~1606-1611 window Hede documents for these undated English-model gold coins (danskmoent
@@ -7560,8 +7560,12 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '143477'
-      km: '186'
-      dav: EC II 3569
+      km:
+        - '186'
+        - '187'
+      dav:
+        - EC II 3569
+        - EC II 3569A
     metal: silver
     fineness: 0.671
     weight_rough_g: 21.92
@@ -7592,7 +7596,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '200981'
-      km: '184'
+      km:
+        - '184'
+        - '184.1'
     metal: billon
     fineness: 0.156
     weight_rough_g: 0.9
@@ -7655,7 +7661,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '111296'
-      km: '194.3'
+      km:
+        - '194.3'
+        - 194.3a
       dav: EC II 3572
     metal: silver
     fineness: 0.671
@@ -7791,7 +7799,6 @@ coins:
     catalog:
       numista: '62374'
       km: A190
-      hede: 130B
     metal: billon
     fineness:
     weight_rough_g: 1.225
@@ -7847,7 +7854,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '111287'
-      km: '194.2'
+      km:
+        - '194.2'
+        - 194.2a
       dav: EC II 3574
     metal: silver
     fineness: 0.671
@@ -10083,6 +10092,7 @@ coins:
       numista: '214327'
       km: '322'
       dav: EC II 3629
+      hede: '61'
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.83
@@ -10097,7 +10107,7 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/214327
-        ref: Numista N#214327 — 1 Speciedaler - Christian V (Type 1; Year on edge)
+        ref: Numista N#214327 — 1 Speciedaler - Christian V
     _source_note:
       en: 'Laureate bust of King Christian V with long hair facing right, wearing ornate plate armor with lion shoulder, neck scarf, sash, and collar of the Order of the Elephant. / Coats of arms of Sweden,
         Norway, and Denmark on ornate oval shields. Crown of Denmark above. Long cross pattée of Dannebrog behind with collar of the Order of the Elephant below. 15 coats of arms on small oval shields arranged
@@ -10749,7 +10759,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '181629'
-      km: '359'
+      km:
+        - '359'
+        - '359.1'
       dav: EC II 3635
     metal: silver
     fineness: 0.671
@@ -11445,7 +11457,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '146045'
-      km: '401.2'
+      km:
+        - '401.2'
+        - '401.3'
       dav: EC II 3643
     metal: silver
     fineness: 0.671
@@ -13992,10 +14006,14 @@ coins:
       numista: '113946'
       km: '549'
       fr: '258'
+      sieg: '26'
+      hede: 5A
+      others:
+        - DNF# 14.4
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.46
-    diameter_mm: 22
+    weight_rough_g: 3.4
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14006,10 +14024,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/113946
-        ref: Numista N#113946 — 1 Ducat - Frederik V (Danish Asiatic Co. Gold)
+        ref: Numista N#113946 — 1 Ducat - Frederik V (Danish Asiatic Company; armoured bust)
     _source_note:
-      en: Draped and armored bust of King Frederik V facing right / Banner with initials of the Danish-Asian trading company "KODAC" (Kongelig Oetroyeret Dansk Asiatisk Compagnie) placed on a mast in 
-        shape of trident set upon prow of a roman galley
+      en: Armoured bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Banner with initials of the Danish-Asian trading company placed on a mast in the shape of 
+        trident a, set upon prow of a roman galley. Surrounded by inscription at the sides with another inscription and date in two lines on the bottom, beaded ring on the rim
   - id: dk-numista-147844
     fuss: seed_unsorted
     phase: numista
@@ -14027,10 +14045,14 @@ coins:
       numista: '147844'
       km: '550'
       fr: '256'
+      sieg: '24'
+      hede: 3B
+      others:
+        - DNF# 14.3
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.49
-    diameter_mm: 21.36
+    weight_rough_g: 3.4
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14041,10 +14063,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/147844
-        ref: Numista N#147844 — 1 Ducat - Frederik V (Laureate head)
+        ref: Numista N#147844 — 1 Ducat - Frederik V (Laureate bust)
     _source_note:
-      en: Laureate head of King Frederik V with long hair facing right. / Crowned ornate high shield with arms of Denmark, Norway and Sweden is bent to right. Shield has branch at left and weapons and
-        armors at left and below
+      en: Laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, surrounded by 
+        inscription at the sides. The shield is on a bed of treasure and other treasulable items. Another inscription and date in two lines on the bottom. beaded ring on the rim
   - id: dk-numista-185979
     fuss: seed_unsorted
     phase: numista
@@ -14062,10 +14084,14 @@ coins:
       numista: '185979'
       km: '556'
       fr: '257'
+      sieg: '27'
+      hede: '6'
+      others:
+        - DNF# 15.5
     metal: gold
     fineness: 0.979
-    weight_rough_g: 6.96
-    diameter_mm: 22.6
+    weight_rough_g: 6.9
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14076,10 +14102,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/185979
-        ref: Numista N#185979 — 2 Ducats - Frederik V (Danish Asiatic Co. Gold)
+        ref: Numista N#185979 — 2 Ducat - Frederik V (Danish Asiatic Company)
     _source_note:
-      en: Draped and armored bust of King Frederik V facing right / Banner with initials of the Danish-Asian trading company "KODAC" (Kongelig Oetroyeret Dansk Asiatisk Compagnie) placed on a mast in 
-        shape of trident set upon prow of a roman galley
+      en: Armoured bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Banner with initials of the Danish-Asian trading company placed on a mast in the shape of 
+        trident a, set upon prow of a roman galley. Surrounded by inscription at the sides with another inscription and date in two lines on the bottom, beaded ring on the rim
   - id: dk-numista-186039
     fuss: seed_unsorted
     phase: numista
@@ -14097,10 +14123,14 @@ coins:
       numista: '186039'
       km: '552'
       fr: '264'
+      sieg: '26'
+      hede: '7'
+      others:
+        - DNF# 14.6
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.52
-    diameter_mm: 22.15
+    weight_rough_g: 3.4
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14111,10 +14141,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/186039
-        ref: Numista N#186039 — 1 Ducat - Frederik V (Christianborg; ship type)
+        ref: Numista N#186039 — 1 Ducat - Frederik V (Christiansborg)
     _source_note:
-      en: Laureate head of King Frederik V with long hair facing right. Initial of engraver below neck. / Danish ship sailing in roaring sea with Christiansborg fortress in background at left. Date 
-        below, in exergue
+      en: Laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / View of Christiansborg Fortress in Guinea from the water at the left with large flag waving
+        from the fortress, Danish ship facing right in water at the right. Surrounded by inscription above with date at the bottom, beaded ring on the rim
   - id: dk-numista-322523
     fuss: seed_unsorted
     phase: numista
@@ -14132,6 +14162,10 @@ coins:
       numista: '322523'
       km: '548'
       fr: '254'
+      sieg: '24'
+      hede: 3A
+      others:
+        - DNF# 14.2
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.47
@@ -14146,10 +14180,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/322523
-        ref: Numista N#322523 — 1 Ducat - Frederik V (Armored bust)
+        ref: Numista N#322523 — 1 Ducat - Frederik V (Armoured bust)
     _source_note:
-      en: Draped and armored bust of King Frederik V facing right. Initial of engraver below neck. / Crowned ornate high shield with arms of Denmark, Norway and Sweden is bent to right. Shield has 
-        branch at left and weapons and armors at left and below
+      en: Armoured bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, surrounded by 
+        inscription at the sides. The shield is on a bed of treasure and other treasulable items. Another inscription and date in two lines on the bottom. beaded ring on the rim
   - id: dk-numista-342760
     fuss: seed_unsorted
     phase: numista
@@ -14167,24 +14201,28 @@ coins:
       numista: '342760'
       km: '555'
       fr: '253'
+      sieg: '25'
+      hede: 4A
+      others:
+        - DNF# 15.3
     metal: gold
     fineness: 0.979
-    weight_rough_g: 6.98
-    diameter_mm:
+    weight_rough_g: 6.9
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     sources:
       - type: literature
         url: https://en.numista.com/342760
-        ref: Numista N#342760 — 2 Ducats - Frederik V (Armored bust)
+        ref: Numista N#342760 — 2 Ducat - Frederik V (Armoured bust)
     _source_note:
-      en: Draped and armored bust of King Frederik V facing right. Initial of engraver below neck. / Crowned ornate high shield with arms of Denmark, Norway and Sweden is bent to right. Shield has 
-        branch at left and weapons and armors at left and below
+      en: Armoured bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, surrounded by 
+        inscription at the sides. The shield is on a bed of treasure and other treasulable items. Another inscription and date in two lines on the bottom. beaded ring on the rim
   - id: dk-numista-147904
     fuss: seed_unsorted
     phase: numista
@@ -14238,10 +14276,14 @@ coins:
       numista: '147923'
       km: '561'
       dav: EC III 1300
+      sieg: '10'
+      hede: '30'
+      others:
+        - DNF# 8
     metal: silver
     fineness: 0.833
-    weight_rough_g: 36.12
-    diameter_mm: 36.6
+    weight_rough_g: 36
+    diameter_mm: 36
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14254,7 +14296,8 @@ coins:
         url: https://en.numista.com/147923
         ref: Numista N#147923 — 2 Krone - Frederik V
     _source_note:
-      en: Laureate head of King Frederik V with long and curly hair facing right / Big crown of Denmark above curved King's motto. Date below divided in two by a small heart
+      en: Laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Large crown in the centre with inscription below, surrounded by another inscription. Date 
+        divided by mintmaster's mark at the bottom, beaded ring on the rim
   - id: dk-numista-147925
     fuss: seed_unsorted
     phase: numista
@@ -14346,9 +14389,13 @@ coins:
         - '1'
         - '2'
         - '271'
+        - '271.1'
+        - '271.2'
+      sieg: '32'
+      hede: '11'
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.49
+    weight_rough_g: 3.4
     diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
@@ -14362,9 +14409,10 @@ coins:
         url: https://en.numista.com/322683
         ref: Numista N#322683 — 1 Ducat - Frederik V (Coronation)
     _source_note:
-      en: 'Crowned King Frederik V in regal clothes and long robe standing to right with scepter and globus cruciger in hands (Coronation portrait). Date below. / Ornate three-parted shield with Arms of
-        Denmark, Norway and the Kalmar Union is bent on a pillar above a brick wall. The shield is partially covered by an ermine mantle (symbol of the King and the Coronation) and is adorned with symbols
-        of the Kingdom power: the Crown of Denmark, a bend with the pendant of the Order of the Elephant and a shield (or a mirror)'
+      en: Crowned King Frederik V in regal clothes and long robe standing on flat ground facing right, holding scepter in his right hand and globus cruciger in his left. Surrounded by inscription with
+        date at the bottom, beaded ring on the rim. / Crowned draped ornate shield with the coat of arms of Denmark leaning on a pillar atop a flat suface. The band with the pendant of the Order of 
+        the Elephant hangs around the shield with wreaths hanging off a mirror on the left and intertwined in the draping. Surrounded by inscription above with engraver's initial at the bottom, beaded
+        ring on the rim
   - id: dk-numista-342563
     fuss: seed_unsorted
     phase: numista
@@ -14377,28 +14425,33 @@ coins:
       -   - 1747
           - 1747
     ruler: Frederick V
-    mint:
+    mint: Kopenhagen
     catalog:
       numista: '342563'
       km: '564'
       fr: '266'
+      sieg: '30'
+      hede: '9'
+      others:
+        - DNF# 14.7
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.49
-    diameter_mm:
+    weight_rough_g: 3.4
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
     sources:
       - type: literature
         url: https://en.numista.com/342563
         ref: Numista N#342563 — 1 Ducat - Frederik V
     _source_note:
-      en: Bust right / Crowned oval arms; date in exergue
+      en: Laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned oval shield with the coat of arms of Denmark in a band with the pendant of the 
+        Order of the Elephant, surrounded by inscription. The shield is on a bed of treasure and other treasulable items. Date at the bottom, beaded ring on the rim
   - id: dk-numista-424620
     fuss: seed_unsorted
     phase: numista
@@ -14416,24 +14469,29 @@ coins:
       numista: '424620'
       km: '570'
       fr: '272'
+      sieg: '35'
+      hede: '14'
+      others:
+        - DNF# 15.11
     metal: gold
     fineness: 0.979
-    weight_rough_g: 6.98
-    diameter_mm:
+    weight_rough_g: 6.9
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     sources:
       - type: literature
         url: https://en.numista.com/424620
-        ref: Numista N#424620 — 2 Ducats - Frederik V (Christiansborg)
+        ref: Numista N#424620 — 2 Ducat - Frederik V (Christiansborg)
     _source_note:
-      en: Crowned King Frederik V in regal clothes and long robe standing to right with scepter and globus cruciger in hands (Coronation portrait). / View of Christiansborg Fortress in Guinea. Huge 
-        flying Danish banner on Fortress roof
+      en: Crowned King Frederik V in regal clothes and long robe standing on flat ground facing right, holding scepter in his right hand and globus cruciger in his left. Surrounded by inscription with
+        date at the bottom, beaded ring on the rim. / View of Christiansborg Fortress in Guinea from the water, large Danish flag waving from the fortress. Surrounded by inscription above, beaded ring
+        on the rim
   - id: dk-numista-131417
     fuss: seed_unsorted
     phase: numista
@@ -14451,9 +14509,13 @@ coins:
       numista: '131417'
       km: '573'
       fr: '277'
+      sieg: '36'
+      hede: '15'
+      others:
+        - DNF# 14.11
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.49
+    weight_rough_g: 3.4
     diameter_mm: 16.8
     issuing_entity: danish_realm
     verified: false
@@ -14467,7 +14529,8 @@ coins:
         url: https://en.numista.com/131417
         ref: Numista N#131417 — 1 Ducat - Frederik V
     _source_note:
-      en: Crowned mirrored monogram of King Frederik V, surrounded by legend / Armored King with hat and mantle on a prancing horse. Date below, in exergue
+      en: King Frederik V on horseback on a prancing horse facing right on flat ground. Frederik V is wearing armor and a band with the pendant of the Order of the elephant, date at the bottom. All in
+        a beaded ring, solid ring on the rim. / Crowned mirrored monogram of King Frederik V, surrounded by inscription. All in a beaded ring, solid ring on the rim
   - id: dk-numista-147934
     fuss: seed_unsorted
     phase: numista
@@ -14484,9 +14547,13 @@ coins:
     catalog:
       numista: '147934'
       km: '571'
+      sieg: '12.1'
+      hede: 31A
+      others:
+        - DNF# 7.4
     metal: silver
     fineness: 0.833
-    weight_rough_g: 17.88
+    weight_rough_g: 18
     diameter_mm: 35
     issuing_entity: danish_realm
     verified: false
@@ -14498,11 +14565,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/147934
-        ref: Numista N#147934 — 1 Krone - Frederik V (Type 4)
+        ref: Numista N#147934 — 1 Krone - Frederik V (Winsløw portrait; raised arms reverse)
     _source_note:
-      en: "Laureate head of King Frederik V with long and curly hair facing right. Initial of engraver on neck-cut. / Crowned three-parted shield with arms of Denmark, Norway and Kalmar Union between two
-        branches: one of palm the other of laurel. Below shield a band with the pendant of the Order of the Elephant is twisted with lower part of branches. The pendant divides date in two. Two lines of
-        legend above the shield, the second and smaller is the King's motto"
+      en: Laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned coat of arms of Denmark in a wreath, band of the Order of the Elephant dividing 
+        date at the bottom. Surrounded by two lines of inscription, beaded ring on the rim
   - id: dk-numista-427643
     fuss: seed_unsorted
     phase: numista
@@ -14520,25 +14586,42 @@ coins:
       numista: '427643'
       km: '576'
       fr: '274'
+      sieg: '39'
+      hede: '2'
+      others:
+        - DNF# 15.13
+    catalog_marks:
+      - register: hede
+        value: '2'
+        kind: erroneous
+        reason:
+          de: Nummer des 2 Dukat ohne Jahr (1746). Numista gibt für diesen 2 Dukat 1749 «Hede 2» an, zusammen mit SIEG 39; danskmoent.dk führt den 2 Dukat 1749 als «Hede 18, Schou 1, Sieg 39» 
+            (f5h17.htm) und Hede 2 als 2 Dukat u.år (1746), Sieg 23 (f5h1.htm). Bruun Part IV, Los 17126, gibt «Hede-18».
+          en: Number of the undated 2 Dukat (1746). Numista gives «Hede 2» for this 2 Dukat 1749, together with SIEG 39; danskmoent.dk lists the 2 Dukat 1749 as «Hede 18, Schou 1, Sieg 39» (f5h17.htm)
+            and Hede 2 as the 2 Dukat u.år (1746), Sieg 23 (f5h1.htm). Bruun Part IV, lot 17126, gives «Hede-18».
+          uk: Номер 2 Dukat без року (1746). Numista подає для цього 2 Dukat 1749 «Hede 2» разом із SIEG 39; danskmoent.dk наводить 2 Dukat 1749 як «Hede 18, Schou 1, Sieg 39» (f5h17.htm), а Hede 2 — 
+            як 2 Dukat u.år (1746), Sieg 23 (f5h1.htm). Bruun Part IV, лот 17126, подає «Hede-18».
+          da: Nummeret på 2 Dukat u.år (1746). Numista angiver «Hede 2» for denne 2 Dukat 1749 sammen med SIEG 39; danskmoent.dk anfører 2 Dukat 1749 som «Hede 18, Schou 1, Sieg 39» (f5h17.htm) og 
+            Hede 2 som 2 Dukat u.år (1746), Sieg 23 (f5h1.htm). Bruun Part IV, lot 17126, angiver «Hede-18».
     metal: gold
-    fineness: 0.986
-    weight_rough_g: 6.98
-    diameter_mm:
+    fineness: 0.979
+    weight_rough_g: 6.9
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     sources:
       - type: literature
         url: https://en.numista.com/427643
-        ref: Numista N#427643 — 2 Ducats - Frederik V
+        ref: Numista N#427643 — 2 Ducat - Frederik V
     _source_note:
-      en: King on horse going to the right as in a parade. Frederik V is wearing an armor and a bend with the pendant of the Order of the elephant. He holds a scepter in his raised right arm. / 
-        Crowned ornate high shield with arms of Denmark, Norway and Kalmar Union, is bent to right. The shield has a big grass and a Royal Orb on the left; while at right is a trident, a banner of the
-        Danish West Indies Company, a caduceus and some gold coins. Mintmark is in exergue
+      en: King Frederik V on horseback facing right on flat ground. Frederik V is wearing armor and a band with the pendant of the Order of the elephant, he holds a scepter in his raised right arm. 
+        Surrounded by inscription with date at thew bottom, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, surrounded by inscription at the sides. 
+        The shield is on a bed of treasure and other treasulable items. Another inscription and date in two lines on the bottom. beaded ring on the rim
   - id: dk-numista-82699
     fuss: seed_unsorted
     phase: numista
@@ -14556,9 +14639,13 @@ coins:
       numista: '82699'
       km: '577'
       fr: '275'
+      sieg: '38'
+      hede: '17'
+      others:
+        - DNF# 14.12
     metal: gold
-    fineness: 0.986
-    weight_rough_g: 3.5
+    fineness: 0.979
+    weight_rough_g: 3.4
     diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
@@ -14572,9 +14659,9 @@ coins:
         url: https://en.numista.com/82699
         ref: Numista N#82699 — 1 Ducat - Frederik V
     _source_note:
-      en: King on horse going to the right as in a parade. Frederik V is wearing an armor and a bend with the pendant of the Order of the elephant. He holds a scepter in his raised right arm. Value in
-        letters below, in exergue / Crowned ornate high shield with arms of Denmark, Norway and Kalmar Union, is bent to right. The shield has a big grass and a Royal Orb on the left; while at right 
-        is a trident, a banner of the Danish West Indies Company, a caduceus and some gold coins. Mintmark is in exergue
+      en: King Frederik V on horseback facing right on flat ground. Frederik V is wearing armor and a band with the pendant of the Order of the elephant, he holds a scepter in his raised right arm. 
+        Surrounded by inscription with date at thew bottom, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, surrounded by inscription at the sides. 
+        The shield is on a bed of treasure and other treasulable items. Another inscription and date in two lines on the bottom. beaded ring on the rim
   - id: dk-numista-90476
     fuss: seed_unsorted
     phase: numista
@@ -14591,10 +14678,14 @@ coins:
     catalog:
       numista: '90476'
       km: '580'
+      sieg: '6.1'
+      hede: 34A
+      others:
+        - DNF# 6.1
     metal: silver
     fineness: 0.562
-    weight_rough_g: 9.171
-    diameter_mm: 29.12
+    weight_rough_g: 9.2
+    diameter_mm: 29
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14605,43 +14696,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/90476
-        ref: Numista N#90476 — 24 Skilling Dansk - Frederik V (Bare bust)
+        ref: Numista N#90476 — 24 Skilling - Frederik V (Bare bust)
     _source_note:
-      en: Bare bust of King Frederik V with long and curly hair, facing right / Crowned ornate high shield with arms of Denmark, Norway and Kalmar Union is bent to right and has a band with the 
-        pendant of the Order of the Elephant. The shield divides date at sides. Value is in legend
-  - id: dk-numista-92859
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_label: 1750-1761
-    year_first: 1750
-    year_last: 1761
-    year_ranges:
-      -   - 1750
-          - 1761
-    ruler: Frederick V
-    mint: Kopenhagen
-    catalog:
-      numista: '92859'
-      km: '579'
-    metal: billon
-    fineness:
-    weight_rough_g: 1.218
-    diameter_mm: 18.3
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/92859
-        ref: Numista N#92859 — 2 Skilling Dansk - Frederik V
-    _source_note:
-      en: Crowned double King's monogram. Legend around, near rim. / Value and date on four lines. Mintmark below
+      en: Bare bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, dividing date at 
+        sides. The shield is encircled by a band and the chain of the Order of the Elephant, mintmaster's initials at the bottom. Surrounded by the value, beaded ring on the rim
   - id: dk-numista-26744
     fuss: seed_unsorted
     phase: numista
@@ -14670,9 +14728,11 @@ coins:
       km: '578'
       others:
         - C# 2
+      sieg: '2'
+      hede: '37'
     metal: billon
     fineness:
-    weight_rough_g: 0.768
+    weight_rough_g: 0.7
     diameter_mm: 15
     issuing_entity: danish_realm
     verified: false
@@ -14684,9 +14744,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/26744
-        ref: Numista N#26744 — 1 Skilling Dansk - Frederik V
+        ref: Numista N#26744 — 1 Skilling - Frederik V
     _source_note:
-      en: Crowned shield with arms of Denmark, ornate with band of the Order of the Elephant / Value and date on four lines. Mintmaster's initials below
+      en: Crowned lesser coat of arms of Denmark encircled by a band and the chain of the Order of the Elephant, beaded ring on the rim. / Value and date on four lines with mintmaster's initials 
+        below, beaded ring on the rim
   - id: dk-numista-43458
     fuss: seed_unsorted
     phase: numista
@@ -14705,6 +14766,8 @@ coins:
       km: '577'
       others:
         - C# 1
+      sieg: '1'
+      hede: '40'
     metal: copper
     fineness:
     weight_rough_g: 3.654
@@ -14736,10 +14799,14 @@ coins:
     catalog:
       numista: '90477'
       km: '581'
+      sieg: '6.2'
+      hede: 34B
+      others:
+        - DNF# 6.2
     metal: silver
     fineness: 0.562
-    weight_rough_g: 9.171
-    diameter_mm: 29.6
+    weight_rough_g: 9.2
+    diameter_mm: 29
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14750,10 +14817,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/90477
-        ref: Numista N#90477 — 24 Skilling Dansk - Frederik V (Armored bust)
+        ref: Numista N#90477 — 24 Skilling - Frederik V (Armoured bust)
     _source_note:
-      en: Armored bust of King, with curly hair and pendant of the Order of the Elephant. / Crowned ornate high shield with arms of Denmark, Norway and Kalmar Union is bent to right and has a band 
-        with the pendant of the Order of the Elephant. The shield divides date at sides. Value is in legend
+      en: Armoured bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, dividing date at 
+        sides. The shield is encircled by a band and the chain of the Order of the Elephant, mintmaster's initials at the bottom. Surrounded by the value, beaded ring on the rim
   - id: dk-numista-113935
     fuss: seed_unsorted
     phase: numista
@@ -14775,10 +14842,14 @@ coins:
       numista: '113935'
       km: '583'
       fr: '268'
+      sieg: '40'
+      hede: '19'
+      others:
+        - DNF# 14.13
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.47
-    diameter_mm: 21.09
+    weight_rough_g: 3.4
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14791,7 +14862,8 @@ coins:
         url: https://en.numista.com/113935
         ref: Numista N#113935 — 1 Ducat - Frederik V
     _source_note:
-      en: Bare head of King Frederik V with long hair facing right. / Big ship under sail. Legend above, around rim. Date and mintmark below, in exergue
+      en: Bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Danish ship facing left in water, surrounded by inscription. Date and initials in exergue at the 
+        bottom, beaded ring on the rim
   - id: dk-numista-427735
     fuss: seed_unsorted
     phase: numista
@@ -14809,28 +14881,33 @@ coins:
       numista: '427735'
       km: '584'
       fr: '267'
+      sieg: '41'
+      hede: '20'
+      others:
+        - DNF# 15.14
     metal: gold
     fineness: 0.979
-    weight_rough_g: 6.98
-    diameter_mm:
+    weight_rough_g: 6.9
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     sources:
       - type: literature
         url: https://en.numista.com/427735
         ref: Numista N#427735 — 2 Ducats - Frederik V
     _source_note:
-      en: Bare head of King Frederik V with long hair facing right. / Big ship under sail. Legend above, around rim. Date and mintmark below, in exergue
+      en: Bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Danish ship facing left in water, surrounded by inscription. Date and initials in exergue at the 
+        bottom, beaded ring on the rim
   - id: dk-numista-72262
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 12 Mark
+    nominal: 1 Ducat
     year_label: 1757, 1763
     year_first: 1757
     year_last: 1763
@@ -14845,10 +14922,12 @@ coins:
       numista: '72262'
       km: '586'
       fr: '278'
+      sieg: '20'
+      hede: '24'
     metal: gold
     fineness: 0.875
-    weight_rough_g: 3.118
-    diameter_mm: 20.64
+    weight_rough_g: 3.1
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14859,10 +14938,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/72262
-        ref: Numista N#72262 — 12 Mark "Stråledukat" - Frederik V
+        ref: Numista N#72262 — 12 Mark "Stråledukat" - Frederik V (Monogram)
     _source_note:
-      en: Central radiating triangle with three hebrew "S". Three crowned double F monograms are positioned in a triangular frame above each center triangle vertexes. These are alternated by three "V"
-        to complete King's monogram. / Large crown above value (in roman numbers) and date. King's motto above
+      en: Central radiating triangle with three hebrew letter "S" inside. Three crowned mirrored monograms of King Frederik V and three numral "V"s surround the triangle. Surrounded by inscription 
+        divided by the monogram crowns, beaded ring on the rim. / Large crown above value, surrounded by inscription. Date divided by mintmaster's initials at the bottom, beaded ring on the rim
   - id: dk-numista-72266
     fuss: seed_unsorted
     phase: numista
@@ -14901,7 +14980,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 12 Mark
+    nominal: 1 Ducat
     year_label: 1757, 1758
     year_first: 1757
     year_last: 1758
@@ -14916,10 +14995,14 @@ coins:
       numista: '82700'
       km: '585'
       fr: '262'
+      sieg: '19'
+      hede: '23'
+      others:
+        - DNF# 13.1
     metal: gold
     fineness: 0.875
-    weight_rough_g: 3.118
-    diameter_mm: 20.75
+    weight_rough_g: 3.1
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14930,10 +15013,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/82700
-        ref: Numista N#82700 — 12 Mark - Frederik V
+        ref: Numista N#82700 — 12 Mark - Frederik V (Armoured bust)
     _source_note:
-      en: Armored bust of King Frederik V facing right. King is wearing the pendant of the Order of the Elephant and has an helm with laurel and plumes. / Large crown above value (in roman numbers). 
-        King's motto above. Date in lower position, divided in two by mintmaster initials
+      en: Armoured and laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Large crown above value, surrounded by inscription. Date divided by 
+        mintmaster's initials at the bottom, beaded ring on the rim
   - id: dk-numista-186748
     fuss: seed_unsorted
     phase: numista
@@ -14951,10 +15034,14 @@ coins:
       numista: '186748'
       km: '588'
       fr: '261'
+      sieg: '42'
+      hede: '21'
+      others:
+        - DNF# 14.14
     metal: gold
     fineness: 0.979
-    weight_rough_g: 3.51
-    diameter_mm: 21.22
+    weight_rough_g: 3.5
+    diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -14967,8 +15054,44 @@ coins:
         url: https://en.numista.com/186748
         ref: Numista N#186748 — 1 Ducat - Fredrik V (Eben-Ezer)
     _source_note:
-      en: Armored old bust of King Frederik V facing right, with hair tied with a ribbon behind. / Coat of arms of Denmark, Norway, and Sweden, with collar of the Order of the Elephant around. Crowned
-        cartouche with garlands behind. Sacred Eben-Ezer stone below
+      en: Armoured bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Shield with the coat of arms of Denmark with the chain of the Order of the Elephant hanging
+        around it. The shield is in a crowned cartouche with hanging garlands behind it, stood on the sacred Eben-Ezer stone with lettering on it. Date and initials in two lines below the stone, 
+        beaded ring on the rim
+  - id: dk-numista-92859
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Skilling
+    year_label: 1761-1774
+    year_first: 1761
+    year_last: 1774
+    year_ranges:
+      -   - 1761
+          - 1774
+    ruler: Frederick V
+    mint: Kopenhagen
+    catalog:
+      numista: '92859'
+      km: '579'
+      sieg: '3'
+      hede: '36'
+    metal: billon
+    fineness:
+    weight_rough_g: 1.2
+    diameter_mm: 18
+    issuing_entity: danish_realm
+    verified: false
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://en.numista.com/92859
+        ref: Numista N#92859 — 2 Skilling - Frederik V
+    _source_note:
+      en: Crowned mirrored monogram of King Frederik V surrounded by inscription, beaded ring on the rim. / Value and date on four lines with mintmaster's initials below, beaded ring on the rim
   - id: dk-numista-100481
     fuss: seed_unsorted
     phase: numista
@@ -14989,10 +15112,12 @@ coins:
     catalog:
       numista: '100481'
       km: '582'
+      sieg: '7'
+      hede: '35'
     metal: silver
     fineness: 0.562
-    weight_rough_g: 9.171
-    diameter_mm: 29.4
+    weight_rough_g: 9.2
+    diameter_mm: 29
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -15003,10 +15128,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/100481
-        ref: Numista N#100481 — 24 Skilling Dansk - Frederik V (King's monogram)
+        ref: Numista N#100481 — 24 Skilling - Frederik V (Monogram)
     _source_note:
-      en: Crowned mirrored monogram of King Frederik V, surrounded by legend / Crowned ornate high shield with arms of Denmark, Norway and Sweden is bent to right and has a band with the pendant of 
-        the Order of the Elephant. The shield divides date at sides. Value is in legend
+      en: Crowned mirrored monogram of King Frederik V surrounded by inscription, beaded ring on the rim. / Crowned ornate shield with the coat of arms of Denmark bent to the right, dividing date at 
+        sides. The shield is encircled by a band and the chain of the Order of the Elephant, mintmaster's initials at the bottom. Surrounded by the value, beaded ring on the rim
   - id: dk-numista-150932
     fuss: seed_unsorted
     phase: numista
@@ -15023,9 +15148,13 @@ coins:
     catalog:
       numista: '150932'
       km: '595'
+      sieg: '5.3'
+      hede: 38C
+      others:
+        - DNF# 5.3
     metal: silver
-    fineness: 0.592
-    weight_rough_g: 3.06
+    fineness: 0.562
+    weight_rough_g: 3
     diameter_mm: 21
     issuing_entity: danish_realm
     verified: false
@@ -15037,9 +15166,9 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/150932
-        ref: Numista N#150932 — 8 Skilling Dansk - Frederik V (Type 1)
+        ref: Numista N#150932 — 8 Skilling - Frederik V (Double monogram)
     _source_note:
-      en: Crowned double ''F5'' monogram. King's motto around / Value above date on four lines. Below the mintmaster initials
+      en: Crowned mirrored monogram of King Frederik V surrounded by inscription, beaded ring on the rim. / Value and date on four lines with mintmaster's initials below, beaded ring on the rim
   - id: dk-numista-131338
     fuss: seed_unsorted
     phase: numista
@@ -15059,10 +15188,14 @@ coins:
       numista: '131338'
       km: '599'
       dav: EC III 1302A
+      sieg: '18.1'
+      hede: 27A
+      others:
+        - DNF# 11.2
     metal: silver
     fineness: 0.875
-    weight_rough_g: 28.893
-    diameter_mm: 40.2
+    weight_rough_g: 28.9
+    diameter_mm: 40
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -15073,10 +15206,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/131338
-        ref: Numista N#131338 — 1 Speciedaler - Frederik V (Type I)
+        ref: Numista N#131338 — 1 Speciedaler - Frederik V (Bauert portrait)
     _source_note:
-      en: Laureate head of King Frederik V facing right. Legend around rim / Crowned oval shield with arms of Denmark, Norway and Sweden encircled by the necklace of the Order of the Elephant. Shield 
-        and necklace are between crossed laurel sprigs. Below is the date divided by mint master's initials, while around the shield, along the rim, is the King's motto
+      en: Laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned middle coat of arms of Denmark encircled by the necklace of the Order of the 
+        Elephant, in a laurel wreath. Surrounded by inscription with mintmaster's initials dividing date at the bottom, beaded ring on the rim
   - id: dk-numista-131340
     fuss: seed_unsorted
     phase: numista
@@ -15094,10 +15227,14 @@ coins:
       numista: '131340'
       km: '601'
       dav: EC III 1302B
+      sieg: '18'
+      hede:
+        - 27C
+        - 27D
     metal: silver
     fineness: 0.875
-    weight_rough_g: 28.893
-    diameter_mm: 41.15
+    weight_rough_g: 28.9
+    diameter_mm: 41
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -15108,11 +15245,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/131340
-        ref: Numista N#131340 — 1 Speciedaler - Frederik V (Type III)
+        ref: Numista N#131340 — 1 Speciedaler - Frederik V (Wolff portrait)
     _source_note:
-      en: Laureate head of King Frederik V facing right. Legend around rim. Engraver initials below neck-cut, in the field. / Crowned oval shield with arms of Denmark, Norway and Sweden encircled by 
-        the necklace of the Order of the Elephant. Shield and necklace are between crossed laurel sprigs. Below is the date divided by mint master's initials, while around the shield, along the rim, 
-        is the King's motto. Initials of the engraver are on the cut branch at left of the pendant
+      en: Laureate bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Crowned middle coat of arms of Denmark encircled by the necklace of the Order of the 
+        Elephant, in a laurel wreath. Surrounded by inscription with mintmaster's initials dividing date at the bottom, beaded ring on the rim
   - id: dk-numista-85142
     fuss: seed_unsorted
     phase: numista
@@ -15129,10 +15265,14 @@ coins:
     catalog:
       numista: '85142'
       km: '598'
+      sieg: '4'
+      hede: '39'
+      others:
+        - DNF# 4.1
     metal: billon
     fineness:
-    weight_rough_g: 2.84
-    diameter_mm: 21.86
+    weight_rough_g: 2.8
+    diameter_mm: 22
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -15143,9 +15283,9 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/85142
-        ref: Numista N#85142 — 4 Skilling Dansk - Frederik V
+        ref: Numista N#85142 — 4 Skilling - Frederik V
     _source_note:
-      en: Double crowned King's monogram. King's motto around. / Value and date on four lines. Mintmark below
+      en: Crowned mirrored monogram of King Frederik V surrounded by inscription, beaded ring on the rim. / Value and date on four lines with mintmaster's initials below, beaded ring on the rim
   - id: dk-numista-90550
     fuss: seed_unsorted
     phase: numista
@@ -15162,9 +15302,13 @@ coins:
     catalog:
       numista: '90550'
       km: '602'
+      sieg: '16'
+      hede: '27'
+      others:
+        - DNF# 9.1
     metal: silver
     fineness: 0.562
-    weight_rough_g: 9.29
+    weight_rough_g: 9.2
     diameter_mm: 29.4
     issuing_entity: danish_realm
     verified: false
@@ -15176,185 +15320,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/90550
-        ref: Numista N#90550 — 24 Skilling Dansk - Christian VII
+        ref: Numista N#90550 — 24 Skilling - Christian VII
     _source_note:
-      en: Crowned King's monogram. Lettering around rim / Crowned ornate high shield with arms of Denmark, Norway and Sweden encircled by a band with the pendant of the Order of the Elephant. The 
-        shield divides date at sides. Value as legend
-  - id: dk-numista-324361
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: 1768, 1769
-    year_first: 1768
-    year_last: 1769
-    year_ranges:
-      -   - 1768
-          - 1768
-      -   - 1769
-          - 1769
-    ruler: Christian VII
-    mint: Kopenhagen
-    catalog:
-      numista: '324361'
-      km: '603'
-      dav: EC III 1304
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.84
-    diameter_mm: 40.2
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/324361
-        ref: Numista N#324361 — 1 Speciedaler - Christian VII (Norwegian Lion type; Rethwitsch)
-    _source_note:
-      en: Crowned double King's monogram. Legend around rim / Crowned circular shield with Norwegian Lion (a lion to the right holding a curved axe) over a rounded-arms cross. King's motto as legend 
-        along the rim. Below mintmark divides date
-  - id: dk-numista-148219
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ½ Speciedaler
-    year_label: '1769'
-    year_first: 1769
-    year_last: 1769
-    year_ranges:
-      -   - 1769
-          - 1769
-    ruler: Christian VII
-    mint: Kopenhagen
-    catalog:
-      numista: '148219'
-      km: '606'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 14.477
-    diameter_mm: 31
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/148219
-        ref: Numista N#148219 — ½ Speciedaler - Christian VII (Type 2; Rethwitsch)
-    _source_note:
-      en: Crowned double King's monogram. Legend around rim. / Crowned round oval shield with arms of Denmark, Sweden and Norway within a ribbon with the Order of the Elephant pendant. King's motto as
-        legend along the rim. Below mintmark divides date
-  - id: dk-numista-148258
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: '1769'
-    year_first: 1769
-    year_last: 1769
-    year_ranges:
-      -   - 1769
-          - 1769
-    ruler: Christian VII
-    mint: Kopenhagen
-    catalog:
-      numista: '148258'
-      km: '607'
-      dav: EC III 1305
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.91
-    diameter_mm: 40.8
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/148258
-        ref: Numista N#148258 — 1 Speciedaler - Christian VII (Bust type; Rethwitsch)
-    _source_note:
-      en: Armored bust of young King Christian VII facing right, wearing a band with the pendant of the Order of the Elephant. / Crowned round oval shield with arms of Denmark, Sweden and Norway 
-        within a ribbon with the Order of the Elephant pendant. King's motto as legend along the rim. Below mintmark divides date
-  - id: dk-numista-148259
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: '1769'
-    year_first: 1769
-    year_last: 1769
-    year_ranges:
-      -   - 1769
-          - 1769
-    ruler: Christian VII
-    mint: Kopenhagen
-    catalog:
-      numista: '148259'
-      km: '608'
-      dav: EC III 1306
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.86
-    diameter_mm: 41
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/148259
-        ref: Numista N#148259 — 1 Speciedaler - Christian VII (Monogram type; Rethwitsch)
-    _source_note:
-      en: Crowned double King's monogram. Legend around rim. / Crowned round oval shield with arms of Denmark, Sweden and Norway within a ribbon with the Order of the Elephant pendant. King's motto as
-        legend along the rim. Below mintmark divides date
-  - id: dk-numista-67842
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ¼ Speciedaler
-    year_label: '1769'
-    year_first: 1769
-    year_last: 1769
-    year_ranges:
-      -   - 1769
-          - 1769
-    ruler: Christian VII
-    mint: Kopenhagen
-    catalog:
-      numista: '67842'
-      km: '604'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 7.29
-    diameter_mm: 23.85
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/67842
-        ref: Numista N#67842 — ¼ Speciedaler - Christian VII (Rethwitsch)
-    _source_note:
-      en: Crowned double King's monogram. Legend around rim / Crowned round oval shield with arms of Denmark, Sweden and Norway within a ribbon with the Order of the Elephant pendant. King's motto as 
-        legend along the rim. Below mintmark divides date
+      en: Crowned monogram of King Christian VII surrounded by inscription, beaded ring on the rim. / Crowned middle coat of arms of Denmark dividing date at sides, encircled by a band and the chain 
+        of the Order of the Elephant. Surrounded by value with the elephant dividing the initials at the bottom, beaded ring on the rim
   - id: dk-numista-131576
     fuss: seed_unsorted
     phase: numista
@@ -15371,9 +15340,13 @@ coins:
     catalog:
       numista: '131576'
       km: '621'
+      sieg: '15'
+      hede: '24'
+      others:
+        - DNF# 8
     metal: silver
     fineness: 0.833
-    weight_rough_g: 8.99
+    weight_rough_g: 9
     diameter_mm: 28
     issuing_entity: danish_realm
     verified: false
@@ -15385,9 +15358,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/131576
-        ref: Numista N#131576 — ½ Krone - Christian VII (King's birthday)
+        ref: Numista N#131576 — ½ Krone - Christian VII (King's 22nd Birthday)
     _source_note:
-      en: Younger bust of King Christian VII with elaborate hairdo and clothes. Legend around rim. / Date of birthday in letters within circular wreath; date and King's motto outside, along the rim
+      en: Bust of King Christian VII facing right surrounded by inscription, beaded ring on the rim. / Anniversary date on four lines in a laurel wreath, date divided by initial below. Surrounded by 
+        inscription, beaded ring on the rim
   - id: dk-numista-131585
     fuss: seed_unsorted
     phase: numista
@@ -15404,9 +15378,13 @@ coins:
     catalog:
       numista: '131585'
       km: '622'
+      sieg: '16'
+      hede: '23'
+      others:
+        - DNF# 11
     metal: silver
     fineness: 0.833
-    weight_rough_g: 17.92
+    weight_rough_g: 17.9
     diameter_mm: 34.1
     issuing_entity: danish_realm
     verified: false
@@ -15418,9 +15396,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/131585
-        ref: Numista N#131585 — 1 Krone - Christian VII (King's birthday)
+        ref: Numista N#131585 — 1 Krone - Christian VII (King's 22nd Birthday)
     _source_note:
-      en: Younger bust of King Christian VII with elaborate hairdo and clothes. Legend around rim. / Date of birthday in letters within circular wreath; date and King's motto outside, along the rim
+      en: Bust of King Christian VII facing right surrounded by inscription, beaded ring on the rim. / Anniversary date on four lines in a laurel wreath, date divided by initial below. Surrounded by 
+        inscription, beaded ring on the rim
   - id: dk-numista-320055
     fuss: seed_unsorted
     phase: numista
@@ -15474,9 +15453,13 @@ coins:
       numista: '334195'
       km: '623'
       dav: EC III 1307
+      sieg: '30'
+      hede: 11A
+      others:
+        - DNF# 17.4
     metal: silver
     fineness: 0.875
-    weight_rough_g: 28.89
+    weight_rough_g: 28.9
     diameter_mm: 40
     issuing_entity: danish_realm
     verified: false
@@ -15488,10 +15471,45 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/334195
-        ref: Numista N#334195 — 1 Speciedaler - Christian VII (Monogram type)
+        ref: Numista N#334195 — 1 Speciedaler - Christian VII (Copenhagen)
     _source_note:
-      en: Crowned double King's monogram. Legend around rim. / Crowned round oval shield with arms of Denmark, Sweden and Norway within a spray. King's motto as legend along the rim. Below mintmark 
-        divides date
+      en: Crowned mirrored monogram of King Christian VII surrounded by inscription, beaded ring on the rim. / Crowned middle coat of arms of Denmark, in a laurel wreath. Surrounded by inscription 
+        with initials dividing the date at the bottom, beaded ring on the rim
+  - id: dk-numista-44799
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ½ Skilling
+    year_label: 1771-1784
+    year_first: 1771
+    year_last: 1784
+    year_ranges:
+      -   - 1771
+          - 1784
+    ruler: Christian VII
+    mint: Kopenhagen
+    catalog:
+      numista: '44799'
+      km: '615'
+      sieg: '1'
+      hede: '38'
+    metal: copper
+    fineness:
+    weight_rough_g: 5.8
+    diameter_mm: 24.5
+    issuing_entity: danish_realm
+    verified: false
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://en.numista.com/44799
+        ref: Numista N#44799 — ½ Skilling - Christian VII (Copenhagen)
+    _source_note:
+      en: Crowned monogram of King Christian VII, beaded ring on the rim. / Value and date on five lines, beaded ring on the rim
   - id: dk-numista-318047
     fuss: seed_unsorted
     phase: numista
@@ -15510,9 +15528,13 @@ coins:
     catalog:
       numista: '318047'
       km: '626'
+      sieg: '14'
+      hede: '30'
+      others:
+        - DNF# 5.1
     metal: silver
-    fineness: 0.5625
-    weight_rough_g: 3.057
+    fineness: 0.562
+    weight_rough_g: 3
     diameter_mm: 23
     issuing_entity: danish_realm
     verified: false
@@ -15524,14 +15546,14 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/318047
-        ref: Numista N#318047 — 8 Skilling Dansk - Christian VII (Value type)
+        ref: Numista N#318047 — 8 Skilling - Christian VII
     _source_note:
-      en: Crowned King's monogram. Legend around rim / Denomination and date
+      en: Crowned monogram of King Christian VII surrounded by inscription, beaded ring on the rim. / Value, date and initials on five lines, beaded ring on the rim
   - id: dk-numista-148397
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: ½ Krone
+    nominal: 32 Skilling
     year_label: '1775'
     year_first: 1775
     year_last: 1775
@@ -15543,10 +15565,14 @@ coins:
     catalog:
       numista: '148397'
       km: '627'
+      sieg: '20'
+      hede: 26B
+      others:
+        - DNF# 10.2
     metal: silver
     fineness: 0.562
-    weight_rough_g: 12.32
-    diameter_mm: 31.75
+    weight_rough_g: 12.3
+    diameter_mm: 31.7
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -15557,10 +15583,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/148397
-        ref: Numista N#148397 — 32 Skilling Dansk - Christian VII
+        ref: Numista N#148397 — 32 Skilling - Christian VII (Bust facing right)
     _source_note:
-      en: Draped bust of King Christian VII facing right. / Crowned three-parted shield with arms of Denmark, Norway and Sweden divides value at sides, along rim. Date below divided by mintmaster 
-        initials
+      en: Bust of King Christian VII facing right surrounded by inscription, beaded ring on the rim. / Crowned middle coat of arms of Denmark, date divided by initials below. Surrounded by value at 
+        the sides, beaded ring on the rim
   - id: dk-numista-43515
     fuss: seed_unsorted
     phase: numista
@@ -15581,9 +15607,12 @@ coins:
       km: '636'
       others:
         - C# 49
+        - DNF# 2.10
+      sieg: '9'
+      hede: '34'
     metal: billon
     fineness:
-    weight_rough_g: 0.768
+    weight_rough_g: 0.7
     diameter_mm: 15.8
     issuing_entity: danish_realm
     verified: false
@@ -15595,9 +15624,9 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/43515
-        ref: Numista N#43515 — 1 Skilling Dansk - Christian VII
+        ref: Numista N#43515 — 1 Skilling - Christian VII
     _source_note:
-      en: Crowned King's monogram / Value and date on four lines. Mintmark below
+      en: Crowned monogram of King Christian VII, beaded ring on the rim. / Value, date and initials on five lines, beaded ring on the rim
   - id: dk-numista-318050
     fuss: seed_unsorted
     phase: numista
@@ -15614,10 +15643,14 @@ coins:
     catalog:
       numista: '318050'
       km: '642'
+      sieg: '15'
+      hede: '31'
+      others:
+        - DNF# 5.2
     metal: silver
-    fineness: 0.5625
-    weight_rough_g: 3.057
-    diameter_mm: 22.78
+    fineness: 0.562
+    weight_rough_g: 3
+    diameter_mm: 23
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
@@ -15628,9 +15661,10 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/318050
-        ref: Numista N#318050 — 8 Skilling Dansk - Christian VII (Shield type)
+        ref: Numista N#318050 — 8 Skilling - Christian VII
     _source_note:
-      en: Crowned King's monogram. Legend around rim / Crowned oval three-parted shield with arms of Denmark, Norway and Sweden. Value in letters around rim. Date below, divided by mintmaster initials
+      en: Crowned monogram of King Christian VII surrounded by inscription, beaded ring on the rim. / Crowned middle coat of arms of Denmark, date divided by initials below. Surrounded by value at the
+        sides, beaded ring on the rim
   - id: dk-numista-71072
     fuss: seed_unsorted
     phase: numista
@@ -15647,9 +15681,13 @@ coins:
     catalog:
       numista: '71072'
       km: '644'
+      sieg: '12'
+      hede: '32'
+      others:
+        - DNF# 4.1
     metal: billon
     fineness:
-    weight_rough_g: 2.751
+    weight_rough_g: 2.7
     diameter_mm: 21.2
     issuing_entity: danish_realm
     verified: false
@@ -15661,113 +15699,9 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/71072
-        ref: Numista N#71072 — 4 Skilling Dansk - Christian VII
+        ref: Numista N#71072 — 4 Skilling - Christian VII
     _source_note:
-      en: Crowned King's monogram. Legend around rim. / Value and date on four lines, mintmark below
-  - id: dk-numista-22577
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_label: 1809, 1810
-    year_first: 1809
-    year_last: 1810
-    year_ranges:
-      -   - 1809
-          - 1809
-      -   - 1810
-          - 1810
-    ruler: Frederick VI
-    mint:
-    catalog:
-      numista: '22577'
-      km: '663'
-    metal: copper
-    fineness:
-    weight_rough_g: 4.75
-    diameter_mm: 21
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/22577
-        ref: Numista N#22577 — 2 Skilling - Frederik VI (straight neck-cut)
-    _source_note:
-      en: A bare head of King Frederik VI with the truncation in a curved line surrounded by a legend / A crowned oval shield with arms of Denmark, Norway, and Sweden dividing the value at sides, with
-        the date below, while the legend surrounds the shield
-  - id: dk-numista-40308
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_label: 1810, 1811
-    year_first: 1810
-    year_last: 1811
-    year_ranges:
-      -   - 1810
-          - 1810
-      -   - 1811
-          - 1811
-    ruler: Frederick VI
-    mint:
-    catalog:
-      numista: '40308'
-      km: '670'
-    metal: copper
-    fineness:
-    weight_rough_g: 4.85
-    diameter_mm: 20.5
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/40308
-        ref: Numista N#40308 — 2 Skilling - Frederik VI (broken neck-cut)
-    _source_note:
-      en: Bare head facing right surrounded by legend / Crowned oval shield with arms of Denmark, Norway and Sweden divide value at sides. Date below, while legend surround the shield
-  - id: dk-numista-40843
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 3 Skilling
-    year_label: '1812'
-    year_first: 1812
-    year_last: 1812
-    year_ranges:
-      -   - 1812
-          - 1812
-    ruler: Frederick VI
-    mint: Kopenhagen
-    catalog:
-      numista: '40843'
-      km: '672'
-    metal: copper
-    fineness:
-    weight_rough_g: 2.45
-    diameter_mm: 16.05
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/40843
-        ref: Numista N#40843 — 3 Skilling - Frederik VI
-    _source_note:
-      en: Bare head facing right surrounded by legend / Crowned oval shield with arms of Denmark, Norway and Sweden divide value at sides. Date below, while legend surround the shield
+      en: Crowned monogram of King Christian VII surrounded by inscription, beaded ring on the rim. / Value, date and initials on five lines, beaded ring on the rim
   - id: dk-numista-47936
     fuss: seed_unsorted
     phase: numista
@@ -15784,6 +15718,8 @@ coins:
     catalog:
       numista: '47936'
       km: '673'
+      sieg: '6'
+      hede: '11'
     metal: copper
     fineness:
     weight_rough_g: 11.693
@@ -15800,139 +15736,8 @@ coins:
         url: https://en.numista.com/47936
         ref: Numista N#47936 — 12 Skilling - Frederik VI
     _source_note:
-      en: Bare head facing right surrounded by legend / Crowned oval shield with arms of Denmark, Norway and Sweden divide value at sides. Date below, while legend surround the shield
-  - id: dk-numista-18275
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 12 Skilling
-    year_label: '1813'
-    year_first: 1813
-    year_last: 1813
-    year_ranges:
-      -   - 1813
-          - 1813
-    ruler: Frederick VI
-    mint:
-    catalog:
-      numista: '18275'
-      km: Tn2
-    metal: copper
-    fineness:
-    weight_rough_g: 10
-    diameter_mm: 27
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/18275
-        ref: Numista N#18275 — 12 Skilling - Frederik VI (Rigsbank Token)
-    _source_note:
-      en: Crowned shield with arms of Denmark, Norway and Holstein / Value and date
-  - id: dk-numista-22578
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Rigsbankskilling
-    year_label: '1813'
-    year_first: 1813
-    year_last: 1813
-    year_ranges:
-      -   - 1813
-          - 1813
-    ruler: Frederick VI
-    mint:
-    catalog:
-      numista: '22578'
-      km: '680'
-    metal: copper
-    fineness:
-    weight_rough_g: 5.1
-    diameter_mm: 21.5
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/22578
-        ref: Numista N#22578 — 1 Rigsbankskilling - Frederik VI
-    _source_note:
-      en: Bare head facing right surrounded by legend / Denomination on three lines with date below
-  - id: dk-numista-40844
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 6 Skilling
-    year_label: '1813'
-    year_first: 1813
-    year_last: 1813
-    year_ranges:
-      -   - 1813
-          - 1813
-    ruler: Frederick VI
-    mint:
-    catalog:
-      numista: '40844'
-      km: Tn1
-    metal: copper
-    fineness:
-    weight_rough_g: 7.31
-    diameter_mm: 24.54
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/40844
-        ref: Numista N#40844 — 6 Skilling - Frederik VI (Rigsbank Token)
-    _source_note:
-      en: Crowned shield with arms of Denmark, Norway and Holstein / Value and date
-  - id: dk-numista-42887
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 16 Rigsbankskilling
-    year_label: '1814'
-    year_first: 1814
-    year_last: 1814
-    year_ranges:
-      -   - 1814
-          - 1814
-    ruler: Frederick VI
-    mint:
-    catalog:
-      numista: '42887'
-      km: Tn3
-    metal: copper
-    fineness:
-    weight_rough_g: 14.12
-    diameter_mm: 30
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/42887
-        ref: Numista N#42887 — 16 Skilling - Frederik VI (Rigsbank Token)
-    _source_note:
-      en: Crowned shield with greater arms of Denmark and its territories / Lettering value and date
+      en: Bust of Frederick VI facing right, surrounded by inscription. All in a beaded ring, solid ring on the rim. / Crowned middle coat of arms of Denmark dividing value at sides, surrounded by 
+        inscription with date at the bottom. All in a beaded ring, solid ring on the rim
   - id: dk-numista-37054
     fuss: seed_unsorted
     phase: numista

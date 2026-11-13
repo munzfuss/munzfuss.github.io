@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `landgrafschaft_hessen_kassel`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/landgrafschaft_hessen_kassel.yml across all sources.
 #
 # Input: 696 per-source seed entries.
-# Output: 506 unified entries (one per physical coin).
+# Output: 501 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: landgrafschaft_hessen_kassel
-generated_at: '2026-11-10'
+generated_at: '2026-11-13'
 coins:
   - id: c-ffc1f314
     class_id: c-ffc1f314
@@ -4619,7 +4619,9 @@ coins:
     ruler: Frederick II
     mint: Kassel
     catalog:
-      km: '521'
+      km:
+        - '521'
+        - '521.1'
       numista:
         - '268184'
         - '268186'
@@ -4644,6 +4646,10 @@ coins:
         specimen: dk-numista-268186
       - value: 0.9
         source: ucoin
+        specimen: tid-tid-121140
+      - value: 0.9
+        source: ucoin
+        specimen: tid-tid-125355
     weight_rough_g:
       - value: 13.3
         source: numista
@@ -4653,9 +4659,17 @@ coins:
         specimen: dk-numista-268186
       - value: 13.3
         source: ucoin
+        specimen: tid-tid-121140
+      - value: 13.3
+        source: ucoin
+        specimen: tid-tid-125355
     diameter_mm:
       - value: 28.0
         source: ucoin
+        specimen: tid-tid-121140
+      - value: 28.0
+        source: ucoin
+        specimen: tid-tid-125355
     sources:
       - type: literature
         url: https://en.numista.com/268184
@@ -4666,11 +4680,15 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1780/?tid=121140
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1785/?tid=125355
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-268184
       - dk-numista-268186
       - tid-tid-121140
+      - tid-tid-125355
   - id: c-3dabaf80
     class_id: c-3dabaf80
     label: unified-dk-numista-268188
@@ -4686,7 +4704,9 @@ coins:
     year_label: 1775-1777
     ruler: Frederick II
     catalog:
-      km: '512'
+      km:
+        - '512'
+        - '512.1'
       numista:
         - '268188'
         - '268189'
@@ -4712,6 +4732,10 @@ coins:
         specimen: dk-numista-268189
       - value: 0.9
         source: ucoin
+        specimen: tid-tid-121139
+      - value: 0.9
+        source: ucoin
+        specimen: tid-tid-125356
     weight_rough_g:
       - value: 13.3
         source: numista
@@ -4721,9 +4745,17 @@ coins:
         specimen: dk-numista-268189
       - value: 13.3
         source: ucoin
+        specimen: tid-tid-121139
+      - value: 13.3
+        source: ucoin
+        specimen: tid-tid-125356
     diameter_mm:
       - value: 28.0
         source: ucoin
+        specimen: tid-tid-121139
+      - value: 28.0
+        source: ucoin
+        specimen: tid-tid-125356
     sources:
       - type: literature
         url: https://en.numista.com/268188
@@ -4732,12 +4764,16 @@ coins:
         url: https://en.numista.com/268189
         ref: Numista N#268189 — 2 Friedrichs d'Or - Frederick II (Stern - Pistole) - Hesse-Cassel
       - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1776-1777/?tid=121139
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1775/?tid=125356
         ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-268188
       - dk-numista-268189
+      - tid-tid-121139
       - tid-tid-125356
   - id: c-9efedd46
     class_id: c-9efedd46
@@ -7096,7 +7132,9 @@ coins:
     year_label: 1803-1807, 1814-1821
     ruler: William I
     catalog:
-      km: '554'
+      km:
+        - '554'
+        - '554.1'
       numista: '32392'
       others:
         - Schütz IV# 2226
@@ -7118,18 +7156,26 @@ coins:
       - value: 0.333
         source: numista
     weight_rough_g:
+      - value: 1.63
+        source: ucoin
       - value: 2.0
         source: numista
     diameter_mm:
+      - value: 18.0
+        source: ucoin
       - value: 19.0
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/32392
         ref: Numista N#32392 — Hesse-Cassel 1/24 Thaler - William I 1803-1821
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-24-thaler-1803-1821/?tid=81834
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-32392
+      - tid-tid-81834
   - id: c-915557b1
     class_id: c-915557b1
     label: unified-dk-numista-33445
@@ -12949,35 +12995,42 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-121070
-  - id: c-c2b4fc6d
-    class_id: c-c2b4fc6d
+  - id: c-22b343f1
+    class_id: c-22b343f1
     label: unified-tid-tid-121071
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
     nominal: 8 Albus
-    year_first: 1738
+    year_first: 1737
     year_last: 1740
     year_ranges:
-      -   - 1738
+      -   - 1737
           - 1740
-    year_label: 1738-1740
+    year_label: 1737-1740
     ruler: Frederick I
+    mint: Kassel
     catalog:
-      km: '424.1'
+      km:
+        - '424.1'
+        - '424'
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-8-albus-1738-1740/?tid=121071
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-8-albus-1737/?tid=125366
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-121071
+      - tid-tid-125366
   - id: c-0d0a0530
     class_id: c-0d0a0530
     label: unified-tid-tid-121074
@@ -13539,12 +13592,17 @@ coins:
     phase: ucoin
     kind: kurant
     nominal: 1 Thaler
-    year_first: 1785
+    year_first: 1784
     year_last: 1785
-    year_label: '1785'
+    year_ranges:
+      -   - 1784
+          - 1785
+    year_label: 1784-1785
     ruler: William I
     catalog:
-      km: '528.1'
+      km:
+        - '528.1'
+        - '528'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13562,9 +13620,13 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1785/?tid=121114
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1784/?tid=125367
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-121114
+      - tid-tid-125367
   - id: c-4592a4c9
     class_id: c-4592a4c9
     label: unified-tid-tid-121115
@@ -13835,45 +13897,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-121137
-  - id: c-f1b517ce
-    class_id: c-f1b517ce
-    label: unified-tid-tid-121139
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 10 Thaler
-    year_first: 1776
-    year_last: 1777
-    year_ranges:
-      -   - 1776
-          - 1777
-    year_label: 1776-1777
-    ruler: Frederick II
-    catalog:
-      km: '512.1'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.9
-        source: ucoin
-    weight_rough_g:
-      - value: 13.3
-        source: ucoin
-    diameter_mm:
-      - value: 28.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1776-1777/?tid=121139
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-121139
   - id: c-97b74b61
     class_id: c-97b74b61
     label: unified-tid-tid-121171
@@ -13910,102 +13933,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-121171
-  - id: c-2e6d5792
-    class_id: c-2e6d5792
-    label: unified-tid-tid-125355
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 10 Thaler
-    year_first: 1785
-    year_last: 1785
-    year_label: '1785'
-    ruler: Frederick II
-    catalog:
-      km: '521.1'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.9
-        source: ucoin
-    weight_rough_g:
-      - value: 13.3
-        source: ucoin
-    diameter_mm:
-      - value: 28.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1785/?tid=125355
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-125355
-  - id: c-22b343f1
-    class_id: c-22b343f1
-    label: unified-tid-tid-125366
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 8 Albus
-    year_first: 1737
-    year_last: 1737
-    year_label: '1737'
-    ruler: Frederick I
-    mint: Kassel
-    catalog:
-      km: '424'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-8-albus-1737/?tid=125366
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-125366
-  - id: c-db1c6d3f
-    class_id: c-db1c6d3f
-    label: unified-tid-tid-125367
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1784
-    year_last: 1784
-    year_label: '1784'
-    ruler: William I
-    catalog:
-      km: '528'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.0
-        source: ucoin
-    diameter_mm:
-      - value: 36.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1784/?tid=125367
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-125367
   - id: c-d0dd77ef
     class_id: c-d0dd77ef
     label: unified-tid-tid-164026
@@ -19445,42 +19372,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-81831
-  - id: c-d459334d
-    class_id: c-d459334d
-    label: unified-tid-tid-81834
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/24 Thaler
-    year_first: 1803
-    year_last: 1821
-    year_ranges:
-      -   - 1803
-          - 1821
-    year_label: 1803-1821
-    ruler: William I
-    catalog:
-      km: '554.1'
-    metal: billon
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.63
-        source: ucoin
-    diameter_mm:
-      - value: 18.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-24-thaler-1803-1821/?tid=81834
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-81834
   - id: c-e1952abe
     class_id: c-e1952abe
     label: unified-tid-tid-81845

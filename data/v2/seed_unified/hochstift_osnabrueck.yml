@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hochstift_osnabrueck`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hochstift_osnabrueck.yml across all sources.
 #
 # Input: 238 per-source seed entries.
-# Output: 180 unified entries (one per physical coin).
+# Output: 181 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hochstift_osnabrueck
-generated_at: '2026-11-10'
+generated_at: '2026-11-13'
 coins:
   - id: c-756b6d33
     class_id: c-756b6d33
@@ -1133,34 +1133,28 @@ coins:
     year_label: 1702-1703
     ruler: Charles Joseph of Lorraine (Karl III Joseph von Lothringen)
     mintmaster: HLO
-    mint: Osnabrück
     catalog:
       km:
         - '172'
         - '172.1'
-        - '172.2'
       numista: '238235'
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 2.6
         source: ucoin
       - value: 2.77
         source: numista
-      - value: 2.77
-        source: ucoin
     diameter_mm:
       - value: 23.0
         source: ucoin
       - value: 24.0
         source: numista
-      - value: 24.0
-        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/238235
@@ -1168,14 +1162,10 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1702-1703/?tid=173339
         ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1703/?tid=173340
-        ref: ucoin
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - dk-numista-238235
       - tid-tid-173339
-      - tid-tid-173340
   - id: c-b56243ce
     class_id: c-b56243ce
     label: unified-dk-numista-238237
@@ -6174,6 +6164,41 @@ coins:
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - tid-tid-173338
+  - id: c-a1f19ba9
+    class_id: c-a1f19ba9
+    label: unified-tid-tid-173340
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1/14 Thaler
+    year_first: 1703
+    year_last: 1703
+    year_label: '1703'
+    ruler: Charles Joseph
+    mintmaster: HLO
+    mint: Osnabrück
+    catalog:
+      km: '172.2'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.77
+        source: ucoin
+    diameter_mm:
+      - value: 24.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1703/?tid=173340
+        ref: ucoin
+    issuing_entity: hochstift_osnabrueck
+    composed_of:
+      - tid-tid-173340
   - id: c-831e750f
     class_id: c-831e750f
     label: unified-tid-tid-173342

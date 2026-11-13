@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 180 active, 0 retired.
+# 181 active, 0 retired.
 
 id: hochstift_osnabrueck
 classes:
@@ -868,6 +868,12 @@ classes:
     members:
       - dk-numista-238850
       - tid-tid-173146
+  - id: c-a1f19ba9
+    status: active
+    created: '2026-11-13'
+    label: unified-tid-tid-173340
+    members:
+      - tid-tid-173340
   - id: c-a684cebb
     status: active
     created: '2026-10-22'
@@ -1132,10 +1138,11 @@ classes:
     created: '2026-10-22'
     label: unified-dk-numista-238235
     legacy_id: unified-dk-numista-238235
+    split_into:
+      - c-a1f19ba9
     members:
       - dk-numista-238235
       - tid-tid-173339
-      - tid-tid-173340
   - id: c-d8d09201
     status: active
     created: '2026-10-22'

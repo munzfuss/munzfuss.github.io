@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-11-11 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
 # Input: 487 per-source seed entries.
-# Output: 324 unified entries (one per physical coin).
+# Output: 320 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-11-11'
+generated_at: '2026-11-13'
 coins:
   - id: c-c114e202
     class_id: c-c114e202
@@ -936,10 +936,18 @@ coins:
         - '168'
         - '168.1'
         - '168.2'
+        - '168.6'
+        - '168.3'
+        - '168.5'
+        - '168.4'
       numista: '24631'
       dav:
         - GT II 2420A
         - GT II 2420
+        - GT II 2420E
+        - GT II 2420B
+        - GT II 2420D
+        - GT II 2420C
       behrens:
         - '291'
         - 291a
@@ -960,6 +968,18 @@ coins:
         source: ngc
         specimen: ngc-1137380
       - value: 0.75
+        source: ngc
+        specimen: ngc-1137617
+      - value: 0.75
+        source: ngc
+        specimen: ngc-1138074
+      - value: 0.75
+        source: ngc
+        specimen: ngc-1139478
+      - value: 0.75
+        source: ngc
+        specimen: ngc-1142502
+      - value: 0.75
         source: numista
     weight_rough_g:
       - value: 27.18
@@ -970,6 +990,18 @@ coins:
       - value: 27.51
         source: ngc
         specimen: ngc-1137380
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1137617
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1138074
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1139478
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1142502
       - value: 27.51
         source: numista
     diameter_mm:
@@ -985,6 +1017,18 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.2-1752-cuid-1137380-duid-1339734
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.6-1752-cuid-1137617-duid-1339256
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.3-1752-cuid-1138074-duid-1339424
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.5-1752-cuid-1139478-duid-1339425
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.4-1752-cuid-1142502-duid-1338976
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: auction
         url: https://www.yumpu.com/de/document/view/7817078/auktion-110-auktionshaus-tietjen-co
         ref: Tietjen + Co., Auktion 110 (17. Dezember 2012), Los 88
@@ -993,6 +1037,10 @@ coins:
       - dk-numista-24631
       - ngc-1137379
       - ngc-1137380
+      - ngc-1137617
+      - ngc-1138074
+      - ngc-1139478
+      - ngc-1142502
       - tietjen-110-88
   - id: c-01640c36
     class_id: c-01640c36
@@ -8239,40 +8287,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1137576
-  - id: c-ba5f1df4
-    class_id: c-ba5f1df4
-    label: unified-ngc-1137617
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.6'
-      behrens: '291'
-      dav: 2420E
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.6-1752-cuid-1137617-duid-1339256
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1137617
   - id: c-6a71a151
     class_id: c-6a71a151
     label: unified-ngc-1137620
@@ -9185,40 +9199,6 @@ coins:
     composed_of:
       - lu-tid-102704
       - ngc-1138070
-  - id: c-b51bb3ce
-    class_id: c-b51bb3ce
-    label: unified-ngc-1138074
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.3'
-      behrens: '291'
-      dav: 2420B
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.3-1752-cuid-1138074-duid-1339424
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1138074
   - id: c-d25ca58e
     class_id: c-d25ca58e
     label: unified-ngc-1138076
@@ -11002,40 +10982,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1139474
-  - id: c-3f7d776f
-    class_id: c-3f7d776f
-    label: unified-ngc-1139478
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.5'
-      behrens: '291'
-      dav: 2420D
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.5-1752-cuid-1139478-duid-1339425
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1139478
   - id: c-b1963a16
     class_id: c-b1963a16
     label: unified-ngc-1139546
@@ -11557,40 +11503,6 @@ coins:
     composed_of:
       - lu-tid-102711
       - ngc-1142499
-  - id: c-fe9a6bd2
-    class_id: c-fe9a6bd2
-    label: unified-ngc-1142502
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.4'
-      behrens: '291'
-      dav: 2420C
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.4-1752-cuid-1142502-duid-1338976
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1142502
   - id: c-6881abe0
     class_id: c-6881abe0
     label: unified-ngc-1142602
