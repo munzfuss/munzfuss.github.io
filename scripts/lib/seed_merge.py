@@ -552,6 +552,19 @@ def _drop_bare_superseded_by_cf(v):
 _LIST_UNION_FIELDS = frozenset({"sources"})
 
 
+_NUMISTA_LABEL = re.compile(r"^Numista N#(\d+) — ")
+
+
+def _numista_label_key(v) -> tuple | None:
+    """(type, url, N#) for a builder-made Numista citation, else None."""
+    if not isinstance(v, dict):
+        return None
+    m = _NUMISTA_LABEL.match(str(v.get("ref") or ""))
+    if not m or not v.get("url"):
+        return None
+    return (v.get("type"), v.get("url"), m.group(1))
+
+
 def _union_source_lists(existing_v, fresh_v) -> list:
     """Union two `sources`-style lists of dicts into a deduped, order-preserving
     result; existing entries lead so a curator-added citation keeps its slot.
@@ -563,6 +576,20 @@ def _union_source_lists(existing_v, fresh_v) -> list:
             items.extend(src)
         elif src is not None:
             items.append(src)
+    # A Numista citation is the builder's own label «Numista N#<id> — <title>»;
+    # when Numista renames the type the fresh label supersedes the old one for
+    # the same URL instead of standing beside it (refresh 2026-11-12: 51 types
+    # renamed). Only entries of that exact shape are replaced, so a curator-
+    # added citation is never touched.
+    fresh_label = {}
+    for v in (fresh_v if isinstance(fresh_v, list) else [fresh_v]):
+        k = _numista_label_key(v)
+        if k:
+            fresh_label[k] = v
+    if fresh_label:
+        items = [v for v in items
+                 if not (_numista_label_key(v) in fresh_label
+                         and fresh_label[_numista_label_key(v)] is not v)]
     out: list = []
     seen: set = set()
     for v in items:
