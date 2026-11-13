@@ -1285,6 +1285,13 @@ def _weak_veto_keys(result: dict, a: dict, b: dict, refs_a: dict, refs_b: dict):
     return None
 
 
+def _tl_bases(v) -> set[str]:
+    """Base numbers of a type-level index value as `_type_level_conflict`
+    reads them («99D» → 99, «A433» → A433, «EC 1 340.2» → 340)."""
+    return {m.group(1) for x in str(v).split("|")
+            if (m := re.match(r"\s*(?:EC\s+\w+\s+)?([A-Za-z]?\d+)", x))}
+
+
 def _type_level_conflict(refs_a: dict, refs_b: dict) -> bool:
     """True when the two records share a type-level register (Hede, KM,
     Galster, Dav, Fr, …) whose BASE numbers do not overlap — two different
@@ -1514,8 +1521,10 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         # Bare-vs-dot-numeric tolerance («70» ≡ «70.1»). Asymmetric: one
         # side must be bare (no dot-form), the other side's dot-num
         # parent must equal the bare side. Two distinct dot-forms
-        # («70.1» ≢ «70.2») stay disagreeing so curator sub-variant
-        # splits stay intact.
+        # («70.1» ≢ «70.2») stay disagreeing: Krause's decimals of one
+        # number often belong to different Hede types (KM 32.1 = Hede 91,
+        # KM 32.4 = Hede 96, the rest of KM 32 = Hede 93 — measured
+        # 2026-11-12, when treating them as one coin fused all three).
         parents_a = {p for p in (_parent_of_dotnum(v) for v in sa) if p}
         parents_b = {p for p in (_parent_of_dotnum(v) for v in sb) if p}
         # bare-a meets dot-b: cores_a (which equals sa for bare values)
@@ -1857,6 +1866,82 @@ def _shares_unique_id_ref(refs_a: dict, refs_b: dict) -> bool:
         if sa & sb:
             return True
     return False
+
+
+# Base-tier agreement (curator 2026-11-12). Two records whose type-level
+# catalogue gives them the same BASE number (Hede 2B / 2C / 2D = Hede 2,
+# KM 340.1 / 340.2 = KM 340) are one coin under §9.4 — the sub-letters are
+# variations within it (a year, a mint, a mintmaster, a die), and danskmoent
+# prints them on one page as the norm. So once ruler, nominal and metal agree,
+# a year or mint difference must not vote against the merge, nor may the 5 %
+# weight gate split it; a differing Schou / Sieg / Bruun number is the
+# sub-variant's own number, not a disagreement. What still separates records
+# on a shared base: a different nominal (Hede F2 7A–7G: Portugaløser,
+# Rosenobel, Dukat), a different base on another shared type catalogue
+# (KM 66 = Hede 118 against KM 67 = Hede 119), a different metal, the 2.5×
+# weight gate, and a curator no_merge.
+_BASE_LOAD_REGS = ("hede", "galster")         # + scoped km/<register>
+_BASE_CONFLICT_REGS = frozenset({"hede", "galster", "km", "dav", "fr", "lange"})
+
+
+def _km_type_bases(value) -> set[str]:
+    """Krause type numbers with their letter, sub-variant decimal dropped:
+    «340.2» → 340, «39a» → 39A, «A433» → A433."""
+    out = set()
+    for tok in re.split(r"[|,]", str(value)):
+        mb = re.match(r"\s*([A-Za-z]{0,2}\d+[A-Za-z]?)", tok)
+        if mb:
+            out.add(mb.group(1).upper())
+    return out
+
+
+def _shares_load_base(ra: dict, rb: dict) -> bool:
+    """True when Hede, Galster or a volume-scoped KM gives both records one
+    base number (whatever else they disagree on)."""
+    for k in set(ra) & set(rb):
+        reg = k.split("/", 1)[0]
+        if not (reg in _BASE_LOAD_REGS or k.startswith("km/")):
+            continue
+        _b = _km_type_bases if reg == "km" else _index_bases
+        if _b(ra[k]) & _b(rb[k]):
+            return True
+    return False
+
+
+def _page_base_conflict(ra: dict, rb: dict) -> bool:
+    """True when Hede or Galster gives the two records different bases."""
+    for k in set(ra) & set(rb):
+        if k.split("/", 1)[0] not in _BASE_LOAD_REGS:
+            continue
+        ba, bb = _index_bases(ra[k]), _index_bases(rb[k])
+        if ba and bb and not (ba & bb):
+            return True
+    return False
+
+
+def _base_tier_agrees(ra: dict, rb: dict) -> bool:
+    """True when a type-defining catalogue (Hede, Galster, or KM scoped to
+    its volume) gives both records the same base number and no shared
+    type catalogue gives them different bases. Bare `km` and Dav / Fr /
+    Lange can refuse but never carry (bare KM restarts per volume; Sieg is
+    left out — its Christian VII numbering changed between editions)."""
+    load = False
+    for k in set(ra) & set(rb):
+        reg = k.split("/", 1)[0]
+        if reg not in _BASE_CONFLICT_REGS:
+            continue
+        # Krause marks a separate type with a letter (KM 39 / 39a, 237 /
+        # 237a) and a sub-variant with a decimal (KM 340.1 / 340.2): only
+        # the decimal is stripped. Hede / Galster letters are sub-variants.
+        _b = _km_type_bases if reg == "km" else _index_bases
+        ba, bb = _b(ra[k]), _b(rb[k])
+        if not ba or not bb:
+            continue
+        if not (ba & bb):
+            return False
+        if reg in _BASE_LOAD_REGS or k.startswith("km/"):
+            load = True
+    return load
 
 
 def _index_bases(value) -> set[str]:
@@ -2297,6 +2382,8 @@ _REIGN_GATE = os.environ.get("REIGN_GATE", "1") != "0"
 # its classes' members, `HEDE_BASE_EQUIV_LOG=1` prints groups joined only
 # through a nominal equivalence).
 _HEDE_BASE_RULE = os.environ.get("HEDE_BASE", "0") == "1"
+# Untied-edge gate (step 2a', curator 2026-11-12). UNTIED_GATE=0 turns it off.
+_UNTIED_GATE = os.environ.get("UNTIED_GATE", "0") == "1"
 _HEDE_BASE_TOKEN = re.compile(r"^\s*(\d+)[A-Za-z]*\s*$")
 
 
@@ -2675,6 +2762,16 @@ def _reckoning_nominal(base_raw, members: list[dict]):
                   found, flags=re.IGNORECASE)
 
 
+def _base_tier_nominal_ok(a: dict, b: dict) -> bool:
+    """Nominal side of the base tier: the same denomination, possibly under
+    two names (`_match_nominal_compatible`)."""
+    if _nominals_equal(a, b):
+        return True
+    ra, rb = str(a.get("nominal") or ""), str(b.get("nominal") or "")
+    na, nb = _normalise_nominal(ra), _normalise_nominal(rb)
+    return bool(na and nb) and _match_nominal_compatible(na, nb, ra.lower(), rb.lower())
+
+
 def _match_nominal_compatible(na: str, nb: str, raw_a: str = "", raw_b: str = "") -> bool:
     """Two NORMALISED nominals the pair matcher must not read as two coins
     (curator 2026-11-11): the names the Hede-base check already accepts —
@@ -2931,6 +3028,8 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
             and not _catalog_strongly_agrees(refs_a_pre, refs_b_pre,
                                               min_shared_agreeing=2)
             and not _same_type_but_for_weight(coin_a, coin_b)
+            and not (_base_tier_agrees(refs_a_pre, refs_b_pre)
+                     and _base_tier_nominal_ok(coin_a, coin_b))
             and not (_nominals_equal(coin_a, coin_b)
                      and _catalog_chain_consistent(refs_a_pre, refs_b_pre)[0] == "agree"
                      and _weight_close_relaxed(coin_a, coin_b))):
@@ -3271,7 +3370,8 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
             and primary.get("ruler") is True
             and (primary.get("metal") is True
                  or (primary.get("metal") is None and primary.get("nominal") is True))
-            and _has_type_strong_agreement(refs_a, refs_b)):
+            and (_has_type_strong_agreement(refs_a, refs_b)
+                 or _base_tier_agrees(refs_a, refs_b))):
         why.append(
             f"§9a multi-specimen promotion: catalog type-strong + ruler + "
             f"metal True; fallback disagreement tolerated ({fallback})"
@@ -6635,6 +6735,59 @@ def process_entity(entity_id: str,
                            if (cp["a"], cp["b"]) not in _drop]
         print(f"  REIGN_GATE: {len(_gated)} untied reign pairs, {len(_drop)} held back")
 
+    # 2a'. Untied-edge gate (curator 2026-11-12). An edge with no catalogue
+    #      tie (primary catalog not True: metal + nominal + ruler + year
+    #      alone) says only «the same kind of coin». When a record's confident
+    #      partners are themselves of different types — two partners whose
+    #      type-level index has different bases (Hede 87 against Hede 95,
+    #      KM 186 against KM 194) — the untied edge cannot tell which of them
+    #      it belongs to, and greedy union would let it chain the two types
+    #      together; a curator force merge then clears the no_merges between
+    #      them. Such a record keeps its tied edges; its untied ones drop to
+    #      low_confidence. Same idea as the reign gate, for every untied edge.
+    if _UNTIED_GATE:
+        _partners: dict[str, set] = defaultdict(set)
+        for cp in confident_pairs:
+            _partners[cp["a"]].add(cp["b"])
+            _partners[cp["b"]].add(cp["a"])
+        _ambig_memo: dict[str, bool] = {}
+
+        def _ambiguous(d: str) -> bool:
+            if d not in _ambig_memo:
+                sig: dict[str, set] = defaultdict(set)
+                for _p in _partners[d]:
+                    for _k, _v in _catalog_refs(seeds_by_id[_p], entity_id).items():
+                        if (_k.split("/", 1)[0] in _SUB_VARIANT_REFS
+                                or _k in ("hede_volume", "others", "numista")):
+                            continue
+                        _bs = _tl_bases(_v)
+                        if _bs:
+                            sig[_k].add(frozenset(_bs))
+                _amb = False
+                for _fs in sig.values():
+                    _fs = list(_fs)
+                    if any(not (_fs[i] & _fs[j]) for i in range(len(_fs))
+                           for j in range(i + 1, len(_fs))):
+                        _amb = True
+                        break
+                _ambig_memo[d] = _amb
+            return _ambig_memo[d]
+
+        _udrop = set()
+        for cp in confident_pairs:
+            if (cp.get("primary") or {}).get("catalog") is True:
+                continue
+            if _ambiguous(cp["a"]) or _ambiguous(cp["b"]):
+                _udrop.add((cp["a"], cp["b"]))
+                low_confidence.append({"members": [cp["a"], cp["b"]],
+                                       "primary": cp["primary"],
+                                       "fallback": cp["fallback"],
+                                       "why": ["UNTIED_GATE: no catalogue tie, and the "
+                                               "record's partners differ in type-level base"]})
+        confident_pairs = [cp for cp in confident_pairs
+                           if (cp["a"], cp["b"]) not in _udrop]
+        print(f"  UNTIED_GATE: {len(_udrop)} untied pairs held back")
+
     # 2b. POST-PRE-PASS: Single-candidate promotion for null primary
     # signals (`ruler`, `nominal`).
     #
@@ -6835,7 +6988,54 @@ def process_entity(entity_id: str,
     #    no_merge against the KM-20 variant being merged in.
     confident_merges: list[dict] = []
     transitivity_blocks: list[dict] = []
+    # A seed the curator has placed (a member of a curator merge, regular or
+    # cross-entity) is what the curator said it is. An auto edge from it to a
+    # record whose type-level index contradicts another member of that
+    # curator group must not attach the record: step 4's force_union would
+    # then pull it in, clearing the auto no_merges that keep it apart
+    # (curator 2026-11-12 — a KMM «1 Mark» with no Hede, curated into Hede 9B,
+    # had dragged Hede 14B in through a nominal + ruler + year edge).
+    _cur_group: dict[str, int] = {}
+    _cur_members: list[list[str]] = []
+    for _e in list(decisions["merges"]) + [{"members": g} for g in pull_groups.get(entity_id, [])]:
+        _ms = [x for m in (_e.get("members") or []) for x in (_expand_member(m) or [m])
+               if x in seeds_by_id]
+        if len(_ms) < 2:
+            continue
+        for _x in _ms:
+            _cur_group.setdefault(_x, len(_cur_members))
+        _cur_members.append(_ms)
+    _cur_refs: dict[str, dict] = {}
+
+    def _crefs(x):
+        if x not in _cur_refs:
+            _cur_refs[x] = _catalog_refs(seeds_by_id[x], entity_id)
+        return _cur_refs[x]
+
+    def _hitchhiker(cp) -> bool:
+        a, b = cp["a"], cp["b"]
+        ga, gb = _cur_group.get(a), _cur_group.get(b)
+        if ga == gb:
+            return False
+        for g, other in ((ga, b), (gb, a)):
+            if g is None:
+                continue
+            ro = _crefs(other)
+            if not any(_type_level_conflict(ro, _crefs(m)) for m in _cur_members[g]):
+                continue
+            # A record that shares a type-level base with the group (Hede 67
+            # with KM 157 against the group's Hede 67 with KM 167) is a
+            # §9.4 sub-variant the curator group unifies, not a hitchhiker.
+            if any(_shares_load_base(ro, _crefs(m)) for m in _cur_members[g]):
+                continue
+            return True
+        return False
+
+    _hh = 0
     for cp in confident_pairs:
+        if _cur_group and _hitchhiker(cp):
+            _hh += 1
+            continue
         ok, blocking = uf.union(cp["a"], cp["b"])
         if ok:
             confident_merges.append({
@@ -6848,6 +7048,9 @@ def process_entity(entity_id: str,
                 "would_merge": [cp["a"], cp["b"]],
                 "blocked_by_no_match": sorted(blocking),
             })
+
+    if _hh:
+        print(f"  curator-placed: {_hh} auto edge(s) refused (type-level conflict with the curator group)")
 
     # 3b. Hede-base rule (see `_HEDE_BASE_RULE`): join whole compatible
     #     groups of classes sharing a ruler-scoped Hede base. force_union, so
@@ -6930,6 +7133,63 @@ def process_entity(entity_id: str,
                       f"— left separate")
         if len(present) >= 2:
             forced_merges.append({"members": present, "cross_entity": True})
+
+    # 4c. Curator groups extend over shared bases (curator 2026-11-12). A
+    #     curator merge names a few seeds of a type («Hede 105 is ONE type»:
+    #     105A + one ucoin record), and force_union clears the auto no_merges
+    #     only between the classes those seeds sit in. Whether the rest of the
+    #     type comes along then depends on which auto class each named seed
+    #     happened to land in — the base-tier rule, by joining 105A to its
+    #     ucoin partner earlier, made that force a no-op and left 105B with
+    #     KM 60 apart. So: a confident pair refused only by AUTO no_merges,
+    #     one side in a curator group's class, the two sides sharing a Hede /
+    #     Galster / scoped-KM base with no different Hede or Galster base, is
+    #     joined with the same force. Explicit no_merges still refuse it.
+    _THIN = {frozenset({"silver", "billon"}), frozenset({"copper", "bronze"})}
+
+    def _classes_clash(xs, ys) -> bool:
+        """A force join must not bring two members together that are plainly
+        different coins: both metals attested and different (beyond the
+        silver / billon, copper / bronze thin line), different Hede or
+        Galster bases, or nominals that are not one denomination."""
+        for x in xs:
+            cx = seeds_by_id[x]
+            for y in ys:
+                cy = seeds_by_id[y]
+                mx, my = cx.get("metal"), cy.get("metal")
+                if (mx and my and mx != my and cx.get("metal_verified")
+                        and cy.get("metal_verified")
+                        and frozenset({mx, my}) not in _THIN):
+                    return True
+                if _page_base_conflict(_crefs(x), _crefs(y)):
+                    return True
+                if (cx.get("nominal") and cy.get("nominal")
+                        and not _base_tier_nominal_ok(cx, cy)):
+                    return True
+        return False
+
+    if _cur_group:
+        _cur_roots = lambda: {uf.find(m) for ms in _cur_members for m in ms}
+        for _pass in range(5):
+            _roots = _cur_roots()
+            _joined = 0
+            for _tb in transitivity_blocks:
+                _a, _b = _tb["would_merge"]
+                _ra, _rb = uf.find(_a), uf.find(_b)
+                if _ra == _rb or not (_ra in _roots or _rb in _roots):
+                    continue
+                _fa, _fb = _crefs(_a), _crefs(_b)
+                if not _shares_load_base(_fa, _fb) or _page_base_conflict(_fa, _fb):
+                    continue
+                if _classes_clash(uf._class_members(_ra), uf._class_members(_rb)):
+                    continue
+                _ok, _ = uf.force_union(_a, _b)
+                if _ok:
+                    _joined += 1
+                    _roots = _cur_roots()
+            if not _joined:
+                break
+            print(f"  curator-group extension pass {_pass + 1}: {_joined} join(s)")
 
     # 3c. Report the Hede-base result only now: a group the curator merges
     #     above have joined anyway is no refusal (curator 2026-11-07).

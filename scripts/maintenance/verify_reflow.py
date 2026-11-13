@@ -714,6 +714,19 @@ def _scope_dropped_index(base: str) -> dict:
     return idx
 
 
+def _without_scope_dropped(urls: set) -> set:
+    """`urls` less the KMM object pages of records a source scope rule took
+    out of the corpus. A coin that folds into another final takes such a
+    citation with it on purpose — the record was already gone from the seeds
+    (2026-11-13: c-37ab7655, 2 Skilling 1648, folded into Hede 151 while its
+    KMM 139642 stub had been dropped by the stub rule of 2026-11-05)."""
+    kmm = (_SCOPE_IDX or {}).get("kmm") or set()
+    if not kmm:
+        return set(urls)
+    return {u for u in urls
+            if not ((m := re.search(r"/KMM/object/(\d+)", str(u))) and m.group(1) in kmm)}
+
+
 def compare_entity(entity: str, base: str) -> dict:
     """Load both sides for `entity` and delegate to `compare_coins`."""
     rel = f"{FINAL_REL}/{entity}.yml"
@@ -1362,7 +1375,7 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                                   f"seed_unsorted as {sid} (folded)")
                     absorbed_by = "__demoted__"
                 break
-            u = _urls(was)
+            u = _without_scope_dropped(_urls(was))
             if u and u <= _urls(sc):
                 absorbed_by = sid
                 break
@@ -1378,7 +1391,7 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
             # (Observed 2026-08-02: unified-kmk-155180's 13 KMM citations split
             # 6/7 between km-x005-chr-iv-1620 and km-82-chr-iv-1640 after the
             # abstain fix legitimately unblocked the merges.)
-            want = _urls(was)
+            want = _without_scope_dropped(_urls(was))
             if want:
                 carriers = sorted(
                     sid for sid, sc in cur.items() if want & _urls(sc)
