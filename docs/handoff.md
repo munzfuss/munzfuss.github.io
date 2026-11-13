@@ -16,6 +16,25 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-13 — Numista refresh, Hede joint mints, base-tier re-flow (local, unpushed)
+
+- **Shipped (3003361, 6aad28c, 330bfd5, 8370134; cache fc4ffc3, cache unpushed too):**
+  - 543 stale Danish-crown Numista types re-fetched (`refresh_numista_types.py`, log
+    `numista/refresh/2026-11-12/_log.jsonl`); references unioned, weights follow Numista's
+    one-decimal figures (rounded / truncated logged). N#148219 drops KM 606 (CONFIRMED_ABSENT).
+  - Hede 9, 14, 17–23, 38 single classes in royal_holstein (Hede parser reads the mint-list line).
+  - Base-tier rule in the merger (Hede / Galster / scoped KM base = one coin). Curator calls of
+    2026-11-13 on the re-flow losses: Hede Norge 68 = KM 32.1/32.2, Hede Norge 8A joins 8B class,
+    KMM 635269–635276 → Hede 99, Galster 95a/95b one coin, KMM 279183/4 → Hede 22.
+- **Lesson:** repeated merger `--apply` runs pollute `class_registry` (merge/split chains) and
+  absorb writes churned ids into `classification_decisions::promoted_near_peers`. Before the final
+  re-flow, `git checkout -- data/v2/class_registry data/v2/classification_decisions data/v2/final`
+  and run the merger ONCE; that removed 7 of 14 apparent losses.
+- **Open:** curator review of `output/review/base_tier_review.html` (base-tier unions/splits now
+  committed); N#325285 → 119248 (404); kmk-367560 left Hede 34 class; unit tests for the base-tier
+  rule and the Hede mint-list line; Sieg concordance +1 offset vs Bruun (Christian VII).
+
+
 ## 2026-11-10 — A43 / B43, Hede 112 / 113 split, Dav marks, Bruun off-metal headline (local, unpushed)
 
 - **Shipped (main b02f55e..0bdbd0a, cache 4c782ff9c; main 6 ahead of origin at 0bdbd0a):**
