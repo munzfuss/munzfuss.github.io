@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-13T08:41:39Z'
+generated_at: '2026-11-14T11:00:33Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -12,11 +12,11 @@ coins:
     phase: hede
     kind: kurant
     nominal: 1 Blaffert
-    year_label: 1534-1559
-    year_first: 1534
-    year_last: 1559
+    year_label: 1513-1523
+    year_first: 1513
+    year_last: 1523
     year_verified: false
-    ruler: Christian 2. (?).
+    ruler: Christian II.
     mint: Malmø
     catalog:
       hede: '23'
@@ -36,11 +36,18 @@ coins:
           how: reign
           source: hede
           as_printed: u. år
-          value: 1534-1559
+          value: 1513-1523
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: hede
+          as_printed: Christian 2. (?)
+          value: Christian II.
     _curation_holds:
       mint: "Curator 2026-11-08: Malmø as the mint after Sømod, quoted on danskmoent.dk c3h23 «C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»; the Hede page itself gives no mint
         field."
       mint_verified:
+    ruler_verified: false
   - id: dk-hede-c3h7
     fuss: seed_unsorted
     phase: hede
