@@ -70,7 +70,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts" / "maintenance"))
 # spelling policy rather than by string equality.
 from merge_seeds_cross_source import _normalise_ruler  # noqa: E402
 from lib.bruun_pages import printed_page  # noqa: E402
-from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
+from lib.catalog_codes import catalog_from_ref_dict, schema_catalog_fields  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib import uncertainty as unc  # noqa: E402
@@ -261,6 +261,7 @@ REF_FIELDS = {
     "MB": "mb_swedish",  # confirmed Swedish-specific per §BJ survey
     "Hauberg": "hauberg",
     "Malmer": "malmer",
+    "Bergsøe": "bergsoe",  # the schema field is spelt without «ø»
 }
 
 
@@ -1064,7 +1065,20 @@ _BRUUN_LOT_MINT_MARKS: dict[tuple[int, int], dict] = {
 }
 
 
+# Seed ids fixed before the parser could read a lot's own «Bruun-NNNN».
+# Lot 14131 (Part V) prints an unclosed paren in its Aagaard citation; until
+# 2026-11-17 the paren mask swallowed «Bruun-6102» and the seed got the
+# fallback id. A merge decision names that id, and a seed id never changes
+# (CLAUDE.md §9b), so it is kept; the Bruun number now reaches the catalog.
+_LOT_ID_PIN: dict[tuple[int, int], str] = {
+    (5, 14131): "dk-bruun-pt5-14131",
+}
+
+
 def lot_id(part: int, lot: dict) -> str:
+    pinned = _LOT_ID_PIN.get((part, lot.get("lot_no")))
+    if pinned:
+        return pinned
     refs = lot.get("refs") or {}
     bruun_id = refs.get("Bruun")
     if bruun_id:
@@ -1176,6 +1190,20 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # any code our schema doesn't type (Aagaard, Pn, future catalogues) →
     # `others` as «Label# value». Nothing dropped, nothing breaks validation.
     catalog: dict[str, Any] = catalog_from_ref_dict(refs, REF_FIELDS, printed_label=True)
+    # Further values of a catalogue the lot cites twice (parser `refs_more`).
+    # Only codes WITHOUT a typed field are taken — they go to `others` with the
+    # printed qualifier («NM# 8 (1992)», «Delzanno# 44»). A second KM / Sieg /
+    # Fr is printed for another Krause volume or catalogue section («KM-230
+    # (Norway)» beside «KM-539 (Denmark)»); in the typed field it would read as
+    # this page's register and make a false unifying edge (§9.4), so those stay
+    # in the cache until the register is modelled.
+    extra = {k: v for k, v in (lot.get("refs_more") or {}).items()
+             if (REF_FIELDS.get(k) or k.lower()) not in schema_catalog_fields()}
+    if extra:
+        for tok in catalog_from_ref_dict(extra, REF_FIELDS, printed_label=True).get("others", []):
+            bucket = catalog.setdefault("others", [])
+            if tok not in bucket:
+                bucket.append(tok)
     # Special: Jensen-Skjoldager key in Bruun refs (cited as "Jensen & Skjoldager-...")
     #
     # The value must be a WELL-FORMED index — an optional single-letter series
@@ -1192,7 +1220,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     if "Jensen & Skjoldager" in body:
         m = re.search(
             r"Jensen\s*&?\s*Skjoldager[-:]?\s*"
-            r"((?:[A-Z]-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]-?\s*)?\d+[A-Za-z]*)*)",
+            r"((?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*)*)",
             body,
         )
         if m:

@@ -122,24 +122,46 @@ REF_PATTERNS = {
     # false unifying edges (§9.4 — `Pn10` recurs across reigns and volumes just
     # as bare numbers do, and a KM-base collision is exactly what the merger
     # treats as evidence of one coin).
-    "KM":      re.compile(r"(?<!cf\. )(?<!cf\.)\bKM[#\-]?\s*(?!Pn)([A-Za-z]{0,3}\d+(?:\.\d+)?[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
+    # A sub-number printed with a decimal COMMA («KM-99,2», lot 12160) is the
+    # same «.2» sub-number; `[.,]` takes it whole and `_normalise_ref`
+    # rewrites it to «99.2». A comma followed by a space is a list separator
+    # («KM-575, 238») and is not part of the value.
+    "KM":      re.compile(r"(?<!cf\. )(?<!cf\.)\bKM[#\-]?\s*(?!Pn)([A-Za-z]{0,3}\d+(?:[.,]\d+)?[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
     "Hede":    re.compile(r"(?<!cf\. )(?<!cf\.)\bHede[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
-    "Sieg":    re.compile(r"(?<!cf\. )(?<!cf\.)\bSieg[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)", re.IGNORECASE),
-    "Lange":   re.compile(r"(?<!cf\. )(?<!cf\.)\bLange[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    # «Sieg- 102,3» (lots 13091, 11187): decimal comma, see the KM note.
+    "Sieg":    re.compile(r"(?<!cf\. )(?<!cf\.)\bSieg[\-:]?\s*(\d+(?:[.,]\d+)?[A-Za-z]*)", re.IGNORECASE),
+    # «Lange-60 B» (lot 1055): the sub-letter set off by a space; taken only
+    # when the letter closes the token (a «;» / «,» follows), then joined.
+    "Lange":   re.compile(r"(?<!cf\. )(?<!cf\.)\bLange[\-:]?\s*(\d+(?:\s(?-i:[A-Z])(?=[;,]))?[A-Za-z]*)", re.IGNORECASE),
     # Bruun's 1928 numbering continues its letter suffixes into the Danish
     # alphabet (Part V lot 15186 «Bruun-15139ø», after 15139c … 15139ddd);
     # without æøå the ø was cut, the seed id became the bare «15139», and
     # merge_seed's bare-Hede «superseded» rule dropped it beside 15139c.
     "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-zæøåÆØÅ]*)", re.IGNORECASE),
     "Fr":      re.compile(r"(?<!cf\. )(?<!cf\.)\bFr[\.\-:]?\s*(\d+[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
-    "Schou":   re.compile(r"(?<!cf\. )(?<!cf\.)\bSchou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
+    # «Scou-3» (lot 1187) is the cataloguer's misprint of «Schou».
+    "Schou":   re.compile(r"(?<!cf\. )(?<!cf\.)\bSch?ou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
     # Aagaard cites a die-combination in a trailing paren — «74.1 (49-2/49-5)»,
     # «117.7 (69-GK4/69-GK10)» (year[-mintmaster]die / year[-mintmaster]die).
     # That is meaningful die-study data and is kept. The paren group requires
     # a DIGIT-led interior (`\(\d`) so editorial prose — «(Aagaard erroneously
     # gives a reference to Bruun-6436)», «(this example)» — is NOT captured.
-    "Aagaard": re.compile(r"\bAagaard[\-:]?\s*(\d+(?:\.\d+)?(?:\s*\(\d[^)]*\))?)", re.IGNORECASE),
-    "Dav":     re.compile(r"(?<!cf\. )(?<!cf\.)\bDav[\.\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    # The paren must also CLOSE before the next «;»: lot 14131 prints an
+    # unclosed «Aagaard-18 (53-29/53-4; Bruun-6102. …», and `[^)]*` ran on to
+    # the provenance paren at the end of the lot, swallowing the whole text.
+    # Aagaard numbers trial strikes and klippe with a LETTER-led code —
+    # «T2», «TKG6», «TGG2», «TC1», «KP1», «KG5», «GG3», «K9», «A1» — and
+    # emergency issues as «8S-1», «1M-1». The earlier digit-only value
+    # skipped the letter codes (and, run over the unmasked text, then took
+    # «60» from lot 1217's prose «(Aagaard 60-1)», a different die) and cut
+    # «8S-1» to «8».
+    "Aagaard": re.compile(
+        r"\bAagaard[\-:]?\s*((?:(?-i:[A-Z]{1,3}|[A-Z][a-z]{1,2}-)\d+[A-Za-z]*|\d+(?:\.\d+)?(?:(?-i:[A-Z])-\d+)?)"
+        r"(?:\s*\(\d[^();]*\))?)", re.IGNORECASE),
+    # Davenport prefixes a letter to numbers inserted between existing ones —
+    # «Dav-A3641», «Dav-B3557», «Dav-A1287» (16 lots). `\d+` straight after
+    # «Dav-» skipped them. «LS» is the Large Size register (key «Dav-LS»).
+    "Dav":     re.compile(r"(?<!cf\. )(?<!cf\.)\bDav[\.\-:]?\s*(?!LS)((?-i:[A-Z]{0,2})\d+[A-Za-z]*)", re.IGNORECASE),
     "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Wilcke":  re.compile(r"\bWilcke[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
     # Anders Harck, «Christian IV's mønter» (online catalogue) — cited on
@@ -194,7 +216,10 @@ REF_PATTERNS = {
     # («FP – Frank Pedersen. …», Parts I, II, III, V).
     # Cited as «FP-44.3», «FP-9.3», «FP-36». Appears on 42 Bruun lots, all
     # under Christian VII (1766-1808). Sub-variant decimals («.X») captured.
-    "FP":                re.compile(r"\bFP[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)"),
+    # Pedersen's lettered series — «FP-E6», «FP-R4.1», «FP-SH8.1», «FP-P3»
+    # (29 lots) — carry a one- or two-letter prefix the digit-only value
+    # skipped.
+    "FP":                re.compile(r"\bFP[\-:]?\s*([A-Z]{0,2}\d+(?:\.\d+)?[A-Za-z]*)"),
     # «Jensen & Skjoldager» (the Norwegian Frederik I lejrskilling catalogue
     # by Niels Jørgen Jensen and Mogens Skjoldager). Bruun catalogue cites
     # as «Skjoldager-T21/25» / «Jensen & Skjoldager-...»; match the
@@ -216,19 +241,25 @@ REF_PATTERNS = {
         # series prefix stays strictly uppercase — a global IGNORECASE would
         # let `[A-Z]` swallow a lowercase prose word before the number.
         r"\b(?i:Skjoldager)[\-:]?\s*"
-        r"((?:[A-Z]-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]-?\s*)?\d+[A-Za-z]*)*)"),
+        # «SH 25» / «SH11» (lots 15179, 15180): a two-letter series.
+        r"((?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*)*)"),
     # ── see the comment above `_REF_VALUE` ─────────────────────────────────
     # Swedish
     "SM":                 _ref_short("SM"),     # Sveriges Mynt 1521-2021
     "SB":                 _ref_short("SB"),     # Sveriges Besittningsmynt
-    "SG":                 _ref_short("SG"),     # Delzanno, Sveriges Guldmynt
+    "SG":                 re.compile(_REF_LB + r"S[Gg]-\s*" + _REF_VALUE),  # Delzanno, Sveriges Guldmynt; «Sg-26» lot 14144
     "SMH":                _ref_short("SMH"),    # Malmer, Den Svenska Mynthistorien
     "MB":                 _ref_short("MB"),
-    "Llt":                _ref_short("Llt"),    # Lagerqvist, Svenska Mynt … 995-1521
+    # Lagerqvist, Svenska Mynt … 995-1521 — also cited by a roman group
+    # number: «Llt-XI:A:1a», «Llt-XIII:1a», «Llt-XXXIII:4».
+    "Llt":                re.compile(_REF_LB + r"Llt-\s*([IVXL]+(?::[A-Z])?:\d+[a-z]*|[A-Za-z]{0,3}\d+[A-Za-z]*(?:[.:/][0-9A-Za-z]+)*)"),
     "Delzanno":           _ref_long("Delzanno"),
     "Hagander":           _ref_long("Hagander"),
     "Appelgren":          _ref_long("Appelgren"),
-    "Malmer":             _ref_long("Malmer"),
+    # Malmer's «Nordiska mynt» types are «KG 7», «KG-11», «KG 9A» (space /
+    # hyphen joined, written «KG7» once collapsed); her die numbers may end in
+    # a die letter, «14.A78-b» (lot 13013, previously cut to «14.A78»).
+    "Malmer":             re.compile(_REF_LB + r"Malmer\b[\-:]?\s*(KG[\s\-]?\d+[A-Za-z]*|[A-Za-z]{0,3}\d+[A-Za-z]*(?:[.:/][0-9A-Za-z]+)*(?:-[a-z]\b)?)"),
     "Ossbahr":            _ref_long("Ossbahr"),
     "Frösell":            _ref_long("Frösell"),
     "Tingström":          _ref_long("Tingström"),
@@ -241,11 +272,13 @@ REF_PATTERNS = {
     "Moesgaard":          _ref_long("Moesgaard"),
     "Mackeprang":         _ref_long("Mackeprang"),
     # «C. J. Becker-87», «C. J. Becker-H 46/174» (a hoard / plate reference)
-    "Becker":             re.compile(_REF_LB + r"Becker\b[\-:]?\s*(H\s?\d+(?:/\d+)?|\d+[A-Za-z]*)"),
+    # Becker's type groups are lettered — «H 46/174», «M 9/166», «MX 27/189»,
+    # «K 2/112», «HX2/329», «E1a/202» — the earlier pattern knew only «H».
+    "Becker":             re.compile(_REF_LB + r"Becker\b[\-:]?\s*([A-Z]{1,2}\s?\d+[a-z]?(?:/\d+)?|\d+[A-Za-z]*)"),
     "FL":                 _ref_short("FL"),     # Lindahl, Danmarks Mønter 1377-1448
     "Kold":               _ref_long("Kold"),    # Meybusch medals
     "JS":                 _ref_short("JS"),     # Sømod, Danske og norske medailler
-    "LS":                 re.compile(_REF_LB + r"LS-\s*(\d+(?:-\d+)*)"),  # Stevnsborg, «LS-2-002»
+    "LS":                 re.compile(_REF_LB + r"(?:LS-|Stevnsborg-\s*LS-?)\s*(\d+(?:-\d+)*)"),  # Stevnsborg, «LS-2-002»; «Stevnsborg-LS1-012» lot 15231
     "K&N":                _ref_long("K&N"),     # Knudsen & Nielsen, Christian IV variants
     "Aagaard & Märcher":  _ref_long("Aagaard & Märcher"),  # Frederik II Speciedaler 1572
     "UBJ":                _ref_short("UBJ"),    # Trankebar
@@ -256,19 +289,25 @@ REF_PATTERNS = {
     "Rønning":            _ref_long("Rønning"),
     # German and Baltic
     "JSJ":                _ref_short("JSJ"),    # Jensen, Hertug Hans den Yngre
-    "Weinmeister":        _ref_long("Weinmeister"),  # Holstein-Schauenburg
-    "Trippler/Kalvelage": _ref_long(r"Trippler/\s?Kalvelage"),  # Oldenburg
+    "Weinmeister":        _ref_long("Weinm(?:eister|aster)"),  # Holstein-Schauenburg; «Weinmaster-153» lot 12218
+    # Also printed in reverse order, «Kalvelage/Trippler-320» (7 lots).
+    "Trippler/Kalvelage": _ref_long(r"(?:Trippler/\s?Kalvelage|Kalvelage/\s?Trippler)"),  # Oldenburg
     "Jesse":              _ref_long("Jesse"),   # Wendischer Münzverein
     "Joseph":             _ref_long("Joseph"),  # Solms
     "Merseburger":        _ref_long("Merseburger"),
     "Dassdorf":           _ref_long("Dassdorf"),
     "Marienburg":         _ref_long("Marienburg"),
+    # Bahrfeldt's own name as the citation (lot 15223, printed «Barhfeldt»);
+    # kept apart from «Marienburg» — the identification is not printed.
+    "Bahrfeldt":          _ref_long("Ba(?:hr|rh)feldt"),
     "AKS":                _ref_short("AKS"),
     "Haljak":             _ref_long("Haljak"),  # Livonia
     # English, Polish, Russian, world
     "S":                  _ref_short("S"),      # Seaby / Spink
     "North":              _ref_long("North"),
     "SCBI Cop":           _ref_long("SCBI Cop"),
+    # The Cnut part of the Copenhagen SCBI volumes, «SCBI Cop(Cnut)-87».
+    "SCBI Cop (Cnut)":    re.compile(_REF_LB + r"SCBI Cop\s?\(Cnut\)-\s*" + _REF_VALUE),
     "Hild":               _ref_long("Hild"),
     "Hildebrand":         _ref_long("Hildebrand"),
     "Blackburn":          _ref_long("Blackburn"),
@@ -279,7 +318,28 @@ REF_PATTERNS = {
     "Salvesen":           _ref_long("Salvesen"),
     # Davenport & Søndergaard «Large Size Silver Coins» — its own register;
     # the «Dav» pattern needs a digit right after «Dav-» and so skips these.
-    "Dav-LS":             re.compile(_REF_LB + r"Dav-\s*LS-?\s*(\d+[A-Za-z]*)"),
+    "Dav-LS":             re.compile(_REF_LB + r"(?i:Dav)-\s*(?i:LS)-?\s*(\d+[A-Za-z]*)"),
+    # ── catalogues cited in Parts II-V but not matched before 2026-11-17 ───
+    # Each is defined in a catalogue's WORKS CITED list, except where noted.
+    "Bergsøe":            _ref_long("Be(?:r)?gsøe"),   # medals; «Begsøe-135» lot 15250
+    # Ramus numbers in Arabic or Roman — «Ramus-76», «Ramus-34-35», «Ramus-I.II»,
+    # «Ramus-XXXXI», «Ramus-LIV».
+    "Ramus":              re.compile(_REF_LB + r"Ramus\b[\-:]?\s*(\d+(?:-\d+)?|[IVXL]+(?:\.[IVXL]+)?)\b"),  # Om Knud den Helliges Mynter
+    "Schütz":             _ref_long("Schütz"),         # Die Hessischen Münzen
+    "Gaedechens":         _ref_long("Gaed(?:echens)?"),  # Hamburgische Münzen; «Gaed-18» lot 15241
+    "Märcher & Pedersen": _ref_long("Märcher & Pedersen"),  # Frederik V's norske speciedaler 1765
+    "Galster, Kongsø":    _ref_long("Galster, Kongsø"),  # Møntfundet fra Kongsø Plantage
+    "MI":                 _ref_short("MI"),            # Hawkins, Medallic Illustrations
+    "Beskrivelsen 1791":  re.compile(_REF_LB + r"Beskrivelsen 1791-\s*(pl\.\s*\d+(?:,\s*\d+)?|\d+)"),
+    # Stenersen, Myntfundet fra Græslid — cited by class and number,
+    # «Stenersen-Class C, 20»; kept in the printed form.
+    "Stenersen":          re.compile(_REF_LB + r"Stenersen-\s*(Class [A-Z], \d+(?:-\d+)?)"),
+    # Not in the bibliography: «AH-35.10.2» (2 lots, the dotted shape of a
+    # Harck number) and «F-295» (3 lots, Christian IX / Frederik VIII gold,
+    # in the slot Fr takes). Kept under their printed codes. «F-» is read only
+    # after «. » / «; » and before «;», so an NGC grade «F-12» never matches.
+    "AH":                 _ref_short("AH"),
+    "F":                  re.compile(r"(?<=[.;] )F-(\d{2,})(?=;)"),
 }
 
 # Hede abbreviated to «H-» (see the fallback in `parse_part`). Same value
@@ -299,6 +359,112 @@ def _schive_value(m: "re.Match") -> str:
     hyphen.
     """
     return f"{m.group('plate')}:{re.sub(r'\\s+', '', m.group('nums'))}"
+
+
+def _mask_parens(text: str) -> str:
+    """Blank out every BALANCED «( … )» span, innermost first, length-preserving.
+
+    A single `\\([^)]*\\)` pass let an UNCLOSED «(» run on to the next «)»
+    anywhere later in the lot: lot 14131 prints «Aagaard-18 (53-29/53-4;
+    Bruun-6102. …» with no closing paren, the mask reached the provenance
+    paren at the very end of the lot, and «Bruun-6102» was blanked with
+    everything else. An unbalanced «(» is now left as text.
+    """
+    paren = re.compile(r"\([^()]*\)")
+    prev = None
+    while prev != text:
+        prev, text = text, paren.sub(lambda m: " " * len(m.group(0)), text)
+    return text
+
+
+# Keys matched against the UNMASKED text: Aagaard keeps its die-combination
+# paren as part of the value, and «SCBI Cop(Cnut)» carries its volume in one.
+_UNMASKED_KEYS = frozenset({"Aagaard", "SCBI Cop (Cnut)"})
+# Keys whose value is one token although the PDF prints it with a space
+# inside («F- 53/F-57», «KG 7», «60 B», «SH 25»).
+_COLLAPSE_SPACE_KEYS = frozenset({"Skjoldager", "Malmer", "Lange"})
+# Keys whose sub-number may be printed with a decimal comma («Sieg-102,3»).
+_DECIMAL_COMMA_KEYS = frozenset({"KM", "Sieg"})
+
+
+def _ref_value(key: str, m: "re.Match") -> str:
+    """The canonical value of one REF_PATTERNS match."""
+    if key == "Schive":
+        return _schive_value(m)
+    value = m.group(1)
+    if key in _COLLAPSE_SPACE_KEYS:
+        value = re.sub(r"\s+", "", value)
+        if key == "Malmer":
+            value = re.sub(r"^KG-", "KG", value)
+    if key in _DECIMAL_COMMA_KEYS:
+        value = re.sub(r"(?<=\d),(?=\d)", ".", value)
+    return value
+
+
+# The reference chain ends with the lot's own «Bruun-NNNN»; a number for the
+# same catalogue AFTER it belongs to the description (an undertype, a die
+# link), not to this coin.
+_CHAIN_END_RE = re.compile(r"\bBruun[\-:]?\s*\d+[A-Za-zæøåÆØÅ]*")
+_CHAIN_START_RE = re.compile(r"\b(?:NGC|PCGS|ICG|ANACS)\b|\b(?:AU|MS|EF|VF|XF|VG|PROOF)-\d")
+# A second value printed without repeating the code: «Sieg-23.2 (Denmark),
+# 14.2 (Norway)», «Delzanno-61(as medal), 47(as coin)», «Fr-1509 and 1931».
+# After a bare comma the second number must carry its own qualifier paren:
+# «Dav-LS530, 3537» (lot 14127) and «MI-334, 164» (15221) do not say which
+# register the second number is in, so it is not attributed to this code.
+_CONTINUATION_RE = re.compile(
+    r"(?:\s*\([^()]*\))?(?:\s*,\s*(\d+(?:\.\d+)?[A-Za-z]?)(?=\s*\()"
+    r"|\s+and\s+(\d+(?:\.\d+)?[A-Za-z]?)(?=\s*[(;]))")
+_QUALIFIER_RE = re.compile(r"\s*\(([^()]{1,30})\)")
+# Keys a lot prints once by construction — never collected twice.
+_SINGLE_KEYS = frozenset({"Bruun", "Pn"})
+
+
+def _more_refs(body_match: str, body_masked: str, refs: dict) -> dict:
+    """Further values of a catalogue already in `refs`, inside the reference chain.
+
+    `refs` keeps ONE value per catalogue — the first match — and that stays
+    the canonical scalar every consumer reads. Some lots cite a catalogue
+    twice: two Krause volumes («KM-539 (Denmark); KM-230 (Norway)», lots
+    11276 / 14190), the Danish and Norwegian sections of Sieg / Friedberg
+    (13202, 17085, 17113), two editions of Norges Mynter («NM-18:1 (1976);
+    NM-8 (1992)», 19 lots), two Delzanno numbers (15136). Those further
+    values are returned here as `{key: [value, …]}`, each with the printed
+    qualifier when one follows («230 (Norway)»), so a reader of the cache
+    sees exactly what the lot prints. Only the chain between the grade and
+    the lot's own «Bruun-NNNN» is searched, and parens are masked as for
+    `refs`, so prose and editorial notes do not contribute.
+    """
+    start = _CHAIN_START_RE.search(body_masked)
+    lo = start.start() if start else 0
+    end = _CHAIN_END_RE.search(body_masked, lo)
+    if not end:
+        return {}
+    hi = end.start()
+    more: dict[str, list[str]] = {}
+    for key, pat in REF_PATTERNS.items():
+        if key not in refs or key in _SINGLE_KEYS:
+            continue
+        zone = (body_match if key in _UNMASKED_KEYS else body_masked)[:hi]
+        seen = {refs[key]}
+        values: list[str] = []
+        for m in pat.finditer(zone, lo):
+            cands = [(m, _ref_value(key, m))]
+            pos = m.end()
+            while True:
+                c = _CONTINUATION_RE.match(body_match, pos)
+                if not c or c.end() > hi:
+                    break
+                cands.append((c, c.group(1) or c.group(2)))
+                pos = c.end()
+            for mm, value in cands:
+                if value in seen:
+                    continue
+                seen.add(value)
+                q = _QUALIFIER_RE.match(body_match, mm.end())
+                values.append(f"{value} ({q.group(1).strip()})" if q else value)
+        if values:
+            more[key] = values
+    return more
 
 
 YEAR_RE = re.compile(r"\b(1[1-9]\d{2}|20\d{2})\b")
@@ -694,21 +860,14 @@ def parse_part(slug: str) -> list[dict]:
         # citation legitimately carries a trailing die-combination paren
         # («74.1 (49-2/49-5)») that we keep; its own pattern requires a
         # digit-led interior so editorial prose parens are still dropped.
-        body_for_refs = re.sub(r"\([^)]*\)", lambda m: " " * len(m.group(0)), body_match)
+        body_for_refs = _mask_parens(body_match)
         refs = {}
         for k, pat in REF_PATTERNS.items():
-            text = body_match if k == "Aagaard" else body_for_refs
+            text = body_match if k in _UNMASKED_KEYS else body_for_refs
             mm = pat.search(text)
             if mm:
-                # Collapse whitespace the PDF line-wrap leaves INSIDE an
-                # index («F- 53/F-57» → «F-53/F-57»); the value is a single
-                # catalogue token, never a phrase.
-                if k == "Skjoldager":
-                    refs[k] = re.sub(r"\s+", "", mm.group(1))
-                elif k == "Schive":
-                    refs[k] = _schive_value(mm)
-                else:
-                    refs[k] = mm.group(1)
+                refs[k] = _ref_value(k, mm)
+        refs_more = _more_refs(body_match, body_for_refs, refs)
         # «H-150», «H-14B»: on 13 lots Bruun abbreviates Hede to a bare «H»,
         # in the slot Hede normally takes (after KM, before Sieg). It is not in
         # the bibliography, but every one of the 13 matches a Hede page of the
@@ -951,6 +1110,7 @@ def parse_part(slug: str) -> list[dict]:
             "is_pattern": is_pattern,
             "catalogue_section": catalogue_section,
             "refs": refs,
+            **({"refs_more": refs_more} if refs_more else {}),
             "body_excerpt": body[:600],
         })
 

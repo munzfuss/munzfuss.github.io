@@ -86,7 +86,7 @@ class BuilderSideExtraction(unittest.TestCase):
 
     PAT = re.compile(
         r"Jensen\s*&?\s*Skjoldager[-:]?\s*"
-        r"((?:[A-Z]-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]-?\s*)?\d+[A-Za-z]*)*)"
+        r"((?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*)*)"
     )
 
     def _cap(self, text):
@@ -97,10 +97,14 @@ class BuilderSideExtraction(unittest.TestCase):
         src = (ROOT / "scripts" / "maintenance"
                / "build_bruun_denmark_seed.py").read_text()
         self.assertIn(
-            r"((?:[A-Z]-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]-?\s*)?\d+[A-Za-z]*)*)",
+            r"((?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]{1,2}-?\s*)?\d+[A-Za-z]*)*)",
             src,
             "builder-side Jensen-Skjoldager capture drifted from the parser's",
         )
+
+    def test_two_letter_series(self):
+        # Part V lots 15179 / 15180 print «Jensen & Skjoldager-SH 25» / «-SH11».
+        self.assertEqual(self._cap("Jensen & Skjoldager-SH 25; Schou-24"), "SH25")
 
     def test_prose_rejected(self):
         self.assertIsNone(self._cap(
