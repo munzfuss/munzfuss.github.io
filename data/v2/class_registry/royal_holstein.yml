@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 268 active, 534 retired.
+# 269 active, 534 retired.
 
 id: royal_holstein
 classes:
@@ -450,14 +450,9 @@ classes:
   - id: c-2268f597
     status: active
     created: '2026-10-22'
-    label: unified-dk-hede-c5h115a
+    label: unified-schleswig_holstein-numismaster-93037
     legacy_id: unified-dk-hede-c5h115a
     members:
-      - dk-bruun-6791
-      - dk-hede-c5h115a
-      - dk-hede-c5h115b
-      - dk-tid-163668
-      - kmk-83604
       - schleswig_holstein-numismaster-93037
   - id: c-2343466b
     status: active
@@ -1004,6 +999,12 @@ classes:
     members:
       - dk-hede-c7h26a
       - dk-hede-c7h26b
+  - id: c-4d34c51a
+    status: active
+    created: '2026-11-16'
+    label: unified-schleswig_holstein-numismaster-93036
+    members:
+      - schleswig_holstein-numismaster-93036
   - id: c-4e4e2b1f
     status: active
     created: '2026-10-22'
@@ -2059,17 +2060,23 @@ classes:
   - id: c-a7582454
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-6792
+    label: unified-dk-hede-c5h115a
     legacy_id: unified-dk-bruun-6792
+    split_into:
+      - c-4d34c51a
     members:
+      - dk-bruun-6791
       - dk-bruun-6792
       - dk-bruun-6813
       - dk-bruun-6824
       - dk-bruun-6825
       - dk-bruun-6826
       - dk-bruun-6856
+      - dk-hede-c5h115a
+      - dk-hede-c5h115b
       - dk-numista-275958
-      - schleswig_holstein-numismaster-93036
+      - dk-tid-163668
+      - kmk-83604
   - id: c-a8147818
     status: active
     created: '2026-10-22'

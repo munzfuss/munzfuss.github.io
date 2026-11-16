@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `landgrafschaft_hessen_kassel`.
-# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/landgrafschaft_hessen_kassel.yml across all sources.
 #
 # Input: 696 per-source seed entries.
-# Output: 501 unified entries (one per physical coin).
+# Output: 487 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: landgrafschaft_hessen_kassel
-generated_at: '2026-11-13'
+generated_at: '2026-11-16'
 coins:
   - id: c-ffc1f314
     class_id: c-ffc1f314
@@ -356,13 +356,17 @@ coins:
     year_last: 1831
     year_ranges:
       -   - 1823
+          - 1823
+      -   - 1831
           - 1831
-    year_label: 1823-1831
+    year_label: 1823, 1831
     ruler: William II
     catalog:
       km:
         - '579'
         - '579.2'
+        - '579.4'
+        - '579.1'
       numista: '109020'
       others:
         - Schütz IV# 2314
@@ -380,14 +384,31 @@ coins:
         source: numista
       - value: 0.5
         source: ucoin
+        specimen: tid-tid-81847
+      - value: 0.5
+        source: ucoin
+        specimen: tid-tid-81849
+      - value: 0.5
+        source: ucoin
+        specimen: tid-tid-81853
     weight_rough_g:
       - value: 5.32
         source: numista
       - value: 5.32
         source: ucoin
+        specimen: tid-tid-81847
+      - value: 5.32
+        source: ucoin
+        specimen: tid-tid-81849
+      - value: 5.32
+        source: ucoin
+        specimen: tid-tid-81853
     diameter_mm:
       - value: 23.0
         source: numista
+      - value: 23.0
+        source: ucoin
+        specimen: tid-tid-81853
     sources:
       - type: literature
         url: https://en.numista.com/109020
@@ -395,10 +416,18 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-6-thaler-1831/?tid=81847
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-6-thaler-1823/?tid=81849
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-6-thaler-1823-1831/?tid=81853
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-109020
       - tid-tid-81847
+      - tid-tid-81849
+      - tid-tid-81853
   - id: c-149a8147
     class_id: c-149a8147
     label: unified-dk-numista-111414
@@ -3466,7 +3495,10 @@ coins:
     inscription_rev: VNO VOLENTE HUMILIS LEVABOR
     mint: Kassel
     catalog:
-      km: '162.1'
+      km:
+        - '162.1'
+        - '162.6'
+        - '162.7'
       numista: '196148'
       others:
         - Schütz III# 900
@@ -3501,11 +3533,19 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1637/?tid=164973
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1637/?tid=164974
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1637/?tid=170631
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-196148
       - ikmk-18206232
       - tid-tid-164973
+      - tid-tid-164974
+      - tid-tid-170631
   - id: c-0fbaa4ac
     class_id: c-0fbaa4ac
     label: unified-dk-numista-19700
@@ -4879,14 +4919,23 @@ coins:
     kind: kurant
     nominal: 1 Goldgulden
     year_first: 1637
-    year_last: 1637
-    year_label: '1637'
+    year_last: 1638
+    year_ranges:
+      -   - 1637
+          - 1638
+    year_label: 1637-1638
     ruler: William V
     catalog:
-      km: '186.2'
-      numista: '268226'
+      km:
+        - '186.2'
+        - '186.1'
+      numista:
+        - '268226'
+        - '268242'
       others:
         - Schütz III# 100
+        - Schütz III# 1023
+      fr: '1262'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -4897,16 +4946,28 @@ coins:
     fineness:
       - value: 0.986
         source: numista
+        specimen: dk-numista-268226
+      - value: 0.986
+        source: numista
+        specimen: dk-numista-268242
     weight_rough_g:
+      - value: 3.2
+        source: numista
+        specimen: dk-numista-268242
       - value: 3.21
         source: numista
+        specimen: dk-numista-268226
     sources:
       - type: literature
         url: https://en.numista.com/268226
         ref: Numista N#268226 — 1 Goldgulden - William V - Hesse-Cassel
+      - type: literature
+        url: https://en.numista.com/268242
+        ref: Numista N#268242 — 1 Goldgulden - William V - Hesse-Cassel
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-268226
+      - dk-numista-268242
   - id: c-03b1ca3b
     class_id: c-03b1ca3b
     label: unified-dk-numista-268230
@@ -4944,43 +5005,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-268230
-  - id: c-231d9af8
-    class_id: c-231d9af8
-    label: unified-dk-numista-268242
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Goldgulden
-    year_first: 1638
-    year_last: 1638
-    year_label: '1638'
-    ruler: William V
-    catalog:
-      km: '186.1'
-      numista: '268242'
-      fr: '1262'
-      others:
-        - Schütz III# 1023
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.986
-        source: numista
-    weight_rough_g:
-      - value: 3.2
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/268242
-        ref: Numista N#268242 — 1 Goldgulden - William V - Hesse-Cassel
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - dk-numista-268242
   - id: c-603f97fd
     class_id: c-603f97fd
     label: unified-dk-numista-268243
@@ -5377,16 +5401,24 @@ coins:
     kind: kurant
     nominal: 5 Thalers
     year_first: 1821
-    year_last: 1823
+    year_last: 1829
     year_ranges:
       -   - 1821
           - 1823
-    year_label: 1821-1823
+      -   - 1825
+          - 1825
+      -   - 1828
+          - 1829
+    year_label: 1821-1823, 1825, 1828-1829
     ruler: William II
     mint: Kassel
     catalog:
-      km: '574.1'
-      numista: '268279'
+      km:
+        - '574.1'
+        - '574.2'
+      numista:
+        - '268279'
+        - '268280'
       others:
         - Schütz IV# 2291
         - Schütz IV# 2308
@@ -5406,68 +5438,34 @@ coins:
     fineness:
       - value: 0.9
         source: numista
+        specimen: dk-numista-268279
+      - value: 0.9
+        source: numista
+        specimen: dk-numista-268280
       - value: 0.9
         source: ucoin
     weight_rough_g:
       - value: 6.65
         source: numista
+        specimen: dk-numista-268279
+      - value: 6.65
+        source: numista
+        specimen: dk-numista-268280
     sources:
       - type: literature
         url: https://en.numista.com/268279
         ref: Numista N#268279 — Electorate of Hesse-Cassel - 5 Thalers William II 1821-1823
+      - type: literature
+        url: https://en.numista.com/268280
+        ref: Numista N#268280 — Hesse-Cassel Electorate - 5 Thalers - William II 1823-1829
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-5-thaler-1821-1823/?tid=81811
         ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-268279
-      - tid-tid-81811
-  - id: c-55d3fa46
-    class_id: c-55d3fa46
-    label: unified-dk-numista-268280
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 5 Thalers
-    year_first: 1823
-    year_last: 1829
-    year_ranges:
-      -   - 1823
-          - 1823
-      -   - 1825
-          - 1825
-      -   - 1828
-          - 1829
-    year_label: 1823, 1825, 1828-1829
-    ruler: William II
-    catalog:
-      km: '574.2'
-      numista: '268280'
-      others:
-        - AKS# 17
-        - Jaeg 2 FH# 53
-        - Divo/S# 128
-      fr: '1293'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.9
-        source: numista
-    weight_rough_g:
-      - value: 6.65
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/268280
-        ref: Numista N#268280 — Hesse-Cassel Electorate - 5 Thalers - William II 1823-1829
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
       - dk-numista-268280
+      - tid-tid-81811
   - id: c-e0833008
     class_id: c-e0833008
     label: unified-dk-numista-268282
@@ -5982,12 +5980,19 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1/48 Thaler
-    year_first: 1634
+    year_first: 1628
     year_last: 1634
-    year_label: '1634'
+    year_ranges:
+      -   - 1628
+          - 1628
+      -   - 1634
+          - 1634
+    year_label: 1628, 1634
     ruler: William V
     catalog:
-      km: '105.2'
+      km:
+        - '105.2'
+        - '105.1'
       numista: '278166'
       others:
         - Schütz III# 848.1
@@ -6003,11 +6008,15 @@ coins:
         url: https://en.numista.com/278166
         ref: Numista N#278166 — Hesse-Cassel Landgraviate 1/48 Thaler - William V 1634
       - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-48-thaler-1628/?tid=164435
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-48-thaler-1634/?tid=164436
         ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-278166
+      - tid-tid-164435
       - tid-tid-164436
   - id: c-8223d75e
     class_id: c-8223d75e
@@ -6364,26 +6373,18 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 28.2
-        source: ucoin
       - value: 28.72
         source: numista
     diameter_mm:
-      - value: 40.0
-        source: ucoin
       - value: 44.0
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/294595
         ref: Numista N#294595 — 1 Thaler (Weidenbaumtaler) - William V - Hesse-Cassel 1637
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1637/?tid=164974
-        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-294595
-      - tid-tid-164974
   - id: c-4375912f
     class_id: c-4375912f
     label: unified-dk-numista-295477
@@ -7362,7 +7363,9 @@ coins:
     ruler: William V
     mint: Kassel
     catalog:
-      km: '182.1'
+      km:
+        - '182.1'
+        - '182.2'
       numista: '339492'
       dav: ST 6756
       others:
@@ -7389,10 +7392,14 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-2-thaler-1637/?tid=165060
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-2-thaler-1637/?tid=165061
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-339492
       - tid-tid-165060
+      - tid-tid-165061
   - id: c-179789b6
     class_id: c-179789b6
     label: unified-dk-numista-339493
@@ -10729,6 +10736,7 @@ coins:
       km:
         - '115'
         - '115.1'
+        - '115.3'
       numista: '60471'
     metal: silver
     metal_verified: true
@@ -10752,10 +10760,14 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1629-1631/?tid=164964
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1631-1635/?tid=164966
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-numista-60471
       - tid-tid-164964
+      - tid-tid-164966
   - id: c-035ff081
     class_id: c-035ff081
     label: unified-dk-numista-61122
@@ -16349,32 +16361,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-164434
-  - id: c-dbdea021
-    class_id: c-dbdea021
-    label: unified-tid-tid-164435
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/48 Thaler
-    year_first: 1628
-    year_last: 1628
-    year_label: '1628'
-    ruler: William V
-    catalog:
-      km: '105.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-48-thaler-1628/?tid=164435
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-164435
   - id: c-a4f24221
     class_id: c-a4f24221
     label: unified-tid-tid-164439
@@ -16547,36 +16533,9 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-164502
-  - id: c-5a44d190
-    class_id: c-5a44d190
-    label: unified-tid-tid-164505
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ⅛ Thaler
-    year_first: 1633
-    year_last: 1633
-    year_label: '1633'
-    ruler: William V
-    mint: Kassel
-    catalog:
-      km: '134.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-8-thaler-1633/?tid=164505
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-164505
   - id: c-4769c343
     class_id: c-4769c343
-    label: unified-tid-tid-164506
+    label: unified-tid-tid-164505
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
@@ -16588,35 +16547,12 @@ coins:
           - 1637
     year_label: 1633-1637
     ruler: William V
-    catalog:
-      km: '134.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-8-thaler-1633-1637/?tid=164506
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-164506
-  - id: c-f530673a
-    class_id: c-f530673a
-    label: unified-tid-tid-164511
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ⅛ Thaler
-    year_first: 1636
-    year_last: 1636
-    year_label: '1636'
-    ruler: William V
     mint: Kassel
     catalog:
-      km: '134.4'
+      km:
+        - '134.1'
+        - '134.2'
+        - '134.4'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -16625,10 +16561,18 @@ coins:
     verified: false
     sources:
       - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-8-thaler-1633/?tid=164505
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-8-thaler-1633-1637/?tid=164506
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-8-thaler-1636/?tid=164511
         ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
+      - tid-tid-164505
+      - tid-tid-164506
       - tid-tid-164511
   - id: c-d66766e0
     class_id: c-d66766e0
@@ -17345,19 +17289,24 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-164843
-  - id: c-f650b73c
-    class_id: c-f650b73c
+  - id: c-e32b18f2
+    class_id: c-e32b18f2
     label: unified-tid-tid-164844
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
     nominal: ½ Thaler
     year_first: 1628
-    year_last: 1628
-    year_label: '1628'
+    year_last: 1632
+    year_ranges:
+      -   - 1628
+          - 1632
+    year_label: 1628-1632
     ruler: William V
     catalog:
-      km: '108.1'
+      km:
+        - '108.1'
+        - '108.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -17371,40 +17320,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1628/?tid=164844
         ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-164844
-  - id: c-e32b18f2
-    class_id: c-e32b18f2
-    label: unified-tid-tid-164845
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ½ Thaler
-    year_first: 1629
-    year_last: 1632
-    year_ranges:
-      -   - 1629
-          - 1632
-    year_label: 1629-1632
-    ruler: William V
-    catalog:
-      km: '108.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 14.1
-        source: ucoin
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1629-1632/?tid=164845
         ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
+      - tid-tid-164844
       - tid-tid-164845
   - id: c-ec8af23d
     class_id: c-ec8af23d
@@ -17537,7 +17458,9 @@ coins:
     year_label: 1636-1637
     ruler: William V
     catalog:
-      km: '160.1'
+      km:
+        - '160.1'
+        - '160.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -17551,11 +17474,15 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1636-1637/?tid=164855
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1637/?tid=164858
+        ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-164855
-  - id: c-3e235948
-    class_id: c-3e235948
+      - tid-tid-164858
+  - id: c-258c283a
+    class_id: c-258c283a
     label: unified-tid-tid-164856
     fuss: seed_unsorted
     phase: ucoin
@@ -17568,38 +17495,11 @@ coins:
           - 1639
     year_label: 1637-1639
     ruler: William VI
-    catalog:
-      km: '175.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 14.1
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1637-1639/?tid=164856
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-164856
-  - id: c-258c283a
-    class_id: c-258c283a
-    label: unified-tid-tid-164857
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ½ Thaler
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    ruler: William VI
     mint: Kassel
     catalog:
-      km: '175.2'
+      km:
+        - '175.1'
+        - '175.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -17611,40 +17511,15 @@ coins:
         source: ucoin
     sources:
       - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1637-1639/?tid=164856
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1637/?tid=164857
         ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
+      - tid-tid-164856
       - tid-tid-164857
-  - id: c-f1a887c1
-    class_id: c-f1a887c1
-    label: unified-tid-tid-164858
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ½ Thaler
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    ruler: William V
-    catalog:
-      km: '160.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 14.1
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-2-thaler-1637/?tid=164858
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-164858
   - id: c-b78ad5eb
     class_id: c-b78ad5eb
     label: unified-tid-tid-164866
@@ -18018,42 +17893,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-164965
-  - id: c-bb5563b7
-    class_id: c-bb5563b7
-    label: unified-tid-tid-164966
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1631
-    year_last: 1635
-    year_ranges:
-      -   - 1631
-          - 1635
-    year_label: 1631-1635
-    ruler: William V
-    catalog:
-      km: '115.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.2
-        source: ucoin
-    diameter_mm:
-      - value: 40.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1631-1635/?tid=164966
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-164966
   - id: c-fc92c301
     class_id: c-fc92c301
     label: unified-tid-tid-164971
@@ -18498,40 +18337,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-165055
-  - id: c-16df1d17
-    class_id: c-16df1d17
-    label: unified-tid-tid-165061
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 2 Thaler
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    ruler: William V
-    mint: Kassel
-    catalog:
-      km: '182.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 56.4
-        source: ucoin
-    diameter_mm:
-      - value: 54.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-2-thaler-1637/?tid=165061
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-165061
   - id: c-5079f8e2
     class_id: c-5079f8e2
     label: unified-tid-tid-165064
@@ -18702,8 +18507,8 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-165141
-  - id: c-ff8972d1
-    class_id: c-ff8972d1
+  - id: c-919026ae
+    class_id: c-919026ae
     label: unified-tid-tid-165142
     fuss: seed_unsorted
     phase: ucoin
@@ -18717,7 +18522,9 @@ coins:
     year_label: 1637-1639
     ruler: William VI
     catalog:
-      km: '186.1'
+      km:
+        - '186.1'
+        - '186.2'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -18727,47 +18534,27 @@ coins:
     fineness:
       - value: 0.986
         source: ucoin
+        specimen: tid-tid-165142
+      - value: 0.986
+        source: ucoin
+        specimen: tid-tid-165143
     weight_rough_g:
       - value: 3.5
         source: ucoin
+        specimen: tid-tid-165142
+      - value: 3.5
+        source: ucoin
+        specimen: tid-tid-165143
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-goldgulden-1637-1639/?tid=165142
         ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-165142
-  - id: c-919026ae
-    class_id: c-919026ae
-    label: unified-tid-tid-165143
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Goldgulden
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    ruler: William VI
-    catalog:
-      km: '186.2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.986
-        source: ucoin
-    weight_rough_g:
-      - value: 3.5
-        source: ucoin
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/hesse_kassel-1-goldgulden-1637/?tid=165143
         ref: ucoin
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
+      - tid-tid-165142
       - tid-tid-165143
   - id: c-94b1740c
     class_id: c-94b1740c
@@ -18875,39 +18662,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-170626
-  - id: c-18f56674
-    class_id: c-18f56674
-    label: unified-tid-tid-170631
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    ruler: William V
-    catalog:
-      km: '162.7'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.2
-        source: ucoin
-    diameter_mm:
-      - value: 40.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1637/?tid=170631
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-170631
   - id: c-31e607b5
     class_id: c-31e607b5
     label: unified-tid-tid-81613
@@ -19404,38 +19158,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-81845
-  - id: c-f56bc6d0
-    class_id: c-f56bc6d0
-    label: unified-tid-tid-81849
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/6 Thaler
-    year_first: 1823
-    year_last: 1823
-    year_label: '1823'
-    ruler: William II
-    catalog:
-      km: '579.4'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 5.32
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-6-thaler-1823/?tid=81849
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-81849
   - id: c-0c883b04
     class_id: c-0c883b04
     label: unified-tid-tid-81851
@@ -19475,45 +19197,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-81851
-  - id: c-55b80259
-    class_id: c-55b80259
-    label: unified-tid-tid-81853
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ⅙ thaler
-    year_first: 1823
-    year_last: 1831
-    year_ranges:
-      -   - 1823
-          - 1831
-    year_label: 1823-1831
-    ruler: William II
-    catalog:
-      km: '579.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 5.32
-        source: ucoin
-    diameter_mm:
-      - value: 23.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-6-thaler-1823-1831/?tid=81853
-        ref: ucoin
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-81853
   - id: c-13bc9be6
     class_id: c-13bc9be6
     label: unified-tid-tid-81859

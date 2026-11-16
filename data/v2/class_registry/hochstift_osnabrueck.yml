@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 181 active, 0 retired.
+# 176 active, 6 retired.
 
 id: hochstift_osnabrueck
 classes:
@@ -148,9 +148,10 @@ classes:
   - id: c-1383a0e9
     status: active
     created: '2026-10-22'
-    label: unified-tid-tid-173133
+    label: unified-tid-tid-173132
     legacy_id: unified-tid-tid-173133
     members:
+      - tid-tid-173132
       - tid-tid-173133
   - id: c-1393af36
     status: active
@@ -166,6 +167,13 @@ classes:
     legacy_id: unified-tid-tid-172183
     members:
       - tid-tid-172183
+  - id: c-14cfe285
+    status: active
+    created: '2026-11-16'
+    label: unified-tid-tid-172899
+    members:
+      - tid-tid-172899
+      - tid-tid-172901
   - id: c-150c846b
     status: active
     created: '2026-10-22'
@@ -257,6 +265,7 @@ classes:
     legacy_id: unified-tid-tid-172947
     members:
       - tid-tid-172947
+      - tid-tid-172948
   - id: c-21c8a2b8
     status: active
     created: '2026-10-22'
@@ -295,11 +304,13 @@ classes:
   - id: c-297bfc13
     status: active
     created: '2026-10-22'
-    label: unified-dk-numista-238234
+    label: unified-dk-numista-238233
     legacy_id: unified-dk-numista-238234
+    split_into:
+      - c-14cfe285
     members:
+      - dk-numista-238233
       - dk-numista-238234
-      - tid-tid-172901
   - id: c-2c003164
     status: active
     created: '2026-10-22'
@@ -322,14 +333,6 @@ classes:
     legacy_id: unified-tid-tid-172198
     members:
       - tid-tid-172198
-  - id: c-33726f10
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-238233
-    legacy_id: unified-dk-numista-238233
-    members:
-      - dk-numista-238233
-      - tid-tid-172899
   - id: c-34b5f931
     status: active
     created: '2026-10-22'
@@ -345,13 +348,6 @@ classes:
     members:
       - dk-numista-40632
       - tid-tid-172220
-  - id: c-384bad75
-    status: active
-    created: '2026-10-22'
-    label: unified-tid-tid-172948
-    legacy_id: unified-tid-tid-172948
-    members:
-      - tid-tid-172948
   - id: c-3944aa48
     status: active
     created: '2026-10-22'
@@ -424,13 +420,6 @@ classes:
     legacy_id: unified-tid-tid-172179
     members:
       - tid-tid-172179
-  - id: c-43662ef7
-    status: active
-    created: '2026-10-22'
-    label: unified-tid-tid-173333
-    legacy_id: unified-tid-tid-173333
-    members:
-      - tid-tid-173333
   - id: c-437a8205
     status: active
     created: '2026-10-22'
@@ -580,9 +569,10 @@ classes:
   - id: c-59d43209
     status: active
     created: '2026-10-22'
-    label: unified-tid-tid-173119
+    label: unified-tid-tid-173118
     legacy_id: unified-tid-tid-173119
     members:
+      - tid-tid-173118
       - tid-tid-173119
   - id: c-5a93aac4
     status: active
@@ -832,13 +822,6 @@ classes:
     legacy_id: unified-tid-tid-173037
     members:
       - tid-tid-173037
-  - id: c-9059ce0d
-    status: active
-    created: '2026-10-22'
-    label: unified-tid-tid-173132
-    legacy_id: unified-tid-tid-173132
-    members:
-      - tid-tid-173132
   - id: c-961d2301
     status: active
     created: '2026-10-22'
@@ -868,12 +851,6 @@ classes:
     members:
       - dk-numista-238850
       - tid-tid-173146
-  - id: c-a1f19ba9
-    status: active
-    created: '2026-11-13'
-    label: unified-tid-tid-173340
-    members:
-      - tid-tid-173340
   - id: c-a684cebb
     status: active
     created: '2026-10-22'
@@ -978,6 +955,7 @@ classes:
     members:
       - dk-numista-238237
       - tid-tid-173332
+      - tid-tid-173333
   - id: c-b6782627
     status: active
     created: '2026-10-22'
@@ -1143,6 +1121,7 @@ classes:
     members:
       - dk-numista-238235
       - tid-tid-173339
+      - tid-tid-173340
   - id: c-d8d09201
     status: active
     created: '2026-10-22'
@@ -1303,13 +1282,6 @@ classes:
     legacy_id: unified-tid-tid-172673
     members:
       - tid-tid-172673
-  - id: c-fa200214
-    status: active
-    created: '2026-10-22'
-    label: unified-tid-tid-173118
-    legacy_id: unified-tid-tid-173118
-    members:
-      - tid-tid-173118
   - id: c-faf39c47
     status: active
     created: '2026-10-22'
@@ -1332,3 +1304,57 @@ classes:
     members:
       - dk-numista-274729
       - tid-tid-178754
+  - id: c-33726f10
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-238233
+    legacy_id: unified-dk-numista-238233
+    merged_into: c-297bfc13
+    retired: '2026-11-16'
+    members:
+      - dk-numista-238233
+      - tid-tid-172899
+  - id: c-384bad75
+    status: retired
+    created: '2026-10-22'
+    label: unified-tid-tid-172948
+    legacy_id: unified-tid-tid-172948
+    merged_into: c-20ce3b65
+    retired: '2026-11-16'
+    members:
+      - tid-tid-172948
+  - id: c-43662ef7
+    status: retired
+    created: '2026-10-22'
+    label: unified-tid-tid-173333
+    legacy_id: unified-tid-tid-173333
+    merged_into: c-b56243ce
+    retired: '2026-11-16'
+    members:
+      - tid-tid-173333
+  - id: c-9059ce0d
+    status: retired
+    created: '2026-10-22'
+    label: unified-tid-tid-173132
+    legacy_id: unified-tid-tid-173132
+    merged_into: c-1383a0e9
+    retired: '2026-11-16'
+    members:
+      - tid-tid-173132
+  - id: c-a1f19ba9
+    status: retired
+    created: '2026-11-13'
+    label: unified-tid-tid-173340
+    merged_into: c-d888d56f
+    retired: '2026-11-16'
+    members:
+      - tid-tid-173340
+  - id: c-fa200214
+    status: retired
+    created: '2026-10-22'
+    label: unified-tid-tid-173118
+    legacy_id: unified-tid-tid-173118
+    merged_into: c-59d43209
+    retired: '2026-11-16'
+    members:
+      - tid-tid-173118

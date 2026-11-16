@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 320 active, 59 retired.
+# 315 active, 64 retired.
 
 id: hanseatic_lubeck
 classes:
@@ -59,6 +59,7 @@ classes:
     legacy_id: unified-ngc-1138981
     members:
       - ngc-1138981
+      - ngc-1194503
   - id: c-055be970
     status: active
     created: '2026-10-22'
@@ -332,9 +333,10 @@ classes:
   - id: c-1e29ac30
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1194487
+    label: unified-ngc-1138811
     legacy_id: unified-ngc-1194487
     members:
+      - ngc-1138811
       - ngc-1194487
   - id: c-1e83431a
     status: active
@@ -374,13 +376,6 @@ classes:
     members:
       - lu-tid-102740
       - ngc-1139665
-  - id: c-243230a5
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1194503
-    legacy_id: unified-ngc-1194503
-    members:
-      - ngc-1194503
   - id: c-24717bbb
     status: active
     created: '2026-10-22'
@@ -434,6 +429,7 @@ classes:
     legacy_id: unified-ngc-1137992
     members:
       - ngc-1137992
+      - ngc-1189325
   - id: c-28623b61
     status: active
     created: '2026-10-22'
@@ -491,6 +487,7 @@ classes:
     legacy_id: unified-ngc-1138148
     members:
       - ngc-1138148
+      - ngc-1190340
   - id: c-2eac8b19
     status: active
     created: '2026-10-22'
@@ -684,6 +681,7 @@ classes:
     legacy_id: unified-ngc-1138349
     members:
       - ngc-1138349
+      - ngc-1186046
   - id: c-40016ca5
     status: active
     created: '2026-10-22'
@@ -1334,13 +1332,6 @@ classes:
       - dk-numista-271421
       - lu-tid-102722
       - ngc-1142505
-  - id: c-85437f8e
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1190340
-    legacy_id: unified-ngc-1190340
-    members:
-      - ngc-1190340
   - id: c-85c6e0e0
     status: active
     created: '2026-10-22'
@@ -1712,13 +1703,6 @@ classes:
     legacy_id: unified-ngc-1138217
     members:
       - ngc-1138217
-  - id: c-aff661de
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1138811
-    legacy_id: unified-ngc-1138811
-    members:
-      - ngc-1138811
   - id: c-b072da0f
     status: active
     created: '2026-10-22'
@@ -2104,13 +2088,6 @@ classes:
     legacy_id: unified-ngc-1142063
     members:
       - ngc-1142063
-  - id: c-dd36a341
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1189325
-    legacy_id: unified-ngc-1189325
-    members:
-      - ngc-1189325
   - id: c-dd42961d
     status: active
     created: '2026-10-22'
@@ -2298,13 +2275,6 @@ classes:
       - dk-numista-422513
       - lu-tid-102687
       - ngc-1138448
-  - id: c-f28a9229
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1186046
-    legacy_id: unified-ngc-1186046
-    members:
-      - ngc-1186046
   - id: c-f2dafdb8
     status: active
     created: '2026-10-22'
@@ -2473,6 +2443,15 @@ classes:
     retired: '2026-10-26'
     members:
       - kmk-159800
+  - id: c-243230a5
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1194503
+    legacy_id: unified-ngc-1194503
+    merged_into: c-0541d096
+    retired: '2026-11-16'
+    members:
+      - ngc-1194503
   - id: c-289bcb66
     status: retired
     created: '2026-10-22'
@@ -2637,6 +2616,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-428046
+  - id: c-85437f8e
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1190340
+    legacy_id: unified-ngc-1190340
+    merged_into: c-2c1e39f7
+    retired: '2026-11-16'
+    members:
+      - ngc-1190340
   - id: c-8cdf491c
     status: retired
     created: '2026-10-22'
@@ -2730,6 +2718,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-690089
+  - id: c-aff661de
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1138811
+    legacy_id: unified-ngc-1138811
+    merged_into: c-1e29ac30
+    retired: '2026-11-16'
+    members:
+      - ngc-1138811
   - id: c-b0f4317c
     status: retired
     created: '2026-10-22'
@@ -2823,6 +2820,15 @@ classes:
     retired: '2026-11-07'
     members:
       - ngc-1137859
+  - id: c-dd36a341
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1189325
+    legacy_id: unified-ngc-1189325
+    merged_into: c-281b0616
+    retired: '2026-11-16'
+    members:
+      - ngc-1189325
   - id: c-dd52972d
     status: retired
     created: '2026-10-22'
@@ -2873,6 +2879,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-651570
+  - id: c-f28a9229
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1186046
+    legacy_id: unified-ngc-1186046
+    merged_into: c-3d130194
+    retired: '2026-11-16'
+    members:
+      - ngc-1186046
   - id: c-f363b5a9
     status: retired
     created: '2026-10-22'

@@ -5598,14 +5598,24 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     id: c-c16a60c7
     year_first: 1663
-    year_last: 1663
-    year_label: '1663'
+    year_last: 1665
+    year_ranges:
+      -   - 1663
+          - 1663
+      -   - 1665
+          - 1665
+    year_label: 1663, 1665
     catalog:
-      km: '257.1'
-      numista: '397796'
+      km:
+        - '257.1'
+        - '257.2'
+      numista:
+        - '397796'
+        - '267965'
       dav: BrSL 180
       others:
         - Welter# 1500
+        - Müseler# 10.4.1/71
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5614,6 +5624,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 114.17
+        source: numista
       - value: 115.11
         source: numista
     diameter_mm:
@@ -5623,6 +5635,9 @@ coins:
       - type: literature
         url: https://en.numista.com/397796
         ref: Numista N#397796 — 4 Thalers - Christian Louis - Brunswick-Lüneburg-Celle - 1663 (KM-257.1)
+      - type: literature
+        url: https://en.numista.com/267965
+        ref: Numista N#267965 — 4 Thalers - Christian Louis (Harz - Ausbeute - Löser) - Brunswick-Lüneburg-Celle
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -21316,16 +21331,27 @@ coins:
     year_label: '1627'
     mint: Wolfenbüttel
     catalog:
-      km: '65.2'
+      km:
+        - '65.2'
+        - '65.1'
       hede:
         - '6'
+        - 6A
         - 6B
-      sieg: '192.2'
-      bruun_collection_id: '5538'
-      schou: '15'
+      sieg:
+        - '192.1'
+        - '192.2'
+      bruun_collection_id:
+        - '5538'
+        - '5537'
+      schou:
+        - '14'
+        - '15'
       others:
         - Aagaard# 15.3
+        - Aagaard# 16.3
         - Harck# 27.8.1
+        - Harck# 27.8.2
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -21346,6 +21372,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18250999
         ref: IKMK Berlin 18250999
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14112, p. 45
     inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
     inscription_rev: QVID NON PRO RELIGIONE -/ C 4
     verification_note:
@@ -21538,47 +21567,6 @@ coins:
     composed_of:
       - c-08dcb0b0
     label: unified-dk-numista-204341
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 4 Thalers
-    ruler: Christian Louis (Christian Ludwig)
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-eaf0e1d5
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    catalog:
-      km: '257.2'
-      numista: '267965'
-      others:
-        - Welter# 1500
-        - Müseler# 10.4.1/71
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 114.17
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/267965
-        ref: Numista N#267965 — 4 Thalers - Christian Louis (Harz - Ausbeute - Löser) - Brunswick-Lüneburg-Celle
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    composed_of:
-      - c-eaf0e1d5
-    label: unified-dk-numista-267965
     origin: promoted
   - fuss: seed_unsorted
     phase: numista
@@ -25054,7 +25042,7 @@ coins:
     nominal: 1 Thaler
     ruler: Henry Julius
     issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-c80c1a38
+    id: c-00742327
     year_first: 1601
     year_last: 1611
     year_ranges:
@@ -25062,7 +25050,10 @@ coins:
           - 1611
     year_label: 1601-1611
     catalog:
-      km: '12.1'
+      km:
+        - '12.2'
+        - '12.1'
+        - '12.3'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -25078,71 +25069,11 @@ coins:
         source: ucoin
     sources:
       - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-thaler-1601-1611/?tid=190419
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-c80c1a38
-    label: unified-tid-tid-190419
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    ruler: Henry Julius
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-00742327
-    year_first: 1602
-    year_last: 1603
-    year_ranges:
-      -   - 1602
-          - 1603
-    year_label: 1602-1603
-    catalog:
-      km: '12.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-thaler-1602-1603/?tid=190420
         ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-00742327
-    label: unified-tid-tid-190420
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    ruler: Henry Julius
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-15676eaa
-    year_first: 1604
-    year_last: 1605
-    year_ranges:
-      -   - 1604
-          - 1605
-    year_label: 1604-1605
-    catalog:
-      km: '12.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-thaler-1601-1611/?tid=190419
+        ref: ucoin
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-thaler-1604-1605/?tid=190421
         ref: ucoin
@@ -25151,8 +25082,8 @@ coins:
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
     composed_of:
-      - c-15676eaa
-    label: unified-tid-tid-190421
+      - c-00742327
+    label: unified-tid-tid-190420
     origin: promoted
   - fuss: seed_unsorted
     phase: ucoin
@@ -25386,47 +25317,20 @@ coins:
     nominal: 4 Thaler
     ruler: Henry Julius
     issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-a399d300
-    year_first: 1608
-    year_last: 1608
-    year_label: '1608'
-    mint: Zellerfeld
-    catalog:
-      km: '30.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 116.41
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-4-thaler-1608/?tid=190442
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-a399d300
-    label: unified-tid-tid-190442
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 4 Thaler
-    ruler: Henry Julius
-    issuing_entity: herzogtum_braunschweig_lueneburg
     id: c-87171fc1
-    year_first: 1612
+    year_first: 1608
     year_last: 1612
-    year_label: '1612'
+    year_ranges:
+      -   - 1608
+          - 1608
+      -   - 1612
+          - 1612
+    year_label: 1608, 1612
     mint: Zellerfeld
     catalog:
-      km: '30.2'
+      km:
+        - '30.2'
+        - '30.1'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -25436,9 +25340,14 @@ coins:
     weight_rough_g:
       - value: 115.0
         source: ucoin
+      - value: 116.41
+        source: ucoin
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-4-thaler-1612/?tid=190444
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-4-thaler-1608/?tid=190442
         ref: ucoin
     verification_note:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
@@ -27168,7 +27077,7 @@ coins:
     nominal: 1 Pfennig
     ruler: Charles II
     issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-3923642e
+    id: c-1aaa0fe0
     year_first: 1819
     year_last: 1820
     year_ranges:
@@ -27176,41 +27085,9 @@ coins:
           - 1820
     year_label: 1819-1820
     catalog:
-      km: '1079.1'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    diameter_mm:
-      - value: 20.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1819-1820/?tid=81967
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-3923642e
-    label: unified-tid-tid-81967
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Pfennig
-    ruler: Charles II
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-1aaa0fe0
-    year_first: 1820
-    year_last: 1820
-    year_label: '1820'
-    catalog:
-      km: '1079.2'
+      km:
+        - '1079.2'
+        - '1079.1'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -27222,11 +27099,16 @@ coins:
       - value: 1.93
         source: ucoin
     diameter_mm:
+      - value: 20.0
+        source: ucoin
       - value: 20.4
         source: ucoin
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick-1-pfennig-1820/?tid=81968
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1819-1820/?tid=81967
         ref: ucoin
     verification_note:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
@@ -30277,7 +30159,7 @@ coins:
     nominal: 1 Mariengroschen
     ruler: George I
     issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-65ed0833
+    id: c-35c40690
     year_first: 1699
     year_last: 1715
     year_ranges:
@@ -30285,73 +30167,10 @@ coins:
           - 1715
     year_label: 1699-1715
     catalog:
-      km: '26.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1699-1715/?tid=91604
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-65ed0833
-    label: unified-tid-tid-91604
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Mariengroschen
-    ruler: George I
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-8b7dd51c
-    year_first: 1706
-    year_last: 1707
-    year_ranges:
-      -   - 1706
-          - 1707
-    year_label: 1706-1707
-    catalog:
-      km: '26.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1706-1707/?tid=91605
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-8b7dd51c
-    label: unified-tid-tid-91605
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Mariengroschen
-    ruler: George I
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-35c40690
-    year_first: 1708
-    year_last: 1715
-    year_ranges:
-      -   - 1708
-          - 1715
-    year_label: 1708-1715
-    catalog:
-      km: '26.3'
+      km:
+        - '26.3'
+        - '26.1'
+        - '26.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -30361,6 +30180,12 @@ coins:
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1708-1715/?tid=91606
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1699-1715/?tid=91604
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1706-1707/?tid=91605
         ref: ucoin
     verification_note:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
@@ -32330,47 +32155,18 @@ coins:
     nominal: ⅛ Thaler
     ruler: John Frederick
     issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-5eaa29e0
-    year_first: 1666
-    year_last: 1666
-    year_label: '1666'
-    mint: Clausthal-Zellerfeld
-    catalog:
-      km: '96.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.5
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_luneburg-1-8-thaler-1666/?tid=91924
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-5eaa29e0
-    label: unified-tid-tid-91924
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ⅛ Thaler
-    ruler: John Frederick
-    issuing_entity: herzogtum_braunschweig_lueneburg
     id: c-51122411
-    year_first: 1667
+    year_first: 1666
     year_last: 1667
-    year_label: '1667'
+    year_ranges:
+      -   - 1666
+          - 1667
+    year_label: 1666-1667
     mint: Zellerfeld
     catalog:
-      km: '96.2'
+      km:
+        - '96.2'
+        - '96.1'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -32383,6 +32179,9 @@ coins:
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-1-8-thaler-1667/?tid=91925
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_luneburg-1-8-thaler-1666/?tid=91924
         ref: ucoin
     verification_note:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
@@ -36265,52 +36064,17 @@ coins:
     nominal: ⅔ Thaler
     ruler: George I
     issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-b1920896
-    year_first: 1716
-    year_last: 1722
-    year_ranges:
-      -   - 1716
-          - 1722
-    year_label: 1716-1722
-    catalog:
-      km: '112.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    diameter_mm:
-      - value: 36.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_luneburg-2-3-thaler-1716-1722/?tid=92211
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-b1920896
-    label: unified-tid-tid-92211
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ⅔ Thaler
-    ruler: George I
-    issuing_entity: herzogtum_braunschweig_lueneburg
     id: c-5f0a67d0
-    year_first: 1723
+    year_first: 1716
     year_last: 1727
     year_ranges:
-      -   - 1723
+      -   - 1716
           - 1727
-    year_label: 1723-1727
+    year_label: 1716-1727
     catalog:
-      km: '112.2'
+      km:
+        - '112.2'
+        - '112.1'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -36324,6 +36088,9 @@ coins:
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-2-3-thaler-1723-1727/?tid=92212
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_luneburg-2-3-thaler-1716-1722/?tid=92211
         ref: ucoin
     verification_note:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
@@ -46504,10 +46271,17 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     id: c-13e7a12c
     year_first: 1775
-    year_last: 1775
-    year_label: '1775'
+    year_last: 1777
+    year_ranges:
+      -   - 1775
+          - 1775
+      -   - 1777
+          - 1777
+    year_label: 1775, 1777
     catalog:
-      km: '987.1'
+      km:
+        - '987.1'
+        - '987.2'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -46518,53 +46292,28 @@ coins:
     fineness:
       - value: 0.9
         source: ucoin
+        specimen: tid-tid-97990
+      - value: 0.9
+        source: ucoin
+        specimen: tid-tid-97991
     weight_rough_g:
       - value: 13.3
         source: ucoin
+        specimen: tid-tid-97990
+      - value: 13.3
+        source: ucoin
+        specimen: tid-tid-97991
     diameter_mm:
       - value: 27.0
         source: ucoin
+        specimen: tid-tid-97990
+      - value: 27.0
+        source: ucoin
+        specimen: tid-tid-97991
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-10-thaler-1775/?tid=97990
         ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    composed_of:
-      - c-13e7a12c
-    label: unified-tid-tid-97990
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 10 Thaler
-    ruler: Charles I
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-db97a12f
-    year_first: 1777
-    year_last: 1777
-    year_label: '1777'
-    catalog:
-      km: '987.2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.9
-        source: ucoin
-    weight_rough_g:
-      - value: 13.3
-        source: ucoin
-    diameter_mm:
-      - value: 27.0
-        source: ucoin
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-10-thaler-1777/?tid=97991
         ref: ucoin
@@ -46573,8 +46322,8 @@ coins:
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
     composed_of:
-      - c-db97a12f
-    label: unified-tid-tid-97991
+      - c-13e7a12c
+    label: unified-tid-tid-97990
     origin: promoted
   - fuss: seed_unsorted
     phase: ucoin
@@ -91849,52 +91598,6 @@ coins:
     composed_of:
       - c-d0d7a977
     label: unified-tid-tid-190776
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Gutergroschen
-    ruler: Christian IV
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    id: c-3ae84baf
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    mint: Wolfenbüttel
-    catalog:
-      km: '65.1'
-      hede: 6A
-      sieg: '192.1'
-      bruun_collection_id: '5537'
-      schou: '14'
-      others:
-        - Aagaard# 16.3
-        - Harck# 27.8.2
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14112, p. 45
-    inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
-    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-3ae84baf
-    label: unified-dk-bruun-5537
     origin: promoted
   - fuss: seed_unsorted
     phase: ikmk

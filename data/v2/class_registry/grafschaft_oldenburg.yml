@@ -3,17 +3,10 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 136 active, 38 retired.
+# 135 active, 39 retired.
 
 id: grafschaft_oldenburg
 classes:
-  - id: c-021e0169
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-314946
-    legacy_id: unified-dk-numista-314946
-    members:
-      - dk-numista-314946
   - id: c-0338acc1
     status: active
     created: '2026-10-22'
@@ -409,6 +402,7 @@ classes:
     legacy_id: unified-dk-bruun-15139dd
     members:
       - dk-bruun-15139dd
+      - dk-numista-314946
       - dk-numista-341018
   - id: c-67c817a1
     status: active
@@ -976,6 +970,15 @@ classes:
     legacy_id: unified-dk-numista-340212
     members:
       - dk-numista-340212
+  - id: c-021e0169
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-314946
+    legacy_id: unified-dk-numista-314946
+    merged_into: c-629ea59e
+    retired: '2026-11-16'
+    members:
+      - dk-numista-314946
   - id: c-0366abf9
     status: retired
     created: '2026-10-22'

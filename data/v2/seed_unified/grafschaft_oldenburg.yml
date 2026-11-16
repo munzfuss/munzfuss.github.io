@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `grafschaft_oldenburg`.
-# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/grafschaft_oldenburg.yml across all sources.
 #
 # Input: 153 per-source seed entries.
-# Output: 136 unified entries (one per physical coin).
+# Output: 135 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: grafschaft_oldenburg
-generated_at: '2026-11-13'
+generated_at: '2026-11-16'
 coins:
   - id: c-8522ce4c
     class_id: c-8522ce4c
@@ -644,19 +644,26 @@ coins:
     phase: bruun
     kind: kurant
     nominal: ⅓ Taler
-    year_first: 1762
+    year_first: 1761
     year_last: 1762
-    year_label: '1762'
+    year_ranges:
+      -   - 1761
+          - 1762
+    year_label: 1761-1762
     ruler: Frederik V
     mintmaster: Johan Henrik Madelung (IHM)
     mint: Oldenburg
     catalog:
-      km: '120.2'
+      km:
+        - '120.2'
+        - '120.1'
       hede: 3B
       sieg: '56.2'
       bruun_collection_id: 15139dd
       schou: '28'
-      numista: '341018'
+      numista:
+        - '314946'
+        - '341018'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -665,14 +672,23 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.075
+        source: numista
+        specimen: dk-numista-314946
       - value: 0.75
         source: numista
+        specimen: dk-numista-341018
     weight_rough_g:
       - value: 8.66
         source: numista
+        specimen: dk-numista-314946
+      - value: 8.66
+        source: numista
+        specimen: dk-numista-341018
     diameter_mm:
       - value: 29.5
         source: numista
+        specimen: dk-numista-341018
     uncertainty:
       metal:
         - kind: inferred
@@ -686,11 +702,15 @@ coins:
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15187, p. 154
       - type: literature
+        url: https://en.numista.com/314946
+        ref: Numista N#314946 — 1/3 Thaler - Frederick V - County of Oldenburg
+      - type: literature
         url: https://en.numista.com/341018
         ref: Numista N#341018 — 1/3 Thaler - Frederick V of Denmark - County of Oldenburg
     issuing_entity: grafschaft_oldenburg
     composed_of:
       - dk-bruun-15139dd
+      - dk-numista-314946
       - dk-numista-341018
   - id: c-08a83e51
     class_id: c-08a83e51
@@ -1875,40 +1895,6 @@ coins:
     issuing_entity: grafschaft_oldenburg
     composed_of:
       - dk-numista-314943
-  - id: c-021e0169
-    class_id: c-021e0169
-    label: unified-dk-numista-314946
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅓ Thaler
-    year_first: 1761
-    year_last: 1761
-    year_label: '1761'
-    ruler: Frederick V (Friedrich V)
-    catalog:
-      km: '120.1'
-      numista: '314946'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.075
-        source: numista
-    weight_rough_g:
-      - value: 8.66
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/314946
-        ref: Numista N#314946 — 1/3 Thaler - Frederick V - County of Oldenburg
-    issuing_entity: grafschaft_oldenburg
-    composed_of:
-      - dk-numista-314946
   - id: c-bb1c85dd
     class_id: c-bb1c85dd
     label: unified-dk-numista-314949

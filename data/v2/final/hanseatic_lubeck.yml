@@ -6705,8 +6705,13 @@ coins:
     year_last: 1723
     year_label: '1723'
     catalog:
-      km: '78.1'
-      behrens: 805a
+      km:
+        - '78.1'
+        - '78.2'
+      behrens:
+        - 805a
+        - 805b
+        - 805c
       dav: '623'
     metal: silver
     metal_verified: true
@@ -6718,6 +6723,9 @@ coins:
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-mark-km-78.1-1723-cuid-1137992-duid-1338961
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-mark-km-78.2-1723-cuid-1189325-duid-1367145
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
@@ -7910,41 +7918,6 @@ coins:
     composed_of:
       - c-a24984fc
     label: unified-ngc-1174130
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Mark
-    ruler: Christian August
-    issuing_entity: hanseatic_lubeck
-    id: c-dd36a341
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    catalog:
-      km: '78.2'
-      behrens:
-        - 805b
-        - 805c
-      dav: '623'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-mark-km-78.2-1723-cuid-1189325-duid-1367145
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - c-dd36a341
-    label: unified-ngc-1189325
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc
@@ -9441,11 +9414,16 @@ coins:
     year_label: 1606-1607, 1609-1616
     mint: Lübeck
     catalog:
-      km: '26.1'
+      km:
+        - '26.1'
+        - '26.2'
       behrens:
         - '818'
+        - '819'
         - '820'
-      dav: '5438'
+      dav:
+        - '5438'
+        - 5438A
       others:
         - Behrens# 137
     metal: silver
@@ -9467,6 +9445,9 @@ coins:
         ref: IKMK Berlin 18264671
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-26.1-1606-1610-cuid-1138148-duid-1362595
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-26.2-1606-cuid-1190340-duid-1367371
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
     inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
@@ -9673,6 +9654,15 @@ coins:
     year_last: 1724
     year_label: '1724'
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-1186046
+          source: ngc
+          years: '1724'
+      uncertain:
+        - seed: ngc-1138349
+          source: ngc
+          years: '1724'
     uncertainty:
       year:
         - kind: hedged
@@ -9682,8 +9672,12 @@ coins:
           value: '1724'
           seed: ngc-1138349
     catalog:
-      km: '80.1'
-      behrens: 843a
+      km:
+        - '80.1'
+        - '80.2'
+      behrens:
+        - 843a
+        - 843b
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -9694,12 +9688,23 @@ coins:
     fineness:
       - value: 0.986
         source: ngc
+        specimen: ngc-1138349
+      - value: 0.986
+        source: ngc
+        specimen: ngc-1186046
     weight_rough_g:
       - value: 3.5
         source: ngc
+        specimen: ngc-1138349
+      - value: 3.5
+        source: ngc
+        specimen: ngc-1186046
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-80.1-mdccxxiiii-1724-cuid-1138349-duid-1339395
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-80.2-1724-cuid-1186046-duid-1367614
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
@@ -9965,39 +9970,6 @@ coins:
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
-    nominal: 4 Schilling
-    ruler: Johann Friedrich
-    issuing_entity: hanseatic_lubeck
-    id: c-aff661de
-    year_verified: false
-    catalog:
-      km: '8.1'
-      behrens: '791'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.85
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-schilling-km-8.1-cuid-1138811-duid-1338908
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - c-aff661de
-    label: unified-ngc-1138811
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
     nominal: 1 Thaler
     issuing_entity: hanseatic_lubeck
     id: c-49039edb
@@ -10047,8 +10019,12 @@ coins:
     year_last: 1600
     year_label: '1600'
     catalog:
-      km: '13.1'
-      behrens: '762'
+      km:
+        - '13.1'
+        - '13.2'
+      behrens:
+        - '762'
+        - '763'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10059,6 +10035,9 @@ coins:
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-13.1-1600-cuid-1138981-duid-1338857
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-13.2-1600-cuid-1194503-duid-1366859
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
@@ -10750,77 +10729,6 @@ coins:
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
-    nominal: 1 Ducat
-    ruler: Christian August
-    issuing_entity: hanseatic_lubeck
-    id: c-f28a9229
-    year_first: 1724
-    year_last: 1724
-    year_label: '1724'
-    catalog:
-      km: '80.2'
-      behrens: 843b
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.986
-        source: ngc
-    weight_rough_g:
-      - value: 3.5
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-80.2-1724-cuid-1186046-duid-1367614
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - c-f28a9229
-    label: unified-ngc-1186046
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    ruler: Johann Adolf
-    issuing_entity: hanseatic_lubeck
-    id: c-85437f8e
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    catalog:
-      km: '26.2'
-      behrens: '819'
-      dav: 5438A
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-26.2-1606-cuid-1190340-duid-1367371
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - c-85437f8e
-    label: unified-ngc-1190340
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
     nominal: 1 Thaler
     issuing_entity: hanseatic_lubeck
     ruler: Rudolph II (Rudolf II)
@@ -10872,18 +10780,28 @@ coins:
     id: c-1e29ac30
     year_verified: false
     catalog:
-      km: '8.2'
-      behrens: '792'
+      km:
+        - '8.2'
+        - '8.1'
+      behrens:
+        - '791'
+        - '792'
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 1.85
+        source: ngc
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-schilling-km-8.2-cuid-1194487-duid-1367613
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-schilling-km-8.1-cuid-1138811-duid-1338908
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
@@ -10924,38 +10842,6 @@ coins:
     composed_of:
       - c-84f69b63
     label: unified-ngc-1194488
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/16 Thaler
-    ruler: Johann Adolf
-    issuing_entity: hanseatic_lubeck
-    id: c-243230a5
-    year_first: 1600
-    year_last: 1600
-    year_label: '1600'
-    catalog:
-      km: '13.2'
-      behrens: '763'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-13.2-1600-cuid-1194503-duid-1366859
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - c-243230a5
-    label: unified-ngc-1194503
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1404 per-source seed entries.
-# Output: 268 unified entries (one per physical coin).
+# Output: 269 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -573,118 +573,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-6485
-  - id: c-a7582454
-    class_id: c-a7582454
-    label: unified-dk-bruun-6792
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1672
-    year_last: 1676
-    year_ranges:
-      -   - 1672
-          - 1674
-      -   - 1676
-          - 1676
-    year_label: 1672-1674, 1676
-    ruler: Christian V
-    mintmaster: Johan Woltereck (IW)
-    mint: Glückstadt
-    catalog:
-      km: '64.1'
-      hede:
-        - '115'
-        - 115B
-      sieg: '142.2'
-      bruun_collection_id:
-        - '6792'
-        - '6813'
-        - '6824'
-        - '6825'
-        - '6826'
-        - '6856'
-      schou:
-        - '1'
-        - '2'
-        - '3'
-        - '4'
-        - '15'
-      others:
-        - Aagaard# 2.1
-        - Aagaard# 2.2
-        - Aagaard# 2.4
-        - Aagaard# 2.6
-        - Aagaard# 2.5
-        - Aagaard# 2.8
-      lange: '80'
-      numista: '275958'
-      fr: '134'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.986
-        source: numismaster
-      - value: 0.986
-        source: numista
-    weight_rough_g:
-      - value: 3.42
-        source: bruun
-      - value: 3.43
-        source: bruun
-      - value: 3.44
-        source: bruun
-      - value: 3.44
-        source: numista
-      - value: 3.45
-        source: bruun
-      - value: 3.48
-        source: bruun
-      - value: 3.5
-        source: numismaster
-    diameter_mm:
-      - value: 24.44
-        source: numista
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14154, p. 61
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14155, p. 61
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1103, p. 128
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13178, p. 104
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11239, p. 107
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17090, p. 47
-      - type: literature
-        url: https://en.numista.com/275958
-        ref: Numista N#275958 — 1 Ducat - Christian V
-      - type: literature
-        url: https://numismaster.com/MC_93036
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-bruun-6792
-      - dk-bruun-6813
-      - dk-bruun-6824
-      - dk-bruun-6825
-      - dk-bruun-6826
-      - dk-bruun-6856
-      - dk-numista-275958
-      - schleswig_holstein-numismaster-93036
   - id: c-5e81b057
     class_id: c-5e81b057
     label: unified-dk-bruun-6918
@@ -4613,8 +4501,8 @@ coins:
       - kmk-275560
       - kmk-275561
       - schleswig_holstein-numismaster-92992
-  - id: c-2268f597
-    class_id: c-2268f597
+  - id: c-a7582454
+    class_id: c-a7582454
     label: unified-dk-hede-c5h115a
     fuss: seed_unsorted
     phase: hede
@@ -4634,6 +4522,7 @@ coins:
     catalog:
       km:
         - '64.2'
+        - '64.1'
         - '64'
       hede:
         - '115'
@@ -4648,10 +4537,25 @@ coins:
       sieg:
         - '142.1'
         - '142.2'
-      bruun_collection_id: '6791'
+      bruun_collection_id:
+        - '6791'
+        - '6792'
+        - '6813'
+        - '6824'
+        - '6825'
+        - '6826'
+        - '6856'
       others:
         - Aagaard# 1.1
+        - Aagaard# 2.1
+        - Aagaard# 2.2
+        - Aagaard# 2.4
+        - Aagaard# 2.6
+        - Aagaard# 2.5
+        - Aagaard# 2.8
         - B# 59a
+      lange: '80'
+      numista: '275958'
       fr: '134'
     metal: gold
     metal_verified: true
@@ -4668,14 +4572,24 @@ coins:
         source: hede
         specimen: dk-hede-c5h115b
       - value: 0.986
-        source: numismaster
+        source: numista
       - value: 0.986
         source: ucoin
     weight_rough_g:
+      - value: 3.42
+        source: bruun
+      - value: 3.43
+        source: bruun
       - value: 3.44
+        source: bruun
+      - value: 3.44
+        source: numista
+      - value: 3.45
         source: bruun
       - value: 3.46
         source: kmk
+      - value: 3.48
+        source: bruun
       - value: 3.49
         source: hede
         specimen: dk-hede-c5h115a
@@ -4683,36 +4597,60 @@ coins:
         source: hede
         specimen: dk-hede-c5h115b
       - value: 3.5
-        source: numismaster
-      - value: 3.5
         source: ucoin
     diameter_mm:
       - value: 24.0
         source: ucoin
+      - value: 24.44
+        source: numista
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13175, p. 103
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14154, p. 61
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14155, p. 61
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1103, p. 128
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13178, p. 104
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11239, p. 107
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17090, p. 47
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h115.htm
         ref: danskmoent.dk (Hede c5h115A)
+      - type: literature
+        url: https://en.numista.com/275958
+        ref: Numista N#275958 — 1 Ducat - Christian V
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-ducat-1672-1676/?tid=163668
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/83604
         ref: KMM 83604 (Inv. GP 982.628)
-      - type: literature
-        url: https://numismaster.com/MC_93037
-        ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-bruun-6791
+      - dk-bruun-6792
+      - dk-bruun-6813
+      - dk-bruun-6824
+      - dk-bruun-6825
+      - dk-bruun-6826
+      - dk-bruun-6856
       - dk-hede-c5h115a
       - dk-hede-c5h115b
+      - dk-numista-275958
       - dk-tid-163668
       - kmk-83604
-      - schleswig_holstein-numismaster-93037
   - id: c-0bcc8e8c
     class_id: c-0bcc8e8c
     label: unified-dk-hede-c5h116
@@ -22601,6 +22539,77 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-93025
+  - id: c-4d34c51a
+    class_id: c-4d34c51a
+    label: unified-schleswig_holstein-numismaster-93036
+    fuss: seed_unsorted
+    phase: numismaster
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1672
+    year_last: 1676
+    year_ranges:
+      -   - 1672
+          - 1674
+      -   - 1676
+          - 1676
+    year_label: 1672-1674, 1676
+    mint: Glückstadt
+    catalog:
+      km: '64.1'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numismaster
+    weight_rough_g:
+      - value: 3.5
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_93036
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - schleswig_holstein-numismaster-93036
+  - id: c-2268f597
+    class_id: c-2268f597
+    label: unified-schleswig_holstein-numismaster-93037
+    fuss: seed_unsorted
+    phase: numismaster
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1672
+    year_last: 1673
+    year_ranges:
+      -   - 1672
+          - 1673
+    year_label: 1672-1673
+    catalog:
+      km: '64.2'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: numismaster
+    weight_rough_g:
+      - value: 3.5
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_93037
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - schleswig_holstein-numismaster-93037
   - id: c-2b57ace5
     class_id: c-2b57ace5
     label: unified-sh-tid-90742
