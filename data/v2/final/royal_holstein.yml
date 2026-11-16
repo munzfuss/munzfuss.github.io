@@ -1017,18 +1017,27 @@ coins:
     year_last: 1645
     year_ranges:
       -   - 1641
+          - 1642
+      -   - 1645
           - 1645
-    year_label: 1641-1645
+    year_label: 1641-1642, 1645
     mint: Glückstadt
     catalog:
       km:
         - '30.2'
         - '30'
+        - '30.1'
+        - '30.3'
       numista:
         - '107815'
         - '109450'
-      lange: '53'
-      hede: 175B
+        - '109448'
+      lange:
+        - '52'
+        - '53'
+      hede:
+        - 175B
+        - 175a
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -1039,11 +1048,24 @@ coins:
     fineness:
       - value: 0.812
         source: numismaster
+        specimen: schleswig_holstein-numismaster-92989
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92990
       - value: 0.812
         source: numista
+        specimen: dk-numista-107815
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-109448
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-109450
       - value: 0.812
         source: ucoin
     weight_rough_g:
+      - value: 4.67
+        source: kmk
       - value: 4.72
         source: kmk
       - value: 4.78
@@ -1054,13 +1076,31 @@ coins:
         source: ucoin
       - value: 4.872
         source: numismaster
+        specimen: schleswig_holstein-numismaster-92989
+      - value: 4.872
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92990
       - value: 4.872
         source: numista
+        specimen: dk-numista-107815
+      - value: 4.872
+        source: numista
+        specimen: dk-numista-109448
+      - value: 4.872
+        source: numista
+        specimen: dk-numista-109450
     diameter_mm:
+      - value: 28.0
+        source: numista
+        specimen: dk-numista-109448
+      - value: 28.7
+        source: numista
+        specimen: dk-numista-109450
       - value: 29.0
         source: ucoin
       - value: 29.3
         source: numista
+        specimen: dk-numista-107815
     sources:
       - type: literature
         url: https://numismaster.com/MC_92990
@@ -1080,6 +1120,18 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714863
         ref: KMM 714863 (Inv. FP 12405.187)
+      - type: literature
+        url: https://en.numista.com/109448
+        ref: Numista N#109448 — 8 Skilling Lybsk - Christian IV (Type 1)
+      - type: literature
+        url: https://en.numista.com/109450
+        ref: Numista N#109450 — 8 Skilling Lybsk - Christian IV (Type 3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714864
+        ref: KMM 714864 (Inv. FP 12405.186)
+      - type: literature
+        url: https://numismaster.com/MC_92989
+        ref: NumisMaster
     note:
       de: 8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Christian IV. (Glückstadt 1642, Typ 2) · Mzz. ST = Simon Timpf · Lange# 53. Stempelvariante zu KM# 30.1. Glückstadter Theilstück im 9¼-Fuß zu 
         reduziertem Feingehalt .812.
@@ -16088,146 +16140,6 @@ coins:
     composed_of:
       - c-950a41e8
     label: unified-dk-numista-108733
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 8 Skilling Lybsk
-    ruler: Christian IV.
-    issuing_entity: royal_holstein
-    id: c-560a1954
-    year_first: 1641
-    year_last: 1645
-    year_ranges:
-      -   - 1641
-          - 1642
-      -   - 1645
-          - 1645
-    year_label: 1641-1642, 1645
-    mint: Glückstadt
-    catalog:
-      km: '30.1'
-      numista: '109448'
-      lange: '52'
-      hede: 175a
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-      - value: 0.812
-        source: numista
-    weight_rough_g:
-      - value: 4.67
-        source: kmk
-      - value: 4.872
-        source: numismaster
-      - value: 4.872
-        source: numista
-    diameter_mm:
-      - value: 28.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/109448
-        ref: Numista N#109448 — 8 Skilling Lybsk - Christian IV (Type 1)
-      - type: literature
-        url: https://numismaster.com/MC_92989
-        ref: NumisMaster
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714864
-        ref: KMM 714864 (Inv. FP 12405.186)
-    note:
-      de: Gekröntes Brustbild König Christians IV. mit langem Haar über einem Schild mit dänischem Wappen; der Schild mit geschweiften Seiten, wie das Brustbild teilweise im Perlkreis; Umschrift am 
-        Rand, unten durch den Schild und oben durch die Krone geteilt / Nackte Fortuna auf einer kleinen Kugel, nach links blickend, mit der Linken ein langes Banner über dem Kopf haltend, das hinter 
-        dem Rücken weht; Jahreszahl seitlich geteilt; im Perlkreis, fortlaufende Umschrift außen; Wert als «VIII L.S.», Müntzzeichen am Ende
-      en: Crowned bust of King Christian IV with long hair above a shield with the arms of Denmark; the shield with curved sides, partly within a beaded circle as is the bust; legend along the rim, 
-        divided below by the shield and above by the crown / Nude Fortuna on a small globe, looking left, holding a long banner above her head with the left hand so it waves behind her back; date 
-        divided at the sides; within a beaded circle, continuous legend outside; value as «VIII L.S.», mintmark at the end
-      uk: Короноване погруддя короля Крістіана IV із довгим волоссям над щитом із гербом Данії; щит із вигнутими боками, як і погруддя, частково в перлинному колі; легенда по краю, унизу розділена 
-        щитом, угорі короною / Оголена Фортуна на малій кулі, дивиться ліворуч, лівою рукою тримає довгий прапор над головою, що розвівається за спиною; дата розділена з боків; у перлинному колі, 
-        безперервна легенда назовні; номінал «VIII L.S.», монетний знак у кінці
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-560a1954
-    label: unified-dk-numista-109448
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
-    nominal: 8 Skilling Lybsk
-    ruler: Christian IV.
-    issuing_entity: royal_holstein
-    fraction: 1/6
-    id: c-e058d65a
-    year_first: 1645
-    year_last: 1645
-    year_label: '1645'
-    mint: Glückstadt
-    catalog:
-      km:
-        - '30.3'
-        - '30'
-      numista: '109450'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numista
-    weight_rough_g:
-      - value: 4.872
-        source: numista
-    diameter_mm:
-      - value: 28.7
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/109450
-        ref: Numista N#109450 — 8 Skilling Lybsk - Christian IV (Type 3)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_92989
-        ref: NumisMaster
-    note:
-      de: '8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Christian IV. (Glückstadt 1645, Typ 3) · Mzz. (h) = gekreuzte Hellebarden · Reverse Fortuna mit Datum 16 45 zu beiden Seiten und Wertangabe «VIII
-        L.S.» am Ende der Legende «REG: MAIES: MO: PROVINCIALIS: VIII L. S.» · Obverse «CHRISTIA:IIII | D:G:DAN:N:V:G:R:» mit Brustbild über Wappenschild. Glückstadter Theilstück im 9¼-Fuß zu reduziertem
-        Feingehalt .812.'
-      en: '8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Christian IV (Glückstadt 1645, type 3) · mintmark (h) = crossed halberds · reverse Fortuna with date 16 45 flanking her legs, value «VIII L.S.» at
-        end of legend «REG: MAIES: MO: PROVINCIALIS: VIII L. S.»; obverse «CHRISTIA:IIII | D:G:DAN:N:V:G:R:» with bust above the coat of arms. Glückstadt sub-unit on the 9¼-Fuß at reduced fineness .812.'
-      uk: '8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Кристіан IV (Glückstadt 1645, тип 3) · монограма (h) = схрещені галебарди · реверс — Фортуна з датою 16 45 обабіч ніг, номінал «VIII L.S.» наприкінці
-        легенди «REG: MAIES: MO: PROVINCIALIS: VIII L. S.»; аверс «CHRISTIA:IIII | D:G:DAN:N:V:G:R:» з бюстом над гербовим щитом. Ґлюкштатський підрозмінний номінал у 9¼-Fuß зі зниженою пробою .812.'
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-e058d65a
-    label: unified-dk-numista-109450
     origin: promoted
   - fuss: seed_unsorted
     phase: numista

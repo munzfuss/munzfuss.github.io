@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1404 per-source seed entries.
-# Output: 268 unified entries (one per physical coin).
+# Output: 266 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -18009,17 +18009,28 @@ coins:
     year_last: 1645
     year_ranges:
       -   - 1641
+          - 1642
+      -   - 1645
           - 1645
-    year_label: 1641-1645
+    year_label: 1641-1642, 1645
     ruler: Christian IV
     mint: Glückstadt
     catalog:
       km:
         - '30.2'
+        - '30.1'
+        - '30.3'
         - '30'
-      numista: '107815'
-      lange: '53'
-      hede: 175B
+      numista:
+        - '107815'
+        - '109448'
+        - '109450'
+      lange:
+        - '52'
+        - '53'
+      hede:
+        - 175B
+        - 175a
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -18030,11 +18041,24 @@ coins:
     fineness:
       - value: 0.812
         source: numismaster
+        specimen: schleswig_holstein-numismaster-92989
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92990
       - value: 0.812
         source: numista
+        specimen: dk-numista-107815
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-109448
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-109450
       - value: 0.812
         source: ucoin
     weight_rough_g:
+      - value: 4.67
+        source: kmk
       - value: 4.72
         source: kmk
       - value: 4.78
@@ -18045,17 +18069,41 @@ coins:
         source: ucoin
       - value: 4.872
         source: numismaster
+        specimen: schleswig_holstein-numismaster-92989
+      - value: 4.872
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92990
       - value: 4.872
         source: numista
+        specimen: dk-numista-107815
+      - value: 4.872
+        source: numista
+        specimen: dk-numista-109448
+      - value: 4.872
+        source: numista
+        specimen: dk-numista-109450
     diameter_mm:
+      - value: 28.0
+        source: numista
+        specimen: dk-numista-109448
+      - value: 28.7
+        source: numista
+        specimen: dk-numista-109450
       - value: 29.0
         source: ucoin
       - value: 29.3
         source: numista
+        specimen: dk-numista-107815
     sources:
       - type: literature
         url: https://en.numista.com/107815
         ref: Numista N#107815 — 8 Skilling Lybsk - Christian IV (Type 2)
+      - type: literature
+        url: https://en.numista.com/109448
+        ref: Numista N#109448 — 8 Skilling Lybsk - Christian IV (Type 1)
+      - type: literature
+        url: https://en.numista.com/109450
+        ref: Numista N#109450 — 8 Skilling Lybsk - Christian IV (Type 3)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
         ref: ucoin
@@ -18068,16 +18116,26 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714863
         ref: KMM 714863 (Inv. FP 12405.187)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714864
+        ref: KMM 714864 (Inv. FP 12405.186)
+      - type: literature
+        url: https://numismaster.com/MC_92989
+        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_92990
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-107815
+      - dk-numista-109448
+      - dk-numista-109450
       - dk-tid-163647
       - kmk-714861
       - kmk-714862
       - kmk-714863
+      - kmk-714864
+      - schleswig_holstein-numismaster-92989
       - schleswig_holstein-numismaster-92990
   - id: c-b5f34d5e
     class_id: c-b5f34d5e
@@ -18374,103 +18432,6 @@ coins:
       - dk-tid-163623
       - ngc-1051973
       - schleswig_holstein-numismaster-93001
-  - id: c-560a1954
-    class_id: c-560a1954
-    label: unified-dk-numista-109448
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 8 Skilling Lybsk
-    year_first: 1641
-    year_last: 1645
-    year_ranges:
-      -   - 1641
-          - 1642
-      -   - 1645
-          - 1645
-    year_label: 1641-1642, 1645
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      km: '30.1'
-      numista: '109448'
-      lange: '52'
-      hede: 175a
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-      - value: 0.812
-        source: numista
-    weight_rough_g:
-      - value: 4.67
-        source: kmk
-      - value: 4.872
-        source: numismaster
-      - value: 4.872
-        source: numista
-    diameter_mm:
-      - value: 28.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/109448
-        ref: Numista N#109448 — 8 Skilling Lybsk - Christian IV (Type 1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714864
-        ref: KMM 714864 (Inv. FP 12405.186)
-      - type: literature
-        url: https://numismaster.com/MC_92989
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-109448
-      - kmk-714864
-      - schleswig_holstein-numismaster-92989
-  - id: c-e058d65a
-    class_id: c-e058d65a
-    label: unified-dk-numista-109450
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 8 Skilling Lybsk
-    year_first: 1645
-    year_last: 1645
-    year_label: '1645'
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      km: '30.3'
-      numista: '109450'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numista
-    weight_rough_g:
-      - value: 4.872
-        source: numista
-    diameter_mm:
-      - value: 28.7
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/109450
-        ref: Numista N#109450 — 8 Skilling Lybsk - Christian IV (Type 3)
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-109450
   - id: c-7116ef28
     class_id: c-7116ef28
     label: unified-dk-numista-131337
