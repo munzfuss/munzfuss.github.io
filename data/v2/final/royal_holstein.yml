@@ -2207,12 +2207,16 @@ coins:
             «Altona/Poppenbüttel Mint» («møntstedet Altona/Poppenbüttel»), og L. E. Bruuns Mønt- og Medaillesamling (1928, s. 239) fører netop dette stykke, Bruun 7892, under «1788 ALTONA».
     mint: Altona
     catalog:
-      km: '645'
+      km:
+        - '645'
+        - '260'
       hede: '25'
       sieg:
         - '19'
         - '26'
-      numista: '325285'
+      numista:
+        - '325285'
+        - '119248'
       bruun_collection_id:
         - '7893'
         - '7892'
@@ -2221,6 +2225,8 @@ coins:
       fr: '6'
       dav: EC III 1312
       nmd: '1'
+      others:
+        - DNF# 14
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2237,6 +2243,10 @@ coins:
         source: numismaster
       - value: 0.875
         source: numista
+        specimen: dk-numista-119248
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-325285
     weight_rough_g:
       - value: 23.57
         source: bruun
@@ -2248,11 +2258,19 @@ coins:
         source: ngc
       - value: 23.582
         source: numismaster
+      - value: 23.6
+        source: numista
+        specimen: dk-numista-119248
       - value: 23.62
         source: numista
+        specimen: dk-numista-325285
     diameter_mm:
       - value: 39.0
         source: numista
+        specimen: dk-numista-119248
+      - value: 39.0
+        source: numista
+        specimen: dk-numista-325285
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h25.htm
@@ -2272,6 +2290,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14206, p. 77
+      - type: literature
+        url: https://en.numista.com/119248
+        ref: Numista N#119248 — 1 Rigsdaler Courant "Rejsedaler" - Christian VII (Royal visit)
     note:
       de: '«1 · RIGSDALER COUR: / 17 M·F 88» · Reverse norwegischer Löwe mit Hellebarde · Obverse «CHRISTIAN DEN VII · DANMARKS OG NORGES KONGE» · Münzmeister Michael Flor (MF) · Sonderprägung zur Royal
         Visit; reguläre Kurantdaler 1731–1788 wurden in Altona, Glückstadt und Kopenhagen nach gleichem Fuß geprägt'

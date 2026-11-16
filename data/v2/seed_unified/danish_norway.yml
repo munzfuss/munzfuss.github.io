@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 2749 per-source seed entries.
+# Input: 2748 per-source seed entries.
 # Output: 513 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-13'
+generated_at: '2026-11-16'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -38187,69 +38187,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-118905
-  - id: c-e22beb2b
-    class_id: c-e22beb2b
-    label: unified-dk-numista-119248
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1788
-    year_last: 1788
-    year_label: '1788'
-    ruler: Christian VII
-    catalog:
-      km:
-        nor:
-          - '260'
-          - '645'
-        dk: '645'
-      numista: '119248'
-      dav: EC III 1312
-      sieg: '26'
-      hede: '25'
-      others:
-        - DNF# 14
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.89
-        source: ngc
-      - value: 28.89
-        source: numismaster
-      - value: 28.89
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_86289
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/119248
-        ref: Numista N#119248 — 1 Reisedaler - Christian VII (Royal visit) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-6-mark-km-260-1788-cuid-1096051-duid-1445115
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Reisedaler
-      en: Reisedaler
-      uk: Reisedaler
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-86289
-      - dk-numista-119248
-      - ngc-1096051
   - id: c-4962b6be
     class_id: c-4962b6be
     label: unified-dk-numista-119945
@@ -44861,6 +44798,47 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - ngc-1096049
+  - id: c-e22beb2b
+    class_id: c-e22beb2b
+    label: unified-ngc-1096051
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 6 Mark
+    year_first: 1788
+    year_last: 1788
+    year_label: '1788'
+    catalog:
+      km: '260'
+      dav: '1312'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+    weight_rough_g:
+      - value: 28.89
+        source: ngc
+      - value: 28.89
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_86289
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-6-mark-km-260-1788-cuid-1096051-duid-1445115
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_norway
+    composed_of:
+      - denmark-numismaster-86289
+      - ngc-1096051
   - id: c-76ff8fdd
     class_id: c-76ff8fdd
     label: unified-ngc-1096793

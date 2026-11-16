@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1401 per-source seed entries.
+# Input: 1402 per-source seed entries.
 # Output: 268 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-13'
+generated_at: '2026-11-16'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -6955,7 +6955,9 @@ coins:
     mintmaster: Michael Flor (MF)
     mint: Altona
     catalog:
-      km: '645'
+      km:
+        - '645'
+        - '260'
       hede: '25'
       hede_volume: c7h
       schou: '7'
@@ -6967,8 +6969,12 @@ coins:
         - '7892'
         - '7893'
       nmd: '1'
-      numista: '325285'
+      numista:
+        - '119248'
+        - '325285'
       dav: EC III 1312
+      others:
+        - DNF# 14
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -6985,6 +6991,10 @@ coins:
         source: numismaster
       - value: 0.875
         source: numista
+        specimen: dk-numista-119248
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-325285
     weight_rough_g:
       - value: 23.57
         source: bruun
@@ -6996,11 +7006,19 @@ coins:
         source: ngc
       - value: 23.582
         source: numismaster
+      - value: 23.6
+        source: numista
+        specimen: dk-numista-119248
       - value: 23.62
         source: numista
+        specimen: dk-numista-325285
     diameter_mm:
       - value: 39.0
         source: numista
+        specimen: dk-numista-119248
+      - value: 39.0
+        source: numista
+        specimen: dk-numista-325285
     uncertainty:
       mint:
         - kind: hedged
@@ -7050,6 +7068,9 @@ coins:
         url: https://www.danskmoent.dk/chr/c7h25.htm
         ref: danskmoent.dk (Hede c7h25)
       - type: literature
+        url: https://en.numista.com/119248
+        ref: Numista N#119248 — 1 Rigsdaler Courant "Rejsedaler" - Christian VII (Royal visit)
+      - type: literature
         url: https://en.numista.com/325285
         ref: Numista N#325285 — 1 Rigsdaler Courant "Rejsedaler" (Royal Visit)
       - type: literature
@@ -7066,6 +7087,7 @@ coins:
       - dk-bruun-7892
       - dk-bruun-7893
       - dk-hede-c7h25
+      - dk-numista-119248
       - dk-numista-325285
       - ngc-1050242
   - id: c-4ac05937
