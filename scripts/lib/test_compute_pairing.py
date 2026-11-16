@@ -94,8 +94,8 @@ def test_tooltip_own_pair_single_source():
                     {"value": 0.764, "source": "galster"}],
     ), _fuss())
     tip = _tip_uk(cc, 2.43716)
-    assert "вагою × пробою з" in tip, tip
-    assert "galster" in tip
+    assert "вага і проба — " in tip, tip  # ui.yml marker.derived_both (aaebea7)
+    assert "galster" in tip.lower()
 
 
 def test_tooltip_weight_only_names_both_sources():
@@ -105,8 +105,8 @@ def test_tooltip_weight_only_names_both_sources():
         finenesses=[{"value": 0.75, "source": "hede"}],
     ), _fuss())
     tip = _tip_uk(cc, 2.5275)             # bruun 3.37 × fallback .75 (hede)
-    assert "bruun" in tip and "hede" in tip, f"must name both: {tip!r}"
-    assert "з пробою з" in tip, tip
+    assert "bruun" in tip.lower() and "hede" in tip.lower(), f"must name both: {tip!r}"
+    assert "; проба — " in tip, tip  # ui.yml marker.derived_split (aaebea7)
 
 
 def test_weight_only_borrows_highest_authority_fineness():

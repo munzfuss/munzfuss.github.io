@@ -5,6 +5,8 @@
 > (`christian_ii_partisans_coinage_1525_1536.md`).
 > **Scope:** the formula (pieces per Cologne mark × fineness → fine silver) of each Danish
 > denomination LINE from Hans to Frederik III, and the tie of the Danish units to the Lübeck units.
+> **Continued in:** `danish_denomination_grids_1403_1914.md` — which denominations formed one grid and
+> which separate grids, 1403–1914, with the transitions and the ratio computations (reads this dossier).
 > **Excluded:** the chain of tariffs set by the acts — `denomination_ratio_chains_1403_1625.md`;
 > Hans' assays in detail — `luebischer_muenzfuss.md` §0.6–§0.7; the duchies' Lübeck coin —
 > `luebischer_muenzfuss.md` §3.15.

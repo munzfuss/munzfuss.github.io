@@ -41,6 +41,7 @@ def _meta_db(meta: dict[str, str]) -> sqlite3.Connection:
     return con
 
 
+@unittest.skipUnless(kb.MANIFEST.exists(), "harvest cache (scripts/cache submodule) not attached")
 class IndexStaleness(unittest.TestCase):
     def test_fingerprint_is_stable_across_processes(self):
         """The hash() bug: two interpreters must record the same fingerprint."""
@@ -99,6 +100,7 @@ class Normalisation(unittest.TestCase):
         self.assertIn("betaler", kb.normalize("betaler"))
 
 
+@unittest.skipUnless(bruun_pages.PAGES_DIR.is_dir(), "harvest cache (scripts/cache submodule) not attached")
 class BruunPrintedPage(unittest.TestCase):
     def test_known_lot(self):
         """Part II lot 13163: PDF 120 is printed page 94."""
@@ -143,6 +145,8 @@ class LiveIndex(unittest.TestCase):
     def setUpClass(cls):
         if not kb.DB_DEFAULT.exists():
             raise unittest.SkipTest("no kb index — run scripts/kb/kb.py build")
+        if not kb.MANIFEST.exists():
+            raise unittest.SkipTest("harvest cache (scripts/cache submodule) not attached")
         cls.con = sqlite3.connect(kb.DB_DEFAULT)
         if kb._stale_reason(cls.con):
             raise unittest.SkipTest("kb index is stale — run scripts/kb/kb.py build")

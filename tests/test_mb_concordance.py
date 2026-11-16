@@ -19,8 +19,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.mb_concordance import mb_lookup, mb_window, nominal_window  # noqa: E402
+from lib.paths import KONKORDANS_CACHE  # noqa: E402
 
 
+@unittest.skipUnless((KONKORDANS_CACHE / "konkord.json").exists(), "harvest cache (scripts/cache submodule) not attached")
 class TestMbConcordance(unittest.TestCase):
     def test_numbers_resolve_to_the_rows_own_years(self):
         self.assertEqual(mb_lookup("261")[:2], (1259, 1286))   # Erik Klipping, Slesvig

@@ -6,6 +6,8 @@
 > then «дивитись по заданих значеннях всяких ордонансів».
 > **Scope:** the chain smallest → largest denomination (and gold where an act fixes it) as the
 > normative acts SET it, Denmark (Norway where it differs; duchies only by note), c. 1403–1625.
+> **Continued in:** `danish_denomination_grids_1403_1914.md` — which denominations formed one grid and
+> which separate grids, 1403–1914, with the transitions and the ratio computations (reads this dossier).
 > **Excluded:** assays and specimen weights (period dossiers); the formula series per line —
 > `danish_small_coin_lines_1497_1660.md`; the Lübeck chain itself —
 > `luebeck_standard_chronology_1226_1622.md`.

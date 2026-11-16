@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT / "scripts" / "maintenance"))
 import build_metallanalyser_seed as bm  # noqa: E402
 
 
+@unittest.skipUnless(bm.CACHE.is_dir(), "harvest cache (scripts/cache submodule) not attached")
 class GotlandRows(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
