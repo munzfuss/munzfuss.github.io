@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 54 active, 21 retired.
+# 51 active, 24 retired.
 
 id: royal_slesvig
 classes:
@@ -21,6 +21,7 @@ classes:
     legacy_id: unified-dk-galster-f1g-125
     members:
       - dk-galster-f1g-125
+      - kmk-81438
   - id: c-0c641808
     status: active
     created: '2026-10-22'
@@ -41,6 +42,8 @@ classes:
     legacy_id: unified-dk-hede-f2h30a
     members:
       - dk-hede-f2h30a
+      - dk-hede-f2h30b
+      - dk-numista-313332
       - kmk-345172
   - id: c-149b0114
     status: active
@@ -318,13 +321,6 @@ classes:
       - dk-bruun-4601
       - dk-hede-c4h7a
       - dk-hede-c4h7b
-  - id: c-9adc3aa0
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-81438
-    legacy_id: unified-kmk-81438
-    members:
-      - kmk-81438
   - id: c-a0189f11
     status: active
     created: '2026-10-22'
@@ -422,13 +418,6 @@ classes:
     label: unified-kmk-355345
     members:
       - kmk-355345
-  - id: c-e467d5e7
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-313332
-    legacy_id: unified-dk-numista-313332
-    members:
-      - dk-numista-313332
   - id: c-e533c3c7
     status: active
     created: '2026-10-22'
@@ -450,13 +439,6 @@ classes:
     legacy_id: unified-dk-galster-f1g-118
     members:
       - dk-galster-f1g-118
-  - id: c-e84168b2
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-f2h30b
-    legacy_id: unified-dk-hede-f2h30b
-    members:
-      - dk-hede-f2h30b
   - id: c-f273b0a9
     status: active
     created: '2026-10-22'
@@ -587,6 +569,15 @@ classes:
     retired: '2026-11-08'
     members:
       - kmk-139673
+  - id: c-9adc3aa0
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-81438
+    legacy_id: unified-kmk-81438
+    merged_into: c-05f10cb1
+    retired: '2026-11-13'
+    members:
+      - kmk-81438
   - id: c-b5d4486d
     status: retired
     created: '2026-10-22'
@@ -649,6 +640,24 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-422297
+  - id: c-e467d5e7
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-313332
+    legacy_id: unified-dk-numista-313332
+    merged_into: c-0f59252a
+    retired: '2026-11-13'
+    members:
+      - dk-numista-313332
+  - id: c-e84168b2
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-f2h30b
+    legacy_id: unified-dk-hede-f2h30b
+    merged_into: c-0f59252a
+    retired: '2026-11-13'
+    members:
+      - dk-hede-f2h30b
   - id: c-eb209756
     status: retired
     created: '2026-10-22'

@@ -16,6 +16,55 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-14 / 16 — Sieg editions, crowned-C Blaffert, Erik VII datings, Moesgaard 2008 (local, unpushed)
+
+- **Shipped:** 89e0eb4 / 2b8eeec (SOURCES §13.12: Bruun cites Sieg 2018; per-type re-check — Bruun =
+  2001 table + 1 only for 2001 numbers 29–44, middle range irregular, danskmoent Hede pages collide,
+  Numista mixes old / 2001 / 2018 numbering); 16cae88 (Hede builder: an undated coin takes the reign of
+  the king its page names, «(?)» → hedged ruler; year scope is an overlap test); 883c9f9 (Hede Chr III 23
+  crowned-C Blaffert → Christian II (?) 1513–1523, KMM datings demoted + (*) year marks; Kobbersterling
+  G 7/10/14/15 attribution: Galster c. 1422 + Hedin / Moesgaard 2005 c. 1420–30/35 in the tooltip);
+  81f5336, a203543 (FUSS_REVIEW_FINDINGS rows; Lübischer dossier note); tests for the base-tier rule and the
+  Hede mint-list line (this commit).
+- **Final ruler is foundation-immutable:** the Blaffert's `ruler` and year in final were set by hand
+  (`yaml_io.edit_coin_field`; NB it wrote `year_ranges` flat — fixed by hand). Auto reign-span demote (1c)
+  also demotes a Hede seed whose year IS its ruler's reign, so a curator `year_demote` on the other
+  members alone is not enough: put `year_mark` on them so the unmarked seed wins the all-muted fallback.
+- **Moesgaard 2008 found:** danskmoent artikler/c3jcm.htm (454 challenge, browser only). Its Tabel 1 gives
+  striking periods (2 ß 1536 «efterår 1537 (?)-1540», 1 ß 1536 «… -1538/1539», 4 ß 1535 to 1539/40).
+  Extract with the tables transcribed sits in the session scratchpad only — not cached (the worktree has no
+  submodule and the hook blocks writing the main checkout's cache). Cache it + `_corpus.yml` record from a
+  checkout with the submodule.
+- **Base-tier review page** rebuilt 2026-11-16 against 330bfd5^ with current seeds
+  (`output/review/base_unions_now.py` → `base_review.py`): 107 unions, 31 splits. The old page predated the
+  Numista refresh (the Hede 11 «split» in it no longer exists).
+- **Open:** N#325285 is retired — Numista redirects it to N#119248, which now carries the merged type
+  (1 Rigsdaler Courant 1788 Altona, 23,6 g, KM 260 / 645, Hede 25, Sieg 26); our 119248 cache is the May HTML
+  harvest (28,89 g, a Speciedaler weight) and its seed sits alone in danish_norway seed_unsorted. Needs:
+  refresh N#119248 into the cache, re-seed Numista, cross-entity merge into the Hede 25 group
+  (`_cross_entity.yml`, royal_holstein) — curator call. kmk-367560 (24 Skilling 1750, no index) is a separate
+  unified class but the final dk-tid-90640 still composes it; a formal merge would rest on no catalogue key.
+  Sieg 2018 Christian VII pages (book, sold out). Galster 155 / 158 mint (Trondhjem vs Oslo).
+
+
+## 2026-11-13 — Numista refresh, Hede joint mints, base-tier re-flow (local, unpushed)
+
+- **Shipped (3003361, 6aad28c, 330bfd5, 8370134; cache fc4ffc3, cache unpushed too):**
+  - 543 stale Danish-crown Numista types re-fetched (`refresh_numista_types.py`, log
+    `numista/refresh/2026-11-12/_log.jsonl`); references unioned, weights follow Numista's
+    one-decimal figures (rounded / truncated logged). N#148219 drops KM 606 (CONFIRMED_ABSENT).
+  - Hede 9, 14, 17–23, 38 single classes in royal_holstein (Hede parser reads the mint-list line).
+  - Base-tier rule in the merger (Hede / Galster / scoped KM base = one coin). Curator calls of
+    2026-11-13 on the re-flow losses: Hede Norge 68 = KM 32.1/32.2, Hede Norge 8A joins 8B class,
+    KMM 635269–635276 → Hede 99, Galster 95a/95b one coin, KMM 279183/4 → Hede 22.
+- **Lesson:** repeated merger `--apply` runs pollute `class_registry` (merge/split chains) and
+  absorb writes churned ids into `classification_decisions::promoted_near_peers`. Before the final
+  re-flow, `git checkout -- data/v2/class_registry data/v2/classification_decisions data/v2/final`
+  and run the merger ONCE; that removed 7 of 14 apparent losses.
+- **Open:** curator review of `output/review/base_tier_review.html` (base-tier unions/splits now
+  committed). The other items moved to the 2026-11-14 / 16 entry above.
+
+
 ## 2026-11-10 — A43 / B43, Hede 112 / 113 split, Dav marks, Bruun off-metal headline (local, unpushed)
 
 - **Shipped (main b02f55e..0bdbd0a, cache 4c782ff9c; main 6 ahead of origin at 0bdbd0a):**

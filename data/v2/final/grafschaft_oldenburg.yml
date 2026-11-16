@@ -22,6 +22,13 @@ coins:
           as_printed: ND (1538)
           value: '1538'
           seed: dk-bruun-15088
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-15088
     catalog:
       bruun_collection_id: '15088'
       dav: '9606'
@@ -61,6 +68,14 @@ coins:
     year_first: 1658
     year_last: 1658
     year_label: '1658'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Mark / 12 Grote
+          value: silver
+          seed: dk-bruun-15091
     mint: Jever
     catalog:
       bruun_collection_id: '15091'
@@ -143,6 +158,14 @@ coins:
     year_first: 1665
     year_last: 1665
     year_label: '1665'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-15099
     mint: Jever
     catalog:
       km: '84'
@@ -191,6 +214,14 @@ coins:
     year_first: 1666
     year_last: 1666
     year_label: '1666'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-15100
     catalog:
       km: '86'
       bruun_collection_id: '15100'
@@ -238,6 +269,14 @@ coins:
     year_first: 1667
     year_last: 1667
     year_label: '1667'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-15101
     mint: Jever
     catalog:
       km: '93'
@@ -286,6 +325,14 @@ coins:
     year_first: 1667
     year_last: 1667
     year_label: '1667'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/4 Taler
+          value: silver
+          seed: dk-bruun-15103
     mint: Jever
     catalog:
       km: '91'
@@ -344,6 +391,13 @@ coins:
           source: bruun
           as_printed: ND (1614-1619)
           value: 1614-1619
+          seed: dk-bruun-15106
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Taler Klippe
+          value: silver
           seed: dk-bruun-15106
     mint: Jever
     catalog:
@@ -405,6 +459,13 @@ coins:
           as_printed: ND (1614-1619)
           value: 1614-1619
           seed: dk-bruun-15107
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler Klippe
+          value: silver
+          seed: dk-bruun-15107
     mint: Jever
     catalog:
       km: '7'
@@ -459,6 +520,13 @@ coins:
           as_printed: ND (1614-1622)
           value: 1614-1622
           seed: dk-bruun-15108
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-15108
     mint: Jever
     catalog:
       km: '9'
@@ -512,6 +580,13 @@ coins:
           source: bruun
           as_printed: ND (1619-1622)
           value: 1619-1622
+          seed: dk-bruun-15109
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
           seed: dk-bruun-15109
     mint: Jever
     catalog:
@@ -1909,47 +1984,6 @@ coins:
     composed_of:
       - c-ac7a24ba
     label: unified-dk-numista-314943
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅓ Thaler
-    ruler: Frederick V (Friedrich V)
-    issuing_entity: grafschaft_oldenburg
-    id: c-021e0169
-    year_first: 1761
-    year_last: 1761
-    year_label: '1761'
-    catalog:
-      km: '120.1'
-      numista: '314946'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.075
-        source: numista
-    weight_rough_g:
-      - value: 8.66
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/314946
-        ref: Numista N#314946 — 1/3 Thaler - Frederick V - County of Oldenburg
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    composed_of:
-      - c-021e0169
-    label: unified-dk-numista-314946
     origin: promoted
   - fuss: seed_unsorted
     phase: numista
@@ -5765,6 +5799,38 @@ coins:
       -   - 1761
           - 1765
     year_label: 1761-1765
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-15139c
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-15139d
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-15139ddd
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-15139e
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2/3 Taler (Zweidrittel)
+          value: silver
+          seed: dk-bruun-15139ø
     mint: Oldenburg
     catalog:
       km: '122'
@@ -5835,7 +5901,6 @@ coins:
       da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
         specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
-      - c-37427b56
       - c-4476f2b1
     label: unified-dk-bruun-15139c
     origin: promoted
@@ -5852,17 +5917,32 @@ coins:
     mintmaster: Johan Henrik Madelung (IHM)
     issuing_entity: grafschaft_oldenburg
     id: c-629ea59e
-    year_first: 1762
+    year_first: 1761
     year_last: 1762
-    year_label: '1762'
+    year_ranges:
+      -   - 1761
+          - 1762
+    year_label: 1761-1762
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/3 Taler (Drittel)
+          value: silver
+          seed: dk-bruun-15139dd
     mint: Oldenburg
     catalog:
-      km: '120.2'
+      km:
+        - '120.2'
+        - '120.1'
       hede: 3B
       sieg: '56.2'
       bruun_collection_id: 15139dd
       schou: '28'
-      numista: '341018'
+      numista:
+        - '341018'
+        - '314946'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5871,14 +5951,23 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.075
+        source: numista
+        specimen: dk-numista-314946
       - value: 0.75
         source: numista
+        specimen: dk-numista-341018
     weight_rough_g:
       - value: 8.66
         source: numista
+        specimen: dk-numista-314946
+      - value: 8.66
+        source: numista
+        specimen: dk-numista-341018
     diameter_mm:
       - value: 29.5
         source: numista
+        specimen: dk-numista-341018
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -5886,6 +5975,9 @@ coins:
       - type: literature
         url: https://en.numista.com/341018
         ref: Numista N#341018 — 1/3 Thaler - Frederick V of Denmark - County of Oldenburg
+      - type: literature
+        url: https://en.numista.com/314946
+        ref: Numista N#314946 — 1/3 Thaler - Frederick V - County of Oldenburg
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.

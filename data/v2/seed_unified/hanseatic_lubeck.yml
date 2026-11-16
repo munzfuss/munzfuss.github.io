@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-11-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
 # Input: 487 per-source seed entries.
-# Output: 325 unified entries (one per physical coin).
+# Output: 315 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-11-09'
+generated_at: '2026-11-16'
 coins:
   - id: c-c114e202
     class_id: c-c114e202
@@ -79,6 +79,14 @@ coins:
     diameter_mm:
       - value: 45.0
         source: ngc
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-15027
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -928,10 +936,18 @@ coins:
         - '168'
         - '168.1'
         - '168.2'
+        - '168.6'
+        - '168.3'
+        - '168.5'
+        - '168.4'
       numista: '24631'
       dav:
         - GT II 2420A
         - GT II 2420
+        - GT II 2420E
+        - GT II 2420B
+        - GT II 2420D
+        - GT II 2420C
       behrens:
         - '291'
         - 291a
@@ -952,6 +968,18 @@ coins:
         source: ngc
         specimen: ngc-1137380
       - value: 0.75
+        source: ngc
+        specimen: ngc-1137617
+      - value: 0.75
+        source: ngc
+        specimen: ngc-1138074
+      - value: 0.75
+        source: ngc
+        specimen: ngc-1139478
+      - value: 0.75
+        source: ngc
+        specimen: ngc-1142502
+      - value: 0.75
         source: numista
     weight_rough_g:
       - value: 27.18
@@ -962,6 +990,18 @@ coins:
       - value: 27.51
         source: ngc
         specimen: ngc-1137380
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1137617
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1138074
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1139478
+      - value: 27.51
+        source: ngc
+        specimen: ngc-1142502
       - value: 27.51
         source: numista
     diameter_mm:
@@ -977,6 +1017,18 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.2-1752-cuid-1137380-duid-1339734
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.6-1752-cuid-1137617-duid-1339256
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.3-1752-cuid-1138074-duid-1339424
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.5-1752-cuid-1139478-duid-1339425
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.4-1752-cuid-1142502-duid-1338976
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: auction
         url: https://www.yumpu.com/de/document/view/7817078/auktion-110-auktionshaus-tietjen-co
         ref: Tietjen + Co., Auktion 110 (17. Dezember 2012), Los 88
@@ -985,6 +1037,10 @@ coins:
       - dk-numista-24631
       - ngc-1137379
       - ngc-1137380
+      - ngc-1137617
+      - ngc-1138074
+      - ngc-1139478
+      - ngc-1142502
       - tietjen-110-88
   - id: c-01640c36
     class_id: c-01640c36
@@ -1135,31 +1191,44 @@ coins:
           - 1635
     year_label: 1627-1635
     ruler: Ferdinand II
+    inscription_obv: MONE NOVA - LVBECENS
+    inscription_rev: FERDINAND II D G ROM IM SEMP AV
+    mint: Lübeck
     catalog:
       km: A61
       numista: '266132'
       others:
         - Behr# 160 e/b
-      dav: 5449C
+        - Behrens# 161 b
+      dav:
+        - 5449C
+        - '5449'
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
       - value: 28.74
         source: numista
       - value: 29.0
         source: ucoin
+      - value: 29.01
+        source: ikmk
     diameter_mm:
       - value: 41.0
         source: ucoin
+      - value: 43.0
+        source: ikmk
     sources:
       - type: literature
         url: https://en.numista.com/266132
         ref: Numista N#266132 — 32 Schilling - Free Hanseatic city of Lübeck
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18202373
+        ref: IKMK Berlin 18202373
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1627-1635/?tid=102702
         ref: ucoin
@@ -1174,6 +1243,7 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - dk-numista-266132
+      - ikmk-18202373
       - lu-tid-102702
       - ngc-1138066
   - id: c-9b62f441
@@ -5749,42 +5819,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18201883
-  - id: c-9acd8508
-    class_id: c-9acd8508
-    label: unified-ikmk-18202373
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Taler (32 Schillinge)
-    year_first: 1631
-    year_last: 1631
-    year_label: '1631'
-    inscription_obv: MONE NOVA - LVBECENS
-    inscription_rev: FERDINAND II D G ROM IM SEMP AV
-    mint: Lübeck
-    catalog:
-      dav: '5449'
-      others:
-        - Behrens# 161 b
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 29.01
-        source: ikmk
-    diameter_mm:
-      - value: 43.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18202373
-        ref: IKMK Berlin 18202373
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ikmk-18202373
   - id: c-f121cc31
     class_id: c-f121cc31
     label: unified-ikmk-18219826
@@ -8253,40 +8287,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1137576
-  - id: c-ba5f1df4
-    class_id: c-ba5f1df4
-    label: unified-ngc-1137617
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.6'
-      behrens: '291'
-      dav: 2420E
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.6-1752-cuid-1137617-duid-1339256
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1137617
   - id: c-6a71a151
     class_id: c-6a71a151
     label: unified-ngc-1137620
@@ -9042,8 +9042,13 @@ coins:
     year_label: '1723'
     ruler: Christian August
     catalog:
-      km: '78.1'
-      behrens: 805a
+      km:
+        - '78.1'
+        - '78.2'
+      behrens:
+        - 805a
+        - 805b
+        - 805c
       dav: '623'
     metal: silver
     metal_verified: true
@@ -9056,9 +9061,13 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-mark-km-78.1-1723-cuid-1137992-duid-1338961
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-mark-km-78.2-1723-cuid-1189325-duid-1367145
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1137992
+      - ngc-1189325
   - id: c-83db1ae1
     class_id: c-83db1ae1
     label: unified-ngc-1137994
@@ -9199,40 +9208,6 @@ coins:
     composed_of:
       - lu-tid-102704
       - ngc-1138070
-  - id: c-b51bb3ce
-    class_id: c-b51bb3ce
-    label: unified-ngc-1138074
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.3'
-      behrens: '291'
-      dav: 2420B
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.3-1752-cuid-1138074-duid-1339424
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1138074
   - id: c-d25ca58e
     class_id: c-d25ca58e
     label: unified-ngc-1138076
@@ -9321,11 +9296,16 @@ coins:
     year_label: 1606-1607, 1610
     ruler: Johann Adolf
     catalog:
-      km: '26.1'
+      km:
+        - '26.1'
+        - '26.2'
       behrens:
         - '818'
+        - '819'
         - '820'
-      dav: '5438'
+      dav:
+        - '5438'
+        - 5438A
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9337,9 +9317,13 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-26.1-1606-1610-cuid-1138148-duid-1362595
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-26.2-1606-cuid-1190340-duid-1367371
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1138148
+      - ngc-1190340
   - id: c-e93e7172
     class_id: c-e93e7172
     label: unified-ngc-1138149
@@ -9693,8 +9677,12 @@ coins:
     year_label: '1724'
     ruler: Christian August
     catalog:
-      km: '80.1'
-      behrens: 843a
+      km:
+        - '80.1'
+        - '80.2'
+      behrens:
+        - 843a
+        - 843b
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -9703,12 +9691,29 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-1186046
+          source: ngc
+          years: '1724'
+      uncertain:
+        - seed: ngc-1138349
+          source: ngc
+          years: '1724'
     fineness:
       - value: 0.986
         source: ngc
+        specimen: ngc-1138349
+      - value: 0.986
+        source: ngc
+        specimen: ngc-1186046
     weight_rough_g:
       - value: 3.5
         source: ngc
+        specimen: ngc-1138349
+      - value: 3.5
+        source: ngc
+        specimen: ngc-1186046
     uncertainty:
       year:
         - kind: hedged
@@ -9721,9 +9726,13 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-80.1-mdccxxiiii-1724-cuid-1138349-duid-1339395
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-80.2-1724-cuid-1186046-duid-1367614
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1138349
+      - ngc-1186046
   - id: c-2a531314
     class_id: c-2a531314
     label: unified-ngc-1138352
@@ -10433,8 +10442,8 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1138792
-  - id: c-aff661de
-    class_id: c-aff661de
+  - id: c-1e29ac30
+    class_id: c-1e29ac30
     label: unified-ngc-1138811
     fuss: seed_unsorted
     phase: ngc
@@ -10442,8 +10451,12 @@ coins:
     nominal: 4 Schilling
     ruler: Johann Friedrich
     catalog:
-      km: '8.1'
-      behrens: '791'
+      km:
+        - '8.1'
+        - '8.2'
+      behrens:
+        - '791'
+        - '792'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10459,9 +10472,13 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-schilling-km-8.1-cuid-1138811-duid-1338908
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-schilling-km-8.2-cuid-1194487-duid-1367613
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1138811
+      - ngc-1194487
   - id: c-49039edb
     class_id: c-49039edb
     label: unified-ngc-1138858
@@ -10577,8 +10594,12 @@ coins:
     year_label: '1600'
     ruler: Johann Adolf
     catalog:
-      km: '13.1'
-      behrens: '762'
+      km:
+        - '13.1'
+        - '13.2'
+      behrens:
+        - '762'
+        - '763'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10590,9 +10611,13 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-13.1-1600-cuid-1138981-duid-1338857
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-13.2-1600-cuid-1194503-duid-1366859
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1138981
+      - ngc-1194503
   - id: c-d484e2da
     class_id: c-d484e2da
     label: unified-ngc-1138983
@@ -11016,40 +11041,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1139474
-  - id: c-3f7d776f
-    class_id: c-3f7d776f
-    label: unified-ngc-1139478
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.5'
-      behrens: '291'
-      dav: 2420D
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.5-1752-cuid-1139478-duid-1339425
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1139478
   - id: c-b1963a16
     class_id: c-b1963a16
     label: unified-ngc-1139546
@@ -11571,40 +11562,6 @@ coins:
     composed_of:
       - lu-tid-102711
       - ngc-1142499
-  - id: c-fe9a6bd2
-    class_id: c-fe9a6bd2
-    label: unified-ngc-1142502
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 48 Schilling
-    year_first: 1752
-    year_last: 1752
-    year_label: '1752'
-    catalog:
-      km: '168.4'
-      behrens: '291'
-      dav: 2420C
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: ngc
-    weight_rough_g:
-      - value: 27.51
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.4-1752-cuid-1142502-duid-1338976
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1142502
   - id: c-6881abe0
     class_id: c-6881abe0
     label: unified-ngc-1142602
@@ -11952,100 +11909,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1183516
-  - id: c-f28a9229
-    class_id: c-f28a9229
-    label: unified-ngc-1186046
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1724
-    year_last: 1724
-    year_label: '1724'
-    ruler: Christian August
-    catalog:
-      km: '80.2'
-      behrens: 843b
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.986
-        source: ngc
-    weight_rough_g:
-      - value: 3.5
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-ducat-km-80.2-1724-cuid-1186046-duid-1367614
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1186046
-  - id: c-dd36a341
-    class_id: c-dd36a341
-    label: unified-ngc-1189325
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    ruler: Christian August
-    catalog:
-      km: '78.2'
-      behrens:
-        - 805b
-        - 805c
-      dav: '623'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-mark-km-78.2-1723-cuid-1189325-duid-1367145
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1189325
-  - id: c-85437f8e
-    class_id: c-85437f8e
-    label: unified-ngc-1190340
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Johann Adolf
-    catalog:
-      km: '26.2'
-      behrens: '819'
-      dav: 5438A
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-26.2-1606-cuid-1190340-duid-1367371
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1190340
   - id: c-7760c37f
     class_id: c-7760c37f
     label: unified-ngc-1193214
@@ -12076,32 +11939,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1193214
-  - id: c-1e29ac30
-    class_id: c-1e29ac30
-    label: unified-ngc-1194487
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Schilling
-    ruler: Johann Friedrich
-    catalog:
-      km: '8.2'
-      behrens: '792'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-schilling-km-8.2-cuid-1194487-duid-1367613
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1194487
   - id: c-84f69b63
     class_id: c-84f69b63
     label: unified-ngc-1194488
@@ -12129,34 +11966,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ngc-1194488
-  - id: c-243230a5
-    class_id: c-243230a5
-    label: unified-ngc-1194503
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1/16 Thaler
-    year_first: 1600
-    year_last: 1600
-    year_label: '1600'
-    ruler: Johann Adolf
-    catalog:
-      km: '13.2'
-      behrens: '763'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-13.2-1600-cuid-1194503-duid-1366859
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ngc-1194503
   - id: c-f2dafdb8
     class_id: c-f2dafdb8
     label: unified-ngc-1203380

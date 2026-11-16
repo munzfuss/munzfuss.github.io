@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `herzogtum_braunschweig_lueneburg`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 2948 per-source seed entries.
-# Output: 2423 unified entries (one per physical coin).
+# Output: 2413 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,10 +11,10 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_braunschweig_lueneburg
-generated_at: '2026-11-07'
+generated_at: '2026-11-16'
 coins:
-  - id: c-3ae84baf
-    class_id: c-3ae84baf
+  - id: c-08c0fcf7
+    class_id: c-08c0fcf7
     label: unified-dk-bruun-5537
     fuss: seed_unsorted
     phase: bruun
@@ -24,66 +24,28 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
-    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
     mint: Wolfenbüttel
     catalog:
-      km: '65.1'
+      km:
+        - '65.1'
+        - '65.2'
       hede:
-        - '6'
         - 6A
-      sieg: '192.1'
-      bruun_collection_id: '5537'
-      schou: '14'
+        - 6B
+      sieg:
+        - '192.1'
+        - '192.2'
+      bruun_collection_id:
+        - '5537'
+        - '5538'
+      schou:
+        - '14'
+        - '15'
       others:
         - Aagaard# 16.3
-        - Harck# 27.8.2
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.04
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14112, p. 45
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18250999
-        ref: IKMK Berlin 18250999
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - dk-bruun-5537
-      - ikmk-18250999
-  - id: c-08c0fcf7
-    class_id: c-08c0fcf7
-    label: unified-dk-bruun-5538
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Gutergroschen
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV
-    mint: Wolfenbüttel
-    catalog:
-      km: '65.2'
-      hede: 6B
-      sieg: '192.2'
-      bruun_collection_id: '5538'
-      schou: '15'
-      others:
         - Aagaard# 15.3
+        - Harck# 27.8.2
         - Harck# 27.8.1
-    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
@@ -91,10 +53,14 @@ coins:
     verified: false
     sources:
       - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14112, p. 45
+      - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11200, p. 84
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - dk-bruun-5537
       - dk-bruun-5538
   - id: c-27ceb3b7
     class_id: c-27ceb3b7
@@ -3559,40 +3525,59 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-numista-267962
-  - id: c-eaf0e1d5
-    class_id: c-eaf0e1d5
+  - id: c-c16a60c7
+    class_id: c-c16a60c7
     label: unified-dk-numista-267965
     fuss: seed_unsorted
     phase: numista
     kind: kurant
     nominal: 4 Thalers
-    year_first: 1665
+    year_first: 1663
     year_last: 1665
-    year_label: '1665'
+    year_ranges:
+      -   - 1663
+          - 1663
+      -   - 1665
+          - 1665
+    year_label: 1663, 1665
     ruler: Christian Louis (Christian Ludwig)
     catalog:
-      km: '257.2'
-      numista: '267965'
+      km:
+        - '257.2'
+        - '257.1'
+      numista:
+        - '267965'
+        - '397796'
       others:
         - Welter# 1500
         - Müseler# 10.4.1/71
+      dav: BrSL 180
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
       - value: 114.17
         source: numista
+      - value: 115.11
+        source: numista
+    diameter_mm:
+      - value: 75.0
+        source: numista
     sources:
       - type: literature
         url: https://en.numista.com/267965
         ref: Numista N#267965 — 4 Thalers - Christian Louis (Harz - Ausbeute - Löser) - Brunswick-Lüneburg-Celle
+      - type: literature
+        url: https://en.numista.com/397796
+        ref: Numista N#397796 — 4 Thalers - Christian Louis - Brunswick-Lüneburg-Celle - 1663 (KM-257.1)
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-numista-267965
+      - dk-numista-397796
   - id: c-9cb99d75
     class_id: c-9cb99d75
     label: unified-dk-numista-267968
@@ -9077,43 +9062,6 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-numista-397795
-  - id: c-c16a60c7
-    class_id: c-c16a60c7
-    label: unified-dk-numista-397796
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 4 Thalers
-    year_first: 1663
-    year_last: 1663
-    year_label: '1663'
-    ruler: Christian Louis (Christian Ludwig)
-    catalog:
-      km: '257.1'
-      numista: '397796'
-      dav: BrSL 180
-      others:
-        - Welter# 1500
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 115.11
-        source: numista
-    diameter_mm:
-      - value: 75.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/397796
-        ref: Numista N#397796 — 4 Thalers - Christian Louis - Brunswick-Lüneburg-Celle - 1663 (KM-257.1)
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - dk-numista-397796
   - id: c-1e83caf7
     class_id: c-1e83caf7
     label: unified-dk-numista-397812
@@ -17140,6 +17088,41 @@ coins:
     composed_of:
       - ikmk-18236491
       - ikmk-18236492
+  - id: c-67287e0f
+    class_id: c-67287e0f
+    label: unified-ikmk-18250999
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Groschen
+    year_first: 1627
+    year_last: 1627
+    year_label: '1627'
+    ruler: Christian IV.
+    inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
+    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
+    mint: Wolfenbüttel
+    catalog:
+      hede: '6'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.04
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250999
+        ref: IKMK Berlin 18250999
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    composed_of:
+      - ikmk-18250999
   - id: c-f0988087
     class_id: c-f0988087
     label: unified-ikmk-18251000
@@ -62189,8 +62172,8 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-190416
-  - id: c-c80c1a38
-    class_id: c-c80c1a38
+  - id: c-00742327
+    class_id: c-00742327
     label: unified-tid-tid-190419
     fuss: seed_unsorted
     phase: ucoin
@@ -62204,7 +62187,10 @@ coins:
     year_label: 1601-1611
     ruler: Henry Julius
     catalog:
-      km: '12.1'
+      km:
+        - '12.1'
+        - '12.2'
+        - '12.3'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -62222,66 +62208,16 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-thaler-1601-1611/?tid=190419
         ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-190419
-  - id: c-00742327
-    class_id: c-00742327
-    label: unified-tid-tid-190420
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1602
-    year_last: 1603
-    year_ranges:
-      -   - 1602
-          - 1603
-    year_label: 1602-1603
-    ruler: Henry Julius
-    catalog:
-      km: '12.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-thaler-1602-1603/?tid=190420
         ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-190420
-  - id: c-15676eaa
-    class_id: c-15676eaa
-    label: unified-tid-tid-190421
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1604
-    year_last: 1605
-    year_ranges:
-      -   - 1604
-          - 1605
-    year_label: 1604-1605
-    ruler: Henry Julius
-    catalog:
-      km: '12.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-thaler-1604-1605/?tid=190421
         ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - tid-tid-190419
+      - tid-tid-190420
       - tid-tid-190421
   - id: c-ac9f26e5
     class_id: c-ac9f26e5
@@ -62486,50 +62422,27 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-190439
-  - id: c-a399d300
-    class_id: c-a399d300
+  - id: c-87171fc1
+    class_id: c-87171fc1
     label: unified-tid-tid-190442
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
     nominal: 4 Thaler
     year_first: 1608
-    year_last: 1608
-    year_label: '1608'
-    ruler: Henry Julius
-    mint: Zellerfeld
-    catalog:
-      km: '30.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 116.41
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-4-thaler-1608/?tid=190442
-        ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-190442
-  - id: c-87171fc1
-    class_id: c-87171fc1
-    label: unified-tid-tid-190444
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 4 Thaler
-    year_first: 1612
     year_last: 1612
-    year_label: '1612'
+    year_ranges:
+      -   - 1608
+          - 1608
+      -   - 1612
+          - 1612
+    year_label: 1608, 1612
     ruler: Henry Julius
     mint: Zellerfeld
     catalog:
-      km: '30.2'
+      km:
+        - '30.1'
+        - '30.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -62539,12 +62452,18 @@ coins:
     weight_rough_g:
       - value: 115.0
         source: ucoin
+      - value: 116.41
+        source: ucoin
     sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-4-thaler-1608/?tid=190442
+        ref: ucoin
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-4-thaler-1612/?tid=190444
         ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - tid-tid-190442
       - tid-tid-190444
   - id: c-afb72756
     class_id: c-afb72756
@@ -65156,8 +65075,8 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-81966
-  - id: c-3923642e
-    class_id: c-3923642e
+  - id: c-1aaa0fe0
+    class_id: c-1aaa0fe0
     label: unified-tid-tid-81967
     fuss: seed_unsorted
     phase: ucoin
@@ -65171,37 +65090,9 @@ coins:
     year_label: 1819-1820
     ruler: Charles II
     catalog:
-      km: '1079.1'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    diameter_mm:
-      - value: 20.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1819-1820/?tid=81967
-        ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-81967
-  - id: c-1aaa0fe0
-    class_id: c-1aaa0fe0
-    label: unified-tid-tid-81968
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Pfennig
-    year_first: 1820
-    year_last: 1820
-    year_label: '1820'
-    ruler: Charles II
-    catalog:
-      km: '1079.2'
+      km:
+        - '1079.1'
+        - '1079.2'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -65213,14 +65104,20 @@ coins:
       - value: 1.93
         source: ucoin
     diameter_mm:
+      - value: 20.0
+        source: ucoin
       - value: 20.4
         source: ucoin
     sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1819-1820/?tid=81967
+        ref: ucoin
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick-1-pfennig-1820/?tid=81968
         ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - tid-tid-81967
       - tid-tid-81968
   - id: c-863e1c4c
     class_id: c-863e1c4c
@@ -69046,8 +68943,8 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-91601
-  - id: c-65ed0833
-    class_id: c-65ed0833
+  - id: c-35c40690
+    class_id: c-35c40690
     label: unified-tid-tid-91604
     fuss: seed_unsorted
     phase: ucoin
@@ -69061,7 +68958,10 @@ coins:
     year_label: 1699-1715
     ruler: George I
     catalog:
-      km: '26.1'
+      km:
+        - '26.1'
+        - '26.2'
+        - '26.3'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -69072,66 +68972,16 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1699-1715/?tid=91604
         ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-91604
-  - id: c-8b7dd51c
-    class_id: c-8b7dd51c
-    label: unified-tid-tid-91605
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Mariengroschen
-    year_first: 1706
-    year_last: 1707
-    year_ranges:
-      -   - 1706
-          - 1707
-    year_label: 1706-1707
-    ruler: George I
-    catalog:
-      km: '26.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1706-1707/?tid=91605
         ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-91605
-  - id: c-35c40690
-    class_id: c-35c40690
-    label: unified-tid-tid-91606
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Mariengroschen
-    year_first: 1708
-    year_last: 1715
-    year_ranges:
-      -   - 1708
-          - 1715
-    year_label: 1708-1715
-    ruler: George I
-    catalog:
-      km: '26.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-1-mariengroschen-1708-1715/?tid=91606
         ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - tid-tid-91604
+      - tid-tid-91605
       - tid-tid-91606
   - id: c-ac330fed
     class_id: c-ac330fed
@@ -70960,50 +70810,25 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-91923
-  - id: c-5eaa29e0
-    class_id: c-5eaa29e0
+  - id: c-51122411
+    class_id: c-51122411
     label: unified-tid-tid-91924
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
     nominal: ⅛ Thaler
     year_first: 1666
-    year_last: 1666
-    year_label: '1666'
-    ruler: John Frederick
-    mint: Clausthal-Zellerfeld
-    catalog:
-      km: '96.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 3.5
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_luneburg-1-8-thaler-1666/?tid=91924
-        ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-91924
-  - id: c-51122411
-    class_id: c-51122411
-    label: unified-tid-tid-91925
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ⅛ Thaler
-    year_first: 1667
     year_last: 1667
-    year_label: '1667'
+    year_ranges:
+      -   - 1666
+          - 1667
+    year_label: 1666-1667
     ruler: John Frederick
     mint: Zellerfeld
     catalog:
-      km: '96.2'
+      km:
+        - '96.1'
+        - '96.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -71015,10 +70840,14 @@ coins:
         source: ucoin
     sources:
       - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_luneburg-1-8-thaler-1666/?tid=91924
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-1-8-thaler-1667/?tid=91925
         ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - tid-tid-91924
       - tid-tid-91925
   - id: c-a42d95e4
     class_id: c-a42d95e4
@@ -75306,22 +75135,24 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-92210
-  - id: c-b1920896
-    class_id: c-b1920896
+  - id: c-5f0a67d0
+    class_id: c-5f0a67d0
     label: unified-tid-tid-92211
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
     nominal: ⅔ Thaler
     year_first: 1716
-    year_last: 1722
+    year_last: 1727
     year_ranges:
       -   - 1716
-          - 1722
-    year_label: 1716-1722
+          - 1727
+    year_label: 1716-1727
     ruler: George I
     catalog:
-      km: '112.1'
+      km:
+        - '112.1'
+        - '112.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -75336,41 +75167,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-2-3-thaler-1716-1722/?tid=92211
         ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-92211
-  - id: c-5f0a67d0
-    class_id: c-5f0a67d0
-    label: unified-tid-tid-92212
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: ⅔ Thaler
-    year_first: 1723
-    year_last: 1727
-    year_ranges:
-      -   - 1723
-          - 1727
-    year_label: 1723-1727
-    ruler: George I
-    catalog:
-      km: '112.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    diameter_mm:
-      - value: 36.0
-        source: ucoin
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-2-3-thaler-1723-1727/?tid=92212
         ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - tid-tid-92211
       - tid-tid-92212
   - id: c-30c833fa
     class_id: c-30c833fa
@@ -86616,11 +86418,18 @@ coins:
     kind: kurant
     nominal: 10 Thaler
     year_first: 1775
-    year_last: 1775
-    year_label: '1775'
+    year_last: 1777
+    year_ranges:
+      -   - 1775
+          - 1775
+      -   - 1777
+          - 1777
+    year_label: 1775, 1777
     ruler: Charles I
     catalog:
-      km: '987.1'
+      km:
+        - '987.1'
+        - '987.2'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -86631,54 +86440,34 @@ coins:
     fineness:
       - value: 0.9
         source: ucoin
+        specimen: tid-tid-97990
+      - value: 0.9
+        source: ucoin
+        specimen: tid-tid-97991
     weight_rough_g:
       - value: 13.3
         source: ucoin
+        specimen: tid-tid-97990
+      - value: 13.3
+        source: ucoin
+        specimen: tid-tid-97991
     diameter_mm:
       - value: 27.0
         source: ucoin
+        specimen: tid-tid-97990
+      - value: 27.0
+        source: ucoin
+        specimen: tid-tid-97991
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-10-thaler-1775/?tid=97990
         ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-97990
-  - id: c-db97a12f
-    class_id: c-db97a12f
-    label: unified-tid-tid-97991
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 10 Thaler
-    year_first: 1777
-    year_last: 1777
-    year_label: '1777'
-    ruler: Charles I
-    catalog:
-      km: '987.2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.9
-        source: ucoin
-    weight_rough_g:
-      - value: 13.3
-        source: ucoin
-    diameter_mm:
-      - value: 27.0
-        source: ucoin
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-10-thaler-1777/?tid=97991
         ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - tid-tid-97990
       - tid-tid-97991
   - id: c-df4bf3b4
     class_id: c-df4bf3b4

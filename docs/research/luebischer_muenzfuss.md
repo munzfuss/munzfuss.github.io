@@ -1636,7 +1636,10 @@ harvested and seeded (Galster 1-23), with Bruun lots 3712, 3725, 3757, 3763, 377
 «*Kong Eriks Kobbermynter vare fra alle fire Stæder af samme Typ, kun forskjellige ved deres Myntsteders
 Navne*» (Hauberg 1886 s. 170); Galster numbers them 7 (Næstved), 10 (Lund), 14 (Odense), 15 (Randers),
 Fritze Lindahl 1955 42-49 / 34-41 / 50-53 / 54-58 (danskmoent `epomg7/10/14/15`). Kept as four classes
-(curator 2026-10-25); Heljeback 2016:1 Nr 39 and 43 («Næstved/Lund/Odense/Randers», «7/10/14/15») are
+(curator 2026-10-25), then merged into one coin (curator 2026-11-05, `fa3aeb1`: Jesse 697 / 698 and
+Numista Sieg 9.2 take the four mints together). Dating: Galster «ca. 1422»; Hedin, Myntstudier 2023:1
+s. 31, after Moesgaard 2005 s. 80 f., 84: «*ca 1420–30/35*» (hoard evidence, never with the Gros of the
+1430s); Odense and Randers struck only Kobbersterlinge, c. 1420–1430/35 (s. 32); Heljeback 2016:1 Nr 39 and 43 («Næstved/Lund/Odense/Randers», «7/10/14/15») are
 unattributed specimens and stand alone.
 
 **Metal.** Copper: Heljeback XRF 0,42-0,52 % Ag on seven specimens; «*af fuldt Kobber*» (Hauberg s. 171,

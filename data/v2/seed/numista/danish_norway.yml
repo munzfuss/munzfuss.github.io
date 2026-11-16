@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-10-09T16:22:33Z'
+generated_at: '2026-11-12T13:35:43Z'
 entity: danish_norway
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -151,7 +151,9 @@ coins:
     mint:
     catalog:
       numista: '444409'
-      galster: UU# 165
+      galster:
+        - '165'
+        - UU# 165
       schive:
         - XV.24
         - XV.25
@@ -319,13 +321,19 @@ coins:
     mint:
     catalog:
       numista: '444416'
-      galster: UU 167
+      galster:
+        - '167'
+        - UU 167
       skaare: '311'
       others:
         - Galster UU# 167
         - AAJT# 2-4
         - Brekke# 2-4
         - Thesen# 2-5
+        - Thesen# 2
+        - Thesen# 3
+        - Thesen# 4
+        - Thesen# 5
     metal: billon
     fineness: 0.219
     weight_rough_g: 2.05
@@ -392,7 +400,9 @@ coins:
     mint: Bergen
     catalog:
       numista: '121900'
-      galster: UU# 169
+      galster:
+        - '169'
+        - UU# 169
       schive:
         - XVI.8
         - XVI.9
@@ -4429,7 +4439,6 @@ coins:
     catalog:
       numista: '118991'
       km: '60'
-      hede: '1'
       others:
         - Rønning# 58
         - Brekke# 138
@@ -13573,44 +13582,6 @@ coins:
       - type: literature
         url: https://en.numista.com/81301
         ref: Numista N#81301 — 1 Skilling - Christian VII (Kongsberg) - Norway
-  - id: dk-numista-119248
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    note:
-      de: 'Reisedaler'
-      en: 'Reisedaler'
-      uk: 'Reisedaler'
-    year_label: '1788'
-    year_first: 1788
-    year_last: 1788
-    year_ranges:
-      -   - 1788
-          - 1788
-    ruler: Christian VII
-    mint:
-    catalog:
-      numista: '119248'
-      km:
-        nor: '260'
-        dk: '645'
-      dav: EC III 1312
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.89
-    diameter_mm:
-    issuing_entity: danish_norway
-    verified: false
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/119248
-        ref: Numista N#119248 — 1 Reisedaler - Christian VII (Royal visit) - Norway
   - id: dk-numista-99119
     fuss: seed_unsorted
     phase: numista

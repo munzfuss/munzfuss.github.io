@@ -13,6 +13,14 @@ coins:
     year_first: 1612
     year_last: 1612
     year_label: '1612'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-14975
     mint: Bremervörde
     catalog:
       km: '19.1'
@@ -52,13 +60,32 @@ coins:
     ruler: Frederik III
     issuing_entity: fuerstbisthum_luebeck
     id: c-0149ddcb
+    mintmaster: Andreas Woltereck
     year_first: 1723
     year_last: 1723
     year_label: '1723'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-15039
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-15040
     mint: Glückstadt
     catalog:
-      km: '78.1'
-      bruun_collection_id: '15039'
+      km:
+        - '78.1'
+        - '78.2'
+      bruun_collection_id:
+        - '15039'
+        - '15040'
       lange: 511A
       dav: '623'
     metal: silver
@@ -68,12 +95,17 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 17.1
+        source: bruun
       - value: 17.43
         source: bruun
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12223, p. 248
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12224, p. 248
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -91,49 +123,6 @@ coins:
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 2 Mark
-    mintmaster: Andreas Woltereck
-    issuing_entity: fuerstbisthum_luebeck
-    ruler: Christian August
-    id: c-6eaa2d55
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    mint: Glückstadt
-    catalog:
-      km: '78.2'
-      bruun_collection_id: '15040'
-      dav: '623'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 17.1
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12224, p. 248
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-    composed_of:
-      - c-6eaa2d55
-    label: unified-dk-bruun-15040
-    origin: promoted
-    _curation_holds:
-      note: "2026-09-20: the note was a source fragment, not prose — a seed builder's leftover after splitting one source string into a field plus a remainder. Frozen so a re-seed cannot restore it; see
-        repair_fragment_notes.py for the full diagnosis."
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
     nominal: 1 Taler
     ruler: Christian IV
     mintmaster: Caspar Heinrich Lyng
@@ -142,6 +131,14 @@ coins:
     year_first: 1775
     year_last: 1775
     year_label: '1775'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler
+          value: silver
+          seed: dk-bruun-15140
     mint: Altona
     catalog:
       km: '85'

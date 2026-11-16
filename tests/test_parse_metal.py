@@ -97,9 +97,36 @@ class TestHeuristicsAreWeak(unittest.TestCase):
 
 
 class TestEdgeCases(unittest.TestCase):
-    def test_no_denom_no_ref_silver_unverified(self):
-        self.assertEqual(parse_metal(None, {}), ("silver", False))
-        self.assertEqual(parse_metal("", {}), ("silver", False))
+    def test_no_signal_gives_no_metal(self):
+        """No denomination, or one no rule covers: no metal, never a default
+        «silver» (curator 2026-11-10 — a default silver sat beside a gold
+        Frederik d'Or, Bruun 8074)."""
+        for nom in (None, "", "1 Penny", "50 Øre", "16 Reichsbankschilling",
+                    "1 Örtug"):
+            self.assertEqual(parse_metal(nom, {}), (None, False), nom)
+
+    def test_daler_taler_families_silver_from_the_name(self):
+        for nom in ("1 Speciedaler", "1 Taler", "2 Rigsdaler", "1 Riksdaler",
+                    "Double Taler", "1 Rigsbankdaler", "1 Krona", "2 Kronor"):
+            self.assertEqual(parse_metal(nom, {}), ("silver", False), nom)
+
+    def test_gold_daler_and_krone_stay_gold(self):
+        """Gold daler / krone are caught before the silver name rule: by the
+        Friedberg number or by the word «gold» (Bruun «6 Daler Klippe, 1604»
+        Fr-45; «Gold Krone, 1619»; «2 Gold Krone, 1628» Fr-Unlisted)."""
+        self.assertEqual(parse_metal("6 Daler Klippe", {"fr": "45"}), ("gold", True))
+        self.assertEqual(parse_metal("Gold Krone", {}), ("gold", True))
+        self.assertEqual(parse_metal("2 Gold Krone", {}), ("gold", True))
+        self.assertEqual(parse_metal("Courant Ducat (2 Rixdaler)", {}), ("gold", False))
+
+    def test_plate_money_is_copper(self):
+        for nom in ("2 Daler Plate Money", "½ Daler Plate Money",
+                    "2 Daler Octagonal Plate Money"):
+            self.assertEqual(parse_metal(nom, {}), ("copper", False), nom)
+
+    def test_d_or_with_a_space_is_gold(self):
+        # Bruun Part V lot 14209 prints «1 Frederik d’ or»
+        self.assertEqual(parse_metal("1 Frederik d’ or", {}), ("gold", False))
 
 
 if __name__ == "__main__":

@@ -1285,6 +1285,13 @@ def _weak_veto_keys(result: dict, a: dict, b: dict, refs_a: dict, refs_b: dict):
     return None
 
 
+def _tl_bases(v) -> set[str]:
+    """Base numbers of a type-level index value as `_type_level_conflict`
+    reads them («99D» → 99, «A433» → A433, «EC 1 340.2» → 340)."""
+    return {m.group(1) for x in str(v).split("|")
+            if (m := re.match(r"\s*(?:EC\s+\w+\s+)?([A-Za-z]?\d+)", x))}
+
+
 def _type_level_conflict(refs_a: dict, refs_b: dict) -> bool:
     """True when the two records share a type-level register (Hede, KM,
     Galster, Dav, Fr, …) whose BASE numbers do not overlap — two different
@@ -1409,6 +1416,28 @@ _CHAIN_CORE_RE = re.compile(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$")
 _CHAIN_DOTNUM_RE = re.compile(r"^(\d+)\.\d+$")
 
 
+# Krause volumes Hede covers: there a Krause decimal may be a different Hede
+# type (KM 32.1 = Hede 91, KM 32.4 = Hede 96), and a record without a Hede
+# number cannot show which, so its decimals stay apart.
+_HEDE_KM_SCOPES = frozenset({"km/dk", "km/nor", "km/sh"})
+
+
+def _decimals_may_agree(key: str, refs_a: dict, refs_b: dict) -> bool:
+    """Two decimals of one Krause number («172.1» / «172.2») are sub-variants
+    of one coin (§9.4) where nothing separates them: in a volume Hede does
+    not cover, or when both records carry a Hede / Galster number of the
+    same base. Curator 2026-11-16: «правило не повинно бути абсолютним»."""
+    if not key.split("/", 1)[0] == "km":
+        return False          # Friedberg, Dav, … decimals keep their old reading
+    if _page_base_conflict(refs_a, refs_b):
+        return False
+    if key not in _HEDE_KM_SCOPES:
+        return True
+    return _shares_load_base(
+        {k: v for k, v in refs_a.items() if k.split("/", 1)[0] in ("hede", "galster")},
+        {k: v for k, v in refs_b.items() if k.split("/", 1)[0] in ("hede", "galster")})
+
+
 def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     """Returns (state, has_overlap):
       state ∈ {'agree', 'disagree', 'no_overlap'}
@@ -1514,13 +1543,22 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         # Bare-vs-dot-numeric tolerance («70» ≡ «70.1»). Asymmetric: one
         # side must be bare (no dot-form), the other side's dot-num
         # parent must equal the bare side. Two distinct dot-forms
-        # («70.1» ≢ «70.2») stay disagreeing so curator sub-variant
-        # splits stay intact.
+        # («70.1» ≢ «70.2») stay disagreeing: Krause's decimals of one
+        # number often belong to different Hede types (KM 32.1 = Hede 91,
+        # KM 32.4 = Hede 96, the rest of KM 32 = Hede 93 — measured
+        # 2026-11-12, when treating them as one coin fused all three).
         parents_a = {p for p in (_parent_of_dotnum(v) for v in sa) if p}
         parents_b = {p for p in (_parent_of_dotnum(v) for v in sb) if p}
         # bare-a meets dot-b: cores_a (which equals sa for bare values)
         # intersects with parents_b
         if (cores_a & parents_b) or (cores_b & parents_a):
+            agreeing.append(k)
+        elif (parents_a & parents_b) and _decimals_may_agree(k, refs_a, refs_b):
+            # Two decimals of one Krause number («172.1» / «172.2») are
+            # sub-variants of one coin by default (§9.4); they stay apart
+            # only when Hede or Galster gives the two records different
+            # bases (KM 32.1 = Hede 91 against KM 32.4 = Hede 96). Curator
+            # 2026-11-16: «правило не повинно бути абсолютним».
             agreeing.append(k)
         else:
             disagreeing.append(k)
@@ -1857,6 +1895,82 @@ def _shares_unique_id_ref(refs_a: dict, refs_b: dict) -> bool:
         if sa & sb:
             return True
     return False
+
+
+# Base-tier agreement (curator 2026-11-12). Two records whose type-level
+# catalogue gives them the same BASE number (Hede 2B / 2C / 2D = Hede 2,
+# KM 340.1 / 340.2 = KM 340) are one coin under §9.4 — the sub-letters are
+# variations within it (a year, a mint, a mintmaster, a die), and danskmoent
+# prints them on one page as the norm. So once ruler, nominal and metal agree,
+# a year or mint difference must not vote against the merge, nor may the 5 %
+# weight gate split it; a differing Schou / Sieg / Bruun number is the
+# sub-variant's own number, not a disagreement. What still separates records
+# on a shared base: a different nominal (Hede F2 7A–7G: Portugaløser,
+# Rosenobel, Dukat), a different base on another shared type catalogue
+# (KM 66 = Hede 118 against KM 67 = Hede 119), a different metal, the 2.5×
+# weight gate, and a curator no_merge.
+_BASE_LOAD_REGS = ("hede", "galster")         # + scoped km/<register>
+_BASE_CONFLICT_REGS = frozenset({"hede", "galster", "km", "dav", "fr", "lange"})
+
+
+def _km_type_bases(value) -> set[str]:
+    """Krause type numbers with their letter, sub-variant decimal dropped:
+    «340.2» → 340, «39a» → 39A, «A433» → A433."""
+    out = set()
+    for tok in re.split(r"[|,]", str(value)):
+        mb = re.match(r"\s*([A-Za-z]{0,2}\d+[A-Za-z]?)", tok)
+        if mb:
+            out.add(mb.group(1).upper())
+    return out
+
+
+def _shares_load_base(ra: dict, rb: dict) -> bool:
+    """True when Hede, Galster or a volume-scoped KM gives both records one
+    base number (whatever else they disagree on)."""
+    for k in set(ra) & set(rb):
+        reg = k.split("/", 1)[0]
+        if not (reg in _BASE_LOAD_REGS or k.startswith("km/")):
+            continue
+        _b = _km_type_bases if reg == "km" else _index_bases
+        if _b(ra[k]) & _b(rb[k]):
+            return True
+    return False
+
+
+def _page_base_conflict(ra: dict, rb: dict) -> bool:
+    """True when Hede or Galster gives the two records different bases."""
+    for k in set(ra) & set(rb):
+        if k.split("/", 1)[0] not in _BASE_LOAD_REGS:
+            continue
+        ba, bb = _index_bases(ra[k]), _index_bases(rb[k])
+        if ba and bb and not (ba & bb):
+            return True
+    return False
+
+
+def _base_tier_agrees(ra: dict, rb: dict) -> bool:
+    """True when a type-defining catalogue (Hede, Galster, or KM scoped to
+    its volume) gives both records the same base number and no shared
+    type catalogue gives them different bases. Bare `km` and Dav / Fr /
+    Lange can refuse but never carry (bare KM restarts per volume; Sieg is
+    left out — its Christian VII numbering changed between editions)."""
+    load = False
+    for k in set(ra) & set(rb):
+        reg = k.split("/", 1)[0]
+        if reg not in _BASE_CONFLICT_REGS:
+            continue
+        # Krause marks a separate type with a letter (KM 39 / 39a, 237 /
+        # 237a) and a sub-variant with a decimal (KM 340.1 / 340.2): only
+        # the decimal is stripped. Hede / Galster letters are sub-variants.
+        _b = _km_type_bases if reg == "km" else _index_bases
+        ba, bb = _b(ra[k]), _b(rb[k])
+        if not ba or not bb:
+            continue
+        if not (ba & bb):
+            return False
+        if reg in _BASE_LOAD_REGS or k.startswith("km/"):
+            load = True
+    return load
 
 
 def _index_bases(value) -> set[str]:
@@ -2297,6 +2411,8 @@ _REIGN_GATE = os.environ.get("REIGN_GATE", "1") != "0"
 # its classes' members, `HEDE_BASE_EQUIV_LOG=1` prints groups joined only
 # through a nominal equivalence).
 _HEDE_BASE_RULE = os.environ.get("HEDE_BASE", "0") == "1"
+# Untied-edge gate (step 2a', curator 2026-11-12). UNTIED_GATE=0 turns it off.
+_UNTIED_GATE = os.environ.get("UNTIED_GATE", "0") == "1"
 _HEDE_BASE_TOKEN = re.compile(r"^\s*(\d+)[A-Za-z]*\s*$")
 
 
@@ -2476,7 +2592,8 @@ _SKILLING_NUMBER_WORDS = {
 _SKILLING_WORD_RE = re.compile(
     r"\b(" + "|".join(sorted(_SKILLING_NUMBER_WORDS, key=len, reverse=True)) + r")skilling\b")
 _NOMINAL_QUALIFIERS = {
-    "lybsk": "lybsk", "lybske": "lybsk", "norsk": "norsk", "norske": "norsk",
+    "lybsk": "lybsk", "lybske": "lybsk", "lubisch": "lybsk", "lubsch": "lybsk",
+    "lubische": "lybsk", "lubsche": "lybsk", "norsk": "norsk", "norske": "norsk",
     "dansk": "dansk", "danske": "dansk", "kurant": "kurant", "courant": "kurant",
     "rigsmont": "rigsmont", "hebraeisk": "hebraeisk",
     "rigsbanktegn": "rigsbank", "rigbanktegn": "rigsbank",
@@ -2603,6 +2720,121 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
                 (like(na, b, strict) and like(nb, a, strict)):
             return f"source {src}"
     return None
+
+
+_RECKONING_QUALIFIERS = frozenset({"lybsk", "norsk", "dansk"})
+
+
+def _adds_reckoning(base_raw, cand_raw) -> bool:
+    """True when `cand_raw` is `base_raw` plus one reckoning qualifier —
+    lybsk / norsk / dansk(e), any spelling (curator 2026-11-11: the class
+    nominal must not lose it). The qualifier names the unit: the Lübeck
+    schilling is two Danish ones (Hede c4h167 «4 skilling lybsk svarer til 8
+    skilling dansk»), so «2 Skilling» beside a source's «2 Skilling Lybsk»
+    drops what tells the two coins apart. A base that already carries a
+    reckoning qualifier is left alone, as is an off-strike or forgery name."""
+    if not isinstance(base_raw, str) or not isinstance(cand_raw, str):
+        return False
+    nb, nc = _normalise_nominal(base_raw), _normalise_nominal(cand_raw)
+    if not nb or not nc or base_raw.strip() == cand_raw.strip():
+        return False
+    if _NOMINAL_SPECIAL_RE.search(nb) or _NOMINAL_SPECIAL_RE.search(nc):
+        return False
+    # A dual name («1 Denning = ½ Skilling Dansk») carries the qualifier on
+    # its other name, not on this one.
+    if len(_NOMINAL_GLOSS_SPLIT.split(cand_raw)) > 1:
+        return False
+    rc = set(re.findall(r"[a-zæøåäöü]+", cand_raw.lower()))
+    # the normaliser folds «Danske» away: read the printed qualifier
+    printed = {_NOMINAL_QUALIFIERS.get(w.replace("ü", "u"), w) for w in rc} & _RECKONING_QUALIFIERS
+    kb, kc = _hede_base_nominal_key(nb), _hede_base_nominal_key(nc)
+    if not kb or not kc or kb[0] != kc[0]:
+        return False
+    if kb[1] & _RECKONING_QUALIFIERS:
+        return False
+    base_printed = {_NOMINAL_QUALIFIERS.get(w.replace("ü", "u"), w)
+                    for w in re.findall(r"[a-zæøåäöü]+", base_raw.lower())} & _RECKONING_QUALIFIERS
+    if base_printed:
+        return False
+    return len(printed | (kc[1] & _RECKONING_QUALIFIERS)) == 1
+
+
+_DANSKE_RE = re.compile(r"\b(skilling|skil|mark|marck)\s*,?\s+danske?\b", re.IGNORECASE)
+
+
+def _danske_form(nominal):
+    """«dansk», «Dansk», «danske» after the unit → «Danske», the form the coins
+    carry («VIII SKILLING DANSKE», «IIII MARCK DANSKE»; Numista legends;
+    CLAUDE.md §1 «8 Skilling Danske»). One spelling on the page (curator
+    2026-11-11)."""
+    if not isinstance(nominal, str):
+        return nominal
+    return _DANSKE_RE.sub(lambda m: f"{m.group(1)} Danske", nominal)
+
+
+def _reckoning_nominal(base_raw, members: list[dict]):
+    """The first member nominal (members in authority order) that is
+    `base_raw` plus one reckoning qualifier, when every such member names the
+    same qualifier; else None."""
+    found, quals = None, set()
+    for m in members:
+        c = m.get("nominal")
+        if _adds_reckoning(base_raw, c):
+            words = {_NOMINAL_QUALIFIERS.get(w.replace("ü", "u"), w)
+                     for w in re.findall(r"[a-zæøåäöü]+", c.lower())}
+            quals |= words & _RECKONING_QUALIFIERS
+            found = found or c
+    if len(quals) != 1:
+        return None
+    # KMM separates the qualifier with a comma («2 Skilling, norsk»).
+    return re.sub(r",\s*(?=(?:lybsk|lybske|norsk|norske|dansk|danske)\b)", " ",
+                  found, flags=re.IGNORECASE)
+
+
+def _base_tier_nominal_ok(a: dict, b: dict) -> bool:
+    """Nominal side of the base tier: the same denomination, possibly under
+    two names (`_match_nominal_compatible`)."""
+    if _nominals_equal(a, b):
+        return True
+    ra, rb = str(a.get("nominal") or ""), str(b.get("nominal") or "")
+    na, nb = _normalise_nominal(ra), _normalise_nominal(rb)
+    return bool(na and nb) and _match_nominal_compatible(na, nb, ra.lower(), rb.lower())
+
+
+def _match_nominal_compatible(na: str, nb: str, raw_a: str = "", raw_b: str = "") -> bool:
+    """Two NORMALISED nominals the pair matcher must not read as two coins
+    (curator 2026-11-11): the names the Hede-base check already accepts —
+    (1) a source declares both names of one coin («⅛ Reichsdaler (6 Skilling
+    Lybsk)», a Numista «A / B» title, a dual name kept whole); (2) one name
+    simplifies the other («8 skilling» ~ «8 krone-skilling», «4 skilling
+    rigsmont» ~ «4 skilling», «speciedaler» ~ «daler», «rigsbanktegn 2
+    skilling» ~ «2 rigsbankskilling rigsbanktegn»); (3) a spelling of one name
+    («2 christian d'or» ~ «2 christiandor», «toskilling» ~ «2 skilling»).
+    It only lifts the nominal veto: the pair is then judged on its other
+    signals, the names count for nothing (Krone ≡ 4 Mark taught that a
+    name-equivalence as evidence fuses different coins, 2026-10-17).
+
+    «lybsk» (curator 2026-11-11): «X lybsk» ~ «X» is one name — a source
+    that leaves the qualifier out does not name another coin. Every other
+    equivalence that involves lybsk (a declared «⅛ Reichsdaler (6 Skilling
+    Lybsk)», a bare-unit wildcard) is left out for now. «lybsk» against
+    «dansk» / «norsk» still separates: the Lübeck schilling is two Danish
+    ones (Hede c4h167 «4 skilling lybsk svarer til 8 skilling dansk»). An
+    off-strike, forgery or metal word still separates
+    (`_hede_base_nominal_equiv`)."""
+    if not na or not nb or na == nb:
+        return False
+    if "lybsk" in na or "lybsk" in nb:
+        if _NOMINAL_SPECIAL_RE.search(na) or _NOMINAL_SPECIAL_RE.search(nb):
+            return False
+        # The normaliser folds «2 Skilling Danske» to «2 skilling»: read the
+        # printed name for the other reckoning (`raw_a` / `raw_b`, lower case).
+        other = re.compile(r"\bdansk|\bnorsk")
+        if (other.search(raw_a) and "lybsk" in nb) or (other.search(raw_b) and "lybsk" in na):
+            return False
+        ka, kb = _hede_base_nominal_key(na), _hede_base_nominal_key(nb)
+        return bool(ka and kb and ka[0] == kb[0] and (ka[1] ^ kb[1]) <= {"lybsk"})
+    return _hede_base_nominal_equiv(na, nb) is not None
 
 
 def _hede_base_conflicts(group, info, uf, equivs: list | None = None) -> list[str]:
@@ -2825,6 +3057,8 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
             and not _catalog_strongly_agrees(refs_a_pre, refs_b_pre,
                                               min_shared_agreeing=2)
             and not _same_type_but_for_weight(coin_a, coin_b)
+            and not (_base_tier_agrees(refs_a_pre, refs_b_pre)
+                     and _base_tier_nominal_ok(coin_a, coin_b))
             and not (_nominals_equal(coin_a, coin_b)
                      and _catalog_chain_consistent(refs_a_pre, refs_b_pre)[0] == "agree"
                      and _weight_close_relaxed(coin_a, coin_b))):
@@ -2894,6 +3128,12 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
         # Bare ambiguous unit («daler»/«gylden») vs a specific compound of
         # the same unit + quantity — can't be a genuine difference.
         primary["nominal"] = None
+    elif _match_nominal_compatible(na, nb, str(coin_a.get("nominal") or "").lower(),
+                                   str(coin_b.get("nominal") or "").lower()):
+        # Two names of one denomination (`_match_nominal_compatible`): no
+        # veto, and no vote either.
+        primary["nominal"] = None
+        why.append(f"nominal: {na!r} ~ {nb!r} — one denomination under two names")
     else:
         primary["nominal"] = False
 
@@ -3159,7 +3399,8 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
             and primary.get("ruler") is True
             and (primary.get("metal") is True
                  or (primary.get("metal") is None and primary.get("nominal") is True))
-            and _has_type_strong_agreement(refs_a, refs_b)):
+            and (_has_type_strong_agreement(refs_a, refs_b)
+                 or _base_tier_agrees(refs_a, refs_b))):
         why.append(
             f"§9a multi-specimen promotion: catalog type-strong + ruler + "
             f"metal True; fallback disagreement tolerated ({fallback})"
@@ -5120,6 +5361,13 @@ def build_unified(members: list[dict], unified_id: str,
                     conflicts.append((field, seen[0], mv_repr))
 
     _canonical_ruler_out(out, members, entity_id)
+    # A member's lybsk / norsk / dansk on the same name is kept (curator
+    # 2026-11-11; `_adds_reckoning`) — after the scalar loop above, which
+    # re-takes the top-authority nominal.
+    _rk = _reckoning_nominal(out.get("nominal"), sorted_members)
+    if _rk and not any("nominal" in (m.get("_curation_holds") or {}) for m in members):
+        out["nominal"] = _rk
+    out["nominal"] = _danske_form(out.get("nominal"))
     _canonical_nominal_out(out, members, entity_id)
 
     # Multi-mint union
@@ -5952,6 +6200,7 @@ def _string_memo(fn):
 
 _lange_numbers = _string_memo(_lange_numbers)
 _nominal_wildcard_match = _string_memo(_nominal_wildcard_match)
+_match_nominal_compatible = _string_memo(_match_nominal_compatible)
 
 
 _MP_IDS: list = []
@@ -6515,6 +6764,59 @@ def process_entity(entity_id: str,
                            if (cp["a"], cp["b"]) not in _drop]
         print(f"  REIGN_GATE: {len(_gated)} untied reign pairs, {len(_drop)} held back")
 
+    # 2a'. Untied-edge gate (curator 2026-11-12). An edge with no catalogue
+    #      tie (primary catalog not True: metal + nominal + ruler + year
+    #      alone) says only «the same kind of coin». When a record's confident
+    #      partners are themselves of different types — two partners whose
+    #      type-level index has different bases (Hede 87 against Hede 95,
+    #      KM 186 against KM 194) — the untied edge cannot tell which of them
+    #      it belongs to, and greedy union would let it chain the two types
+    #      together; a curator force merge then clears the no_merges between
+    #      them. Such a record keeps its tied edges; its untied ones drop to
+    #      low_confidence. Same idea as the reign gate, for every untied edge.
+    if _UNTIED_GATE:
+        _partners: dict[str, set] = defaultdict(set)
+        for cp in confident_pairs:
+            _partners[cp["a"]].add(cp["b"])
+            _partners[cp["b"]].add(cp["a"])
+        _ambig_memo: dict[str, bool] = {}
+
+        def _ambiguous(d: str) -> bool:
+            if d not in _ambig_memo:
+                sig: dict[str, set] = defaultdict(set)
+                for _p in _partners[d]:
+                    for _k, _v in _catalog_refs(seeds_by_id[_p], entity_id).items():
+                        if (_k.split("/", 1)[0] in _SUB_VARIANT_REFS
+                                or _k in ("hede_volume", "others", "numista")):
+                            continue
+                        _bs = _tl_bases(_v)
+                        if _bs:
+                            sig[_k].add(frozenset(_bs))
+                _amb = False
+                for _fs in sig.values():
+                    _fs = list(_fs)
+                    if any(not (_fs[i] & _fs[j]) for i in range(len(_fs))
+                           for j in range(i + 1, len(_fs))):
+                        _amb = True
+                        break
+                _ambig_memo[d] = _amb
+            return _ambig_memo[d]
+
+        _udrop = set()
+        for cp in confident_pairs:
+            if (cp.get("primary") or {}).get("catalog") is True:
+                continue
+            if _ambiguous(cp["a"]) or _ambiguous(cp["b"]):
+                _udrop.add((cp["a"], cp["b"]))
+                low_confidence.append({"members": [cp["a"], cp["b"]],
+                                       "primary": cp["primary"],
+                                       "fallback": cp["fallback"],
+                                       "why": ["UNTIED_GATE: no catalogue tie, and the "
+                                               "record's partners differ in type-level base"]})
+        confident_pairs = [cp for cp in confident_pairs
+                           if (cp["a"], cp["b"]) not in _udrop]
+        print(f"  UNTIED_GATE: {len(_udrop)} untied pairs held back")
+
     # 2b. POST-PRE-PASS: Single-candidate promotion for null primary
     # signals (`ruler`, `nominal`).
     #
@@ -6715,7 +7017,54 @@ def process_entity(entity_id: str,
     #    no_merge against the KM-20 variant being merged in.
     confident_merges: list[dict] = []
     transitivity_blocks: list[dict] = []
+    # A seed the curator has placed (a member of a curator merge, regular or
+    # cross-entity) is what the curator said it is. An auto edge from it to a
+    # record whose type-level index contradicts another member of that
+    # curator group must not attach the record: step 4's force_union would
+    # then pull it in, clearing the auto no_merges that keep it apart
+    # (curator 2026-11-12 — a KMM «1 Mark» with no Hede, curated into Hede 9B,
+    # had dragged Hede 14B in through a nominal + ruler + year edge).
+    _cur_group: dict[str, int] = {}
+    _cur_members: list[list[str]] = []
+    for _e in list(decisions["merges"]) + [{"members": g} for g in pull_groups.get(entity_id, [])]:
+        _ms = [x for m in (_e.get("members") or []) for x in (_expand_member(m) or [m])
+               if x in seeds_by_id]
+        if len(_ms) < 2:
+            continue
+        for _x in _ms:
+            _cur_group.setdefault(_x, len(_cur_members))
+        _cur_members.append(_ms)
+    _cur_refs: dict[str, dict] = {}
+
+    def _crefs(x):
+        if x not in _cur_refs:
+            _cur_refs[x] = _catalog_refs(seeds_by_id[x], entity_id)
+        return _cur_refs[x]
+
+    def _hitchhiker(cp) -> bool:
+        a, b = cp["a"], cp["b"]
+        ga, gb = _cur_group.get(a), _cur_group.get(b)
+        if ga == gb:
+            return False
+        for g, other in ((ga, b), (gb, a)):
+            if g is None:
+                continue
+            ro = _crefs(other)
+            if not any(_type_level_conflict(ro, _crefs(m)) for m in _cur_members[g]):
+                continue
+            # A record that shares a type-level base with the group (Hede 67
+            # with KM 157 against the group's Hede 67 with KM 167) is a
+            # §9.4 sub-variant the curator group unifies, not a hitchhiker.
+            if any(_shares_load_base(ro, _crefs(m)) for m in _cur_members[g]):
+                continue
+            return True
+        return False
+
+    _hh = 0
     for cp in confident_pairs:
+        if _cur_group and _hitchhiker(cp):
+            _hh += 1
+            continue
         ok, blocking = uf.union(cp["a"], cp["b"])
         if ok:
             confident_merges.append({
@@ -6728,6 +7077,9 @@ def process_entity(entity_id: str,
                 "would_merge": [cp["a"], cp["b"]],
                 "blocked_by_no_match": sorted(blocking),
             })
+
+    if _hh:
+        print(f"  curator-placed: {_hh} auto edge(s) refused (type-level conflict with the curator group)")
 
     # 3b. Hede-base rule (see `_HEDE_BASE_RULE`): join whole compatible
     #     groups of classes sharing a ruler-scoped Hede base. force_union, so
@@ -6810,6 +7162,63 @@ def process_entity(entity_id: str,
                       f"— left separate")
         if len(present) >= 2:
             forced_merges.append({"members": present, "cross_entity": True})
+
+    # 4c. Curator groups extend over shared bases (curator 2026-11-12). A
+    #     curator merge names a few seeds of a type («Hede 105 is ONE type»:
+    #     105A + one ucoin record), and force_union clears the auto no_merges
+    #     only between the classes those seeds sit in. Whether the rest of the
+    #     type comes along then depends on which auto class each named seed
+    #     happened to land in — the base-tier rule, by joining 105A to its
+    #     ucoin partner earlier, made that force a no-op and left 105B with
+    #     KM 60 apart. So: a confident pair refused only by AUTO no_merges,
+    #     one side in a curator group's class, the two sides sharing a Hede /
+    #     Galster / scoped-KM base with no different Hede or Galster base, is
+    #     joined with the same force. Explicit no_merges still refuse it.
+    _THIN = {frozenset({"silver", "billon"}), frozenset({"copper", "bronze"})}
+
+    def _classes_clash(xs, ys) -> bool:
+        """A force join must not bring two members together that are plainly
+        different coins: both metals attested and different (beyond the
+        silver / billon, copper / bronze thin line), different Hede or
+        Galster bases, or nominals that are not one denomination."""
+        for x in xs:
+            cx = seeds_by_id[x]
+            for y in ys:
+                cy = seeds_by_id[y]
+                mx, my = cx.get("metal"), cy.get("metal")
+                if (mx and my and mx != my and cx.get("metal_verified")
+                        and cy.get("metal_verified")
+                        and frozenset({mx, my}) not in _THIN):
+                    return True
+                if _page_base_conflict(_crefs(x), _crefs(y)):
+                    return True
+                if (cx.get("nominal") and cy.get("nominal")
+                        and not _base_tier_nominal_ok(cx, cy)):
+                    return True
+        return False
+
+    if _cur_group:
+        _cur_roots = lambda: {uf.find(m) for ms in _cur_members for m in ms}
+        for _pass in range(5):
+            _roots = _cur_roots()
+            _joined = 0
+            for _tb in transitivity_blocks:
+                _a, _b = _tb["would_merge"]
+                _ra, _rb = uf.find(_a), uf.find(_b)
+                if _ra == _rb or not (_ra in _roots or _rb in _roots):
+                    continue
+                _fa, _fb = _crefs(_a), _crefs(_b)
+                if not _shares_load_base(_fa, _fb) or _page_base_conflict(_fa, _fb):
+                    continue
+                if _classes_clash(uf._class_members(_ra), uf._class_members(_rb)):
+                    continue
+                _ok, _ = uf.force_union(_a, _b)
+                if _ok:
+                    _joined += 1
+                    _roots = _cur_roots()
+            if not _joined:
+                break
+            print(f"  curator-group extension pass {_pass + 1}: {_joined} join(s)")
 
     # 3c. Report the Hede-base result only now: a group the curator merges
     #     above have joined anyway is no refusal (curator 2026-11-07).

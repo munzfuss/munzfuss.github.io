@@ -116,6 +116,8 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     # nominal discriminator, else synonym pairs («1 Ducat» vs «1 Dukat») read
     # as genuine mismatches and get false-evicted.
     _normalise_nominal as _mg_normalise_nominal,
+    _reckoning_nominal,
+    _danske_form,
 )
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
 from lib.ruler_reigns import (  # noqa: E402
@@ -881,6 +883,17 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         _rc = {canonical_ruler_display(r, entity_id)[0] for r in _rc}
         if len(_rc) == 1:
             out["ruler"] = next(iter(_rc))
+
+    # A reckoning qualifier the class carries on the same name — «2 Skilling»
+    # frozen on the foundation, «2 Skilling Lybsk» on its class — reaches the
+    # final (curator 2026-11-11: lybsk / norsk / dansk must not be lost;
+    # `_adds_reckoning`). Only that addition: a different name stays frozen,
+    # and a nominal hold wins.
+    if "nominal" not in _rh:
+        _rk = _reckoning_nominal(out.get("nominal"), members[1:])
+        if _rk:
+            out["nominal"] = _rk
+        out["nominal"] = _danske_form(out.get("nominal"))
 
     # «non-None wins over None» gap-fill: when a foundation descriptive field
     # is None, adopt the first composed_of member's non-None value. Members are

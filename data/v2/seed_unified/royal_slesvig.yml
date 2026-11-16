@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_slesvig`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
 # Input: 139 per-source seed entries.
-# Output: 54 unified entries (one per physical coin).
+# Output: 51 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_slesvig
-generated_at: '2026-11-10'
+generated_at: '2026-11-12'
 coins:
   - id: c-9a0deeea
     class_id: c-9a0deeea
@@ -45,6 +45,14 @@ coins:
         source: bruun
       - value: 9.58
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Mark
+          value: silver
+          seed: dk-bruun-14709
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -390,6 +398,12 @@ coins:
         source: danskmoent.dk fr/f1g115.htm
     uncertainty:
       metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-14708
         - kind: inferred
           how: from_name
           source: galster
@@ -1039,20 +1053,21 @@ coins:
     phase: galster
     kind: kurant
     nominal: 1 Skilling
-    year_first: 1523
-    year_last: 1533
+    year_first: 1514
+    year_last: 1515
     year_ranges:
-      -   - 1523
-          - 1533
-    year_label: 1523-1533
-    _year_demoted: true
+      -   - 1514
+          - 1515
+    year_label: 1514-1515
     ruler: Frederik I
     mint: Gottorp
     catalog:
-      galster: '125'
+      galster:
+        - '125'
+        - 125B
       schou: 39-49
       galster_volume: f1g
-    metal: billon
+    metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -1063,6 +1078,8 @@ coins:
       - value: 0.5
         source: galster
     weight_rough_g:
+      - value: 2.05
+        source: kmk
       - value: 2.21
         source: galster
     diameter_mm:
@@ -1076,6 +1093,11 @@ coins:
           as_printed: u.år
           value: 1523-1533
           seed: dk-galster-f1g-125
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1514-1515
+          seed: kmk-81438
       metal:
         - kind: inferred
           how: from_name
@@ -1087,9 +1109,13 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g125.htm
         ref: Galster 125 (f1g) — danskmoent.dk fr_f1g125.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81438
+        ref: KMM 81438 (Inv. GP 888.16)
     issuing_entity: royal_slesvig
     composed_of:
       - dk-galster-f1g-125
+      - kmk-81438
   - id: c-1728e8b0
     class_id: c-1728e8b0
     label: unified-dk-galster-f1g-126
@@ -2265,10 +2291,7 @@ coins:
     year_label: 1591-1592
     ruler: Christian IV
     mintmaster: Andreas Metzner
-    mint:
-      - Haderslev
-      - Kopenhagen
-      - Odense
+    mint: Haderslev
     catalog:
       hede:
         - '1'
@@ -2348,9 +2371,7 @@ coins:
       en: 1 Og
       uk: 1 Og
       da: 1 Og
-    issuing_entity:
-      - danish_realm
-      - royal_slesvig
+    issuing_entity: royal_slesvig
     composed_of:
       - denmark-numismaster-65629
       - denmark-numismaster-65630
@@ -2709,9 +2730,7 @@ coins:
     year_label: 1591-1593
     ruler: Christian IV
     mintmaster: Andreas Metzner
-    mint:
-      - Haderslev
-      - Kopenhagen
+    mint: Haderslev
     catalog:
       hede:
         - 8A
@@ -2790,9 +2809,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/137162
         ref: KMM 137162 (Inv. RP 23.1)
-    issuing_entity:
-      - danish_realm
-      - royal_slesvig
+    issuing_entity: royal_slesvig
     composed_of:
       - denmark-numismaster-65611
       - dk-bruun-4602
@@ -2810,31 +2827,55 @@ coins:
     kind: scheide
     nominal: 1 Skilling Lybsk
     year_first: 1566
-    year_last: 1566
-    year_label: '1566'
+    year_last: 1571
+    year_ranges:
+      -   - 1566
+          - 1566
+      -   - 1571
+          - 1571
+    year_label: 1566, 1571
     ruler: Frederik II
     mint: Flensburg
     catalog:
-      hede: 30A
+      hede:
+        - 30A
+        - 30B
       hede_volume: f2h
       schou:
         - 1-13
+        - 1-8
         - 2-4
-      sieg: '33.1'
+      sieg:
+        - '33.1'
+        - '33.2'
+      numista: '313332'
+      mb: '75'
+      lange: '28'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.391
         source: hede
+        specimen: dk-hede-f2h30a
+      - value: 0.391
+        source: hede
+        specimen: dk-hede-f2h30b
     weight_rough_g:
       - value: 1.482
         source: kmk
+      - value: 1.51
+        source: numista
       - value: 1.856
         source: hede
+        specimen: dk-hede-f2h30a
+      - value: 1.856
+        source: hede
+        specimen: dk-hede-f2h30b
     uncertainty:
       year:
         - kind: hedged
@@ -2846,6 +2887,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h30.htm
         ref: danskmoent.dk (Hede f2h30A)
+      - type: literature
+        url: https://en.numista.com/313332
+        ref: Numista N#313332 — 1 Schilling - Frederick II
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/345172
         ref: KMM 345172 (Inv. FP 10156.1)
@@ -2857,48 +2901,9 @@ coins:
       unit_raw: daler
     composed_of:
       - dk-hede-f2h30a
-      - kmk-345172
-  - id: c-e84168b2
-    class_id: c-e84168b2
-    label: unified-dk-hede-f2h30b
-    fuss: seed_unsorted
-    phase: hede
-    kind: scheide
-    nominal: 1 Skilling Lybsk
-    year_first: 1571
-    year_last: 1571
-    year_label: '1571'
-    ruler: Frederik II
-    mint: Flensburg
-    catalog:
-      hede: 30B
-      hede_volume: f2h
-      schou: 1-8
-      sieg: '33.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.391
-        source: hede
-    weight_rough_g:
-      - value: 1.856
-        source: hede
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h30.htm
-        ref: danskmoent.dk (Hede f2h30B)
-    issuing_entity: royal_slesvig
-    hede_muentzfuss_yield:
-      value: 10.419
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
       - dk-hede-f2h30b
+      - dk-numista-313332
+      - kmk-345172
   - id: c-92caf7d6
     class_id: c-92caf7d6
     label: unified-dk-hede-f2h31a
@@ -3408,45 +3413,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-309419
-  - id: c-e467d5e7
-    class_id: c-e467d5e7
-    label: unified-dk-numista-313332
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Schilling
-    year_first: 1566
-    year_last: 1571
-    year_ranges:
-      -   - 1566
-          - 1566
-      -   - 1571
-          - 1571
-    year_label: 1566, 1571
-    ruler: Frederick II (Frederik II)
-    mint: Flensburg
-    catalog:
-      numista: '313332'
-      mb: '75'
-      hede: 30B
-      lange: '28'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.51
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/313332
-        ref: Numista N#313332 — 1 Schilling - Frederick II
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-numista-313332
   - id: c-66488a70
     class_id: c-66488a70
     label: unified-kmk-123178
@@ -3499,39 +3465,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - kmk-355345
-  - id: c-9adc3aa0
-    class_id: c-9adc3aa0
-    label: unified-kmk-81438
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1514
-    year_last: 1515
-    year_ranges:
-      -   - 1514
-          - 1515
-    year_label: 1514-1515
-    ruler: Frederik I
-    mint: Gottorp
-    catalog:
-      schou: '41'
-      galster: 125B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.05
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81438
-        ref: KMM 81438 (Inv. GP 888.16)
-    issuing_entity: royal_slesvig
-    composed_of:
-      - kmk-81438
   - id: c-693ddf04
     class_id: c-693ddf04
     label: unified-ngc-167729

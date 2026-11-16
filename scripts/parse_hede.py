@@ -1685,6 +1685,13 @@ def unknown_mint_candidates(text: str) -> list[str]:
 _YEARS_LINE_MINT_RE = re.compile(
     r"(?m)^\s*\d{4}[^\n]*?,\s*([A-ZÆØÅ][A-Za-zæøåÆØÅäöüÄÖÜ]+)\.")
 
+# A line that OPENS with the mint list and ends it with a full stop before the
+# description: «København og Altona. Forside: våbenskjold, …» (f6h18, f6h21-23,
+# f6h26), «København, Altona og Kongsberg. Forside: …» (f6h19, f6h20).
+_MINT_NAME = r"[A-ZÆØÅ][A-Za-zæøåÆØÅäöüÄÖÜ]+"
+_MINT_LIST_LINE_RE = re.compile(
+    rf"(?m)^\s*({_MINT_NAME}(?:\s*,\s*{_MINT_NAME})*(?:\s+og\s+{_MINT_NAME})?)\.\s")
+
 
 def _first_mint_in(segment: str) -> str | None:
     """First recognised mint name (verbatim) in a text segment, else None."""
@@ -1715,10 +1722,26 @@ def _mint_per_letter_block(text: str) -> dict[str, str]:
     aligns with its years/refs (78A København, 78B Helsingør)."""
     out: dict[str, str] = {}
     for m in _LETTER_GROUP_BLOCK_RE.finditer(text):
-        mint = _first_mint_in(m.group(2))
+        mint = _first_mint_in(_letter_line(m.group(2)))
         if mint:
             out[m.group(1)] = mint
     return out
+
+
+def _letter_line(body: str) -> str:
+    """The letter's own description: its block up to its «(Hede …)» reference
+    (else up to the first sentence end). The prose after it names where a
+    specimen is kept or was lost, not where it was struck — c4h5 «Det eneste
+    kendte eksemplar bortkom 1922 fra Odense Museum» and «Det viste eksemplar
+    (Hede 5B) befinder sig i Den Kgl. Mønt- og Medaillesamling, København»
+    gave 5A «Odense» and 5B «København» for a Haderslev Portugaløser
+    (curator 2026-11-11). The stripped page text breaks lines at every tag
+    («1813\n, København. Forside», f6h24), so whitespace is collapsed first."""
+    s = re.sub(r"\s+", " ", body or "")
+    m = re.search(r"\(\s*Hede\b", s)
+    if m:
+        return s[:m.start()]
+    return re.split(r"(?<=[a-zæøå0-9)])\.\s+(?=[A-ZÆØÅ])", s, maxsplit=1)[0]
 
 
 def _parse_header(html: str) -> dict:
@@ -2230,6 +2253,18 @@ def parse_one(html: str, basename: str) -> dict:
         ym = _YEARS_LINE_MINT_RE.search(text)
         if ym and canon_for_alias(ym.group(1)) is not None:
             out["mint"] = ym.group(1)
+
+    # Mint-list line: the mint opens a description line, «København og Altona.
+    # Forside: …». Every name in the list must be one the mint registry knows,
+    # so a description line starting with a capitalised word is never read as
+    # a mint. Found 2026-11-13 through the Numista refresh: the Rigsbanktegn
+    # pages f6h18-f6h23 had no mint although danskmoent names two or three.
+    if out.get("nominal") and not out.get("mint"):
+        for lm in _MINT_LIST_LINE_RE.finditer(text):
+            names = [t.strip() for t in re.split(r"\s+og\s+|,", lm.group(1)) if t.strip()]
+            if names and all(canon_for_alias(t) is not None for t in names):
+                out["mint"] = lm.group(1).strip()
+                break
 
     # Catalog refs
     refs = _extract_refs(text)

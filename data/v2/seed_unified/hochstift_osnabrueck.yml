@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hochstift_osnabrueck`.
-# Generated 2026-10-28 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hochstift_osnabrueck.yml across all sources.
 #
 # Input: 238 per-source seed entries.
-# Output: 180 unified entries (one per physical coin).
+# Output: 176 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hochstift_osnabrueck
-generated_at: '2026-10-28'
+generated_at: '2026-11-16'
 coins:
   - id: c-756b6d33
     class_id: c-756b6d33
@@ -43,6 +43,14 @@ coins:
     diameter_mm:
       - value: 29.0
         source: ucoin
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Taler Klippe
+          value: silver
+          seed: dk-bruun-11903
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1021,8 +1029,8 @@ coins:
     composed_of:
       - dk-numista-237412
       - tid-tid-173329
-  - id: c-33726f10
-    class_id: c-33726f10
+  - id: c-297bfc13
+    class_id: c-297bfc13
     label: unified-dk-numista-238233
     fuss: seed_unsorted
     phase: numista
@@ -1036,51 +1044,14 @@ coins:
     year_label: 1702-1704
     ruler: Charles Joseph of Lorraine (Karl III Joseph von Lothringen)
     catalog:
-      km: '164.1'
-      numista: '238233'
+      km:
+        - '164.1'
+        - '164.2'
+      numista:
+        - '238233'
+        - '238234'
       others:
         - Kennepohl# 325
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.9
-        source: ucoin
-    diameter_mm:
-      - value: 17.0
-        source: numista
-      - value: 17.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/238233
-        ref: Numista N#238233 — 5 Pfennigs - Charles of Lothringen - Bishopric of Osnabrück
-      - type: ucoin
-        url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1702-1704/?tid=172899
-        ref: ucoin
-    issuing_entity: hochstift_osnabrueck
-    composed_of:
-      - dk-numista-238233
-      - tid-tid-172899
-  - id: c-297bfc13
-    class_id: c-297bfc13
-    label: unified-dk-numista-238234
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 5 Pfennigs (5 Pfennige) (1/54 Thaler)
-    year_first: 1702
-    year_last: 1702
-    year_label: '1702'
-    ruler: Charles Joseph of Lorraine (Karl III Joseph von Lothringen)
-    catalog:
-      km: '164.2'
-      numista: '238234'
-      others:
         - Kennepohl# 316
     metal: silver
     metal_verified: true
@@ -1090,26 +1061,22 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 0.9
-        source: ucoin
       - value: 0.93
         source: numista
     diameter_mm:
       - value: 17.0
         source: numista
-      - value: 17.0
-        source: ucoin
     sources:
+      - type: literature
+        url: https://en.numista.com/238233
+        ref: Numista N#238233 — 5 Pfennigs - Charles of Lothringen - Bishopric of Osnabrück
       - type: literature
         url: https://en.numista.com/238234
         ref: Numista N#238234 — 5 Pfennigs - Charles of Lothringen - Bishopric of Osnabrück
-      - type: ucoin
-        url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1702/?tid=172901
-        ref: ucoin
     issuing_entity: hochstift_osnabrueck
     composed_of:
+      - dk-numista-238233
       - dk-numista-238234
-      - tid-tid-172901
   - id: c-d888d56f
     class_id: c-d888d56f
     label: unified-dk-numista-238235
@@ -1183,7 +1150,9 @@ coins:
     year_label: 1702-1703
     ruler: Charles Joseph of Lorraine (Karl III Joseph von Lothringen)
     catalog:
-      km: '174.1'
+      km:
+        - '174.1'
+        - '174.2'
       numista: '238237'
       dav: SG 724
       others:
@@ -1211,10 +1180,14 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/osnabruck-24-mariengroschen-1702-1703/?tid=173332
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/osnabruck-24-mariengroschen-1703/?tid=173333
+        ref: ucoin
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - dk-numista-238237
       - tid-tid-173332
+      - tid-tid-173333
   - id: c-b2b40be0
     class_id: c-b2b40be0
     label: unified-dk-numista-238337
@@ -5145,6 +5118,48 @@ coins:
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - tid-tid-172898
+  - id: c-14cfe285
+    class_id: c-14cfe285
+    label: unified-tid-tid-172899
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 5 Pfennig
+    year_first: 1702
+    year_last: 1704
+    year_ranges:
+      -   - 1702
+          - 1704
+    year_label: 1702-1704
+    ruler: Charles Joseph
+    catalog:
+      km:
+        - '164.1'
+        - '164.2'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.9
+        source: ucoin
+    diameter_mm:
+      - value: 17.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1702-1704/?tid=172899
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1702/?tid=172901
+        ref: ucoin
+    issuing_entity: hochstift_osnabrueck
+    composed_of:
+      - tid-tid-172899
+      - tid-tid-172901
   - id: c-1f3a51e3
     class_id: c-1f3a51e3
     label: unified-tid-tid-172902
@@ -5193,7 +5208,9 @@ coins:
     year_label: 1702-1703
     ruler: Charles Joseph
     catalog:
-      km: '168.1'
+      km:
+        - '168.1'
+        - '168.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5204,37 +5221,6 @@ coins:
     weight_rough_g:
       - value: 1.0
         source: ucoin
-    diameter_mm:
-      - value: 18.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1702-1703/?tid=172947
-        ref: ucoin
-    issuing_entity: hochstift_osnabrueck
-    composed_of:
-      - tid-tid-172947
-  - id: c-384bad75
-    class_id: c-384bad75
-    label: unified-tid-tid-172948
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 6 Pfennig
-    year_first: 1702
-    year_last: 1702
-    year_label: '1702'
-    ruler: Charles Joseph
-    catalog:
-      km: '168.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
       - value: 1.15
         source: ucoin
     diameter_mm:
@@ -5242,10 +5228,14 @@ coins:
         source: ucoin
     sources:
       - type: ucoin
+        url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1702-1703/?tid=172947
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1702/?tid=172948
         ref: ucoin
     issuing_entity: hochstift_osnabrueck
     composed_of:
+      - tid-tid-172947
       - tid-tid-172948
   - id: c-ccc23841
     class_id: c-ccc23841
@@ -5685,19 +5675,24 @@ coins:
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - tid-tid-173114
-  - id: c-fa200214
-    class_id: c-fa200214
+  - id: c-59d43209
+    class_id: c-59d43209
     label: unified-tid-tid-173118
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
     nominal: 1 Mariengroschen
     year_first: 1714
-    year_last: 1714
-    year_label: '1714'
+    year_last: 1715
+    year_ranges:
+      -   - 1714
+          - 1715
+    year_label: 1714-1715
     ruler: Charles Joseph
     catalog:
-      km: '192.1'
+      km:
+        - '192.1'
+        - '192.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5708,48 +5703,23 @@ coins:
     weight_rough_g:
       - value: 1.4
         source: ucoin
+      - value: 1.5
+        source: ucoin
     diameter_mm:
+      - value: 19.0
+        source: ucoin
       - value: 20.0
         source: ucoin
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1714/?tid=173118
         ref: ucoin
-    issuing_entity: hochstift_osnabrueck
-    composed_of:
-      - tid-tid-173118
-  - id: c-59d43209
-    class_id: c-59d43209
-    label: unified-tid-tid-173119
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Mariengroschen
-    year_first: 1715
-    year_last: 1715
-    year_label: '1715'
-    ruler: Charles Joseph
-    catalog:
-      km: '192.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.5
-        source: ucoin
-    diameter_mm:
-      - value: 19.0
-        source: ucoin
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1715/?tid=173119
         ref: ucoin
     issuing_entity: hochstift_osnabrueck
     composed_of:
+      - tid-tid-173118
       - tid-tid-173119
   - id: c-150c846b
     class_id: c-150c846b
@@ -5851,8 +5821,8 @@ coins:
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - tid-tid-173126
-  - id: c-9059ce0d
-    class_id: c-9059ce0d
+  - id: c-1383a0e9
+    class_id: c-1383a0e9
     label: unified-tid-tid-173132
     fuss: seed_unsorted
     phase: ucoin
@@ -5864,41 +5834,9 @@ coins:
     ruler: Ernest Augustus
     mint: Melle
     catalog:
-      km: '125.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.6
-        source: ucoin
-    diameter_mm:
-      - value: 19.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1669/?tid=173132
-        ref: ucoin
-    issuing_entity: hochstift_osnabrueck
-    composed_of:
-      - tid-tid-173132
-  - id: c-1383a0e9
-    class_id: c-1383a0e9
-    label: unified-tid-tid-173133
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 2 Mariengroschen
-    year_first: 1669
-    year_last: 1669
-    year_label: '1669'
-    ruler: Ernest Augustus
-    mint: Melle
-    catalog:
-      km: '125.2'
+      km:
+        - '125.1'
+        - '125.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5909,15 +5847,23 @@ coins:
     weight_rough_g:
       - value: 0.92
         source: ucoin
+      - value: 1.6
+        source: ucoin
     diameter_mm:
+      - value: 19.0
+        source: ucoin
       - value: 19.5
         source: ucoin
     sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1669/?tid=173132
+        ref: ucoin
       - type: ucoin
         url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1669/?tid=173133
         ref: ucoin
     issuing_entity: hochstift_osnabrueck
     composed_of:
+      - tid-tid-173132
       - tid-tid-173133
   - id: c-8a6b0a38
     class_id: c-8a6b0a38
@@ -6097,39 +6043,6 @@ coins:
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - tid-tid-173326
-  - id: c-43662ef7
-    class_id: c-43662ef7
-    label: unified-tid-tid-173333
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 24 Mariengroschen
-    year_first: 1703
-    year_last: 1703
-    year_label: '1703'
-    ruler: Charles Joseph
-    catalog:
-      km: '174.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 17.4
-        source: ucoin
-    diameter_mm:
-      - value: 35.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/osnabruck-24-mariengroschen-1703/?tid=173333
-        ref: ucoin
-    issuing_entity: hochstift_osnabrueck
-    composed_of:
-      - tid-tid-173333
   - id: c-77e19122
     class_id: c-77e19122
     label: unified-tid-tid-173338

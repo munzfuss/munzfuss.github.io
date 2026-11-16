@@ -50,11 +50,22 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 from parse_numista_api import is_api_shape, parse_api_to_canonical  # noqa: E402
 from parse_numista_chrome import is_chrome_shape, parse_chrome_to_canonical  # noqa: E402
 
-from lib.paths import NUMISTA_CACHE  # noqa: E402
+from lib.paths import HARVEST_ROOT, NUMISTA_CACHE  # noqa: E402
+from lib.numista_refresh import latest_refresh, overlay  # noqa: E402
 
 CACHE_DIR = NUMISTA_CACHE
 PARSED_DIR = CACHE_DIR / "parsed"
 PRE_1541_DIR = CACHE_DIR / "denmark_pre_1541"
+
+
+def _rel(path: Path) -> str:
+    """Project-relative path; a harvest cache outside this checkout (a git
+    worktree reading the main checkout's submodule) is written relative to
+    the checkout that holds it, so the form is the same either way."""
+    try:
+        return str(path.relative_to(PROJECT_ROOT))
+    except ValueError:
+        return str(path.relative_to(HARVEST_ROOT.parent.parent))
 
 
 def detect_and_parse(raw: dict[str, Any], source_path: Path) -> dict[str, Any] | None:
@@ -72,7 +83,7 @@ def detect_and_parse(raw: dict[str, Any], source_path: Path) -> dict[str, Any] |
     else:
         return None
     if out is not None:
-        out["_source_path"] = str(source_path.relative_to(PROJECT_ROOT))
+        out["_source_path"] = _rel(source_path)
     return out
 
 
@@ -94,7 +105,7 @@ def _copy_pre1541(json_path: Path) -> dict[str, Any] | None:
     if nid is None:
         return None
     d.setdefault("_source_shape", "html_pre1541")
-    d["_source_path"] = str(json_path.relative_to(PROJECT_ROOT))
+    d["_source_path"] = _rel(json_path)
     return d
 
 
@@ -148,6 +159,16 @@ def process_one(path: Path, route: str, force: bool,
     if nid is None:
         stats["no_nid"] += 1
         return "unparseable", None
+
+    # A saved refresh (scripts/maintenance/refresh_numista_types.py) is laid
+    # over again, so a re-parse does not undo it.
+    fresh_path = latest_refresh(nid)
+    if fresh_path is not None:
+        fresh = parse_api_to_canonical(json.loads(fresh_path.read_text()))
+        if fresh:
+            canonical, _ = overlay(canonical, fresh, date=fresh_path.parent.name,
+                                   raw_path=str(fresh_path.relative_to(CACHE_DIR.parent)))
+            stats["refresh_applied"] += 1
 
     out_path = PARSED_DIR / f"{nid}.json"
     if out_path.exists() and not force:

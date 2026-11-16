@@ -479,12 +479,37 @@ def _titlecase_nominal(nominal: str) -> str:
 def _normalise_ruler(raw: str | None) -> str | None:
     if not raw:
         return None
-    m = re.match(r"^\s*(Christian|Frederik)\s+(\d{1,2})\.?\s*$", raw)
+    m = re.match(r"^\s*(Christian|Frederik)\s+(\d{1,2})\.?\s*(\(\?\)\.?)?\s*$", raw)
     if not m:
         return raw.strip()
     name, num = m.group(1), int(m.group(2))
     roman = _ARABIC_TO_ROMAN.get(num)
     return f"{name} {roman}." if roman else raw.strip()
+
+
+def _ruler_hedge(raw: str | None) -> str | None:
+    """The page's own ruler text when Hede marks the attribution «(?)»
+    (c3h23: «Christian 2. (?).»), else None. The value is kept, the
+    reservation travels as a hedged ruler uncertainty (D51)."""
+    if raw and re.search(r"\(\?\)", raw):
+        return raw.strip().rstrip(".").strip()
+    return None
+
+
+# Reigns of kings whose coins Hede places inside a later king's volume
+# (c3h23, the crowned-C Blaffert: «Christian 2. (?)» on Christian III's page).
+_KING_REIGN: dict[str, tuple[int, int]] = {
+    "Christian I.": (1448, 1481),
+    "Hans": (1481, 1513),
+    "Christian II.": (1513, 1523),
+    "Frederik I.": (1523, 1533),
+}
+
+
+def _reign_for_ruler(ruler: str | None) -> tuple[int, int] | None:
+    """The reign of the king the page names, when it is not the volume's
+    own king; None otherwise (the caller falls back to the volume)."""
+    return _KING_REIGN.get(ruler) if ruler else None
 
 
 # Gold-marker tokens. When a nominal contains any of these and the
@@ -1234,7 +1259,7 @@ def _build_coin(
         # prefix, no «ND», no «ca.». Year-level uncertainty is
         # surfaced via `year_verified: false`, which the renderer
         # turns into a `(?)` span next to the year column.
-        reign = _reign_window(hede_volume)
+        reign = _reign_for_ruler(ruler) or _reign_window(hede_volume)
         if reign is None:
             # No reign window for this volume → we cannot anchor the
             # coin at all. Previously this branch invented
@@ -1257,6 +1282,11 @@ def _build_coin(
                                     value=unc.year_value(*reign))["uncertainty"]
     if ruler:
         cm["ruler"] = ruler
+        _rh = _ruler_hedge(parsed.get("ruler"))
+        if _rh:
+            cm["ruler_verified"] = False
+            cm["uncertainty"] = unc.add(cm, "ruler", "doubt", "hede",
+                                        as_printed=_rh, value=ruler)["uncertainty"]
     if isinstance(mint_normalised, list):
         seq = CommentedSeq(mint_normalised)
         seq.fa.set_flow_style()
@@ -1888,7 +1918,7 @@ def main() -> int:
                         continue
                     if coin.get("year_first") and (
                         coin["year_first"] > year_to
-                        or coin["year_first"] < year_from
+                        or (coin.get("year_last") or coin["year_first"]) < year_from
                     ):
                         stats["skipped_out_of_scope_year"] += 1
                         continue
@@ -1911,7 +1941,7 @@ def main() -> int:
                 continue
             if coin.get("year_first") and (
                 coin["year_first"] > year_to
-                or coin["year_first"] < year_from
+                or (coin.get("year_last") or coin["year_first"]) < year_from
             ):
                 stats["skipped_out_of_scope_year"] += 1
                 continue

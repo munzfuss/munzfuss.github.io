@@ -5351,3 +5351,33 @@ removals:
     field: hede
     dropped: ['ej']
     reason: 'Curator (Serhii) 2026-11-10: danskmoent c7hej «(Hede ej, Schou ej)» — the 1/2 Speciedaler 1776 is in neither Hede nor Schou; «ej» is no Hede number. The Hede builder no longer writes it.'
+  - seed: dk-bruun-9251
+    kind: field
+    field: metal
+    dropped: ['silver']
+    reason: 'Curator (Serhii) 2026-11-10 («роби з порожньо»): Bruun gives no metal; the builder wrote «silver» as a default when no rule recognised the denomination («1 Penny», Part III lot 12033). The default is gone: a record without a metal signal carries no metal. The class has no other member, so the coin shows no metal.'
+  - seed: dk-bruun-14757
+    kind: field
+    field: metal
+    dropped: ['silver']
+    reason: 'Curator (Serhii) 2026-11-10 («роби з порожньо»): Bruun gives no metal; the builder wrote «silver» as a default when no rule recognised the denomination («1 Schilling», Part V lot 15180). The default is gone: a record without a metal signal carries no metal. The class has no other member, so the coin shows no metal.'
+  - seed: dk-hede-c4h5a
+    kind: field
+    field: mint
+    dropped: ['Odense']
+    reason: 'Curator (Serhii) 2026-11-11 («Так, прибери»): danskmoent c4h5 (Christian IV, 1 Portugaløser (15)92, Haderslev) names Odense only as where the lost 5A specimen was kept («Det eneste kendte eksemplar bortkom 1922 fra Odense Museum»); the Hede parser read it as the mint. Parser fixed (58ee48a); the seed reads Haderslev, the final kept the stale union.'
+  - seed: dk-hede-c4h5b
+    kind: field
+    field: mint
+    dropped: ['Kopenhagen']
+    reason: 'Curator (Serhii) 2026-11-11 («Так, прибери»): danskmoent c4h5 names København only as where the shown 5B specimen is kept («Den Kgl. Mønt- og Medaillesamling, København»); the Hede parser read it as the mint of a Haderslev Portugaløser. Parser fixed (58ee48a).'
+  - seed: dk-hede-c4h8b
+    kind: field
+    field: mint
+    dropped: ['Kopenhagen']
+    reason: 'Curator (Serhii) 2026-11-11 («Так, прибери»): danskmoent c4h8 (Ungersk Gylden, Haderslev 1591-1593) names København only as where the shown specimen is kept («Den Kgl. Mønt- og Medaillesamling, København»); the Hede parser read it as the 8B mint. Parser fixed (58ee48a).'
+  - seed: kmk-190273
+    kind: field
+    field: schou
+    dropped: ['164']
+    reason: 'Curator (Serhii) 2026-11-16 (merge tables «погоджую мердж»): KMM 190273 (H:12, Sch:164) left the class it shared with KMM 46693 and joined the Hede 12 class, whose Schou range 140-184 covers 164; the KMM 46693 class keeps no Schou number.'

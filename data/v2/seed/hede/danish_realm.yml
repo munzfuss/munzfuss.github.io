@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-09T07:16:06Z'
+generated_at: '2026-11-14T11:00:33Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -12,11 +12,11 @@ coins:
     phase: hede
     kind: kurant
     nominal: 1 Blaffert
-    year_label: 1534-1559
-    year_first: 1534
-    year_last: 1559
+    year_label: 1513-1523
+    year_first: 1513
+    year_last: 1523
     year_verified: false
-    ruler: Christian 2. (?).
+    ruler: Christian II.
     mint: Malmø
     catalog:
       hede: '23'
@@ -36,11 +36,18 @@ coins:
           how: reign
           source: hede
           as_printed: u. år
-          value: 1534-1559
+          value: 1513-1523
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: hede
+          as_printed: Christian 2. (?)
+          value: Christian II.
     _curation_holds:
       mint: "Curator 2026-11-08: Malmø as the mint after Sømod, quoted on danskmoent.dk c3h23 «C'et er kronet og at mønten derfor må være præget i kongeriget (Malmø)»; the Hede page itself gives no mint
         field."
       mint_verified:
+    ruler_verified: false
   - id: dk-hede-c3h7
     fuss: seed_unsorted
     phase: hede
@@ -2588,90 +2595,6 @@ coins:
       da: 'Forside: portræt (forfra, uden krone), bagside: ligesidet våbenskjold: (Hede 43, Schou 1, Sieg 109) Udmøntet for Giørvel Fadersdatter og Peder Brahe. Kaldet Prinsens daler af Wilcke, der fejlagtigt
         forstod udtrykket Prindsens Daller i Enevold Kruses rentemesterregnskab som henførende til denne mønt. I virkeligheden henførte Kruse til den hollandske prins Vilhelm af Oraniens dalere (i modsætning
         til kongens (Philip 2.s) udmøntninger). Det viste'
-  - id: dk-hede-c4h5a
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Portugaløser
-    year_label: '1592'
-    year_first: 1592
-    year_last: 1592
-    ruler: Christian IV.
-    mint: Odense
-    catalog:
-      hede: 5A
-      hede_volume: c4h
-      schou: '3'
-      sieg: '8'
-    metal: gold
-    weight_rough_g: 34.88
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h5.htm
-        ref: danskmoent.dk (Hede c4h5A)
-    issuing_entity: danish_realm
-    verified: false
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: true
-    _source_note:
-      da: 'Forside: Korset gennembryder ikke omskriften A) (Unik) Bagside: Midterste våben Ditmarsken (Hede 5A, Schou 3, Sieg 8). Det eneste kendte'
-  - id: dk-hede-c4h5b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Portugaløser
-    year_label: '1592'
-    year_first: 1592
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: 5B
-      hede_volume: c4h
-      schou: '4'
-      sieg: '8'
-    metal: gold
-    weight_rough_g: 34.88
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h5.htm
-        ref: danskmoent.dk (Hede c4h5B)
-    issuing_entity: danish_realm
-    verified: false
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: true
-    _source_note:
-      da: 'Forside: Korset gennembryder ikke omskriften A) (Unik) Bagside: Midterste våben Ditmarsken (Hede 5A, Schou 3, Sieg 8). Det eneste kendte'
-    year_last: 1592
-  - id: dk-hede-c4h8b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Ungersk Gylden
-    year_label: '1593'
-    year_first: 1593
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: 8B
-      hede_volume: c4h
-      schou: 3-4
-      sieg: '1'
-    metal: gold
-    fineness: 0.986
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h8.htm
-        ref: danskmoent.dk (Hede c4h8B)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: true
-    year_last: 1593
   - id: dk-hede-c4h67
     fuss: seed_unsorted
     phase: hede
@@ -26068,62 +25991,6 @@ coins:
       da: 'Kun oversigtsrækken hos f6hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
         1965. Bemærkning i indekset: «Prøvemønt»'
     year_last: 1812
-  - id: dk-hede-f6h19
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: Rigsbanktegn For 12 Skilling
-    year_label: '1813'
-    year_first: 1813
-    year_last: 1813
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: '19'
-      hede_volume: f6h
-      schou: '4'
-      sieg: '13'
-    metal: copper
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h19.htm
-        ref: danskmoent.dk (Hede f6h19)
-    issuing_entity: danish_realm
-    verified: false
-    metal_verified: true
-    mint_verified: false
-    _source_note:
-      da: 'Forside: våbenskjold, bagside: værdiangivelse (Hede 19, Schou 4, Sieg 13) Udmøntningen i Kongsberg fortsatte ud over afståelsen af Norge efter freden i Kiel 1814. Der er tale om Rigsbanktegn
-        udmøntet efter statsbankerotten 1813. Tegnene foregiver altså ikke at indeholde den indre værdi, som pålydende angiver. Selv om der er tale om betalingstegn og ikke mønter i egentlig forstand, optages
-        disse rigsbanktegn i de gængse kataloger og samles på linie med mønter. Kobber Vægt: ca. 9,5-10,0g'
-  - id: dk-hede-f6h20
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: Rigsbanktegn For 6 Skilling
-    year_label: '1813'
-    year_first: 1813
-    year_last: 1813
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: '20'
-      hede_volume: f6h
-      schou: 5-6
-      sieg: '12'
-    metal: copper
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h20.htm
-        ref: danskmoent.dk (Hede f6h20)
-    issuing_entity: danish_realm
-    verified: false
-    mint_verified: false
-    _source_note:
-      da: 'Forside: våbenskjold, bagside: værdiangivelse. Kobber (Hede 20, Schou 5-6, Sieg 12) Udmøntningen i Kongsberg fortsatte ud over afståelsen af Norge efter freden i Kiel 1814. Der er tale om Rigsbanktegn
-        udmøntet efter statsbankerotten 1813. Tegnene foregiver altså ikke at indeholde den indre værdi, som pålydende angiver. Selv om der er tale om betalingstegn og ikke mønter i egentlig forstand, optages
-        disse rigsbanktegn i de gængse kataloger og samles på linie med mønter'
-    metal_verified: true
   - id: dk-hede-f6h24a
     fuss: seed_unsorted
     phase: hede
@@ -26188,114 +26055,6 @@ coins:
     metal_verified: true
     mint_verified: true
     year_last: 1813
-  - id: dk-hede-f6h18
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: Rigsbanktegn For 16 Skilling
-    year_label: '1814'
-    year_first: 1814
-    year_last: 1814
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: '18'
-      hede_volume: f6h
-      schou: '1'
-      sieg: '14'
-    metal: copper
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h18.htm
-        ref: danskmoent.dk (Hede f6h18)
-    issuing_entity: danish_realm
-    verified: false
-    mint_verified: false
-    _source_note:
-      da: 'Forside: våbenskjold, bagside: værdiangivelse (Hede 18, Schou 1, Sieg 14) Der er tale om Rigsbanktegn udmøntet efter statsbankerotten 1813. Tegnene foregiver altså ikke at indeholde den indre
-        værdi, som pålydende angiver. Selv om der er tale om betalingstegn og ikke mønter i egentlig forstand, optages disse rigsbanktegn i de gængse kataloger og samles på linie med mønter'
-    metal_verified: true
-  - id: dk-hede-f6h21
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: Rigsbanktegn For 4 Skilling
-    year_label: '1815'
-    year_first: 1815
-    year_last: 1815
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: '21'
-      hede_volume: f6h
-      schou: '1'
-      sieg: '11'
-    metal: copper
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h21.htm
-        ref: danskmoent.dk (Hede f6h21)
-    issuing_entity: danish_realm
-    verified: false
-    mint_verified: false
-    _source_note:
-      da: 'Forside: våbenskjold, bagside: værdiangivelse (Hede 21, Schou 1, Sieg 11) Der er tale om Rigsbanktegn udmøntet efter statsbankerotten 1813. Tegnene foregiver altså ikke at indeholde den indre
-        værdi, som pålydende angiver. Selv om der er tale om betalingstegn og ikke mønter i egentlig forstand, optages disse rigsbanktegn i de gængse kataloger og samles på linie med mønter'
-    metal_verified: true
-  - id: dk-hede-f6h22
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: Rigsbanktegn For 3 Skilling
-    year_label: '1815'
-    year_first: 1815
-    year_last: 1815
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: '22'
-      hede_volume: f6h
-      schou: '2'
-      sieg: '10'
-    metal: copper
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h22.htm
-        ref: danskmoent.dk (Hede f6h22)
-    issuing_entity: danish_realm
-    verified: false
-    mint_verified: false
-    _source_note:
-      da: 'Forside: våbenskjold, bagside: værdiangivelse. Kobber (Hede 22, Schou 2, Sieg 10) Der er tale om Rigsbanktegn udmøntet efter statsbankerotten 1813. Tegnene foregiver altså ikke at indeholde den
-        indre værdi, som pålydende angiver. Selv om der er tale om betalingstegn og ikke mønter i egentlig forstand, optages disse rigsbanktegn i de gængse kataloger og samles på linie med mønter'
-    metal_verified: true
-  - id: dk-hede-f6h23
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: Rigsbanktegn For 2 Skilling
-    year_label: '1815'
-    year_first: 1815
-    year_last: 1815
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: '23'
-      hede_volume: f6h
-      schou: '3'
-      sieg: '9'
-    metal: copper
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h23.htm
-        ref: danskmoent.dk (Hede f6h23)
-    issuing_entity: danish_realm
-    verified: false
-    mint_verified: false
-    _source_note:
-      da: 'Forside: våbenskjold, bagside: værdiangivelse. Kobber (Hede 23, Schou 3, Sieg 9) Der er tale om Rigsbanktegn udmøntet efter statsbankerotten 1813. Tegnene foregiver altså ikke at indeholde den
-        indre værdi, som pålydende angiver. Selv om der er tale om betalingstegn og ikke mønter i egentlig forstand, optages disse rigsbanktegn i de gængse kataloger og samles på linie med mønter'
-    metal_verified: true
   - id: dk-hede-f6h35
     fuss: seed_unsorted
     phase: hede
@@ -26384,96 +26143,6 @@ coins:
     _source_note:
       da: 'Forside: våbenskjold, bagside: værdiangivelse (Hede 37, Schou 7, Sieg 17) Kobber Vægt: 7,308g'
     year_last: 1818
-  - id: dk-hede-f6h26a
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: 1820, 1822, 1824–1825
-    year_first: 1820
-    year_last: 1825
-    year_ranges:
-      - [1820, 1820]
-      - [1822, 1822]
-      - [1824, 1824]
-      - [1825, 1825]
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: 26A
-      hede_volume: f6h
-      schou:
-        - '1'
-        - '2'
-      sieg: '30.1'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.893
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h26.htm
-        ref: danskmoent.dk (Hede f6h26A)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: false
-    _source_note:
-      da: 'Forside: portræt, bagside: firkantet våbenskjold A) 1820, 1822, 1824, 1825. Bagside CFG (Hede 26A, Schou hhv. 1,1,1 og 2, Sieg 30.1) B) 1833, 1834. Bagside KM (Hede 26B, Schou hhv. 3 og 3, Sieg
-        30.2) C) 1835, 1837, 1838, 1839. Bagside WS (Hede 26C, Schou hhv. 3,3,4-5 og 2, Sieg 30.3) D) 1820, 1822, 1824-29, 1833-35, 1838-39. Bagside FF (Hede 26D, Schou varia, Sieg 30.4)'
-  - id: dk-hede-f6h26d
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: 1820, 1822, 1824–1829, 1833–1835, 1838–1839
-    year_first: 1820
-    year_last: 1839
-    year_ranges:
-      - [1820, 1820]
-      - [1822, 1822]
-      - [1824, 1824]
-      - [1825, 1825]
-      - [1826, 1826]
-      - [1827, 1827]
-      - [1828, 1828]
-      - [1829, 1829]
-      - [1833, 1833]
-      - [1834, 1834]
-      - [1835, 1835]
-      - [1838, 1838]
-      - [1839, 1839]
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: 26D
-      hede_volume: f6h
-      sieg: '30.4'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.893
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h26.htm
-        ref: danskmoent.dk (Hede f6h26D)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: false
-    _source_note:
-      da: 'Forside: portræt, bagside: firkantet våbenskjold A) 1820, 1822, 1824, 1825. Bagside CFG (Hede 26A, Schou hhv. 1,1,1 og 2, Sieg 30.1) B) 1833, 1834. Bagside KM (Hede 26B, Schou hhv. 3 og 3, Sieg
-        30.2) C) 1835, 1837, 1838, 1839. Bagside WS (Hede 26C, Schou hhv. 3,3,4-5 og 2, Sieg 30.3) D) 1820, 1822, 1824-29, 1833-35, 1838-39. Bagside FF (Hede 26D, Schou varia, Sieg 30.4)'
   - id: dk-hede-f6h1
     fuss: seed_unsorted
     phase: hede
@@ -26533,44 +26202,6 @@ coins:
     metal_verified: true
     mint_verified: true
     year_last: 1828
-  - id: dk-hede-f6h26b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: 1833–1834
-    year_first: 1833
-    year_last: 1834
-    year_ranges:
-      - [1833, 1833]
-      - [1834, 1834]
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: 26B
-      hede_volume: f6h
-      schou: '3'
-      sieg: '30.2'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.893
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h26.htm
-        ref: danskmoent.dk (Hede f6h26B)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: false
-    _source_note:
-      da: 'Forside: portræt, bagside: firkantet våbenskjold A) 1820, 1822, 1824, 1825. Bagside CFG (Hede 26A, Schou hhv. 1,1,1 og 2, Sieg 30.1) B) 1833, 1834. Bagside KM (Hede 26B, Schou hhv. 3 og 3, Sieg
-        30.2) C) 1835, 1837, 1838, 1839. Bagside WS (Hede 26C, Schou hhv. 3,3,4-5 og 2, Sieg 30.3) D) 1820, 1822, 1824-29, 1833-35, 1838-39. Bagside FF (Hede 26D, Schou varia, Sieg 30.4)'
   - id: dk-hede-f6h27b
     fuss: seed_unsorted
     phase: hede
@@ -26607,49 +26238,6 @@ coins:
         i buet linie, bagside KM (Hede 27B, Schou 5 og 5-6, Sieg 27.2) København og Altona. Forside: portræt II, bagside: våbenskjold A) 1833, 1834 (R), 1835 (R), 1836, 1839, Altona. Halsafsnittet i knækket
         linie, bagside FF (Hede 27A, Schou varia, Sieg 28.1) B) 1834, København. Halsafsnittet i knækket linie, bagside KM (Hede 27B, Schou 5-6, Sieg 28.2) C) 1835 (RR), 1838, København. Halsafsnittet i…'
     year_last: 1834
-  - id: dk-hede-f6h26c
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: 1835, 1837–1839
-    year_first: 1835
-    year_last: 1839
-    year_ranges:
-      - [1835, 1835]
-      - [1837, 1837]
-      - [1838, 1838]
-      - [1839, 1839]
-    ruler: Frederik VI.
-    mint:
-    catalog:
-      hede: 26C
-      hede_volume: f6h
-      schou:
-        - '2'
-        - '3'
-        - 4-5
-      sieg: '30.3'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.893
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h26.htm
-        ref: danskmoent.dk (Hede f6h26C)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: false
-    _source_note:
-      da: 'Forside: portræt, bagside: firkantet våbenskjold A) 1820, 1822, 1824, 1825. Bagside CFG (Hede 26A, Schou hhv. 1,1,1 og 2, Sieg 30.1) B) 1833, 1834. Bagside KM (Hede 26B, Schou hhv. 3 og 3, Sieg
-        30.2) C) 1835, 1837, 1838, 1839. Bagside WS (Hede 26C, Schou hhv. 3,3,4-5 og 2, Sieg 30.3) D) 1820, 1822, 1824-29, 1833-35, 1838-39. Bagside FF (Hede 26D, Schou varia, Sieg 30.4)'
   - id: dk-hede-f6h27c
     fuss: seed_unsorted
     phase: hede

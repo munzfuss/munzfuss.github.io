@@ -1,0 +1,45 @@
+# Merge decisions for sweden (Kingdom of Sweden).
+#
+#   • merges:    unconditionally unite these member classes
+#   • no_merges: forbid these member pairs from ever uniting
+#
+# IDs reference V2 seed-layer entries (data/v2/seed/<src>/<entity>.yml).
+# Loaded by merge_seeds_cross_source.py::_load_decisions on every Phase 3.2 run.
+
+merges:
+  - members:
+      - dk-galster-hg-230
+      - dk-bruun-11316q
+    reason: >-
+      Hans Ørtug, Stockholm, Galster 230 — «Forside: Oldenborgs våben på kors»
+      (danskmoent hans.htm: the Oldenburg arms on a cross). Bruun Part II lot
+      14128 p. 230 (Bruun-11316q, Delzanno-424, Frösell-282, Llt-2, 1.37 g)
+      describes its piece as «Extremely rare variation with cross on
+      obverse», and the plate shows the shield laid on a cross. No catalogue
+      number is shared (Bruun cites no Galster); the type rests on the
+      design, which Galster uses to separate 230 from 231. Curator 2026-11-11.
+  - members:
+      - dk-galster-hg-231
+      - dk-bruun-11316p
+    reason: >-
+      Hans Ørtug, Stockholm, Galster 231 — «Forside: Oldenborgs våben uden
+      kors» (danskmoent hans.htm: the Oldenburg arms without a cross). Bruun
+      Part III lot 12145 p. 212 (Bruun-11316p, Llt-1, Delzanno-423,
+      Frösell-281, 1.45 g): the plate shows the barred shield with no cross
+      behind it, and the text names only «The barred shield on the obverse».
+      No catalogue number is shared; the type rests on the design.
+      Curator 2026-11-11.
+
+no_merges:
+  - members: [dk-galster-hg-230, dk-galster-hg-231]
+    reason: >-
+      Galster separates the two Stockholm ørtugs of Hans by the obverse: 230
+      the Oldenburg arms on a cross, 231 without a cross. The classes had
+      fused on ruler + nominal + mint + metal alone, with no shared
+      catalogue number. Curator 2026-11-11.
+  - members: [dk-galster-hg-230, dk-bruun-11316p]
+    reason: Galster 230 (with cross) vs Bruun 11316p (no cross, Galster 231). Curator 2026-11-11.
+  - members: [dk-bruun-11316q, dk-galster-hg-231]
+    reason: Bruun 11316q (with cross, Galster 230) vs Galster 231 (no cross). Curator 2026-11-11.
+  - members: [dk-bruun-11316q, dk-bruun-11316p]
+    reason: Bruun 11316q (Llt-2, with cross) and 11316p (Llt-1, no cross) are the two different types. Curator 2026-11-11.

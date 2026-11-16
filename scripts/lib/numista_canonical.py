@@ -60,6 +60,10 @@ _NUMISTA_REF_CODE_MAP: dict[str, str] = {
     "sieg": "sieg",
     "schou": "schou",
     "galster": "galster",
+    # Numista's code for Galster, «Unionstidens udmøntninger» — the same
+    # catalogue as the danskmoent Galster pages; the pre-1541 HTML parser
+    # already maps it to `galster`.
+    "galster uu": "galster",
     "fr": "fr",         # Friedberg (gold reference)
     "friedberg": "fr",
     "dav": "dav",       # Davenport
@@ -176,7 +180,10 @@ def parse_references_from_api_list(refs: list[dict[str, Any]] | None) -> dict[st
             # same coin across two Krause editions 106/56) — first-wins
             # would silently drop the rest. KM comma-decimals normalise to
             # dots (404,1 → 404.1).
-            val = _normalise_km_number(number_str) if mapped == "km" else number_str
+            # Decimal sub-numbers to the dot form the corpus uses (KM 404,1,
+            # SIEG F2-15,2, Fr 271,1), as the pre-1541 HTML parser does.
+            val = (_normalise_km_number(number_str) if mapped == "km"
+                   else re.sub(r"(?<=\d),(?=\d)", ".", number_str))
             _accumulate_ref(out, mapped, val)
             continue
         dav = _normalise_dav(code_raw, number_str)

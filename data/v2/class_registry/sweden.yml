@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 224 active, 5 retired.
+# 224 active, 6 retired.
 
 id: sweden
 classes:
@@ -244,6 +244,7 @@ classes:
     label: unified-dk-galster-hg-231
     legacy_id: unified-dk-galster-hg-231
     members:
+      - dk-bruun-11316p
       - dk-galster-hg-231
   - id: c-222a385e
     status: active
@@ -252,6 +253,13 @@ classes:
     legacy_id: unified-dk-bruun-12683
     members:
       - dk-bruun-12683
+  - id: c-222db9e8
+    status: active
+    created: '2026-11-10'
+    label: unified-dk-galster-hg-230
+    members:
+      - dk-bruun-11316q
+      - dk-galster-hg-230
   - id: c-237aaab4
     status: active
     created: '2026-10-22'
@@ -444,15 +452,6 @@ classes:
     label: unified-dk-galster-6penning
     members:
       - dk-galster-6penning
-  - id: c-4225815c
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-galster-hg-230
-    legacy_id: unified-dk-bruun-11316p
-    members:
-      - dk-bruun-11316p
-      - dk-bruun-11316q
-      - dk-galster-hg-230
   - id: c-428211f6
     status: active
     created: '2026-10-22'
@@ -1597,6 +1596,18 @@ classes:
     legacy_id: unified-dk-bruun-11871
     members:
       - dk-bruun-11871
+  - id: c-4225815c
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-11316p
+    legacy_id: unified-dk-bruun-11316p
+    merged_into: c-222db9e8
+    split_into:
+      - c-222db9e8
+    retired: '2026-11-11'
+    members:
+      - dk-bruun-11316p
+      - dk-bruun-11316q
   - id: c-68c4d56f
     status: retired
     created: '2026-10-22'
