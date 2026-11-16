@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2746 per-source seed entries.
-# Output: 512 unified entries (one per physical coin).
+# Output: 510 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1912,63 +1912,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-10518
-  - id: c-2ff5f160
-    class_id: c-2ff5f160
-    label: unified-dk-bruun-10573
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1711
-    year_last: 1711
-    year_label: '1711'
-    ruler: Frederik IV
-    mintmaster: Henning Christopher Meyer, the elder
-    mint: Kongsberg
-    catalog:
-      hede: '9'
-      sieg: '15'
-      bruun_collection_id:
-        - '10573'
-        - '10574'
-      schou:
-        - '17'
-        - '18'
-      others:
-        - Pn# Pn35
-      nmd:
-        - 89A
-        - 89B
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.12
-        source: bruun
-      - value: 3.09
-        source: bruun
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 8 Skilling (Pattern)
-          value: billon
-          seed: dk-bruun-10574
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14105, p. 215
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12124, p. 206
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-bruun-10573
-      - dk-bruun-10574
   - id: c-64088332
     class_id: c-64088332
     label: unified-dk-bruun-10582
@@ -36162,7 +36105,9 @@ coins:
     ruler: Frederik IV
     mint: Kongsberg
     catalog:
-      km: '205'
+      km:
+        - '205'
+        - '205.1'
       hede:
         - 8A
         - 8B
@@ -36173,12 +36118,18 @@ coins:
       schou:
         - 6-7
         - '11'
-      numista: '100330'
+      numista:
+        - '100330'
+        - '99008'
       others:
         - Brekke# 81-84
         - Rønning# 144
+        - Brekke# 69-80
+        - Rønning# 143
         - JSJ# 281
-      skaare: '648'
+      skaare:
+        - '647'
+        - '648'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -36195,21 +36146,37 @@ coins:
         specimen: dk-hede-nf4h8b
       - value: 0.187
         source: numista
+        specimen: dk-numista-100330
+      - value: 0.187
+        source: numista
+        specimen: dk-numista-99008
       - value: 0.188
         source: ngc
       - value: 0.188
         source: numismaster
       - value: 0.188
         source: ucoin
+        specimen: dk-tid-143848
+      - value: 0.188
+        source: ucoin
+        specimen: dk-tid-145854
     weight_rough_g:
       - value: 0.77
         source: numista
+        specimen: dk-numista-100330
+      - value: 0.77
+        source: ucoin
+        specimen: dk-tid-145854
       - value: 1.11
         source: ngc
       - value: 1.11
         source: numismaster
       - value: 1.11
+        source: numista
+        specimen: dk-numista-99008
+      - value: 1.11
         source: ucoin
+        specimen: dk-tid-143848
       - value: 1.114
         source: hede
         specimen: dk-hede-nf4h8a
@@ -36219,8 +36186,16 @@ coins:
     diameter_mm:
       - value: 15.0
         source: numista
+        specimen: dk-numista-100330
+      - value: 15.0
+        source: numista
+        specimen: dk-numista-99008
       - value: 15.0
         source: ucoin
+        specimen: dk-tid-143848
+      - value: 15.0
+        source: ucoin
+        specimen: dk-tid-145854
     sources:
       - type: literature
         url: https://numismaster.com/MC_86211
@@ -36231,8 +36206,14 @@ coins:
       - type: literature
         url: https://en.numista.com/100330
         ref: Numista N#100330 — 1 Skilling - Frederik IV - Norway
+      - type: literature
+        url: https://en.numista.com/99008
+        ref: Numista N#99008 — 1 Skilling - Frederik IV - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-skilling-1700-1712/?tid=143848
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-skilling-1719-1722/?tid=145854
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/279163
@@ -36250,7 +36231,9 @@ coins:
       - dk-hede-nf4h8a
       - dk-hede-nf4h8b
       - dk-numista-100330
+      - dk-numista-99008
       - dk-tid-143848
+      - dk-tid-145854
       - kmk-279163
       - ngc-1113815
   - id: c-be84dd60
@@ -36267,12 +36250,24 @@ coins:
           - 1715
     year_label: 1702-1715
     ruler: Frederik IV
+    mintmaster: Henning Christopher Meyer, the elder
     mint: Kongsberg
     catalog:
       km: '209'
       hede: '9'
       hede_volume: nf4h
-      schou: '18'
+      schou:
+        - '17'
+        - '18'
+      sieg: '15'
+      bruun_collection_id:
+        - '10573'
+        - '10574'
+      others:
+        - Pn# Pn35
+      nmd:
+        - 89A
+        - 89B
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -36288,19 +36283,37 @@ coins:
       - value: 0.75
         source: ucoin
     weight_rough_g:
+      - value: 2.12
+        source: bruun
       - value: 2.29
         source: ngc
       - value: 2.29
         source: numismaster
       - value: 2.29
         source: ucoin
+      - value: 3.09
+        source: bruun
     diameter_mm:
       - value: 19.5
         source: ucoin
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Skilling (Pattern)
+          value: billon
+          seed: dk-bruun-10574
     sources:
       - type: literature
         url: https://numismaster.com/MC_86227
         ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14105, p. 215
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12124, p. 206
       - type: literature
         url: https://www.danskmoent.dk/norge/nf4h9.htm
         ref: danskmoent.dk (Hede nf4h9)
@@ -36313,6 +36326,8 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-86227
+      - dk-bruun-10573
+      - dk-bruun-10574
       - dk-hede-nf4h9
       - dk-tid-145798
       - ngc-1097760
@@ -40169,67 +40184,6 @@ coins:
       - denmark-numismaster-110601
       - dk-numista-99007
       - ngc-1114096
-  - id: c-c2b3e971
-    class_id: c-c2b3e971
-    label: unified-dk-numista-99008
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1700
-    year_last: 1722
-    year_ranges:
-      -   - 1700
-          - 1708
-      -   - 1710
-          - 1712
-      -   - 1719
-          - 1722
-    year_label: 1700-1708, 1710-1712, 1719-1722
-    ruler: Frederik IV
-    catalog:
-      km:
-        - '205'
-        - '205.1'
-      numista: '99008'
-      hede: 8A
-      others:
-        - Brekke# 69-80
-        - Rønning# 143
-      skaare: '647'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.187
-        source: numista
-      - value: 0.188
-        source: ucoin
-    weight_rough_g:
-      - value: 0.77
-        source: ucoin
-      - value: 1.11
-        source: numista
-    diameter_mm:
-      - value: 15.0
-        source: numista
-      - value: 15.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://en.numista.com/99008
-        ref: Numista N#99008 — 1 Skilling - Frederik IV - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-skilling-1719-1722/?tid=145854
-        ref: ucoin
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-99008
-      - dk-tid-145854
   - id: c-ad4d6046
     class_id: c-ad4d6046
     label: unified-dk-numista-99070

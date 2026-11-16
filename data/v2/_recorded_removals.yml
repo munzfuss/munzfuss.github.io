@@ -5376,3 +5376,8 @@ removals:
     field: mint
     dropped: ['Kopenhagen']
     reason: 'Curator (Serhii) 2026-11-11 («Так, прибери»): danskmoent c4h8 (Ungersk Gylden, Haderslev 1591-1593) names København only as where the shown specimen is kept («Den Kgl. Mønt- og Medaillesamling, København»); the Hede parser read it as the 8B mint. Parser fixed (58ee48a).'
+  - seed: kmk-190273
+    kind: field
+    field: schou
+    dropped: ['164']
+    reason: 'Curator (Serhii) 2026-11-16 (merge tables «погоджую мердж»): KMM 190273 (H:12, Sch:164) left the class it shared with KMM 46693 and joined the Hede 12 class, whose Schou range 140-184 covers 164; the KMM 46693 class keeps no Schou number.'

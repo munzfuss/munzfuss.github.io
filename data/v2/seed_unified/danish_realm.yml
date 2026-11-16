@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8316 per-source seed entries.
-# Output: 1610 unified entries (one per physical coin).
+# Output: 1607 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3611,82 +3611,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-7296
-  - id: c-ce9dfc66
-    class_id: c-ce9dfc66
-    label: unified-dk-bruun-7334
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 6 Mark
-    year_first: 1704
-    year_last: 1704
-    year_label: '1704'
-    ruler: Frederik IV
-    mintmaster: Christian Wineke, the Y ounger
-    mint: Kopenhagen
-    catalog:
-      km: '479.2'
-      bruun_collection_id: '7334'
-      sieg: '23.2'
-      schou: '8'
-      hede: '38'
-      nmd: 1A
-      dav: '1289'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.833
-        source: ngc
-      - value: 0.833
-        source: numismaster
-    weight_rough_g:
-      - value: 26.983
-        source: ngc
-      - value: 26.983
-        source: numismaster
-      - value: 27.05
-        source: bruun
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 6 Mark (Rejsedaler)
-          value: silver
-          seed: dk-bruun-7334
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_85808
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17113, p. 58
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-6-mark-km-479.2-1704-cuid-1051605-duid-1236316
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Rejsedaler
-      en: Rejsedaler
-      uk: Rejsedaler
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-85808
-      - dk-bruun-7334
-      - ngc-1051605
-    _errata_applied:
-      - source: dk-bruun-7334
-        field: metal
-        printed: gold
-        correct: silver
-      - source: dk-bruun-7334
-        field: friedberg
-        printed: '230'
-        correct:
   - id: c-03dc425f
     class_id: c-03dc425f
     label: unified-dk-bruun-7376
@@ -25003,6 +24927,8 @@ coins:
         source: kmk
       - value: 3.9
         source: kmk
+      - value: 3.91
+        source: kmk
       - value: 3.92
         source: kmk
       - value: 3.93
@@ -25014,6 +24940,8 @@ coins:
       - value: 3.95
         source: kmk
       - value: 3.98
+        source: kmk
+      - value: 4.01
         source: kmk
       - value: 4.08
         source: kmk
@@ -25041,6 +24969,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139736
         ref: KMM 139736 (Inv. RP 122.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190247
+        ref: KMM 190247 (Inv. FP 3108.37)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190248
+        ref: KMM 190248 (Inv. FP 3108.36)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190249
         ref: KMM 190249 (Inv. FP 3108.35)
@@ -25088,6 +25022,8 @@ coins:
       - dk-tid-163039
       - kmk-122205
       - kmk-139736
+      - kmk-190247
+      - kmk-190248
       - kmk-190249
       - kmk-190250
       - kmk-190251
@@ -65795,11 +65731,15 @@ coins:
       - value: 0.187
         source: numista
     weight_rough_g:
+      - value: 1.35
+        source: kmk
       - value: 1.772
         source: hede
       - value: 1.772
         source: numista
       - value: 1.88
+        source: kmk
+      - value: 1.99
         source: kmk
     diameter_mm:
       - value: 23.0
@@ -65827,6 +65767,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/167344
         ref: KMM 167344 (Inv. FP 1892.10)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190273
+        ref: KMM 190273 (Inv. FP 3108.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190274
+        ref: KMM 190274 (Inv. FP 3108.10)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190275
         ref: KMM 190275 (Inv. FP 3108.9)
       - type: museum
@@ -65852,6 +65798,8 @@ coins:
       - kmk-167338
       - kmk-167343
       - kmk-167344
+      - kmk-190273
+      - kmk-190274
       - kmk-190275
       - kmk-291516
       - kmk-574966
@@ -66734,10 +66682,18 @@ coins:
       - value: 0.614
         source: numista
     weight_rough_g:
+      - value: 3.65
+        source: kmk
+      - value: 4.14
+        source: kmk
+      - value: 4.42
+        source: kmk
       - value: 4.45
         source: numista
       - value: 4.45
         source: ucoin
+      - value: 4.5
+        source: kmk
       - value: 4.872
         source: hede
     diameter_mm:
@@ -66758,6 +66714,18 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156796
         ref: KMM 156796 (Inv. RP 437.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190278
+        ref: KMM 190278 (Inv. FP 3108.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190279
+        ref: KMM 190279 (Inv. FP 3108.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190280
+        ref: KMM 190280 (Inv. FP 3108.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276912
+        ref: KMM 276912 (Inv. FP 4227.3)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 9.762
@@ -66769,6 +66737,10 @@ coins:
       - dk-numista-301584
       - dk-tid-163030
       - kmk-156796
+      - kmk-190278
+      - kmk-190279
+      - kmk-190280
+      - kmk-276912
   - id: c-55a52a9a
     class_id: c-55a52a9a
     label: unified-dk-hede-f2h27
@@ -96207,10 +96179,12 @@ coins:
     year_last: 1704
     year_label: '1704'
     ruler: Frederik IV
-    mintmaster: Christian Wineke the Y ounger
+    mintmaster: Christian Wineke, the Y ounger
     mint: Kopenhagen
     catalog:
-      km: '479.1'
+      km:
+        - '479.2'
+        - '479.1'
       hede: '38'
       hede_volume: f4h
       schou: 8-10
@@ -96219,9 +96193,11 @@ coins:
         - '23.2'
         - '23.3'
       bruun_collection_id:
+        - '7334'
         - '7335'
         - '7336'
       nmd:
+        - 1A
         - 1B
         - 1C
       dav: '1289'
@@ -96237,8 +96213,16 @@ coins:
         source: hede
       - value: 0.833
         source: ngc
+        specimen: ngc-1050590
+      - value: 0.833
+        source: ngc
+        specimen: ngc-1051605
       - value: 0.833
         source: numismaster
+        specimen: denmark-numismaster-65206
+      - value: 0.833
+        source: numismaster
+        specimen: denmark-numismaster-85808
     weight_rough_g:
       - value: 26.79
         source: bruun
@@ -96246,10 +96230,26 @@ coins:
         source: hede
       - value: 26.983
         source: ngc
+        specimen: ngc-1050590
+      - value: 26.983
+        source: ngc
+        specimen: ngc-1051605
       - value: 26.983
         source: numismaster
+        specimen: denmark-numismaster-65206
+      - value: 26.983
+        source: numismaster
+        specimen: denmark-numismaster-85808
+      - value: 27.05
+        source: bruun
     uncertainty:
       metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 6 Mark (Rejsedaler)
+          value: silver
+          seed: dk-bruun-7334
         - kind: inferred
           how: from_name
           source: bruun
@@ -96266,6 +96266,12 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65206
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_85808
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17113, p. 58
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11265, p. 118
@@ -96277,6 +96283,9 @@ coins:
         ref: danskmoent.dk (Hede f4h38)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-6-mark-km-479.1-1704-cuid-1050590-duid-1236839
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-6-mark-km-479.2-1704-cuid-1051605-duid-1236316
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Rejsedaler
@@ -96290,10 +96299,22 @@ coins:
       unit_raw: rd.kr
     composed_of:
       - denmark-numismaster-65206
+      - denmark-numismaster-85808
+      - dk-bruun-7334
       - dk-bruun-7335
       - dk-bruun-7336
       - dk-hede-f4h38
       - ngc-1050590
+      - ngc-1051605
+    _errata_applied:
+      - source: dk-bruun-7334
+        field: metal
+        printed: gold
+        correct: silver
+      - source: dk-bruun-7334
+        field: friedberg
+        printed: '230'
+        correct:
   - id: c-dfe99e05
     class_id: c-dfe99e05
     label: unified-dk-hede-f4h39
@@ -120153,43 +120174,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-189883
-  - id: c-870576f7
-    class_id: c-870576f7
-    label: unified-kmk-190247
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 16 Skilling
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Christian IV
-    catalog:
-      hede: '131'
-      schou:
-        - '30'
-        - '31'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 3.91
-        source: kmk
-      - value: 4.01
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190247
-        ref: KMM 190247 (Inv. FP 3108.37)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190248
-        ref: KMM 190248 (Inv. FP 3108.36)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190247
-      - kmk-190248
   - id: c-d12f128a
     class_id: c-d12f128a
     label: unified-kmk-190271
@@ -120227,47 +120211,6 @@ coins:
     composed_of:
       - kmk-190271
       - kmk-190272
-  - id: c-48f7b00c
-    class_id: c-48f7b00c
-    label: unified-kmk-190273
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1563
-    year_last: 1563
-    year_label: '1563'
-    ruler: Frederik II
-    catalog:
-      hede: '12'
-      schou:
-        - '152'
-        - '164'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.35
-        source: kmk
-      - value: 1.99
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190273
-        ref: KMM 190273 (Inv. FP 3108.11)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190274
-        ref: KMM 190274 (Inv. FP 3108.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/46693
-        ref: KMM 46693 (Inv. GP 2890.312)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190273
-      - kmk-190274
-      - kmk-46693
   - id: c-ac90b4d1
     class_id: c-ac90b4d1
     label: unified-kmk-190276
@@ -120326,61 +120269,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-190277
-  - id: c-6f0c20d2
-    class_id: c-6f0c20d2
-    label: unified-kmk-190278
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1582
-    year_last: 1585
-    year_ranges:
-      -   - 1582
-          - 1582
-      -   - 1584
-          - 1585
-    year_label: 1582, 1584-1585
-    ruler: Frederik II
-    catalog:
-      hede: '26'
-      schou:
-        - '4'
-        - '5'
-        - '9'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 3.65
-        source: kmk
-      - value: 4.14
-        source: kmk
-      - value: 4.42
-        source: kmk
-      - value: 4.5
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190278
-        ref: KMM 190278 (Inv. FP 3108.6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190279
-        ref: KMM 190279 (Inv. FP 3108.5)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190280
-        ref: KMM 190280 (Inv. FP 3108.4)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276912
-        ref: KMM 276912 (Inv. FP 4227.3)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190278
-      - kmk-190279
-      - kmk-190280
-      - kmk-276912
   - id: c-0e5fd2cc
     class_id: c-0e5fd2cc
     label: unified-kmk-190283
@@ -126678,6 +126566,29 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-46692
+  - id: c-48f7b00c
+    class_id: c-48f7b00c
+    label: unified-kmk-46693
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1563
+    year_last: 1563
+    year_label: '1563'
+    ruler: Frederik II
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/46693
+        ref: KMM 46693 (Inv. GP 2890.312)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-46693
   - id: c-c430d849
     class_id: c-c430d849
     label: unified-kmk-46699

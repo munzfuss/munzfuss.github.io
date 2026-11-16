@@ -26919,6 +26919,12 @@ coins:
           source: bruun
           as_printed: 6 Mark (Rejsedaler)
           value: silver
+          seed: dk-bruun-7334
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 6 Mark (Rejsedaler)
+          value: silver
           seed: dk-bruun-7335
         - kind: inferred
           how: from_name
@@ -26928,7 +26934,9 @@ coins:
           seed: dk-bruun-7336
     mint: Kopenhagen
     catalog:
-      km: '479.1'
+      km:
+        - '479.1'
+        - '479.2'
       hede: '38'
       schou: 8-10
       dav: '1289'
@@ -26936,12 +26944,14 @@ coins:
         - '6977'
         - '7336'
         - '7335'
+        - '7334'
       hede_volume: f4h
       sieg:
         - '23.1'
         - '23.2'
         - '23.3'
       nmd:
+        - 1A
         - 1B
         - 1C
     metal: silver
@@ -26956,8 +26966,16 @@ coins:
         source: hede
       - value: 0.833
         source: ngc
+        specimen: ngc-1050590
+      - value: 0.833
+        source: ngc
+        specimen: ngc-1051605
       - value: 0.833
         source: numismaster
+        specimen: denmark-numismaster-65206
+      - value: 0.833
+        source: numismaster
+        specimen: denmark-numismaster-85808
     weight_rough_g:
       - value: 26.79
         source: bruun
@@ -26965,8 +26983,18 @@ coins:
         source: hede
       - value: 26.983
         source: ngc
+        specimen: ngc-1050590
+      - value: 26.983
+        source: ngc
+        specimen: ngc-1051605
       - value: 26.983
         source: numismaster
+        specimen: denmark-numismaster-65206
+      - value: 26.983
+        source: numismaster
+        specimen: denmark-numismaster-85808
+      - value: 27.05
+        source: bruun
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -26985,6 +27013,12 @@ coins:
         ref: Bruun Part IV, lot 17113, p. 58
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-6-mark-km-479.1-1704-cuid-1050590-duid-1236839
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_85808
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-6-mark-km-479.2-1704-cuid-1051605-duid-1236316
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 6 Mark Rejsedaler 1704 (KM-479 Hede-38) · drei Bruun-Specimen unterschiedlicher Sieg-Untervarianten (.1/.2/.3) · Reise-Daler Friedrichs IV.
@@ -54754,11 +54788,15 @@ coins:
       - value: 0.187
         source: numista
     weight_rough_g:
+      - value: 1.35
+        source: kmk
       - value: 1.772
         source: hede
       - value: 1.772
         source: numista
       - value: 1.88
+        source: kmk
+      - value: 1.99
         source: kmk
     diameter_mm:
       - value: 23.0
@@ -55197,6 +55235,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167343
         ref: KMM 167343 (Inv. FP 1892.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190273
+        ref: KMM 190273 (Inv. FP 3108.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190274
+        ref: KMM 190274 (Inv. FP 3108.10)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -55629,10 +55673,18 @@ coins:
       - value: 0.614
         source: numista
     weight_rough_g:
+      - value: 3.65
+        source: kmk
+      - value: 4.14
+        source: kmk
+      - value: 4.42
+        source: kmk
       - value: 4.45
         source: numista
       - value: 4.45
         source: ucoin
+      - value: 4.5
+        source: kmk
       - value: 4.872
         source: hede
     diameter_mm:
@@ -55653,6 +55705,18 @@ coins:
       - type: literature
         url: https://en.numista.com/301584
         ref: Numista N#301584 — 8 Skilling Dansk - Frederik II Frederiksborg 1582-1585
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190278
+        ref: KMM 190278 (Inv. FP 3108.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190279
+        ref: KMM 190279 (Inv. FP 3108.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190280
+        ref: KMM 190280 (Inv. FP 3108.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276912
+        ref: KMM 276912 (Inv. FP 4227.3)
     note:
       de: 'Vorderseite: dänisches Wappen, Rückseite: Wertangabe. Unter Frederik 2. wurden in Frederiksborg Müntzen folgender Werte geprägt: 1 Mark, 8 Skilling, 2 Skilling, 1 Skilling und Hvid. Leiter der
         Müntzwerkstatt war Müntzmeister Poul Gulden, der die Prägung der Frederiksborger Müntzen biß 1585 leitete, als die Werkstatt aufgelöst wurde.'
@@ -102473,82 +102537,6 @@ coins:
       - c-b61c6a78
     label: unified-dk-bruun-7132
     origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
-    nominal: 6 Mark
-    ruler: Christian VI.
-    mintmaster: Christian Wineke, the Y ounger
-    issuing_entity: danish_realm
-    fraction: '1'
-    id: c-ce9dfc66
-    year_first: 1704
-    year_last: 1704
-    year_label: '1704'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 6 Mark (Rejsedaler)
-          value: silver
-          seed: dk-bruun-7334
-    mint: Kopenhagen
-    catalog:
-      km: '479.2'
-      bruun_collection_id: '7334'
-      sieg: '23.2'
-      schou: '8'
-      hede: '38'
-      nmd: 1A
-      dav: '1289'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.833
-        source: ngc
-      - value: 0.833
-        source: numismaster
-    weight_rough_g:
-      - value: 26.983
-        source: ngc
-      - value: 26.983
-        source: numismaster
-      - value: 27.05
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17113, p. 58
-      - type: literature
-        url: https://numismaster.com/MC_85808
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-6-mark-km-479.2-1704-cuid-1051605-duid-1236316
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Rejsedaler
-      en: Rejsedaler
-      uk: Rejsedaler
-      da: Rejsedaler
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-ce9dfc66
-    label: unified-dk-bruun-7334
-    origin: promoted
   - fuss: reichsdukatenfuss
     phase: IV
     kind: kurant
@@ -126593,60 +126581,6 @@ coins:
     composed_of:
       - c-ac90b4d1
     label: unified-kmk-190276
-    origin: promoted
-  - fuss: 9_thaler
-    phase: I
-    kind: scheide
-    nominal: 8 Skilling
-    ruler: Frederik II.
-    issuing_entity: danish_realm
-    fraction: 1/12
-    id: c-6f0c20d2
-    year_first: 1582
-    year_last: 1585
-    year_ranges:
-      -   - 1582
-          - 1582
-      -   - 1584
-          - 1585
-    year_label: 1582, 1584-1585
-    catalog:
-      hede: '26'
-      schou:
-        - '4'
-        - '5'
-        - '9'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 3.65
-        source: kmk
-      - value: 4.14
-        source: kmk
-      - value: 4.42
-        source: kmk
-      - value: 4.5
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190278
-        ref: KMM 190278 (Inv. FP 3108.6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276912
-        ref: KMM 276912 (Inv. FP 4227.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190279
-        ref: KMM 190279 (Inv. FP 3108.5)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190280
-        ref: KMM 190280 (Inv. FP 3108.4)
-    verification_note: *id007
-    composed_of:
-      - c-6f0c20d2
-    label: unified-kmk-190278
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -156500,7 +156434,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/137215
         ref: KMM 137215 (Inv. RP 74.1)
-    verification_note: &id023
+    verification_note: &id022
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -157094,25 +157028,12 @@ coins:
     year_first: 1563
     year_last: 1563
     year_label: '1563'
-    catalog:
-      hede: '12'
-      schou:
-        - '152'
-        - '164'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    weight_rough_g:
-      - value: 1.35
-        source: kmk
-      - value: 1.99
-        source: kmk
     sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190273
-        ref: KMM 190273 (Inv. FP 3108.11)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/330685
         ref: KMM 330685 (Inv. FP 6253.7)
@@ -157120,9 +157041,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/46693
         ref: KMM 46693 (Inv. GP 2890.312)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190274
-        ref: KMM 190274 (Inv. FP 3108.10)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/326666
         ref: KMM 326666 (Inv. FP 6592.10)
@@ -159634,6 +159552,9 @@ coins:
       - value: 3.9
         source: kmk
         display: false
+      - value: 3.91
+        source: kmk
+        display: false
       - value: 3.92
         source: kmk
       - value: 3.93
@@ -159647,6 +159568,9 @@ coins:
         source: kmk
         display: false
       - value: 3.98
+        source: kmk
+        display: false
+      - value: 4.01
         source: kmk
         display: false
       - value: 4.08
@@ -159731,6 +159655,14 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-16-skilling-km-92-1624-1625-cuid-1055241-duid-1238748
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190247
+        ref: KMM 190247 (Inv. FP 3108.37)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190248
+        ref: KMM 190248 (Inv. FP 3108.36)
+        display: false
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -160664,7 +160596,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167331
         ref: KMM 167331 (Inv. FP 1892.5)
-    verification_note: &id022
+    verification_note:
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -160672,43 +160604,6 @@ coins:
     composed_of:
       - c-000774b3
     label: unified-kmk-167331
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 16 Skilling
-    ruler: Christian 4
-    issuing_entity: danish_realm
-    id: c-870576f7
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    catalog:
-      hede: '131'
-      schou:
-        - '30'
-        - '31'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 3.91
-        source: kmk
-      - value: 4.01
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190247
-        ref: KMM 190247 (Inv. FP 3108.37)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190248
-        ref: KMM 190248 (Inv. FP 3108.36)
-    verification_note: *id022
-    composed_of:
-      - c-870576f7
-    label: unified-kmk-190247
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -164921,7 +164816,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/635408
         ref: KMM 635408 (Inv. FP 943.10)
-    verification_note: *id023
+    verification_note: *id022
     composed_of:
       - c-a5c968f9
     label: unified-kmk-156790
@@ -165541,7 +165436,7 @@ coins:
     fineness:
       - value: 0.593
         source: ngc
-        erroneous: &id024
+        erroneous: &id023
           de: "Gewicht und Feingehalt der Hebräer-2-Mark Christians IV, nicht dieser Münze.\n[b]NGC, KM 426[/b]: 11,136 g, 0,593; [i]«Similar to 1 Mark, KM#424, but double thickness»[/i] (Übers.: «ähnlich
             1 Mark, KM#424, aber doppelt so dick»).\n[b]danskmoent.dk (Hede 106)[/b]: [i]«Bruttovægt: 8,994g Finhed: 0,833»[/i] (Übers.: «Bruttogewicht: 8,994 g, Feingehalt: 0,833»).\n[b]danskmoent.dk (Hede
             148)[/b], Hebräer-2-Mark Christians IV, 1644-1646: [i]«Bruttovægt: 11,136g Finhed: 0,593»[/i] (Übers.: «Bruttogewicht: 11,136 g, Feingehalt: 0,593»)."
@@ -165556,7 +165451,7 @@ coins:
             11,136g Finhed: 0,593»[/i]."
       - value: 0.593
         source: numismaster
-        erroneous: &id025
+        erroneous: &id024
           de: "Gewicht und Feingehalt der Hebräer-2-Mark Christians IV, nicht dieser Münze.\n[b]NumisMaster, KM 426[/b]: 11,136 g, 0,593; [i]«Similar to 1 Mark, KM#424, but double thickness»[/i] (Übers.:
             «ähnlich 1 Mark, KM#424, aber doppelt so dick»).\n[b]danskmoent.dk (Hede 106)[/b]: [i]«Bruttovægt: 8,994g Finhed: 0,833»[/i] (Übers.: «Bruttogewicht: 8,994 g, Feingehalt: 0,833»).\n[b]danskmoent.dk
             (Hede 148)[/b], Hebräer-2-Mark Christians IV, 1644-1646: [i]«Bruttovægt: 11,136g Finhed: 0,593»[/i] (Übers.: «Bruttogewicht: 11,136 g, Feingehalt: 0,593»)."
@@ -165580,10 +165475,10 @@ coins:
         source: hede
       - value: 11.136
         source: ngc
-        erroneous: *id024
+        erroneous: *id023
       - value: 11.136
         source: numismaster
-        erroneous: *id025
+        erroneous: *id024
     sources:
       - type: literature
         url: https://numismaster.com/MC_65204
