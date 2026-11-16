@@ -1416,6 +1416,28 @@ _CHAIN_CORE_RE = re.compile(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$")
 _CHAIN_DOTNUM_RE = re.compile(r"^(\d+)\.\d+$")
 
 
+# Krause volumes Hede covers: there a Krause decimal may be a different Hede
+# type (KM 32.1 = Hede 91, KM 32.4 = Hede 96), and a record without a Hede
+# number cannot show which, so its decimals stay apart.
+_HEDE_KM_SCOPES = frozenset({"km/dk", "km/nor", "km/sh"})
+
+
+def _decimals_may_agree(key: str, refs_a: dict, refs_b: dict) -> bool:
+    """Two decimals of one Krause number («172.1» / «172.2») are sub-variants
+    of one coin (§9.4) where nothing separates them: in a volume Hede does
+    not cover, or when both records carry a Hede / Galster number of the
+    same base. Curator 2026-11-16: «правило не повинно бути абсолютним»."""
+    if not key.split("/", 1)[0] == "km":
+        return False          # Friedberg, Dav, … decimals keep their old reading
+    if _page_base_conflict(refs_a, refs_b):
+        return False
+    if key not in _HEDE_KM_SCOPES:
+        return True
+    return _shares_load_base(
+        {k: v for k, v in refs_a.items() if k.split("/", 1)[0] in ("hede", "galster")},
+        {k: v for k, v in refs_b.items() if k.split("/", 1)[0] in ("hede", "galster")})
+
+
 def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     """Returns (state, has_overlap):
       state ∈ {'agree', 'disagree', 'no_overlap'}
@@ -1530,6 +1552,13 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         # bare-a meets dot-b: cores_a (which equals sa for bare values)
         # intersects with parents_b
         if (cores_a & parents_b) or (cores_b & parents_a):
+            agreeing.append(k)
+        elif (parents_a & parents_b) and _decimals_may_agree(k, refs_a, refs_b):
+            # Two decimals of one Krause number («172.1» / «172.2») are
+            # sub-variants of one coin by default (§9.4); they stay apart
+            # only when Hede or Galster gives the two records different
+            # bases (KM 32.1 = Hede 91 against KM 32.4 = Hede 96). Curator
+            # 2026-11-16: «правило не повинно бути абсолютним».
             agreeing.append(k)
         else:
             disagreeing.append(k)
