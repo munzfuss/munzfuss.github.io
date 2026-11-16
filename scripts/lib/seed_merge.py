@@ -932,6 +932,16 @@ def merge_seed(
                 return any(re.search(r"[A-Za-z]", str(v)) for v in vals if v)
         return False
 
+    def _breaks_out(fid: str) -> bool:
+        """A fresh sibling supersedes the bare base unless its builder marked
+        it a SEPARATE catalogue number that merely shares the digits
+        (`_separate_number`): Hede Norge 14A (2 Dukat 1678) is printed on
+        its own row beside N14 (3 Dukat) in the c5hede2 index, so it is not a
+        letter of N14 — taking it for one dropped N14 from the seed
+        (2026-11-17)."""
+        f = fresh_by_id.get(fid)
+        return not (isinstance(f, dict) and f.get("_separate_number"))
+
     kept = []
     for c in out:
         cid = c.get("id") if isinstance(c, dict) else None
@@ -940,6 +950,7 @@ def merge_seed(
             and re.search(r"\d$", cid) and not _is_curated(c)
             and not _own_cat_has_subletter(c)
             and any(fid != cid and fid.startswith(cid) and fid[len(cid):].isalpha()
+                    and _breaks_out(fid)
                     for fid in fresh_ids)
         )
         if superseded:

@@ -1499,6 +1499,11 @@ def _build_coin(
     # selector. Non-schema (underscore) → stripped before the strict Coin schema
     # at final/render. Wiring here (the deferred follow-up) makes a re-seed
     # reproduce it durably instead of dropping the one-off population.
+    # An index row printed beside its own bare-number row («N14A» next to
+    # «N14», c5hede2) is a separate Hede number, not a letter of the bare
+    # one: `merge_seed` must not let it supersede the bare coin.
+    if is_index_stub and parsed.get("bare_row_printed"):
+        cm["_separate_number"] = True
     _sn = source_note(parsed.get("description"), "da")
     if _sn:
         cm["_source_note"] = _sn

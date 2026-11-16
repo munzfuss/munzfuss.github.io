@@ -2446,11 +2446,60 @@ _INDEX_TD_RE = re.compile(r"<TD[^>]*>(.*?)</TD>", re.I | re.S)
 # Match <A HREF="…cNhN.htm"> in the FIRST cell — captures the
 # target's own Hede-N for cross-reference detection.
 _INDEX_FIRST_CELL_LINK_RE = re.compile(
-    r"<A\s+HREF=[\"'][^\"']*\b[cfn]\d+h(\d+[a-z]?)\.htm[\"']", re.I,
+    r"<A\s+HREF=[\"'][^\"']*?\b(n?)[cf]\d+h(\d+[a-z]?)\.htm[\"']", re.I,
 )
 _INDEX_HEDE_NUMBER_RE = re.compile(
-    r"^\s*(?:Hede\s+(?:Norge\s+)?)?(\d+[A-Z]{0,3}(?:-\d+[A-Z]{0,3})?)\s*$", re.I,
+    r"^\s*(?:Hede\s+(?:Norge\s+)?)?(\d+[A-Z]{0,4}(?:-\d+[A-Z]{0,3}|-[A-Z])?)\s*$", re.I,
 )
+# A Norwegian row inside a Danish reign index («N47», «N41A-C»; c4hede3,
+# c5hede2, f3hede3, f4hede, f6hede …). The «N» is Hede's own prefix for the
+# Norge section; the stub lands in the `n<vol>h` volume, as the deep pages
+# (`norge/nc5h41.htm`) do.
+_INDEX_NORGE_NUMBER_RE = re.compile(
+    r"^\s*(?:Hede\s+)?N(\d+[A-Z]{0,4}(?:-[A-Z])?)\s*$", re.I,
+)
+# «175A-C» → «175ABC»: a letter range is the row's letters spelt out, the
+# same id shape as a printed «17AB» row (`c3h17ab`).
+_INDEX_LETTER_RANGE_RE = re.compile(r"^(\d+)([A-Z])-([A-Z])$", re.I)
+# «N31A: 1674 N31B: 1678-1680» — a year cell (or remark) split per letter.
+_INDEX_PER_LETTER_RE = re.compile(r"(?:\bN?\d+)([A-Z])\s*:\s*", re.I)
+# Rows that are not a new coin: an off-strike (Afslag, CLAUDE.md §9.3) or a
+# pattern / trial strike (Prøvemønt, §9.1). A row already in the cache as a
+# stub stays (its exclusion is the curator's call, PB-12); no NEW stub is
+# written for one. The reason is reported, never silently dropped.
+_INDEX_OFFSTRIKE_RE = re.compile(r"afslag", re.I)
+_INDEX_PATTERN_RE = re.compile(r"prøvemønt", re.I)
+
+
+def _index_expand_letter_range(num: str) -> str:
+    m = _INDEX_LETTER_RANGE_RE.match(num.strip())
+    if not m:
+        return num.strip()
+    a, b = m.group(2).upper(), m.group(3).upper()
+    if ord(b) < ord(a):
+        return num.strip()
+    return m.group(1) + "".join(chr(c) for c in range(ord(a), ord(b) + 1))
+
+
+def _index_years_by_letter(year_cell: str) -> dict[str, list[dict]]:
+    """«N31A: 1674 N31B: 1678-1680» → {"A": [1674], "B": [1678…1680]}.
+    Empty when the cell carries no per-letter split."""
+    parts = _INDEX_PER_LETTER_RE.split(year_cell or "")
+    if len(parts) < 3:
+        return {}
+    out: dict[str, list[dict]] = {}
+    for i in range(1, len(parts) - 1, 2):
+        out[parts[i].upper()] = _index_parse_years(parts[i + 1])
+    return out
+
+
+def _index_offstrike_reason(nominal: str, note: str) -> str | None:
+    """«offstrike» / «pattern» when the row is not a new circulation coin."""
+    if _INDEX_OFFSTRIKE_RE.search(nominal or "") or _INDEX_OFFSTRIKE_RE.search(note or ""):
+        return "offstrike"
+    if _INDEX_PATTERN_RE.search(note or "") or _INDEX_PATTERN_RE.search(nominal or ""):
+        return "pattern"
+    return None
 _INDEX_HTML_ENTITIES = {
     "&oslash;": "ø", "&Oslash;": "Ø",
     "&aelig;":  "æ", "&AElig;":  "Æ",
@@ -2559,11 +2608,21 @@ def _index_classify_columns(cells: list[str]) -> dict | None:
         hede = hede[5:].strip()
     sieg = cells[1] if len(cells) > 1 else ""
 
+    cell2 = cells[2].lower().strip() if len(cells) > 2 else ""
     cell3 = cells[3].lower().strip() if len(cells) > 3 else ""
     cell4 = cells[4].lower().strip() if len(cells) > 4 else ""
 
     pedersen = ""
-    if cell3 in _INDEX_METAL_TOKENS:
+    if cell2 in _INDEX_METAL_TOKENS and cell3 not in _INDEX_METAL_TOKENS:
+        # 6-col layout — the Norge sections of c4hede3 / c5hede2 / f3hede3
+        # print no Sieg column: [Hede, Nominal, Metal, Year, Mint, Comment].
+        sieg = ""
+        nominal = cells[1]
+        metal = _INDEX_METAL_TOKENS[cell2]
+        years_cell = cells[3]
+        mint = cells[4] if len(cells) > 4 else ""
+        note = " · ".join(c for c in cells[5:] if c) if len(cells) > 5 else ""
+    elif cell3 in _INDEX_METAL_TOKENS:
         # 7-col layout
         nominal = cells[2]
         metal = _INDEX_METAL_TOKENS[cell3]
@@ -2590,6 +2649,7 @@ def _index_classify_columns(cells: list[str]) -> dict | None:
         "nominal": nominal.strip(),
         "metal": metal,
         "years": _index_parse_years(years_cell),
+        "years_by_letter": _index_years_by_letter(years_cell),
         "year_hedge": _index_year_hedge(years_cell),
         "mint": mint.strip().rstrip(",.;"),
         "note": note.strip(),
@@ -2630,6 +2690,22 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
     volume_code = f"{norge_prefix}{letter}{num}h"
 
     stubs: list[dict] = []
+    # Every row number printed in this file, per volume — a single-letter
+    # row («N14A») is its own Hede number when the table ALSO prints the
+    # bare one («N14»), so a deep page owning the bare number does not
+    # cover it (see `main`).
+    rows_printed: set[tuple[str, str]] = set()
+    for row_match in _INDEX_TR_RE.finditer(html):
+        tds = _INDEX_TD_RE.findall(row_match.group(1))
+        if len(tds) < 4:
+            continue
+        c0 = _index_clean_cell(tds[0])
+        mn = _INDEX_NORGE_NUMBER_RE.match(c0)
+        md = None if mn else _INDEX_HEDE_NUMBER_RE.match(c0)
+        if mn or md:
+            vol = ("n" + volume_code if not volume_code.startswith("n") else volume_code) \
+                if mn else volume_code
+            rows_printed.add((vol, (mn or md).group(1).lower()))
     for row_match in _INDEX_TR_RE.finditer(html):
         body = row_match.group(1)
         tds = _INDEX_TD_RE.findall(body)
@@ -2637,41 +2713,48 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
             continue
         first_td = tds[0]
         first_clean = _index_clean_cell(first_td)
-        if not _INDEX_HEDE_NUMBER_RE.match(first_clean):
+        m_norge = _INDEX_NORGE_NUMBER_RE.match(first_clean)
+        m_num = m_norge or _INDEX_HEDE_NUMBER_RE.match(first_clean)
+        if not m_num:
             continue
         # Skip the table header row («<B>Hede</B>» / «Hede» plain)
         if first_clean.strip().lower() in ("hede", ""):
             continue
+        row_volume = volume_code
+        if m_norge and not volume_code.startswith("n"):
+            row_volume = "n" + volume_code
         # If the FIRST cell links to the row's OWN canonical deep page
-        # (e.g. Hede 16 → c4h16.htm), the deep page exists — skip stub
-        # generation. Soft-links to thematic articles (halvglkr.htm,
-        # loeve.htm) or cross-refs to OTHER Hede pages (Hede 47 →
-        # c4h46.htm) don't establish an own deep page, so those rows
-        # DO become stubs.
-        own_hede = _INDEX_HEDE_NUMBER_RE.match(first_clean).group(1).lower()
-        # Strip trailing letter-suffix («2ab», «17ab», «99abcd») to the
-        # bare numeric form for canonical-link comparison — the deep
+        # (e.g. Hede 16 → c4h16.htm, Hede N41A-C → norge/nc5h41.htm), the
+        # deep page exists — skip stub generation. Soft-links to thematic
+        # articles (halvglkr.htm, loeve.htm, gyldlove.htm) or cross-refs to
+        # OTHER Hede pages (Hede 47 → c4h46.htm) don't establish an own
+        # deep page, so those rows DO become stubs.
+        own_hede = m_num.group(1).lower()
+        # Strip trailing letter-suffix («2ab», «17ab», «99abcd», «41a-c») to
+        # the bare numeric form for canonical-link comparison — the deep
         # page convention is `<vol>h<N>.htm` (parent number), with
         # sub-letter variants handled inside via the by_letter
         # mechanism. «Hede 2AB» row whose first cell links to f5h2.htm
         # is a real deep page covering 2A + 2B.
-        own_bare = re.sub(r"[a-z]+$", "", own_hede)
+        own_bare = re.match(r"\d+", own_hede).group(0)
         first_link = _INDEX_FIRST_CELL_LINK_RE.search(first_td)
         if first_link:
-            link_bare = re.sub(r"[a-z]+$", "", first_link.group(1).lower())
-            if link_bare == own_bare:
+            link_bare = re.sub(r"[a-z]+$", "", first_link.group(2).lower())
+            link_norge = bool(first_link.group(1))
+            if link_bare == own_bare and link_norge == row_volume.startswith("n"):
                 continue  # canonical deep page exists
         cells = [_index_clean_cell(td) for td in tds]
         parsed_row = _index_classify_columns(cells)
         if parsed_row is None:
             continue
-        hede_no = parsed_row["hede"]
+        hede_printed = m_num.group(1)
+        hede_no = _index_expand_letter_range(hede_printed).upper()
         # Construct file-id matching deep-page convention. Sub-letter
         # forms like «17AB» / «13AB» / «22AB» become a single stub on
         # the parent number for now; the seed builder's by_letter
-        # mechanism doesn't fire because we have no per-letter year
-        # split. Future enrichment via paper-source can expand these.
-        stub_id = f"{volume_code}{hede_no.lower()}"
+        # mechanism doesn't fire. A per-letter year split the row prints
+        # («N31A: 1674 N31B: 1678-1680») is kept in `years_by_letter`.
+        stub_id = f"{row_volume}{hede_no.lower()}"
         catalog_refs: dict[str, list[str]] = {"Hede": [hede_no]}
         if parsed_row["sieg"]:
             catalog_refs["Sieg"] = [parsed_row["sieg"]]
@@ -2679,9 +2762,9 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
             catalog_refs["FP"] = [parsed_row["pedersen"]]
         stub = {
             "id": stub_id,
-            "ruler_volume": volume_code,
+            "ruler_volume": row_volume,
             "ruler_inferred": ruler_label,
-            "page_title": f"{ruler_label}, Hede {hede_no} (index stub)",
+            "page_title": f"{ruler_label}, Hede {'Norge ' if row_volume.startswith('n') else ''}{hede_no} (index stub)",
             "ruler": ruler_label,
             "years": parsed_row["years"],
             "nominal": parsed_row["nominal"],
@@ -2701,6 +2784,16 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
             "metal_from_index": parsed_row["metal"],
             "index_note": parsed_row["note"],
         }
+        if hede_printed.upper() != hede_no:
+            stub["hede_as_printed"] = hede_printed
+        if parsed_row.get("years_by_letter"):
+            stub["years_by_letter"] = parsed_row["years_by_letter"]
+        # Transient keys for `main`, popped before the sidecar is written.
+        stub["_exclude_reason"] = _index_offstrike_reason(
+            parsed_row["nominal"], parsed_row["note"])
+        bare_num = re.match(r"\d+", hede_no).group(0).lower()
+        stub["_bare_row_printed"] = (bare_num != hede_no.lower()
+                                     and (row_volume, bare_num) in rows_printed)
         if parsed_row["year_hedge"]:
             stub["year_as_printed"] = parsed_row["year_hedge"]
         stubs.append(stub)
@@ -2766,6 +2859,7 @@ def main() -> int:
     stub_written = 0
     stub_skipped_existing = 0
     stub_skipped_covered = 0
+    stub_excluded: list[dict] = []
     # `*hede*.htm`, not `*hede.htm`: a volume index split across numbered files
     # («c5hede1», «f3hede2», «c8hede8c») does not end at «hede», and the narrow
     # glob dropped it before the basename check below ever ran.
@@ -2779,6 +2873,13 @@ def main() -> int:
             # Skip if a deep-page parse (real or by_hede / by_letter
             # sub-entry on another page) already covers this composite
             # key. Composite shape: <ruler_volume><hede>.
+            exclude_reason = stub.pop("_exclude_reason", None)
+            bare_row_printed = stub.pop("_bare_row_printed", False)
+            if bare_row_printed:
+                # Kept in the sidecar: the seed builder marks the coin a
+                # separate number so `merge_seed` never treats it as a
+                # sub-letter superseding the bare one.
+                stub["bare_row_printed"] = True
             composite_key = f"{stub['ruler_volume']}{stub['catalog_refs']['Hede'][0].lower()}"
             if composite_key in deep_index:
                 stub_skipped_covered += 1
@@ -2789,7 +2890,10 @@ def main() -> int:
             bare_hede = re.sub(r"[a-z]+$", "", stub["catalog_refs"]["Hede"][0].lower())
             if bare_hede != stub["catalog_refs"]["Hede"][0].lower():
                 bare_key = f"{stub['ruler_volume']}{bare_hede}"
-                if bare_key in deep_index:
+                # «N14A» printed beside its own «N14» row is a separate Hede
+                # number (2 Dukat 1678 vs 3 Dukat 1678), not a letter of the
+                # page that owns N14 — the bare key does not cover it.
+                if bare_key in deep_index and not bare_row_printed:
                     stub_skipped_covered += 1
                     continue
                 # «14ab» covered by a deep page that split it into «14a» +
@@ -2800,6 +2904,14 @@ def main() -> int:
                     stub_skipped_covered += 1
                     continue
             stub_path = CACHE_DIR / f"{stub['id']}.json"
+            if exclude_reason and not stub_path.exists():
+                # An off-strike or pattern row is not seeded as a new coin
+                # (§9.1 / §9.3); listed for the curator instead.
+                stub_excluded.append({"id": stub["id"], "reason": exclude_reason,
+                                      "index": stub["_source_index"],
+                                      "nominal": stub["nominal"],
+                                      "note": stub["index_note"]})
+                continue
             if stub_path.exists() and not args.force:
                 stub_skipped_existing += 1
                 # Still register it: the aggregate index is built from
@@ -2841,6 +2953,12 @@ def main() -> int:
     print(f"Index stubs written: {stub_written}")
     print(f"Index stubs skipped (existing sidecar): {stub_skipped_existing}")
     print(f"Index stubs skipped (covered by by_hede / by_letter): {stub_skipped_covered}")
+    print(f"Index rows not stubbed (off-strike / pattern): {len(stub_excluded)}"
+          + "".join(f"\n    {e['id']} [{e['reason']}] {e['nominal']} — {e['note']}"
+                    for e in stub_excluded))
+    (CACHE_DIR / "_index_rows_excluded.json").write_text(
+        json.dumps(stub_excluded, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8")
     print(f"Aggregate index: {len(index)} composite Hede keys")
     # Review list: capitalised words in a variant line's mint position that
     # the registry does not know (not descriptors). Each is either a mint to
