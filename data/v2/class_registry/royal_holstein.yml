@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 269 active, 534 retired.
+# 268 active, 535 retired.
 
 id: royal_holstein
 classes:
@@ -2116,13 +2116,6 @@ classes:
       - dk-hede-c5h130
       - dk-tid-163582
       - schleswig_holstein-numismaster-92970
-  - id: c-a9b835d6
-    status: active
-    created: '2026-10-22'
-    label: unified-sh-tid-90766
-    legacy_id: unified-ngc-1170112
-    members:
-      - sh-tid-90766
   - id: c-aa273162
     status: active
     created: '2026-10-22'
@@ -2486,6 +2479,7 @@ classes:
       - ngc-1174495
       - schleswig_holstein-numismaster-120077
       - schleswig_holstein-numismaster-120078
+      - sh-tid-90766
       - sh-tid-90812
   - id: c-ce09f0ed
     status: active
@@ -6101,6 +6095,15 @@ classes:
     members:
       - kmk-148526
       - kmk-148527
+  - id: c-a9b835d6
+    status: retired
+    created: '2026-10-22'
+    label: unified-sh-tid-90766
+    legacy_id: unified-ngc-1170112
+    merged_into: c-ca430328
+    retired: '2026-11-16'
+    members:
+      - sh-tid-90766
   - id: c-a9cbdfe0
     status: retired
     created: '2026-10-22'

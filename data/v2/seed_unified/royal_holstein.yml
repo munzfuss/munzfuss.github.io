@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1404 per-source seed entries.
-# Output: 269 unified entries (one per physical coin).
+# Output: 268 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -15849,9 +15849,17 @@ coins:
         specimen: dk-numista-152374
       - value: 0.5
         source: ucoin
+        specimen: sh-tid-90766
+      - value: 0.5
+        source: ucoin
+        specimen: sh-tid-90812
     weight_rough_g:
       - value: 4.21
         source: ucoin
+        specimen: sh-tid-90766
+      - value: 4.21
+        source: ucoin
+        specimen: sh-tid-90812
       - value: 4.214
         source: hede
       - value: 4.214
@@ -15918,6 +15926,9 @@ coins:
         url: https://numismaster.com/MC_120078
         ref: NumisMaster
       - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-16-schilling-1816-1818/?tid=90766
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/schleswig_holstein-16-schilling-1831-1839/?tid=90812
         ref: ucoin
     issuing_entity: royal_holstein
@@ -15936,6 +15947,7 @@ coins:
       - ngc-1174495
       - schleswig_holstein-numismaster-120077
       - schleswig_holstein-numismaster-120078
+      - sh-tid-90766
       - sh-tid-90812
   - id: c-034963a9
     class_id: c-034963a9
@@ -22649,38 +22661,3 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - sh-tid-90742
-  - id: c-a9b835d6
-    class_id: c-a9b835d6
-    label: unified-sh-tid-90766
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 16 Schilling
-    year_first: 1816
-    year_last: 1818
-    year_ranges:
-      -   - 1816
-          - 1818
-    year_label: 1816-1818
-    ruler: Frederik VI
-    catalog:
-      km: '154'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 4.21
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-16-schilling-1816-1818/?tid=90766
-        ref: ucoin
-    issuing_entity: royal_holstein
-    composed_of:
-      - sh-tid-90766
