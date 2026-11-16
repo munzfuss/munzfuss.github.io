@@ -139,7 +139,12 @@ REF_PATTERNS = {
     # a DIGIT-led interior (`\(\d`) so editorial prose — «(Aagaard erroneously
     # gives a reference to Bruun-6436)», «(this example)» — is NOT captured.
     "Aagaard": re.compile(r"\bAagaard[\-:]?\s*(\d+(?:\.\d+)?(?:\s*\(\d[^)]*\))?)", re.IGNORECASE),
-    "Dav":     re.compile(r"(?<!cf\. )(?<!cf\.)\bDav[\.\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    # Davenport numbers can carry a one-letter prefix: «Dav-A3641», «Dav-A1287»,
+    # «Dav-B3557» (11 lots across Parts I-V). The older `\d+` demanded a digit
+    # straight after «Dav-» and dropped them all — Part V lot 14161 lost its
+    # «Dav-A3641». The prefix letter must be followed by a digit, and «L» is
+    # excluded so the separate «Dav-LS» register below keeps its own pattern.
+    "Dav":     re.compile(r"(?<!cf\. )(?<!cf\.)\bDav[\.\-:]?\s*((?:[A-KM-Z](?=\d))?\d+[A-Za-z]*)", re.IGNORECASE),
     "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Wilcke":  re.compile(r"\bWilcke[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
     # Anders Harck, «Christian IV's mønter» (online catalogue) — cited on
