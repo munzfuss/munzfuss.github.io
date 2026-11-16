@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2746 per-source seed entries.
-# Output: 510 unified entries (one per physical coin).
+# Output: 508 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-16'
+generated_at: '2026-11-17'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -18540,17 +18540,25 @@ coins:
     ruler: Christian V
     mint: Christiania
     catalog:
-      km: '133'
+      km:
+        - '133'
+        - '149'
       hede: '52'
       hede_volume: nc5h
       schou:
         - '33'
         - '40'
-      numista: '98995'
+      numista:
+        - '98995'
+        - '98997'
       others:
         - Rønning# 110
         - AAJT# 150
-      skaare: '599'
+        - Rønning# 111
+        - AAJT# 151
+      skaare:
+        - '599'
+        - '600'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -18563,29 +18571,71 @@ coins:
         source: hede
       - value: 0.125
         source: ngc
+        specimen: ngc-1094231
+      - value: 0.125
+        source: ngc
+        specimen: ngc-1097803
       - value: 0.125
         source: numismaster
+        specimen: denmark-numismaster-110592
+      - value: 0.125
+        source: numismaster
+        specimen: denmark-numismaster-110593
       - value: 0.125
         source: numista
+        specimen: dk-numista-98995
+      - value: 0.125
+        source: numista
+        specimen: dk-numista-98997
       - value: 0.125
         source: ucoin
+        specimen: dk-tid-143753
+      - value: 0.125
+        source: ucoin
+        specimen: dk-tid-143754
     weight_rough_g:
+      - value: 0.73
+        source: ngc
+        specimen: ngc-1094231
+      - value: 0.73
+        source: numismaster
+        specimen: denmark-numismaster-110593
+      - value: 0.73
+        source: ucoin
+        specimen: dk-tid-143754
       - value: 0.731
         source: hede
       - value: 0.731
         source: numista
+        specimen: dk-numista-98995
+      - value: 0.731
+        source: numista
+        specimen: dk-numista-98997
       - value: 0.75
         source: ngc
+        specimen: ngc-1097803
       - value: 0.75
         source: numismaster
+        specimen: denmark-numismaster-110592
       - value: 0.75
         source: ucoin
+        specimen: dk-tid-143753
     diameter_mm:
       - value: 13.0
         source: numista
+        specimen: dk-numista-98995
+      - value: 14.35
+        source: numista
+        specimen: dk-numista-98997
+      - value: 14.35
+        source: ucoin
+        specimen: dk-tid-143754
     sources:
       - type: literature
         url: https://numismaster.com/MC_110592
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110593
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h52.htm
@@ -18593,9 +18643,18 @@ coins:
       - type: literature
         url: https://en.numista.com/98995
         ref: Numista N#98995 — ½ Skilling - Christian V (Christiania type I) - Norway
+      - type: literature
+        url: https://en.numista.com/98997
+        ref: Numista N#98997 — ½ Skilling - Christian V (Christiania type II) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-2-skilling-1676/?tid=143753
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-2-skilling-1682/?tid=143754
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-1-2-skilling-km-149-1682-cuid-1094231-duid-1448192
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-2-skilling-km-133-1676-cuid-1097803-duid-1448093
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -18611,9 +18670,13 @@ coins:
       unit_raw: daler
     composed_of:
       - denmark-numismaster-110592
+      - denmark-numismaster-110593
       - dk-hede-nc5h52
       - dk-numista-98995
+      - dk-numista-98997
       - dk-tid-143753
+      - dk-tid-143754
+      - ngc-1094231
       - ngc-1097803
   - id: c-3d71bb8f
     class_id: c-3d71bb8f
@@ -39777,79 +39840,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-82693
-  - id: c-7d9e9335
-    class_id: c-7d9e9335
-    label: unified-dk-numista-98997
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ½ Skilling
-    year_first: 1682
-    year_last: 1682
-    year_label: '1682'
-    ruler: Christian V
-    mint: Christiania
-    catalog:
-      km: '149'
-      numista: '98997'
-      hede: '52'
-      others:
-        - Rønning# 111
-        - AAJT# 151
-      skaare: '600'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.125
-        source: ngc
-      - value: 0.125
-        source: numismaster
-      - value: 0.125
-        source: numista
-      - value: 0.125
-        source: ucoin
-    weight_rough_g:
-      - value: 0.73
-        source: ngc
-      - value: 0.73
-        source: numismaster
-      - value: 0.73
-        source: ucoin
-      - value: 0.731
-        source: numista
-    diameter_mm:
-      - value: 14.35
-        source: numista
-      - value: 14.35
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110593
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/98997
-        ref: Numista N#98997 — ½ Skilling - Christian V (Christiania type II) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-2-skilling-1682/?tid=143754
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-1-2-skilling-km-149-1682-cuid-1094231-duid-1448192
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: 1/192 Speciedaler
-      en: 1/192 Speciedaler
-      uk: 1/192 Speciedaler
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110593
-      - dk-numista-98997
-      - dk-tid-143754
-      - ngc-1094231
   - id: c-d9906291
     class_id: c-d9906291
     label: unified-dk-numista-99001
@@ -39863,13 +39853,21 @@ coins:
     ruler: Christian V
     mint: Christiania
     catalog:
-      km: '90'
-      numista: '99001'
+      km:
+        - '90'
+        - '91'
+      numista:
+        - '99001'
+        - '99002'
       hede: '47'
       others:
         - Rønning# 107
         - AAJT# 146
-      skaare: '596'
+        - Rønning# 108
+        - AAJT# 147
+      skaare:
+        - '596'
+        - '597'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -39880,114 +39878,99 @@ coins:
     fineness:
       - value: 0.156
         source: ngc
+        specimen: ngc-1094232
+      - value: 0.156
+        source: ngc
+        specimen: ngc-1100314
       - value: 0.156
         source: numismaster
+        specimen: denmark-numismaster-110596
+      - value: 0.156
+        source: numismaster
+        specimen: denmark-numismaster-110597
       - value: 0.156
         source: numista
+        specimen: dk-numista-99001
+      - value: 0.156
+        source: numista
+        specimen: dk-numista-99002
       - value: 0.156
         source: ucoin
+        specimen: dk-tid-143756
+      - value: 0.156
+        source: ucoin
+        specimen: dk-tid-143757
     weight_rough_g:
+      - value: 0.81
+        source: ngc
+        specimen: ngc-1094232
+      - value: 0.81
+        source: numismaster
+        specimen: denmark-numismaster-110597
+      - value: 0.81
+        source: numista
+        specimen: dk-numista-99002
+      - value: 0.81
+        source: ucoin
+        specimen: dk-tid-143757
       - value: 0.92
         source: ngc
+        specimen: ngc-1100314
       - value: 0.92
         source: numismaster
+        specimen: denmark-numismaster-110596
       - value: 0.92
         source: numista
+        specimen: dk-numista-99001
       - value: 0.92
         source: ucoin
+        specimen: dk-tid-143756
     diameter_mm:
       - value: 16.0
         source: numista
+        specimen: dk-numista-99001
+      - value: 16.0
+        source: numista
+        specimen: dk-numista-99002
     sources:
       - type: literature
         url: https://numismaster.com/MC_110596
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_110597
+        ref: NumisMaster
+      - type: literature
         url: https://en.numista.com/99001
         ref: Numista N#99001 — 1 Skilling - Christian V (Christiania type I.A; DAN on obverse) - Norway – Numista
+      - type: literature
+        url: https://en.numista.com/99002
+        ref: Numista N#99002 — 1 Skilling - Christian V (Christiania type I.B; REX on obverse) - Norway – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-skilling-1670/?tid=143756
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-skilling-1670/?tid=143757
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/569242
         ref: KMM 569242 (Inv. FP 10842.11)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-91-1670-cuid-1094232-duid-1448252
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-90-1670-cuid-1100314-duid-1448251
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-110596
-      - dk-numista-99001
-      - dk-tid-143756
-      - kmk-569242
-      - ngc-1100314
-  - id: c-0eb962f3
-    class_id: c-0eb962f3
-    label: unified-dk-numista-99002
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1670
-    year_last: 1670
-    year_label: '1670'
-    ruler: Christian V
-    mint: Christiania
-    catalog:
-      km: '91'
-      numista: '99002'
-      hede: '47'
-      others:
-        - Rønning# 108
-        - AAJT# 147
-      skaare: '597'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.156
-        source: ngc
-      - value: 0.156
-        source: numismaster
-      - value: 0.156
-        source: numista
-      - value: 0.156
-        source: ucoin
-    weight_rough_g:
-      - value: 0.81
-        source: ngc
-      - value: 0.81
-        source: numismaster
-      - value: 0.81
-        source: numista
-      - value: 0.81
-        source: ucoin
-    diameter_mm:
-      - value: 16.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110597
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/99002
-        ref: Numista N#99002 — 1 Skilling - Christian V (Christiania type I.B; REX on obverse) - Norway – Numista
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-skilling-1670/?tid=143757
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-91-1670-cuid-1094232-duid-1448252
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
       - denmark-numismaster-110597
+      - dk-numista-99001
       - dk-numista-99002
+      - dk-tid-143756
       - dk-tid-143757
+      - kmk-569242
       - ngc-1094232
+      - ngc-1100314
   - id: c-9500e5c7
     class_id: c-9500e5c7
     label: unified-dk-numista-99005
