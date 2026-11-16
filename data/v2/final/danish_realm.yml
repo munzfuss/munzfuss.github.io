@@ -7701,97 +7701,6 @@ coins:
     phase: I
     kind: kurant
     nominal: 1 Krone
-    ruler: Frederik IV.
-    issuing_entity: danish_realm
-    fraction: '1'
-    mintmaster: Christian Wineke (CW)
-    id: dk-tid-94134
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Krone
-          value: silver
-          seed: dk-bruun-7518
-    mint: Kopenhagen
-    catalog:
-      km: '523'
-      bruun_collection_id: '7518'
-      sieg: '19'
-      schou: '2'
-      hede: '39'
-      dav:
-        - EC III 1290A
-        - EC III 1290
-      numista: '319756'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: numista
-      - value: 0.671
-        source: ucoin
-    weight_rough_g:
-      - value: 22.27
-        source: ucoin
-      - value: 22.272
-        source: numismaster
-      - value: 22.34
-        source: numista
-      - value: 22.36
-        source: bruun
-    diameter_mm:
-      - value: 39.9
-        source: ucoin
-      - value: 40.12
-        source: numista
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-krone-1723/?tid=94134
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1135, p. 165
-      - type: literature
-        url: https://numismaster.com/MC_65336
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/319756
-        ref: Numista N#319756 — 4 Mark Dansk "Rytterkrone" - Frederik IV (Type 2)
-    note:
-      de: Der König zu Pferde nach rechts wie in einer Parade; Frederik IV. trägt einen verzierten Harnisch und ein Band mit dem Ordenszeichen des Elefantenordens und hält ein Zepter im erhobenen 
-        rechten Arm; Wertangabe in Buchstaben unten im Abschnitt. / Gekröntes großes Wappen Dänemarks innerhalb einer doppelten Ordenskette (des Dannebrog und des Elefantenordens); Jahreszahl unten 
-        mit Müntzmeister-Initialen an den Seiten; der Wahlspruch des Königs am Rand.
-      en: The King on horseback to the right, as in a parade; Frederik IV wears an elaborate armour and a band with the pendant of the Order of the Elephant, and holds a sceptre in his raised right 
-        arm; value in letters below, in exergue. / Crowned greater arms of Denmark within a double order chain (of the Dannebrog and of the Order of the Elephant); date below with mintmaster initials 
-        at the sides; the King's motto around the rim.
-      uk: Король верхи на коні праворуч, як на параді; Frederik IV в оздобленому обладунку й стрічці зі знаком Ордена Слона, тримає скіпетр у піднятій правій руці; номінал літерами внизу, в обрізі. / 
-        Коронований великий герб Данії всередині подвійного орденського ланцюга (Данеброгу та Ордена Слона); дата внизу з ініціалами монетного майстра з боків; девіз короля по краю.
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Coinage-standard assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення стопи і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-      da: Tildeling af møntfod og verifikation af den enkelte mønt mod Hede / Schön / Bruun udestår stadig.
-    composed_of:
-      - c-5d823f6f
-    label: dk-tid-94134
-    origin: foundation
-    v1_home_location: denmark
-  - fuss: kronemont_fine
-    phase: I
-    kind: kurant
-    nominal: 1 Krone
     ruler: Frederik V.
     issuing_entity: danish_realm
     fraction: '1'
@@ -53966,10 +53875,19 @@ coins:
     fraction: '2'
     ruler: Christian V.
     issuing_entity: danish_realm
+    mintmaster: Christian Wineke the Elder (CW)
     id: c-e5654db8
     year_first: 1691
     year_last: 1691
     year_label: '1691'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Krone
+          value: silver
+          seed: dk-bruun-7065
     mint: Kopenhagen
     catalog:
       km: '408'
@@ -53978,6 +53896,9 @@ coins:
       schou: 12-13
       sieg: '47'
       dav: '3641'
+      bruun_collection_id: '7065'
+      others:
+        - Aagaard# 54
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -54003,9 +53924,44 @@ coins:
         source: ngc
       - value: 44.544
         source: numismaster
+      - value: 44.69
+        source: bruun
     diameter_mm:
       - value: 38.0
         source: ucoin
+    catalog_alts:
+      - register: km
+        value: '410'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die Nummern der 3 Krone 1691, auf die 2 Krone gedruckt.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641,
+            66,815 g.\n[b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44,544 g.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 und das Gewicht 44,69 g dieses
+            Loses gehören zur 2 Krone."
+          en: "The numbers of the 3 Krone 1691, printed on the 2 Krone.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641,
+            66.815 g.\n[b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44.544 g.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 and the weight 44.69 g of this
+            lot belong to the 2 Krone."
+          uk: "Номери 3 Krone 1691, надруковані на 2 Krone.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641, 66,815
+            г.\n[b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44,544 г.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 і вага 44,69 г цього лота належать 2 Krone."
+          da: "Numrene for 3 Krone 1691, trykt på 2 Krone.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641, 66,815 g.\n\
+            [b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44,544 g.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 og vægten 44,69 g i dette lot hører til 2
+            Krone."
+      - register: dav
+        value: A3641
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die Nummern der 3 Krone 1691, auf die 2 Krone gedruckt.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641,
+            66,815 g.\n[b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44,544 g.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 und das Gewicht 44,69 g dieses
+            Loses gehören zur 2 Krone."
+          en: "The numbers of the 3 Krone 1691, printed on the 2 Krone.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641,
+            66.815 g.\n[b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44.544 g.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 and the weight 44.69 g of this
+            lot belong to the 2 Krone."
+          uk: "Номери 3 Krone 1691, надруковані на 2 Krone.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641, 66,815
+            г.\n[b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44,544 г.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 і вага 44,69 г цього лота належать 2 Krone."
+          da: "Numrene for 3 Krone 1691, trykt på 2 Krone.\n[b]Bruun Part V, lot 14161[/b]: [i]«Dav-A3641; KM-410; Hede-91; Sieg-47; Schou-12»[/i].\n[b]NGC, KM 410[/b]: 3 Krone 1691, Dav A3641, 66,815 g.\n\
+            [b]NGC, KM 408[/b]: 2 Krone 1691, Dav 3641, 44,544 g.\n[b]Bruun Part III, lot 11248[/b]: 3 Krone 1691, KM 410, Hede 92.\nHede 91, Schou 12, Sieg 47 og vægten 44,69 g i dette lot hører til 2
+            Krone."
     sources:
       - type: literature
         url: https://numismaster.com/MC_65358
@@ -54019,6 +53975,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-408-1691-cuid-1050157-duid-1237089
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14161, p. 65
     note:
       de: 'Vorderseite: doppeltes, verschlungenes Monogramm, Rückseite: Wappen.'
       en: 'Obverse: double interlaced monogram, reverse: coat of arms.'
@@ -112973,8 +112932,8 @@ coins:
       - c-bbddfd19
     label: unified-dk-hede-f4h18
     origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
+  - fuss: kronemont_fine
+    phase: I
     kind: kurant
     nominal: 1 Krone
     ruler: Frederik IV.
@@ -112997,18 +112956,34 @@ coins:
           as_printed: Krone
           value: silver
           seed: dk-bruun-7369
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Krone
+          value: silver
+          seed: dk-bruun-7518
     mint: Kopenhagen
     catalog:
-      km: '503'
+      km:
+        - '503'
+        - '523'
       hede: '39'
       hede_volume: f4h
       schou:
         - '2'
         - 3-8
       sieg: '19'
-      numista: '146456'
-      bruun_collection_id: '7369'
-      dav: EC III 1290
+      numista:
+        - '146456'
+        - '319756'
+      bruun_collection_id:
+        - '7369'
+        - '7518'
+      dav:
+        - EC III 1290
+        - EC III A1290
+        - EC III A1290A
+        - EC III 1290A
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -113020,27 +112995,73 @@ coins:
       - value: 0.671
         source: hede
       - value: 0.671
+        source: ngc
+        specimen: ngc-1050034
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050166
+      - value: 0.671
         source: numismaster
+        specimen: denmark-numismaster-65335
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65336
       - value: 0.671
         source: numista
+        specimen: dk-numista-146456
+      - value: 0.671
+        source: numista
+        specimen: dk-numista-319756
       - value: 0.671
         source: ucoin
+        specimen: dk-tid-94133
+      - value: 0.671
+        source: ucoin
+        specimen: dk-tid-94134
     weight_rough_g:
       - value: 22.21
         source: numista
+        specimen: dk-numista-146456
       - value: 22.27
         source: ucoin
+        specimen: dk-tid-94133
+      - value: 22.27
+        source: ucoin
+        specimen: dk-tid-94134
       - value: 22.272
         source: hede
       - value: 22.272
+        source: ngc
+        specimen: ngc-1050034
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1050166
+      - value: 22.272
         source: numismaster
+        specimen: denmark-numismaster-65335
+      - value: 22.272
+        source: numismaster
+        specimen: denmark-numismaster-65336
       - value: 22.28
+        source: bruun
+      - value: 22.34
+        source: numista
+        specimen: dk-numista-319756
+      - value: 22.36
         source: bruun
     diameter_mm:
       - value: 39.52
         source: numista
+        specimen: dk-numista-146456
       - value: 39.9
         source: ucoin
+        specimen: dk-tid-94133
+      - value: 39.9
+        source: ucoin
+        specimen: dk-tid-94134
+      - value: 40.12
+        source: numista
+        specimen: dk-numista-319756
     sources:
       - type: literature
         url: https://numismaster.com/MC_65335
@@ -113060,6 +113081,24 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148442
         ref: KMM 148442 (Inv. KP 1656.1871)
+      - type: literature
+        url: https://numismaster.com/MC_65336
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1135, p. 165
+      - type: literature
+        url: https://en.numista.com/319756
+        ref: Numista N#319756 — 4 Mark Dansk "Rytterkrone" - Frederik IV (Type 2)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1723/?tid=94134
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-523-1723-cuid-1050034-duid-1237064
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-503-1711-cuid-1050166-duid-1237063
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Der König zu Pferde nach rechts wie in einer Parade; Frederik IV. trägt ein langes Gewand und eine lange Schärpe und hält ein Zepter im erhobenen rechten Arm; Wertangabe in Buchstaben unten 
         im Abschnitt. / Gekröntes großes Wappen Dänemarks innerhalb einer doppelten Ordenskette (des Dannebrog und des Elefantenordens); Jahreszahl unten mit Müntzmeister-Initialen an den Seiten; der 
@@ -113077,6 +113116,7 @@ coins:
       - c-dfe99e05
     label: unified-dk-hede-f4h39
     origin: promoted
+    fraction: '1'
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
@@ -142094,45 +142134,6 @@ coins:
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
-    nominal: 1 Krone
-    ruler: Frederik IV
-    issuing_entity: danish_realm
-    id: c-d4cf3369
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    catalog:
-      km: '523'
-      dav: A1290A
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-    weight_rough_g:
-      - value: 22.272
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-523-1723-cuid-1050034-duid-1237064
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-d4cf3369
-    label: unified-ngc-1050034
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
     nominal: 4 Skilling
     issuing_entity: danish_realm
     id: c-b58b55d4
@@ -142626,45 +142627,6 @@ coins:
     composed_of:
       - c-a5780b7b
     label: unified-ngc-1050106
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Krone
-    ruler: Frederik IV
-    issuing_entity: danish_realm
-    id: c-d78c64de
-    year_first: 1711
-    year_last: 1711
-    year_label: '1711'
-    catalog:
-      km: '503'
-      dav: A1290
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-    weight_rough_g:
-      - value: 22.272
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-503-1711-cuid-1050166-duid-1237063
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-d78c64de
-    label: unified-ngc-1050166
     origin: promoted
   - fuss: 11_333_thaler
     phase: I
@@ -157905,60 +157867,6 @@ coins:
     composed_of:
       - c-44e9ee6d
     label: unified-dk-bruun-7032
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Krone
-    ruler: Christian V
-    mintmaster: Christian Wineke the Elder (CW)
-    issuing_entity: danish_realm
-    id: c-7ac2950f
-    year_first: 1691
-    year_last: 1691
-    year_label: '1691'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Krone
-          value: silver
-          seed: dk-bruun-7065
-    mint: Kopenhagen
-    catalog:
-      km: '410'
-      hede: '91'
-      sieg: '47'
-      bruun_collection_id: '7065'
-      schou: '12'
-      others:
-        - Aagaard# 54
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 44.69
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14161, p. 65
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-7ac2950f
-    label: unified-dk-bruun-7065
     origin: promoted
   - fuss: seed_unsorted
     phase: bruun
