@@ -205,7 +205,7 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # (run AFTER the thaler→daler / schilling→skilling rules above so the
     #  post-substitution forms are what these match).
     (r"\bkroner\b", "krone"),                              # Danish plural «2 Kroner»≡«2 Krone»
-    (r"\breichsbank[ -]?skilling\b", "rigsbankskilling"),  # «Reichsbank Schilling»≡«Rigsbankskilling»
+    (r"\breichsbank[ -]?s(?:ch|k)illings?\b", "rigsbankskilling"),  # «Reichsbank Schilling» / fused «Reichsbankschilling» (Bruun 8084) ≡ «Rigsbankskilling»
     (r"\bspecies[ -]?(?:thaler|taler|daler)s?\b", "speciedaler"),
     (r"\bdaler species\b", "speciedaler"),                 # «1 Thaler Species»→«speciedaler»
     (r"\bdouble daler\b", "2 daler"),                      # «Double Taler»→«2 daler»
