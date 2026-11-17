@@ -944,7 +944,18 @@ class CatalogRefs(_StrictBase):
     # one for display; data layer keeps everything. Same goes for
     # legacy V1-singleton refs — list-form is opt-in via merger.
     schou_hede1971: str | None = None
+    # Sieg and Friedberg number the Danish and the Norwegian volumes
+    # separately, like Krause. A bare `sieg` / `fr` is in the volume of the
+    # record's own entity (Norwegian for danish_norway, Danish otherwise); a
+    # number a source names as being in the OTHER volume goes here — Bruun
+    # lot 13202, a Norwegian 3 Krone: «Sieg-21 (Denmark); Sieg-13 (Norway)»
+    # → sieg 13, sieg_denmark 21. The merger scopes each by its volume so
+    # numbers of different volumes are never compared (curator 2026-11-17).
+    sieg_denmark: str | list[str] | None = None
+    sieg_norway: str | list[str] | None = None
     fr: str | list[str] | None = None
+    fr_denmark: str | list[str] | None = None
+    fr_norway: str | list[str] | None = None
     dav: str | list[str] | None = None
     # Galster — primary Danish-medieval catalogue (Georg Galster's series of
     # «Mønter fra ...» publications). `galster_volume` parallels
@@ -1266,6 +1277,13 @@ class Coin(_StrictBase):
     catalog_marks: "list[CatalogMark] | None" = None
     catalog_alts: "list[CatalogAlt] | None" = None
     catalog_unverified: "list[CatalogUnverified] | None" = None
+    # Catalogue citations a source prints that the parser could not file in
+    # a field, kept verbatim so no printed index is lost before it is decided
+    # how to file it (curator 2026-11-17): «Fr-1509 and 1931» (no section for
+    # the second number), «Dav-LS530, 3537», «KM-X,M1», «KM-51 (Erfurt)» (a
+    # Krause volume the schema does not model). Not rendered, not matched;
+    # written on the source's seed.
+    catalog_unresolved: list[str] | None = None
     mintmaster: str | None = None
     mintmasters: list[MintmasterEntry] | None = Field(
         None,

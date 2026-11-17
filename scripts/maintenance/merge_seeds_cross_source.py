@@ -1084,6 +1084,21 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
             _key = f"{_key}/{_section}"
         _vals = _split_multi(_v)
         refs[_key] = "|".join(sorted(_vals)) if _vals else str(_v).strip()
+    # A Sieg / Friedberg number a source names as being in the OTHER country
+    # volume (schema `sieg_denmark` … `fr_norway`, curator 2026-11-17): its own
+    # key, so it meets the same volume's number on another record and never
+    # the record's bare number, which is in its own volume.
+    for _vfield in ("sieg_denmark", "sieg_norway", "fr_denmark", "fr_norway"):
+        _v = cat.get(_vfield)
+        if _v is None:
+            continue
+        _base, _vol = _vfield.split("_", 1)
+        if _base == "sieg":
+            _key = f"sieg/{_reign_own}/{_vol}" if _reign_own else f"sieg/{_vol}"
+        else:
+            _key = f"fr/{_vol}"
+        _vals = _split_multi(_v)
+        refs[_key] = "|".join(sorted(_vals)) if _vals else str(_v).strip()
 
     galster = cat.get("galster")
     if galster is not None:
@@ -4705,6 +4720,7 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
         # the second Jesse number of the Lindahl kobbersterling was dropped)
         "jesse", "thomsen", "bergsoe", "hauberg", "aagaard", "welter",
         "fiala", "behrens", "gaedechens", "kreber",
+        "sieg_denmark", "sieg_norway", "fr_denmark", "fr_norway",
     }
     # Fields that stay single-value (specimen-level or strict literal).
     # Conflict = log; top-auth wins for output.
@@ -4805,6 +4821,28 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
                 merged_set.add(str(v).strip())
         merged_list = sorted(merged_set)
         out[canonical] = merged_list[0] if len(merged_list) == 1 else merged_list
+
+    # A number a source names as being in the other country volume
+    # (`sieg_denmark` … `fr_norway`) is not also a number of the class's own
+    # volume because another member cites it bare: the named volume wins over
+    # the volume a bare number is read in. The Norwegian 3 Krone 1699: Bruun
+    # «Sieg-21 (Denmark); Sieg-13 (Norway)», the Hede page bare «Sieg 21» →
+    # sieg 13, sieg_denmark 21 (curator 2026-11-17).
+    for _base in ("sieg", "fr"):
+        _named: set[str] = set()
+        for _vol in ("denmark", "norway"):
+            _nv = out.get(f"{_base}_{_vol}")
+            for x in (_nv if isinstance(_nv, list) else [_nv] if _nv is not None else []):
+                _named.add(str(x).strip())
+        _bare = out.get(_base)
+        if not _named or _bare is None:
+            continue
+        _kept = [x for x in (_bare if isinstance(_bare, list) else [_bare])
+                 if str(x).strip() not in _named]
+        if not _kept:
+            del out[_base]
+        else:
+            out[_base] = _kept[0] if len(_kept) == 1 else _kept
 
     return out, all_conflicts
 

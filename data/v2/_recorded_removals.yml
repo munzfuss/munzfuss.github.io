@@ -5384,3 +5384,81 @@ removals:
   - seed: kmk-278780
     kind: declassify
     reason: 'Curator (Serhii) 2026-11-17 («Записати зняття»): KMM 278780 (2 speciedaler 1670, «Sch 5») is Numista 117133 = Hede Norge 26B = KM 101 (curator identification). It had carried 9_thaler/II only through a nominal/year/weight auto-attachment to the Hede 28 = KM 102 class; the Hede 26B class is not yet classified.'
+  - seed: dk-bruun-7275
+    kind: field
+    field: others
+    dropped:
+      - Aagaard# 1
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old Bruun parser; Part V lot 14176 prints «Aagaard-1M-1», the die number in Aagaard, Numismatisk Rapport 132 (2017), p. 13 («1 Mark bly (H. 132, S. 51). Stempel 1M-1»). The full value is now captured.'
+  - seed: dk-bruun-pt5-14131
+    kind: field
+    field: others
+    dropped:
+      - 'Aagaard# 18 (53-29/53-4; Bruun-6102. Weight: 21-53 gms. Mintmaster: Henrik Köhler. Scarce variant featuring so-called dragon decoration on all crown arches. It is presumed the adding of the chain of the French Order of St. Michael was due to the king being initiated into the order, however no evidence have been found to collaborate the theory. €1,000-€1,200 From the L.E. Bruun Collection. Ex: Joh. G. Guildal Collection (Private Sale - 1918)'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): an unclosed paren in Part V lot 14131 made the old parser swallow the rest of the lot text into the Aagaard value; the lot prints «Aagaard-18», now captured alone.'
+  - seed: dk-bruun-5941
+    kind: field
+    field: lange
+    dropped:
+      - '60'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old Bruun parser; the lot prints «Lange-60B», now captured in full.'
+  - seed: dk-bruun-10082
+    kind: field
+    field: others
+    dropped:
+      - Aagaard# 60
+    reason: "Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): read by the old parser from the prose «(Aagaard 60-1)» in Part I lot 1217; the lot's own index is «Aagaard-A1», which the seed keeps."
+  - seed: dk-bruun-5000
+    kind: field
+    field: sieg
+    dropped:
+      - '102'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old parser; the lot prints «Sieg-102,3» (= 102.3), which the seed keeps.'
+  - seed: dk-bruun-5072
+    kind: field
+    field: sieg
+    dropped:
+      - '102'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old parser; the lot prints «Sieg-102,3» (= 102.3), which the seed keeps.'
+  - seed: dk-bruun-11774
+    kind: field
+    field: km
+    dropped:
+      - '99'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old parser; the lot prints «KM-99,2» (= 99.2), which the seed keeps.'
+  - seed: dk-bruun-6873
+    kind: field
+    field: others
+    dropped:
+      - Aagaard# 8
+    reason: "Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки, позначку (!)»): the old parser's truncation of Bruun's «Aagaard-8S-1» on Part V lot 14156; the full value is now marked erroneous (catalog_marks), since Aagaard, Numismatisk Rapport 132 (2017), p. 17 gives this piece (LEB/6873) no die number."
+  - seed: dk-bruun-10504
+    kind: field
+    field: fr
+    dropped:
+      - '189'
+    reason: "Curator (Serhii) 2026-11-17 («Варіант 1, роби»): not removed but moved to fr_denmark. Bruun Part II lot 14102 prints «Fr-189 (Denmark)» on this Norwegian 1 Ducat 1674; a bare fr is read in the record's own (Norwegian) volume, so the number now sits in the Danish-volume field."
+  - seed: dk-bruun-13393
+    kind: field
+    field: others
+    dropped:
+      - SM- 10(10)
+    reason: "Curator (Serhii) 2026-11-17 («так»): not removed but folded into «SM-10(10)». The space after the register's hyphen is a print variant in the Bruun lot; the seed builder now drops it, so the same citation from two lots is one line."
+  - seed: dk-bruun-11749
+    kind: field
+    field: others
+    dropped:
+      - SM- 5(6)
+    reason: "Curator (Serhii) 2026-11-17 («так»): not removed but folded into «SM-5(6)». The space after the register's hyphen is a print variant in the Bruun lot; the seed builder now drops it, so the same citation from two lots is one line."
+  - seed: dk-bruun-11904
+    kind: field
+    field: others
+    dropped:
+      - SM- 27(22)
+    reason: "Curator (Serhii) 2026-11-17 («так»): not removed but folded into «SM-27(22)». The space after the register's hyphen is a print variant in the Bruun lot; the seed builder now drops it, so the same citation from two lots is one line."
+  - seed: dk-bruun-8057
+    kind: field
+    field: others
+    dropped:
+      - Hede- 26A, note p. 194
+    reason: "Curator (Serhii) 2026-11-17 («так»): not removed but folded into «Hede-26A, note p. 194». The space after the register's hyphen is a print variant in the Bruun lot; the seed builder now drops it, so the same citation from two lots is one line."

@@ -607,6 +607,7 @@ _VERBATIM_REF_FIELDS: set[str] = {"fiala"}
 
 _NUMERIC_INDEX_FIELDS: set[str] = {
     "schou", "sieg", "hede", "lange", "galster", "nmd", "fp", "fr", "mb",
+    "sieg_denmark", "sieg_norway", "fr_denmark", "fr_norway",
     "behrens", "schive", "skaare", "thomsen", "gaedechens",
     "hauberg", "jesse", "kreber", "welter", "bergsoe",
 }

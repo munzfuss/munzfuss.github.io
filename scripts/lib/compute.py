@@ -719,9 +719,16 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     ("km", "KM"),
     ("hede", "Hede"),
     ("sieg", "Sieg"),
+    # Sieg / Friedberg number in the other country volume (schema
+    # sieg_denmark … fr_norway): labelled the way the source names the volume
+    # («Sieg-13 (Norway)», Bruun lot 13202).
+    ("sieg_denmark", "Sieg (Denmark)"),
+    ("sieg_norway", "Sieg (Norway)"),
     ("schou", "Schou"),
     ("lange", "Lange"),
     ("fr", "Fr"),
+    ("fr_denmark", "Fr (Denmark)"),
+    ("fr_norway", "Fr (Norway)"),
     ("dav", "Dav"),
     # Bruun catalogue references — both schema field names map to the same
     # «Bruun#» display prefix:
@@ -843,6 +850,10 @@ CATALOG_TOOLTIP = {
     "Jungk": "marker.cat_jungk",
     "Grote Verden": "marker.cat_grote_verden",
     "Behrens": "marker.cat_behrens",
+    "Sieg (Denmark)": "marker.cat_sieg_denmark",
+    "Sieg (Norway)": "marker.cat_sieg_norway",
+    "Fr (Denmark)": "marker.cat_fr_denmark",
+    "Fr (Norway)": "marker.cat_fr_norway",
 }
 _PLAIN_TOOLTIP = {k: v for k, v in CATALOG_TOOLTIP.items() if k != "Jesse"}
 
@@ -899,8 +910,9 @@ _PREFIX_PRIORITY: dict[str, int] = {
     # = 1 Speciedaler silver). Sorted immediately after `Hede`.
     # Galster before Sieg, Schou before Schive and NMD, Schive before NMD
     # (curator 2026-10-20).
-    "Hede": 20, "Hede Norge": 21, "Galster": 25, "Sieg": 30, "Lange": 50,
-    "Fr": 60, "Schou": 61, "FP": 65,
+    "Hede": 20, "Hede Norge": 21, "Galster": 25, "Sieg": 30,
+    "Sieg (Denmark)": 31, "Sieg (Norway)": 31, "Lange": 50,
+    "Fr": 60, "Fr (Denmark)": 60, "Fr (Norway)": 60, "Schou": 61, "FP": 65,
     "Dav": 70,
     "Dav EC II": 71, "Dav EC III": 72, "Dav EC IV": 73, "Dav ECT": 74,
     "Dav Lg": 75, "Dav SG": 76, "Dav GT I": 77, "Dav CCT": 78,

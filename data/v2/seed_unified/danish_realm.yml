@@ -2,7 +2,7 @@
 # Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8316 per-source seed entries.
+# Input: 8318 per-source seed entries.
 # Output: 1601 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -995,6 +995,7 @@ coins:
       bruun_collection_id: '5528'
       schou: '3'
       others:
+        - Aagaard# T2
         - B# 716
       fr: '58'
     metal: gold
@@ -1293,10 +1294,12 @@ coins:
       sieg: '131.2'
       schou: '1'
       hede: '32'
+      others:
+        - Aagaard# TKG2
+        - Aagaard# KG2
+        - B# 1021
       numista: '82680'
       fr: '38'
-      others:
-        - B# 1021
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -4351,6 +4354,7 @@ coins:
         - '7755'
         - '7756'
       schou: '2'
+      fp: E7
       numista: '320055'
       fr: '280'
     metal: gold
@@ -4596,6 +4600,7 @@ coins:
       sieg: '50'
       bruun_collection_id: '7985'
       schou: '3'
+      fp: P3
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -4638,6 +4643,7 @@ coins:
       sieg: '49'
       bruun_collection_id: '7988'
       schou: '4'
+      fp: P3
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -4680,6 +4686,7 @@ coins:
       sieg: '48'
       bruun_collection_id: '7990'
       schou: '5'
+      fp: P3
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -4722,6 +4729,7 @@ coins:
       sieg: '47'
       bruun_collection_id: '7993'
       schou: '6'
+      fp: P3
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -4764,6 +4772,7 @@ coins:
       sieg: '46'
       bruun_collection_id: '7995'
       schou: '7'
+      fp: P3
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -4883,6 +4892,7 @@ coins:
       schou: '12'
       others:
         - Pn# Pn54
+        - Sieg-unnumbered, page 291 (2018)
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -14743,6 +14753,7 @@ coins:
       galster_volume: hg
       others:
         - Sømod# 6
+        - Beskrivelsen 1791# pl. 1, 2
         - B# 2
       bruun_collection_id: '3831'
       sieg: '12'
@@ -31298,6 +31309,7 @@ coins:
         - '59'
       others:
         - Pn# PnA8
+        - Aagaard# KP1
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -31376,6 +31388,7 @@ coins:
       others:
         - Harck# 35.7
         - Pn# PnB8
+        - Aagaard# KP2
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -31776,6 +31789,8 @@ coins:
         - '5749'
       others:
         - Harck# 35.10.2
+        - Aagaard# K9
+        - AH# 35.10.2
         - JSJ# 234
         - JSJ# 233
         - JSJ# 232
@@ -38746,6 +38761,10 @@ coins:
         - '5812'
       others:
         - Harck# 35.3.1
+        - Aagaard# KG4
+        - Aagaard# TKG4
+        - Aagaard# KG5
+        - Aagaard# TKG5
         - Harck# 35.3.2
         - Harck# 35.3.3
         - B# 1025
@@ -38915,10 +38934,12 @@ coins:
         - '5687'
         - '5736'
         - '5783'
+      others:
+        - Aagaard# TKG6
+        - Aagaard# TKG7
+        - B# 964
       numista: '109357'
       fr: '40'
-      others:
-        - B# 964
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -39027,10 +39048,11 @@ coins:
       bruun_collection_id:
         - '5784'
         - '5816'
+      others:
+        - Aagaard# TKG8
+        - B# 1077
       numista: '109355'
       fr: '41'
-      others:
-        - B# 1077
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -40426,7 +40448,6 @@ coins:
         - 7-8
         - 7-9
       sieg:
-        - '102'
         - '102.1'
         - '102.2'
         - '102.3'
@@ -40448,6 +40469,7 @@ coins:
       others:
         - Harck# 6.22.1
         - Harck# 7.9
+        - Dav-102.1
         - Harck# 12.4.1
         - Harck# 12.4.4
         - B# 140a
@@ -41606,6 +41628,7 @@ coins:
       others:
         - Harck# 23.7.2
         - Harck# 32.8.1
+        - AH# 32.8.2
       numista: '109973'
     metal: silver
     metal_verified: true
@@ -42489,6 +42512,7 @@ coins:
       others:
         - Harck# 7.7.2
         - Dav-LS# 530
+        - Dav-LS530, 3537
       dav: 3537A
     metal: silver
     metal_verified: true
@@ -43180,7 +43204,9 @@ coins:
     mintmaster: Hans Flemming
     mint: Helsingør
     catalog:
-      km: '4'
+      km:
+        nor: '4'
+        dk: '4'
       hede: '65'
       hede_volume: c4h
       sieg:
@@ -43211,6 +43237,9 @@ coins:
           seed: dk-bruun-4776
     sources:
       - type: literature
+        url: https://numismaster.com/MC_110715
+        ref: NumisMaster
+      - type: literature
         url: https://numismaster.com/MC_127322
         ref: NumisMaster
       - type: auction
@@ -43225,6 +43254,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-lion-daler-km-4-1608-cuid-1055810-duid-1238724
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-lion-dalar-km-4-1608-cuid-1100471-duid-1448462
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Udmøntet 765 stk. af Hans Flemming. Flensborg: FAA (1987) Galster: Nat.Arb. 1959 side 110 Wilcke VI side 101-114»'
@@ -43236,11 +43268,13 @@ coins:
         1965. Bemærkning i indekset: «Udmøntet 765 stk. af Hans Flemming. Flensborg: FAA (1987) Galster: Nat.Arb. 1959 side 110 Wilcke VI side 101-114»'
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-110715
       - denmark-numismaster-127322
       - dk-bruun-4776
       - dk-hede-c4h65
       - kmk-137194
       - ngc-1055810
+      - ngc-1100471
   - id: c-61196890
     class_id: c-61196890
     label: unified-dk-hede-c4h67
@@ -45495,6 +45529,9 @@ coins:
         - '150'
         - '156'
       bruun_collection_id: '5839'
+      others:
+        - Beskrivelsen 1791# 1170
+        - KM-FR#68
       fr: '68'
     metal: gold
     metal_verified: true
@@ -52268,8 +52305,6 @@ coins:
       schou: '51'
       sieg: '146'
       bruun_collection_id: '6873'
-      others:
-        - Aagaard# 8
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -52279,6 +52314,25 @@ coins:
     weight_rough_g:
       - value: 2.25
         source: bruun
+    catalog_alts:
+      - register: Aagaard
+        value: 8S-1
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Aagaard verzeichnet für dieses Stück keinen Stempel; 8S-1 ist ein Stempel der 8 Skilling.\n[b]Bruun Part V, lot 14156, S. 62[/b]: [i]«2 Skilling Copper Klippe, 1677 … Hede-131; Sieg-146;
+            Schou-51; Aagaard-8S-1; Bruun-6873»[/i].\n[b]Aagaard, Numismatisk Rapport 132 (2017), S. 14[/b]: [i]«8 Skilling kobber (H. 133A, S. 52). Stempel 8S-1»[/i] (Übers.: «8 Skilling Kupfer … Stempel
+            8S-1»).\n[b]Aagaard, S. 17[/b]: [i]«2 skilling kobber (H.131, S. 51) Registrerede eksemplarer: KMMS; LEB/6873»[/i] (Übers.: «2 Skilling Kupfer … registrierte Exemplare: KMMS; LEB/6873»), ohne
+            Stempelnummer."
+          en: "Aagaard records no die for this piece; 8S-1 is a die of the 8 Skilling.\n[b]Bruun Part V, lot 14156, p. 62[/b]: [i]«2 Skilling Copper Klippe, 1677 … Hede-131; Sieg-146; Schou-51; Aagaard-8S-1;
+            Bruun-6873»[/i].\n[b]Aagaard, Numismatisk Rapport 132 (2017), p. 14[/b]: [i]«8 Skilling kobber (H. 133A, S. 52). Stempel 8S-1»[/i] (transl.: «8 Skilling copper … die 8S-1»).\n[b]Aagaard, p.
+            17[/b]: [i]«2 skilling kobber (H.131, S. 51) Registrerede eksemplarer: KMMS; LEB/6873»[/i] (transl.: «2 skilling copper … recorded specimens: KMMS; LEB/6873»), with no die number."
+          uk: "Aagaard не вказує для цієї монети штемпеля; 8S-1 — штемпель 8 Skilling.\n[b]Bruun Part V, lot 14156, с. 62[/b]: [i]«2 Skilling Copper Klippe, 1677 … Hede-131; Sieg-146; Schou-51; Aagaard-8S-1;
+            Bruun-6873»[/i].\n[b]Aagaard, Numismatisk Rapport 132 (2017), с. 14[/b]: [i]«8 Skilling kobber (H. 133A, S. 52). Stempel 8S-1»[/i] (перекл.: «8 скілінгів, мідь … штемпель 8S-1»).\n[b]Aagaard,
+            с. 17[/b]: [i]«2 skilling kobber (H.131, S. 51) Registrerede eksemplarer: KMMS; LEB/6873»[/i] (перекл.: «2 скілінги, мідь … зареєстровані екземпляри: KMMS; LEB/6873»), без номера штемпеля."
+          da: "Aagaard angiver intet stempel for dette eksemplar; 8S-1 er et stempel til 8 skilling.\n[b]Bruun Part V, lot 14156, s. 62[/b]: [i]«2 Skilling Copper Klippe, 1677 … Hede-131; Sieg-146; Schou-51;
+            Aagaard-8S-1; Bruun-6873»[/i] (overs.: «2 skilling kobberklipping, 1677 …»).\n[b]Aagaard, Numismatisk Rapport 132 (2017), s. 14[/b]: [i]«8 Skilling kobber (H. 133A, S. 52). Stempel 8S-1»[/i].\n\
+            [b]Aagaard, s. 17[/b]: [i]«2 skilling kobber (H.131, S. 51) Registrerede eksemplarer: KMMS; LEB/6873»[/i], uden stempelnummer."
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -52317,7 +52371,7 @@ coins:
       schou: '51'
       bruun_collection_id: '7275'
       others:
-        - Aagaard# 1
+        - Aagaard# 1M-1
     metal: copper_lead
     metal_verified: true
     fineness_verified: false
@@ -52397,7 +52451,7 @@ coins:
         - '7276'
         - '7277'
       others:
-        - Aagaard# 8
+        - Aagaard# 8S-1
     metal: copper_lead
     metal_verified: true
     fineness_verified: false
@@ -52480,7 +52534,7 @@ coins:
         - '148.2'
       bruun_collection_id: '7280'
       others:
-        - Aagaard# 4
+        - Aagaard# 4S-1
     metal: copper_lead
     metal_verified: true
     fineness_verified: false
@@ -52556,7 +52610,7 @@ coins:
         - '147.1'
       bruun_collection_id: '7285'
       others:
-        - Aagaard# 2
+        - Aagaard# 2S-1
     metal: copper_lead
     metal_verified: true
     fineness_verified: false
@@ -61381,7 +61435,9 @@ coins:
     mintmaster: Christian Wineke
     mint: Kopenhagen
     catalog:
-      km: '539'
+      km:
+        dk: '539'
+        nor: '230'
       hede: '5'
       hede_volume: c6h
       schou: 1-2
@@ -61900,6 +61956,7 @@ coins:
         - '16'
         - '22'
       bruun_collection_id: '7761'
+      fp: E4
       numista: '131585'
       others:
         - DNF# 11
@@ -62097,6 +62154,7 @@ coins:
       schou: '2'
       sieg: '16'
       bruun_collection_id: '7735'
+      fp: E2
       numista: '90550'
       others:
         - DNF# 9.1
@@ -65185,6 +65243,8 @@ coins:
       schou:
         - '1'
         - '2'
+      others:
+        - F# 295
       numista: '41928'
       fr: '295'
     metal: gold
@@ -86366,6 +86426,7 @@ coins:
       others:
         - Aagaard# 18.1
         - Aagaard# 17.1
+        - KM-206-1
       fr: '120'
     metal: gold
     metal_verified: true
@@ -91714,12 +91775,12 @@ coins:
       sieg:
         - '46'
         - '46.2'
-      bruun_collection_id: '6100'
+      bruun_collection_id:
+        - '6100'
+        - '6102'
       others:
         - Aagaard# 17.1
-        - 'Aagaard# 18 (53-29/53-4; Bruun-6102. Weight: 21-53 gms. Mintmaster: Henrik Köhler. Scarce variant featuring so-called dragon decoration on all crown arches. It is presumed the adding of the chain
-          of the French Order of St. Michael was due to the king being initiated into the order, however no evidence have been found to collaborate the theory. €1,000-€1,200 From the L.E. Bruun Collection.
-          Ex: Joh. G. Guildal Collection (Private Sale - 1918)'
+        - Aagaard# 18
       dav:
         - '3570'
         - 3570A
@@ -96187,6 +96248,7 @@ coins:
         - 1A
         - 1B
         - 1C
+      sieg_norway: '14.2'
       dav: '1289'
     metal: silver
     metal_verified: true
@@ -100076,10 +100138,11 @@ coins:
       bruun_collection_id:
         - '7661'
         - '7662'
+      others:
+        - Fr—262
+        - DNF# 13.1
       numista: '82700'
       fr: '262'
-      others:
-        - DNF# 13.1
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -101075,7 +101138,9 @@ coins:
     ruler: Frederik V
     mint: Kopenhagen
     catalog:
-      km: '575'
+      km:
+        dk: '575'
+        nor: '238'
       hede:
         - 33A
         - 33B
@@ -103921,10 +103986,11 @@ coins:
         - '8436'
         - '8439'
         - '8442'
+      others:
+        - F# 297
+        - Schön# 18
       numista: '26770'
       fr: '297'
-      others:
-        - Schön# 18
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -104045,10 +104111,11 @@ coins:
         - '8430'
         - '8433'
       schou: '2'
+      others:
+        - F# 298
+        - Schön# 17
       numista: '26769'
       fr: '298'
-      others:
-        - Schön# 17
     metal: gold
     metal_verified: true
     fineness_verified: true

@@ -2,8 +2,8 @@
 # Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 2789 per-source seed entries.
-# Output: 513 unified entries (one per physical coin).
+# Input: 2787 per-source seed entries.
+# Output: 512 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1216,7 +1216,7 @@ coins:
       bruun_collection_id: '10504'
       schou: '35'
       nmd: 22A
-      fr: '189'
+      fr_denmark: '189'
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -1800,6 +1800,8 @@ coins:
       others:
         - NM# 51
         - NMH# 277
+        - NM# 1 (1992)
+        - NM-51 (1976)
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -5376,9 +5378,7 @@ coins:
       hede: '39'
       hede_volume: f3h
       schou: 4-6
-      sieg:
-        - '73'
-        - '139'
+      sieg: '73'
       bruun_collection_id:
         - '6737'
         - '6738'
@@ -5386,7 +5386,10 @@ coins:
       others:
         - Aagaard# 7.1
         - Aagaard# 7.5
+        - Sieg-73 (139)
         - Thesen# 5A
+      sieg_denmark: '139'
+      fr_denmark: '96'
       numista: '460032'
       fr: 5b
     metal: gold
@@ -5402,12 +5405,6 @@ coins:
         - seed: dk-numista-460032
           source: numista
           years: '1669'
-        - seed: ngc-1105140
-          source: ngc
-          years: '1670'
-        - seed: denmark-numismaster-204386
-          source: numismaster
-          years: '1670'
       uncertain:
         - seed: dk-bruun-6737
           source: bruun
@@ -5440,6 +5437,31 @@ coins:
     diameter_mm:
       - value: 24.0
         source: numista
+    year_alts:
+      - value: '1670'
+        source: numismaster
+        kind: erroneous
+        reason:
+          de: "Die Münze ist undatiert; Krause gibt ihr das Jahr 1670 irrtümlich.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i] (Übers.:
+            «… irrtümlich mit dem Datum 1670 aufgeführt»).\n[b]Bruun Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
+          en: "The coin is undated; Krause gives it the year 1670 by mistake.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i].\n[b]Bruun
+            Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
+          uk: "Монета без дати; Krause помилково дає їй рік 1670.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i] (перекл.: «… помилково
+            подано з датою 1670»).\n[b]Bruun Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
+          da: "Mønten er udateret; Krause giver den fejlagtigt årstallet 1670.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i] (overs.:
+            «… fejlagtigt opført med årstallet 1670»).\n[b]Bruun Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
+      - value: '1670'
+        source: ngc
+        kind: erroneous
+        reason:
+          de: "Die Münze ist undatiert; Krause gibt ihr das Jahr 1670 irrtümlich.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i] (Übers.:
+            «… irrtümlich mit dem Datum 1670 aufgeführt»).\n[b]Bruun Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
+          en: "The coin is undated; Krause gives it the year 1670 by mistake.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i].\n[b]Bruun
+            Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
+          uk: "Монета без дати; Krause помилково дає їй рік 1670.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i] (перекл.: «… помилково
+            подано з датою 1670»).\n[b]Bruun Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
+          da: "Mønten er udateret; Krause giver den fejlagtigt årstallet 1670.\n[b]Bruun Part II, lot 13169[/b]: [i]«2 Ducats, ND (1669-70?)-JL … KM-A119 (mistakenly listed with date 1670)»[/i] (overs.:
+            «… fejlagtigt opført med årstallet 1670»).\n[b]Bruun Part IV, lot 17085[/b]: [i]«2 Ducat, ND (1669-1670?) … KM-A119 (Norway, mistakenly listed with date 1670)»[/i]."
     uncertainty:
       year:
         - kind: hedged
@@ -5516,12 +5538,13 @@ coins:
       hede: '35'
       hede_volume: f4h
       schou: '8'
-      sieg: '21'
+      sieg: '13'
       bruun_collection_id: '7297'
       nmd: '2'
       others:
         - Kold# 170
         - B# 9
+      sieg_denmark: '21'
       numista: '119286'
       dav: A3649
     metal: silver
@@ -10464,14 +10487,15 @@ coins:
       nmd:
         - '113'
         - '116'
-      numista: '116006'
       others:
+        - Aagaard# TC1
         - Brekke# 113A
         - Brekke# 113B
         - AAJT# 113A
         - AAJT# 113B
         - Thesen# 112-116
         - Rønning# 17
+      numista: '116006'
       skaare: '512'
     metal: silver
     metal_verified: true
@@ -10850,11 +10874,12 @@ coins:
       bruun_collection_id: '9544'
       sieg: '6'
       nmd: '119'
-      numista: '99346'
       others:
+        - Aagaard# TC2
         - Brekke# 117
         - AAJT# 117
         - Thesen# 117
+      numista: '99346'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -28917,7 +28942,7 @@ coins:
       sieg: '45'
       nmd: '52'
       others:
-        - Aagaard# 60
+        - Aagaard# A1
         - Rønning# 40
         - Brekke# 46
         - Thesen# 52
@@ -38495,10 +38520,11 @@ coins:
       sieg: '4'
       bruun_collection_id: '10772'
       nmd: '2'
+      others:
+        - Märcher & Pedersen# 3/2
+        - Brekke# 1
       numista: '100314'
       dav: EC III 1303
-      others:
-        - Brekke# 1
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -45980,37 +46006,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - ngc-1100107
-  - id: c-cb00776b
-    class_id: c-cb00776b
-    label: unified-ngc-1100471
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Lion Dalar
-    year_first: 1608
-    year_last: 1608
-    year_label: '1608'
-    catalog:
-      km: '4'
-      dav: '3515'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110715
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-lion-dalar-km-4-1608-cuid-1100471-duid-1448462
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110715
-      - ngc-1100471
   - id: c-66c30ea6
     class_id: c-66c30ea6
     label: unified-ngc-1100486
