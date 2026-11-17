@@ -16,6 +16,23 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-17 — Hede index stubs for page-less rows, N14A split, merger nominal flaw (branch claude/hede-index-only-rows-a7ba47, local, unpushed)
+
+- **Shipped on the branch (not merged into main):** 3e0f6bb Hede index stubs for page-less Norge rows; 61d642f
+  parser drops a Hede number only the page title carries (`_drop_spurious_title_numbers`); 5a871c8 CLAUDE.md:
+  where errata / marks go and what must run after each; 07262ae Hede 90 = Sieg 17 (copied Sieg 16 / Schou 11-17
+  marked (!)), KMM 137639 into Hede 86; 9521bb7 Norway: 2 Speciedaler 1665 cluster (KM 75 = Hede 54, KM 76 = Hede 58,
+  Bruun 14063 «KM 76» marked (*)), Hede 26B / 28, 59, N6 = KM 16, N14A (2 Dukat) split from Hede 14 (3 Dukat) and
+  from KM 137 by no_merges. Cache submodule commits 301ad1eb2 / e2a6980dd are local only — reconcile with the Bruun
+  parser session (branch of `bruun-parser-read-every`) before pushing either.
+- **Open — merger nominal flaw (curator: «поки ні», 2026-11-17):** `match_pair` treats a shared Hede base with a
+  differing sub-letter (14 / 14A) as type-level catalogue agreement and demotes a nominal conflict (2 vs 3 Dukat)
+  to advisory — against §9.4 (a denomination difference overrides a shared base). Until fixed, such pairs need a
+  manual no_merges. Fix to propose: only an identical full index may demote a nominal conflict; measure on all
+  entities by seed id before committing.
+- **Open — curator decisions:** nf3h1 (hedged off-strike); c5h30 / f3h25 off-strike stubs (exclusion candidates);
+  the KM 34 1 Hvid 1607 class not merged with c4h90.
+
 ## 2026-11-14 / 16 — Sieg editions, crowned-C Blaffert, Erik VII datings, Moesgaard 2008 (local, unpushed)
 
 - **Shipped:** 89e0eb4 / 2b8eeec (SOURCES §13.12: Bruun cites Sieg 2018; per-type re-check — Bruun =
