@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1404 per-source seed entries.
+# Input: 1405 per-source seed entries.
 # Output: 266 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-16'
+generated_at: '2026-11-17'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -4111,6 +4111,162 @@ coins:
       - dk-hede-c4h174
       - dk-tid-163584
       - schleswig_holstein-numismaster-92971
+  - id: c-b388b587
+    class_id: c-b388b587
+    label: unified-dk-hede-c4h175abc
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 8 Skilling Lybsk
+    year_first: 1641
+    year_last: 1645
+    year_ranges:
+      -   - 1641
+          - 1642
+      -   - 1645
+          - 1645
+    year_label: 1641-1642, 1645
+    ruler: Christian IV
+    mint: Glückstadt
+    catalog:
+      km:
+        - '30.2'
+        - '30.1'
+        - '30.3'
+        - '30'
+      hede:
+        - 175B
+        - 175a
+        - 175abc
+      hede_volume: c4h
+      sieg: 170.1-3
+      numista:
+        - '107815'
+        - '109448'
+        - '109450'
+      lange:
+        - '52'
+        - '53'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92989
+      - value: 0.812
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92990
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-107815
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-109448
+      - value: 0.812
+        source: numista
+        specimen: dk-numista-109450
+      - value: 0.812
+        source: ucoin
+    weight_rough_g:
+      - value: 4.67
+        source: kmk
+      - value: 4.72
+        source: kmk
+      - value: 4.78
+        source: kmk
+      - value: 4.81
+        source: kmk
+      - value: 4.87
+        source: ucoin
+      - value: 4.872
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92989
+      - value: 4.872
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92990
+      - value: 4.872
+        source: numista
+        specimen: dk-numista-107815
+      - value: 4.872
+        source: numista
+        specimen: dk-numista-109448
+      - value: 4.872
+        source: numista
+        specimen: dk-numista-109450
+    diameter_mm:
+      - value: 28.0
+        source: numista
+        specimen: dk-numista-109448
+      - value: 28.7
+        source: numista
+        specimen: dk-numista-109450
+      - value: 29.0
+        source: ucoin
+      - value: 29.3
+        source: numista
+        specimen: dk-numista-107815
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c4hede2.htm
+        ref: danskmoent.dk overview c4hede2 (Hede c4h175abc — Tiefenseite fehlt)
+      - type: literature
+        url: https://en.numista.com/107815
+        ref: Numista N#107815 — 8 Skilling Lybsk - Christian IV (Type 2)
+      - type: literature
+        url: https://en.numista.com/109448
+        ref: Numista N#109448 — 8 Skilling Lybsk - Christian IV (Type 1)
+      - type: literature
+        url: https://en.numista.com/109450
+        ref: Numista N#109450 — 8 Skilling Lybsk - Christian IV (Type 3)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714861
+        ref: KMM 714861 (Inv. FP 12405.189)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714862
+        ref: KMM 714862 (Inv. FP 12405.188)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714863
+        ref: KMM 714863 (Inv. FP 12405.187)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714864
+        ref: KMM 714864 (Inv. FP 12405.186)
+      - type: literature
+        url: https://numismaster.com/MC_92989
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_92990
+        ref: NumisMaster
+    verification_note:
+      de: 'Nur die Übersichtsreihe von c4hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «175A: ; Indadbuet skjold; VIII L.S. 175B: ; Ligesidet skjold; 8 S.L. 175C: ; Indadbuet skjold; VIII L.S. Aagaard, Num. Rap. 134 (2017) Wilcke
+        II side 218ff»'
+      en: 'Only the overview-table row of c4hede2.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «175A: ; Indadbuet skjold; VIII L.S. 175B: ; Ligesidet skjold; 8 S.L. 175C: ; Indadbuet skjold; VIII L.S. Aagaard, Num. Rap. 134 (2017) Wilcke II side 218ff»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c4hede2.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «175A: ; Indadbuet skjold; VIII L.S. 175B: ; Ligesidet skjold; 8 S.L. 175C: ; Indadbuet skjold; VIII L.S. Aagaard, Num. Rap. 134 (2017) Wilcke II side 218ff»'
+      da: 'Kun oversigtsrækken hos c4hede2.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «175A: ; Indadbuet skjold; VIII L.S. 175B: ; Ligesidet skjold; 8 S.L. 175C: ; Indadbuet skjold; VIII L.S. Aagaard, Num. Rap. 134 (2017) Wilcke II side 218ff»'
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-hede-c4h175abc
+      - dk-numista-107815
+      - dk-numista-109448
+      - dk-numista-109450
+      - dk-tid-163647
+      - kmk-714861
+      - kmk-714862
+      - kmk-714863
+      - kmk-714864
+      - schleswig_holstein-numismaster-92989
+      - schleswig_holstein-numismaster-92990
   - id: c-767d75eb
     class_id: c-767d75eb
     label: unified-dk-hede-c4h176
@@ -17998,145 +18154,6 @@ coins:
     composed_of:
       - dk-numista-107814
       - dk-tid-163579
-  - id: c-b388b587
-    class_id: c-b388b587
-    label: unified-dk-numista-107815
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 8 Skilling Lybsk
-    year_first: 1641
-    year_last: 1645
-    year_ranges:
-      -   - 1641
-          - 1642
-      -   - 1645
-          - 1645
-    year_label: 1641-1642, 1645
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      km:
-        - '30.2'
-        - '30.1'
-        - '30.3'
-        - '30'
-      numista:
-        - '107815'
-        - '109448'
-        - '109450'
-      lange:
-        - '52'
-        - '53'
-      hede:
-        - 175B
-        - 175a
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-92989
-      - value: 0.812
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-92990
-      - value: 0.812
-        source: numista
-        specimen: dk-numista-107815
-      - value: 0.812
-        source: numista
-        specimen: dk-numista-109448
-      - value: 0.812
-        source: numista
-        specimen: dk-numista-109450
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 4.67
-        source: kmk
-      - value: 4.72
-        source: kmk
-      - value: 4.78
-        source: kmk
-      - value: 4.81
-        source: kmk
-      - value: 4.87
-        source: ucoin
-      - value: 4.872
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-92989
-      - value: 4.872
-        source: numismaster
-        specimen: schleswig_holstein-numismaster-92990
-      - value: 4.872
-        source: numista
-        specimen: dk-numista-107815
-      - value: 4.872
-        source: numista
-        specimen: dk-numista-109448
-      - value: 4.872
-        source: numista
-        specimen: dk-numista-109450
-    diameter_mm:
-      - value: 28.0
-        source: numista
-        specimen: dk-numista-109448
-      - value: 28.7
-        source: numista
-        specimen: dk-numista-109450
-      - value: 29.0
-        source: ucoin
-      - value: 29.3
-        source: numista
-        specimen: dk-numista-107815
-    sources:
-      - type: literature
-        url: https://en.numista.com/107815
-        ref: Numista N#107815 — 8 Skilling Lybsk - Christian IV (Type 2)
-      - type: literature
-        url: https://en.numista.com/109448
-        ref: Numista N#109448 — 8 Skilling Lybsk - Christian IV (Type 1)
-      - type: literature
-        url: https://en.numista.com/109450
-        ref: Numista N#109450 — 8 Skilling Lybsk - Christian IV (Type 3)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714861
-        ref: KMM 714861 (Inv. FP 12405.189)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714862
-        ref: KMM 714862 (Inv. FP 12405.188)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714863
-        ref: KMM 714863 (Inv. FP 12405.187)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714864
-        ref: KMM 714864 (Inv. FP 12405.186)
-      - type: literature
-        url: https://numismaster.com/MC_92989
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_92990
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-107815
-      - dk-numista-109448
-      - dk-numista-109450
-      - dk-tid-163647
-      - kmk-714861
-      - kmk-714862
-      - kmk-714863
-      - kmk-714864
-      - schleswig_holstein-numismaster-92989
-      - schleswig_holstein-numismaster-92990
   - id: c-b5f34d5e
     class_id: c-b5f34d5e
     label: unified-dk-numista-108571
