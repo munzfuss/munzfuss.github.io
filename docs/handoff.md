@@ -16,6 +16,27 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-17 — Bruun: every printed catalogue reference, country volumes, Aagaard Kristianstad (branch `claude/bruun-all-catalogues-2deacb`, unpushed)
+
+- **Shipped (worktree branch, 47131f7 … 4d2d078):** Bruun lot parser reads every printed reference
+  (letter-prefixed Dav / Aagaard / FP, Becker, Bergsøe, Ramus, Stenersen …; second values in
+  `refs_more`), re-flow with 8 recorded truncation / stale-value removals; «(!)» on Aagaard 8S-1 of
+  `dk-bruun-6873` (Aagaard 2017 gives that 2 Skilling no die); country volumes for KM / Sieg / Fr
+  (V2_DECISIONS D55); unread citations kept verbatim in `catalog_unresolved` (D56); Lion Taler 1608
+  cross-entity merge (Krause lists it under KM# 4 in both the Norway and the Denmark section);
+  Krause year 1670 on the Norwegian 2 Ducat KM A119 marked erroneous (Bruun twice).
+- **Corpus:** `aagaard-2017-kristianstad` (Numismatisk Rapport 132, split from spreads; printed = pdf
+  over 5–31). Aagaard's 1M-1 / 8S-1 / 2S-1 are DIE numbers, not types.
+- **Harvest cache:** commits b8b7e12d2, 047caa6fd, 209de8761, 5ac007336 sit on branch
+  `claude/bruun-all-catalogues` of the main checkout's cache repo — not on harvest main / GitHub.
+  Merge and push them together with the worktree branch, or the pointers dangle.
+- **Open for the curator:** Sieg 3 on `dk-hede-f5h36a–c` (Danish-volume Hede page, Norwegian entity —
+  which Sieg volume?); «AH» / «F» in Bruun (Harck? Friedberg?); `dk-bruun-10866` (2 Skilling 1788 on
+  8 Skilling) carries the regular issue's numbers per Bruun — risk of a later merge; Hede 80A vs 80B for
+  the undated Speciedaler (Bruun «Hede-80B (mistakenly listed as 80A)»); how to file the 150
+  `catalog_unresolved` pieces.
+- **Unrelated, seen:** ten kmk-* members in `_cross_entity.yml` no longer exist in any seed (merger skips).
+
 ## 2026-11-14 / 16 — Sieg editions, crowned-C Blaffert, Erik VII datings, Moesgaard 2008 (local, unpushed)
 
 - **Shipped:** 89e0eb4 / 2b8eeec (SOURCES §13.12: Bruun cites Sieg 2018; per-type re-check — Bruun =
