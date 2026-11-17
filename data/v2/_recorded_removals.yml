@@ -5381,3 +5381,51 @@ removals:
     field: schou
     dropped: ['164']
     reason: 'Curator (Serhii) 2026-11-16 (merge tables «погоджую мердж»): KMM 190273 (H:12, Sch:164) left the class it shared with KMM 46693 and joined the Hede 12 class, whose Schou range 140-184 covers 164; the KMM 46693 class keeps no Schou number.'
+  - seed: dk-bruun-7275
+    kind: field
+    field: others
+    dropped:
+      - Aagaard# 1
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old Bruun parser; Part V lot 14176 prints «Aagaard-1M-1», the die number in Aagaard, Numismatisk Rapport 132 (2017), p. 13 («1 Mark bly (H. 132, S. 51). Stempel 1M-1»). The full value is now captured.'
+  - seed: dk-bruun-pt5-14131
+    kind: field
+    field: others
+    dropped:
+      - 'Aagaard# 18 (53-29/53-4; Bruun-6102. Weight: 21-53 gms. Mintmaster: Henrik Köhler. Scarce variant featuring so-called dragon decoration on all crown arches. It is presumed the adding of the chain of the French Order of St. Michael was due to the king being initiated into the order, however no evidence have been found to collaborate the theory. €1,000-€1,200 From the L.E. Bruun Collection. Ex: Joh. G. Guildal Collection (Private Sale - 1918)'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): an unclosed paren in Part V lot 14131 made the old parser swallow the rest of the lot text into the Aagaard value; the lot prints «Aagaard-18», now captured alone.'
+  - seed: dk-bruun-5941
+    kind: field
+    field: lange
+    dropped:
+      - '60'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old Bruun parser; the lot prints «Lange-60B», now captured in full.'
+  - seed: dk-bruun-10082
+    kind: field
+    field: others
+    dropped:
+      - Aagaard# 60
+    reason: "Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): read by the old parser from the prose «(Aagaard 60-1)» in Part I lot 1217; the lot's own index is «Aagaard-A1», which the seed keeps."
+  - seed: dk-bruun-5000
+    kind: field
+    field: sieg
+    dropped:
+      - '102'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old parser; the lot prints «Sieg-102,3» (= 102.3), which the seed keeps.'
+  - seed: dk-bruun-5072
+    kind: field
+    field: sieg
+    dropped:
+      - '102'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old parser; the lot prints «Sieg-102,3» (= 102.3), which the seed keeps.'
+  - seed: dk-bruun-11774
+    kind: field
+    field: km
+    dropped:
+      - '99'
+    reason: 'Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки»): truncated by the old parser; the lot prints «KM-99,2» (= 99.2), which the seed keeps.'
+  - seed: dk-bruun-6873
+    kind: field
+    field: others
+    dropped:
+      - Aagaard# 8
+    reason: "Curator (Serhii) 2026-11-17 («погоджую всі твої знахідки, позначку (!)»): the old parser's truncation of Bruun's «Aagaard-8S-1» on Part V lot 14156; the full value is now marked erroneous (catalog_marks), since Aagaard, Numismatisk Rapport 132 (2017), p. 17 gives this piece (LEB/6873) no die number."
