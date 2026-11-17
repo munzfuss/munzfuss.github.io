@@ -8641,6 +8641,7 @@ coins:
     nominal: ½ Skilling
     ruler: Christian V.
     issuing_entity: danish_norway
+    fraction: 1/192
     id: c-03c05d70
     year_first: 1676
     year_last: 1682
@@ -8789,7 +8790,6 @@ coins:
       - c-03c05d70
     label: unified-dk-hede-nc5h52
     origin: promoted
-    fraction: 1/192
   - fuss: seed_unsorted
     phase: hede
     kind: scheide
@@ -16254,21 +16254,21 @@ coins:
     fraction: '2'
     id: c-52caff6a
     year_first: 1665
-    year_last: 1667
-    year_ranges:
-      -   - 1665
-          - 1667
-    year_label: 1665-1667
+    year_last: 1665
+    year_label: '1665'
     mint: Christiania
     catalog:
       km: '75'
-      hede: '58'
       hede_volume: nf3h
-      schou:
-        - 10-11
-        - 13-14
-        - '19'
-      numista: '484993'
+      numista:
+        - '484993'
+        - '118905'
+      hede: '54'
+      others:
+        - Rønning# 41
+        - Brekke# 54
+        - Thesen# 60
+      skaare: '534'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -16278,38 +16278,43 @@ coins:
     verified: false
     fineness:
       - value: 0.875
-        source: hede
-      - value: 0.875
         source: ngc
       - value: 0.875
         source: numismaster
       - value: 0.875
         source: numista
+        specimen: dk-numista-118905
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-484993
       - value: 0.875
         source: ucoin
     weight_rough_g:
       - value: 57.55
-        source: hede
-      - value: 57.55
         source: ngc
       - value: 57.55
         source: numismaster
       - value: 57.55
+        source: numista
+        specimen: dk-numista-118905
+      - value: 57.55
         source: ucoin
       - value: 57.69
         source: numista
+        specimen: dk-numista-484993
     diameter_mm:
       - value: 42.0
         source: numista
+        specimen: dk-numista-118905
+      - value: 42.0
+        source: numista
+        specimen: dk-numista-484993
       - value: 45.0
         source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_110766
         ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nf3h58.htm
-        ref: danskmoent.dk (Hede nf3h58)
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-2-speciedaler-1665/?tid=145509
         ref: ucoin
@@ -16323,11 +16328,26 @@ coins:
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13156, p. 89
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-75-1665-cuid-1099136-duid-1450347
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://en.numista.com/484993
         ref: Numista N#484993 — 2 Speciedaler - Frederik III (Type XIX) - Norway
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-75-1665-cuid-1099136-duid-1450347
+        url: https://en.numista.com/118905
+        ref: Numista N#118905 — 2 Speciedaler - Frederik III (Type XVIII) - Norway
+      - type: literature
+        url: https://numismaster.com/MC_110767
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-2-speciedaler-1665-1667/?tid=145510
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-76-1665-1667-cuid-1099932-duid-1448611
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h54 — Tiefenseite fehlt)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -28128,15 +28148,14 @@ coins:
     ruler: Frederik III.
     issuing_entity: danish_norway
     id: c-0b1b4e37
-    year_first: 1666
+    year_first: 1667
     year_last: 1669
     year_ranges:
-      -   - 1666
+      -   - 1667
           - 1669
-    year_label: 1666-1669
+    year_label: 1667-1669
     mint: Christiania
     catalog:
-      km: '79'
       hede: '64'
       hede_volume: nf3h
       schou:
@@ -28159,18 +28178,10 @@ coins:
       - value: 0.875
         source: hede
       - value: 0.875
-        source: numismaster
-      - value: 0.875
         source: numista
-      - value: 0.875
-        source: ucoin
     weight_rough_g:
       - value: 86.32
-        source: numismaster
-      - value: 86.32
         source: numista
-      - value: 86.32
-        source: ucoin
       - value: 86.325
         source: hede
     diameter_mm:
@@ -28178,14 +28189,8 @@ coins:
         source: numista
     sources:
       - type: literature
-        url: https://numismaster.com/MC_110783
-        ref: NumisMaster
-      - type: literature
         url: https://www.danskmoent.dk/norge/nf3h63.htm
         ref: danskmoent.dk (Hede nf3h64)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-3-speciedaler-1666-1668/?tid=145594
-        ref: ucoin
       - type: literature
         url: https://en.numista.com/444691
         ref: Numista N#444691 — 3 Speciedaler - Frederik III (Type XXIII) - Norway
@@ -28260,6 +28265,7 @@ coins:
         - Rønning# 52
         - Delzanno# 137
       skaare: '547'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -28319,6 +28325,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15054, p. 107
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h60 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -28359,6 +28368,7 @@ coins:
         - Brekke# 5
         - Thesen# 9
       skaare: '523'
+      hede_volume: nf3h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -28405,6 +28415,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-ducat-km-88-1669-cuid-1099138-duid-1449206
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h6 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -28442,7 +28455,9 @@ coins:
       bruun_collection_id: '10085'
       sieg: '50.1'
       schou: '4'
-      hede: 26A
+      hede:
+        - 26A
+        - 26ab
       nmd: '41'
       dav: '3649'
       numista: '117132'
@@ -28450,6 +28465,7 @@ coins:
         - Rønning# 78
         - AAJT# 30
       skaare: '573'
+      hede_volume: nc5h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -28489,6 +28505,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-100-1670-cuid-1098151-duid-1448528
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h26ab — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -29155,11 +29174,13 @@ coins:
     issuing_entity: danish_norway
     id: c-44b49488
     year_first: 1649
-    year_last: 1650
+    year_last: 1654
     year_ranges:
       -   - 1649
           - 1650
-    year_label: 1649-1650
+      -   - 1654
+          - 1654
+    year_label: 1649-1650, 1654
     uncertainty:
       metal:
         - kind: inferred
@@ -29184,7 +29205,9 @@ coins:
       schou:
         - '23'
         - '29'
-      hede: 13A
+      hede:
+        - 13A
+        - 13ab
       nmd:
         - '141'
         - '142'
@@ -29198,6 +29221,7 @@ coins:
         - Thesen# 142
         - Rønning# 56
       skaare: '551'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -29251,6 +29275,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15033, p. 95
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h13ab — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -29455,6 +29482,7 @@ coins:
         - Rønning# 38d
         - Delzanno# 43
       skaare: '532'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -29511,6 +29539,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15034, p. 96
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h18 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -29558,6 +29589,7 @@ coins:
         - Brekke# 33
         - Thesen# 38
       skaare: '532'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -29597,6 +29629,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-46-1653-cuid-1099134-duid-1448319
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h15 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -29649,6 +29684,7 @@ coins:
         - Thesen# 22
         - Rønning# 34a
       skaare: '528'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -29695,6 +29731,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-3-specie-daler-km-b39a-1654-1656-cuid-1095648-duid-1450479
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h19 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -29836,6 +29875,7 @@ coins:
         - Thesen# 12
       skaare: '526'
       dav: A3596
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -29882,6 +29922,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-4-specie-daler-km-a50-1656-cuid-1097952-duid-1466153
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h24 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -29947,6 +29990,7 @@ coins:
         - Ronning# 34e-34g
         - Delzanno# 26
       skaare: '528'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -29996,6 +30040,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15040, p. 100
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h28 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -30238,6 +30285,7 @@ coins:
         - Brekke# 134
         - Thesen# 140
       skaare: '550'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -30284,6 +30332,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-4-specie-daler-km-69-1663-cuid-1099125-duid-1448455
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h46 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -30324,6 +30375,7 @@ coins:
       hede:
         - 52A
         - 52B
+        - 52ab
       nmd: '104'
       dav: '3618'
       numista:
@@ -30337,6 +30389,7 @@ coins:
         - Rønning# 45r
         - Brekke# 97
       skaare: '541'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -30400,6 +30453,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-70-1664-cuid-1094428-duid-1466132
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h52ab — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -30412,110 +30468,6 @@ coins:
     composed_of:
       - c-dd3534b3
     label: unified-dk-bruun-9940
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
-    nominal: 2 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: danish_norway
-    fraction: '2'
-    id: c-b6458a62
-    year_first: 1665
-    year_last: 1667
-    year_ranges:
-      -   - 1665
-          - 1667
-    year_label: 1665-1667
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Speciedaler
-          value: silver
-          seed: dk-bruun-9956
-    mint: Christiania
-    catalog:
-      km: '76'
-      bruun_collection_id: '9956'
-      sieg: '59'
-      schou: '18'
-      hede: '56'
-      nmd: '61'
-      dav: '3622'
-      numista: '444711'
-      others:
-        - Aagaard# 101.1
-        - Brekke# 55
-        - Rønning# 42
-        - Thesen# 61
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 57.55
-        source: ngc
-      - value: 57.55
-        source: numismaster
-      - value: 57.55
-        source: numista
-      - value: 57.55
-        source: ucoin
-      - value: 57.57
-        source: bruun
-    diameter_mm:
-      - value: 42.0
-        source: numista
-      - value: 45.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110767
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14063, p. 193
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-2-speciedaler-1665-1667/?tid=145510
-        ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1665-1666/?tid=97380
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1083, p. 105
-      - type: literature
-        url: https://en.numista.com/444711
-        ref: Numista N#444711 — 2 Speciedaler - Frederik III (Type XXI) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-76-1665-1667-cuid-1099932-duid-1448611
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-b6458a62
-    label: unified-dk-bruun-9956
     origin: promoted
   - fuss: reichsdukatenfuss
     phase: III
@@ -30544,6 +30496,7 @@ coins:
         - Brekke# 6
         - Thesen# 10
       skaare: '524'
+      hede_volume: nf3h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -30590,6 +30543,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-2-ducat-km-80-1666-cuid-1098152-duid-1448537
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h4 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -30970,6 +30926,11 @@ coins:
           as_printed: ND (1670-99)
           value: 1670-1699
           seed: dk-bruun-10497
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-nc5h4
     mint: Christiania
     catalog:
       km: '138'
@@ -30985,6 +30946,7 @@ coins:
       others:
         - AAJT# 10
         - AAJT# 9
+      hede_volume: nc5h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -31039,6 +31001,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-ducat-km-138-cuid-1098154-duid-1450484
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h4 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -31102,6 +31067,11 @@ coins:
           as_printed: ND (1670-75)
           value: 1670-1675
           seed: dk-bruun-10502
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-nc5h3
         - kind: hedged
           how: museum
           source: kmk
@@ -31125,6 +31095,7 @@ coins:
         - LEB# 10152
         - Delzanno# 20
       skaare: '568'
+      hede_volume: nc5h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -31179,6 +31150,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15099, p. 125
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h3 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -32762,9 +32736,13 @@ coins:
       skaare: '534'
       sieg: '61'
       bruun_collection_id: '9986'
-      schou: '13'
+      schou:
+        - 10-11
+        - 13-14
+        - '19'
       nmd: '63'
       dav: '3622'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -32774,15 +32752,33 @@ coins:
     verified: false
     fineness:
       - value: 0.875
+        source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
       - value: 57.38
         source: bruun
       - value: 57.55
+        source: hede
+      - value: 57.55
+        source: ngc
+      - value: 57.55
+        source: numismaster
+      - value: 57.55
         source: numista
+      - value: 57.55
+        source: ucoin
     diameter_mm:
       - value: 42.0
         source: numista
+      - value: 45.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/10494
@@ -32790,6 +32786,18 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15053, p. 106
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf3h58.htm
+        ref: danskmoent.dk (Hede nf3h58)
+      - type: literature
+        url: https://numismaster.com/MC_110767
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-2-speciedaler-1665-1667/?tid=145510
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-76-1665-1667-cuid-1099932-duid-1448611
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -32799,62 +32807,14 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
       da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    hede_muentzfuss_yield:
+      value: 9.288
+      unit: speciedaler
+      basis: fin
+      unit_raw: spdl
     composed_of:
       - c-b98670c1
     label: unified-dk-numista-10494
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: danish_norway
-    id: c-2b895709
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    mint: Christiania
-    catalog:
-      km: '75'
-      numista: '118905'
-      hede: '54'
-      others:
-        - Rønning# 41
-        - Brekke# 54
-        - Thesen# 60
-      skaare: '534'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 57.55
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/118905
-        ref: Numista N#118905 — 2 Speciedaler - Frederik III (Type XVIII) - Norway
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-2b895709
-    label: unified-dk-numista-118905
     origin: promoted
   - fuss: seed_unsorted
     phase: numista
@@ -33070,6 +33030,7 @@ coins:
     year_first: 1656
     year_last: 1656
     year_label: '1656'
+    mint: Christiania
     catalog:
       km: B39
       numista: '444688'
@@ -33079,12 +33040,13 @@ coins:
         - Brekke# 19
         - Thesen# 23
       skaare: '528'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -33099,6 +33061,9 @@ coins:
       - type: literature
         url: https://en.numista.com/444688
         ref: Numista N#444688 — 3 Speciedaler - Frederik III (Type IV) - Norway
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h23 — Tiefenseite fehlt)
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -33122,18 +33087,20 @@ coins:
     year_first: 1681
     year_last: 1681
     year_label: '1681'
+    mint: Christiania
     catalog:
       numista: '445320'
       hede: '36'
       others:
         - AAJT# 64
       schou: '38'
+      hede_volume: nc5h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -33153,6 +33120,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/278785
         ref: KMM 278785 (Inv. RP 709.3)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h36 — Tiefenseite fehlt)
     note:
       de: ⅛ Speciedaler
       en: ⅛ Speciedaler
@@ -46542,6 +46512,7 @@ coins:
         - AAJT# 4
         - Brekke# 4
         - Thesen# 8
+      hede_volume: nf3h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -46583,6 +46554,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-ducat-km-86-1668-cuid-1094438-duid-1450483
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h5 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -46734,6 +46708,7 @@ coins:
         - Thesen# 29
         - Ronning# 35c
       skaare: '530'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -46775,6 +46750,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-3-specie-daler-km-55-1663-1664-cuid-1095649-duid-1448616
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h45 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -47312,11 +47290,11 @@ coins:
     issuing_entity: danish_norway
     id: c-29ad96af
     year_first: 1665
-    year_last: 1667
+    year_last: 1668
     year_ranges:
       -   - 1665
-          - 1667
-    year_label: 1665-1667
+          - 1668
+    year_label: 1665-1668
     mint: Christiania
     catalog:
       km: '79'
@@ -47329,6 +47307,7 @@ coins:
         - Brekke# 26
         - Rønning# 36
       skaare: '531'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -47340,12 +47319,20 @@ coins:
       - value: 0.875
         source: ngc
       - value: 0.875
+        source: numismaster
+      - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
       - value: 86.32
         source: ngc
       - value: 86.32
+        source: numismaster
+      - value: 86.32
         source: numista
+      - value: 86.32
+        source: ucoin
     diameter_mm:
       - value: 42.0
         source: numista
@@ -47356,6 +47343,15 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-3-specie-daler-km-79-1666-1668-cuid-1097951-duid-1466151
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_110783
+        ref: NumisMaster
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h59 — Tiefenseite fehlt)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-3-speciedaler-1666-1668/?tid=145594
+        ref: ucoin
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -47664,7 +47660,8 @@ coins:
         - Brekke# 244
         - Rønning# 128
       skaare: '633'
-    metal: billon
+      hede_volume: nc5h
+    metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -47722,6 +47719,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-skilling-1686/?tid=96455
         ref: ucoin
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h72 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -47940,18 +47940,22 @@ coins:
     kind: kurant
     nominal: 1½ Specie Daler
     issuing_entity: danish_norway
+    ruler: Christian IV
     id: c-f22a40bd
     year_first: 1630
     year_last: 1630
     year_label: '1630'
+    mint: Christiania
     catalog:
       km: '16'
+      hede: '6'
+      hede_volume: nc4h
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     sources:
       - type: literature
@@ -47960,6 +47964,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-1-2-specie-daler-km-16-1630-cuid-1099930-duid-1466140
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c4hede3.htm
+        ref: danskmoent.dk overview c4hede3 (Hede nc4h6 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -47980,6 +47987,7 @@ coins:
     year_first: 1670
     year_last: 1670
     year_label: '1670'
+    mint: Christiania
     catalog:
       km: '102'
       numista: '117134'
@@ -47987,14 +47995,16 @@ coins:
       others:
         - Rønning# 78b
         - AAJT# 32
+        - B# 10A
       skaare: '573'
-      schou: '5'
+      hede_volume: nc5h
+      schou: '6'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -48004,7 +48014,7 @@ coins:
       - value: 0.875
         source: numista
     weight_rough_g:
-      - value: 57.47
+      - value: 57.44
         source: kmk
       - value: 57.55
         source: ngc
@@ -48022,12 +48032,15 @@ coins:
       - type: literature
         url: https://en.numista.com/117134
         ref: Numista N#117134 — 2 Speciedaler - Christian V (Christiania type II.A; date in legend) - Norway
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/278780
-        ref: KMM 278780 (Inv. KP 570.4)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-102-1670-cuid-1100100-duid-1448992
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h28 — Tiefenseite fehlt)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/278501
+        ref: KMM 278501 (Inv. RP 722.1)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48058,6 +48071,7 @@ coins:
         - Brekke# 24B
         - Thesen# 28B
       skaare: '530'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -48092,6 +48106,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-3-specie-daler-km-a67-1663-cuid-1100101-duid-1450352
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h51 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48121,6 +48138,7 @@ coins:
         - Rønning# 72
         - AAJT# 3
       skaare: '566'
+      hede_volume: nc5h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -48162,6 +48180,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-3-ducat-km-124-1673-cuid-1100103-duid-1448538
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h5 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48199,7 +48220,8 @@ coins:
       skaare:
         - '596'
         - '597'
-    metal: billon
+      hede_volume: nc5h
+    metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -48299,6 +48321,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-91-1670-cuid-1094232-duid-1448252
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h47 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48318,6 +48343,7 @@ coins:
     year_first: 1673
     year_last: 1673
     year_label: '1673'
+    mint: Christiania
     catalog:
       km: '116'
       numista: '99070'
@@ -48326,12 +48352,13 @@ coins:
         - Rønning# 103a
         - AAJT# 132
       skaare: '594'
+      hede_volume: nc5h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.406
@@ -48360,6 +48387,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-116-1673-cuid-1100393-duid-1448897
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h50 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48418,6 +48448,7 @@ coins:
       -   - 1663
           - 1664
     year_label: 1663-1664
+    mint: Christiania
     catalog:
       km: '52'
       dav: '3613'
@@ -48429,12 +48460,13 @@ coins:
         - Thesen# 57
         - Thesen# 59
         - Rønning# 39g
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -48472,6 +48504,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-52-1663-1664-cuid-1100476-duid-1466145
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h50 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48496,6 +48531,7 @@ coins:
       -   - 1678
           - 1680
     year_label: 1674, 1678-1680
+    mint: Christiania
     catalog:
       km: '128'
       dav: '3654'
@@ -48505,17 +48541,19 @@ coins:
       hede:
         - 31A
         - 31B
+        - 31ab
       others:
         - AAJT# 26
         - AAJT# 27-29
         - Rønning# 77
       skaare: '572'
+      hede_volume: nc5h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -48566,6 +48604,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-3-specie-daler-km-128-1674-1680-cuid-1100478-duid-1448939
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h31ab — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48589,6 +48630,7 @@ coins:
       -   - 1657
           - 1658
     year_label: 1657-1658
+    mint: Christiania
     catalog:
       km: '50'
       dav: A3596
@@ -48602,12 +48644,13 @@ coins:
         - Rønning# 31a
         - Rønning# 31b
       skaare: '526'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
@@ -48643,6 +48686,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-4-specie-daler-km-50-1657-1658-cuid-1100479-duid-1448535
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h29 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -48671,6 +48717,7 @@ coins:
       hede: '23'
       others:
         - AAJT# 164A
+      hede_volume: nc5h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -48712,6 +48759,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-ducat-km-195-1697-cuid-1100482-duid-1466155
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h23 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -49194,9 +49244,8 @@ coins:
       others:
         - Rønning# 78a
         - AAJT# 31
-        - B# 10A
       skaare: '573'
-      schou: '6'
+      schou: '5'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -49212,7 +49261,7 @@ coins:
       - value: 0.875
         source: numista
     weight_rough_g:
-      - value: 57.44
+      - value: 57.47
         source: kmk
       - value: 57.55
         source: ngc
@@ -49230,12 +49279,12 @@ coins:
       - type: literature
         url: https://en.numista.com/117133
         ref: Numista N#117133 — 2 Speciedaler - Christian V (Christiania type I.B; date divided by shield) - Norway
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/278501
-        ref: KMM 278501 (Inv. RP 722.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-101-1670-cuid-1114120-duid-1450476
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/278780
+        ref: KMM 278780 (Inv. KP 570.4)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -49275,6 +49324,7 @@ coins:
         - Rønning# 3
         - Rønning# 3a
       skaare: '502'
+      hede_volume: nc4h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -49309,6 +49359,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-3-specie-daler-km-25-1643-1644-cuid-1114121-duid-1448614
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c4hede3.htm
+        ref: danskmoent.dk overview c4hede3 (Hede nc4h8 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -49329,6 +49382,7 @@ coins:
     year_first: 1678
     year_last: 1678
     year_label: '1678'
+    mint: Christiania
     catalog:
       km: '137'
     metal: gold
@@ -49336,7 +49390,7 @@ coins:
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.979
@@ -51295,6 +51349,7 @@ coins:
         - AAJT# 163
         - B# 647
       schou: '1'
+      hede_volume: nc5h
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -51341,6 +51396,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-ducat-km-196-1697-cuid-1099228-duid-1449208
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h24 — Tiefenseite fehlt)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -51451,6 +51509,7 @@ coins:
       hede:
         - 27A
         - 27B
+        - 27ab
       sieg: '51.1'
       bruun_collection_id: '10089'
       schou: '12'
@@ -51465,6 +51524,7 @@ coins:
         - AAJT# 46
         - Delzanno# 8
       skaare: '575'
+      hede_volume: nc5h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -51519,6 +51579,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-99-1670-cuid-1099130-duid-1450302
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h27ab — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -52143,6 +52206,7 @@ coins:
         - Delzanno# 146
       numista: '118987'
       skaare: '549'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -52189,6 +52253,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-4-specie-daler-km-45.2-1655-1656-cuid-1099926-duid-1448393
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h25 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -52254,6 +52321,7 @@ coins:
       dav: '3600'
       numista: '118206'
       skaare: '532'
+      hede_volume: nf3h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -52304,6 +52372,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13138, p. 76
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h27 — Tiefenseite fehlt)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -52368,6 +52439,7 @@ coins:
       hede_volume: nc5h
       schou: '1'
     metal: gold
+    metal_verified: true
     mint_verified: true
     verified: false
     sources:
@@ -56205,3 +56277,355 @@ coins:
       - value: 5.505
         source: kmk
         display: false
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    ruler: Christian IV
+    issuing_entity: danish_norway
+    id: c-fbbe5e51
+    year_first: 1634
+    year_last: 1638
+    year_ranges:
+      -   - 1634
+          - 1634
+      -   - 1638
+          - 1638
+    year_label: 1634, 1638
+    mint: Christiania
+    catalog:
+      hede: '11'
+      hede_volume: nc4h
+    metal: silver
+    metal_verified: true
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c4hede3.htm
+        ref: danskmoent.dk overview c4hede3 (Hede nc4h11 — Tiefenseite fehlt)
+    verification_note:
+      de: 'Nur die Übersichtsreihe von c4hede3.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Slået med stemplerne til N10A.»'
+      en: 'Only the overview-table row of c4hede3.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «Slået med stemplerne til N10A.»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c4hede3.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «Slået med stemplerne til N10A.»'
+      da: 'Kun oversigtsrækken hos c4hede3.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «Slået med stemplerne til N10A.»'
+    composed_of:
+      - c-fbbe5e51
+    label: unified-dk-hede-nc4h11
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Guldmønt
+    ruler: Christian V
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: c-90e6ed24
+    year_first: 1670
+    year_last: 1699
+    year_ranges:
+      -   - 1670
+          - 1699
+    year_label: 1670-1699
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-nc5h19abc
+    mint: Christiania
+    catalog:
+      hede: 19abc
+      hede_volume: nc5h
+    metal: gold
+    metal_verified: true
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h19abc — Tiefenseite fehlt)
+    verification_note:
+      de: 'Nur die Übersichtsreihe von c5hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Kaldet Gyldenløves dukat.»'
+      en: 'Only the overview-table row of c5hede2.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «Kaldet Gyldenløves dukat.»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c5hede2.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «Kaldet Gyldenløves dukat.»'
+      da: 'Kun oversigtsrækken hos c5hede2.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «Kaldet Gyldenløves dukat.»'
+    composed_of:
+      - c-90e6ed24
+    label: unified-dk-hede-nc5h19abc
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Guldmønt
+    ruler: Christian V
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: c-05d5ef71
+    year_first: 1670
+    year_last: 1699
+    year_ranges:
+      -   - 1670
+          - 1699
+    year_label: 1670-1699
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-nc5h21
+    mint: Christiania
+    catalog:
+      hede: '21'
+      hede_volume: nc5h
+    metal: gold
+    metal_verified: true
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h21 — Tiefenseite fehlt)
+    verification_note:
+      de: Nur die Übersichtsreihe von c5hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben 
+        Hede 1971 und Galster 1965 zu entnehmen.
+      en: Only the overview-table row of c5hede2.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the 
+        printed Hede 1971 and Galster 1965.
+      uk: Цей запис підтверджує лише рядок оглядової таблиці c5hede2.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та 
+        Galster 1965.
+      da: Kun oversigtsrækken hos c5hede2.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og 
+        Galster 1965.
+    composed_of:
+      - c-05d5ef71
+    label: unified-dk-hede-nc5h21
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Sølvmønt
+    ruler: Christian V
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: c-6d2647c3
+    year_first: 1670
+    year_last: 1699
+    year_ranges:
+      -   - 1670
+          - 1699
+    year_label: 1670-1699
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-nc5h65ab
+    mint: Christiania
+    catalog:
+      hede: 65ab
+      hede_volume: nc5h
+    metal: silver
+    metal_verified: true
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h65ab — Tiefenseite fehlt)
+    verification_note:
+      de: 'Nur die Übersichtsreihe von c5hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve,
+        som her skal opfattes som kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
+      en: 'Only the overview-table row of c5hede2.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve, som her skal
+        opfattes som kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c5hede2.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve, som her skal opfattes som
+        kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
+      da: 'Kun oversigtsrækken hos c5hede2.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve, som her skal opfattes
+        som kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
+    composed_of:
+      - c-6d2647c3
+    label: unified-dk-hede-nc5h65ab
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: ½ Speciedaler
+    ruler: Frederik III
+    issuing_entity: danish_norway
+    id: c-b991a507
+    year_first: 1649
+    year_last: 1653
+    year_ranges:
+      -   - 1649
+          - 1653
+    year_label: 1649-1653
+    mint: Christiania
+    catalog:
+      hede: 11abc
+      hede_volume: nf3h
+    metal: silver
+    metal_verified: true
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h11abc — Tiefenseite fehlt)
+    verification_note:
+      de: 'Nur die Übersichtsreihe von f3hede3.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «N11A: Fs. omskrift: . Bs. PG og N11B: Fs. omskrift: . Bs. FG og humle N11C: Fs. omskrift: . Bs. FG og humle»'
+      en: 'Only the overview-table row of f3hede3.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «N11A: Fs. omskrift: . Bs. PG og N11B: Fs. omskrift: . Bs. FG og humle N11C: Fs. omskrift: . Bs. FG og humle»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці f3hede3.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «N11A: Fs. omskrift: . Bs. PG og N11B: Fs. omskrift: . Bs. FG og humle N11C: Fs. omskrift: . Bs. FG og humle»'
+      da: 'Kun oversigtsrækken hos f3hede3.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «N11A: Fs. omskrift: . Bs. PG og N11B: Fs. omskrift: . Bs. FG og humle N11C: Fs. omskrift: . Bs. FG og humle»'
+    composed_of:
+      - c-b991a507
+    label: unified-dk-hede-nf3h11abc
+    origin: promoted
+  - fuss: 9_25_thaler
+    phase: I
+    kind: kurant
+    nominal: 2 Speciedaler
+    ruler: Frederik III
+    issuing_entity: danish_norway
+    fraction: '2'
+    id: c-10ce4fef
+    year_first: 1665
+    year_last: 1665
+    year_label: '1665'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Speciedaler
+          value: silver
+          seed: dk-bruun-9956
+    mint: Christiania
+    catalog:
+      hede: '56'
+      hede_volume: nf3h
+      bruun_collection_id: '9956'
+      sieg: '59'
+      schou: '18'
+      nmd: '61'
+      others:
+        - Aagaard# 101.1
+        - Brekke# 55
+        - Rønning# 42
+        - Thesen# 61
+      numista: '444711'
+      dav: '3622'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 57.55
+        source: numista
+      - value: 57.57
+        source: bruun
+    diameter_mm:
+      - value: 42.0
+        source: numista
+    catalog_alts:
+      - register: km
+        value: '76'
+        source: bruun
+        kind: suspect
+        reason:
+          de: "Krause beschreibt KM 76 als Gegenstück zu Hede 57, nicht zu Hede 55.\n[b]Bruun Part II, lot 14063, S. 219[/b]: [i]«2 Speciedaler, 1665-FG … Dav-3622; KM-76; Hede-56»[/i].\n[b]NumisMaster[/b]
+            (KM 76): [i]«1665 - 1667 … Similar to 1 Specie Daler, KM#74»[/i] (Übers.: «ähnlich 1 Specie Daler, KM#74»).\n[b]Bruun Part II, lot 14068[/b]: KM 74 = Hede 57. [b]danskmoent.dk[/b]: Hede Norge
+            56 [i]«Som N55»[/i], Hede Norge 58 [i]«Som N57»[/i] (Übers.: «wie N55», «wie N57»)."
+          en: "Krause describes KM 76 as the counterpart of Hede 57, not of Hede 55.\n[b]Bruun Part II, lot 14063, p. 219[/b]: [i]«2 Speciedaler, 1665-FG … Dav-3622; KM-76; Hede-56»[/i].\n[b]NumisMaster[/b]
+            (KM 76): [i]«1665 - 1667 … Similar to 1 Specie Daler, KM#74»[/i].\n[b]Bruun Part II, lot 14068[/b]: KM 74 = Hede 57. [b]danskmoent.dk[/b]: Hede Norge 56 [i]«Som N55»[/i], Hede Norge 58 [i]«Som
+            N57»[/i] (transl.: «as N55», «as N57»)."
+          uk: "Krause описує KM 76 як пару до Hede 57, а не до Hede 55.\n[b]Bruun Part II, lot 14063, с. 219[/b]: [i]«2 Speciedaler, 1665-FG … Dav-3622; KM-76; Hede-56»[/i].\n[b]NumisMaster[/b] (KM 76):
+            [i]«1665 - 1667 … Similar to 1 Specie Daler, KM#74»[/i] (перекл.: «подібний до 1 Specie Daler, KM#74»).\n[b]Bruun Part II, lot 14068[/b]: KM 74 = Hede 57. [b]danskmoent.dk[/b]: Hede Norge 56
+            [i]«Som N55»[/i], Hede Norge 58 [i]«Som N57»[/i] (перекл.: «як N55», «як N57»)."
+          da: "Krause beskriver KM 76 som modstykke til Hede 57, ikke til Hede 55.\n[b]Bruun Part II, lot 14063, s. 219[/b]: [i]«2 Speciedaler, 1665-FG … Dav-3622; KM-76; Hede-56»[/i].\n[b]NumisMaster[/b]
+            (KM 76): [i]«1665 - 1667 … Similar to 1 Specie Daler, KM#74»[/i] (overs.: «svarende til 1 Specie Daler, KM#74»).\n[b]Bruun Part II, lot 14068[/b]: KM 74 = Hede 57. [b]danskmoent.dk[/b]: Hede
+            Norge 56 [i]«Som N55»[/i], Hede Norge 58 [i]«Som N57»[/i]."
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14063, p. 193
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede3.htm
+        ref: danskmoent.dk overview f3hede3 (Hede nf3h56 — Tiefenseite fehlt)
+      - type: literature
+        url: https://en.numista.com/444711
+        ref: Numista N#444711 — 2 Speciedaler - Frederik III (Type XXI) - Norway
+    verification_note:
+      de: 'Nur die Übersichtsreihe von f3hede3.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «FG ; Som N55.»'
+      en: 'Only the overview-table row of f3hede3.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «FG ; Som N55.»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці f3hede3.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «FG ; Som N55.»'
+      da: 'Kun oversigtsrækken hos f3hede3.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «FG ; Som N55.»'
+    composed_of:
+      - c-10ce4fef
+    label: unified-dk-hede-nf3h56
+    origin: promoted
+  - fuss: reichsdukatenfuss
+    phase: III
+    kind: kurant
+    nominal: 2 Dukat
+    ruler: Christian V
+    issuing_entity: danish_norway
+    id: c-f088d368
+    year_first: 1678
+    year_last: 1678
+    year_label: '1678'
+    mint: Christiania
+    catalog:
+      hede: 14a
+      hede_volume: nc5h
+    metal: gold
+    metal_verified: true
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c5hede2.htm
+        ref: danskmoent.dk overview c5hede2 (Hede nc5h14a — Tiefenseite fehlt)
+    verification_note:
+      de: 'Nur die Übersichtsreihe von c5hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Som N14; NNUM 1959 s. 185.»'
+      en: 'Only the overview-table row of c5hede2.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «Som N14; NNUM 1959 s. 185.»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c5hede2.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «Som N14; NNUM 1959 s. 185.»'
+      da: 'Kun oversigtsrækken hos c5hede2.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «Som N14; NNUM 1959 s. 185.»'
+    composed_of:
+      - c-f088d368
+    label: unified-dk-hede-nc5h14a
+    origin: promoted
+    fraction: '2'
