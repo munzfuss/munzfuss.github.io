@@ -483,6 +483,12 @@ def _more_refs(body_match: str, body_masked: str, refs: dict) -> dict:
     return more
 
 
+# A paren with prose in it is the cataloguer's comment on the citation
+# («(mistakenly listed with date 1670)», «(incorrectly giving the date
+# 1662)»), not an index: its digits are a date or a cross-reference, so it is
+# neither read nor kept (curator 2026-11-17). A bare volume name («(Erfurt)»)
+# has no lower-case word and stays.
+_PROSE_PAREN_RE = re.compile(r"\([^()]*\b[a-z]{3,}[^()]*\)")
 _CF_OR_UNLISTED_RE = re.compile(r"cf\.|\bcf\b|\bunlisted\b", re.I)
 
 
@@ -526,6 +532,8 @@ def _unresolved_refs(body_match: str, body_masked: str) -> list[str]:
                     break
                 covered[c.start():c.end()] = b"\x01" * (c.end() - c.start())
                 pos = c.end()
+    for m in _PROSE_PAREN_RE.finditer(body_match, lo, hi):
+        covered[m.start():m.end()] = b"\x01" * (m.end() - m.start())
     # The chain starts after the grade sentence («NGC MS-64 Brown.»); a piece
     # before the first pattern match is still part of it («KM-X,M1; Hede-12»).
     if start:
@@ -539,7 +547,7 @@ def _unresolved_refs(body_match: str, body_masked: str) -> list[str]:
             continue
         piece = body_match[seg:i]
         left = "".join(ch for k, ch in enumerate(piece) if not covered[seg + k])
-        text = re.sub(r"\s+", " ", piece).strip(" .,")
+        text = re.sub(r"\s+", " ", _PROSE_PAREN_RE.sub("", piece)).strip(" .,")
         if (re.search(r"\d", left) and text
                 and not _CF_OR_UNLISTED_RE.search(text)):
             out.append(text)

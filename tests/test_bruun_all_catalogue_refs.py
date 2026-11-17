@@ -252,6 +252,19 @@ class Unresolved(unittest.TestCase):
         t = "NGC MS-64. KM-Unlisted (cf. 8, copper); Hede-133B; Lange-Cf 944a; Bruun-7276."
         self.assertEqual(self.unres(t), [])
 
+    def test_comment_paren_dropped(self):
+        t = ("NGC MS-63. Fr-1; KM-A119 (Norway, mistakenly listed with date 1670); "
+             "Hede-39; Sieg-73; Bruun-6738.")
+        self.assertEqual(self.unres(t), [])
+
+    def test_comment_stripped_from_kept_piece(self):
+        t = "NGC MS-62. KM-X,M1 (mistakenly listed as 1670); Hede-12; Bruun-11712."
+        self.assertEqual(self.unres(t), ["KM-X,M1"])
+
+    def test_volume_paren_not_a_comment(self):
+        self.assertIsNone(P._PROSE_PAREN_RE.search("KM-51 (Erfurt)"))
+        self.assertIsNone(P._PROSE_PAREN_RE.search("KM- 539 (Denmark)"))
+
 
 class BuilderKeepsUnresolved(unittest.TestCase):
     @classmethod
