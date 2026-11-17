@@ -271,6 +271,13 @@ class BuilderKeepsUnresolved(unittest.TestCase):
     def setUpClass(cls):
         cls.b = _builder()
 
+    def test_space_after_hyphen_folds(self):
+        entry = {"catalog": {}}
+        self.b._keep_unresolved(entry, "Hede-26A, note p. 194")
+        self.b._keep_unresolved(entry, "Hede- 26A, note p. 194")
+        self.b._keep_unresolved(entry, "Fr—262")
+        self.assertEqual(entry["catalog"]["others"], ["Hede-26A, note p. 194", "Fr—262"])
+
     def test_further_number_without_volume(self):
         entry = {"issuing_entity": "fuerstbisthum_luebeck", "catalog": {"friedberg": "1509", "km": "87"}}
         self.b._apply_volumes(entry, {"refs": {"Fr": "1509", "KM": "87"},

@@ -293,7 +293,10 @@ def _keep_unresolved(entry: dict, text: str) -> None:
     """Keep a citation not read in full: verbatim in `catalog_unresolved`
     (seed only, the record of what is still to be filed) and in
     `catalog.others`, so that it reaches the page as a plain «others» line
-    until it is decided how to file it (curator 2026-11-17)."""
+    until it is decided how to file it (curator 2026-11-17). A space the
+    catalogue printed after the register's hyphen («Hede- 26A», «SM- 5(6)»)
+    is dropped, so the same citation from two lots is one line."""
+    text = re.sub(r"(?<=[^\W\d_])-\s+", "-", text)
     for bucket in (entry.setdefault("catalog_unresolved", []),
                    entry.setdefault("catalog", {}).setdefault("others", [])):
         if text not in bucket:
