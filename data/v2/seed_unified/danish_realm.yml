@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8316 per-source seed entries.
-# Output: 1602 unified entries (one per physical coin).
+# Output: 1601 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -45558,8 +45558,8 @@ coins:
       - dk-bruun-5839
       - dk-hede-c4h9
       - ikmk-18227466
-  - id: c-6914d29c
-    class_id: c-6914d29c
+  - id: c-865b4021
+    class_id: c-865b4021
     label: unified-dk-hede-c4h90
     fuss: seed_unsorted
     phase: hede
@@ -45571,13 +45571,27 @@ coins:
     ruler: Christian IV
     mint: Helsingør
     catalog:
+      km: '34'
       hede: '90'
       hede_volume: c4h
       sieg: '17'
     metal: silver
     metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.093
+        source: ngc
+      - value: 0.093
+        source: numismaster
+    weight_rough_g:
+      - value: 0.713
+        source: ngc
+      - value: 0.713
+        source: numismaster
     catalog_alts:
       - register: sieg
         value: '16'
@@ -45607,11 +45621,19 @@ coins:
             [b]danskmoent.dk, Hede-oversigt Christian 4.[/b]: nr. 86 [i]«16 · 1 Hvid · 1602 · København»[/i], nr. 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
     sources:
       - type: literature
+        url: https://numismaster.com/MC_64958
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/chr/c4h90.htm
         ref: danskmoent.dk (Hede c4h90)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-34-1607-cuid-1049835-duid-1236413
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-64958
       - dk-hede-c4h90
+      - ngc-1049835
     _errata_applied:
       - source: dk-hede-c4h90
         field: sieg
@@ -129634,46 +129656,6 @@ coins:
     composed_of:
       - denmark-numismaster-64951
       - ngc-1049834
-  - id: c-865b4021
-    class_id: c-865b4021
-    label: unified-ngc-1049835
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1607
-    year_last: 1607
-    year_label: '1607'
-    catalog:
-      km: '34'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.093
-        source: ngc
-      - value: 0.093
-        source: numismaster
-    weight_rough_g:
-      - value: 0.713
-        source: ngc
-      - value: 0.713
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_64958
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-34-1607-cuid-1049835-duid-1236413
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-64958
-      - ngc-1049835
   - id: c-dc42d055
     class_id: c-dc42d055
     label: unified-ngc-1049836
