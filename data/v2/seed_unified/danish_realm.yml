@@ -2,7 +2,7 @@
 # Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8316 per-source seed entries.
+# Input: 8318 per-source seed entries.
 # Output: 1603 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -43234,6 +43234,9 @@ coins:
           seed: dk-bruun-4776
     sources:
       - type: literature
+        url: https://numismaster.com/MC_110715
+        ref: NumisMaster
+      - type: literature
         url: https://numismaster.com/MC_127322
         ref: NumisMaster
       - type: auction
@@ -43248,6 +43251,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-lion-daler-km-4-1608-cuid-1055810-duid-1238724
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-lion-dalar-km-4-1608-cuid-1100471-duid-1448462
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Udmøntet 765 stk. af Hans Flemming. Flensborg: FAA (1987) Galster: Nat.Arb. 1959 side 110 Wilcke VI side 101-114»'
@@ -43259,11 +43265,13 @@ coins:
         1965. Bemærkning i indekset: «Udmøntet 765 stk. af Hans Flemming. Flensborg: FAA (1987) Galster: Nat.Arb. 1959 side 110 Wilcke VI side 101-114»'
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-110715
       - denmark-numismaster-127322
       - dk-bruun-4776
       - dk-hede-c4h65
       - kmk-137194
       - ngc-1055810
+      - ngc-1100471
   - id: c-61196890
     class_id: c-61196890
     label: unified-dk-hede-c4h67
