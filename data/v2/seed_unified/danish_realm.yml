@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8316 per-source seed entries.
-# Output: 1603 unified entries (one per physical coin).
+# Output: 1602 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -45186,6 +45186,8 @@ coins:
       schou: 11-17
       sieg: '16'
       numista: '54910'
+      others:
+        - B# 54a
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -45235,6 +45237,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-hvid-1602/?tid=162978
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137639
+        ref: KMM 137639 (Inv. RP 99.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-hvid-km-9-1602-cuid-1049978-duid-1236412
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -45249,6 +45254,7 @@ coins:
       - dk-hede-c4h86
       - dk-numista-54910
       - dk-tid-162978
+      - kmk-137639
       - ngc-1049978
   - id: c-8e810409
     class_id: c-8e810409
@@ -45567,12 +45573,38 @@ coins:
     catalog:
       hede: '90'
       hede_volume: c4h
-      schou: 11-17
-      sieg: '16'
+      sieg: '17'
     metal: silver
     metal_verified: true
     mint_verified: true
     verified: false
+    catalog_alts:
+      - register: sieg
+        value: '16'
+        source: hede
+        kind: erroneous
+        reason:
+          de: "Die Klammer der Seite c4h90 wiederholt wörtlich die der Seite c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, Hede-Übersicht Christian 4.[/b]: Nr. 86 [i]«16 · 1 Hvid · 1602 · København»[/i], Nr. 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
+          en: "The bracket on page c4h90 repeats word for word that of page c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, Hede index Christian 4.[/b]: no. 86 [i]«16 · 1 Hvid · 1602 · København»[/i], no. 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
+          uk: "Дужка на сторінці c4h90 дослівно повторює дужку сторінки c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, покажчик Hede, Christian 4.[/b]: № 86 [i]«16 · 1 Hvid · 1602 · København»[/i], № 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
+          da: "Parentesen på siden c4h90 gentager ordret parentesen på siden c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, Hede-oversigt Christian 4.[/b]: nr. 86 [i]«16 · 1 Hvid · 1602 · København»[/i], nr. 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
+      - register: schou
+        value: 11-17
+        source: hede
+        kind: erroneous
+        reason:
+          de: "Die Klammer der Seite c4h90 wiederholt wörtlich die der Seite c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, Hede-Übersicht Christian 4.[/b]: Nr. 86 [i]«16 · 1 Hvid · 1602 · København»[/i], Nr. 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
+          en: "The bracket on page c4h90 repeats word for word that of page c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, Hede index Christian 4.[/b]: no. 86 [i]«16 · 1 Hvid · 1602 · København»[/i], no. 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
+          uk: "Дужка на сторінці c4h90 дослівно повторює дужку сторінки c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, покажчик Hede, Christian 4.[/b]: № 86 [i]«16 · 1 Hvid · 1602 · København»[/i], № 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
+          da: "Parentesen på siden c4h90 gentager ordret parentesen på siden c4h86 (1 Hvid 1602, København).\n[b]danskmoent.dk, Hede 90[/b]: [i]«1 Hvid 1607, Helsingør … (Hede 86, Schou 11-17, Sieg 16)»[/i].\n\
+            [b]danskmoent.dk, Hede-oversigt Christian 4.[/b]: nr. 86 [i]«16 · 1 Hvid · 1602 · København»[/i], nr. 90 [i]«17 · 1 Hvid · 1607 · Helsingør»[/i]."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h90.htm
@@ -45580,6 +45612,11 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-c4h90
+    _errata_applied:
+      - source: dk-hede-c4h90
+        field: sieg
+        printed: '16'
+        correct: '17'
   - id: c-cee3b2ee
     class_id: c-cee3b2ee
     label: unified-dk-hede-c4h91
@@ -111137,33 +111174,6 @@ coins:
       - kmk-137638
       - kmk-158031
       - kmk-276001
-  - id: c-21a2bf3e
-    class_id: c-21a2bf3e
-    label: unified-kmk-137639
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1602
-    year_last: 1602
-    year_label: '1602'
-    ruler: Christian IV
-    catalog:
-      schou: '14'
-      others:
-        - B# 54a
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137639
-        ref: KMM 137639 (Inv. RP 99.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-137639
   - id: c-982f6b4e
     class_id: c-982f6b4e
     label: unified-kmk-137640
