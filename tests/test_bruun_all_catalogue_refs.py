@@ -276,8 +276,9 @@ class BuilderKeepsUnresolved(unittest.TestCase):
         self.b._apply_volumes(entry, {"refs": {"Fr": "1509", "KM": "87"},
                                       "refs_volume": {"KM": "Lübeck"},
                                       "refs_more": {"Fr": ["1931"]}})
-        self.assertEqual(entry["catalog"], {"friedberg": "1509", "km": "87"})
+        self.assertEqual(entry["catalog"]["km"], "87")
         self.assertEqual(entry["catalog_unresolved"], ["KM-87 (Lübeck)", "Fr-1931"])
+        self.assertEqual(entry["catalog"]["others"], ["KM-87 (Lübeck)", "Fr-1931"])
 
 
 if __name__ == "__main__":

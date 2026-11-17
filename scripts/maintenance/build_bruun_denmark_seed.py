@@ -290,9 +290,14 @@ def _volume_items(lot: dict, key: str) -> list[tuple[str, str | None]]:
 
 
 def _keep_unresolved(entry: dict, text: str) -> None:
-    bucket = entry.setdefault("catalog_unresolved", [])
-    if text not in bucket:
-        bucket.append(text)
+    """Keep a citation not read in full: verbatim in `catalog_unresolved`
+    (seed only, the record of what is still to be filed) and in
+    `catalog.others`, so that it reaches the page as a plain «others» line
+    until it is decided how to file it (curator 2026-11-17)."""
+    for bucket in (entry.setdefault("catalog_unresolved", []),
+                   entry.setdefault("catalog", {}).setdefault("others", [])):
+        if text not in bucket:
+            bucket.append(text)
 
 
 def _apply_volumes(entry: dict, lot: dict) -> None:
@@ -1425,8 +1430,8 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     }
     # Citations the parser did not read in full, verbatim (parser
     # `_unresolved_refs`); kept until it is decided how to file them.
-    if lot.get("refs_unresolved"):
-        entry["catalog_unresolved"] = list(lot["refs_unresolved"])
+    for text in lot.get("refs_unresolved") or []:
+        _keep_unresolved(entry, text)
     _apply_volumes(entry, lot)
 
     # Carry mintmaster as a note field (project schema doesn't have dedicated)
