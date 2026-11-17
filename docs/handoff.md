@@ -30,8 +30,9 @@
   to advisory — against §9.4 (a denomination difference overrides a shared base). Until fixed, such pairs need a
   manual no_merges. Fix to propose: only an identical full index may demote a nominal conflict; measure on all
   entities by seed id before committing.
-- **Open — curator decisions:** nf3h1 (hedged off-strike); c5h30 / f3h25 off-strike stubs (exclusion candidates);
-  the KM 34 1 Hvid 1607 class not merged with c4h90.
+- **Settled 2026-11-17 (aae3462):** Hede 90 joins KM 34 (1 Hvid 1607); Hede 30 / 25 off-strike index stubs excluded;
+  Hede Norge 1 (Hede/Aagaard: «formentlig» a gold afslag) stays as the KM 61 1 Dukat 1660 class — the conflict with
+  Bruun («the first Norwegian Ducat ever») is for the coin's Note when Notes are reworked.
 
 ## 2026-11-14 / 16 — Sieg editions, crowned-C Blaffert, Erik VII datings, Moesgaard 2008 (local, unpushed)
 
