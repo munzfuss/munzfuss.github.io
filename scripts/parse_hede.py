@@ -2078,6 +2078,56 @@ def _extract_letter_groups(text: str, page_hede: str) -> dict | None:
     return out if len(out) >= 2 else None
 
 
+_BODY_HEDE_NUM_RE = re.compile(r"\bHede\s+(?:Norge\s+)?(\d+)")
+
+
+def _drop_spurious_title_numbers(out: dict, html: str, basename: str) -> None:
+    """Drop a Hede number that only the page's <TITLE> carries.
+
+    danskmoent's tab titles are sometimes copied from another page:
+    nf3h7 is titled «Frederik 3., Hede 15» while its text reads «(Hede
+    Norge 7, Schou 10)» — a ½ Dukat; Hede Norge 15 is the 2 Speciedaler
+    1653 of the f3hede3 index, which has no page. Read as a catalogue
+    number, the «15» made the index pass treat row N15 as covered, so the
+    coin got no record (curator 2026-11-17). Nine pages show the pattern
+    (c5h124 «173», c5h69 «67», f3h41 «42», f3h62 «66-64», f5h28 «101»,
+    f8h5 «55», nc5h16 «6», nf3h7 «15»; c4h90 is the reverse case).
+
+    A title token is dropped only when the page text names Hede numbers,
+    none of them is the token's, AND the token is not the page's own file
+    number. The last condition protects c4h90: its title «Hede 90» matches
+    the file and the index row 90 (1 Hvid 1607, Helsingør), while its text
+    prints «(Hede 86, … Sieg 16)» — the slip there is in the text, not the
+    title, and it is left for the curator."""
+    title_nums = out.get("hede_numbers_title") or []
+    if not title_nums:
+        return
+    body = _strip_html(_TITLE_TAG_RE.sub("", html))
+    body_nums = set(_BODY_HEDE_NUM_RE.findall(body))
+    if not body_nums:
+        return
+    own_m = re.match(r"^n?[cf]\d+h(\d+)", basename)
+    own = own_m.group(1) if own_m else None
+    dropped = []
+    for tok in title_nums:
+        parts = re.findall(r"\d+", tok)
+        if parts and all(p in body_nums or p == own for p in parts):
+            continue
+        dropped.append(tok)
+    if not dropped:
+        return
+    out["hede_numbers_title"] = [t for t in title_nums if t not in dropped]
+    out["hede_title_ignored"] = dropped
+    refs = out.get("catalog_refs") or {}
+    if refs.get("Hede"):
+        gone = {t.lower() for t in dropped}
+        kept = [h for h in refs["Hede"] if h.lower() not in gone]
+        if kept:
+            refs["Hede"] = kept
+        else:
+            refs.pop("Hede")
+
+
 def parse_one(html: str, basename: str) -> dict:
     text = _strip_html(html)
     ruler_label, volume = _ruler_volume(basename)
@@ -2317,6 +2367,7 @@ def parse_one(html: str, basename: str) -> dict:
             _HEDE_ANCHOR + r"(\d+[A-Za-z]*(?:[\-,]\s*\d+[A-Za-z]*)*)",
             title_str,
         )
+        _drop_spurious_title_numbers(out, html, basename)
 
     # Strip the HR sentinel from raw_text too — internal marker only.
     out["raw_text"] = text.replace(_HR_SENTINEL, "").strip()

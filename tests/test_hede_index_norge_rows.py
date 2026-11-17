@@ -78,6 +78,29 @@ class NorgeIndexRows(unittest.TestCase):
         self.assertFalse(self.stubs["nc5h31ab"]["_bare_row_printed"])
 
 
+class TitleOnlyHedeNumber(unittest.TestCase):
+    """A Hede number only the <TITLE> carries is dropped — unless it is the
+    page's own file number (c4h90: the slip there is in the text)."""
+
+    def test_title_number_absent_from_text_dropped(self):
+        html = ("<HTML><HEAD><TITLE>Frederik 3., Hede 15</TITLE></HEAD><BODY>"
+                "<H1>Frederik 3.<BR>1/2 Dukat u.&aring;r (ca. 1669), Christiania</H1>"
+                "Forside: portr&aelig;t; bagside: norske l&oslash;ve "
+                "(Hede Norge 7, Schou 10)</BODY></HTML>")
+        out = hede.parse_one(html, "nf3h7")
+        self.assertEqual(out["hede_title_ignored"], ["15"])
+        self.assertEqual(out.get("hede_numbers_title"), [])
+        self.assertNotIn("15", out["catalog_refs"]["Hede"])
+
+    def test_own_file_number_in_title_kept(self):
+        html = ("<HTML><HEAD><TITLE>Christian 4., Hede 90</TITLE></HEAD><BODY>"
+                "<H1>Christian 4.<BR>1 Hvid 1607, Helsing&oslash;r</H1>"
+                "Forside: C, bagside: kors (Hede 86, Schou 11-17, Sieg 16)</BODY></HTML>")
+        out = hede.parse_one(html, "c4h90")
+        self.assertNotIn("hede_title_ignored", out)
+        self.assertEqual(out["hede_numbers_title"], ["90"])
+
+
 class SeparateNumberNotSuperseding(unittest.TestCase):
     def test_bare_kept_beside_separate_number(self):
         coins = [{"id": "dk-hede-nc5h14", "fuss": "seed_unsorted", "catalog": {"hede": "14"}},
