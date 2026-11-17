@@ -289,6 +289,12 @@ def _volume_items(lot: dict, key: str) -> list[tuple[str, str | None]]:
     return out
 
 
+def _keep_unresolved(entry: dict, text: str) -> None:
+    bucket = entry.setdefault("catalog_unresolved", [])
+    if text not in bucket:
+        bucket.append(text)
+
+
 def _apply_volumes(entry: dict, lot: dict) -> None:
     """File KM / Sieg / Fr numbers by the country volume the lot names.
 
@@ -317,8 +323,16 @@ def _apply_volumes(entry: dict, lot: dict) -> None:
     for key, field in (("KM", "km"), ("Sieg", "sieg"), ("Fr", "friedberg")):
         items = _volume_items(lot, key)
         if not any(vol for _, vol in items):
+            # A further number with no volume named («Fr-1509 and 1931»,
+            # lot 14287): which volume it is in is not printed — kept verbatim.
+            for val, _ in items[1:]:
+                _keep_unresolved(entry, f"{key}-{val}")
             continue
         if any(vol and vol not in _VOLUME_CODE for _, vol in items):
+            # A volume the schema does not model («KM-51 (Erfurt)»): the
+            # number stays where it is; the printed volume is kept verbatim.
+            for val, vol in items:
+                _keep_unresolved(entry, f"{key}-{val} ({vol})" if vol else f"{key}-{val}")
             continue
         by_vol: dict[str, list[str]] = {}
         for val, vol in items:
@@ -1409,6 +1423,10 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "mint_verified": bool(mint),
         "sources": [_build_bruun_source(part, lot)],
     }
+    # Citations the parser did not read in full, verbatim (parser
+    # `_unresolved_refs`); kept until it is decided how to file them.
+    if lot.get("refs_unresolved"):
+        entry["catalog_unresolved"] = list(lot["refs_unresolved"])
     _apply_volumes(entry, lot)
 
     # Carry mintmaster as a note field (project schema doesn't have dedicated)

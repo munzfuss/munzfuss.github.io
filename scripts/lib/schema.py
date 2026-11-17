@@ -1277,6 +1277,13 @@ class Coin(_StrictBase):
     catalog_marks: "list[CatalogMark] | None" = None
     catalog_alts: "list[CatalogAlt] | None" = None
     catalog_unverified: "list[CatalogUnverified] | None" = None
+    # Catalogue citations a source prints that the parser could not file in
+    # a field, kept verbatim so no printed index is lost before it is decided
+    # how to file it (curator 2026-11-17): «Fr-1509 and 1931» (no section for
+    # the second number), «Dav-LS530, 3537», «KM-X,M1», «KM-51 (Erfurt)» (a
+    # Krause volume the schema does not model). Not rendered, not matched;
+    # written on the source's seed.
+    catalog_unresolved: list[str] | None = None
     mintmaster: str | None = None
     mintmasters: list[MintmasterEntry] | None = Field(
         None,

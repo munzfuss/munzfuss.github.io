@@ -483,6 +483,70 @@ def _more_refs(body_match: str, body_masked: str, refs: dict) -> dict:
     return more
 
 
+_CF_OR_UNLISTED_RE = re.compile(r"cf\.|\bcf\b|\bunlisted\b", re.I)
+
+
+def _unresolved_refs(body_match: str, body_masked: str) -> list[str]:
+    """Citations in the reference chain that the patterns did not read in full.
+
+    The chain (from the first catalogue citation to the lot's own
+    «Bruun-NNNN») is cut at «;». A piece in which a digit is left over once
+    every pattern match, its qualifier paren and its continuation are taken
+    away is returned verbatim: «Fr-1509 and 1931» (the second Friedberg number
+    names no section), «Dav-LS530, 3537», «KM-X,M1», «Hede-27B/C», a volume
+    the schema does not model («KM-51 (Erfurt)» is read, the «(Erfurt)» is
+    kept here). Kept so that no printed index is lost before it is decided
+    how to file it (curator 2026-11-17). «cf.» / «unlisted» pieces are left
+    out: they do not cite this coin (V2_DECISIONS D31)."""
+    start = _CHAIN_START_RE.search(body_masked)
+    lo = start.start() if start else 0
+    end = _CHAIN_END_RE.search(body_masked, lo)
+    if not end:
+        return []
+    hi = end.start()
+    covered = bytearray(len(body_match))
+    first = hi
+    patterns = list(REF_PATTERNS.items()) + [("H", HEDE_SHORT_RE)]
+    for key, pat in patterns:
+        zone = body_match if key in _UNMASKED_KEYS else body_masked
+        for n_match, m in enumerate(pat.finditer(zone, lo, hi)):
+            first = min(first, m.start())
+            covered[m.start():m.end()] = b"\x01" * (m.end() - m.start())
+            pos = m.end()
+            while True:
+                # A qualifier paren is read for a further value (it goes to
+                # `refs_more` with the value) and for a volume name; after the
+                # first value it is otherwise dropped, so that piece stays.
+                q = _QUALIFIER_RE.match(body_match, pos)
+                if q and q.end() <= hi and (n_match or _volume_after(body_match, pos)):
+                    covered[q.start():q.end()] = b"\x01" * (q.end() - q.start())
+                    pos = q.end()
+                c = _CONTINUATION_RE.match(body_match, pos)
+                if not c or c.end() > hi:
+                    break
+                covered[c.start():c.end()] = b"\x01" * (c.end() - c.start())
+                pos = c.end()
+    # The chain starts after the grade sentence («NGC MS-64 Brown.»); a piece
+    # before the first pattern match is still part of it («KM-X,M1; Hede-12»).
+    if start:
+        dot = body_match.find(". ", start.end(), hi)
+        if dot != -1:
+            first = min(first, dot + 2)
+    out: list[str] = []
+    seg = first
+    for i in range(first, hi + 1):
+        if i < hi and body_match[i] != ";":
+            continue
+        piece = body_match[seg:i]
+        left = "".join(ch for k, ch in enumerate(piece) if not covered[seg + k])
+        text = re.sub(r"\s+", " ", piece).strip(" .,")
+        if (re.search(r"\d", left) and text
+                and not _CF_OR_UNLISTED_RE.search(text)):
+            out.append(text)
+        seg = i + 1
+    return out
+
+
 YEAR_RE = re.compile(r"\b(1[1-9]\d{2}|20\d{2})\b")
 # Lower bound 1100: covers the full Scandinavian medieval-coinage horizon
 # (early Norwegian penningar, Erik VII of Pomerania ND (1396-1439), etc.).
@@ -898,6 +962,7 @@ def parse_part(slug: str) -> list[dict]:
             mm = HEDE_SHORT_RE.search(body_for_refs)
             if mm:
                 refs["Hede"] = mm.group(1)
+        refs_unresolved = _unresolved_refs(body_match, body_for_refs)
         # Year — meta_line first (cataloguer's authoritative dating),
         # body_match fallback. See `extract_year` for the failure modes
         # this guards against (pre-1500 floor + catalog-year traps).
@@ -1133,6 +1198,7 @@ def parse_part(slug: str) -> list[dict]:
             "refs": refs,
             **({"refs_more": refs_more} if refs_more else {}),
             **({"refs_volume": refs_volume} if refs_volume else {}),
+            **({"refs_unresolved": refs_unresolved} if refs_unresolved else {}),
             "body_excerpt": body[:600],
         })
 

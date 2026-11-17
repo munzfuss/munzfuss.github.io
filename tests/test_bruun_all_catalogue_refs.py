@@ -230,5 +230,42 @@ class MergerNamedVolume(unittest.TestCase):
         self.assertFalse(set(a) & set(b))
 
 
+class Unresolved(unittest.TestCase):
+    """Citations the patterns did not read in full are kept verbatim."""
+
+    def unres(self, text):
+        return P._unresolved_refs(text, P._mask_parens(text))
+
+    def test_second_number_without_register(self):
+        t = "NGC MS-62. Dav-LS530, 3537; KM-115; Hede-63E; Bruun-5851."
+        self.assertEqual(self.unres(t), ["Dav-LS530, 3537"])
+
+    def test_unread_shape(self):
+        t = "NGC AU-58. KM-X,M1; Hede-12; Bruun-11712."
+        self.assertIn("KM-X,M1", self.unres(t))
+
+    def test_fully_read_chain_gives_nothing(self):
+        t = "NGC AU Details—Cleaned. Dav-1295; KM- 539 (Denmark); KM-230 (Norway); NMD-2; Bruun-7577."
+        self.assertEqual(self.unres(t), [])
+
+    def test_cf_left_out(self):
+        t = "NGC MS-64. KM-Unlisted (cf. 8, copper); Hede-133B; Lange-Cf 944a; Bruun-7276."
+        self.assertEqual(self.unres(t), [])
+
+
+class BuilderKeepsUnresolved(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.b = _builder()
+
+    def test_further_number_without_volume(self):
+        entry = {"issuing_entity": "fuerstbisthum_luebeck", "catalog": {"friedberg": "1509", "km": "87"}}
+        self.b._apply_volumes(entry, {"refs": {"Fr": "1509", "KM": "87"},
+                                      "refs_volume": {"KM": "Lübeck"},
+                                      "refs_more": {"Fr": ["1931"]}})
+        self.assertEqual(entry["catalog"], {"friedberg": "1509", "km": "87"})
+        self.assertEqual(entry["catalog_unresolved"], ["KM-87 (Lübeck)", "Fr-1931"])
+
+
 if __name__ == "__main__":
     unittest.main()
