@@ -125,5 +125,110 @@ class RefsMore(unittest.TestCase):
         self.assertEqual(more(t), {})
 
 
+class Volumes(unittest.TestCase):
+    """The volume a lot names after a KM / Sieg / Fr number (curator 2026-11-17)."""
+
+    def test_volume_after_number(self):
+        t = "Sieg-21 (Denmark); Sieg-13 (Norway)"
+        self.assertEqual(P._volume_after(t, t.index(" (Denmark)")), "Denmark")
+
+    def test_line_break_hyphen(self):
+        t = "Fr-96 (Den-\nmark); KM-A119"
+        self.assertEqual(P._volume_after(t, t.index(" (Den")), "Denmark")
+
+    def test_other_paren_is_not_a_volume(self):
+        for t in ("KM-9 (copper);", "KM-A119 (Norway, mistakenly listed with date 1670);"):
+            self.assertIsNone(P._volume_after(t, t.index(" (")))
+
+
+def _builder():
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    sys.path.insert(0, str(ROOT / "scripts" / "maintenance"))
+    spec = importlib.util.spec_from_file_location(
+        "bruun_builder", ROOT / "scripts" / "maintenance" / "build_bruun_denmark_seed.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+class ApplyVolumes(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.b = _builder()
+
+    def run_case(self, entity, catalog, refs, refs_volume, refs_more):
+        entry = {"issuing_entity": entity, "catalog": dict(catalog)}
+        self.b._apply_volumes(entry, {"refs": refs, "refs_volume": refs_volume,
+                                      "refs_more": refs_more})
+        return entry["catalog"]
+
+    def test_norwegian_coin_danish_sieg(self):
+        # lot 13202, Norwegian 3 Krone: «Sieg-21 (Denmark); Sieg-13 (Norway)»
+        cat = self.run_case("danish_norway", {"sieg": "21", "km": "449"},
+                            {"Sieg": "21", "KM": "449"}, {"Sieg": "Denmark"},
+                            {"Sieg": ["13 (Norway)"]})
+        self.assertEqual(cat["sieg"], "13")
+        self.assertEqual(cat["sieg_denmark"], "21")
+        self.assertEqual(cat["km"], "449")
+
+    def test_danish_coin_two_krause_volumes(self):
+        # lot 11276: «KM-539 (Denmark); KM-230 (Norway)»
+        cat = self.run_case("danish_realm", {"km": "539"}, {"KM": "539"},
+                            {"KM": "Denmark"}, {"KM": ["230 (Norway)"]})
+        self.assertEqual(cat["km"], {"dk": "539", "nor": "230"})
+
+    def test_friedberg_both_volumes(self):
+        # lot 17085, Norwegian 2 Ducat: «Fr-5b (Norway); Fr-96 (Denmark)»
+        cat = self.run_case("danish_norway", {"friedberg": "5b"}, {"Fr": "5b"},
+                            {"Fr": "Norway"}, {"Fr": ["96 (Denmark)"]})
+        self.assertEqual(cat["friedberg"], "5b")
+        self.assertEqual(cat["fr_denmark"], "96")
+
+    def test_only_other_volume(self):
+        # lot 14102, Norwegian 1 Ducat: «Fr-189 (Denmark)»
+        cat = self.run_case("danish_norway", {"friedberg": "189"}, {"Fr": "189"},
+                            {"Fr": "Denmark"}, {})
+        self.assertNotIn("friedberg", cat)
+        self.assertEqual(cat["fr_denmark"], "189")
+
+    def test_unmodelled_volume_left_as_printed(self):
+        # lot 14142: «KM-51 (Erfurt)»
+        cat = self.run_case("sweden", {"km": "51"}, {"KM": "51"}, {"KM": "Erfurt"}, {})
+        self.assertEqual(cat["km"], "51")
+
+    def test_untagged_lot_untouched(self):
+        cat = self.run_case("danish_realm", {"sieg": "6"}, {"Sieg": "6"}, {}, {})
+        self.assertEqual(cat, {"sieg": "6"})
+
+
+class MergerNamedVolume(unittest.TestCase):
+    """A number a source names as the other volume leaves the class's bare field."""
+
+    @classmethod
+    def setUpClass(cls):
+        import sys
+        sys.path.insert(0, str(ROOT / "scripts"))
+        sys.path.insert(0, str(ROOT / "scripts" / "maintenance"))
+        import merge_seeds_cross_source as m
+        cls.m = m
+
+    def test_hede_bare_sieg_named_danish_by_bruun(self):
+        members = [
+            {"id": "dk-bruun-7297", "catalog": {"km": "449", "sieg": "13", "sieg_denmark": "21"}},
+            {"id": "dk-hede-f4h35", "catalog": {"sieg": "21"}},
+        ]
+        cat, _ = self.m._deep_merge_catalog(members, "danish_norway")
+        self.assertEqual(cat["sieg"], "13")
+        self.assertEqual(cat["sieg_denmark"], "21")
+
+    def test_volume_scoped_refs_never_meet_bare(self):
+        a = self.m._catalog_refs({"ruler": "Frederik IV", "catalog": {"sieg_denmark": "21"}},
+                                 "danish_norway", fresh=True)
+        b = self.m._catalog_refs({"ruler": "Frederik IV", "catalog": {"sieg": "21"}},
+                                 "danish_norway", fresh=True)
+        self.assertFalse(set(a) & set(b))
+
+
 if __name__ == "__main__":
     unittest.main()

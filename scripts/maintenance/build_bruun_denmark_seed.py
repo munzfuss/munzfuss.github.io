@@ -265,6 +265,88 @@ REF_FIELDS = {
 }
 
 
+# Country volumes Bruun names after a KM / Sieg / Fr number (parser
+# `refs_volume` for the first number, the paren of each `refs_more` value).
+_VOLUME_CODE = {"Denmark": "dk", "Norway": "nor", "Sweden": "se"}
+# Sieg / Friedberg number in the other volume → its own field (schema
+# CatalogRefs.sieg_denmark … fr_norway). A bare sieg / friedberg stays the
+# record's own volume.
+_VOLUME_SUFFIX = {"dk": "denmark", "nor": "norway"}
+
+
+def _volume_items(lot: dict, key: str) -> list[tuple[str, str | None]]:
+    """Every number the lot prints for `key`, with the volume it names (or None)."""
+    out: list[tuple[str, str | None]] = []
+    first = (lot.get("refs") or {}).get(key)
+    if first:
+        out.append((str(first), (lot.get("refs_volume") or {}).get(key)))
+    for v in (lot.get("refs_more") or {}).get(key, []):
+        m = re.fullmatch(r"(.+?) \((.+)\)", str(v))
+        if m:
+            out.append((m.group(1), re.sub(r"-\s+", "", m.group(2)).strip()))
+        else:
+            out.append((str(v), None))
+    return out
+
+
+def _apply_volumes(entry: dict, lot: dict) -> None:
+    """File KM / Sieg / Fr numbers by the country volume the lot names.
+
+    Krause, Sieg and Friedberg each number the Danish and the Norwegian
+    volumes separately, and Bruun names the volume when it cites one that
+    is not obvious: lot 13202, a Norwegian 3 Krone, «Sieg-21 (Denmark);
+    Sieg-13 (Norway)»; lot 11276, a Danish 6 Mark, «KM-539 (Denmark); KM-230
+    (Norway)». KM goes to the register-keyed dict the schema already has
+    (`{dk: '539', nor: '230'}`); Sieg / Fr keep the record's own volume in the
+    bare field and put the other volume in `sieg_denmark` / `sieg_norway` /
+    `fr_denmark` / `fr_norway` (curator 2026-11-17). A number without a
+    volume name is in the record's own volume. A lot naming a volume we do
+    not model («KM-51 (Erfurt)», «KM-87 (Lübeck)») is left as printed."""
+    if not (lot.get("refs_volume") or any(
+            k in (lot.get("refs_more") or {}) for k in ("KM", "Sieg", "Fr"))):
+        return
+    _md = str(Path(__file__).resolve().parent)
+    if _md not in sys.path:
+        sys.path.insert(0, _md)
+    from merge_seeds_cross_source import _ENTITY_TO_KM_REGISTER
+    ent = entry.get("issuing_entity")
+    ent = ent[0] if isinstance(ent, list) else ent
+    km_default = _ENTITY_TO_KM_REGISTER.get(ent or "")
+    own = "nor" if km_default == "nor" else "dk"
+    cat = entry["catalog"]
+    for key, field in (("KM", "km"), ("Sieg", "sieg"), ("Fr", "friedberg")):
+        items = _volume_items(lot, key)
+        if not any(vol for _, vol in items):
+            continue
+        if any(vol and vol not in _VOLUME_CODE for _, vol in items):
+            continue
+        by_vol: dict[str, list[str]] = {}
+        for val, vol in items:
+            code = _VOLUME_CODE[vol] if vol else (km_default if key == "KM" else own)
+            if code is None:
+                break
+            bucket = by_vol.setdefault(code, [])
+            if val not in bucket:
+                bucket.append(val)
+        else:
+            def one(vals):
+                return vals[0] if len(vals) == 1 else vals
+            if key == "KM":
+                if set(by_vol) != {km_default}:
+                    cat["km"] = {reg: one(v) for reg, v in by_vol.items()}
+                continue
+            if any(code not in _VOLUME_SUFFIX for code in by_vol if code != own):
+                continue
+            base = "sieg" if key == "Sieg" else "fr"
+            if own in by_vol:
+                cat[field] = one(by_vol[own])
+            else:
+                cat.pop(field, None)
+            for code, vals in by_vol.items():
+                if code != own:
+                    cat[f"{base}_{_VOLUME_SUFFIX[code]}"] = one(vals)
+
+
 # Canonical PDF URL per Bruun Part. Stack's Bowers Galleries published the
 # L. E. Bruun collection across four sales (Sept 2024, March 2025, October 2025,
 # March 2026); Part II's PDF is hosted by danskmoent.dk, the rest by
@@ -1208,12 +1290,11 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # `others` as «Label# value». Nothing dropped, nothing breaks validation.
     catalog: dict[str, Any] = catalog_from_ref_dict(refs, REF_FIELDS, printed_label=True)
     # Further values of a catalogue the lot cites twice (parser `refs_more`).
-    # Only codes WITHOUT a typed field are taken — they go to `others` with the
-    # printed qualifier («NM# 8 (1992)», «Delzanno# 44»). A second KM / Sieg /
-    # Fr is printed for another Krause volume or catalogue section («KM-230
-    # (Norway)» beside «KM-539 (Denmark)»); in the typed field it would read as
-    # this page's register and make a false unifying edge (§9.4), so those stay
-    # in the cache until the register is modelled.
+    # Only codes WITHOUT a typed field are taken here — they go to `others`
+    # with the printed qualifier («NM# 8 (1992)», «Delzanno# 44»). A second
+    # KM / Sieg / Fr is in another country volume («KM-230 (Norway)» beside
+    # «KM-539 (Denmark)»); `_apply_volumes` files those by volume once the
+    # entity is known.
     extra = {k: v for k, v in (lot.get("refs_more") or {}).items()
              if (REF_FIELDS.get(k) or k.lower()) not in schema_catalog_fields()}
     if extra:
@@ -1328,6 +1409,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "mint_verified": bool(mint),
         "sources": [_build_bruun_source(part, lot)],
     }
+    _apply_volumes(entry, lot)
 
     # Carry mintmaster as a note field (project schema doesn't have dedicated)
     if mintmaster:

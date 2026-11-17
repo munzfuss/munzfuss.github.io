@@ -417,6 +417,22 @@ _CONTINUATION_RE = re.compile(
 _QUALIFIER_RE = re.compile(r"\s*\(([^()]{1,30})\)")
 # Keys a lot prints once by construction — never collected twice.
 _SINGLE_KEYS = frozenset({"Bruun", "Pn"})
+# Catalogues that number each country volume separately; Bruun names the
+# volume in a paren after the number when it cites another one («KM-539
+# (Denmark); KM-230 (Norway)», «Sieg-21 (Denmark); Sieg-13 (Norway)»).
+_VOLUME_KEYS = frozenset({"KM", "Sieg", "Fr"})
+
+
+def _volume_after(text: str, pos: int) -> str | None:
+    """The volume a lot names in the paren right after a number at `pos`:
+    «(Denmark)», «(Den-\\nmark)» (a line-break hyphen) → «Denmark». Any other
+    paren («(copper)», «(Norway, mistakenly listed with date 1670)») is not
+    a volume name and gives None."""
+    q = _QUALIFIER_RE.match(text, pos)
+    if not q:
+        return None
+    name = re.sub(r"-\s+", "", q.group(1)).strip()
+    return name if re.fullmatch(r"[A-ZÆØÅ][a-zäöüæøå]+", name) else None
 
 
 def _more_refs(body_match: str, body_masked: str, refs: dict) -> dict:
@@ -862,11 +878,16 @@ def parse_part(slug: str) -> list[dict]:
         # digit-led interior so editorial prose parens are still dropped.
         body_for_refs = _mask_parens(body_match)
         refs = {}
+        refs_volume = {}
         for k, pat in REF_PATTERNS.items():
             text = body_match if k in _UNMASKED_KEYS else body_for_refs
             mm = pat.search(text)
             if mm:
                 refs[k] = _ref_value(k, mm)
+                if k in _VOLUME_KEYS:
+                    vol = _volume_after(body_match, mm.end())
+                    if vol:
+                        refs_volume[k] = vol
         refs_more = _more_refs(body_match, body_for_refs, refs)
         # «H-150», «H-14B»: on 13 lots Bruun abbreviates Hede to a bare «H»,
         # in the slot Hede normally takes (after KM, before Sieg). It is not in
@@ -1111,6 +1132,7 @@ def parse_part(slug: str) -> list[dict]:
             "catalogue_section": catalogue_section,
             "refs": refs,
             **({"refs_more": refs_more} if refs_more else {}),
+            **({"refs_volume": refs_volume} if refs_volume else {}),
             "body_excerpt": body[:600],
         })
 
