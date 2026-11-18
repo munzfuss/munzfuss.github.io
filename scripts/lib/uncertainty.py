@@ -11,7 +11,7 @@ from __future__ import annotations
 
 HEDGED = frozenset({"circa", "attributed", "query", "decade", "century",
                     "illegible", "after", "window", "doubt", "possibly",
-                    "alternatives", "span", "museum"})
+                    "alternatives", "span", "museum", "undated"})
 INFERRED = frozenset({"reign", "other_page", "feud_window", "text_year",
                       "standard", "standard_weight", "reign_holstein", "default", "compiled", "curator_window",
                       "from_name", "uncited", "type_assay", "other_source", "page_values", "analogy"})

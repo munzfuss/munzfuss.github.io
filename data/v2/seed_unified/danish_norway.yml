@@ -28757,6 +28757,22 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-1097945
+          source: ngc
+          years: '1661'
+        - seed: denmark-numismaster-110728
+          source: numismaster
+          years: '1661'
+        - seed: dk-tid-145466
+          source: ucoin
+          years: '1661'
+      uncertain:
+        - seed: dk-hede-nf3h39
+          source: hede
+          years: '1661'
     fineness:
       - value: 0.875
         source: hede
@@ -28778,6 +28794,14 @@ coins:
     diameter_mm:
       - value: 45.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: hede
+          as_printed: U.år (1661) (RRR)
+          value: '1661'
+          seed: dk-hede-nf3h39
     sources:
       - type: literature
         url: https://numismaster.com/MC_110728
@@ -28933,9 +28957,6 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-nf3h40
-          source: hede
-          years: '1661'
         - seed: dk-numista-118901
           source: numista
           years: '1661'
@@ -28949,6 +28970,9 @@ coins:
           source: ucoin
           years: '1661'
       uncertain:
+        - seed: dk-hede-nf3h40
+          source: hede
+          years: '1661'
         - seed: dk-bruun-10082
           source: bruun
           years: '1661'
@@ -28989,6 +29013,12 @@ coins:
           as_printed: ND (1661)
           value: '1661'
           seed: dk-bruun-10082
+        - kind: hedged
+          how: attributed
+          source: hede
+          as_printed: U.år (1661) (RRR)
+          value: '1661'
+          seed: dk-hede-nf3h40
       metal:
         - kind: inferred
           how: from_name
@@ -33635,6 +33665,7 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     fineness:
       - value: 0.672
         source: hede
@@ -33784,6 +33815,69 @@ coins:
       - value: 28.6
         source: ucoin
         specimen: dk-tid-144916
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1648-1670
+          seed: dk-hede-nf3h68j
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1662-1663
+          seed: dk-numista-491160
+        - kind: hedged
+          how: span
+          source: ucoin
+          value: 1648–1661
+          seed: dk-tid-143947
+        - kind: hedged
+          how: span
+          source: ucoin
+          value: 1663–1669
+          seed: dk-tid-144916
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1648'
+          seed: kmk-122083
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1658'
+          seed: kmk-394135
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1655'
+          seed: kmk-394136
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1653'
+          seed: kmk-394137
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1650'
+          seed: kmk-394138
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1650'
+          seed: kmk-394139
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1649'
+          seed: kmk-394140
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1649'
+          seed: kmk-394141
     sources:
       - type: literature
         url: https://numismaster.com/MC_110632

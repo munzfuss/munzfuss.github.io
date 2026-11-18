@@ -1099,16 +1099,19 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-c4h84a
-          source: hede
-          years: 1609, 1611
-      uncertain:
-        - seed: ngc-1069703
+        - seed: ngc-1054397
           source: ngc
-          years: 1607–1609
-        - seed: denmark-numismaster-117787
+          years: '1611'
+        - seed: denmark-numismaster-117790
           source: numismaster
-          years: 1607–1609
+          years: '1611'
+        - seed: dk-tid-162992
+          source: ucoin
+          years: '1611'
+      uncertain:
+        - seed: dk-hede-c4h84b
+          source: hede
+          years: '1611'
     uncertainty:
       year:
         - kind: hedged
@@ -1118,10 +1121,22 @@ coins:
           seed: denmark-numismaster-117787
         - kind: hedged
           how: attributed
+          source: hede
+          as_printed: U.år (1609 (Hede) eller 1611 (Harck))
+          value: 1609-1611
+          seed: dk-hede-c4h84a
+        - kind: hedged
+          how: attributed
           source: ngc
           as_printed: (1607-09)
           value: 1607-1609
           seed: ngc-1069703
+        - kind: hedged
+          how: attributed
+          source: hede
+          as_printed: U.år (1611)
+          value: '1611'
+          seed: dk-hede-c4h84b
     mint: Kopenhagen
     catalog:
       km:
@@ -2032,6 +2047,13 @@ coins:
       -   - 1644
           - 1644
     year_label: 1606-1609, 1644
+    uncertainty:
+      year:
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1606, 1607, 1608, U.år (R)
+          seed: dk-hede-c4h93a
     mint: Kopenhagen
     catalog:
       km:
@@ -8230,6 +8252,13 @@ coins:
     year_first: 1702
     year_last: 1702
     year_label: '1702'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1702 (RR), U.år
+          seed: dk-hede-f4h20
     mint: Kopenhagen
     catalog:
       km: '478'
@@ -13645,9 +13674,6 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-c5h7
-          source: hede
-          years: '1675'
         - seed: dk-numista-111613
           source: numista
           years: '1675'
@@ -13672,6 +13698,12 @@ coins:
           as_printed: ND (1675)
           value: '1675'
           seed: dk-bruun-7254
+        - kind: inferred
+          how: text_year
+          source: hede
+          as_printed: u. år
+          value: '1675'
+          seed: dk-hede-c5h7
     mint: Kopenhagen
     catalog:
       km: '445'
@@ -27497,9 +27529,6 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-f5h2a
-          source: hede
-          years: '1746'
         - seed: dk-hede-f5h2b
           source: hede
           years: '1746'
@@ -27510,6 +27539,9 @@ coins:
           source: numismaster
           years: '1746'
       uncertain:
+        - seed: dk-hede-f5h2a
+          source: hede
+          years: '1746'
         - seed: dk-bruun-7601
           source: bruun
           years: '1746'
@@ -27521,6 +27553,12 @@ coins:
           as_printed: ND (1746)
           value: '1746'
           seed: dk-bruun-7601
+        - kind: hedged
+          how: attributed
+          source: hede
+          as_printed: u.år (1746)
+          value: '1746'
+          seed: dk-hede-f5h2a
     mint: Kopenhagen
     catalog:
       km: '553'
@@ -33027,22 +33065,7 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-c4h102a
-          source: hede
-          years: '1619'
-        - seed: dk-hede-c4h102b
-          source: hede
-          years: '1619'
         - seed: dk-hede-c4h102c
-          source: hede
-          years: '1619'
-        - seed: dk-hede-c4h102d
-          source: hede
-          years: '1619'
-        - seed: dk-hede-c4h102e
-          source: hede
-          years: '1619'
-        - seed: dk-hede-c4h102f
           source: hede
           years: '1619'
         - seed: ngc-1050497
@@ -33068,6 +33091,36 @@ coins:
           source: numismaster
           value: 1618-1619
           seed: denmark-numismaster-64960
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år (RRR)
+          value: 1588-1648
+          seed: dk-hede-c4h102a
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1588-1648
+          seed: dk-hede-c4h102b
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1588-1648
+          seed: dk-hede-c4h102d
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1588-1648
+          seed: dk-hede-c4h102e
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1588-1648
+          seed: dk-hede-c4h102f
         - kind: hedged
           how: attributed
           source: numismaster
@@ -38306,6 +38359,39 @@ coins:
     year_first: 1685
     year_last: 1685
     year_label: '1685'
+    year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-1050353
+          source: ngc
+          years: '1685'
+        - seed: denmark-numismaster-65706
+          source: numismaster
+          years: '1685'
+        - seed: dk-tid-97400
+          source: ucoin
+          years: '1685'
+      uncertain:
+        - seed: dk-hede-c5h14a
+          source: hede
+          years: '1685'
+        - seed: dk-hede-c5h14b
+          source: hede
+          years: '1685'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: hede
+          as_printed: u. år (1685)
+          value: '1685'
+          seed: dk-hede-c5h14a
+        - kind: hedged
+          how: attributed
+          source: hede
+          as_printed: u. år (1685)
+          value: '1685'
+          seed: dk-hede-c5h14b
     mint: Kopenhagen
     catalog:
       km: '355'
@@ -38785,9 +38871,6 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-hede-c5h51
-          source: hede
-          years: '1696'
         - seed: denmark-numismaster-65710
           source: numismaster
           years: '1696'
@@ -38795,6 +38878,9 @@ coins:
           source: ucoin
           years: '1696'
       uncertain:
+        - seed: dk-hede-c5h51
+          source: hede
+          years: '1696'
         - seed: dk-bruun-7263
           source: bruun
           years: '1696'
@@ -38806,6 +38892,12 @@ coins:
           as_printed: ND (1696)
           value: '1696'
           seed: dk-bruun-7263
+        - kind: hedged
+          how: attributed
+          source: hede
+          as_printed: u. år (1696)
+          value: '1696'
+          seed: dk-hede-c5h51
     mint: Kopenhagen
     catalog:
       km: '442'
@@ -41178,6 +41270,15 @@ coins:
     year_first: 1702
     year_last: 1702
     year_label: '1702'
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år (RRR)
+          value: 1699-1730
+          seed: dk-hede-f4h22
     mint: Kopenhagen
     catalog:
       km: '451'
@@ -41211,11 +41312,11 @@ coins:
         url: https://numismaster.com/MC_65711
         ref: NumisMaster
       - type: literature
-        url: https://www.danskmoent.dk/fr/f4h20.htm
-        ref: danskmoent.dk (Hede f4h22)
-      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-1-2-ducat-km-451-1702-cuid-1050264-duid-1236397
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f4h20.htm
+        ref: danskmoent.dk (Hede f4h22)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -41223,6 +41324,7 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - c-0cc11b12
+      - c-b6473eb5
     label: unified-dk-hede-f4h22
     origin: promoted
   - fuss: reichsdukatenfuss
@@ -59289,7 +59391,7 @@ coins:
         - kind: inferred
           how: reign
           source: hede
-          as_printed: U.år
+          as_printed: U.år (Unik)
           value: 1648-1670
           seed: dk-hede-f3h83
     mint: Kopenhagen
@@ -91615,8 +91717,75 @@ coins:
       -   - 1654
           - 1655
     year_label: 1651, 1654-1655
+    year_verified: true
     uncertainty:
       year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år (S)
+          value: 1648-1670
+          seed: dk-hede-f3h126c
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1654-1655
+          seed: dk-numista-62374
+        - kind: hedged
+          how: span
+          source: ucoin
+          value: 1654–1655
+          seed: dk-tid-96466
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-157922
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-157923
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-157924
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-157925
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-157926
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-167211
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-167212
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-167213
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-167215
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-167218
         - kind: hedged
           how: museum
           source: kmk
@@ -91627,6 +91796,36 @@ coins:
           source: kmk
           value: 1648-1670
           seed: kmk-167259
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-276750
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-276752
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-276753
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-276754
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1651'
+          seed: kmk-276986
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1655'
+          seed: kmk-693107
       metal:
         - kind: inferred
           how: from_name
@@ -95981,6 +96180,12 @@ coins:
     year_label: '1669'
     year_verified: false
     uncertainty:
+      year:
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1669, U.år (RRR)
+          seed: dk-hede-f3h81
       metal:
         - kind: inferred
           how: from_name
@@ -96588,16 +96793,25 @@ coins:
     year_first: 1702
     year_last: 1702
     year_label: '1702'
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år (Unik)
+          value: 1699-1730
+          seed: dk-hede-f4h21
     mint: Kopenhagen
     catalog:
       km:
         - '476'
         - '500'
+      bruun_collection_id: '7306'
       hede: '21'
       hede_volume: f4h
       schou: '1'
       sieg: '34'
-      bruun_collection_id: '7306'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -96624,9 +96838,6 @@ coins:
         url: https://numismaster.com/MC_65899
         ref: NumisMaster
       - type: literature
-        url: https://www.danskmoent.dk/fr/f4h20.htm
-        ref: danskmoent.dk (Hede f4h21)
-      - type: literature
         url: https://numismaster.com/MC_65900
         ref: NumisMaster
       - type: ucoin
@@ -96638,6 +96849,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-500-1702-cuid-1050361-duid-1238155
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f4h20.htm
+        ref: danskmoent.dk (Hede f4h21)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -96645,6 +96859,7 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - c-8f761e31
+      - c-b7175443
     label: unified-dk-hede-f4h21
     origin: promoted
   - fuss: reichsdukatenfuss
@@ -112693,6 +112908,11 @@ coins:
           as_printed: ND (ca. 1705)
           value: '1705'
           seed: dk-bruun-7543
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1704 (R), U.år (RR)
+          seed: dk-hede-f4h11a
         - kind: hedged
           how: span
           source: numista
@@ -132694,6 +132914,11 @@ coins:
           as_printed: ND (1659-60)
           value: 1659-1660
           seed: dk-bruun-6740
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1660 (R), 1661 (RR), U.år (R)
+          seed: dk-hede-f3h16ab
         - kind: hedged
           how: span
           source: numista
@@ -165107,6 +165332,14 @@ coins:
     year_last: 1670
     year_label: '1670'
     year_verified: true
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år (unik)
+          value: 1670-1699
+          seed: dk-hede-c5h62
     mint: Kopenhagen
     catalog:
       km: '324'

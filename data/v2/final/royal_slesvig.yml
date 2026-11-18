@@ -732,6 +732,45 @@ coins:
     year_first: 1545
     year_last: 1545
     year_label: '1545'
+    year_verified: true
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år (RRR)
+          value: 1534-1559
+          seed: dk-hede-c3h21c
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-139673
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-150119
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-291045
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-411793
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-692608
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-83085
     mint: Flensburg
     catalog:
       hede:
@@ -904,6 +943,11 @@ coins:
     uncertainty:
       year:
         - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1566, U.år
+          seed: dk-hede-f2h30a
+        - kind: hedged
           how: museum
           source: kmk
           value: 1559-1588
@@ -1010,6 +1054,17 @@ coins:
     uncertainty:
       year:
         - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1566 (R), U.år
+          seed: dk-hede-f2h31a
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1559-1588
+          seed: dk-hede-f2h31b
+        - kind: hedged
           how: museum
           source: kmk
           value: 1559-1588
@@ -1069,6 +1124,7 @@ coins:
       - c-92caf7d6
     label: unified-dk-hede-f2h31a
     origin: promoted
+    year_verified: true
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
