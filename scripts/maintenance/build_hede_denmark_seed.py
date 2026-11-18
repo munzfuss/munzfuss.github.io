@@ -1404,14 +1404,20 @@ def _build_coin(
         # actually attests this row. `_source_index` carries the
         # basename of that overview file (e.g. «c3hede.htm»).
         overview_basename = (parsed.get("_source_index") or "").replace(".htm", "")
-        if overview_basename:
+        if parsed.get("coin_page"):
+            # The Hede cell links the coin's own root-level page
+            # (fetch_hede.ROOT_COIN_PAGES): cite that page.
+            src["url"] = f"{_DANSKMOENT_BASE}{parsed['coin_page']}"
+            src["ref"] = f"danskmoent.dk (Hede {hede_volume}{hede_number})"
+        elif overview_basename:
             src["url"] = _danskmoent_url(overview_basename)
         else:
             src["url"] = _danskmoent_url(parsed["id"])
-        src["ref"] = (
-            f"danskmoent.dk overview {overview_basename} "
-            f"(Hede {hede_volume}{hede_number} — Tiefenseite fehlt)"
-        )
+        if not parsed.get("coin_page"):
+            src["ref"] = (
+                f"danskmoent.dk overview {overview_basename} "
+                f"(Hede {hede_volume}{hede_number} — Tiefenseite fehlt)"
+            )
     else:
         src["url"] = _danskmoent_url(parsed["id"])
         # Domain-first label per CONVENTIONS.md §«Source-ref label shape»:
@@ -1525,6 +1531,19 @@ def _build_coin(
             f"1971 og Galster 1965."
             + (f" Bemærkning i indekset: «{index_note}»" if index_note else "")
         )
+        if parsed.get("coin_page"):
+            # The coin's own root-level page exists (cited as the source);
+            # its layout is not parsed, so the fields still come from the
+            # overview row — the «deep page absent» wording would be false.
+            page = f"danskmoent.dk{parsed['coin_page']}"
+            vn["de"] = (f"Die Felder stammen aus der Übersichtsreihe von {idx_basename}; "
+                        f"die eigene Münzseite {page} wird zitiert, aber nicht ausgelesen.")
+            vn["en"] = (f"The fields come from the overview row of {idx_basename}; "
+                        f"the coin's own page {page} is cited but not parsed.")
+            vn["uk"] = (f"Поля взято з рядка оглядової таблиці {idx_basename}; "
+                        f"власну сторінку монети {page} наведено як джерело, але не розібрано.")
+            vn["da"] = (f"Felterne stammer fra oversigtsrækken hos {idx_basename}; "
+                        f"møntens egen side {page} citeres, men læses ikke.")
         cm["verification_note"] = vn
     # _source_note candidate (Phase-1, commit 80a1b62): danskmoent's coin
     # `description` (Danish), cleaned + language-tagged for the later note-

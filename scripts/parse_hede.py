@@ -40,6 +40,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.paths import HEDE_CACHE as CACHE_DIR  # noqa: E402
 from lib.mint_registry import canon_for_alias  # noqa: E402
+from fetch_hede import ROOT_COIN_PAGES as _ROOT_COIN_PAGES  # noqa: E402
 
 
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -2888,6 +2889,14 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
         }
         if hede_printed.upper() != hede_no:
             stub["hede_as_printed"] = hede_printed
+        # The Hede cell links a root-level page of this very coin
+        # (fetch_hede.ROOT_COIN_PAGES, e.g. Hede 6 → /6delrdlr.htm): the
+        # row stays the data, the page becomes the citation.
+        href = re.search(r"<A\s+HREF=[\"']([^\"']+)[\"']", first_td, re.I)
+        if href:
+            path = "/" + href.group(1).lstrip("/")
+            if _ROOT_COIN_PAGES.get(path) == stub_id:
+                stub["coin_page"] = path
         if parsed_row.get("years_by_letter"):
             stub["years_by_letter"] = parsed_row["years_by_letter"]
         # Transient keys for `main`, popped before the sidecar is written.
