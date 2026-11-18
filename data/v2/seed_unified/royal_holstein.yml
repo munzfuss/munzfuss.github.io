@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1405 per-source seed entries.
-# Output: 266 unified entries (one per physical coin).
+# Output: 265 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -16502,8 +16502,8 @@ coins:
       - dk-numista-83069
       - dk-tid-132803
       - ngc-1060682
-  - id: c-483896a4
-    class_id: c-483896a4
+  - id: c-7d941e50
+    class_id: c-7d941e50
     label: unified-dk-hede-f6h6
     fuss: seed_unsorted
     phase: hede
@@ -16515,20 +16515,44 @@ coins:
     ruler: Frederik VI
     mint: Altona
     catalog:
+      km: '664'
       hede: '6'
       hede_volume: f6h
       sieg: '7'
+      numista: '47938'
+      others:
+        - DNF# 9.1
     metal: silver
     metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.406
+        source: numismaster
+    weight_rough_g:
+      - value: 5.0
+        source: numista
+      - value: 5.049
+        source: numismaster
+    diameter_mm:
+      - value: 26.0
+        source: numista
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65375
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/f6hede.htm
         ref: danskmoent.dk overview f6hede (Hede f6h6 — Tiefenseite fehlt)
       - type: literature
         url: https://www.danskmoent.dk/6delrdlr.htm
         ref: danskmoent.dk (Hede f6h6)
+      - type: literature
+        url: https://en.numista.com/47938
+        ref: Numista N#47938 — ⅙ Rigsdaler Courant "Offermark" - Frederik VI
     verification_note:
       de: Die Felder stammen aus der Übersichtsreihe von f6hede.htm; die eigene Münzseite danskmoent.dk/6delrdlr.htm wird zitiert, aber nicht ausgelesen.
       en: The fields come from the overview row of f6hede.htm; the coin's own page danskmoent.dk/6delrdlr.htm is cited but not parsed.
@@ -16536,7 +16560,9 @@ coins:
       da: Felterne stammer fra oversigtsrækken hos f6hede.htm; møntens egen side danskmoent.dk/6delrdlr.htm citeres, men læses ikke.
     issuing_entity: royal_holstein
     composed_of:
+      - denmark-numismaster-65375
       - dk-hede-f6h6
+      - dk-numista-47938
   - id: c-a6540cab
     class_id: c-a6540cab
     label: unified-dk-hede-f6h7
@@ -19232,54 +19258,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-468623
-  - id: c-7d941e50
-    class_id: c-7d941e50
-    label: unified-dk-numista-47938
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅙ Rigsdaler Courant
-    year_first: 1808
-    year_last: 1808
-    year_label: '1808'
-    ruler: Frederik VI
-    mint: Altona
-    catalog:
-      km: '664'
-      numista: '47938'
-      sieg: '7'
-      hede: '6'
-      others:
-        - DNF# 9.1
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.406
-        source: numismaster
-    weight_rough_g:
-      - value: 5.0
-        source: numista
-      - value: 5.049
-        source: numismaster
-    diameter_mm:
-      - value: 26.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65375
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/47938
-        ref: Numista N#47938 — ⅙ Rigsdaler Courant "Offermark" - Frederik VI
-    issuing_entity: royal_holstein
-    composed_of:
-      - denmark-numismaster-65375
-      - dk-numista-47938
   - id: c-3c85705d
     class_id: c-3c85705d
     label: unified-dk-numista-83071
