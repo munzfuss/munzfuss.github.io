@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2787 per-source seed entries.
-# Output: 512 unified entries (one per physical coin).
+# Output: 511 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-17'
+generated_at: '2026-11-18'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -1198,50 +1198,6 @@ coins:
       - dk-bruun-10466
       - dk-tid-146028
       - ngc-1094430
-  - id: c-b2b78150
-    class_id: c-b2b78150
-    label: unified-dk-bruun-10504
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1674
-    year_last: 1674
-    year_label: '1674'
-    ruler: Christian V
-    mint: Christiania
-    catalog:
-      hede: 19B
-      sieg: '81.2'
-      bruun_collection_id: '10504'
-      schou: '35'
-      nmd: 22A
-      fr_denmark: '189'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 3.88
-        source: bruun
-    uncertainty:
-      year:
-        - kind: inferred
-          how: text_year
-          source: bruun
-          as_printed: ND
-          value: '1674'
-          seed: dk-bruun-10504
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14102, p. 213
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-bruun-10504
   - id: c-bff537a8
     class_id: c-bff537a8
     label: unified-dk-bruun-10518
@@ -13301,38 +13257,55 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-hede-nc5h18
-  - id: c-90e6ed24
-    class_id: c-90e6ed24
+  - id: c-b2b78150
+    class_id: c-b2b78150
     label: unified-dk-hede-nc5h19abc
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Guldmønt
-    year_first: 1670
-    year_last: 1699
-    year_ranges:
-      -   - 1670
-          - 1699
-    year_label: 1670-1699
-    _year_demoted: true
+    year_first: 1674
+    year_last: 1674
+    year_label: '1674'
     ruler: Christian V
     mint: Christiania
     catalog:
-      hede: 19abc
+      hede:
+        - 19B
+        - 19abc
       hede_volume: nc5h
+      sieg: '81.2'
+      bruun_collection_id: '10504'
+      schou: '35'
+      nmd: 22A
+      fr_denmark: '189'
     metal: gold
     metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    weight_rough_g:
+      - value: 3.88
+        source: bruun
     uncertainty:
       year:
+        - kind: inferred
+          how: text_year
+          source: bruun
+          as_printed: ND
+          value: '1674'
+          seed: dk-bruun-10504
         - kind: inferred
           how: reign
           source: hede
           value: 1670-1699
           seed: dk-hede-nc5h19abc
     sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14102, p. 213
       - type: literature
         url: https://www.danskmoent.dk/c5hede2.htm
         ref: danskmoent.dk overview c5hede2 (Hede nc5h19abc — Tiefenseite fehlt)
@@ -13347,6 +13320,7 @@ coins:
         1965. Bemærkning i indekset: «Kaldet Gyldenløves dukat.»'
     issuing_entity: danish_norway
     composed_of:
+      - dk-bruun-10504
       - dk-hede-nc5h19abc
   - id: c-009612a4
     class_id: c-009612a4

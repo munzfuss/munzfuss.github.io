@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 512 active, 1292 retired.
+# 511 active, 1293 retired.
 
 id: danish_norway
 classes:
@@ -4531,12 +4531,6 @@ classes:
       - dk-tid-144919
       - ngc-1095586
       - ngc-1100396
-  - id: c-90e6ed24
-    status: active
-    created: '2026-11-17'
-    label: unified-dk-hede-nc5h19abc
-    members:
-      - dk-hede-nc5h19abc
   - id: c-91a522c0
     status: active
     created: '2026-10-22'
@@ -5265,10 +5259,11 @@ classes:
   - id: c-b2b78150
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-10504
+    label: unified-dk-hede-nc5h19abc
     legacy_id: unified-dk-bruun-10504
     members:
       - dk-bruun-10504
+      - dk-hede-nc5h19abc
   - id: c-b30e21d5
     status: active
     created: '2026-10-22'
@@ -13378,6 +13373,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149035
+  - id: c-90e6ed24
+    status: retired
+    created: '2026-11-17'
+    label: unified-dk-hede-nc5h19abc
+    merged_into: c-b2b78150
+    retired: '2026-11-18'
+    members:
+      - dk-hede-nc5h19abc
   - id: c-90f6b9f8
     status: retired
     created: '2026-10-22'
