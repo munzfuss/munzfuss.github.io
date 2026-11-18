@@ -4633,16 +4633,25 @@ coins:
     year_last: 1610
     year_ranges:
       -   - 1604
-          - 1604
+          - 1605
       -   - 1610
           - 1610
-    year_label: 1604, 1610
+    year_label: 1604-1605, 1610
     year_verified: false
     year_conflict:
       confident:
         - seed: dk-hede-c4h9
           source: hede
           years: '1605'
+        - seed: ngc-1050212
+          source: ngc
+          years: '1610'
+        - seed: denmark-numismaster-65632
+          source: numismaster
+          years: '1610'
+        - seed: dk-tid-163077
+          source: ucoin
+          years: '1604'
       uncertain:
         - seed: dk-bruun-5839
           source: bruun
@@ -4655,6 +4664,11 @@ coins:
           as_printed: ND (1604-1607)
           value: 1604-1607
           seed: dk-bruun-5839
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1604-1610
+          seed: dk-numista-355728
         - kind: hedged
           how: span
           source: ikmk
@@ -4750,7 +4764,6 @@ coins:
       uk: Призначення стопи і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
       da: Tildeling af møntfod og verifikation af den enkelte mønt mod Hede / Schön / Bruun udestår stadig.
     composed_of:
-      - c-3aafddb3
       - c-dba4a063
     label: dk-tid-163077
     origin: foundation
@@ -166667,49 +166680,6 @@ coins:
     composed_of:
       - c-9182b7e3
     label: unified-ngc-1050898
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Christian VII
-    issuing_entity: danish_realm
-    id: c-9f994062
-    year_first: 1808
-    year_last: 1808
-    year_label: '1808'
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: text_year
-          source: bruun
-          as_printed: ND
-          value: '1808'
-          seed: dk-bruun-7985
-    mint: Kopenhagen
-    catalog:
-      hede: '16'
-      sieg: '50'
-      bruun_collection_id: '7985'
-      schou: '3'
-      fp: P3
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.8
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13254, p. 148
-    composed_of:
-      - c-9f994062
-    label: unified-dk-bruun-7985
     origin: promoted
   - fuss: seed_unsorted
     phase: bruun

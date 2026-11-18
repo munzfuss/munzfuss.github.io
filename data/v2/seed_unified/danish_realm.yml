@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8318 per-source seed entries.
-# Output: 1601 unified entries (one per physical coin).
+# Output: 1600 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -45536,19 +45536,21 @@ coins:
       - dk-numista-54797
       - dk-tid-162975
       - ngc-1050276
-  - id: c-3aafddb3
-    class_id: c-3aafddb3
+  - id: c-dba4a063
+    class_id: c-dba4a063
     label: unified-dk-hede-c4h9
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Portugaløser
     year_first: 1604
-    year_last: 1607
+    year_last: 1610
     year_ranges:
       -   - 1604
-          - 1607
-    year_label: 1604-1607
+          - 1605
+      -   - 1610
+          - 1610
+    year_label: 1604-1605, 1610
     ruler: Christian IV
     mintmaster: Nicolaus Schwabe
     inscription_obv: CHRISTIANVS IIII - D G DAN NO VA G REX // REGNA FIR/MAT PIETAS
@@ -45565,6 +45567,8 @@ coins:
       others:
         - Beskrivelsen 1791# 1170
         - KM-FR#68
+        - ucoin# 11
+      numista: '355728'
       fr: '68'
     metal: gold
     metal_verified: true
@@ -45579,6 +45583,15 @@ coins:
         - seed: dk-hede-c4h9
           source: hede
           years: '1605'
+        - seed: ngc-1050212
+          source: ngc
+          years: '1610'
+        - seed: denmark-numismaster-65632
+          source: numismaster
+          years: '1610'
+        - seed: dk-tid-163077
+          source: ucoin
+          years: '1604'
       uncertain:
         - seed: dk-bruun-5839
           source: bruun
@@ -45586,16 +45599,36 @@ coins:
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+      - value: 0.979
+        source: numista
+      - value: 0.979
+        source: ucoin
     weight_rough_g:
       - value: 34.645
         source: hede
+      - value: 34.645
+        source: ngc
+      - value: 34.645
+        source: numismaster
       - value: 34.93
         source: bruun
       - value: 34.94
         source: ikmk
+      - value: 34.94
+        source: numista
+      - value: 34.94
+        source: ucoin
     diameter_mm:
       - value: 40.0
         source: ikmk
+      - value: 40.0
+        source: numista
+      - value: 40.0
+        source: ucoin
     uncertainty:
       year:
         - kind: hedged
@@ -45606,28 +45639,49 @@ coins:
           seed: dk-bruun-5839
         - kind: hedged
           how: span
+          source: numista
+          value: 1604-1610
+          seed: dk-numista-355728
+        - kind: hedged
+          how: span
           source: ikmk
           value: 1604-1607
           seed: ikmk-18227466
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65632
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1050, p. 65
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h9.htm
         ref: danskmoent.dk (Hede c4h9)
+      - type: literature
+        url: https://en.numista.com/355728
+        ref: Numista N#355728 — 10 Ducats - Christian IV
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-10-ducat-1604/?tid=163077
+        ref: ucoin
       - type: museum
         url: https://ikmk.smb.museum/object?id=18227466
         ref: IKMK Berlin 18227466
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-portugaloser-fr-68-1610-cuid-1050212-duid-1236332
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 10 Ducats
       en: 10 Ducats
       uk: 10 Ducats
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65632
       - dk-bruun-5839
       - dk-hede-c4h9
+      - dk-numista-355728
+      - dk-tid-163077
       - ikmk-18227466
+      - ngc-1050212
   - id: c-865b4021
     class_id: c-865b4021
     label: unified-dk-hede-c4h90
@@ -107388,77 +107442,6 @@ coins:
       - denmark-numismaster-65311
       - dk-numista-311722
       - ngc-1050031
-  - id: c-dba4a063
-    class_id: c-dba4a063
-    label: unified-dk-numista-355728
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 10 Ducats
-    year_first: 1604
-    year_last: 1610
-    year_ranges:
-      -   - 1604
-          - 1604
-      -   - 1610
-          - 1610
-    year_label: 1604, 1610
-    ruler: Christian IV
-    mint: Kopenhagen
-    catalog:
-      numista: '355728'
-      fr: '68'
-      others:
-        - ucoin# 11
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.979
-        source: numista
-      - value: 0.979
-        source: ucoin
-    weight_rough_g:
-      - value: 34.645
-        source: ngc
-      - value: 34.645
-        source: numismaster
-      - value: 34.94
-        source: numista
-      - value: 34.94
-        source: ucoin
-    diameter_mm:
-      - value: 40.0
-        source: numista
-      - value: 40.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65632
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/355728
-        ref: Numista N#355728 — 10 Ducats - Christian IV
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-10-ducat-1604/?tid=163077
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-portugaloser-fr-68-1610-cuid-1050212-duid-1236332
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65632
-      - dk-numista-355728
-      - dk-tid-163077
-      - ngc-1050212
   - id: c-43b64c09
     class_id: c-43b64c09
     label: unified-dk-numista-355730
