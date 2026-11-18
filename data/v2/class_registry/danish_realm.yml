@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1603 active, 4828 retired.
+# 1601 active, 4830 retired.
 
 id: danish_realm
 classes:
@@ -938,12 +938,13 @@ classes:
   - id: c-0cc11b12
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1050264
+    label: unified-dk-hede-f4h22
     legacy_id: unified-dk-hede-f4h22
     split_into:
       - c-b6473eb5
     members:
       - denmark-numismaster-65711
+      - dk-hede-f4h22
       - ngc-1050264
   - id: c-0d008175
     status: active
@@ -15605,12 +15606,13 @@ classes:
   - id: c-8f761e31
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1050361
+    label: unified-dk-hede-f4h21
     legacy_id: unified-dk-hede-f4h21
     split_into:
       - c-b7175443
     members:
       - denmark-numismaster-65900
+      - dk-hede-f4h21
       - ngc-1050361
   - id: c-8f7fcd1c
     status: active
@@ -18613,12 +18615,6 @@ classes:
     legacy_id: unified-dk-hede-c6h8
     members:
       - dk-hede-c6h8
-  - id: c-b6473eb5
-    status: active
-    created: '2026-11-18'
-    label: unified-dk-hede-f4h22
-    members:
-      - dk-hede-f4h22
   - id: c-b6cba4a0
     status: active
     created: '2026-10-22'
@@ -18626,12 +18622,6 @@ classes:
     legacy_id: unified-ngc-1069326
     members:
       - ngc-1069326
-  - id: c-b7175443
-    status: active
-    created: '2026-11-18'
-    label: unified-dk-hede-f4h21
-    members:
-      - dk-hede-f4h21
   - id: c-b765c45a
     status: active
     created: '2026-10-22'
@@ -59200,6 +59190,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-78340
+  - id: c-b6473eb5
+    status: retired
+    created: '2026-11-18'
+    label: unified-dk-hede-f4h22
+    merged_into: c-0cc11b12
+    retired: '2026-11-18'
+    members:
+      - dk-hede-f4h22
   - id: c-b66549bc
     status: retired
     created: '2026-10-22'
@@ -59283,6 +59281,14 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149730
+  - id: c-b7175443
+    status: retired
+    created: '2026-11-18'
+    label: unified-dk-hede-f4h21
+    merged_into: c-8f761e31
+    retired: '2026-11-18'
+    members:
+      - dk-hede-f4h21
   - id: c-b7192cb3
     status: retired
     created: '2026-10-22'

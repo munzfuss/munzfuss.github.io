@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8318 per-source seed entries.
-# Output: 1603 unified entries (one per physical coin).
+# Output: 1601 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -95283,23 +95283,20 @@ coins:
       - dk-hede-f4h20
       - dk-tid-94309
       - ngc-1050903
-  - id: c-b7175443
-    class_id: c-b7175443
+  - id: c-8f761e31
+    class_id: c-8f761e31
     label: unified-dk-hede-f4h21
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 2 Dukat
-    year_first: 1699
-    year_last: 1730
-    year_ranges:
-      -   - 1699
-          - 1730
-    year_label: 1699-1730
-    _year_demoted: true
+    year_first: 1702
+    year_last: 1702
+    year_label: '1702'
     ruler: Frederik IV
     mint: Kopenhagen
     catalog:
+      km: '500'
       hede: '21'
       hede_volume: f4h
       schou: '1'
@@ -95308,15 +95305,24 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
-    year_verified: false
+    year_verified: true
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
     weight_rough_g:
       - value: 6.981
         source: hede
+      - value: 6.981
+        source: ngc
+      - value: 6.981
+        source: numismaster
     uncertainty:
       year:
         - kind: inferred
@@ -95327,28 +95333,33 @@ coins:
           seed: dk-hede-f4h21
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65900
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/fr/f4h20.htm
         ref: danskmoent.dk (Hede f4h21)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-500-1702-cuid-1050361-duid-1238155
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65900
       - dk-hede-f4h21
-  - id: c-b6473eb5
-    class_id: c-b6473eb5
+      - ngc-1050361
+  - id: c-0cc11b12
+    class_id: c-0cc11b12
     label: unified-dk-hede-f4h22
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: ½ Dukat
-    year_first: 1699
-    year_last: 1730
-    year_ranges:
-      -   - 1699
-          - 1730
-    year_label: 1699-1730
-    _year_demoted: true
+    year_first: 1702
+    year_last: 1702
+    year_label: '1702'
     ruler: Frederik IV
     mint: Kopenhagen
     catalog:
+      km: '451'
       hede: '22'
       hede_volume: f4h
       schou: '12'
@@ -95357,15 +95368,24 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
-    year_verified: false
+    year_verified: true
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
     weight_rough_g:
       - value: 1.745
         source: hede
+      - value: 1.745
+        source: ngc
+      - value: 1.745
+        source: numismaster
     uncertainty:
       year:
         - kind: inferred
@@ -95376,11 +95396,19 @@ coins:
           seed: dk-hede-f4h22
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65711
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/fr/f4h20.htm
         ref: danskmoent.dk (Hede f4h22)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-ducat-km-451-1702-cuid-1050264-duid-1236397
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65711
       - dk-hede-f4h22
+      - ngc-1050264
   - id: c-1229fa16
     class_id: c-1229fa16
     label: unified-dk-hede-f4h23
@@ -131790,46 +131818,6 @@ coins:
     composed_of:
       - denmark-numismaster-65641
       - ngc-1050257
-  - id: c-0cc11b12
-    class_id: c-0cc11b12
-    label: unified-ngc-1050264
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ½ Ducat
-    year_first: 1702
-    year_last: 1702
-    year_label: '1702'
-    catalog:
-      km: '451'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 1.745
-        source: ngc
-      - value: 1.745
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65711
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-ducat-km-451-1702-cuid-1050264-duid-1236397
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65711
-      - ngc-1050264
   - id: c-45e11fe6
     class_id: c-45e11fe6
     label: unified-ngc-1050278
@@ -132307,47 +132295,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050315
-  - id: c-8f761e31
-    class_id: c-8f761e31
-    label: unified-ngc-1050361
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Ducat
-    year_first: 1702
-    year_last: 1702
-    year_label: '1702'
-    ruler: Frederik IV
-    catalog:
-      km: '500'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 6.981
-        source: ngc
-      - value: 6.981
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65900
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-500-1702-cuid-1050361-duid-1238155
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65900
-      - ngc-1050361
   - id: c-13979385
     class_id: c-13979385
     label: unified-ngc-1050384
