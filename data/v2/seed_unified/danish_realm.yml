@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-18 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8318 per-source seed entries.
-# Output: 1600 unified entries (one per physical coin).
+# Output: 1599 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-18'
+generated_at: '2026-11-19'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -4837,42 +4837,6 @@ coins:
     composed_of:
       - dk-bruun-8010
       - ngc-1050564
-  - id: c-39971ff8
-    class_id: c-39971ff8
-    label: unified-dk-bruun-8042
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Rigsbankskilling
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    ruler: Frederik VI
-    mintmaster: Ole Varberg
-    mint: Kopenhagen
-    catalog:
-      hede: '35'
-      sieg: '41'
-      bruun_collection_id: '8042'
-      schou: '6'
-      others:
-        - Pn# Pn52
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 12.45
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17158, p. 76
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-bruun-8042
   - id: c-f43e7843
     class_id: c-f43e7843
     label: unified-dk-bruun-8146
@@ -103513,9 +103477,59 @@ coins:
       - dk-tid-70756
       - ngc-1050317
       - ngc-1050419
+  - id: c-39971ff8
+    class_id: c-39971ff8
+    label: unified-dk-hede-f6h35
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Rigsbankskilling
+    year_first: 1818
+    year_last: 1818
+    year_label: '1818'
+    ruler: Frederik VI
+    mintmaster: Ole Varberg
+    mint: Kopenhagen
+    catalog:
+      hede: '35'
+      hede_volume: f6h
+      sieg: '41'
+      bruun_collection_id: '8042'
+      schou: '6'
+      others:
+        - Pn# Pn52
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 12.45
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17158, p. 76
+      - type: literature
+        url: https://www.danskmoent.dk/f6hede.htm
+        ref: danskmoent.dk overview f6hede (Hede f6h35 — Tiefenseite fehlt)
+    verification_note:
+      de: 'Nur die Übersichtsreihe von f6hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
+        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
+      en: 'Only the overview-table row of f6hede.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
+        Hede 1971 and Galster 1965. Index note: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
+      uk: 'Цей запис підтверджує лише рядок оглядової таблиці f6hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
+        1965. Коментар з індексу: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
+      da: 'Kun oversigtsrækken hos f6hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-bruun-8042
+      - dk-hede-f6h35
   - id: c-63b82b67
     class_id: c-63b82b67
-    label: unified-dk-hede-f6h35
+    label: unified-dk-hede-f6h36
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -103527,9 +103541,10 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '689'
-      hede: '35'
+      hede: '36'
       hede_volume: f6h
-      sieg: '41'
+      schou: '5'
+      sieg: '18'
       numista: '40132'
     metal: copper
     metal_verified: true
@@ -103539,6 +103554,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 14.616
+        source: hede
       - value: 14.616
         source: ngc
       - value: 14.616
@@ -103553,61 +103570,20 @@ coins:
         url: https://numismaster.com/MC_66003
         ref: NumisMaster
       - type: literature
-        url: https://www.danskmoent.dk/f6hede.htm
-        ref: danskmoent.dk overview f6hede (Hede f6h35 — Tiefenseite fehlt)
+        url: https://www.danskmoent.dk/fr/f6h36.htm
+        ref: danskmoent.dk (Hede f6h36)
       - type: literature
         url: https://en.numista.com/40132
         ref: Numista N#40132 — 2 Rigsbankskilling - Frederik VI
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-rigsbankskilling-km-689-1818-cuid-1050446-duid-1238220
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'Nur die Übersichtsreihe von f6hede.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
-        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
-      en: 'Only the overview-table row of f6hede.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
-        Hede 1971 and Galster 1965. Index note: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
-      uk: 'Цей запис підтверджує лише рядок оглядової таблиці f6hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
-        1965. Коментар з індексу: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
-      da: 'Kun oversigtsrækken hos f6hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
-        1965. Bemærkning i indekset: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-66003
-      - dk-hede-f6h35
+      - dk-hede-f6h36
       - dk-numista-40132
       - ngc-1050446
-  - id: c-5476b340
-    class_id: c-5476b340
-    label: unified-dk-hede-f6h36
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 2 Rigsbankskilling
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    ruler: Frederik VI
-    mint: Kopenhagen
-    catalog:
-      hede: '36'
-      hede_volume: f6h
-      schou: '5'
-      sieg: '18'
-    metal: copper
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 14.616
-        source: hede
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h36.htm
-        ref: danskmoent.dk (Hede f6h36)
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-hede-f6h36
   - id: c-bd9afdc2
     class_id: c-bd9afdc2
     label: unified-dk-hede-f6h37
