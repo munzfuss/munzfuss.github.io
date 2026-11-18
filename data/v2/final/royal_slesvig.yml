@@ -921,9 +921,15 @@ coins:
       sieg:
         - '33.1'
         - '33.2'
-      numista: '313332'
-      mb: '75'
-      lange: '28'
+      numista:
+        - '309419'
+        - '313332'
+      mb:
+        - '70'
+        - '75'
+      lange:
+        - 27a
+        - '28'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -942,6 +948,8 @@ coins:
         source: kmk
       - value: 1.51
         source: numista
+      - value: 1.59
+        source: numista
       - value: 1.856
         source: hede
         specimen: dk-hede-f2h30a
@@ -952,6 +960,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h30.htm
         ref: danskmoent.dk (Hede f2h30A)
+      - type: literature
+        url: https://en.numista.com/309419
+        ref: Numista N#309419 — 1 Schilling - Frederick II
       - type: literature
         url: https://en.numista.com/313332
         ref: Numista N#313332 — 1 Schilling - Frederick II
@@ -973,6 +984,19 @@ coins:
       -   - 1571
           - 1571
     diameter_mm_verified: false
+    year_alts:
+      - value: '1565'
+        source: numista
+        kind: suspect
+        reason:
+          de: "Das Jahr ist im Katalog Hede nicht belegt.\n[b]Numista 309419[/b] gibt [i]«1565»[/i] mit dem Verweis [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: die Variante 30A hat [i]«A) 1566,
+            U.år»[/i] (Übers.: «A) 1566, ohne Jahr»); 1565 ist nicht darunter."
+          en: "The year is not attested by the Hede catalogue.\n[b]Numista 309419[/b] gives [i]«1565»[/i] with the reference [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: variant 30A has [i]«A)
+            1566, U.år»[/i] (transl.: «A) 1566, undated»); 1565 is not among them."
+          uk: "Рік не засвідчений каталогом Hede.\n[b]Numista 309419[/b] подає [i]«1565»[/i] з посиланням [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: варіант 30A має [i]«A) 1566, U.år»[/i] (перекл.:
+            «A) 1566, без року»); 1565 серед них немає."
+          da: "Året er ikke belagt i Hede-kataloget.\n[b]Numista 309419[/b] angiver [i]«1565»[/i] med henvisningen [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: variant 30A har [i]«A) 1566, U.år»[/i];
+            1565 er ikke blandt dem."
   - fuss: luebischer_muenzfuss
     phase: II
     kind: kurant
@@ -1307,48 +1331,6 @@ coins:
     composed_of:
       - c-8c9db0b1
     label: unified-dk-numista-309411
-    origin: promoted
-  - fuss: luebischer_muenzfuss
-    phase: II
-    kind: kurant
-    nominal: 1 Schilling
-    ruler: Frederick II (Frederik II)
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: c-70c27b86
-    year_first: 1565
-    year_last: 1565
-    year_label: '1565'
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: '1565'
-    mint: Flensburg
-    catalog:
-      numista: '309419'
-      mb: '70'
-      hede: 30A
-      lange: 27a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.59
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/309419
-        ref: Numista N#309419 — 1 Schilling - Frederick II
-    composed_of:
-      - c-70c27b86
-    label: unified-dk-numista-309419
     origin: promoted
   - fuss: rhinsk_gylden_fod
     phase:
