@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-18 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2787 per-source seed entries.
-# Output: 511 unified entries (one per physical coin).
+# Output: 489 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-18'
+generated_at: '2026-11-19'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -57,94 +57,6 @@ coins:
     composed_of:
       - denmark-numismaster-86285
       - kmk-333856
-  - id: c-fe939fbf
-    class_id: c-fe939fbf
-    label: unified-dk-bruun-10088
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1670
-    year_last: 1670
-    year_label: '1670'
-    ruler: Christian V
-    mint: Christiania
-    catalog:
-      km: '98'
-      bruun_collection_id: '10088'
-      sieg: '49.2'
-      schou: '11'
-      hede: 25B
-      nmd: '55'
-      numista: '117142'
-      others:
-        - Rønning# 80b
-        - AAJT# 44
-      skaare: '575'
-      dav: 3650A
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.78
-        source: ngc
-      - value: 28.78
-        source: numismaster
-      - value: 28.78
-        source: numista
-      - value: 28.78
-        source: ucoin
-      - value: 28.83
-        source: bruun
-    diameter_mm:
-      - value: 42.0
-        source: numista
-      - value: 44.0
-        source: ucoin
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10088
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110739
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14073, p. 199
-      - type: literature
-        url: https://en.numista.com/117142
-        ref: Numista N#117142 — 1 Speciedaler - Christian V (Christiania type I.B; date divided by shield) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-speciedaler-1670/?tid=146013
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-98-1670-cuid-1099129-duid-1448310
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110739
-      - dk-bruun-10088
-      - dk-numista-117142
-      - dk-tid-146013
-      - ngc-1099129
   - id: c-976eb062
     class_id: c-976eb062
     label: unified-dk-bruun-10098
@@ -517,150 +429,6 @@ coins:
       - kmk-278786
       - kmk-371920
       - ngc-1098046
-  - id: c-8f1abdb1
-    class_id: c-8f1abdb1
-    label: unified-dk-bruun-10341
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1688
-    year_last: 1696
-    year_ranges:
-      -   - 1688
-          - 1696
-    year_label: 1688-1696
-    ruler: Christian V
-    mintmaster: Henning Christopher Meyer, the Elder (HCM)
-    mint: Kongsberg
-    catalog:
-      km: '179.2'
-      hede: '74'
-      sieg: '35'
-      bruun_collection_id:
-        - '10341'
-        - '10384'
-        - '10435'
-        - '10436'
-        - '10469'
-      schou:
-        - '21'
-        - '33'
-        - '36'
-        - '37'
-        - '47'
-      nmd:
-        - '198'
-        - '201'
-        - '204'
-        - '206'
-      others:
-        - Delzanno# 208
-        - Brekke# 199A
-        - Rønning# 120a
-      numista: '101764'
-      skaare: '625'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-    weight_rough_g:
-      - value: 10.86
-        source: bruun
-      - value: 10.88
-        source: bruun
-      - value: 10.97
-        source: bruun
-      - value: 11.13
-        source: bruun
-      - value: 11.14
-        source: bruun
-      - value: 11.14
-        source: ngc
-      - value: 11.14
-        source: numismaster
-      - value: 11.14
-        source: numista
-    diameter_mm:
-      - value: 31.0
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10341
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10384
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10435
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10436
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10469
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110662
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15085, p. 118
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15086, p. 119
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15092, p. 122
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15093, p. 122
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15097, p. 124
-      - type: literature
-        url: https://en.numista.com/101764
-        ref: Numista N#101764 — 2 Mark - Christian V (Kongsberg type C&III; HCM below branches; plain edge) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-179.2-1690-1696-cuid-1099921-duid-1448378
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110662
-      - dk-bruun-10341
-      - dk-bruun-10384
-      - dk-bruun-10435
-      - dk-bruun-10436
-      - dk-bruun-10469
-      - dk-numista-101764
-      - ngc-1099921
   - id: c-91a522c0
     class_id: c-91a522c0
     label: unified-dk-bruun-10357
@@ -741,509 +509,6 @@ coins:
       - dk-bruun-10357
       - dk-numista-119557
       - ngc-1099237
-  - id: c-0bae0d82
-    class_id: c-0bae0d82
-    label: unified-dk-bruun-10366
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1688
-    year_last: 1699
-    year_ranges:
-      -   - 1688
-          - 1689
-      -   - 1693
-          - 1693
-      -   - 1695
-          - 1695
-      -   - 1697
-          - 1699
-    year_label: 1688-1689, 1693, 1695, 1697-1699
-    ruler: Christian V
-    mintmaster: Henning Christopher Meyer the Elder
-    mint: Kongsberg
-    catalog:
-      km: '179.1'
-      bruun_collection_id:
-        - '10366'
-        - '10453'
-      sieg: '35'
-      schou:
-        - '15'
-        - '21'
-      hede: '74'
-      nmd:
-        - 199A
-        - 205B
-      numista: '101760'
-      others:
-        - Brekke# 199B
-        - Rønning# 120b
-      skaare: '625'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-    weight_rough_g:
-      - value: 11.14
-        source: ngc
-      - value: 11.14
-        source: numismaster
-      - value: 11.14
-        source: numista
-      - value: 11.19
-        source: bruun
-      - value: 11.2
-        source: bruun
-    diameter_mm:
-      - value: 31.0
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10366
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10453
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110661
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12113, p. 200
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12119, p. 202
-      - type: literature
-        url: https://en.numista.com/101760
-        ref: Numista N#101760 — 2 Mark - Christian V (Kongsberg type C&III; HCM below branches; rifled edge) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-179.1-1688-1699-cuid-1094242-duid-1450018
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110661
-      - dk-bruun-10366
-      - dk-bruun-10453
-      - dk-numista-101760
-      - ngc-1094242
-  - id: c-5a15af56
-    class_id: c-5a15af56
-    label: unified-dk-bruun-10385
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1691
-    year_last: 1699
-    year_ranges:
-      -   - 1691
-          - 1695
-      -   - 1697
-          - 1699
-    year_label: 1691-1695, 1697-1699
-    ruler: Christian V
-    mintmaster: Henning Christopher Meyer, the elder
-    mint: Kongsberg
-    catalog:
-      km: '185.2'
-      hede: '75'
-      sieg: '27'
-      bruun_collection_id:
-        - '10385'
-        - '10399'
-        - '10418'
-      schou:
-        - '42'
-        - '51'
-        - '63'
-      nmd:
-        - '217'
-        - 218A
-        - 219A
-      others:
-        - Delzanno# 227
-        - Brekke# 218B
-        - Brekke# 219B
-        - Rønning# 123b
-      numista: '101483'
-      skaare: '628'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-    weight_rough_g:
-      - value: 5.36
-        source: bruun
-      - value: 5.41
-        source: bruun
-      - value: 5.5
-        source: bruun
-      - value: 5.57
-        source: ngc
-      - value: 5.57
-        source: numismaster
-      - value: 5.57
-        source: numista
-    diameter_mm:
-      - value: 25.0
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Mark
-          value: silver
-          seed: dk-bruun-10385
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Mark
-          value: silver
-          seed: dk-bruun-10399
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Mark
-          value: silver
-          seed: dk-bruun-10418
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110643
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15087, p. 119
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14094, p. 209
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15090, p. 120
-      - type: literature
-        url: https://en.numista.com/101483
-        ref: Numista N#101483 — 1 Mark - Christian V (Kongsberg type C&III; HCM below branches; rifled edge) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-mark-km-185.2-1691-1699-cuid-1114101-duid-1448292
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110643
-      - dk-bruun-10385
-      - dk-bruun-10399
-      - dk-bruun-10418
-      - dk-numista-101483
-      - ngc-1114101
-  - id: c-82d67c08
-    class_id: c-82d67c08
-    label: unified-dk-bruun-10424
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1694
-    year_last: 1696
-    year_ranges:
-      -   - 1694
-          - 1696
-    year_label: 1694-1696
-    ruler: Christian V
-    mintmaster: Henning Christopher Meyer the Elder
-    mint: Kongsberg
-    catalog:
-      km: '194'
-      bruun_collection_id:
-        - '10424'
-        - '10427'
-        - '10433'
-        - '10446'
-        - '10447'
-        - '10449'
-        - '10451'
-        - '10460'
-        - '10464'
-        - '10466'
-      sieg:
-        - '61.1'
-        - '61.2'
-        - '61.3'
-        - '61.4'
-        - '61.5'
-        - '61.6'
-        - '61.7'
-      schou:
-        - '5'
-        - '7'
-        - '10'
-        - '11'
-        - '13'
-        - '14'
-        - '17'
-        - '19'
-        - '21'
-      hede:
-        - 39A
-        - 39B
-        - 39C
-        - 39D
-        - 39E
-        - 39F
-        - 39G
-      nmd:
-        - 172B
-        - 173A
-        - 174C
-        - 174F
-        - 175D
-        - 175F
-        - 176C
-        - 176D
-        - 176E
-        - 176F
-      others:
-        - Delzanno# 162d
-        - Delzanno# 184d
-        - Delzanno# 185e
-      dav:
-        - 3661B
-        - '3661'
-        - 3661C
-        - 3661D
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.47
-        source: bruun
-      - value: 28.78
-        source: bruun
-      - value: 28.82
-        source: bruun
-      - value: 28.83
-        source: bruun
-      - value: 28.86
-        source: bruun
-      - value: 28.88
-        source: bruun
-      - value: 28.89
-        source: ngc
-      - value: 28.89
-        source: numismaster
-      - value: 28.89
-        source: ucoin
-      - value: 29.11
-        source: bruun
-      - value: 29.12
-        source: bruun
-      - value: 29.35
-        source: bruun
-    diameter_mm:
-      - value: 41.0
-        source: ucoin
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10424
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10427
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10433
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10446
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10447
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10449
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10451
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10460
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10464
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-10466
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110750
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12117, p. 202
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14096, p. 210
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15091, p. 121
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12118, p. 202
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14097, p. 210
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1229, p. 293
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15095, p. 123
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14098, p. 210
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12120, p. 203
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15096, p. 124
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-speciedaler-1694-1696/?tid=146028
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-194-1694-1696-cuid-1094430-duid-1448474
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110750
-      - dk-bruun-10424
-      - dk-bruun-10427
-      - dk-bruun-10433
-      - dk-bruun-10446
-      - dk-bruun-10447
-      - dk-bruun-10449
-      - dk-bruun-10451
-      - dk-bruun-10460
-      - dk-bruun-10464
-      - dk-bruun-10466
-      - dk-tid-146028
-      - ngc-1094430
-  - id: c-bff537a8
-    class_id: c-bff537a8
-    label: unified-dk-bruun-10518
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1700
-    year_last: 1700
-    year_label: '1700'
-    ruler: Frederik IV
-    mintmaster: Henning Christopher Meyer the Elder
-    mint: Kongsberg
-    catalog:
-      km: '200.1'
-      bruun_collection_id: '10518'
-      sieg: '8'
-      schou: '8'
-      hede: '2'
-      nmd: '8'
-      others:
-        - Kold# 172
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 8.92
-        source: bruun
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 2 Mark
-          value: silver
-          seed: dk-bruun-10518
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12123, p. 205
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-bruun-10518
   - id: c-64088332
     class_id: c-64088332
     label: unified-dk-bruun-10582
@@ -2991,95 +2256,6 @@ coins:
       - dk-numista-118173
       - dk-tid-145597
       - ngc-1094434
-  - id: c-95760093
-    class_id: c-95760093
-    label: unified-dk-bruun-9686
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: ⅛ Speciedaler
-    year_first: 1654
-    year_last: 1654
-    year_label: '1654'
-    ruler: Frederik III
-    mint: Christiania
-    catalog:
-      km: '49'
-      bruun_collection_id: '9686'
-      sieg: '9.2'
-      schou: '11'
-      hede: 13B
-      nmd: '143'
-      others:
-        - Aagaard# 35.1
-        - Rønning# 57
-        - Brekke# 137
-        - Thesen# 143
-      numista: '118990'
-      skaare: '551'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 3.41
-        source: bruun
-      - value: 3.6
-        source: ngc
-      - value: 3.6
-        source: numismaster
-      - value: 3.6
-        source: numista
-      - value: 3.6
-        source: ucoin
-    diameter_mm:
-      - value: 25.0
-        source: ngc
-      - value: 25.0
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/8 Speciedaler
-          value: silver
-          seed: dk-bruun-9686
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110688
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12075, p. 180
-      - type: literature
-        url: https://en.numista.com/118990
-        ref: 'Numista N#118990 — ⅛ Speciedaler - Frederik III (Type I.B: 3 lines in crown; legend starts above bust) - Norway'
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1654/?tid=144931
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-1-8-specie-daler-km-49-1654-cuid-1100405-duid-1448850
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110688
-      - dk-bruun-9686
-      - dk-numista-118990
-      - dk-tid-144931
-      - ngc-1100405
   - id: c-25a259fe
     class_id: c-25a259fe
     label: unified-dk-bruun-9823
@@ -13690,7 +12866,9 @@ coins:
     ruler: Christian V
     mint: Christiania
     catalog:
-      km: '97'
+      km:
+        - '97'
+        - '98'
       hede:
         - 25A
         - 25B
@@ -13698,15 +12876,27 @@ coins:
       schou:
         - 9-10
         - '11'
-      bruun_collection_id: '10086'
-      sieg: '49.1'
-      nmd: '54'
-      numista: '99064'
+      bruun_collection_id:
+        - '10086'
+        - '10088'
+      sieg:
+        - '49.1'
+        - '49.2'
+      nmd:
+        - '54'
+        - '55'
+      numista:
+        - '117142'
+        - '99064'
       others:
+        - Rønning# 80b
+        - AAJT# 44
         - Rønning# 80
         - AAJT# 43
       skaare: '575'
-      dav: '3650'
+      dav:
+        - '3650'
+        - 3650A
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -13723,12 +12913,28 @@ coins:
         specimen: dk-hede-nc5h25b
       - value: 0.875
         source: ngc
+        specimen: ngc-1098149
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1099129
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-110738
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-110739
       - value: 0.875
         source: numista
+        specimen: dk-numista-117142
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-99064
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-146012
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-146013
     weight_rough_g:
       - value: 28.76
         source: bruun
@@ -13740,17 +12946,43 @@ coins:
         specimen: dk-hede-nc5h25b
       - value: 28.78
         source: ngc
+        specimen: ngc-1098149
+      - value: 28.78
+        source: ngc
+        specimen: ngc-1099129
       - value: 28.78
         source: numismaster
+        specimen: denmark-numismaster-110738
+      - value: 28.78
+        source: numismaster
+        specimen: denmark-numismaster-110739
       - value: 28.78
         source: numista
+        specimen: dk-numista-117142
+      - value: 28.78
+        source: numista
+        specimen: dk-numista-99064
       - value: 28.78
         source: ucoin
+        specimen: dk-tid-146012
+      - value: 28.78
+        source: ucoin
+        specimen: dk-tid-146013
+      - value: 28.83
+        source: bruun
     diameter_mm:
       - value: 42.0
         source: numista
+        specimen: dk-numista-117142
+      - value: 42.0
+        source: numista
+        specimen: dk-numista-99064
       - value: 44.0
         source: ucoin
+        specimen: dk-tid-146012
+      - value: 44.0
+        source: ucoin
+        specimen: dk-tid-146013
     uncertainty:
       metal:
         - kind: inferred
@@ -13759,24 +12991,45 @@ coins:
           as_printed: Speciedaler
           value: silver
           seed: dk-bruun-10086
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10088
     sources:
       - type: literature
         url: https://numismaster.com/MC_110738
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110739
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1219, p. 278
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14073, p. 199
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h25.htm
         ref: danskmoent.dk (Hede nc5h25A)
+      - type: literature
+        url: https://en.numista.com/117142
+        ref: Numista N#117142 — 1 Speciedaler - Christian V (Christiania type I.B; date divided by shield) - Norway
       - type: literature
         url: https://en.numista.com/99064
         ref: Numista N#99064 — 1 Speciedaler - Christian V (Christiania type I.A; date in legend) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-speciedaler-1670/?tid=146012
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-speciedaler-1670/?tid=146013
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-97-1670-cuid-1098149-duid-1448514
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-98-1670-cuid-1099129-duid-1448310
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
@@ -13785,12 +13038,17 @@ coins:
       basis: fin
     composed_of:
       - denmark-numismaster-110738
+      - denmark-numismaster-110739
       - dk-bruun-10086
+      - dk-bruun-10088
       - dk-hede-nc5h25a
       - dk-hede-nc5h25b
+      - dk-numista-117142
       - dk-numista-99064
       - dk-tid-146012
+      - dk-tid-146013
       - ngc-1098149
+      - ngc-1099129
   - id: c-b41bd519
     class_id: c-b41bd519
     label: unified-dk-hede-nc5h26ab
@@ -13804,21 +13062,32 @@ coins:
     ruler: Christian V
     mint: Christiania
     catalog:
-      km: '100'
+      km:
+        - '100'
+        - '101'
       hede:
         - 26A
+        - 26B
         - 26ab
       hede_volume: nc5h
       bruun_collection_id: '10085'
       sieg: '50.1'
-      schou: '4'
+      schou:
+        - '4'
+        - '5'
       nmd: '41'
-      numista: '117132'
+      numista:
+        - '117132'
+        - '117133'
       others:
         - Rønning# 78
         - AAJT# 30
+        - Rønning# 78a
+        - AAJT# 31
       skaare: '573'
-      dav: '3649'
+      dav:
+        - '3649'
+        - 3649A
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -13829,22 +13098,52 @@ coins:
     fineness:
       - value: 0.875
         source: ngc
+        specimen: ngc-1098151
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1114120
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-110769
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-110770
       - value: 0.875
         source: numista
+        specimen: dk-numista-117132
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-117133
     weight_rough_g:
+      - value: 57.47
+        source: kmk
       - value: 57.55
         source: bruun
       - value: 57.55
         source: ngc
+        specimen: ngc-1098151
+      - value: 57.55
+        source: ngc
+        specimen: ngc-1114120
       - value: 57.55
         source: numismaster
+        specimen: denmark-numismaster-110769
+      - value: 57.55
+        source: numismaster
+        specimen: denmark-numismaster-110770
       - value: 57.55
         source: numista
+        specimen: dk-numista-117132
+      - value: 57.55
+        source: numista
+        specimen: dk-numista-117133
     diameter_mm:
       - value: 42.0
         source: numista
+        specimen: dk-numista-117132
+      - value: 42.0
+        source: numista
+        specimen: dk-numista-117133
     uncertainty:
       metal:
         - kind: inferred
@@ -13857,6 +13156,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_110769
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110770
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1218, p. 277
@@ -13867,7 +13169,16 @@ coins:
         url: https://en.numista.com/117132
         ref: Numista N#117132 — 2 Speciedaler - Christian V (Christiania type I.A; date in legend) - Norway
       - type: literature
+        url: https://en.numista.com/117133
+        ref: Numista N#117133 — 2 Speciedaler - Christian V (Christiania type I.B; date divided by shield) - Norway
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/278780
+        ref: KMM 278780 (Inv. KP 570.4)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-100-1670-cuid-1098151-duid-1448528
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-101-1670-cuid-1114120-duid-1450476
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c5hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
@@ -13881,10 +13192,14 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-110769
+      - denmark-numismaster-110770
       - dk-bruun-10085
       - dk-hede-nc5h26ab
       - dk-numista-117132
+      - dk-numista-117133
+      - kmk-278780
       - ngc-1098151
+      - ngc-1114120
   - id: c-90a2125d
     class_id: c-90a2125d
     label: unified-dk-hede-nc5h27ab
@@ -14533,15 +13848,19 @@ coins:
     kind: kurant
     nominal: 1 Dukat
     year_first: 1670
-    year_last: 1675
+    year_last: 1680
     year_ranges:
       -   - 1670
           - 1675
-    year_label: 1670-1675
+      -   - 1680
+          - 1680
+    year_label: 1670-1675, 1680
     ruler: Christian V
     mint: Christiania
     catalog:
-      km: '117'
+      km:
+        - '117'
+        - '118'
       hede: '3'
       hede_volume: nc5h
       bruun_collection_id:
@@ -14554,9 +13873,15 @@ coins:
         - Delzanno# 20
         - Rønning# 74
         - AAJT# 18
+        - Rønning# 74a
+        - AAJT# 19
         - LEB# 10152
-      numista: '117119'
-      skaare: '568'
+      numista:
+        - '117119'
+        - '117121'
+      skaare:
+        - '568'
+        - '569'
       fr: '9'
     metal: gold
     metal_verified: true
@@ -14571,15 +13896,24 @@ coins:
         - seed: dk-numista-117119
           source: numista
           years: '1673'
+        - seed: dk-numista-117121
+          source: numista
+          years: '1673'
         - seed: ngc-1099225
           source: ngc
           years: '1673'
         - seed: denmark-numismaster-110798
           source: numismaster
           years: 1673–1674
+        - seed: denmark-numismaster-110799
+          source: numismaster
+          years: '1680'
         - seed: dk-tid-145746
           source: ucoin
           years: '1673'
+        - seed: dk-tid-145787
+          source: ucoin
+          years: '1680'
         - seed: kmk-122081
           source: kmk
           years: '1673'
@@ -14590,12 +13924,28 @@ coins:
     fineness:
       - value: 0.979
         source: ngc
+        specimen: ngc-1099225
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1099226
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-110798
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-110799
       - value: 0.979
         source: numista
+        specimen: dk-numista-117119
+      - value: 0.979
+        source: numista
+        specimen: dk-numista-117121
       - value: 0.979
         source: ucoin
+        specimen: dk-tid-145746
+      - value: 0.979
+        source: ucoin
+        specimen: dk-tid-145787
     weight_rough_g:
       - value: 3.39
         source: bruun
@@ -14603,15 +13953,35 @@ coins:
         source: bruun
       - value: 3.49
         source: ngc
+        specimen: ngc-1099225
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1099226
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-110798
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-110799
       - value: 3.49
         source: numista
+        specimen: dk-numista-117119
+      - value: 3.49
+        source: numista
+        specimen: dk-numista-117121
       - value: 3.49
         source: ucoin
+        specimen: dk-tid-145746
+      - value: 3.49
+        source: ucoin
+        specimen: dk-tid-145787
     diameter_mm:
       - value: 22.0
         source: numista
+        specimen: dk-numista-117119
+      - value: 22.0
+        source: numista
+        specimen: dk-numista-117121
     uncertainty:
       year:
         - kind: hedged
@@ -14640,6 +14010,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_110798
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110799
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12121, p. 204
@@ -14652,14 +14025,23 @@ coins:
       - type: literature
         url: https://en.numista.com/117119
         ref: Numista N#117119 — 1 Ducat - Christian V (Christiania type II; with date) - Norway
+      - type: literature
+        url: https://en.numista.com/117121
+        ref: Numista N#117121 — 1 Ducat - Christian V (Christiania type II; without date) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-ducat-1673/?tid=145746
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-ducat-1680/?tid=145787
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122081
         ref: KMM 122081 (Inv. GP 4551.53)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-ducat-km-117-1673-cuid-1099225-duid-1448940
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-ducat-km-118-cuid-1099226-duid-1448941
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von c5hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
@@ -14673,13 +14055,17 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-110798
+      - denmark-numismaster-110799
       - dk-bruun-10501
       - dk-bruun-10502
       - dk-hede-nc5h3
       - dk-numista-117119
+      - dk-numista-117121
       - dk-tid-145746
+      - dk-tid-145787
       - kmk-122081
       - ngc-1099225
+      - ngc-1099226
   - id: c-e54621af
     class_id: c-e54621af
     label: unified-dk-hede-nc5h30a
@@ -16198,8 +15584,8 @@ coins:
       - dk-numista-102284
       - dk-tid-145605
       - ngc-1099928
-  - id: c-b7ec4cf5
-    class_id: c-b7ec4cf5
+  - id: c-82d67c08
+    class_id: c-82d67c08
     label: unified-dk-hede-nc5h39a
     fuss: seed_unsorted
     phase: hede
@@ -16212,12 +15598,16 @@ coins:
           - 1696
     year_label: 1693-1696
     ruler: Christian V
+    mintmaster: Henning Christopher Meyer the Elder
     mint: Kongsberg
     catalog:
-      km: '193'
+      km:
+        - '194'
+        - '193'
       hede:
         - 39A
         - 39A-39C
+        - 39A-39G
         - 39B
         - 39C
         - 39D
@@ -16238,13 +15628,59 @@ coins:
         - '17'
         - 18-19
         - 20-21
-      numista: '102379'
+      bruun_collection_id:
+        - '10424'
+        - '10427'
+        - '10433'
+        - '10446'
+        - '10447'
+        - '10449'
+        - '10451'
+        - '10460'
+        - '10464'
+        - '10466'
+      sieg:
+        - '61.1'
+        - '61.2'
+        - '61.3'
+        - '61.4'
+        - '61.5'
+        - '61.6'
+        - '61.7'
+      nmd:
+        - 172B
+        - 173A
+        - 174C
+        - 174F
+        - 175D
+        - 175F
+        - 176C
+        - 176D
+        - 176E
+        - 176F
       others:
+        - Delzanno# 162d
+        - Delzanno# 184d
+        - Delzanno# 185e
         - Brekke# 171A-171C
         - Brekke# 172A-172D
         - Ronning# 113a
-      skaare: '612'
-      dav: '3661'
+        - Brekke# 173A-173G
+        - Rønning# 113b
+        - Brekke# 175A-175G
+        - Rønning# 113c
+      numista:
+        - '102379'
+        - '445607'
+        - '82371'
+      skaare:
+        - '612'
+        - '618'
+      dav:
+        - EC II 3661
+        - EC II 3661B
+        - EC II 3661C
+        - EC II 3661D
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -16276,21 +15712,71 @@ coins:
         specimen: dk-hede-nc5h39g
       - value: 0.875
         source: ngc
+        specimen: ngc-1094430
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1098150
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-110749
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-110750
       - value: 0.875
         source: numista
+        specimen: dk-numista-102379
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-445607
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-82371
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-146027
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-146028
     weight_rough_g:
+      - value: 28.47
+        source: bruun
+      - value: 28.78
+        source: bruun
+      - value: 28.82
+        source: bruun
+      - value: 28.83
+        source: bruun
+      - value: 28.86
+        source: bruun
+      - value: 28.88
+        source: bruun
       - value: 28.89
         source: ngc
+        specimen: ngc-1094430
+      - value: 28.89
+        source: ngc
+        specimen: ngc-1098150
       - value: 28.89
         source: numismaster
+        specimen: denmark-numismaster-110749
+      - value: 28.89
+        source: numismaster
+        specimen: denmark-numismaster-110750
       - value: 28.89
         source: numista
+        specimen: dk-numista-102379
+      - value: 28.89
+        source: numista
+        specimen: dk-numista-445607
+      - value: 28.89
+        source: numista
+        specimen: dk-numista-82371
       - value: 28.89
         source: ucoin
+        specimen: dk-tid-146027
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-146028
       - value: 28.893
         source: hede
         specimen: dk-hede-nc5h39a
@@ -16312,24 +15798,148 @@ coins:
       - value: 28.893
         source: hede
         specimen: dk-hede-nc5h39g
+      - value: 29.11
+        source: bruun
+      - value: 29.12
+        source: bruun
+      - value: 29.35
+        source: bruun
     diameter_mm:
       - value: 41.0
         source: ucoin
+        specimen: dk-tid-146027
+      - value: 41.0
+        source: ucoin
+        specimen: dk-tid-146028
       - value: 42.0
         source: numista
+        specimen: dk-numista-102379
+      - value: 42.0
+        source: numista
+        specimen: dk-numista-445607
+      - value: 42.0
+        source: numista
+        specimen: dk-numista-82371
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10424
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10427
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10433
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10446
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10447
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10449
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10451
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10460
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10464
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-10466
     sources:
       - type: literature
         url: https://numismaster.com/MC_110749
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110750
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12117, p. 202
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14096, p. 210
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15091, p. 121
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12118, p. 202
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14097, p. 210
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1229, p. 293
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15095, p. 123
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14098, p. 210
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12120, p. 203
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15096, p. 124
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h39.htm
         ref: danskmoent.dk (Hede nc5h39A)
       - type: literature
         url: https://en.numista.com/102379
         ref: Numista N#102379 — 1 Speciedaler - Christian V (Kongsberg type V.A; without elephant on obverse) - Norway
+      - type: literature
+        url: https://en.numista.com/445607
+        ref: Numista N#445607 — 1 Speciedaler - Christian V (Kongsberg type V.B; elephant below neck on obverse) - Norway
+      - type: literature
+        url: https://en.numista.com/82371
+        ref: Numista N#82371 — 1 Speciedaler - Christian V (Kongsberg type V.C; elephant below chest on obverse) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-speciedaler-1693-1694/?tid=146027
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-speciedaler-1694-1696/?tid=146028
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-194-1694-1696-cuid-1094430-duid-1448474
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-193-1693-1694-cuid-1098150-duid-1448314
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -16340,6 +15950,17 @@ coins:
       basis: fin
     composed_of:
       - denmark-numismaster-110749
+      - denmark-numismaster-110750
+      - dk-bruun-10424
+      - dk-bruun-10427
+      - dk-bruun-10433
+      - dk-bruun-10446
+      - dk-bruun-10447
+      - dk-bruun-10449
+      - dk-bruun-10451
+      - dk-bruun-10460
+      - dk-bruun-10464
+      - dk-bruun-10466
       - dk-hede-nc5h39a
       - dk-hede-nc5h39b
       - dk-hede-nc5h39c
@@ -16348,7 +15969,11 @@ coins:
       - dk-hede-nc5h39f
       - dk-hede-nc5h39g
       - dk-numista-102379
+      - dk-numista-445607
+      - dk-numista-82371
       - dk-tid-146027
+      - dk-tid-146028
+      - ngc-1094430
       - ngc-1098150
   - id: c-3233b88f
     class_id: c-3233b88f
@@ -21115,7 +20740,9 @@ coins:
     ruler: Christian V
     mint: Kongsberg
     catalog:
-      km: '160'
+      km:
+        - '160'
+        - '161'
       hede:
         - 71A
         - 71B
@@ -21124,11 +20751,15 @@ coins:
         - 24-29
         - 42-43
         - '44'
-      numista: '99106'
+      numista:
+        - '99106'
+        - '99107'
       others:
         - Brekke# 229
         - Brekke# 230
         - Rønning# 126
+        - Rønning# 126a
+        - Brekke# 228
       skaare: '631'
     metal: silver
     metal_verified: true
@@ -21146,10 +20777,22 @@ coins:
         specimen: dk-hede-nc5h71b
       - value: 0.344
         source: ngc
+        specimen: ngc-1095582
+      - value: 0.344
+        source: ngc
+        specimen: ngc-1099823
       - value: 0.344
         source: numismaster
+        specimen: denmark-numismaster-110615
+      - value: 0.344
+        source: numismaster
+        specimen: denmark-numismaster-110616
       - value: 0.344
         source: numista
+        specimen: dk-numista-99106
+      - value: 0.344
+        source: numista
+        specimen: dk-numista-99107
     weight_rough_g:
       - value: 1.218
         source: hede
@@ -21159,16 +20802,35 @@ coins:
         specimen: dk-hede-nc5h71b
       - value: 1.22
         source: ngc
+        specimen: ngc-1095582
+      - value: 1.22
+        source: ngc
+        specimen: ngc-1099823
       - value: 1.22
         source: numismaster
+        specimen: denmark-numismaster-110615
+      - value: 1.22
+        source: numismaster
+        specimen: denmark-numismaster-110616
       - value: 1.22
         source: numista
+        specimen: dk-numista-99106
+      - value: 1.22
+        source: numista
+        specimen: dk-numista-99107
     diameter_mm:
       - value: 17.0
         source: numista
+        specimen: dk-numista-99106
+      - value: 17.0
+        source: numista
+        specimen: dk-numista-99107
     sources:
       - type: literature
         url: https://numismaster.com/MC_110615
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110616
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h71.htm
@@ -21177,7 +20839,13 @@ coins:
         url: https://en.numista.com/99106
         ref: Numista N#99106 — 2 Skilling - Christian V (Kongsberg type III) - Norway
       - type: literature
+        url: https://en.numista.com/99107
+        ref: Numista N#99107 — 2 Skilling - Christian V (Kongsberg type II) - Norway
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-160-1687-1688-cuid-1095582-duid-1448899
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-161-1687-cuid-1099823-duid-1466082
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
@@ -21187,10 +20855,13 @@ coins:
       unit_raw: daler
     composed_of:
       - denmark-numismaster-110615
+      - denmark-numismaster-110616
       - dk-hede-nc5h71a
       - dk-hede-nc5h71b
       - dk-numista-99106
+      - dk-numista-99107
       - ngc-1095582
+      - ngc-1099823
   - id: c-9500e5c7
     class_id: c-9500e5c7
     label: unified-dk-hede-nc5h72
@@ -21207,14 +20878,21 @@ coins:
     ruler: Christian V
     mint: Kongsberg
     catalog:
-      km: '152'
+      km:
+        - '152'
+        - '159'
       hede: '72'
       hede_volume: nc5h
-      numista: '99005'
+      numista:
+        - '99005'
+        - '99006'
       others:
         - Brekke# 243
         - Brekke# 244
         - Rønning# 128
+        - Brekke# 245
+        - Brekke# 246
+        - Rønning# 128a
       skaare: '633'
     metal: silver
     metal_verified: true
@@ -21230,6 +20908,10 @@ coins:
         source: numismaster
       - value: 0.188
         source: numista
+        specimen: dk-numista-99005
+      - value: 0.188
+        source: numista
+        specimen: dk-numista-99006
       - value: 0.188
         source: ucoin
         specimen: dk-tid-143759
@@ -21243,6 +20925,10 @@ coins:
         source: numismaster
       - value: 1.11
         source: numista
+        specimen: dk-numista-99005
+      - value: 1.11
+        source: numista
+        specimen: dk-numista-99006
       - value: 1.11
         source: ucoin
         specimen: dk-tid-143759
@@ -21252,6 +20938,10 @@ coins:
     diameter_mm:
       - value: 15.0
         source: numista
+        specimen: dk-numista-99005
+      - value: 15.0
+        source: numista
+        specimen: dk-numista-99006
       - value: 15.0
         source: ucoin
         specimen: dk-tid-143760
@@ -21265,6 +20955,9 @@ coins:
       - type: literature
         url: https://en.numista.com/99005
         ref: Numista N#99005 — 1 Skilling - Christian V (Kongsberg type I.A; less detailed monogram) - Norway – Numista
+      - type: literature
+        url: https://en.numista.com/99006
+        ref: Numista N#99006 — 1 Skilling - Christian V (Kongsberg type I.B; more detailed monogram) - Norway – Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-skilling-1686-1687/?tid=143759
         ref: ucoin
@@ -21288,6 +20981,7 @@ coins:
       - denmark-numismaster-110599
       - dk-hede-nc5h72
       - dk-numista-99005
+      - dk-numista-99006
       - dk-tid-143759
       - dk-tid-143760
       - ngc-1099056
@@ -21308,7 +21002,10 @@ coins:
     mintmaster: Henning Christopher Meyer, the elder
     mint: Kongsberg
     catalog:
-      km: '183'
+      km:
+        - '183'
+        - '182'
+        - '181'
       hede: '73'
       hede_volume: nc5h
       schou:
@@ -21333,6 +21030,8 @@ coins:
       numista:
         - '101796'
         - '101797'
+        - '101798'
+        - '101799'
       dav: EC II 3666
       others:
         - Brekke# 182C
@@ -21341,6 +21040,10 @@ coins:
         - Brekke# 184B
         - Brekke# 186B
         - Rønning# 117c
+        - Rønning# 117a
+        - Brekke# 182A
+        - Rønning# 117
+        - Brekke# 182B
       skaare: '622'
     metal: silver
     metal_verified: true
@@ -21354,8 +21057,22 @@ coins:
         source: hede
       - value: 0.672
         source: ngc
+        specimen: ngc-1095589
+      - value: 0.672
+        source: ngc
+        specimen: ngc-1098048
+      - value: 0.672
+        source: ngc
+        specimen: ngc-1099122
       - value: 0.672
         source: numismaster
+        specimen: denmark-numismaster-110677
+      - value: 0.672
+        source: numismaster
+        specimen: denmark-numismaster-110678
+      - value: 0.672
+        source: numismaster
+        specimen: denmark-numismaster-110681
       - value: 0.672
         source: numista
         specimen: dk-numista-101796
@@ -21363,14 +21080,38 @@ coins:
         source: numista
         specimen: dk-numista-101797
       - value: 0.672
+        source: numista
+        specimen: dk-numista-101798
+      - value: 0.672
+        source: numista
+        specimen: dk-numista-101799
+      - value: 0.672
         source: ucoin
+        specimen: dk-tid-145714
+      - value: 0.672
+        source: ucoin
+        specimen: dk-tid-145715
     weight_rough_g:
       - value: 22.06
         source: bruun
       - value: 22.27
         source: ngc
+        specimen: ngc-1095589
+      - value: 22.27
+        source: ngc
+        specimen: ngc-1098048
+      - value: 22.27
+        source: ngc
+        specimen: ngc-1099122
       - value: 22.27
         source: numismaster
+        specimen: denmark-numismaster-110677
+      - value: 22.27
+        source: numismaster
+        specimen: denmark-numismaster-110678
+      - value: 22.27
+        source: numismaster
+        specimen: denmark-numismaster-110681
       - value: 22.27
         source: numista
         specimen: dk-numista-101796
@@ -21378,7 +21119,17 @@ coins:
         source: numista
         specimen: dk-numista-101797
       - value: 22.27
+        source: numista
+        specimen: dk-numista-101798
+      - value: 22.27
+        source: numista
+        specimen: dk-numista-101799
+      - value: 22.27
         source: ucoin
+        specimen: dk-tid-145714
+      - value: 22.27
+        source: ucoin
+        specimen: dk-tid-145715
       - value: 22.272
         source: hede
     diameter_mm:
@@ -21388,8 +21139,18 @@ coins:
       - value: 38.0
         source: numista
         specimen: dk-numista-101797
+      - value: 38.0
+        source: numista
+        specimen: dk-numista-101798
+      - value: 38.0
+        source: numista
+        specimen: dk-numista-101799
       - value: 39.0
         source: ucoin
+        specimen: dk-tid-145714
+      - value: 39.0
+        source: ucoin
+        specimen: dk-tid-145715
     uncertainty:
       metal:
         - kind: inferred
@@ -21405,6 +21166,12 @@ coins:
           value: silver
           seed: dk-bruun-10337
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_110677
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110678
+        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_110681
         ref: NumisMaster
@@ -21423,11 +21190,26 @@ coins:
       - type: literature
         url: https://en.numista.com/101797
         ref: Numista N#101797 — 4 Mark - Christian V (Kongsberg type G&IV; HCM below branches; rifled edge) - Norway
+      - type: literature
+        url: https://en.numista.com/101798
+        ref: Numista N#101798 — 4 Mark - Christian V (Kongsberg type F&IV) - Norway
+      - type: literature
+        url: https://en.numista.com/101799
+        ref: Numista N#101799 — 4 Mark - Christian V (Kongsberg type G&IV; HCM above branches) - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-4-mark-1688/?tid=145714
+        ref: ucoin
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-4-mark-1688-1699/?tid=145715
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-4-mark-km-181-1688-cuid-1095589-duid-1466109
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-4-mark-km-183-1688-1699-cuid-1098048-duid-1448234
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-4-mark-km-182-1688-cuid-1099122-duid-1448233
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Krone
@@ -21440,16 +21222,23 @@ coins:
       basis: fin
       unit_raw: rd.kr
     composed_of:
+      - denmark-numismaster-110677
+      - denmark-numismaster-110678
       - denmark-numismaster-110681
       - dk-bruun-10336
       - dk-bruun-10337
       - dk-hede-nc5h73
       - dk-numista-101796
       - dk-numista-101797
+      - dk-numista-101798
+      - dk-numista-101799
+      - dk-tid-145714
       - dk-tid-145715
+      - ngc-1095589
       - ngc-1098048
-  - id: c-2bfeab78
-    class_id: c-2bfeab78
+      - ngc-1099122
+  - id: c-8f1abdb1
+    class_id: c-8f1abdb1
     label: unified-dk-hede-nc5h74
     fuss: seed_unsorted
     phase: hede
@@ -21462,19 +21251,57 @@ coins:
           - 1699
     year_label: 1688-1699
     ruler: Christian V
+    mintmaster: Henning Christopher Meyer the Elder
     mint: Kongsberg
     catalog:
-      km: '177'
+      km:
+        - '179.2'
+        - '179.1'
+        - '178'
+        - '177'
       hede: '74'
       hede_volume: nc5h
       schou:
         - '2'
         - '4'
         - '8'
+        - '15'
         - '21'
+        - '33'
         - '36'
+        - '37'
         - '38'
+        - '47'
         - '57'
+      sieg: '35'
+      bruun_collection_id:
+        - '10341'
+        - '10366'
+        - '10384'
+        - '10435'
+        - '10436'
+        - '10453'
+        - '10469'
+      nmd:
+        - '198'
+        - 199A
+        - '201'
+        - '204'
+        - 205B
+        - '206'
+      others:
+        - Delzanno# 208
+        - Brekke# 199B
+        - Rønning# 120b
+        - Brekke# 199A
+        - Rønning# 120a
+        - Rønning# 120
+        - Brekke# 198
+      numista:
+        - '101760'
+        - '101764'
+        - '101773'
+      skaare: '625'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -21487,8 +21314,37 @@ coins:
         source: hede
       - value: 0.672
         source: ngc
+        specimen: ngc-1094240
+      - value: 0.672
+        source: ngc
+        specimen: ngc-1094241
+      - value: 0.672
+        source: ngc
+        specimen: ngc-1094242
+      - value: 0.672
+        source: ngc
+        specimen: ngc-1099921
       - value: 0.672
         source: numismaster
+        specimen: denmark-numismaster-110659
+      - value: 0.672
+        source: numismaster
+        specimen: denmark-numismaster-110660
+      - value: 0.672
+        source: numismaster
+        specimen: denmark-numismaster-110661
+      - value: 0.672
+        source: numismaster
+        specimen: denmark-numismaster-110662
+      - value: 0.672
+        source: numista
+        specimen: dk-numista-101760
+      - value: 0.672
+        source: numista
+        specimen: dk-numista-101764
+      - value: 0.672
+        source: numista
+        specimen: dk-numista-101773
       - value: 0.672
         source: ucoin
         specimen: dk-tid-145045
@@ -21499,12 +21355,51 @@ coins:
         source: ucoin
         specimen: dk-tid-145047
     weight_rough_g:
+      - value: 10.86
+        source: bruun
+      - value: 10.88
+        source: bruun
+      - value: 10.97
+        source: bruun
+      - value: 11.13
+        source: bruun
       - value: 11.136
         source: hede
       - value: 11.14
+        source: bruun
+      - value: 11.14
         source: ngc
+        specimen: ngc-1094240
+      - value: 11.14
+        source: ngc
+        specimen: ngc-1094241
+      - value: 11.14
+        source: ngc
+        specimen: ngc-1094242
+      - value: 11.14
+        source: ngc
+        specimen: ngc-1099921
       - value: 11.14
         source: numismaster
+        specimen: denmark-numismaster-110659
+      - value: 11.14
+        source: numismaster
+        specimen: denmark-numismaster-110660
+      - value: 11.14
+        source: numismaster
+        specimen: denmark-numismaster-110661
+      - value: 11.14
+        source: numismaster
+        specimen: denmark-numismaster-110662
+      - value: 11.14
+        source: numista
+        specimen: dk-numista-101760
+      - value: 11.14
+        source: numista
+        specimen: dk-numista-101764
+      - value: 11.14
+        source: numista
+        specimen: dk-numista-101773
       - value: 11.14
         source: ucoin
         specimen: dk-tid-145045
@@ -21514,8 +21409,21 @@ coins:
       - value: 11.14
         source: ucoin
         specimen: dk-tid-145047
+      - value: 11.19
+        source: bruun
+      - value: 11.2
+        source: bruun
     diameter_mm:
       - value: 31.0
+        source: numista
+        specimen: dk-numista-101760
+      - value: 31.0
+        source: numista
+        specimen: dk-numista-101764
+      - value: 31.0
+        source: numista
+        specimen: dk-numista-101773
+      - value: 31.0
         source: ucoin
         specimen: dk-tid-145045
       - value: 31.0
@@ -21524,13 +21432,96 @@ coins:
       - value: 31.0
         source: ucoin
         specimen: dk-tid-145047
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10341
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10366
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10384
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10435
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10436
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10453
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10469
     sources:
       - type: literature
         url: https://numismaster.com/MC_110659
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_110660
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110661
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110662
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15085, p. 118
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12113, p. 200
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15086, p. 119
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15092, p. 122
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15093, p. 122
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12119, p. 202
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15097, p. 124
+      - type: literature
         url: https://www.danskmoent.dk/norge/nc5h74.htm
         ref: danskmoent.dk (Hede nc5h74)
+      - type: literature
+        url: https://en.numista.com/101760
+        ref: Numista N#101760 — 2 Mark - Christian V (Kongsberg type C&III; HCM below branches; rifled edge) - Norway
+      - type: literature
+        url: https://en.numista.com/101764
+        ref: Numista N#101764 — 2 Mark - Christian V (Kongsberg type C&III; HCM below branches; plain edge) - Norway
+      - type: literature
+        url: https://en.numista.com/101773
+        ref: Numista N#101773 — 2 Mark - Christian V (Kongsberg type C&III; HCM above branches) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-2-mark-1688/?tid=145045
         ref: ucoin
@@ -21543,6 +21534,15 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-177-1688-cuid-1094240-duid-1466102
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-178-1688-cuid-1094241-duid-1448759
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-179.1-1688-1699-cuid-1094242-duid-1450018
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-179.2-1690-1696-cuid-1099921-duid-1448378
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
       value: 10.418
@@ -21551,13 +21551,29 @@ coins:
       unit_raw: rd.kr
     composed_of:
       - denmark-numismaster-110659
+      - denmark-numismaster-110660
+      - denmark-numismaster-110661
+      - denmark-numismaster-110662
+      - dk-bruun-10341
+      - dk-bruun-10366
+      - dk-bruun-10384
+      - dk-bruun-10435
+      - dk-bruun-10436
+      - dk-bruun-10453
+      - dk-bruun-10469
       - dk-hede-nc5h74
+      - dk-numista-101760
+      - dk-numista-101764
+      - dk-numista-101773
       - dk-tid-145045
       - dk-tid-145046
       - dk-tid-145047
       - ngc-1094240
-  - id: c-c2a82215
-    class_id: c-c2a82215
+      - ngc-1094241
+      - ngc-1094242
+      - ngc-1099921
+  - id: c-5a15af56
+    class_id: c-5a15af56
     label: unified-dk-hede-nc5h75
     fuss: seed_unsorted
     phase: hede
@@ -21570,9 +21586,13 @@ coins:
           - 1699
     year_label: 1688-1699
     ruler: Christian V
+    mintmaster: Henning Christopher Meyer, the elder
     mint: Kongsberg
     catalog:
-      km: '176'
+      km:
+        - '185.2'
+        - '176'
+        - '185.1'
       hede: '75'
       hede_volume: nc5h
       schou:
@@ -21583,10 +21603,29 @@ coins:
         - '42'
         - '43'
         - '51'
-      numista: '101705'
+        - '63'
+      sieg: '27'
+      bruun_collection_id:
+        - '10385'
+        - '10399'
+        - '10418'
+      nmd:
+        - '217'
+        - 218A
+        - 219A
       others:
+        - Delzanno# 227
+        - Brekke# 218B
+        - Brekke# 219B
+        - Rønning# 123b
         - Rønning# 123
         - Brekke# 214
+        - Brekke# 215-217
+        - Rønning# 123a
+      numista:
+        - '101483'
+        - '101705'
+        - '101762'
       skaare: '628'
     metal: silver
     metal_verified: true
@@ -21600,34 +21639,118 @@ coins:
         source: hede
       - value: 0.672
         source: ngc
+        specimen: ngc-1094236
+      - value: 0.672
+        source: ngc
+        specimen: ngc-1114101
       - value: 0.672
         source: numismaster
+        specimen: denmark-numismaster-110641
+      - value: 0.672
+        source: numismaster
+        specimen: denmark-numismaster-110643
       - value: 0.672
         source: numista
+        specimen: dk-numista-101483
+      - value: 0.672
+        source: numista
+        specimen: dk-numista-101705
+      - value: 0.672
+        source: numista
+        specimen: dk-numista-101762
     weight_rough_g:
+      - value: 5.36
+        source: bruun
+      - value: 5.41
+        source: bruun
+      - value: 5.5
+        source: bruun
       - value: 5.568
         source: hede
       - value: 5.57
         source: ngc
+        specimen: ngc-1094236
+      - value: 5.57
+        source: ngc
+        specimen: ngc-1114101
       - value: 5.57
         source: numismaster
+        specimen: denmark-numismaster-110641
+      - value: 5.57
+        source: numismaster
+        specimen: denmark-numismaster-110643
       - value: 5.57
         source: numista
+        specimen: dk-numista-101483
+      - value: 5.57
+        source: numista
+        specimen: dk-numista-101705
+      - value: 5.57
+        source: numista
+        specimen: dk-numista-101762
     diameter_mm:
       - value: 25.0
         source: numista
+        specimen: dk-numista-101483
+      - value: 25.0
+        source: numista
+        specimen: dk-numista-101705
+      - value: 25.0
+        source: numista
+        specimen: dk-numista-101762
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-10385
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-10399
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-10418
     sources:
       - type: literature
         url: https://numismaster.com/MC_110641
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_110643
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15087, p. 119
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14094, p. 209
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15090, p. 120
+      - type: literature
         url: https://www.danskmoent.dk/norge/nc5h75.htm
         ref: danskmoent.dk (Hede nc5h75)
+      - type: literature
+        url: https://en.numista.com/101483
+        ref: Numista N#101483 — 1 Mark - Christian V (Kongsberg type C&III; HCM below branches; rifled edge) - Norway
       - type: literature
         url: https://en.numista.com/101705
         ref: Numista N#101705 — 1 Mark - Christian V (Kongsberg type C&III; HCM above branches) - Norway
       - type: literature
+        url: https://en.numista.com/101762
+        ref: Numista N#101762 — 1 Mark - Christian V (Kongsberg type C&III; HCM below branches; plain edge) - Norway
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-mark-km-176-1688-cuid-1094236-duid-1448752
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-mark-km-185.2-1691-1699-cuid-1114101-duid-1448292
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 16 Skilling
@@ -21641,9 +21764,16 @@ coins:
       unit_raw: rd.kr
     composed_of:
       - denmark-numismaster-110641
+      - denmark-numismaster-110643
+      - dk-bruun-10385
+      - dk-bruun-10399
+      - dk-bruun-10418
       - dk-hede-nc5h75
+      - dk-numista-101483
       - dk-numista-101705
+      - dk-numista-101762
       - ngc-1094236
+      - ngc-1114101
   - id: c-c825b097
     class_id: c-c825b097
     label: unified-dk-hede-nc5h76
@@ -21764,13 +21894,20 @@ coins:
     ruler: Christian V
     mint: Kongsberg
     catalog:
-      km: '159'
+      km:
+        - '173'
+        - '159'
       hede: '77'
       hede_volume: nc5h
       schou:
         - '5'
         - '29'
         - '39'
+      numista: '99007'
+      others:
+        - Brekke# 247-257
+        - Rønning# 129
+      skaare: '634'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -21783,20 +21920,42 @@ coins:
         source: hede
       - value: 0.188
         source: ngc
+        specimen: ngc-1095581
+      - value: 0.188
+        source: ngc
+        specimen: ngc-1114096
       - value: 0.188
         source: numismaster
+        specimen: denmark-numismaster-110600
+      - value: 0.188
+        source: numismaster
+        specimen: denmark-numismaster-110601
+      - value: 0.188
+        source: numista
       - value: 0.188
         source: ucoin
     weight_rough_g:
       - value: 1.11
         source: ngc
+        specimen: ngc-1095581
+      - value: 1.11
+        source: ngc
+        specimen: ngc-1114096
       - value: 1.11
         source: numismaster
+        specimen: denmark-numismaster-110600
+      - value: 1.11
+        source: numismaster
+        specimen: denmark-numismaster-110601
+      - value: 1.11
+        source: numista
       - value: 1.11
         source: ucoin
       - value: 1.114
         source: hede
     diameter_mm:
+      - value: 15.0
+        source: numista
       - value: 15.0
         source: ucoin
     sources:
@@ -21804,13 +21963,22 @@ coins:
         url: https://numismaster.com/MC_110600
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_110601
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/norge/nc5h77.htm
         ref: danskmoent.dk (Hede nc5h77)
+      - type: literature
+        url: https://en.numista.com/99007
+        ref: Numista N#99007 — 1 Skilling - Christian V (Kongsberg type II) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-skilling-1688-1699/?tid=143775
         ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-159-1687-1688-cuid-1095581-duid-1448196
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-173-1688-1699-cuid-1114096-duid-1449986
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
@@ -21820,9 +21988,12 @@ coins:
       unit_raw: daler
     composed_of:
       - denmark-numismaster-110600
+      - denmark-numismaster-110601
       - dk-hede-nc5h77
+      - dk-numista-99007
       - dk-tid-143775
       - ngc-1095581
+      - ngc-1114096
   - id: c-00c2def8
     class_id: c-00c2def8
     label: unified-dk-hede-nc5h78
@@ -25196,30 +25367,44 @@ coins:
     ruler: Frederik III
     mint: Christiania
     catalog:
-      km: '34'
+      km:
+        - '34'
+        - '49'
       hede:
         - 13A
+        - 13B
         - 13ab
       hede_volume: nf3h
       bruun_collection_id:
         - '9605'
         - '9620'
-      sieg: '9.1'
+        - '9686'
+      sieg:
+        - '9.1'
+        - '9.2'
       schou:
+        - '11'
         - '23'
         - '29'
       nmd:
         - '141'
         - '142'
+        - '143'
       others:
         - Aagaard# 18.1
         - Aagaard# 18.2
+        - Aagaard# 35.1
         - Brekke# 135
         - Brekke# 136
         - Thesen# 141
         - Thesen# 142
         - Rønning# 56
-      numista: '118989'
+        - Rønning# 57
+        - Brekke# 137
+        - Thesen# 143
+      numista:
+        - '118989'
+        - '118990'
       skaare: '551'
     metal: silver
     metal_verified: true
@@ -25231,30 +25416,72 @@ coins:
     fineness:
       - value: 0.875
         source: ngc
+        specimen: ngc-1100404
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1100405
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-110687
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-110688
       - value: 0.875
         source: numista
+        specimen: dk-numista-118989
+      - value: 0.875
+        source: numista
+        specimen: dk-numista-118990
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-144930
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-144931
     weight_rough_g:
+      - value: 3.41
+        source: bruun
       - value: 3.49
         source: bruun
       - value: 3.53
         source: bruun
       - value: 3.59
         source: ngc
+        specimen: ngc-1100404
       - value: 3.59
         source: numismaster
+        specimen: denmark-numismaster-110687
       - value: 3.59
         source: numista
+        specimen: dk-numista-118989
       - value: 3.59
         source: ucoin
+        specimen: dk-tid-144930
+      - value: 3.6
+        source: ngc
+        specimen: ngc-1100405
+      - value: 3.6
+        source: numismaster
+        specimen: denmark-numismaster-110688
+      - value: 3.6
+        source: numista
+        specimen: dk-numista-118990
+      - value: 3.6
+        source: ucoin
+        specimen: dk-tid-144931
     diameter_mm:
       - value: 25.0
+        source: ngc
+        specimen: ngc-1100405
+      - value: 25.0
         source: numista
+        specimen: dk-numista-118989
+      - value: 25.0
+        source: numista
+        specimen: dk-numista-118990
       - value: 27.0
         source: ngc
+        specimen: ngc-1100404
     uncertainty:
       metal:
         - kind: inferred
@@ -25269,9 +25496,18 @@ coins:
           as_printed: 1/8 Speciedaler
           value: silver
           seed: dk-bruun-9620
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/8 Speciedaler
+          value: silver
+          seed: dk-bruun-9686
     sources:
       - type: literature
         url: https://numismaster.com/MC_110687
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110688
         ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -25279,17 +25515,29 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15033, p. 95
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12075, p. 180
       - type: literature
         url: https://www.danskmoent.dk/f3hede3.htm
         ref: danskmoent.dk overview f3hede3 (Hede nf3h13ab — Tiefenseite fehlt)
       - type: literature
         url: https://en.numista.com/118989
         ref: 'Numista N#118989 — ⅛ Speciedaler - Frederik III (Type I.B: 3 lines in crown; legend starts below bust) - Norway'
+      - type: literature
+        url: https://en.numista.com/118990
+        ref: 'Numista N#118990 — ⅛ Speciedaler - Frederik III (Type I.B: 3 lines in crown; legend starts above bust) - Norway'
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1649-1650/?tid=144930
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1654/?tid=144931
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-8-specie-daler-km-34-1649-1650-cuid-1100404-duid-1450282
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-1-8-specie-daler-km-49-1654-cuid-1100405-duid-1448850
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Nur die Übersichtsreihe von f3hede3.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
@@ -25303,12 +25551,17 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-110687
+      - denmark-numismaster-110688
       - dk-bruun-9605
       - dk-bruun-9620
+      - dk-bruun-9686
       - dk-hede-nf3h13ab
       - dk-numista-118989
+      - dk-numista-118990
       - dk-tid-144930
+      - dk-tid-144931
       - ngc-1100404
+      - ngc-1100405
   - id: c-84755def
     class_id: c-84755def
     label: unified-dk-hede-nf3h14
@@ -37785,17 +38038,23 @@ coins:
     year_last: 1700
     year_label: '1700'
     ruler: Frederik IV
+    mintmaster: Henning Christopher Meyer the Elder
     mint: Kongsberg
     catalog:
-      km: '208'
+      km:
+        - '200.1'
+        - '208'
       hede: '2'
       hede_volume: nf4h
       schou: '8'
       sieg: '8'
-      numista: '101117'
+      bruun_collection_id: '10518'
+      nmd: '8'
       others:
+        - Kold# 172
         - Rønning# 133
         - Brekke# 6
+      numista: '101117'
       skaare: '639'
     metal: silver
     metal_verified: true
@@ -37816,6 +38075,8 @@ coins:
       - value: 0.833
         source: ucoin
     weight_rough_g:
+      - value: 8.92
+        source: bruun
       - value: 8.99
         source: ngc
       - value: 8.99
@@ -37831,10 +38092,21 @@ coins:
         source: ucoin
       - value: 27.3
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-bruun-10518
     sources:
       - type: literature
         url: https://numismaster.com/MC_110664
         ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12123, p. 205
       - type: literature
         url: https://www.danskmoent.dk/norge/nf4h2.htm
         ref: danskmoent.dk (Hede nf4h2)
@@ -37854,6 +38126,7 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-110664
+      - dk-bruun-10518
       - dk-hede-nf4h2
       - dk-numista-101117
       - dk-tid-145050
@@ -38236,8 +38509,8 @@ coins:
       - kmk-148498
       - kmk-201994
       - ngc-1113816
-  - id: c-83fc6896
-    class_id: c-83fc6896
+  - id: c-c0923908
+    class_id: c-c0923908
     label: unified-dk-hede-nf4h7
     fuss: seed_unsorted
     phase: hede
@@ -38252,8 +38525,14 @@ coins:
     ruler: Frederik IV
     mint: Kongsberg
     catalog:
-      km: '206'
-      hede: '7'
+      km:
+        - '206'
+        - '215'
+        - '218'
+      hede:
+        - '7'
+        - 7A
+        - 7B
       hede_volume: nf4h
       sieg:
         - 2.1-2
@@ -38263,7 +38542,21 @@ coins:
         - '7'
         - '11'
         - '17'
-      numista: '483818'
+      numista:
+        - '483818'
+        - '99108'
+        - '99110'
+        - '99111'
+      others:
+        - Brekke# 42-45
+        - Rønning# 141
+        - Brekke# 57-61
+        - Rønning# 142
+        - Brekke# 62-68
+        - Rønning# 142a
+        - JSJ# 280
+        - JSJ# 279
+      skaare: '646'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -38272,29 +38565,115 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1096044
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1097882
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-86217
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-86218
+      - value: 0.281
+        source: numista
+        specimen: dk-numista-99110
+      - value: 0.281
+        source: numista
+        specimen: dk-numista-99111
+      - value: 0.281
+        source: ucoin
+        specimen: dk-tid-145791
+      - value: 0.281
+        source: ucoin
+        specimen: dk-tid-145793
       - value: 0.343
         source: hede
       - value: 0.344
         source: ngc
+        specimen: ngc-1095573
       - value: 0.344
         source: numismaster
+        specimen: denmark-numismaster-86216
+      - value: 0.344
+        source: numista
+        specimen: dk-numista-99108
       - value: 0.344
         source: ucoin
+        specimen: dk-tid-143939
     weight_rough_g:
+      - value: 0.82
+        source: kmk
+      - value: 1.19
+        source: kmk
       - value: 1.218
         source: hede
       - value: 1.22
         source: ngc
+        specimen: ngc-1095573
       - value: 1.22
         source: numismaster
+        specimen: denmark-numismaster-86216
+      - value: 1.22
+        source: numista
+        specimen: dk-numista-99108
       - value: 1.22
         source: ucoin
+        specimen: dk-tid-143939
+      - value: 1.3
+        source: ngc
+        specimen: ngc-1096044
+      - value: 1.3
+        source: ngc
+        specimen: ngc-1097882
+      - value: 1.3
+        source: numismaster
+        specimen: denmark-numismaster-86217
+      - value: 1.3
+        source: numismaster
+        specimen: denmark-numismaster-86218
+      - value: 1.3
+        source: numista
+        specimen: dk-numista-99110
+      - value: 1.3
+        source: numista
+        specimen: dk-numista-99111
+      - value: 1.3
+        source: ucoin
+        specimen: dk-tid-145791
+      - value: 1.3
+        source: ucoin
+        specimen: dk-tid-145793
     diameter_mm:
+      - value: 17.0
+        source: numista
+        specimen: dk-numista-99108
+      - value: 17.0
+        source: numista
+        specimen: dk-numista-99110
+      - value: 17.0
+        source: numista
+        specimen: dk-numista-99111
       - value: 17.2
         source: ucoin
+        specimen: dk-tid-143939
+      - value: 17.2
+        source: ucoin
+        specimen: dk-tid-145791
+      - value: 17.2
+        source: ucoin
+        specimen: dk-tid-145793
     sources:
       - type: literature
         url: https://numismaster.com/MC_86216
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_86217
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_86218
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nf4h7.htm
@@ -38302,19 +38681,69 @@ coins:
       - type: literature
         url: https://en.numista.com/483818
         ref: Numista N#483818 — Contemporary Counterfeit - 2 Skilling - Frederik IV - Norway
+      - type: literature
+        url: https://en.numista.com/99108
+        ref: Numista N#99108 — 2 Skilling - Frederik IV (Light; without leaf below lion) - Norway
+      - type: literature
+        url: https://en.numista.com/99110
+        ref: Numista N#99110 — 2 Skilling - Frederik IV (Heavy; with leaf below lion) - Norway
+      - type: literature
+        url: https://en.numista.com/99111
+        ref: Numista N#99111 — 2 Skilling - Frederik IV (Heavy; without leaf below lion) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-2-skilling-1700-1714/?tid=143939
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-2-skilling-1714-1718/?tid=145791
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-2-skilling-1719-1725/?tid=145793
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152005
+        ref: KMM 152005 (Inv. FP 3574.289)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279164
+        ref: KMM 279164 (Inv. FP 3528.280)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279165
+        ref: KMM 279165 (Inv. FP 3528.279)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/333776
+        ref: KMM 333776 (Inv. FP 5818.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352533
+        ref: KMM 352533 (Inv. FP 5129.12)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-206-1700-1714-cuid-1095573-duid-1465586
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-215-1714-1718-cuid-1096044-duid-1445227
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-218-1719-1725-cuid-1097882-duid-1444943
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-86216
+      - denmark-numismaster-86217
+      - denmark-numismaster-86218
       - dk-hede-nf4h7
       - dk-numista-483818
+      - dk-numista-99108
+      - dk-numista-99110
+      - dk-numista-99111
       - dk-tid-143939
+      - dk-tid-145791
+      - dk-tid-145793
+      - kmk-152005
+      - kmk-279164
+      - kmk-279165
+      - kmk-333776
+      - kmk-352533
       - ngc-1095573
+      - ngc-1096044
+      - ngc-1097882
   - id: c-e8d5decf
     class_id: c-e8d5decf
     label: unified-dk-hede-nf4h8a
@@ -38690,7 +39119,9 @@ coins:
     ruler: Frederik V
     mint: Kongsberg
     catalog:
-      km: '236'
+      km:
+        - '236'
+        - '241'
       hede:
         - 2A
         - 2B
@@ -38705,9 +39136,12 @@ coins:
         - '11'
       bruun_collection_id: '10726'
       nmd: '10'
-      numista: '55890'
+      numista:
+        - '55890'
+        - '82388'
       others:
         - Brekke# 2-19
+        - Brekke# 20-22
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -38724,21 +39158,53 @@ coins:
         specimen: dk-hede-nf5h2b
       - value: 0.562
         source: ngc
+        specimen: ngc-1095575
+      - value: 0.562
+        source: ngc
+        specimen: ngc-1097187
       - value: 0.562
         source: numismaster
+        specimen: denmark-numismaster-86244
+      - value: 0.562
+        source: numismaster
+        specimen: denmark-numismaster-86245
       - value: 0.562
         source: numista
+        specimen: dk-numista-55890
+      - value: 0.562
+        source: numista
+        specimen: dk-numista-82388
       - value: 0.563
         source: ucoin
+        specimen: dk-tid-88723
+      - value: 0.563
+        source: ucoin
+        specimen: dk-tid-88736
     weight_rough_g:
       - value: 9.17
         source: ngc
+        specimen: ngc-1095575
+      - value: 9.17
+        source: ngc
+        specimen: ngc-1097187
       - value: 9.17
         source: numismaster
+        specimen: denmark-numismaster-86244
+      - value: 9.17
+        source: numismaster
+        specimen: denmark-numismaster-86245
       - value: 9.17
         source: numista
+        specimen: dk-numista-55890
+      - value: 9.17
+        source: numista
+        specimen: dk-numista-82388
       - value: 9.17
         source: ucoin
+        specimen: dk-tid-88723
+      - value: 9.17
+        source: ucoin
+        specimen: dk-tid-88736
       - value: 9.171
         source: hede
         specimen: dk-hede-nf5h2a
@@ -38750,8 +39216,16 @@ coins:
     diameter_mm:
       - value: 29.5
         source: numista
+        specimen: dk-numista-55890
+      - value: 29.5
+        source: numista
+        specimen: dk-numista-82388
       - value: 29.5
         source: ucoin
+        specimen: dk-tid-88723
+      - value: 29.5
+        source: ucoin
+        specimen: dk-tid-88736
     uncertainty:
       metal:
         - kind: inferred
@@ -38777,6 +39251,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_86244
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_86245
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12128, p. 207
@@ -38786,20 +39263,33 @@ coins:
       - type: literature
         url: https://en.numista.com/55890
         ref: Numista N#55890 — 24 Skilling - Frederik V (Type I) - Norway
+      - type: literature
+        url: https://en.numista.com/82388
+        ref: Numista N#82388 — 24 Skilling - Frederik V (Type II) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-24-skilling-1746-1763/?tid=88723
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-24-skilling-1763-1765/?tid=88736
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-241-1763-1765-cuid-1095575-duid-1445427
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-236-1746-1763-cuid-1097187-duid-1445782
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-86244
+      - denmark-numismaster-86245
       - dk-bruun-10726
       - dk-hede-nf5h2a
       - dk-hede-nf5h2b
       - dk-numista-55890
+      - dk-numista-82388
       - dk-tid-88723
+      - dk-tid-88736
+      - ngc-1095575
       - ngc-1097187
   - id: c-bf63f998
     class_id: c-bf63f998
@@ -39414,239 +39904,6 @@ coins:
       - dk-numista-20936
       - dk-tid-88694
       - ngc-1098069
-  - id: c-5c208c0e
-    class_id: c-5c208c0e
-    label: unified-dk-numista-101762
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1689
-    year_last: 1694
-    year_ranges:
-      -   - 1689
-          - 1694
-    year_label: 1689-1694
-    ruler: Christian V
-    catalog:
-      km: '185.1'
-      numista: '101762'
-      hede: '75'
-      others:
-        - Brekke# 215-217
-        - Rønning# 123a
-      skaare: '628'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.672
-        source: numista
-    weight_rough_g:
-      - value: 5.57
-        source: numista
-    diameter_mm:
-      - value: 25.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/101762
-        ref: Numista N#101762 — 1 Mark - Christian V (Kongsberg type C&III; HCM below branches; plain edge) - Norway
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-101762
-  - id: c-4a2f8e9b
-    class_id: c-4a2f8e9b
-    label: unified-dk-numista-101773
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1688
-    year_last: 1688
-    year_label: '1688'
-    ruler: Christian V
-    catalog:
-      km: '178'
-      numista: '101773'
-      hede: '74'
-      others:
-        - Rønning# 120
-        - Brekke# 198
-      skaare: '625'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-    weight_rough_g:
-      - value: 11.14
-        source: ngc
-      - value: 11.14
-        source: numismaster
-      - value: 11.14
-        source: numista
-    diameter_mm:
-      - value: 31.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110660
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/101773
-        ref: Numista N#101773 — 2 Mark - Christian V (Kongsberg type C&III; HCM above branches) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-178-1688-cuid-1094241-duid-1448759
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110660
-      - dk-numista-101773
-      - ngc-1094241
-  - id: c-a61f89e5
-    class_id: c-a61f89e5
-    label: unified-dk-numista-101798
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 4 Mark = 1 Krone
-    year_first: 1688
-    year_last: 1688
-    year_label: '1688'
-    ruler: Christian V
-    catalog:
-      km: '182'
-      numista: '101798'
-      hede: '73'
-      others:
-        - Rønning# 117a
-        - Brekke# 182A
-      skaare: '622'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-    weight_rough_g:
-      - value: 22.27
-        source: ngc
-      - value: 22.27
-        source: numismaster
-      - value: 22.27
-        source: numista
-    diameter_mm:
-      - value: 38.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110678
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/101798
-        ref: Numista N#101798 — 4 Mark - Christian V (Kongsberg type F&IV) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-4-mark-km-182-1688-cuid-1099122-duid-1448233
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: 1 Krone
-      en: 1 Krone
-      uk: 1 Krone
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110678
-      - dk-numista-101798
-      - ngc-1099122
-  - id: c-44c86e7b
-    class_id: c-44c86e7b
-    label: unified-dk-numista-101799
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 4 Mark = 1 Krone
-    year_first: 1688
-    year_last: 1688
-    year_label: '1688'
-    ruler: Christian V
-    catalog:
-      km: '181'
-      numista: '101799'
-      hede: '73'
-      others:
-        - Rønning# 117
-        - Brekke# 182B
-      skaare: '622'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-      - value: 0.672
-        source: ucoin
-    weight_rough_g:
-      - value: 22.27
-        source: ngc
-      - value: 22.27
-        source: numismaster
-      - value: 22.27
-        source: numista
-      - value: 22.27
-        source: ucoin
-    diameter_mm:
-      - value: 38.0
-        source: numista
-      - value: 39.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110677
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/101799
-        ref: Numista N#101799 — 4 Mark - Christian V (Kongsberg type G&IV; HCM above branches) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-4-mark-1688/?tid=145714
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-4-mark-km-181-1688-cuid-1095589-duid-1466109
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110677
-      - dk-numista-101799
-      - dk-tid-145714
-      - ngc-1095589
   - id: c-150bac76
     class_id: c-150bac76
     label: unified-dk-numista-102381
@@ -39758,145 +40015,6 @@ coins:
       - dk-numista-111175
       - dk-tid-145474
       - ngc-1095650
-  - id: c-9b48d420
-    class_id: c-9b48d420
-    label: unified-dk-numista-117121
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1673
-    year_last: 1680
-    year_ranges:
-      -   - 1673
-          - 1673
-      -   - 1680
-          - 1680
-    year_label: 1673, 1680
-    ruler: Christian V
-    mint: Christiania
-    catalog:
-      km: '118'
-      numista: '117121'
-      hede: '3'
-      others:
-        - Rønning# 74a
-        - AAJT# 19
-      skaare: '569'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-      - value: 0.979
-        source: numista
-      - value: 0.979
-        source: ucoin
-    weight_rough_g:
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-      - value: 3.49
-        source: numista
-      - value: 3.49
-        source: ucoin
-    diameter_mm:
-      - value: 22.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110799
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/117121
-        ref: Numista N#117121 — 1 Ducat - Christian V (Christiania type II; without date) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-ducat-1680/?tid=145787
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-ducat-km-118-cuid-1099226-duid-1448941
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110799
-      - dk-numista-117121
-      - dk-tid-145787
-      - ngc-1099226
-  - id: c-be2fa837
-    class_id: c-be2fa837
-    label: unified-dk-numista-117133
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Speciedaler
-    year_first: 1670
-    year_last: 1670
-    year_label: '1670'
-    ruler: Christian V
-    catalog:
-      km: '101'
-      numista: '117133'
-      hede: 26B
-      others:
-        - Rønning# 78a
-        - AAJT# 31
-      skaare: '573'
-      dav: 3649A
-      schou: '5'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 57.47
-        source: kmk
-      - value: 57.55
-        source: ngc
-      - value: 57.55
-        source: numismaster
-      - value: 57.55
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110770
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/117133
-        ref: Numista N#117133 — 2 Speciedaler - Christian V (Christiania type I.B; date divided by shield) - Norway
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/278780
-        ref: KMM 278780 (Inv. KP 570.4)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-101-1670-cuid-1114120-duid-1450476
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110770
-      - dk-numista-117133
-      - kmk-278780
-      - ngc-1114120
   - id: c-56557bbe
     class_id: c-56557bbe
     label: unified-dk-numista-387243
@@ -40259,51 +40377,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-444482
-  - id: c-a1ce7222
-    class_id: c-a1ce7222
-    label: unified-dk-numista-445607
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1694
-    year_last: 1695
-    year_ranges:
-      -   - 1694
-          - 1695
-    year_label: 1694-1695
-    ruler: Christian V
-    catalog:
-      km: '193'
-      numista: '445607'
-      hede: 39A-39G
-      others:
-        - Brekke# 173A-173G
-        - Rønning# 113b
-      skaare: '612'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.89
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/445607
-        ref: Numista N#445607 — 1 Speciedaler - Christian V (Kongsberg type V.B; elephant below neck on obverse) - Norway
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-445607
   - id: c-bf409d8b
     class_id: c-bf409d8b
     label: unified-dk-numista-463165
@@ -40867,122 +40940,6 @@ coins:
       - denmark-numismaster-86268
       - dk-numista-61154
       - ngc-1097761
-  - id: c-ecaa3282
-    class_id: c-ecaa3282
-    label: unified-dk-numista-82371
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1695
-    year_last: 1696
-    year_ranges:
-      -   - 1695
-          - 1696
-    year_label: 1695-1696
-    ruler: Christian V
-    mint: Kongsberg
-    catalog:
-      km: '194'
-      numista: '82371'
-      hede: 39A-39G
-      dav: EC II 3661
-      others:
-        - Brekke# 175A-175G
-        - Rønning# 113c
-      skaare: '618'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.89
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/82371
-        ref: Numista N#82371 — 1 Speciedaler - Christian V (Kongsberg type V.C; elephant below chest on obverse) - Norway
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-82371
-  - id: c-691aa453
-    class_id: c-691aa453
-    label: unified-dk-numista-82388
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 24 Skilling
-    year_first: 1763
-    year_last: 1765
-    year_ranges:
-      -   - 1763
-          - 1765
-    year_label: 1763-1765
-    ruler: Frederik V
-    catalog:
-      km: '241'
-      numista: '82388'
-      hede: 2B
-      others:
-        - Brekke# 20-22
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.562
-        source: ngc
-      - value: 0.562
-        source: numismaster
-      - value: 0.562
-        source: numista
-      - value: 0.563
-        source: ucoin
-    weight_rough_g:
-      - value: 9.17
-        source: ngc
-      - value: 9.17
-        source: numismaster
-      - value: 9.17
-        source: numista
-      - value: 9.17
-        source: ucoin
-    diameter_mm:
-      - value: 29.5
-        source: numista
-      - value: 29.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_86245
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/82388
-        ref: Numista N#82388 — 24 Skilling - Frederik V (Type II) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-24-skilling-1763-1765/?tid=88736
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-241-1763-1765-cuid-1095575-duid-1445427
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-86245
-      - dk-numista-82388
-      - dk-tid-88736
-      - ngc-1095575
   - id: c-a80e70cb
     class_id: c-a80e70cb
     label: unified-dk-numista-82693
@@ -41029,389 +40986,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-82693
-  - id: c-99fd1b75
-    class_id: c-99fd1b75
-    label: unified-dk-numista-99006
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1687
-    year_last: 1688
-    year_ranges:
-      -   - 1687
-          - 1688
-    year_label: 1687-1688
-    ruler: Christian V
-    mint: Kongsberg
-    catalog:
-      km: '159'
-      numista: '99006'
-      hede: '72'
-      others:
-        - Brekke# 245
-        - Brekke# 246
-        - Rønning# 128a
-      skaare: '633'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.188
-        source: numista
-    weight_rough_g:
-      - value: 1.11
-        source: numista
-    diameter_mm:
-      - value: 15.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/99006
-        ref: Numista N#99006 — 1 Skilling - Christian V (Kongsberg type I.B; more detailed monogram) - Norway – Numista
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-99006
-  - id: c-020598dd
-    class_id: c-020598dd
-    label: unified-dk-numista-99007
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1688
-    year_last: 1699
-    year_ranges:
-      -   - 1688
-          - 1688
-      -   - 1690
-          - 1699
-    year_label: 1688, 1690-1699
-    ruler: Christian V
-    catalog:
-      km: '173'
-      numista: '99007'
-      hede: '77'
-      others:
-        - Brekke# 247-257
-        - Rønning# 129
-      skaare: '634'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.188
-        source: ngc
-      - value: 0.188
-        source: numismaster
-      - value: 0.188
-        source: numista
-    weight_rough_g:
-      - value: 1.11
-        source: ngc
-      - value: 1.11
-        source: numismaster
-      - value: 1.11
-        source: numista
-    diameter_mm:
-      - value: 15.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110601
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/99007
-        ref: Numista N#99007 — 1 Skilling - Christian V (Kongsberg type II) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-173-1688-1699-cuid-1114096-duid-1449986
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110601
-      - dk-numista-99007
-      - ngc-1114096
-  - id: c-31f18ea9
-    class_id: c-31f18ea9
-    label: unified-dk-numista-99107
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1687
-    year_last: 1687
-    year_label: '1687'
-    ruler: Christian V
-    catalog:
-      km: '161'
-      numista: '99107'
-      hede: 71B
-      others:
-        - Rønning# 126a
-        - Brekke# 228
-      skaare: '631'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.344
-        source: ngc
-      - value: 0.344
-        source: numismaster
-      - value: 0.344
-        source: numista
-    weight_rough_g:
-      - value: 1.22
-        source: ngc
-      - value: 1.22
-        source: numismaster
-      - value: 1.22
-        source: numista
-    diameter_mm:
-      - value: 17.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110616
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/99107
-        ref: Numista N#99107 — 2 Skilling - Christian V (Kongsberg type II) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-161-1687-cuid-1099823-duid-1466082
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110616
-      - dk-numista-99107
-      - ngc-1099823
-  - id: c-c0923908
-    class_id: c-c0923908
-    label: unified-dk-numista-99108
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1700
-    year_last: 1714
-    year_ranges:
-      -   - 1700
-          - 1714
-    year_label: 1700-1714
-    ruler: Frederik IV
-    catalog:
-      km: '206'
-      numista: '99108'
-      hede:
-        - '7'
-        - 7A
-      others:
-        - Brekke# 42-45
-        - Rønning# 141
-        - JSJ# 280
-        - JSJ# 279
-      skaare: '646'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.344
-        source: numista
-    weight_rough_g:
-      - value: 0.82
-        source: kmk
-      - value: 1.19
-        source: kmk
-      - value: 1.22
-        source: numista
-    diameter_mm:
-      - value: 17.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/99108
-        ref: Numista N#99108 — 2 Skilling - Frederik IV (Light; without leaf below lion) - Norway
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152005
-        ref: KMM 152005 (Inv. FP 3574.289)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279164
-        ref: KMM 279164 (Inv. FP 3528.280)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279165
-        ref: KMM 279165 (Inv. FP 3528.279)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/333776
-        ref: KMM 333776 (Inv. FP 5818.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352533
-        ref: KMM 352533 (Inv. FP 5129.12)
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-99108
-      - kmk-152005
-      - kmk-279164
-      - kmk-279165
-      - kmk-333776
-      - kmk-352533
-  - id: c-81998154
-    class_id: c-81998154
-    label: unified-dk-numista-99110
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1714
-    year_last: 1718
-    year_ranges:
-      -   - 1714
-          - 1718
-    year_label: 1714-1718
-    ruler: Frederik IV
-    catalog:
-      km: '215'
-      numista: '99110'
-      hede: 7B
-      others:
-        - Brekke# 57-61
-        - Rønning# 142
-      skaare: '646'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: numista
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.3
-        source: ngc
-      - value: 1.3
-        source: numismaster
-      - value: 1.3
-        source: numista
-      - value: 1.3
-        source: ucoin
-    diameter_mm:
-      - value: 17.0
-        source: numista
-      - value: 17.2
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_86217
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/99110
-        ref: Numista N#99110 — 2 Skilling - Frederik IV (Heavy; with leaf below lion) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-2-skilling-1714-1718/?tid=145791
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-215-1714-1718-cuid-1096044-duid-1445227
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-86217
-      - dk-numista-99110
-      - dk-tid-145791
-      - ngc-1096044
-  - id: c-e746ee76
-    class_id: c-e746ee76
-    label: unified-dk-numista-99111
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1719
-    year_last: 1725
-    year_ranges:
-      -   - 1719
-          - 1725
-    year_label: 1719-1725
-    ruler: Frederik IV
-    catalog:
-      km: '218'
-      numista: '99111'
-      hede: 7B
-      others:
-        - Brekke# 62-68
-        - Rønning# 142a
-      skaare: '646'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: numista
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.3
-        source: ngc
-      - value: 1.3
-        source: numismaster
-      - value: 1.3
-        source: numista
-      - value: 1.3
-        source: ucoin
-    diameter_mm:
-      - value: 17.0
-        source: numista
-      - value: 17.2
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_86218
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/99111
-        ref: Numista N#99111 — 2 Skilling - Frederik IV (Heavy; without leaf below lion) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-2-skilling-1719-1725/?tid=145793
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-skilling-km-218-1719-1725-cuid-1097882-duid-1444943
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-86218
-      - dk-numista-99111
-      - dk-tid-145793
-      - ngc-1097882
   - id: c-a510d8f2
     class_id: c-a510d8f2
     label: unified-dk-numista-99114
