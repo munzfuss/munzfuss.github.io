@@ -1265,13 +1265,18 @@ def _build_coin(
             cm["year_ranges"] = yr_seq
         # Index stub of an undated coin whose year Hede gives in parentheses
         # («U.år (1687)»): the year is Hede's attribution, not a date on the coin.
-        if is_index_stub and parsed.get("year_as_printed") and not years_override:
+        # Only a hedged one («U.år (1609 … eller 1611 …)») takes «(?)»; a plain
+        # «U.år (1611)» is a known year on an undated coin (curator 2026-11-19).
+        if (is_index_stub and parsed.get("year_as_printed") and not years_override
+                and not unc.plain_dating(parsed["year_as_printed"])):
             cm["year_verified"] = False
             cm["uncertainty"] = unc.add({}, "year", "attributed", "hede",
                                         as_printed=parsed["year_as_printed"],
                                         value=unc.year_value(cm["year_first"],
                                                              cm.get("year_last")))["uncertainty"]
-        if _und_attr_years or _und_text_year:
+        if _und_attr_years and unc.plain_dating(undated):
+            pass  # «U.år (1611)»: Hede's plain dating — no «(?)» (2026-11-19)
+        elif _und_attr_years or _und_text_year:
             cm["year_verified"] = False
             cm["uncertainty"] = unc.add(cm, "year",
                                         "attributed" if _und_attr_years else "text_year",

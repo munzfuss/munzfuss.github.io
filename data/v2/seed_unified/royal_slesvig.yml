@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `royal_slesvig`.
-# Generated 2026-11-18 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
 # Input: 139 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_slesvig
-generated_at: '2026-11-18'
+generated_at: '2026-11-19'
 coins:
   - id: c-9a0deeea
     class_id: c-9a0deeea
@@ -100,16 +100,16 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-numista-461448
-          source: numista
-          years: '1534'
-      uncertain:
         - seed: dk-galster-c3g-130
           source: galster
           years: '1534'
         - seed: dk-bruun-14783
           source: bruun
           years: '1534'
+        - seed: dk-numista-461448
+          source: numista
+          years: '1534'
+      uncertain:
         - seed: ngc-167745
           source: ngc
           years: '1535'
@@ -159,26 +159,15 @@ coins:
     uncertainty:
       year:
         - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1534)
-          value: '1534'
-          seed: dk-bruun-14783
-        - kind: hedged
-          how: attributed
-          source: galster
-          as_printed: u.år (1534)
-          value: '1534'
-          seed: dk-galster-c3g-130
-        - kind: hedged
           how: circa
           source: ngc
           as_printed: (ca1535) Rare
           value: '1535'
           seed: ngc-167745
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1535)
           value: '1535'
           seed: schleswig_holstein-numismaster-167745
       metal:

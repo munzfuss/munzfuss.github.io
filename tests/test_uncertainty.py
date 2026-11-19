@@ -79,5 +79,28 @@ class BruunPrinted(unittest.TestCase):
                          ("attributed", "ND (1607-11)"))
 
 
+class PlainDating(unittest.TestCase):
+    """«(?)» only when the source itself hedges the year (curator 2026-11-19);
+    a plain dating of an undated coin is a known year."""
+
+    def test_plain_and_hedged(self):
+        for s in ("ND (1670)", "U.år (1611)", "ND (1481-1512)", "(1616-59)",
+                  "u. år (1440-1442)", "ND(1618-22)", "U.år (1661) (RRR)"):
+            self.assertTrue(U.plain_dating(s), s)
+        for s in ("ND (ca. 1496-97)", "ND (c. 1400)", "ND (1669-70?)", "(ca1565)",
+                  "ND(ca1640)", "U.år (1609 (Hede) eller 1611 (Harck))",
+                  "1373/77—96", "u. år (1531-32)?", "efter reces 1424", None, ""):
+            self.assertFalse(U.plain_dating(s), s)
+
+    def test_roman_date_is_a_dated_coin(self):
+        self.assertTrue(U.roman_dated("MDCCLX (1760) G"))
+        self.assertFalse(U.roman_dated("(1616-59)"))
+        import parse_ngc
+        out = parse_ngc.parse_years({"dates": [{"year_mint": "MDCCII (1702)"}]})
+        self.assertNotIn("year_attributed", out)
+        self.assertTrue(parse_ngc.parse_years(
+            {"dates": [{"year_mint": "(1618-22)"}]}).get("year_attributed"))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 549 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-11-13'
+generated_at: '2026-11-19'
 coins:
   - id: c-3f6e23f9
     class_id: c-3f6e23f9
@@ -602,18 +602,10 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 73.07
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1607-16)
-          value: 1607-1616
-          seed: dk-bruun-14147
       metal:
         - kind: inferred
           how: from_name
@@ -2050,22 +2042,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-bruun-14510
-          source: bruun
-          years: '1702'
-        - seed: dk-numista-301632
-          source: numista
-          years: '1702'
-        - seed: schleswig_holstein-numismaster-167369
-          source: numismaster
-          years: '1702'
-      uncertain:
-        - seed: ngc-1177479
-          source: ngc
-          years: '1702'
     weight_rough_g:
       - value: 43.9
         source: ngc
@@ -2076,13 +2052,6 @@ coins:
       - value: 43.93
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCCII (1702)
-          value: '1702'
-          seed: ngc-1177479
       metal:
         - kind: inferred
           how: from_name
@@ -3132,7 +3101,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 44.38
         source: numista
@@ -3144,21 +3112,10 @@ coins:
           value: 1590-1616
           seed: dk-numista-292424
         - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1590-1616)
-          value: 1590-1616
-          seed: ngc-167367
-        - kind: hedged
           how: span
           source: ngc
           value: 1590–1616
           seed: ngc-167367
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1590-1616
-          seed: schleswig_holstein-numismaster-167367
         - kind: hedged
           how: span
           source: numismaster
@@ -4295,28 +4252,16 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: true
     weight_rough_g:
       - value: 2.04
         source: numista
     uncertainty:
       year:
         - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1616-59)
-          value: 1616-1659
-          seed: ngc-1186463
-        - kind: hedged
           how: span
           source: ngc
           value: 1616–1659
           seed: ngc-1186463
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1616-1659
-          seed: schleswig_holstein-numismaster-167284
         - kind: hedged
           how: span
           source: numismaster
@@ -8701,25 +8646,13 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     uncertainty:
       year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1616-59)
-          value: 1616-1659
-          seed: ngc-1180482
         - kind: hedged
           how: span
           source: ngc
           value: 1616–1659
           seed: ngc-1180482
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1616-1659
-          seed: schleswig_holstein-numismaster-167256
         - kind: hedged
           how: span
           source: numismaster
@@ -9603,8 +9536,9 @@ coins:
           value: '1640'
           seed: ngc-1189706
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1640)
           value: '1640'
           seed: schleswig_holstein-numismaster-167368
     sources:
@@ -10036,24 +9970,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: schleswig_holstein-numismaster-167366
-          source: numismaster
-          years: '1702'
-      uncertain:
-        - seed: ngc-1209916
-          source: ngc
-          years: '1702'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCCII (1702)
-          value: '1702'
-          seed: ngc-1209916
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-thaler-km-180-mdccii-1702-cuid-1209916-duid-1395833
@@ -10101,8 +10017,9 @@ coins:
           value: '1640'
           seed: ngc-1209917
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1640)
           value: '1640'
           seed: schleswig_holstein-numismaster-167372
     sources:
@@ -10178,8 +10095,9 @@ coins:
           value: '1565'
           seed: ngc-167233
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1565)
           value: '1565'
           seed: schleswig_holstein-numismaster-167233
     sources:

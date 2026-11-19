@@ -246,7 +246,8 @@ def build_entry(rec: dict, scope: str) -> dict | None:
     # ('16Z4') IS read (parse_ngc._Z_YEAR); the cells as NGC printed them are
     # kept in `_ngc_dates_as_printed` so the reading stays auditable (§3a: the
     # year fields themselves carry plain digits only). An undated coin the
-    # catalogue attributes to a span («(1618-22)») keeps the span, with '(?)'.
+    # catalogue attributes to a span («(1618-22)») keeps the span; it takes
+    # '(?)' only when NGC hedges it («(ca1611)»), not for a plain span.
     if (rec.get("year_partially_illegible") or rec.get("year_attributed")
             or yf is None):
         entry["year_verified"] = False
@@ -265,8 +266,18 @@ def build_entry(rec: dict, scope: str) -> dict | None:
                 how = "circa"
             else:
                 how = "attributed"
-            unc.add(entry, "year", how, "ngc", as_printed=printed,
-                    value=unc.year_value(yf, entry.get("year_last")))
+            if how == "attributed" and (unc.plain_dating(printed)
+                                        or unc.roman_dated(printed)):
+                # «(1616-59)» / «ND (1747)»: NGC dates the undated coin without
+                # a reservation of its own — a known year, no «(?)» (curator
+                # 2026-11-19; a reign-equal range is caught by absorb's
+                # reign-span rule). «MDCCLX (1760) G» is a dated coin whose
+                # Roman date the cache (parsed before parse_ngc learnt
+                # `roman_dated`) still flags as attributed.
+                entry.pop("year_verified", None)
+            else:
+                unc.add(entry, "year", how, "ngc", as_printed=printed,
+                        value=unc.year_value(yf, entry.get("year_last")))
 
     for key, dst in (("obverse", "_obverse"), ("reverse", "_reverse"),
                      ("obverse_legend", "_obverse_legend"),

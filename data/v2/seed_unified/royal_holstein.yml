@@ -143,18 +143,9 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 2.3
         source: bruun
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1516-32)
-          value: 1516-1532
-          seed: dk-bruun-14757
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -2807,13 +2798,13 @@ coins:
         - seed: dk-tid-163588
           source: ucoin
           years: '1620'
+        - seed: schleswig_holstein-numismaster-92977
+          source: numismaster
+          years: 1620–1623
       uncertain:
         - seed: ngc-121097
           source: ngc
           years: '1640'
-        - seed: schleswig_holstein-numismaster-92977
-          source: numismaster
-          years: 1620–1623
     fineness:
       - value: 0.888
         source: numismaster
@@ -3036,11 +3027,6 @@ coins:
           as_printed: (ca.1640)
           value: '1640'
           seed: ngc-121097
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1620-1623
-          seed: schleswig_holstein-numismaster-92977
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
@@ -3295,6 +3281,9 @@ coins:
         - seed: dk-hede-c4h169
           source: hede
           years: '1619'
+        - seed: dk-bruun-5937
+          source: bruun
+          years: 1619-1620
         - seed: schleswig_holstein-numismaster-92964
           source: numismaster
           years: '1620'
@@ -3302,9 +3291,6 @@ coins:
           source: numismaster
           years: '1620'
       uncertain:
-        - seed: dk-bruun-5937
-          source: bruun
-          years: 1619-1620
         - seed: ngc-1052532
           source: ngc
           years: '1620'
@@ -3337,12 +3323,6 @@ coins:
         source: hede
     uncertainty:
       year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1619-1620)
-          value: 1619-1620
-          seed: dk-bruun-5937
         - kind: hedged
           how: museum
           source: kmk
@@ -7920,40 +7900,6 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-hede-c7h38
-          source: hede
-          years: '1771'
-        - seed: ngc-1056475
-          source: ngc
-          years: '1771'
-        - seed: denmark-numismaster-58027
-          source: numismaster
-          years: '1771'
-        - seed: denmark-numismaster-85471
-          source: numismaster
-          years: '1773'
-        - seed: denmark-numismaster-85473
-          source: numismaster
-          years: '1784'
-        - seed: dk-tid-78766
-          source: ucoin
-          years: '1771'
-        - seed: kmk-152096
-          source: kmk
-          years: '1771'
-        - seed: kmk-152097
-          source: kmk
-          years: '1771'
-      uncertain:
-        - seed: ngc-1051604
-          source: ngc
-          years: '1784'
-        - seed: ngc-1051865
-          source: ngc
-          years: '1773'
     weight_rough_g:
       - value: 5.8
         source: numista
@@ -7966,35 +7912,6 @@ coins:
         source: numista
       - value: 24.5
         source: ucoin
-    uncertainty:
-      year:
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1771-1784
-          seed: dk-numista-44799
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1771'
-          seed: kmk-152096
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1771'
-          seed: kmk-152097
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: 1771 (1784)
-          value: '1784'
-          seed: ngc-1051604
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: 1771 (1773)
-          value: '1773'
-          seed: ngc-1051865
     sources:
       - type: literature
         url: https://numismaster.com/MC_58027
@@ -9429,19 +9346,6 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-hede-c7h5
-          source: hede
-          years: 1771, 1775
-        - seed: dk-bruun-7784
-          source: bruun
-          years: '1775'
-      uncertain:
-        - seed: dk-bruun-7983
-          source: bruun
-          years: '1771'
     fineness:
       - value: 0.903
         source: hede
@@ -9450,14 +9354,6 @@ coins:
         source: bruun
       - value: 6.681
         source: hede
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1771)
-          value: '1771'
-          seed: dk-bruun-7983
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -18856,7 +18752,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 0.36
         source: numista
@@ -18864,24 +18759,6 @@ coins:
         source: ngc
       - value: 0.37
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1559-1588
-          seed: dk-numista-309418
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1559-88)
-          value: 1559-1588
-          seed: ngc-167721
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1559-1588
-          seed: schleswig_holstein-numismaster-167721
     sources:
       - type: literature
         url: https://en.numista.com/309418
@@ -21088,8 +20965,9 @@ coins:
           value: '1540'
           seed: ngc-167720
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1540)
           value: '1540'
           seed: schleswig_holstein-numismaster-167720
     sources:
@@ -21321,8 +21199,9 @@ coins:
           value: '1565'
           seed: ngc-167731
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1565)
           value: '1565'
           seed: schleswig_holstein-numismaster-167731
     sources:
@@ -21718,8 +21597,9 @@ coins:
     uncertainty:
       year:
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1523)
           value: '1523'
           seed: schleswig_holstein-numismaster-167733
     sources:
@@ -21822,20 +21702,12 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.888
         source: numismaster
     weight_rough_g:
       - value: 1.008
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1620-1623
-          seed: schleswig_holstein-numismaster-92978
     sources:
       - type: literature
         url: https://numismaster.com/MC_92978
@@ -21865,20 +21737,12 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.888
         source: numismaster
     weight_rough_g:
       - value: 1.008
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1620-1623
-          seed: schleswig_holstein-numismaster-92979
     sources:
       - type: literature
         url: https://numismaster.com/MC_92979
@@ -21908,20 +21772,12 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.888
         source: numismaster
     weight_rough_g:
       - value: 1.008
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1620-1623
-          seed: schleswig_holstein-numismaster-92980
     sources:
       - type: literature
         url: https://numismaster.com/MC_92980
@@ -21951,20 +21807,12 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.888
         source: numismaster
     weight_rough_g:
       - value: 1.008
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1620-1623
-          seed: schleswig_holstein-numismaster-92981
     sources:
       - type: literature
         url: https://numismaster.com/MC_92981
@@ -21994,20 +21842,12 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.888
         source: numismaster
     weight_rough_g:
       - value: 1.008
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1624-1630
-          seed: schleswig_holstein-numismaster-92982
     sources:
       - type: literature
         url: https://numismaster.com/MC_92982
@@ -22037,20 +21877,12 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.888
         source: numismaster
     weight_rough_g:
       - value: 2.016
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1620-1623
-          seed: schleswig_holstein-numismaster-92985
     sources:
       - type: literature
         url: https://numismaster.com/MC_92985
@@ -22080,20 +21912,12 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.888
         source: numismaster
     weight_rough_g:
       - value: 2.016
         source: numismaster
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1624-1630
-          seed: schleswig_holstein-numismaster-92986
     sources:
       - type: literature
         url: https://numismaster.com/MC_92986
