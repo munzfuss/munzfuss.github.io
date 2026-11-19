@@ -216,4 +216,4 @@ No coin in `data/v2/**` rests on this ordinance (Saxony is no entity of the proj
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 1,5 (the mark's weight open) ·
 C3 instruments 1,5 (A's date open) · C4 provenance 1,5 · C5 open questions 2 · C6 recomputation 2
 → **8,5/10**; the transcription is one reader's, of a 150-dpi scan — the numerals are secured by
-the arithmetic, the running words are not. Commit: (recorded after the commit).*
+the arithmetic, the running words are not. Commit: `b5cb00c`.*
