@@ -895,6 +895,12 @@ def _is_norwegian_hede(cat) -> bool:
 
 
 # Render priority: lower = earlier. Unknown prefixes get a mid-rank.
+# Seed-side catalogue registers that the class renders under another name
+# (Bruun's `davenport` lands in the class's `dav`, merge_seeds_cross_source
+# OUTPUT_CATALOG_KEY_SYNONYMS); a catalogue mark keyed by the seed register
+# is matched against the class register.
+_REGISTER_ALIAS: dict[str, str] = {"davenport": "dav", "friedberg": "fr"}
+
 _PREFIX_PRIORITY: dict[str, int] = {
     # `KM#` (no suffix) defaults to the territorial Krause-Mishler register
     # for the location being documented (Schleswig-Holstein for our base).
@@ -995,8 +1001,23 @@ def _apply_catalog_value_marks(
         groups.append(("", vals, None))
         return vals
 
+    def _norm(v) -> str:
+        # «EC II 3557» (Davenport European Crowns vol. II) and a bare «3557»
+        # are one Davenport number; case is not significant (48c = 48C).
+        return re.sub(r"^EC\s+[IVX]+\s+", "", str(v).strip(), flags=re.I).upper()
+
+    def target_group(register: str) -> tuple[str, list[str]]:
+        # A KM number renders under «KM» or a register-qualified «KM-DK» /
+        # «KM-SH» …; a marked KM joins the class's existing KM group.
+        if register == "km":
+            for prefix, vals, _tip in groups:
+                if prefix == "KM" or prefix.startswith("KM-"):
+                    return prefix, vals
+        return group_for(register)
+
     for a in alts:
-        if a.register not in named:
+        a_reg = _REGISTER_ALIAS.get(a.register, a.register)
+        if a_reg not in named:
             # A register held in `others` («Ernst 1940») renders as a plain
             # «others» line, so its marked number does too: its own line
             # «Ernst 1940# 3-13», keyed «|<line>» for the template.
@@ -1006,14 +1027,19 @@ def _apply_catalog_value_marks(
                 vals.append(line)
             marks[f"|{line}"] = (a.kind, a.reason)
             continue
-        label, vals = group_for(a.register)
-        if a.value in vals and (a.register, a.value) not in unver_keys:
+        attested = (a.register, a.value) not in unver_keys and any(
+            _norm(a.value) in {_norm(x) for x in vals}
+            for prefix, vals, _tip in groups
+            if prefix == labels.get(a_reg, "")
+            or (a_reg == "km" and (prefix == "KM" or prefix.startswith("KM-"))))
+        if attested:
             # Another member of the class carries the same number unmarked:
             # the attested number wins and the mark is not shown (it stays in
             # the data). Curator 2026-11-19 — a class that merges two
             # varieties holds each one's KM, and a member that printed the
             # other variety's number must not mute the correct one.
             continue
+        label, vals = target_group(a_reg)
         if a.value not in vals:
             vals.append(a.value)
         marks[f"{label}|{a.value}"] = (a.kind, a.reason)

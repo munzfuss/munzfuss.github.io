@@ -131,6 +131,33 @@ class Render(unittest.TestCase):
         self.assertEqual(groups[0][1], ["262", "287", "292"])
         self.assertNotIn("KM|287", marks)
 
+    def test_attested_under_a_qualified_km_and_ec_dav(self):
+        # The class renders its KM list as «KM-DK#» and Davenport as
+        # «EC II 3557»; Bruun's marks are km 292 and davenport 3557.
+        coin = schema.Coin.model_construct(
+            catalog_alts=[
+                schema.CatalogAlt(register="km", value="292", source="bruun",
+                                  kind="suspect", reason=REASON),
+                schema.CatalogAlt(register="davenport", value="3557", source="bruun",
+                                  kind="suspect", reason=REASON)],
+            catalog_unverified=None, catalog_marks=None)
+        groups = [("KM-DK", ["262", "292", "287"], None),
+                  ("Dav", ["EC II 3553", "EC II 3557"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(marks, {})
+        self.assertEqual([g[0] for g in groups], ["KM-DK", "Dav"])
+        self.assertEqual(groups[1][1], ["EC II 3553", "EC II 3557"])
+
+    def test_unattested_km_mark_joins_the_qualified_group(self):
+        coin = schema.Coin.model_construct(
+            catalog_alts=[schema.CatalogAlt(register="km", value="239", source="bruun",
+                                            kind="erroneous", reason=REASON)],
+            catalog_unverified=None, catalog_marks=None)
+        groups = [("KM-DK", ["213", "A213"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(groups, [("KM-DK", ["213", "A213", "239"], None)])
+        self.assertEqual(marks["KM-DK|239"][0], "erroneous")
+
     def test_a_query_number_does_not_hide_a_marked_one(self):
         coin = schema.Coin.model_construct(
             catalog_alts=[schema.CatalogAlt(register="galster", value="49",
