@@ -315,4 +315,4 @@ Raphael, Elias Cantor, Lazarus Wulff Wallich, Borre & Fenger (Hamburg, Amsterdam
 
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 2 · C3 instruments 1,5 (the
 Kurantdukat Resolution's date open; R61 in one sentence) · C4 provenance 1,5 · C5 open questions
-1,5 · C6 recomputation 2 → **8,5/10**. Commit: (recorded after the commit).*
+1,5 · C6 recomputation 2 → **8,5/10**. Commit: `a2fe550`.*
