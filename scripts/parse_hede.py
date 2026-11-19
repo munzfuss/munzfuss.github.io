@@ -1509,6 +1509,15 @@ _REF_RUN_TAIL_RE = re.compile(
     re.IGNORECASE)
 
 
+def _expand_letter_range(tag: str) -> str:
+    """«57B-C» → «57BC», «63A-F» → «63ABCDEF»; any other tag unchanged."""
+    m = re.fullmatch(r"(\d+)([A-Za-z])\s*-\s*([A-Za-z])", tag.strip())
+    if not m or ord(m.group(3).upper()) < ord(m.group(2).upper()):
+        return tag.strip()
+    a, b = ord(m.group(2).upper()), ord(m.group(3).upper())
+    return m.group(1) + "".join(chr(c) for c in range(a, b + 1))
+
+
 def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
     """Parse the descriptive section into per-Hede-number year + catalog data.
 
@@ -1533,8 +1542,12 @@ def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
     # («, Schou» / «, Sieg» / «, Fr»). This distinguishes the group from a
     # «Som Hede 84A» cross-reference (which is followed by « (Hede …», not
     # a ref), so cross-refs don't spawn phantom sub-entries.
+    # A letter range («Hede 57B-C, Schou …», f3h57; «Hede 63A-F», c4h63) is a
+    # group too: before 2026-11-19 it did not match, so its line's years
+    # («B) 1661, 1662 (RR): … (Hede 57B-C, …)») fell into the NEXT group's
+    # span and Hede 58A (2 Speciedaler 1657, 1661) gained a 1662.
     anchor_re = re.compile(
-        _HEDE_ANCHOR + r"(\d+[A-Za-z]*)\s*,\s*(?:Schou|Sieg|Fr\b|Fr\.)",
+        _HEDE_ANCHOR + r"(\d+[A-Za-z]*(?:\s*-\s*[A-Za-z])?)\s*,\s*(?:Schou|Sieg|Fr\b|Fr\.)",
         re.IGNORECASE)
     anchors = list(anchor_re.finditer(flat))
     if not anchors:
@@ -1542,12 +1555,20 @@ def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
     out: dict[str, dict] = {}
     prev_group_end = 0
     for i, m in enumerate(anchors):
-        hnum = m.group(1)
+        hnum = _expand_letter_range(m.group(1))
         # Year span: text before THIS group's anchor, back to the previous
         # group's end but capped at 250 chars so a far-away intro / legal-act
         # year («Møntordning af 1544») can't leak onto the first sub-entry.
         span_start = max(prev_group_end, m.start() - 250)
         span = flat[span_start: m.start()]
+        # A letter line («A) 1657 (RR), 1661 (RR): Som Hede 57A (Hede 58A …»)
+        # owns only what follows its own «A)»: an off-strike aside above it
+        # («Guldafslag 3 Dukat 1661 og 5 Dukat 1661», f3h57) is not its year.
+        # Only when that line carries a year itself: a design-only line («A)
+        # Forside: FV (Hede 38A …») takes the page-head year as before.
+        letter_marks = list(re.finditer(r"(?:^|[\s.;:])([A-Z])\)\s", span))
+        if letter_marks and _extract_years(span[letter_marks[-1].start(1):]):
+            span = span[letter_marks[-1].start(1):]
         years = _extract_years(span)
         # Ref segment: the group itself — anchor to the closing «)» or the
         # next «Hede » anchor or +150 chars, whichever comes first — so a
