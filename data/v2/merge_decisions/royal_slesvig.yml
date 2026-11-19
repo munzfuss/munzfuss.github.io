@@ -99,7 +99,26 @@ year_demote:
       RELOCATED 2026-10-09 from merge_decisions/gottorp_duchy.yml — the member now merges
       in royal_slesvig (its _cross_entity target), so the year_demote filed under
       gottorp_duchy was never applied by the merger.
+  - member_id: dk-numista-309419
+    reason: |
+      Curator (Serhii) 2026-11-18: Numista 309419 gives 1565 with «Hede# 30 A»;
+      Hede prints 30A as «A) 1566, U.år» (dated 1566 plus undated pieces), no
+      1565. Demoted so 1565 does not enter the class years; shown as (*) via
+      year_mark on the seed.
 merges:
+  - members:
+      - dk-hede-f2h30a
+      - dk-hede-f2h30b
+      - kmk-345172
+      - dk-numista-313332
+      - dk-numista-309419
+    reason: |
+      One coin - Frederik II 1 Skilling lybsk, Flensborg (Hede 30, sub-variants
+      30A 1566 / undated and 30B 1571). Hede 30A ties KMM 345172 («H 30A u.år»)
+      and Numista 309419 («Hede# 30 A», MB 70, Lange 27a); Numista 313332 cites
+      Hede 30B (MB 75, Lange 28). The matcher kept Numista 309419 apart only on
+      its year 1565, which Hede does not print (year_mark (*), year_demote).
+      Curator (Serhii) 2026-11-18.
   - members:
       - dk-galster-f1g-124
       - dk-numista-153257

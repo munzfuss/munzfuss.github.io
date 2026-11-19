@@ -30,6 +30,12 @@
 # coin, another coin in the same operation, a citation, all still block.
 generated_at: '2026-08-21'
 removals:
+  - seed: dk-hede-f3h84ab
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-19 (Hede-base review group 9, «мердж»; stope chosen in chat): Frederik III Krone (4 Mark) 1651-1652, Hede 84 — the Hede class unified-dk-hede-f3h84ab (c-70c207e5) merged into the class of its 13 KMM records (c-cf463548), which takes kronemont_chr_iv / II by classification decision. The superseded shell final c-70c207e5 is dropped; every specimen and citation lives in the successor class.'
+  - seed: dk-bruun-7627
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-19 (Hede-base review group 27, «мердж»; stope chosen in chat): Frederik V Krone 1747, Hede 29B (KM 560) — class unified-dk-bruun-7627 (c-ab643ae9) merged into the Hede 29 class (c-f98ae55b, final dk-tid-94158, kronemont_fine / I). The superseded shell final c-ab643ae9 is dropped; every specimen and citation lives in the successor class.'
   # ── §9a thinning, kmk re-seed of 2026-08-21 ───────────────────────────────
   # The 2026-08-21 mint fixes changed `mint`, which is part of the thinning
   # bucket key, so the buckets re-formed and the min/middle/max quota kept a
@@ -5462,3 +5468,22 @@ removals:
     dropped:
       - Hede- 26A, note p. 194
     reason: "Curator (Serhii) 2026-11-17 («так»): not removed but folded into «Hede-26A, note p. 194». The space after the register's hyphen is a print variant in the Bruun lot; the seed builder now drops it, so the same citation from two lots is one line."
+  - seed: dk-bruun-8042
+    kind: field
+    field: weight_rough_g
+    dropped:
+      - source: bruun
+        value: 12.45
+    reason: Pattern 2 Rigsbankskilling 1818 (Hede 35 = KM Pn52, Bruun lot 17158) separated from the circulation coin KM 689 = Hede 36 and excluded; its values leave the class with it. Curator (Serhii) 2026-11-18.
+  - seed: dk-bruun-8042
+    kind: field
+    field: bruun_collection_id
+    dropped:
+      - '8042'
+    reason: Pattern 2 Rigsbankskilling 1818 (Hede 35 = KM Pn52, Bruun lot 17158) separated from the circulation coin KM 689 = Hede 36 and excluded; its values leave the class with it. Curator (Serhii) 2026-11-18.
+  - seed: dk-bruun-8042
+    kind: field
+    field: others
+    dropped:
+      - Pn# Pn52
+    reason: Pattern 2 Rigsbankskilling 1818 (Hede 35 = KM Pn52, Bruun lot 17158) separated from the circulation coin KM 689 = Hede 36 and excluded; its values leave the class with it. Curator (Serhii) 2026-11-18.

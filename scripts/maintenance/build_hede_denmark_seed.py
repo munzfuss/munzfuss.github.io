@@ -1161,6 +1161,7 @@ def _build_coin(
     catalog_refs_override: dict | None = None,
     hede_printed: str | None = None,
     mint_header: str | None = None,
+    undated: str | None = None,
 ) -> dict | None:
     """Assemble one Coin-schema dict from a parsed-page entry + a
     specific spec block. Returns None when essential fields are
@@ -1229,7 +1230,27 @@ def _build_coin(
     cm["phase"] = "hede"
     cm["kind"] = kind
     cm["nominal"] = nominal
-    year_block = _build_year_fields(years_override or parsed.get("years") or [])
+    # «U.år» in the variant's own year list (parse_hede `undated`, as printed).
+    # Beside dated years («1566, U.år») the dated years stand and the undated
+    # pieces are recorded; alone («U.år», «U.år (1611)») the variant is
+    # undated and must not inherit the page's years (Hede 31B took 31A's 1566
+    # before 2026-11-18). A year in the parenthesis is Hede's attribution.
+    # Undated-only with no year of its own in the variant line but a year the
+    # page's text gives («Hede 6 (1675), formodes disse mønter slået
+    # nogenlunde samtidig», c5h7): the year stands, inferred from the text.
+    _uar_paren = re.compile(r"[Uu]\.\s*år((?:\s*\((?:[^()]|\([^()]*\))*\))*)")
+    _und_rest = _uar_paren.sub("", undated or "")
+    undated_only = bool(undated) and not re.search(r"\d{4}", _und_rest)
+    _und_attr_years = sorted({int(y) for m in _uar_paren.finditer(undated or "")
+                              for y in re.findall(r"\d{4}", m.group(1))}) if undated_only else []
+    _und_text_year = undated_only and not _und_attr_years and bool(years_override)
+    if undated_only and _und_attr_years:
+        years_src = [{"year": y, "rarity": None} for y in _und_attr_years]
+    elif undated_only and not _und_text_year:
+        years_src = []
+    else:
+        years_src = years_override or parsed.get("years") or []
+    year_block = _build_year_fields(years_src)
     if year_block:
         cm["year_label"] = year_block["year_label"]
         cm["year_first"] = year_block["year_first"]
@@ -1250,6 +1271,17 @@ def _build_coin(
                                         as_printed=parsed["year_as_printed"],
                                         value=unc.year_value(cm["year_first"],
                                                              cm.get("year_last")))["uncertainty"]
+        if _und_attr_years or _und_text_year:
+            cm["year_verified"] = False
+            cm["uncertainty"] = unc.add(cm, "year",
+                                        "attributed" if _und_attr_years else "text_year",
+                                        "hede",
+                                        as_printed=undated,
+                                        value=unc.year_value(cm["year_first"],
+                                                             cm.get("year_last")))["uncertainty"]
+        elif undated:
+            cm["uncertainty"] = unc.add(cm, "year", "undated", "hede",
+                                        as_printed=undated)["uncertainty"]
     else:
         # Undated Hede entry («u. år» — uden årstal). Anchor to the
         # ruler's reign window so the placeholder year_first sits
@@ -1278,7 +1310,7 @@ def _build_coin(
         cm["year_verified"] = False
         _ua = re.search(r"\b[Uu]\.\s*å(?:r|\.)", parsed.get("raw_text") or "")
         cm["uncertainty"] = unc.add({}, "year", "reign", "hede",
-                                    as_printed=_ua.group(0) if _ua else None,
+                                    as_printed=undated or (_ua.group(0) if _ua else None),
                                     value=unc.year_value(*reign))["uncertainty"]
     if ruler:
         cm["ruler"] = ruler
@@ -1372,14 +1404,20 @@ def _build_coin(
         # actually attests this row. `_source_index` carries the
         # basename of that overview file (e.g. «c3hede.htm»).
         overview_basename = (parsed.get("_source_index") or "").replace(".htm", "")
-        if overview_basename:
+        if parsed.get("coin_page"):
+            # The Hede cell links the coin's own root-level page
+            # (fetch_hede.ROOT_COIN_PAGES): cite that page.
+            src["url"] = f"{_DANSKMOENT_BASE}{parsed['coin_page']}"
+            src["ref"] = f"danskmoent.dk (Hede {hede_volume}{hede_number})"
+        elif overview_basename:
             src["url"] = _danskmoent_url(overview_basename)
         else:
             src["url"] = _danskmoent_url(parsed["id"])
-        src["ref"] = (
-            f"danskmoent.dk overview {overview_basename} "
-            f"(Hede {hede_volume}{hede_number} — Tiefenseite fehlt)"
-        )
+        if not parsed.get("coin_page"):
+            src["ref"] = (
+                f"danskmoent.dk overview {overview_basename} "
+                f"(Hede {hede_volume}{hede_number} — Tiefenseite fehlt)"
+            )
     else:
         src["url"] = _danskmoent_url(parsed["id"])
         # Domain-first label per CONVENTIONS.md §«Source-ref label shape»:
@@ -1493,6 +1531,19 @@ def _build_coin(
             f"1971 og Galster 1965."
             + (f" Bemærkning i indekset: «{index_note}»" if index_note else "")
         )
+        if parsed.get("coin_page"):
+            # The coin's own root-level page exists (cited as the source);
+            # its layout is not parsed, so the fields still come from the
+            # overview row — the «deep page absent» wording would be false.
+            page = f"danskmoent.dk{parsed['coin_page']}"
+            vn["de"] = (f"Die Felder stammen aus der Übersichtsreihe von {idx_basename}; "
+                        f"die eigene Münzseite {page} wird zitiert, aber nicht ausgelesen.")
+            vn["en"] = (f"The fields come from the overview row of {idx_basename}; "
+                        f"the coin's own page {page} is cited but not parsed.")
+            vn["uk"] = (f"Поля взято з рядка оглядової таблиці {idx_basename}; "
+                        f"власну сторінку монети {page} наведено як джерело, але не розібрано.")
+            vn["da"] = (f"Felterne stammer fra oversigtsrækken hos {idx_basename}; "
+                        f"møntens egen side {page} citeres, men læses ikke.")
         cm["verification_note"] = vn
     # _source_note candidate (Phase-1, commit 80a1b62): danskmoent's coin
     # `description` (Danish), cleaned + language-tagged for the later note-
@@ -1917,6 +1968,7 @@ def main() -> int:
                         catalog_refs_override=lv.get("catalog_refs"),
                         hede_printed=_printed_letter_hede(lv),
                         mint_header=letter_header,
+                        undated=lv.get("undated"),
                     )
                     if coin is None:
                         stats["skipped_no_nominal"] += 1
@@ -2034,6 +2086,7 @@ def main() -> int:
                     catalog_refs_override=sub_refs,
                     years_override=sub_years,
                     mint_header=header_mint_text,
+                    undated=sub_spec.get("undated"),
                 )
                 if coin is None:
                     stats["skipped_no_nominal"] += 1

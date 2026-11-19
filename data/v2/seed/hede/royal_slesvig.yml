@@ -1,12 +1,53 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-11T10:24:47Z'
+generated_at: '2026-11-18T14:19:42Z'
 entity: royal_slesvig
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
 scope_year_from: 1514
 scope_year_to: 1914
 coins:
+  - id: dk-hede-c3h21c
+    fuss: seed_unsorted
+    phase: hede
+    kind: scheide
+    nominal: 1 Søsling Lybsk
+    year_label: '1534-1559'
+    year_first: 1534
+    year_last: 1559
+    ruler: Christian III.
+    mint: Flensburg
+    catalog:
+      hede: 21C
+      hede_volume: c3h
+      schou: '1'
+      sieg: '44.3'
+    metal: silver
+    fineness: 0.406
+    weight_rough_g: 1.292
+    hede_muentzfuss_yield:
+      value: 9.287
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3h21.htm
+        ref: danskmoent.dk (Hede c3h21C)
+    issuing_entity: royal_slesvig
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år (RRR)
+          value: 1534-1559
   - id: dk-hede-c3h24
     fuss: seed_unsorted
     phase: hede
@@ -292,39 +333,6 @@ coins:
     weight_rough_verified: true
     metal_verified: true
     mint_verified: true
-  - id: dk-hede-c3h21c
-    fuss: seed_unsorted
-    phase: hede
-    kind: scheide
-    nominal: 1 Søsling Lybsk
-    year_label: '1545'
-    year_first: 1545
-    year_last: 1545
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: 21C
-      hede_volume: c3h
-      schou: '1'
-      sieg: '44.3'
-    metal: silver
-    fineness: 0.406
-    weight_rough_g: 1.292
-    hede_muentzfuss_yield:
-      value: 9.287
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h21.htm
-        ref: danskmoent.dk (Hede c3h21C)
-    issuing_entity: royal_slesvig
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: true
   - id: dk-hede-c3h14
     fuss: seed_unsorted
     phase: hede
@@ -550,6 +558,52 @@ coins:
     mint_verified: true
     _source_note:
       da: 'Forside: portræt; årstal, bagside: våbenskjold (Hede 20, Schou 6-8, Sieg 48) Det viste'
+  - id: dk-hede-f2h31b
+    fuss: seed_unsorted
+    phase: hede
+    kind: scheide
+    nominal: 1 Søsling Lybsk
+    year_label: '1559-1588'
+    year_first: 1559
+    year_last: 1588
+    ruler: Frederik II.
+    mint: Flensburg
+    catalog:
+      hede: 31B
+      hede_volume: f2h
+      schou:
+        - '27'
+        - '29'
+      sieg: '32.2'
+    metal: silver
+    fineness: 0.328
+    weight_rough_g: 1.124
+    hede_muentzfuss_yield:
+      value: 10.237
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f2h31.htm
+        ref: danskmoent.dk (Hede f2h31B)
+    issuing_entity: royal_slesvig
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    _source_note:
+      da: 'Forside: Holstens nældeblad i firkløveragtigt mønster, bagside: Slesvigs to løver A) 1566 (R), U.år; Møntmærke to korslagte glødehager: på bagsiden (Hede 31A, Schou hhv. 5-6, 14-26, Sieg 32.1)
+        B) U.år; Uden møntmærke (Hede 31B, Schou 27 og 29, Sieg 32.2)'
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1559-1588
   - id: dk-hede-f2h30a
     fuss: seed_unsorted
     phase: hede
@@ -588,6 +642,12 @@ coins:
     _source_note:
       da: 'Forside: Holstens nældeblad i firkløveragtigt mønster, bagside: Slesvigs to løver A) 1566, U.år; Møntmærke to korslagte glødehager: på bagsiden (Hede 30A, Schou hhv. 2-4, 1-13, Sieg 33.1) B)
         1571; Møntmærke agern (Hede 30B, Schou 1-8, Sieg 33.2)'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1566, U.år
   - id: dk-hede-f2h31a
     fuss: seed_unsorted
     phase: hede
@@ -626,44 +686,12 @@ coins:
     _source_note:
       da: 'Forside: Holstens nældeblad i firkløveragtigt mønster, bagside: Slesvigs to løver A) 1566 (R), U.år; Møntmærke to korslagte glødehager: på bagsiden (Hede 31A, Schou hhv. 5-6, 14-26, Sieg 32.1)
         B) U.år; Uden møntmærke (Hede 31B, Schou 27 og 29, Sieg 32.2)'
-  - id: dk-hede-f2h31b
-    fuss: seed_unsorted
-    phase: hede
-    kind: scheide
-    nominal: 1 Søsling Lybsk
-    year_label: '1566'
-    year_first: 1566
-    year_last: 1566
-    ruler: Frederik II.
-    mint: Flensburg
-    catalog:
-      hede: 31B
-      hede_volume: f2h
-      schou:
-        - '27'
-        - '29'
-      sieg: '32.2'
-    metal: silver
-    fineness: 0.328
-    weight_rough_g: 1.124
-    hede_muentzfuss_yield:
-      value: 10.237
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h31.htm
-        ref: danskmoent.dk (Hede f2h31B)
-    issuing_entity: royal_slesvig
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    metal_verified: true
-    mint_verified: true
-    _source_note:
-      da: 'Forside: Holstens nældeblad i firkløveragtigt mønster, bagside: Slesvigs to løver A) 1566 (R), U.år; Møntmærke to korslagte glødehager: på bagsiden (Hede 31A, Schou hhv. 5-6, 14-26, Sieg 32.1)
-        B) U.år; Uden møntmærke (Hede 31B, Schou 27 og 29, Sieg 32.2)'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1566 (R), U.år
   - id: dk-hede-f2h32
     fuss: seed_unsorted
     phase: hede

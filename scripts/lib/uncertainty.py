@@ -9,9 +9,11 @@ Plan and rules: docs/plans/uncertainty_markers.md (curator 2026-10-29).
 """
 from __future__ import annotations
 
+import re
+
 HEDGED = frozenset({"circa", "attributed", "query", "decade", "century",
                     "illegible", "after", "window", "doubt", "possibly",
-                    "alternatives", "span", "museum"})
+                    "alternatives", "span", "museum", "undated"})
 INFERRED = frozenset({"reign", "other_page", "feud_window", "text_year",
                       "standard", "standard_weight", "reign_holstein", "default", "compiled", "curator_window",
                       "from_name", "uncited", "type_assay", "other_source", "page_values", "analogy"})
@@ -45,6 +47,26 @@ def add(entry: dict, field: str, how: str, source: str, *,
     if item not in lst:
         lst.append(item)
     return entry
+
+
+# A source's own qualifier on a dating: «ca.», «c. 1400», «circa», «?»,
+# «eller» / «or» / «oder» (alternatives), «omkr.», «um», «~», «efter» / «after».
+_DATING_HEDGE = re.compile(
+    r"\?|\bc(?:a|irca)?\.?\s*\d|\bca\b|\bomkr|\beller\b|\bor\b|\boder\b"
+    r"|\bum\b|~|\befter\b|\bafter\b|\bvor\b|\bfør\b|\bbefore\b|\d\s*/\s*\d",
+    re.I)
+
+
+def plain_dating(as_printed: str | None) -> bool:
+    """True when a source dates an UNDATED coin without any reservation of
+    its own: «ND (1670)», «U.år (1611)», «ND (1481-1512)», «(1616-59)».
+    Such a year is known, the coin simply carries none, and it takes no «(?)»
+    (curator 2026-11-19); a range equal to the ruler's reign is still caught by
+    absorb's reign-span rule. False for «ND (ca. 1496-97)», «ND (1669-70?)»,
+    «U.år (1609 … eller 1611 …)», «1373/77»."""
+    if not as_printed:
+        return False
+    return _DATING_HEDGE.search(str(as_printed)) is None
 
 
 def year_value(first, last) -> str | None:

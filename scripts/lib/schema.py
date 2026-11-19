@@ -119,6 +119,9 @@ class UncertainReading(_StrictBase):
         # a year a source gives that does not count as attested: a span from a
         # catalogue that never flags undated coins, a museum's dating
         "span", "museum",
+        # the source lists undated pieces beside the dated years («1566,
+        # U.år», Hede): the dated years stand, the undated pieces have none
+        "undated",
         # inferred — the pipeline's basis
         "reign", "other_page", "feud_window", "text_year", "standard",
         "standard_weight", "reign_holstein",

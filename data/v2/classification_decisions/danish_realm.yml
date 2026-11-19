@@ -28,9 +28,41 @@
 # preserved.
 
 entity_id: danish_realm
-generated_at: '2026-11-10'
+generated_at: '2026-11-19'
 bulk_promote_pending: all
 assignments:
+  - coin_id: dk-hede-f3h68a
+    fuss: 9_25_thaler
+    phase: I
+    kind: kurant
+    reason: 'Curator (Serhii) 2026-11-19: Frederik III Speciedaler 1665-1667, Hede 68 (68A + 68B, KM 262 / 287 / 292), merged in Hede-base review group 7. The 68B Schou 18 part (KM 292) was already 9¼ I;
+      68A and the Schou 19 part were unsorted. Hede f3h68: 0,875, 25,178 g fine, «Marken fin udbragt til 9,288 speciedalere» — Δ −0.41 % against the 9¼-Fuß target 25,28168 g, −3.10 % against the 9-Fuß;
+      weighings 28,64–28,90 g give −0.88…+0.02 % (Bruun 6444, 28,01 g, «Cleaned», −3.06 %). No dated act for the 1665-1667 Speciedaler in the register: placed by §8a (denomination + fine weight).'
+  - coin_id: dk-hede-f3h57a
+    fuss: 9_25_thaler
+    phase: I
+    kind: kurant
+    reason: 'Curator (Serhii) 2026-11-19: Frederik III Speciedaler 1657, 1661, Hede 57A (crown inside the ring, KM 212). Hede f3h57: 0,875, 25,178 g fine, «Marken fin udbragt til 9,288 speciedalere» — Δ
+      −0.41 % against the 9¼-Fuß target 25,28168 g, −3.10 % against the 9-Fuß; weighings 28,69–28,85 g give −0.15…−0.70 %. Same page and parameters as 57B and the 2 Speciedaler 58A/B, already 9¼ I. No dated
+      act for the 1657/1661 Speciedaler in the register: placed by §8a (denomination + fine weight).'
+  - coin_id: dk-tid-79091
+    fuss: 11_333_thaler
+    phase: I
+    kind: kurant
+    reason: 'Curator (Serhii) 2026-11-19: Christian VII 32 Skilling 1775, Hede 26 (26A KM 628, 26B KM 627), merged into one class (Hede-base review group 29); the 26A class carried 11 1/3-Thaler / I, the
+      26B class was unsorted — the classification carries over to the merged class.'
+  - coin_id: dk-bruun-6043
+    fuss: kronemont_chr_iv
+    phase: II
+    kind: kurant
+    reason: "Curator (Serhii) 2026-11-19: the Frederik III Krone (4 Mark) 1651-1652, Hede 84 (keyed by the Bruun lot; the bare Hede code dk-hede-f3h84ab would expand to sub-letters), merged with its 13
+      KMM records (Hede-base review group 9), stays under the Kronemønt as the Hede class was; the KMM class's 9 1/4-Thaler assignment does not carry over."
+  - coin_id: dk-hede-f5h29
+    fuss: kronemont_fine
+    phase: I
+    kind: kurant
+    reason: "Curator (Serhii) 2026-11-19: the Frederik V Krone 1747, Hede 29 (29A KM 559, 29B KM 560), merged into one class (Hede-base review group 27), stays under kronemont_fine as the Hede 29A class
+      was; the 29B class's 11 1/3-Thaler assignment does not carry over."
   - coin_id: dk-hede-f3h112a
     fuss: kronemont
     phase: I
@@ -721,6 +753,7 @@ assignments:
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1651 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
     was: unified-ngc-1069032
+    superseded_by: dk-bruun-6043
   - coin_id: ngc-1069052
     fuss: courantdukatenfuss
     phase: I
@@ -2889,6 +2922,7 @@ promoted_near_peers:
   - c-5a48af4f
   - c-655af32c
   - c-68bb0e10
+  - c-699377f8
   - c-6a44e719
   - c-6d9f00f9
   - c-6eb7beaa

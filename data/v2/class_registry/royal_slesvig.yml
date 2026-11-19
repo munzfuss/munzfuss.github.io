@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 51 active, 24 retired.
+# 50 active, 25 retired.
 
 id: royal_slesvig
 classes:
@@ -43,6 +43,7 @@ classes:
     members:
       - dk-hede-f2h30a
       - dk-hede-f2h30b
+      - dk-numista-309419
       - dk-numista-313332
       - kmk-345172
   - id: c-149b0114
@@ -221,13 +222,6 @@ classes:
     legacy_id: unified-ngc-167729
     members:
       - ngc-167729
-  - id: c-70c27b86
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-309419
-    legacy_id: unified-dk-numista-309419
-    members:
-      - dk-numista-309419
   - id: c-716e2689
     status: active
     created: '2026-10-22'
@@ -551,6 +545,15 @@ classes:
     retired: '2026-11-08'
     members:
       - kmk-411793
+  - id: c-70c27b86
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-309419
+    legacy_id: unified-dk-numista-309419
+    merged_into: c-0f59252a
+    retired: '2026-11-18'
+    members:
+      - dk-numista-309419
   - id: c-85553d44
     status: retired
     created: '2026-10-22'
