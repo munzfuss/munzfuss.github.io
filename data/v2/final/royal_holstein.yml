@@ -855,6 +855,12 @@ coins:
           as_printed: Speciedaler
           value: silver
           seed: dk-bruun-5801
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-5821
     mint: Glückstadt
     catalog:
       km: '27'
@@ -867,6 +873,7 @@ coins:
         - '5801'
         - '5799'
         - '5634'
+        - '5821'
       hede:
         - '163'
         - 163A
@@ -891,10 +898,12 @@ coins:
         - '39'
         - 40a
         - 40b
+        - '41'
       dav: EC II 3670
       others:
         - Harck# 34.3.1
         - Harck# 38.4.3
+        - Harck# 2.2.2
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -918,10 +927,10 @@ coins:
         source: ucoin
     weight_rough_g:
       - value: 28.74
+        source: bruun
+      - value: 28.74
         source: numista
         specimen: dk-numista-199851
-      - value: 28.75
-        source: bruun
       - value: 28.75
         source: ucoin
       - value: 28.76
@@ -929,8 +938,6 @@ coins:
       - value: 28.84
         source: numista
         specimen: dk-numista-199856
-      - value: 28.94
-        source: bruun
       - value: 28.97
         source: numista
         specimen: dk-numista-199893
@@ -981,6 +988,13 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11204, p. 87
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1049, p. 63
+      - &id003
+        type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1647/?tid=97359
+        ref: ucoin
     note:
       de: 1 Speciedaler Christians IV. (Glückstadt 1641–1642, King-bust-Typ 2) · gekröntes geharnischtes Brustbild mit Devise «REGNA FIRMAT PIETAS»; Reverse Fortuna auf Globus, 
         «MON:NOV:GLUCKSTAT:(Jahr)». Davenport EC II# 3670, Lange# 38. Stempelpaarung mit dem 2 Speciedaler KM# 28 desselben Jahres. Glückstadter Speciedaler im 9¼-Fuß.
@@ -1000,11 +1014,14 @@ coins:
       unit_raw: daler
     composed_of:
       - c-0288486e
-      - c-58aae993
-      - c-90024223
     label: km-27-chr-iv-1641
     origin: foundation
     v1_home_location: schleswig_holstein
+    _weights_thinned:
+      - value: 28.75
+        source: bruun
+      - value: 28.94
+        source: bruun
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
@@ -5239,104 +5256,6 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
-    fraction: 1/24
-    nominal: 2 Skilling lybsk
-    ruler: Christian IV.
-    issuing_entity: royal_holstein
-    id: km-82-chr-iv-1640
-    year_first: 1640
-    year_last: 1640
-    year_label: '1640'
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1588-1648
-          seed: kmk-693121
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1588-1648
-          seed: kmk-693122
-        - kind: hedged
-          how: circa
-          source: ngc
-          as_printed: (ca.1640)
-          value: '1640'
-          seed: ngc-121097
-    mint: Glückstadt
-    catalog:
-      km: '82'
-      numista: '313337'
-      hede_volume: c4h
-      lange: 56Aa
-      hede: '168'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.41
-        source: kmk
-      - value: 0.64
-        source: kmk
-        display: false
-      - value: 0.92
-        source: numista
-    sources:
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces313337.html
-        ref: Numista
-      - type: literature
-        url: https://en.numista.com/313337
-        ref: Numista N#313337 — 2 Schillings "Reuterpfennig" - Christian IV
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693121
-        ref: KMM 693121 (Inv. FP 280.58)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693129
-        ref: KMM 693129 (Inv. FP 280.50)
-        display: false
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-km-82-ca.1640-cuid-121097-duid-309966
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693127
-        ref: KMM 693127 (Inv. FP 280.52)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693122
-        ref: KMM 693122 (Inv. FP 280.57)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693126
-        ref: KMM 693126 (Inv. FP 280.53)
-    note:
-      de: 2 Schilling = 1/24 Thaler · Christian IV. (Kgr. Dänemark, Glückstadt), 1640
-      en: 2 Schilling = 1/24 Thaler · Christian IV of Denmark (Glückstadt mint), 1640
-      uk: 2 Schilling = 1/24 Thaler · Кристіан IV (король Данії, Глюкштадт), 1640
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-495a5b90
-      - c-b96ddd20
-    label: km-82-chr-iv-1640
-    origin: foundation
-    v1_home_location: schleswig_holstein
-  - fuss: 9_25_thaler
-    phase: I
-    kind: scheide
     fraction: 1/8
     nominal: 6 Skilling Lybsk
     ruler: Christian IV.
@@ -5532,18 +5451,26 @@ coins:
     issuing_entity: royal_holstein
     id: km-x005-chr-iv-1620
     year_first: 1620
-    year_last: 1630
+    year_last: 1640
     year_ranges:
       -   - 1620
-          - 1630
-    year_label: 1620-1630
+          - 1620
+      -   - 1640
+          - 1640
+    year_label: 1620, 1640
     year_verified: false
     year_conflict:
       confident:
+        - seed: dk-numista-313337
+          source: numista
+          years: '1640'
         - seed: dk-tid-163588
           source: ucoin
           years: '1620'
       uncertain:
+        - seed: ngc-121097
+          source: ngc
+          years: '1640'
         - seed: schleswig_holstein-numismaster-92977
           source: numismaster
           years: 1620–1623
@@ -5564,6 +5491,16 @@ coins:
           source: kmk
           value: 1588-1648
           seed: kmk-203796
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1588-1648
+          seed: kmk-693121
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1588-1648
+          seed: kmk-693122
         - kind: hedged
           how: museum
           source: kmk
@@ -5685,6 +5622,12 @@ coins:
           value: 1616-1625
           seed: kmk-714833
         - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1640)
+          value: '1640'
+          seed: ngc-121097
+        - kind: hedged
           how: attributed
           source: numismaster
           value: 1620-1623
@@ -5724,11 +5667,16 @@ coins:
         - '8.4'
         - '8.5'
         - '8.6'
-      numista: '142941'
+        - '82'
+      numista:
+        - '142941'
+        - '313337'
       hede:
         - '168'
         - 168ab
-      lange: '56'
+      lange:
+        - '56'
+        - 56Aa
       hede_volume: c4h
       sieg: 164.1-6
     metal: silver
@@ -5743,18 +5691,22 @@ coins:
         source: numismaster
       - value: 0.888
         source: numista
+        specimen: dk-numista-142941
       - value: 0.888
         source: ucoin
     weight_rough_g:
-      - value: 0.81
+      - value: 0.41
         source: kmk
-      - value: 0.932
+      - value: 0.92
+        source: numista
+        specimen: dk-numista-313337
+      - value: 0.93
         source: kmk
-        display: false
       - value: 1.008
         source: numismaster
       - value: 1.01
         source: numista
+        specimen: dk-numista-142941
       - value: 1.01
         source: ucoin
       - value: 1.11
@@ -5893,7 +5845,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714806
         ref: KMM 714806 (Inv. FP 12405.244)
-        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714807
         ref: KMM 714807 (Inv. FP 12405.243)
@@ -5921,6 +5872,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714815
         ref: KMM 714815 (Inv. FP 12405.235)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714821
         ref: KMM 714821 (Inv. FP 12405.229)
@@ -5983,6 +5935,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714823
         ref: KMM 714823 (Inv. FP 12405.227)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714824
         ref: KMM 714824 (Inv. FP 12405.226)
@@ -5998,6 +5951,34 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/2skilybs.htm
         ref: danskmoent.dk (Hede c4h168ab)
+      - type: literature
+        url: https://en.numista.com/313337
+        ref: Numista N#313337 — 2 Schillings "Reuterpfennig" - Christian IV
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693121
+        ref: KMM 693121 (Inv. FP 280.58)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693126
+        ref: KMM 693126 (Inv. FP 280.53)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693127
+        ref: KMM 693127 (Inv. FP 280.52)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693129
+        ref: KMM 693129 (Inv. FP 280.50)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693122
+        ref: KMM 693122 (Inv. FP 280.57)
+        display: false
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-km-82-ca.1640-cuid-121097-duid-309966
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces313337.html
+        ref: Numista
     note:
       de: 2 Skilling Lybsk = 1/24 Speciedaler · Christian IV. (Glückstadt 1620, früheste dokumentierte Glückstädter Sk-Lybsk-Stufe in der Reichsmüntzfuß-Phase 1617–1622). 
         <b>Reichsmünzordnung-Standard-Feingehalt .888</b>; rohes Gewicht 1,01 g entspricht etwa der Standard-Theilung (1/24 Speciedaler-soll = 1,083 g rau). Im Schleswig-Holstein-Register nicht 
@@ -6024,6 +6005,12 @@ coins:
     origin: foundation
     v1_home_location: schleswig_holstein
     _weights_thinned:
+      - value: 0.64
+        source: kmk
+        display: false
+      - value: 0.81
+        source: kmk
+        display: false
       - value: 0.82
         source: kmk
         display: false
@@ -6051,8 +6038,9 @@ coins:
       - value: 0.92
         source: kmk
         display: false
-      - value: 0.93
+      - value: 0.932
         source: kmk
+        display: false
       - value: 0.94
         source: kmk
         display: false
@@ -8540,6 +8528,14 @@ coins:
       -   - 1786
           - 1786
     year_label: 1777, 1786
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Speciedaler
+          value: silver
+          seed: dk-bruun-7864
     mint: Altona
     catalog:
       km:
@@ -8553,11 +8549,14 @@ coins:
       schou:
         - '2'
         - '5'
-      sieg: '29'
+      sieg:
+        - '22.2'
+        - '29'
       bruun_collection_id: '7864'
       numista: '110606'
       others:
         - DNF# 14.5
+      fp: '30.2'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -8575,6 +8574,8 @@ coins:
     weight_rough_g:
       - value: 14.4
         source: numista
+      - value: 14.43
+        source: bruun
       - value: 14.447
         source: hede
       - value: 14.447
@@ -8595,7 +8596,7 @@ coins:
       - type: literature
         url: https://en.numista.com/110606
         ref: Numista N#110606 — ½ Speciedaler - Christian VII
-    note: &id001
+    note: &id004
       de: ½ Speciedaler 1786 · Altonaer Prägung im Courantmøntfod
       en: ½ Speciedaler 1786 · Altona issue in the Courantmøntfod system
       uk: ½ Speciedaler 1786 · Альтонське карбування за Courantmøntfod
@@ -9938,53 +9939,6 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
-    fraction: 1/16
-    nominal: 3 Skilling Lybsk
-    ruler: Christian V.
-    issuing_entity: royal_holstein
-    id: c-ff5dd463
-    year_first: 1680
-    year_last: 1680
-    year_label: '1680'
-    mint: Glückstadt
-    catalog:
-      hede: '124'
-      hede_volume: c5h
-      schou: 31-32
-      sieg: '132'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: hede
-    weight_rough_g:
-      - value: 1.785
-        source: hede
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h124.htm
-        ref: danskmoent.dk (Hede c5h124)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 10.076
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - c-ff5dd463
-    label: unified-dk-hede-c5h124
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: scheide
     nominal: 1 Skilling Danske
     fraction: 1/96
     ruler: Christian V.
@@ -10718,12 +10672,23 @@ coins:
     year_first: 1665
     year_last: 1665
     year_label: '1665'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/8 Reichsdaler (6 Skilling Lybsk)
+          value: billon
+          seed: dk-bruun-6485
     mint: Glückstadt
     catalog:
+      km: '55'
       hede: '151'
       hede_volume: f3h
       schou: 51-52
       sieg: '152'
+      bruun_collection_id: '6485'
+      lange: '66'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -10740,6 +10705,15 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h151.htm
         ref: danskmoent.dk (Hede f3h151)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11229, p. 102
+      - type: numista
+        url: https://en.numista.com/204200
+        ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
+        ref: ucoin
     note:
       de: 'Vorderseite: Porträt, Rückseite: Wertangabe »VIII EINEN REICHSDALER« (= 1/8 Reichsthaler). Mit Müntzmeisterzeichen.'
       en: "Obverse: portrait; reverse: value statement 'VIII EINEN REICHSDALER' (= 1/8 Reichsthaler). With a mintmaster's mark."
@@ -15640,119 +15614,6 @@ coins:
       - c-1d4f183a
     label: unified-dk-bruun-7877
     origin: promoted
-  - fuss: 9_thaler
-    phase: II
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Christian IV.
-    issuing_entity: royal_holstein
-    fraction: '1'
-    id: c-320a1040
-    year_first: 1647
-    year_last: 1647
-    year_label: '1647'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-5821
-    mint: Glückstadt
-    catalog:
-      km: '27'
-      bruun_collection_id: '5821'
-      sieg: '186.3'
-      schou: '21'
-      lange: '41'
-      hede: 163C
-      dav: '3670'
-      others:
-        - Harck# 2.2.2
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.74
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1049, p. 63
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1647/?tid=97359
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-320a1040
-    label: unified-dk-bruun-5821
-    origin: promoted
-  - fuss: 11_333_thaler
-    phase: I
-    kind: kurant
-    nominal: ½ Speciedaler
-    ruler: Christian VII.
-    issuing_entity: royal_holstein
-    fraction: 1/2
-    id: c-47cf3b6f
-    year_first: 1786
-    year_last: 1786
-    year_label: '1786'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/2 Speciedaler
-          value: silver
-          seed: dk-bruun-7864
-    mint: Altona
-    catalog:
-      km: '633.2'
-      bruun_collection_id: '7864'
-      sieg: '22.2'
-      schou: '2'
-      hede: 12B
-      fp: '30.2'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 14.43
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17142, p. 73
-    note: *id001
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-47cf3b6f
-    label: unified-dk-bruun-7864
-    origin: promoted
   - fuss: 18_5_thaler
     phase: I
     kind: scheide
@@ -15792,69 +15653,6 @@ coins:
     composed_of:
       - c-062a2554
     label: unified-dk-tid-70745
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: scheide
-    nominal: ⅛ Reichsdaler (6 Skilling Lybsk)
-    ruler: Frederik III.
-    issuing_entity: royal_holstein
-    fraction: 1/8
-    id: c-9300a9b6
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/8 Reichsdaler (6 Skilling Lybsk)
-          value: billon
-          seed: dk-bruun-6485
-    mint: Glückstadt
-    catalog:
-      km: '55'
-      bruun_collection_id: '6485'
-      sieg: '152'
-      schou: '52'
-      lange: '66'
-      hede: '151'
-    metal: billon
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11229, p. 102
-      - type: numista
-        url: https://en.numista.com/204200
-        ref: Numista
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
-        ref: ucoin
-    note:
-      de: '⅛ Reichs Daler Friedrichs III. · Obverse römische Büste «FRIDERIC : 3 : D:G: DA : NOR : VA : GOT : REX»; Reverse «MONETA · NOVA · GLVCKSTADENSIS» — «VIII EINEN REICHS DALER · 1665». Glückstadter
-        Theilstück im 9¼-Fuß bei reduziertem Feingehalt .812.'
-      en: '⅛ Reichs Daler of Frederik III · obverse Roman-style bust «FRIDERIC : 3 : D:G: DA : NOR : VA : GOT : REX»; reverse «MONETA · NOVA · GLVCKSTADENSIS» — «VIII EINEN REICHS DALER · 1665». A Glückstadt
-        sub-unit on the 9¼-Fuß at reduced fineness .812.'
-      uk: '⅛ Reichs Daler Фредеріка III · аверс — римський бюст «FRIDERIC : 3 : D:G: DA : NOR : VA : GOT : REX»; реверс «MONETA · NOVA · GLVCKSTADENSIS» — «VIII EINEN REICHS DALER · 1665». Ґлюкштатський
-        підрозмінний номінал у 9¼-Fuß зі зниженою пробою .812.'
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-9300a9b6
-    label: unified-dk-bruun-6485
     origin: promoted
   - fuss: 9_thaler
     phase: I
@@ -16326,9 +16124,8 @@ coins:
       hede: '124'
       sieg: '132'
       lange: '83'
-      schou:
-        - '31'
-        - '32'
+      schou: 31-32
+      hede_volume: c5h
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -16338,12 +16135,16 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: hede
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
       - value: 0.812
         source: ucoin
     weight_rough_g:
+      - value: 1.785
+        source: hede
       - value: 1.785
         source: numismaster
       - value: 1.79
@@ -16369,6 +16170,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14157, p. 62
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h124.htm
+        ref: danskmoent.dk (Hede c5h124)
     note:
       de: 1/16 Thaler Christians V. · Obverse «CHRISTIAN · V · D · G · D.N.V.G.REX» mit gekrönter Büste; Reverse «MONETA NOVA GLVCKSTAD ⚒ XVI. EREIC HSTHA 1680». Glückstadter Theilstück im 9¼-Fuß; 
         Mzz. ⚒ (gekreuzte Hämmer) für Glückstadt.
@@ -16385,6 +16189,11 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
       da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    hede_muentzfuss_yield:
+      value: 10.076
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
     composed_of:
       - c-5e81b057
     label: unified-dk-numista-181803
@@ -17661,7 +17470,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122399
         ref: KMM 122399 (Inv. FP 2668.21)
-    verification_note: &id002
+    verification_note: &id001
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -17691,7 +17500,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122403
         ref: KMM 122403 (Inv. FP 2668.135)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-e60c4107
     label: unified-kmk-122403
@@ -17717,7 +17526,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139653
         ref: KMM 139653 (Inv. KP 1715.66)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-fe57501e
     label: unified-kmk-139653
@@ -17743,7 +17552,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139655
         ref: KMM 139655 (Inv. KP 1715.64)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-f6d8ef8f
     label: unified-kmk-139655
@@ -17773,7 +17582,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/149533
         ref: KMM 149533 (Inv. KP 1656.780)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-ebb74190
     label: unified-kmk-149533
@@ -17799,7 +17608,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/149674
         ref: KMM 149674 (Inv. KP 1656.639)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-5f87b1fc
     label: unified-kmk-149674
@@ -17823,7 +17632,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156523
         ref: KMM 156523 (Inv. FP 918.27)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-80575cff
     label: unified-kmk-156523
@@ -17847,7 +17656,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156525
         ref: KMM 156525 (Inv. FP 918.28)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-24b0e391
     label: unified-kmk-156525
@@ -17871,7 +17680,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156545
         ref: KMM 156545 (Inv. FP 918.25)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-04e08c61
     label: unified-kmk-156545
@@ -17895,7 +17704,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156555
         ref: KMM 156555 (Inv. FP 918.47)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-a08d8110
     label: unified-kmk-156555
@@ -17931,7 +17740,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167316
         ref: KMM 167316 (Inv. FP 1892.20)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-9bb5923f
     label: unified-kmk-167316
@@ -17967,7 +17776,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167317
         ref: KMM 167317 (Inv. FP 1892.19)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-2343466b
     label: unified-kmk-167317
@@ -17993,7 +17802,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/168013
         ref: KMM 168013 (Inv. FP 2366.4)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-62d71501
     label: unified-kmk-168013
@@ -18063,7 +17872,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/329739
         ref: KMM 329739 (Inv. KP 23.145)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-25c1f619
     label: unified-kmk-329739
@@ -18092,7 +17901,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/329754
         ref: KMM 329754 (Inv. FP 4545.2)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-a4448d32
     label: unified-kmk-329754
@@ -18121,7 +17930,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/329765
         ref: KMM 329765 (Inv. RP 894.1)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-73edc6dd
     label: unified-kmk-329765
@@ -18162,7 +17971,7 @@ coins:
       de: Wilder Mann mit dänischem Wappen / norwegischer Löwe in gekröntem Schild.
       en: A wild man with the Danish arms / the Norwegian lion in a crowned shield.
       uk: Дикий чоловік з данським гербом / норвезький лев у коронованому щиті.
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-360ee26e
     label: unified-kmk-492892
@@ -18200,7 +18009,7 @@ coins:
       en: rytterpenning
       uk: rytterpenning
       da: rytterpenning
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-6fcb98c9
     label: unified-kmk-714753
@@ -18269,7 +18078,7 @@ coins:
       en: rytterpenning
       uk: rytterpenning
       da: rytterpenning
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-668f86be
     label: unified-kmk-714754
@@ -18339,7 +18148,7 @@ coins:
       en: rytterpenning
       uk: rytterpenning
       da: rytterpenning
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-2498c2eb
     label: unified-kmk-714786
@@ -18370,7 +18179,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/83150
         ref: KMM 83150 (Inv. GP 982.174)
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-1421b068
     label: unified-kmk-83150
@@ -23494,7 +23303,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/423263
         ref: KMM 423263 (Inv. FP 2447.1819)
         display: false
-    verification_note: &id003
+    verification_note: &id002
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -23522,7 +23331,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156515
         ref: KMM 156515 (Inv. FP 918.33)
-    verification_note: *id003
+    verification_note: *id002
     composed_of:
       - c-efb0dcc5
     label: unified-kmk-156515
@@ -23595,7 +23404,7 @@ coins:
       en: rytterpenning
       uk: rytterpenning
       da: rytterpenning
-    verification_note: *id002
+    verification_note: *id001
     composed_of:
       - c-ffe6bc55
     label: unified-kmk-714762
@@ -26916,6 +26725,164 @@ coins:
     composed_of:
       - c-03bcf4f3
     label: unified-dk-hede-f6h9
+    origin: promoted
+  - fuss: 9_25_thaler
+    phase: I
+    kind: scheide
+    fraction: 1/16
+    nominal: 3 Skilling Lybsk
+    ruler: Christian V.
+    issuing_entity: royal_holstein
+    id: c-ff5dd463
+    year_first: 1680
+    year_last: 1680
+    year_label: '1680'
+    mint: Glückstadt
+    catalog:
+      hede: '124'
+      hede_volume: c5h
+      schou: 31-32
+      sieg: '132'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.812
+        source: hede
+    weight_rough_g:
+      - value: 1.785
+        source: hede
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h124.htm
+        ref: danskmoent.dk (Hede c5h124)
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
+    hede_muentzfuss_yield:
+      value: 10.076
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
+    composed_of:
+      - c-ff5dd463
+    label: unified-dk-hede-c5h124
+    origin: promoted
+  - fuss: 9_thaler
+    phase: II
+    kind: kurant
+    nominal: 1 Speciedaler
+    ruler: Christian IV.
+    issuing_entity: royal_holstein
+    fraction: '1'
+    id: c-320a1040
+    year_first: 1647
+    year_last: 1647
+    year_label: '1647'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-5821
+    mint: Glückstadt
+    catalog:
+      km: '27'
+      bruun_collection_id: '5821'
+      sieg: '186.3'
+      schou: '21'
+      lange: '41'
+      hede: 163C
+      dav: '3670'
+      others:
+        - Harck# 2.2.2
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 28.74
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1049, p. 63
+      - *id003
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - c-320a1040
+    label: unified-dk-bruun-5821
+    origin: promoted
+  - fuss: 11_333_thaler
+    phase: I
+    kind: kurant
+    nominal: ½ Speciedaler
+    ruler: Christian VII.
+    issuing_entity: royal_holstein
+    fraction: 1/2
+    id: c-47cf3b6f
+    year_first: 1786
+    year_last: 1786
+    year_label: '1786'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Speciedaler
+          value: silver
+          seed: dk-bruun-7864
+    mint: Altona
+    catalog:
+      km: '633.2'
+      bruun_collection_id: '7864'
+      sieg: '22.2'
+      schou: '2'
+      hede: 12B
+      fp: '30.2'
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 14.43
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17142, p. 73
+    note: *id004
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - c-47cf3b6f
+    label: unified-dk-bruun-7864
     origin: promoted
   - fuss: 9_25_thaler
     phase: II
