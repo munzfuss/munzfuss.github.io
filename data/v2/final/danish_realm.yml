@@ -95777,9 +95777,7 @@ coins:
     year_label: '1665'
     mint: Kopenhagen
     catalog:
-      km:
-        - '262'
-        - '277'
+      km: '277'
       hede: '71'
       hede_volume: f3h
       schou: '21'
@@ -95808,17 +95806,8 @@ coins:
         source: numismaster
     sources:
       - type: literature
-        url: https://numismaster.com/MC_65451
-        ref: NumisMaster
-      - type: literature
         url: https://www.danskmoent.dk/fr/f3h71.htm
         ref: danskmoent.dk (Hede f3h71)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1665-1666/?tid=97366
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-262-1665-1666-cuid-1050290-duid-1237451
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_65453
         ref: NumisMaster
@@ -99928,8 +99917,13 @@ coins:
     fraction: '1'
     id: c-46b4c6d7
     year_first: 1670
-    year_last: 1670
-    year_label: '1670'
+    year_last: 1674
+    year_ranges:
+      -   - 1670
+          - 1670
+      -   - 1674
+          - 1674
+    year_label: 1670, 1674
     year_verified: false
     year_conflict:
       confident:
@@ -99942,18 +99936,30 @@ coins:
         - seed: dk-bruun-6755
           source: bruun
           years: '1670'
+        - seed: dk-bruun-6823
+          source: bruun
+          years: '1674'
         - seed: dk-numista-214327
           source: numista
           years: '1670'
+        - seed: ngc-1050113
+          source: ngc
+          years: '1674'
         - seed: ngc-1050720
           source: ngc
           years: '1670'
         - seed: denmark-numismaster-65465
           source: numismaster
           years: '1670'
+        - seed: denmark-numismaster-65468
+          source: numismaster
+          years: '1674'
         - seed: dk-tid-97370
           source: ucoin
           years: '1670'
+        - seed: dk-tid-97371
+          source: ucoin
+          years: '1674'
       uncertain:
         - seed: dk-bruun-7264
           source: bruun
@@ -99984,14 +99990,23 @@ coins:
           source: bruun
           as_printed: Speciedaler
           value: silver
+          seed: dk-bruun-6823
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
           seed: dk-bruun-7264
     mint: Kopenhagen
     catalog:
-      km: '322'
+      km:
+        - '322'
+        - '349'
       hede:
         - '61'
         - 61A
         - 61B
+        - 61C
       hede_volume: c5h
       schou:
         - 7-8
@@ -100005,7 +100020,10 @@ coins:
         - '6754'
         - '6755'
         - '7264'
-      dav: EC II 3629
+        - '6823'
+      dav:
+        - EC II 3629
+        - EC II 3630
       numista: '214327'
     metal: silver
     metal_verified: true
@@ -100019,12 +100037,24 @@ coins:
         source: hede
       - value: 0.875
         source: ngc
+        specimen: ngc-1050113
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050720
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65465
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65468
       - value: 0.875
         source: numista
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-97370
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-97371
     weight_rough_g:
       - value: 28.33
         source: bruun
@@ -100032,10 +100062,22 @@ coins:
         source: hede
       - value: 28.775
         source: ngc
+        specimen: ngc-1050113
+      - value: 28.775
+        source: ngc
+        specimen: ngc-1050720
       - value: 28.775
         source: numismaster
+        specimen: denmark-numismaster-65465
+      - value: 28.775
+        source: numismaster
+        specimen: denmark-numismaster-65468
       - value: 28.78
         source: ucoin
+        specimen: dk-tid-97370
+      - value: 28.78
+        source: ucoin
+        specimen: dk-tid-97371
       - value: 28.83
         source: numista
       - value: 28.99
@@ -100047,6 +100089,7 @@ coins:
         source: numista
       - value: 41.75
         source: ucoin
+        specimen: dk-tid-97370
     sources:
       - type: literature
         url: https://numismaster.com/MC_65465
@@ -100071,6 +100114,18 @@ coins:
         ref: Numista N#214327 — 1 Speciedaler - Christian V (Type 1; Year on edge)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-322-1670-cuid-1050720-duid-1237469
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_65468
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13177, p. 104
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1674/?tid=97371
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-349-1674-cuid-1050113-duid-1237471
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Lorbeergekröntes Brustbild König Christians V. mit langem Haar nach rechts, im verzierten Plattenharnisch mit Löwenschulter, Halstuch, Schärpe und der Kette des Elefantenordens. / Wappen von
@@ -102551,82 +102606,6 @@ coins:
     composed_of:
       - c-beb3073b
     label: unified-dk-bruun-6697
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Christian V.
-    issuing_entity: danish_realm
-    fraction: '1'
-    id: c-368603ea
-    year_first: 1674
-    year_last: 1674
-    year_label: '1674'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-6823
-    mint: Kopenhagen
-    catalog:
-      km: '349'
-      bruun_collection_id: '6823'
-      sieg: '58.3'
-      schou: '10'
-      hede: 61C
-      dav: '3630'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.775
-        source: ngc
-      - value: 28.775
-        source: numismaster
-      - value: 28.78
-        source: ucoin
-      - value: 29.55
-        source: bruun
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65468
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13177, p. 104
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1674/?tid=97371
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-349-1674-cuid-1050113-duid-1237471
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-368603ea
-    label: unified-dk-bruun-6823
     origin: promoted
   - fuss: reichsdukatenfuss
     phase: III
@@ -111880,121 +111859,6 @@ coins:
     composed_of:
       - c-622b92f4
     label: unified-dk-hede-f3h61
-    origin: promoted
-  - fuss: reichsdukatenfuss
-    phase: III
-    kind: kurant
-    nominal: 1 Dukat
-    ruler: Frederik III.
-    issuing_entity: danish_realm
-    fraction: '1'
-    id: c-630d981f
-    year_first: 1653
-    year_last: 1653
-    year_label: '1653'
-    mint: Kopenhagen
-    catalog:
-      km: '199'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 3.49
-        source: ngc
-      - value: 3.49
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65742
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-199-1653-cuid-1050354-duid-1237972
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: 'Vorderseite: Porträt; Rand innerhalb der Umschrift. Rückseite: ‹DOMINUS PROVIDEBIT›. Müntzmeisterzeichen Glühhaken (Heinrich Köhler).'
-      en: 'Obverse: portrait; border within the legend. Reverse: ‹DOMINUS PROVIDEBIT›. Mintmaster mark fire-hook (Heinrich Köhler).'
-      uk: 'Аверс: портрет; обідок усередині напису. Реверс: ‹DOMINUS PROVIDEBIT›. Знак монетмейстера — жарівний гак (Heinrich Köhler).'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    composed_of:
-      - c-630d981f
-    label: unified-dk-hede-f3h7
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Frederik III.
-    mintmaster: Frederik Caspar Herbach
-    issuing_entity: danish_realm
-    id: c-b20124fd
-    year_first: 1667
-    year_last: 1667
-    year_label: '1667'
-    mint: Kopenhagen
-    catalog:
-      hede: '75'
-      hede_volume: f3h
-      schou: '21'
-      sieg: '91'
-      others:
-        - BM# 290
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-    weight_rough_g:
-      - value: 28.75
-        source: ikmk
-      - value: 28.775
-        source: hede
-    diameter_mm:
-      - value: 45.0
-        source: ikmk
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h75.htm
-        ref: danskmoent.dk (Hede f3h75)
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219596
-        ref: IKMK Berlin 18219596
-    inscription_obv: FRIDERICVS 3 D G DAN NOR VAN GOT REX
-    inscription_rev: DOMI-NUS - PROVIDE-BIT 1667
-    note:
-      de: 'Vorderseite: Porträt, Rückseite: dreigeteilter Wappenschild. Müntzmeisterzeichen FCH.'
-      en: 'Obverse: portrait, reverse: tripartite coat of arms. Mintmaster mark FCH.'
-      uk: 'Аверс: портрет, реверс: тридільний гербовий щит. Знак монетмейстера FCH.'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 9.288
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
-      - c-b20124fd
-    label: unified-dk-hede-f3h75
     origin: promoted
   - fuss: seed_unsorted
     phase: hede
@@ -132126,7 +131990,9 @@ coins:
     year_label: '1653'
     mint: Kopenhagen
     catalog:
-      km: '198'
+      km:
+        - '198'
+        - '199'
       hede:
         - '10'
         - 10A
@@ -132156,8 +132022,16 @@ coins:
         source: hede
       - value: 0.979
         source: ngc
+        specimen: ngc-1050354
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1050850
       - value: 0.979
         source: numismaster
+        specimen: denmark-numismaster-65740
+      - value: 0.979
+        source: numismaster
+        specimen: denmark-numismaster-65742
       - value: 0.979
         source: numista
       - value: 0.98
@@ -132173,8 +132047,16 @@ coins:
         source: hede
       - value: 3.49
         source: ngc
+        specimen: ngc-1050354
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1050850
       - value: 3.49
         source: numismaster
+        specimen: denmark-numismaster-65740
+      - value: 3.49
+        source: numismaster
+        specimen: denmark-numismaster-65742
       - value: 3.49
         source: ucoin
     diameter_mm:
@@ -132205,6 +132087,12 @@ coins:
         ref: IKMK Berlin 18219559
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-198-1653-cuid-1050850-duid-1237971
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_65742
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-km-199-1653-cuid-1050354-duid-1237972
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     inscription_obv: FRIDERICVS III D G DANIAE
     inscription_rev: NORWEGIAE VAND GOTHOR REX
@@ -151889,17 +151777,21 @@ coins:
     ruler: Frederik III.
     issuing_entity: danish_realm
     id: c-5d3d7ab8
+    mintmaster: Frederik Caspar Herbach
     year_first: 1667
     year_last: 1667
     year_label: '1667'
     mint: Kopenhagen
     catalog:
       km: '290'
-      hede: '76'
       hede_volume: f3h
-      sieg: '92'
       dav: EC II 3556
       numista: '268890'
+      hede: '75'
+      schou: '21'
+      sieg: '91'
+      others:
+        - BM# 290
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -151908,6 +151800,8 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.875
+        source: hede
       - value: 0.875
         source: ngc
       - value: 0.875
@@ -151919,6 +151813,10 @@ coins:
     weight_rough_g:
       - value: 28.65
         source: numista
+      - value: 28.75
+        source: ikmk
+      - value: 28.775
+        source: hede
       - value: 28.775
         source: ngc
       - value: 28.775
@@ -151929,14 +151827,13 @@ coins:
       - value: 41.3
         source: ucoin
       - value: 45.0
+        source: ikmk
+      - value: 45.0
         source: numista
     sources:
       - type: literature
         url: https://numismaster.com/MC_65456
         ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/f3hede1.htm
-        ref: danskmoent.dk overview f3hede1 (Hede f3h76 — Tiefenseite fehlt)
       - type: literature
         url: https://en.numista.com/268890
         ref: Numista N#268890 — 1 Speciedaler - Frederik III
@@ -151946,6 +151843,14 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-290-1667-cuid-1050075-duid-1237457
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h75.htm
+        ref: danskmoent.dk (Hede f3h75)
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219596
+        ref: IKMK Berlin 18219596
+    inscription_obv: FRIDERICVS 3 D G DAN NOR VAN GOT REX
+    inscription_rev: DOMI-NUS - PROVIDE-BIT 1667
     note:
       de: Brustbild Frederiks III. nach rechts mit Lorbeerkranz, Halsbinde, Elefantenorden, Plattenharnisch und Mantel mit Schulterspange. / Wappen von Dänemark, Schweden und Norwegen auf einem 
         gekrönten ovalen Schild mit reichem Rankenwerk; langes Kreuz dahinter; Müntzzeichen unten.
@@ -151962,6 +151867,11 @@ coins:
         Galster 1965.
       da: Kun oversigtsrækken i f3hede1.htm belægger denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet dér; de måtte tages fra de trykte udgaver Hede 1971 og Galster
         1965.
+    hede_muentzfuss_yield:
+      value: 9.288
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
     composed_of:
       - c-5d3d7ab8
     label: unified-dk-hede-f3h76
@@ -168349,6 +168259,42 @@ coins:
     composed_of:
       - c-fa189724
     label: unified-dk-hede-f3h73a
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    ruler: Frederik III
+    issuing_entity: danish_realm
+    id: c-699377f8
+    year_first: 1667
+    year_last: 1667
+    year_label: '1667'
+    mint: Kopenhagen
+    catalog:
+      hede: '76'
+      hede_volume: f3h
+      sieg: '92'
+    metal: silver
+    metal_verified: true
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/f3hede1.htm
+        ref: danskmoent.dk overview f3hede1 (Hede f3h76 — Tiefenseite fehlt)
+    verification_note:
+      de: Nur die Übersichtsreihe von f3hede1.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben 
+        Hede 1971 und Galster 1965 zu entnehmen.
+      en: Only the overview-table row of f3hede1.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the 
+        printed Hede 1971 and Galster 1965.
+      uk: Цей запис підтверджує лише рядок оглядової таблиці f3hede1.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та 
+        Galster 1965.
+      da: Kun oversigtsrækken hos f3hede1.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og 
+        Galster 1965.
+    composed_of:
+      - c-699377f8
+    label: unified-dk-hede-f3h76
     origin: promoted
   - fuss: reichsdukatenfuss
     phase: III
