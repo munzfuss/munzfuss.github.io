@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 489 active, 1315 retired.
+# 488 active, 1316 retired.
 
 id: danish_norway
 classes:
@@ -2803,6 +2803,7 @@ classes:
     legacy_id: unified-dk-bruun-10385
     members:
       - denmark-numismaster-110641
+      - denmark-numismaster-110642
       - denmark-numismaster-110643
       - dk-bruun-10385
       - dk-bruun-10399
@@ -2811,7 +2812,9 @@ classes:
       - dk-numista-101483
       - dk-numista-101705
       - dk-numista-101762
+      - dk-tid-144927
       - ngc-1094236
+      - ngc-1094237
       - ngc-1114101
   - id: c-5aa52a58
     status: active
@@ -3777,16 +3780,6 @@ classes:
       - ngc-1097946
       - ngc-1099929
       - ngc-1114117
-  - id: c-6e9b5892
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-nc5h62
-    legacy_id: unified-dk-hede-nc5h62
-    members:
-      - denmark-numismaster-110642
-      - dk-hede-nc5h62
-      - dk-tid-144927
-      - ngc-1094237
   - id: c-6f6aa313
     status: active
     created: '2026-10-22'
@@ -4462,11 +4455,12 @@ classes:
   - id: c-91a522c0
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-10357
+    label: unified-dk-hede-nc5h62
     legacy_id: unified-dk-bruun-10357
     members:
       - denmark-numismaster-110875
       - dk-bruun-10357
+      - dk-hede-nc5h62
       - dk-numista-119557
       - ngc-1099237
   - id: c-92ce225b
@@ -11694,6 +11688,18 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-148443
+  - id: c-6e9b5892
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-nc5h62
+    legacy_id: unified-dk-hede-nc5h62
+    merged_into: c-5a15af56
+    retired: '2026-11-19'
+    members:
+      - denmark-numismaster-110642
+      - dk-hede-nc5h62
+      - dk-tid-144927
+      - ngc-1094237
   - id: c-6f790351
     status: retired
     created: '2026-10-22'

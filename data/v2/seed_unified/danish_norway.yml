@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2787 per-source seed entries.
-# Output: 489 unified entries (one per physical coin).
+# Output: 488 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -429,86 +429,6 @@ coins:
       - kmk-278786
       - kmk-371920
       - ngc-1098046
-  - id: c-91a522c0
-    class_id: c-91a522c0
-    label: unified-dk-bruun-10357
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 16 Skilling
-    year_first: 1689
-    year_last: 1689
-    year_label: '1689'
-    ruler: Christian V
-    mint: Christiania
-    catalog:
-      km: Tn2
-      bruun_collection_id: '10357'
-      sieg: '28'
-      schou: '18'
-      hede: '62'
-      nmd: '125'
-      numista: '119557'
-      others:
-        - Rønning# P32
-        - AAJT# 114
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-    weight_rough_g:
-      - value: 5.45
-        source: bruun
-      - value: 5.57
-        source: ngc
-      - value: 5.57
-        source: numismaster
-      - value: 5.57
-        source: numista
-    diameter_mm:
-      - value: 25.0
-        source: numista
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 16 Skilling (Mark)
-          value: billon
-          seed: dk-bruun-10357
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110875
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14090, p. 207
-      - type: literature
-        url: https://en.numista.com/119557
-        ref: Numista N#119557 — 1 Mark - Christian V (Christiania; Winter Schydtz) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-16-skilling-km-tn2-1689-cuid-1099237-duid-1448546
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Mark
-      en: Mark
-      uk: Mark
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110875
-      - dk-bruun-10357
-      - dk-numista-119557
-      - ngc-1099237
   - id: c-64088332
     class_id: c-64088332
     label: unified-dk-bruun-10582
@@ -19029,26 +18949,30 @@ coins:
       unit_raw: rd.kr
     composed_of:
       - dk-hede-nc5h61
-  - id: c-6e9b5892
-    class_id: c-6e9b5892
+  - id: c-91a522c0
+    class_id: c-91a522c0
     label: unified-dk-hede-nc5h62
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 1 Mark
     year_first: 1689
-    year_last: 1699
-    year_ranges:
-      -   - 1689
-          - 1699
-    year_label: 1689-1699
+    year_last: 1689
+    year_label: '1689'
     ruler: Christian V
     mint: Christiania
     catalog:
-      km: '185.1'
+      km: Tn2
       hede: '62'
       hede_volume: nc5h
       schou: '18'
+      bruun_collection_id: '10357'
+      sieg: '28'
+      nmd: '125'
+      numista: '119557'
+      others:
+        - Rønning# P32
+        - AAJT# 114
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -19064,8 +18988,10 @@ coins:
       - value: 0.672
         source: numismaster
       - value: 0.672
-        source: ucoin
+        source: numista
     weight_rough_g:
+      - value: 5.45
+        source: bruun
       - value: 5.568
         source: hede
       - value: 5.57
@@ -19073,23 +18999,38 @@ coins:
       - value: 5.57
         source: numismaster
       - value: 5.57
-        source: ucoin
+        source: numista
     diameter_mm:
       - value: 25.0
-        source: ucoin
+        source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 16 Skilling (Mark)
+          value: billon
+          seed: dk-bruun-10357
     sources:
       - type: literature
-        url: https://numismaster.com/MC_110642
+        url: https://numismaster.com/MC_110875
         ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14090, p. 207
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h62.htm
         ref: danskmoent.dk (Hede nc5h62)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-mark-1689-1699/?tid=144927
-        ref: ucoin
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-mark-km-185.1-1689-1690-cuid-1094237-duid-1466096
+        url: https://en.numista.com/119557
+        ref: Numista N#119557 — 1 Mark - Christian V (Christiania; Winter Schydtz) - Norway
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-16-skilling-km-tn2-1689-cuid-1099237-duid-1448546
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: Mark
+      en: Mark
+      uk: Mark
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
       value: 10.418
@@ -19097,10 +19038,11 @@ coins:
       basis: fin
       unit_raw: rd.kr
     composed_of:
-      - denmark-numismaster-110642
+      - denmark-numismaster-110875
+      - dk-bruun-10357
       - dk-hede-nc5h62
-      - dk-tid-144927
-      - ngc-1094237
+      - dk-numista-119557
+      - ngc-1099237
   - id: c-c46c8e07
     class_id: c-c46c8e07
     label: unified-dk-hede-nc5h63
@@ -21642,10 +21584,16 @@ coins:
         specimen: ngc-1094236
       - value: 0.672
         source: ngc
+        specimen: ngc-1094237
+      - value: 0.672
+        source: ngc
         specimen: ngc-1114101
       - value: 0.672
         source: numismaster
         specimen: denmark-numismaster-110641
+      - value: 0.672
+        source: numismaster
+        specimen: denmark-numismaster-110642
       - value: 0.672
         source: numismaster
         specimen: denmark-numismaster-110643
@@ -21658,6 +21606,8 @@ coins:
       - value: 0.672
         source: numista
         specimen: dk-numista-101762
+      - value: 0.672
+        source: ucoin
     weight_rough_g:
       - value: 5.36
         source: bruun
@@ -21672,10 +21622,16 @@ coins:
         specimen: ngc-1094236
       - value: 5.57
         source: ngc
+        specimen: ngc-1094237
+      - value: 5.57
+        source: ngc
         specimen: ngc-1114101
       - value: 5.57
         source: numismaster
         specimen: denmark-numismaster-110641
+      - value: 5.57
+        source: numismaster
+        specimen: denmark-numismaster-110642
       - value: 5.57
         source: numismaster
         specimen: denmark-numismaster-110643
@@ -21688,6 +21644,8 @@ coins:
       - value: 5.57
         source: numista
         specimen: dk-numista-101762
+      - value: 5.57
+        source: ucoin
     diameter_mm:
       - value: 25.0
         source: numista
@@ -21698,6 +21656,8 @@ coins:
       - value: 25.0
         source: numista
         specimen: dk-numista-101762
+      - value: 25.0
+        source: ucoin
     uncertainty:
       metal:
         - kind: inferred
@@ -21723,6 +21683,9 @@ coins:
         url: https://numismaster.com/MC_110641
         ref: NumisMaster
       - type: literature
+        url: https://numismaster.com/MC_110642
+        ref: NumisMaster
+      - type: literature
         url: https://numismaster.com/MC_110643
         ref: NumisMaster
       - type: auction
@@ -21746,8 +21709,14 @@ coins:
       - type: literature
         url: https://en.numista.com/101762
         ref: Numista N#101762 — 1 Mark - Christian V (Kongsberg type C&III; HCM below branches; plain edge) - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-mark-1689-1699/?tid=144927
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-mark-km-176-1688-cuid-1094236-duid-1448752
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-mark-km-185.1-1689-1690-cuid-1094237-duid-1466096
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-mark-km-185.2-1691-1699-cuid-1114101-duid-1448292
@@ -21764,6 +21733,7 @@ coins:
       unit_raw: rd.kr
     composed_of:
       - denmark-numismaster-110641
+      - denmark-numismaster-110642
       - denmark-numismaster-110643
       - dk-bruun-10385
       - dk-bruun-10399
@@ -21772,7 +21742,9 @@ coins:
       - dk-numista-101483
       - dk-numista-101705
       - dk-numista-101762
+      - dk-tid-144927
       - ngc-1094236
+      - ngc-1094237
       - ngc-1114101
   - id: c-c825b097
     class_id: c-c825b097
