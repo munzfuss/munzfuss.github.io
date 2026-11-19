@@ -13055,7 +13055,9 @@ coins:
     year_label: 1658-1660
     mint: Glückstadt
     catalog:
-      km: '41'
+      km:
+        - '41'
+        - '90'
       hede: '150'
       hede_volume: f3h
       schou:
@@ -13063,6 +13065,7 @@ coins:
         - 105-108
         - 123-128
       sieg: '146'
+      numista: '313339'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -13078,6 +13081,8 @@ coins:
       - value: 0.312
         source: numismaster
     weight_rough_g:
+      - value: 0.6
+        source: numista
       - value: 0.7
         source: ucoin
       - value: 0.704
@@ -13104,6 +13109,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/306323
         ref: KMM 306323 (Inv. FP 7858.7)
         display: false
+      - type: literature
+        url: https://en.numista.com/313339
+        ref: Numista N#313339 — 1 Sechsling - Frederick III
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-90-1658-1660-cuid-121095-duid-309962
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: '1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Frederik III. (Glückstadt 1658–1660), Nachfolger zu KM# 25 (Christian IV. 1640–1648). <em>Ist-Feingehalt 0,214 g (= 0,7 × .305)
         entspricht bereits der späteren 11⅓-Fuß-Theilung (1/96 RCour ≈ 0,215 g) — Vorläufer des Kurantmøntfod 1726, vergleichbar mit den 8 Sk Danske 1694–1713 (KM #82.1, KM #1, KM #3) und 2 Sk Danske 1693–1716
@@ -21499,55 +21510,6 @@ coins:
     composed_of:
       - c-766b3393
     label: unified-ngc-121094
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 6 Pfennig
-    ruler: Frederik III
-    issuing_entity: royal_holstein
-    id: c-3774a0e1
-    year_first: 1658
-    year_last: 1660
-    year_ranges:
-      -   - 1658
-          - 1660
-    year_label: 1658-1660
-    mint: Glückstadt
-    catalog:
-      km: '90'
-      numista: '313339'
-      hede: '150'
-      sieg: '146'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.6
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/313339
-        ref: Numista N#313339 — 1 Sechsling - Frederick III
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-90-1658-1660-cuid-121095-duid-309962
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Gekröntes «F» mit überlagerter «3» im Kreis, Titulatur Friedrichs III. / Initialen des Müntzmeisters, fortgesetzte Titulatur, Jahreszahl
-      en: Crowned «F» with superimposed «3» in a circle, titles of Friedrich III / Mintmaster's initials, titles continued, date
-      uk: Коронована «F» з накладеною «3» у колі, титулатура Фрідріха III / Ініціали монетмейстера, продовження титулатури, дата
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-3774a0e1
-    label: unified-ngc-121095
     origin: promoted
   - fuss: luebischer_muenzfuss
     phase: I

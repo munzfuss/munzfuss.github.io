@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-18 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1405 per-source seed entries.
-# Output: 265 unified entries (one per physical coin).
+# Output: 264 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-18'
+generated_at: '2026-11-19'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -12566,7 +12566,9 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
-      km: '41'
+      km:
+        - '90'
+        - '41'
       hede: '150'
       hede_volume: f3h
       schou:
@@ -12574,6 +12576,7 @@ coins:
         - 105-108
         - 123-128
       sieg: '146'
+      numista: '313339'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -12589,6 +12592,8 @@ coins:
       - value: 0.312
         source: numismaster
     weight_rough_g:
+      - value: 0.6
+        source: numista
       - value: 0.7
         source: ucoin
       - value: 0.704
@@ -12602,9 +12607,15 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h150.htm
         ref: danskmoent.dk (Hede f3h150)
+      - type: literature
+        url: https://en.numista.com/313339
+        ref: Numista N#313339 — 1 Sechsling - Frederick III
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-sosling-1658-1660/?tid=163581
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-90-1658-1660-cuid-121095-duid-309962
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_92969
         ref: NumisMaster
@@ -12616,7 +12627,9 @@ coins:
       unit_raw: daler
     composed_of:
       - dk-hede-f3h150
+      - dk-numista-313339
       - dk-tid-163581
+      - ngc-121095
       - schleswig_holstein-numismaster-92969
   - id: c-7195f0d5
     class_id: c-7195f0d5
@@ -19063,47 +19076,6 @@ coins:
       - dk-numista-313337
       - kmk-693121
       - kmk-693122
-  - id: c-3774a0e1
-    class_id: c-3774a0e1
-    label: unified-dk-numista-313339
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1658
-    year_last: 1660
-    year_ranges:
-      -   - 1658
-          - 1660
-    year_label: 1658-1660
-    ruler: Frederik III
-    mint: Glückstadt
-    catalog:
-      km: '90'
-      numista: '313339'
-      hede: '150'
-      sieg: '146'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.6
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/313339
-        ref: Numista N#313339 — 1 Sechsling - Frederick III
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-90-1658-1660-cuid-121095-duid-309962
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-313339
-      - ngc-121095
   - id: c-326ffab3
     class_id: c-326ffab3
     label: unified-dk-numista-313357
