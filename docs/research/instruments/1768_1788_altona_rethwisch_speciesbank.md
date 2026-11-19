@@ -372,4 +372,4 @@ and no decision is recorded. The rows below are placements read off `data/v2/fin
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 1,5 (no remedy; the 1768
 concession's standard and the copper of 1771 without figures) · C3 instruments 1,5 · C4 provenance
 1,5 (V88 by one reading and one digest of the print) · C5 open questions 2 · C6 recomputation 2 →
-**8,5/10**. Commit: (pending).*
+**8,5/10**. Commit: `0a00a2a`.*
