@@ -77,6 +77,7 @@ found in circulating coin; **outturn** = what a mint's own accounts show;
 | 1434 / 1435 | imperial privileges to Lüneburg / Hamburg: Rhenish gulden «af Skrot og Korn som Kejserens og de rhinske Kurfyrsters» | decree | 68 (after 1454) | 19 | 3,439 | 2,723 | DE (north) |
 | 15 Nov 1490, in force 2 Feb 1491 | the four electors: 107 from 1½ Mk (= 71⅓), alloy 3½ Kt silver + 2 Kt copper | agreement | 71⅓ | 18½ | 3,278 | 2,527 | DE |
 | 1495 / 1497 / 1498 | Reichstag Worms, Herredag Lindau, Reichstag Freiburg adopt it | decree | 71⅓ | 18½ | 3,278 | 2,527 | DE (imperial) |
+| ⚠ 2026-11-19 | read in Hirsch I S. 168–177: Worms 1495 and Lindau 1497 are points for an ordinance to be made; the ordering text is Freiburg 1498 (with a Lindau mandate); Augsburg 1500 and Frankfurt 1509: not carried out — `instruments/1495_wormser_reichsabschied.md` D1–D2. The row above is kept as written | note | — | — | — | — | DE (imperial) |
 | 1503 / 1506 / 1509 | Bamberg, Würzburg, Brandenburg; Hessen; Kaisertag Frankfurt Sep 1509 | agreement | 71⅓ | 18½ | 3,278 | 2,527 | DE |
 | ~1496-1510 | **Hans** (DK), two-bar type | assay 1551 | 71⅓ or 72 | 17¾ (17 Kt 9 Gren) | 3,278 / 3,249 | 2,424 / 2,402 | DK |
 | 4 Dec 1497 | Hans' Møntanordning for **Sweden** (Stockholm) — never executed | decree (dead letter) | 72 | 18½ | 3,249 | 2,504 | DK/SE |
