@@ -1136,10 +1136,10 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # hedges and 96 finals kept «(?)» with nothing behind it. The stored False
     # is dropped when every hedged year entry the final carried came from a
     # seed that is still a member and now records no year entry, and no live
-    # member flags the year itself. V1 foundations keep their flag (their
-    # curator's claim, `_FOUNDATION_FLAGS`); a reign span is re-flagged below.
+    # member flags the year itself. V1 foundations included: the curator
+    # dropped the flag on all 13 such foundations on 2026-11-19 («одобрюю»);
+    # a hold still freezes it. A reign span is re-flagged below.
     if (out.get("year_verified") is False
-            and final_entry.get("origin") != "foundation"
             and "year_verified" not in holds_keys):
         _live = [_m for _m in members[1:] if isinstance(_m, dict)]
         _stored = [e for e in (final_entry.get("__stored_year_unc__")
