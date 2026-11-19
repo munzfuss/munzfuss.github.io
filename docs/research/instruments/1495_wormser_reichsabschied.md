@@ -240,4 +240,4 @@ needed.
 **Self-score (research-dossier rubric):** C1 scope 2/2 · C2 parameters 2/2 · C3 dated instruments
 1/2 (Worms, Lindau and Freiburg carry only the year in Hirsch's extracts; the day is not given) ·
 C4 provenance 2/2 · C5 open questions 1/1 · C6 recomputation and own data 1/1 → **9/10**.
-Commit: (pending).
+Commit: `201e068`.
