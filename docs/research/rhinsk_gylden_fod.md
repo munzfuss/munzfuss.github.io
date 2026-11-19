@@ -204,6 +204,13 @@ tariffs equate «rhinsk Gylden eller Jochimsdaler» (§5.4).
 
 ### 3.2 Esslingen 1524 — a parallel lesser gulden, not a break in the Rhenish norm
 
+> ⚠ **Primary text read 2026-11-19** (Hirsch I S. 247; `instruments/1524_reichsmuenzordnung_esslingen.md` §3.6, D3):
+> as law the ordinance ENDS the Rhenish gulden — «*die Reinischen Gulden … auf achtzehen Karat vnd sechs Grenn …
+> hundert vnd syben … auf anderhalb Cölnische Marck, wie bishere gescheen ist, nit mer gemüntzt werden mögen*» — and
+> forbids gulden outside the new 22-carat, 89-to-the-mark measure on pain of 50 marks of gold. «Parallel, not a
+> break» below describes what happened (the ordinance was not carried out — Speyer recess 27 Aug 1526), not what
+> the text ordered. Both readings kept; the heading is left as written.
+
 Karl V's Reichsmünzordnung of Esslingen, **10 Nov 1524**, §§ 49-50: a gulden
 «af Korn og Skrot 89 Stkr. paa den 22 Karat fine Mark cölnsk», because «die
 Notturift ervordert» — gold scarcity and the export of the better coin
