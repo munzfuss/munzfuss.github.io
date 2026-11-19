@@ -593,6 +593,11 @@ the dossier
   | 3 Pf. Stkr. | 4 L | — | 117 stk per Mc |
   | Pf. Stkr. | 4 L | — | 37 stk per Lod |
 
+  > ⚠ **Correction 2026-11-19** (`instruments/1535_kursaechsische_muenzordnung.md`, read from the
+  > manuscript): the 3-Pf. count is **197⅓**, not Wilcke's 117, and the mark is «die gemischte
+  > Erfordische marck» (Erfurt), not Cologne — the weight comparison with the 1541 Mark below
+  > rests on Wilcke's «M c.» and needs the Erfurt mark's weight before it can stand.
+
   Wilcke's substantive commentary: «*Omend denne Møntordning ikke
   synes at have kunnet afgive Rettesnor for dansk Mønt, der ikke
   manøvrerede med Groschen, men deltes i M og ß, kunde de almindelige

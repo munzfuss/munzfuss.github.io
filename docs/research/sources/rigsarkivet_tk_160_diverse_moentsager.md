@@ -129,6 +129,11 @@ Wilcke 1950 p. 3 quotes its specifications:
 - 3 Pf. Stkr.: 4-, 117 stk pr. Mc.
 - Pf. Stkr.: 4-, 37 stk pr. L (Lod)
 
+> ⚠ **Correction 2026-11-19**: the coin paragraphs were read from images 9–10 — the 3-Pf. count is
+> **197⅓** («j^c xcvij stuck vnd ein drittel»), not 117, the mark is the **Erfurt** mark, and the
+> order is a joint one of Elector Johann Friedrich and Duke Georg; full reading and the arithmetic
+> in `../instruments/1535_kursaechsische_muenzordnung.md`.
+
 Wilcke comments: «*Omend denne Møntordning ikke synes at have
 kunnet afgive Rettesnor for dansk Mønt, der ikke manøvrerede med
 Groschen, men deltes i M og ß, kunde de almindelige Bestemmelser

@@ -239,6 +239,7 @@
 | ☐ | **KMM objects come in as `kind: kurant` by builder default** — the Klippinge 1563–65, the Steinbeck small coin, the 1594–1609 Skillinger are Scheidemünze under §6; a sorting pass should set `kind` from the act's tier, not from the default | all KMM seeds in `seed_unsorted` | — | `1563_…` §7, `1610_…` §7 |
 | ☐ | **Stage 5 citations**: acts named on the Denmark page without a ref (3 Aug 1514, Easter 1515, 24 Aug 1515, 1518, 26 Feb 1524, 3 Feb 1609, 2 Jan 1658, 14 Feb 1671, 11 March 1675, 31 Dec 1692) now have keys — cite them from `denmark.yml` / `fuesse.yml` in all four languages | pages | refs_pool | `PLAN.md` §3 |
 | ☐ | **Source-internal discrepancies** that affect figures a reviewer might copy are tabled in each dossier's «⚠ Source-internal discrepancies» block (1563 §4.4, 1593 §4.3, 1607 §4.4, 1610 §4.3) — read them before taking a figure from a dossier table | — | — | the dossiers |
+| ☐ | **`../moentordning_1541.md` §6 compares the Saxon Gylden of 1535 with the 1541 Mark by weight on Wilcke's «1 M c.»** — the manuscript counts on «die gemischte Erfordische marck»; the comparison (and any card sentence built on «the Saxon model, 8 to the Cologne mark») needs the Erfurt mark's weight first. Wilcke's «3 Pf. Stkr. 117» is 197⅓ in the manuscript | — (prose: `moentordning_1541.md` §6; `christian_iii_*` cards if they cite the 1535 model) | T.K. 160 images 9–10; Wilcke 7-4 s. 260 | `1535_kursaechsische_muenzordnung.md` D1, D2, D6 |
 
 ---
 *Rows added 2026-10-15 from dossiers 1–20 (1480 → 1610) and the chat findings of the sessions

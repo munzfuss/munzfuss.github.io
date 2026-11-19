@@ -104,7 +104,7 @@
 |---|---|---|---|---|---|
 | ☐ | 1490 · 1495 · 1497 · 1498 | Norm of the four Rhenish electors; Wormser Reichsabschied (Lindau, Freiburg) | A | `1495_wormser_reichsabschied.md` (to write) | Wilcke VI (w6a); Hirsch I |
 | ☐ | 1524, 10 Nov | Reichsmünzordnung Esslingen | A | `1524_reichsmuenzordnung_esslingen.md` (to write) | Hirsch; Wilcke VI |
-| ☐ | 1535, 15 April | Kursächsische Münzordnung (the model sent to Christian III) | A | fold into `../moentordning_1541.md` or own file | Wilcke VII |
+| ☑ | 1535, 15 April | **Saxon «Müntz Ordnung» (Johann Friedrich and Georg; the copy sent to Christian III) — read from the manuscript**: Guldengroschen 14 lot 8 gren, 8 to the **Erfurt** mark; Zinsgroschen 88 / 7 lot 9 gren; Dreier **197⅓** / 4 lot (Wilcke's «117» wrong — the document's own yields recompute only with 197⅓); Pfennig 37 to the lot; Brandsilber reckoned at 15¾ lot | A | `1535_kursaechsische_muenzordnung.md` (2026-11-19) | T.K. 160 images 8–16 (cached scan); Wilcke 7-4 s. 260; 6 ⚠; the «Ordenung» articles (images 10–15) not transcribed; Erfurt mark's weight and the Freiberg agreement's date open; corrections noted in `../moentordning_1541.md` §6 and the sources note |
 | ☐ | 1551, 14 Feb · 28 July | Augsburg Valvationstag; Møntordning Karl V | A | `1551_reichsmuenzordnung_augsburg.md` (to write) | Hirsch; Wilcke VI |
 | ☐ | 1559, 19 Aug · 1566 | Augsburger Reichsmünzordnung Ferdinand I; Reichsabschied 1566 (Thaler) | A | `1559_reichsmuenzordnung_augsburg.md` (to write) | Hirsch; the project's mission anchor |
 | ☐ | 1617, 30 Sept · 1614 | Lower-Saxon Kreis resolutions (Halberstadt, Braunschweig) | B | fold into `1619_kroneskilling_instruks.md` §6 — **found by the 1618 dossier** | Wilcke I s. 162–163 |
