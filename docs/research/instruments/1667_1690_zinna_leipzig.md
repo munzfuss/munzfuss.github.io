@@ -298,7 +298,7 @@ and as anchors in the 9-Thaler-Fuß card and the Schleswig-Holstein timeline. Ag
 | Leipzig card: «Müntzreceß Leipzig 16. Jan. 1690» | text 15 January, Brunswick signature 16 January, heading 16 (26) | agrees |
 | Leipzig card: ⅔ at 750 ‰, 17,32267 g rough; Groschen at 12½, Pfennige at 13 Thaler («Torgauer Münzfuß») | none of it in the recess; § 12 on small coin has no figure | not from the act; Torgau documents (Hirsch V, Register p. 291, 296) unread |
 | Leipzig card and 9-Fuß card: the standard as lasting from 1690 | «bis nechst künftigen Michaelis»; «Interims-Müntz-Fuß»; the Lower-Saxon parties leave it in September 1691 | the interim term is not on the cards |
-| Schleswig-Holstein and 9¼-Fuß prose: the 9¼ standard «established by Danish tradition» | Hamburg 1695 § 4: «Reichs-Sorten … die Marck fein præcise … auf 9¼ Thaler» | a Lower-Saxon attestation of 9¼ from the fine mark in 1695; whether it was ratified or carried out is not known from the extract |
+| Schleswig-Holstein and 9¼-Fuß prose: the 9¼ standard «established by Danish tradition» | Hamburg 1695 § 4: «Reichs-Sorten … die Marck fein præcise … auf 9¼ Thaler» | a Lower-Saxon attestation of 9¼ from the fine mark in 1695 — **24 years after the Danish one**: the Myndt-Ordning of 22 March 1671 already has the Specie at 8 3/32 to the 14-lødig mark, «saa at en Mark fiin kommer 9¼ Rdlr» ([1671](1671_myndt_ordning.md) §3). The recess does not contradict the Danish derivation; it shows the same yield in a second, later body of law. Whether it was ratified or carried out is not known from the extract |
 | cards and keys of both standards cite Wikipedia, Meyers, Bobzin | 15 primary keys now exist (§9) | curator's call |
 
 Rows for the cards are in `FUSS_REVIEW_FINDINGS.md` (§E). No data was changed.
@@ -311,7 +311,7 @@ Rows for the cards are in `FUSS_REVIEW_FINDINGS.md` (§E). No data was changed.
 | Q2 | When and by what act did Brunswick-Lüneburg take up the Zinna standard (our card: 1668)? | Hirsch V no. VII ff. for 1668; Schwinkowski 1916 |
 | Q3 | Was the Leipzig recess ratified, and prolonged after Michaelmas 1690? Which act carries the 12½- and 13-Thaler small coin? | the Torgau documents, Hirsch V S. 291, 296 |
 | Q4 | Was the Hamburg recess of 1691 ratified and executed at Lübeck and Hamburg (Reichsthaler at 60 / 54 / 48 ß; the striking quotas)? | Hirsch V no. CCVIII («Bedencklichkeiten … den Niedersächsischen Craiß betreffend», 1696); the towns' mandates; the coins of 1691–93 |
-| Q5 | Who were the parties of the 1695 recess, was Denmark for Holstein among them, and is its 9¼ standard connected with the 9¼ of the duchies' later Species? | the full recess (the extract names no party); Hamburg conventions of September 1695 and May 1696 |
+| Q5 | Who were the parties of the 1695 recess, was Denmark for Holstein among them, and is its 9¼ standard connected with the Danish Specie of 1671 (9¼ Rdl. per mark fine, 24 years earlier) and the duchies' later Species? | the full recess (the extract names no party); Hamburg conventions of September 1695 and May 1696 |
 | Q6 | What does «9 Rthlr. 2 Gl.» in the 1690 preamble count (D1)? | an imperial valuation that states the fine mark's yield in small coin; the Brandenburg deductions the «Ursachen» cite |
 | Q7 | Which Danish Kroner circulated at Lübeck and Hamburg in 1691 and at what rate in ß lübisch? | the towns' mandates of 1690–93; the valuation table of the Hamburg mandate of 26 March 1690 (S. 274–275) |
 
