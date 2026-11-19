@@ -349,4 +349,4 @@ parameters: every figure the prints give is recorded, but neither act as printed
 fineness or piece count — written as a gap, Q1, Q3 (1/2). C3 each change tied to a dated
 instrument (2/2). C4 provenance: single print, no second witness, said so (1/2). C5 seven open
 questions with what would settle each (1/1). C6 figures recomputed, cards inventoried (1/1).
-Commit: (pending).
+Commit: `bc99c89`.
