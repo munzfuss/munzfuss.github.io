@@ -303,4 +303,4 @@ No stored coin value is called wrong here; `trace_coin.py why` was not needed.
 **Self-score (research-dossier rubric):** C1 scope 2/2 · C2 parameters 2/2 · C3 dated instruments
 1/2 (the 1566 recess carries only the year in Hirsch's extract) · C4 provenance 1/2 (Hirsch's
 exemplar for the edict not established) · C5 open questions 1/1 · C6 recomputation and own data
-1/1 → **8/10**. Commit: (pending).
+1/1 → **8/10**. Commit: `84aec73`.
