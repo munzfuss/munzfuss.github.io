@@ -329,4 +329,4 @@ Copper: the confiscated stills (1773), Købmand Olde in Hamburg (blanks), Knoph'
 
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 1,5 (the 2 ß of 1778 and the 4 ß
 of 1764 without a named act) · C3 instruments 1,5 · C4 provenance 1,5 (F76 by summary and digest) ·
-C5 open questions 2 · C6 recomputation 2 → **8,5/10**. Commit: (recorded after the commit).*
+C5 open questions 2 · C6 recomputation 2 → **8,5/10**. Commit: `2effd27`.*
