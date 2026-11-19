@@ -304,4 +304,4 @@ Austrian lands, adding the orb with the number of Kreuzer (S. 346, OCR).
 
 **Self-score (research-dossier rubric):** C1 scope 2/2 · C2 parameters 1/2 (the other Kreise's
 Landmünzen and the Probationsordnung not transcribed) · C3 dated instruments 2/2 · C4 provenance
-2/2 · C5 open questions 1/1 · C6 recomputation and own data 1/1 → **9/10**. Commit: (pending).
+2/2 · C5 open questions 1/1 · C6 recomputation and own data 1/1 → **9/10**. Commit: `7770f09`.
