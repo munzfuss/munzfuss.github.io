@@ -41,6 +41,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fetch_ngc import region_dir  # noqa: E402
+from lib import uncertainty as _unc  # noqa: E402
 
 # --- Note-field patterns -------------------------------------------------
 # Behrens: "B-471, 472" / "B-805b,c" / "B#317-25, 326b,c" / "B-186. 187"
@@ -352,6 +353,12 @@ def parse_years(rec: dict) -> dict:
         if after:
             out_after = int(after.group(1))
         span = [out_after] if after else _attributed_years(s2)
+        if span and not after and _unc.roman_dated(s2):
+            # «MDCCLX (1760) G»: the coin is dated in Roman numerals and the
+            # parenthesised year is NGC's reading of it, not an attribution.
+            years.extend(span)
+            attributed_only = False
+            continue
         if span:
             years.extend(span)
             attributed_only = attributed_only is not False

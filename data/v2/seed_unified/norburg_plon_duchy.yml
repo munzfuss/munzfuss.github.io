@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `norburg_plon_duchy`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norburg_plon_duchy.yml across all sources.
 #
 # Input: 53 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norburg_plon_duchy
-generated_at: '2026-11-10'
+generated_at: '2026-11-19'
 coins:
   - id: c-ce380806
     class_id: c-ce380806
@@ -142,25 +142,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-bruun-14704
-          source: bruun
-          years: '1760'
-        - seed: ngc-1203761
-          source: ngc
-          years: '1760'
-        - seed: schleswig_holstein-numismaster-73989
-          source: numismaster
-          years: '1760'
-        - seed: schleswig_holstein-numismaster-73990
-          source: numismaster
-          years: '1760'
-      uncertain:
-        - seed: ngc-1140635
-          source: ngc
-          years: '1760'
     fineness:
       - value: 0.986
         source: ngc
@@ -189,14 +170,6 @@ coins:
       - value: 3.5
         source: numismaster
         specimen: schleswig_holstein-numismaster-73990
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCCLX (1760) G
-          value: '1760'
-          seed: ngc-1140635
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf

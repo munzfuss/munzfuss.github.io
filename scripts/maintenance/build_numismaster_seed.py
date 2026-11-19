@@ -437,12 +437,16 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     # flag year_verified: false so the renderer shows «(?)» AND the coin is excluded
     # from phase/timeline outer-span expansion (build._expand_outer_phase_span,
     # timeline.derive_mint_overrides). Curator direction 2026-07-09 (Serhii).
-    if undated:
+    # Since 2026-11-19 only a dating NumisMaster hedges itself («ND(ca1640)»)
+    # takes «(?)»; a plain «ND(1616-59)» is a known year on an undated coin
+    # (a reign-equal range is still caught by absorb's reign-span rule; the
+    # timeline excludes only reign-span coins since 2026-07-10). With no
+    # marker text at hand the record keeps the mark, as before.
+    nd_text = data.get("nd_as_printed")
+    if undated and not unc.plain_dating(nd_text):
         entry["year_verified"] = False
-        # The parsed record keeps the ND marker's range, not its text (`date_raw`
-        # is the collapsed Date field), so `as_printed` stays empty until
-        # parse_numismaster records the marker verbatim.
-        unc.add(entry, "year", "attributed", "numismaster",
+        how = "circa" if nd_text and re.search(r"\(\s*c", nd_text, re.I) else "attributed"
+        unc.add(entry, "year", how, "numismaster", as_printed=nd_text,
                 value=unc.year_value(entry.get("year_first"), entry.get("year_last")))
     # Enrichment fields not in Coin schema — prefix with `_` so build.py's
     # seed-merger strips them at validation time (line 343 in build.py). The
@@ -512,6 +516,14 @@ def collect_from_cache(cache_name: str, location: str) -> tuple[list[dict], int]
         except json.JSONDecodeError as e:
             print(f"  [{json_path.name}] parse error: {e}", file=sys.stderr)
             continue
+        if data.get("undated") and "nd_as_printed" not in data:
+            # A cache parsed before parse_numismaster recorded the ND(…)
+            # marker: read it from the page beside the record.
+            html_path = json_path.with_name(json_path.name.replace(".parsed.json", ".html"))
+            if html_path.exists():
+                from parse_numismaster import extract_nd_marker, strip_tags
+                data["nd_as_printed"] = extract_nd_marker(
+                    strip_tags(html_path.read_text(encoding="utf-8")))
         entry = build_entry(data, location, year_from, year_to)
         if entry:
             entries.append(entry)

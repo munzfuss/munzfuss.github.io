@@ -170,11 +170,14 @@ class RigsraadPage(unittest.TestCase):
         d = pg._PARSERS["rigsraad"](Path("rigsraad.htm"), self.TEXT)
         entries = [bg.build_entry(c) for c in d["coins"]]
         g21, g22, g81 = entries                         # Galster 21, 1448: in scope
+        # The group headers «Rigsrådet 1448» / «1481-83» date the undated
+        # coins without a reservation: a known year, no «(?)» (curator
+        # 2026-11-19, `uncertainty.plain_dating`).
         self.assertEqual((g21["year_first"], g21["year_last"],
-                          g21["year_verified"]), (1448, 1448, False))
+                          g21["year_verified"]), (1448, 1448, True))
         self.assertEqual(g22["id"], "dk-galster-rigsraad-22")
         self.assertEqual((g22["year_first"], g22["year_last"],
-                          g22["year_verified"]), (1481, 1483, False))
+                          g22["year_verified"]), (1481, 1483, True))
         self.assertEqual(g81["id"], "dk-galster-rigsraad-81")
         self.assertTrue(g81["year_verified"])
 

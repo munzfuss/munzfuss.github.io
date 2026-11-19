@@ -310,14 +310,17 @@ coins:
           - 1523
     year_label: 1522-1523
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-bruun-4125
+          source: bruun
+          years: 1522-1523
+      uncertain:
+        - seed: dk-galster-hg-144
+          source: galster
+          years: '1523'
     uncertainty:
       year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1522-1523)
-          value: 1522-1523
-          seed: dk-bruun-4125
         - kind: hedged
           how: query
           source: galster

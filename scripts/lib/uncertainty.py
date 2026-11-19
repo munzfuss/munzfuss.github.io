@@ -69,6 +69,17 @@ def plain_dating(as_printed: str | None) -> bool:
     return _DATING_HEDGE.search(str(as_printed)) is None
 
 
+# A date in Roman numerals ON the coin, which a catalogue follows with its
+# Arabic reading in parentheses: NGC «MDCCLX (1760) G», «MDCCII (1702)».
+_ROMAN_DATE = re.compile(r"\bM[DCLXVI]{2,}\b")
+
+
+def roman_dated(as_printed: str | None) -> bool:
+    """True when the printed date cell carries the year in Roman numerals —
+    the coin is dated, the parenthesised year is only its reading."""
+    return bool(as_printed) and _ROMAN_DATE.search(str(as_printed)) is not None
+
+
 def year_value(first, last) -> str | None:
     if first is None:
         return None

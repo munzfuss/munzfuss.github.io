@@ -709,6 +709,12 @@ def _skeleton(fc: dict) -> dict:
         if v is False and (k.endswith("_verified") or k == "verified"):
             keep.add(k)
     sk = {k: copy.deepcopy(v) for k, v in fc.items() if k in keep}
+    # The stored year hedges travel with a carried year False, so the
+    # enrichment can tell when that False has lost its only reason
+    # (curator 2026-11-19). Consumed by `_enrich_final_entry`, never written.
+    if fc.get("year_verified") is False:
+        sk["__stored_year_unc__"] = copy.deepcopy(
+            (fc.get("uncertainty") or {}).get("year") or [])
     # The stored key order, so the rebuilt entry serialises as the stored
     # one did (the order of a final is historical, not canonical — three
     # orders of nominal / ruler / fraction / mintmaster coexist) and a
@@ -1122,6 +1128,31 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                      if isinstance(_m, dict)])
     if _u:
         out["uncertainty"] = _u
+
+    # A stale «(?)» whose only reason has left (curator 2026-11-19). The
+    # year_verified OR-merge reads the final's stored flag as a member, so a
+    # False the final once took from a member's year hedge outlives the hedge
+    # — the plain datings («ND (1670)», «(1616-59)») stopped counting as
+    # hedges and 96 finals kept «(?)» with nothing behind it. The stored False
+    # is dropped when every hedged year entry the final carried came from a
+    # seed that is still a member and now records no year entry, and no live
+    # member flags the year itself. V1 foundations included: the curator
+    # dropped the flag on all 13 such foundations on 2026-11-19 («одобрюю»);
+    # a hold still freezes it. A reign span is re-flagged below.
+    if (out.get("year_verified") is False
+            and "year_verified" not in holds_keys):
+        _live = [_m for _m in members[1:] if isinstance(_m, dict)]
+        _stored = [e for e in (final_entry.get("__stored_year_unc__")
+                               or (final_entry.get("uncertainty") or {}).get("year") or [])
+                   if isinstance(e, dict) and e.get("kind") == "hedged"]
+        _live_seeds = {str(s) for _m in _live for s in (_m.get("composed_of") or [])} \
+            | {str(_m.get("id")) for _m in _live}
+        _now = {str(e.get("seed")) for e in ((_u or {}).get("year") or [])}
+        if (_live and _stored
+                and not any(_m.get("year_verified") is False for _m in _live)
+                and all(e.get("seed") and str(e["seed"]) in _live_seeds
+                        and str(e["seed"]) not in _now for e in _stored)):
+            out.pop("year_verified", None)
 
     # nominal_equiv / nominal_verified travel with the nominal they belong to:
     # taken from the live member whose nominal the final shows (2026-10-26).
@@ -1730,6 +1761,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 
     # A skeleton (`_skeleton`, --no-self-union) carries the stored key order;
     # re-impose it so the rebuilt entry serialises as the stored one did.
+    out.pop("__stored_year_unc__", None)
     order = final_entry.get("__order__")
     if order:
         out.pop("__order__", None)
