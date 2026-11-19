@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `christian_ii_supporters`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/christian_ii_supporters.yml across all sources.
 #
 # Input: 28 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: christian_ii_supporters
-generated_at: '2026-11-10'
+generated_at: '2026-11-19'
 coins:
   - id: c-6f17b704
     class_id: c-6f17b704
@@ -730,25 +730,7 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-galster-c2g-91
-          source: galster
-          years: '1535'
-        - seed: kmk-132277
-          source: kmk
-          years: '1535'
-        - seed: kmk-156730
-          source: kmk
-          years: '1535'
-        - seed: kmk-156731
-          source: kmk
-          years: '1535'
-      uncertain:
-        - seed: dk-bruun-4149
-          source: bruun
-          years: '1535'
+    year_verified: true
     weight_rough_g:
       - value: 3.56
         source: bruun
@@ -764,28 +746,6 @@ coins:
       - value: 28.0
         source: danskmoent.dk chr/c2g91.htm
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1535)
-          value: '1535'
-          seed: dk-bruun-4149
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1535'
-          seed: kmk-132277
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1535'
-          seed: kmk-156730
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: '1535'
-          seed: kmk-156731
       mint:
         - kind: hedged
           how: alternatives

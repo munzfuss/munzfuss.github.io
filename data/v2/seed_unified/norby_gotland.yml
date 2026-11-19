@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `norby_gotland`.
-# Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norby_gotland.yml across all sources.
 #
 # Input: 10 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norby_gotland
-generated_at: '2026-11-17'
+generated_at: '2026-11-19'
 coins:
   - id: c-d18e52b6
     class_id: c-d18e52b6
@@ -213,6 +213,15 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-bruun-4125
+          source: bruun
+          years: 1522-1523
+      uncertain:
+        - seed: dk-galster-hg-144
+          source: galster
+          years: '1523'
     fineness:
       - value: 0.0883
         source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 143
@@ -248,12 +257,6 @@ coins:
         source: danskmoent.dk gotlg144.htm
     uncertainty:
       year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1522-1523)
-          value: 1522-1523
-          seed: dk-bruun-4125
         - kind: hedged
           how: query
           source: galster
