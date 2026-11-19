@@ -252,4 +252,4 @@ coin of 1711–25 is its own tier»); only what is new is listed.
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 1,5 (no remedy; the Glückstadt
 alloy) · C3 instruments 0,5 (three acts dated, the silver orders of 1710–11, 1714 and 1719 not in
 hand) · C4 provenance 1,5 · C5 open questions 2 · C6 recomputation 2 → **7,5/10** — below the
-threshold of 8 for want of Axel Nielsen 1907. Commit: (pending).*
+threshold of 8 for want of Axel Nielsen 1907. Commit: `03eac4b`.*
