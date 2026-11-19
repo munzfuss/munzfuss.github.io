@@ -118,6 +118,31 @@ class Render(unittest.TestCase):
         self.assertEqual(marks["Galster|48"][0], "suspect")
         self.assertEqual(marks["Galster|49"], ("unverified", None))
 
+    def test_attested_number_hides_the_same_marked_number(self):
+        # Hede 68: NGC carries KM 287 unmarked, Numista prints KM 287 on the
+        # KM 292 variety (marked «(!)»); the page shows a plain 287.
+        coin = schema.Coin.model_construct(
+            catalog_alts=[schema.CatalogAlt(register="km", value="287",
+                                            source="numista", kind="erroneous",
+                                            reason=REASON)],
+            catalog_unverified=None, catalog_marks=None)
+        groups = [("KM", ["262", "287", "292"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(groups[0][1], ["262", "287", "292"])
+        self.assertNotIn("KM|287", marks)
+
+    def test_a_query_number_does_not_hide_a_marked_one(self):
+        coin = schema.Coin.model_construct(
+            catalog_alts=[schema.CatalogAlt(register="galster", value="49",
+                                            source="numista", kind="suspect",
+                                            reason=REASON)],
+            catalog_unverified=[schema.CatalogUnverified(
+                register="galster", value="49", source="kmk")],
+            catalog_marks=None)
+        groups = [("Galster", ["49"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(marks["Galster|49"][0], "suspect")
+
     def test_schema_accepts_the_fields(self):
         schema.CatalogMark.model_validate(MARKS[0])
         schema.CatalogMark.model_validate(MARKS[1])

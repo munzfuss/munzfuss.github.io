@@ -985,6 +985,7 @@ def _apply_catalog_value_marks(
             elif mk.reason is not None:
                 alts.append(mk)
     named = {f for f, _l in _NAMED_FIELDS}
+    unver_keys = {(u.register, str(u.value)) for u in unver}
 
     def plain_group() -> list[str]:
         for prefix, vals, _tip in groups:
@@ -1006,6 +1007,13 @@ def _apply_catalog_value_marks(
             marks[f"|{line}"] = (a.kind, a.reason)
             continue
         label, vals = group_for(a.register)
+        if a.value in vals and (a.register, a.value) not in unver_keys:
+            # Another member of the class carries the same number unmarked:
+            # the attested number wins and the mark is not shown (it stays in
+            # the data). Curator 2026-11-19 — a class that merges two
+            # varieties holds each one's KM, and a member that printed the
+            # other variety's number must not mute the correct one.
+            continue
         if a.value not in vals:
             vals.append(a.value)
         marks[f"{label}|{a.value}"] = (a.kind, a.reason)
