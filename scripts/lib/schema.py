@@ -105,7 +105,9 @@ class UncertainReading(_StrictBase):
     """How and by whom one field's value is uncertain (see Coin.uncertainty).
 
     `kind` hedged: the source gives the value and marks it uncertain itself
-    («ca. 1380», «ND (1607-11)», «U.år (1523?)», «Christian 1?»). `kind`
+    («ca. 1380», «ND (ca. 1496-97)», «U.år (1523?)», «Christian 1?»). A plain
+    dating of an undated coin («ND (1607-11)», «U.år (1611)») is a known year
+    and records nothing (curator 2026-11-19, `uncertainty.plain_dating`). `kind`
     inferred: the source gives no value and the pipeline supplies one (the
     reign of an undated coin, the standard's fineness, a curator window).
     `as_printed` is the source's own text, verbatim; `value` is what the field
