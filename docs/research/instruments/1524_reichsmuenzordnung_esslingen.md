@@ -311,4 +311,4 @@ The ordinance is cited in rendered prose in two places:
 
 **Self-score (research-dossier rubric):** C1 scope 2/2 · C2 parameters 2/2 · C3 dated instruments
 2/2 · C4 provenance 1/2 (Hirsch's own source not established) · C5 open questions 1/1 · C6
-recomputation and own data 1/1 → **9/10**. Commit: (pending).
+recomputation and own data 1/1 → **9/10**. Commit: `b63be5e`.
