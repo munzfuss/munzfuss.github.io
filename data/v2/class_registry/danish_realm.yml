@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1587 active, 4844 retired.
+# 1584 active, 4848 retired.
 
 id: danish_realm
 classes:
@@ -956,6 +956,8 @@ classes:
       - dk-numista-143543
       - dk-tid-97362
       - ikmk-18219592
+      - kmk-130632
+      - kmk-131605
       - ngc-1050289
   - id: c-0d2f511d
     status: active
@@ -2806,16 +2808,6 @@ classes:
       - kmk-277192
       - kmk-367777
       - kmk-740719
-  - id: c-1749860a
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-f3h68b
-    legacy_id: unified-dk-hede-f3h68b
-    members:
-      - denmark-numismaster-65452
-      - dk-hede-f3h68b
-      - dk-tid-99108
-      - ngc-1050074
   - id: c-180fb717
     status: active
     created: '2026-10-22'
@@ -3221,16 +3213,6 @@ classes:
       - dk-tid-101250
       - ngc-1050970
       - ngc-1069075
-  - id: c-1b2fe378
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-6578
-    legacy_id: unified-dk-bruun-6578
-    members:
-      - denmark-numismaster-65458
-      - dk-bruun-6578
-      - dk-bruun-6579
-      - ngc-1050111
   - id: c-1b30a10a
     status: active
     created: '2026-10-22'
@@ -3428,7 +3410,6 @@ classes:
       - dk-bruun-6644
       - dk-bruun-6696
       - dk-hede-f3h78a
-      - dk-hede-f3h78b
       - ngc-1050077
   - id: c-1dc3e312
     status: active
@@ -4310,7 +4291,6 @@ classes:
       - dk-bruun-6643
       - dk-bruun-6694
       - dk-hede-f3h79a
-      - dk-hede-f3h79b
       - dk-tid-97381
       - ngc-1050781
   - id: c-2814423a
@@ -5530,11 +5510,12 @@ classes:
   - id: c-3688707d
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-6695
+    label: unified-dk-hede-f3h79b
     legacy_id: unified-dk-bruun-6695
     members:
       - denmark-numismaster-65562
       - dk-bruun-6695
+      - dk-hede-f3h79b
       - dk-tid-97382
       - ngc-1050246
   - id: c-36e9607b
@@ -6271,13 +6252,14 @@ classes:
   - id: c-3f94e1be
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-5996
+    label: unified-dk-hede-f3h7
     legacy_id: unified-dk-bruun-5996
     members:
       - denmark-numismaster-65738
       - dk-bruun-5996
       - dk-bruun-6015
       - dk-bruun-6028
+      - dk-hede-f3h7
       - dk-numista-111083
       - dk-tid-97518
       - ngc-1050895
@@ -7292,6 +7274,7 @@ classes:
     legacy_id: unified-ngc-1050474
     members:
       - denmark-numismaster-66307
+      - dk-bruun-6757
       - dk-hede-c5h64
       - ngc-1050474
   - id: c-47a6cb15
@@ -9352,6 +9335,12 @@ classes:
       - dk-tid-97376
       - ngc-1050779
       - ngc-1066316
+  - id: c-567b6ecf
+    status: active
+    created: '2026-11-19'
+    label: unified-dk-tid-97378
+    members:
+      - dk-tid-97378
   - id: c-5685d3c1
     status: active
     created: '2026-10-22'
@@ -10185,11 +10174,10 @@ classes:
   - id: c-630d981f
     status: active
     created: '2026-10-22'
-    label: unified-dk-hede-f3h7
+    label: unified-ngc-1050354
     legacy_id: unified-dk-hede-f3h7
     members:
       - denmark-numismaster-65742
-      - dk-hede-f3h7
       - ngc-1050354
   - id: c-63153cb0
     status: active
@@ -14955,8 +14943,6 @@ classes:
       - dk-bruun-6370
       - dk-numista-202573
       - dk-tid-99107
-      - kmk-130632
-      - kmk-131605
       - ngc-1050716
   - id: c-8582e330
     status: active
@@ -15053,11 +15039,13 @@ classes:
     created: '2026-10-22'
     label: unified-dk-hede-f3h58ab
     legacy_id: unified-dk-hede-f3h58ab
+    split_into:
+      - c-567b6ecf
     members:
       - denmark-numismaster-65557
       - dk-bruun-6222
+      - dk-bruun-6368
       - dk-hede-f3h58ab
-      - dk-tid-97378
       - ngc-1060268
   - id: c-86b6204d
     status: active
@@ -15234,13 +15222,6 @@ classes:
       - kmk-635411
       - kmk-635413
       - kmk-635414
-  - id: c-892e7d26
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-308265
-    legacy_id: unified-dk-numista-308265
-    members:
-      - dk-numista-308265
   - id: c-8949ca46
     status: active
     created: '2026-10-22'
@@ -15976,9 +15957,18 @@ classes:
     legacy_id: unified-dk-hede-f3h68a
     members:
       - denmark-numismaster-65451
+      - denmark-numismaster-65452
+      - denmark-numismaster-65458
       - dk-bruun-6444
+      - dk-bruun-6578
+      - dk-bruun-6579
       - dk-hede-f3h68a
+      - dk-hede-f3h68b
+      - dk-numista-308265
       - dk-tid-97366
+      - dk-tid-99108
+      - ngc-1050074
+      - ngc-1050111
       - ngc-1050290
   - id: c-97cd6173
     status: active
@@ -18291,10 +18281,8 @@ classes:
     label: unified-dk-hede-f3h75
     legacy_id: unified-dk-hede-f3h75
     members:
-      - denmark-numismaster-65455
       - dk-hede-f3h75
       - ikmk-18219596
-      - ngc-1050718
   - id: c-b2565836
     status: active
     created: '2026-10-22'
@@ -19494,11 +19482,12 @@ classes:
   - id: c-beb3073b
     status: active
     created: '2026-10-22'
-    label: unified-dk-bruun-6697
+    label: unified-dk-hede-f3h78b
     legacy_id: unified-dk-bruun-6697
     members:
       - denmark-numismaster-65462
       - dk-bruun-6697
+      - dk-hede-f3h78b
       - dk-numista-176769
       - dk-tid-99109
       - ngc-1069042
@@ -20219,13 +20208,6 @@ classes:
     legacy_id: unified-kmk-78337
     members:
       - kmk-78337
-  - id: c-c6399b1c
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-6757
-    legacy_id: unified-dk-hede-c5h64
-    members:
-      - dk-bruun-6757
   - id: c-c64f8519
     status: active
     created: '2026-10-22'
@@ -20758,7 +20740,6 @@ classes:
       - denmark-numismaster-65558
       - dk-bruun-6366
       - dk-bruun-6367
-      - dk-bruun-6368
       - dk-numista-202574
       - dk-tid-99115
       - ngc-1050080
@@ -25566,6 +25547,7 @@ classes:
     legacy_id: unified-dk-hede-f3h73a
     members:
       - denmark-numismaster-65454
+      - denmark-numismaster-65455
       - dk-bruun-6576
       - dk-bruun-6577
       - dk-hede-f3h73a
@@ -25574,6 +25556,7 @@ classes:
       - dk-tid-97367
       - ikmk-18219595
       - ngc-1050110
+      - ngc-1050718
   - id: c-fa1b26c2
     status: active
     created: '2026-10-22'
@@ -29900,6 +29883,18 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-690965
+  - id: c-1749860a
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-f3h68b
+    legacy_id: unified-dk-hede-f3h68b
+    merged_into: c-975cb79f
+    retired: '2026-11-19'
+    members:
+      - denmark-numismaster-65452
+      - dk-hede-f3h68b
+      - dk-tid-99108
+      - ngc-1050074
   - id: c-174e1858
     status: retired
     created: '2026-10-22'
@@ -30606,6 +30601,18 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-395596
+  - id: c-1b2fe378
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-6578
+    legacy_id: unified-dk-bruun-6578
+    merged_into: c-975cb79f
+    retired: '2026-11-19'
+    members:
+      - denmark-numismaster-65458
+      - dk-bruun-6578
+      - dk-bruun-6579
+      - ngc-1050111
   - id: c-1b361c6d
     status: retired
     created: '2026-11-05'
@@ -50691,6 +50698,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-425008
+  - id: c-892e7d26
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-308265
+    legacy_id: unified-dk-numista-308265
+    merged_into: c-975cb79f
+    retired: '2026-11-19'
+    members:
+      - dk-numista-308265
   - id: c-89383994
     status: retired
     created: '2026-10-22'
@@ -62078,6 +62094,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-309752
+  - id: c-c6399b1c
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-6757
+    legacy_id: unified-dk-hede-c5h64
+    merged_into: c-478402a3
+    retired: '2026-11-19'
+    members:
+      - dk-bruun-6757
   - id: c-c65316ab
     status: retired
     created: '2026-10-22'

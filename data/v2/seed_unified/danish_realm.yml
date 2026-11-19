@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8318 per-source seed entries.
-# Output: 1587 unified entries (one per physical coin).
+# Output: 1584 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2030,87 +2030,6 @@ coins:
     composed_of:
       - dk-bruun-6437
       - dk-numista-468831
-  - id: c-1b2fe378
-    class_id: c-1b2fe378
-    label: unified-dk-bruun-6578
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1667
-    year_last: 1667
-    year_label: '1667'
-    ruler: Frederik III
-    mintmaster: Frederik Caspar Herbach (FCH)
-    mint: Kopenhagen
-    catalog:
-      km: '292'
-      bruun_collection_id:
-        - '6578'
-        - '6579'
-      sieg: '86.2'
-      schou:
-        - '18'
-        - '19'
-      hede: 68B
-      others:
-        - Aagaard# 107.3
-        - Aagaard# 107.2
-      dav: '3557'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 28.64
-        source: bruun
-      - value: 28.775
-        source: ngc
-      - value: 28.775
-        source: numismaster
-      - value: 28.82
-        source: bruun
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-6578
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Speciedaler
-          value: silver
-          seed: dk-bruun-6579
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65458
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17077, p. 38
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14147, p. 58
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-292-1667-cuid-1050111-duid-1237459
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65458
-      - dk-bruun-6578
-      - dk-bruun-6579
-      - ngc-1050111
   - id: c-c82a4aac
     class_id: c-c82a4aac
     label: unified-dk-bruun-6736
@@ -88461,55 +88380,130 @@ coins:
     kind: kurant
     nominal: 1 Speciedaler
     year_first: 1665
-    year_last: 1666
+    year_last: 1667
     year_ranges:
       -   - 1665
-          - 1666
-    year_label: 1665-1666
+          - 1667
+    year_label: 1665-1667
     ruler: Frederik III
     mintmaster: Frederik Caspar Herbach (FCH)
     mint: Kopenhagen
     catalog:
-      km: '262'
-      hede: 68A
+      km:
+        - '262'
+        - '292'
+        - '287'
+      hede:
+        - 68A
+        - 68B
       hede_volume: f3h
       schou:
         - '15'
+        - 17-19
         - '20'
+        - '22'
       sieg:
         - '86'
         - '86.1'
-      bruun_collection_id: '6444'
+        - '86.2'
+      bruun_collection_id:
+        - '6444'
+        - '6578'
+        - '6579'
       others:
         - Aagaard# 106.1
-      dav: '3553'
+        - Aagaard# 107.3
+        - Aagaard# 107.2
+      numista: '308265'
+      dav:
+        - EC II 3553
+        - EC II 3553A
+        - EC II 3557
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.875
         source: hede
+        specimen: dk-hede-f3h68a
+      - value: 0.875
+        source: hede
+        specimen: dk-hede-f3h68b
       - value: 0.875
         source: ngc
+        specimen: ngc-1050074
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050111
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050290
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65451
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65452
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65458
+      - value: 0.875
+        source: numista
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-97366
+      - value: 0.875
+        source: ucoin
+        specimen: dk-tid-99108
     weight_rough_g:
       - value: 28.01
         source: bruun
+      - value: 28.64
+        source: bruun
       - value: 28.775
         source: hede
+        specimen: dk-hede-f3h68a
+      - value: 28.775
+        source: hede
+        specimen: dk-hede-f3h68b
       - value: 28.775
         source: ngc
+        specimen: ngc-1050074
+      - value: 28.775
+        source: ngc
+        specimen: ngc-1050111
+      - value: 28.775
+        source: ngc
+        specimen: ngc-1050290
       - value: 28.775
         source: numismaster
+        specimen: denmark-numismaster-65451
+      - value: 28.775
+        source: numismaster
+        specimen: denmark-numismaster-65452
+      - value: 28.775
+        source: numismaster
+        specimen: denmark-numismaster-65458
       - value: 28.78
         source: ucoin
+        specimen: dk-tid-97366
+      - value: 28.78
+        source: ucoin
+        specimen: dk-tid-99108
+      - value: 28.82
+        source: bruun
+      - value: 28.9
+        source: numista
+    diameter_mm:
+      - value: 41.3
+        source: ucoin
+        specimen: dk-tid-99108
+      - value: 45.0
+        source: numista
     uncertainty:
       metal:
         - kind: inferred
@@ -88518,19 +88512,115 @@ coins:
           as_printed: Speciedaler
           value: silver
           seed: dk-bruun-6444
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-6578
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Speciedaler
+          value: silver
+          seed: dk-bruun-6579
+    catalog_alts:
+      - register: km
+        value: '292'
+        source: bruun
+        kind: suspect
+        reason:
+          de: "Die Nummer kann zur anderen Variante gehören.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; die Abbildung zeigt einen runden Schild im schmalen Kranz wie
+            auf Hede 68A und auf dem Exemplar Schou 19 bei [b]danskmoent.dk (Hede 68)[/b], nicht die Kartusche im breiten Kranz (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small
+            round shield in bayberry branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC gibt keine Abbildungen
+            dieser Typen; die Zuordnung ist nicht bewiesen."
+          en: "The number may belong to the other variety.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; the photograph shows a round shield in a narrow wreath, as on
+            Hede 68A and on the Schou 19 specimen at [b]danskmoent.dk (Hede 68)[/b], not the cartouche in a wide wreath (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small round shield
+            in bayberry branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC gives no images of these
+            types; the attribution is not proven."
+          uk: "Номер може належати іншому різновиду.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; на фото — круглий щит у тонкому вінку, як на Hede 68A і на примірнику
+            Schou 19 у [b]danskmoent.dk (Hede 68)[/b], а не щит-картуш у широкому вінку (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small round shield in bayberry branch wreath
+            without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC не подає зображень цих типів, тож відповідність не
+            доведена."
+          da: "Nummeret kan høre til den anden variant.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; fotoet viser et rundt skjold i en smal krans som på Hede 68A og
+            på eksemplaret Schou 19 hos [b]danskmoent.dk (Hede 68)[/b], ikke kartouchen i en bred krans (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small round shield in bayberry
+            branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC giver ingen afbildninger af disse typer;
+            henførelsen er ikke bevist."
+      - register: davenport
+        value: '3557'
+        source: bruun
+        kind: suspect
+        reason:
+          de: "Die Nummer kann zur anderen Variante gehören.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; die Abbildung zeigt einen runden Schild im schmalen Kranz wie
+            auf Hede 68A und auf dem Exemplar Schou 19 bei [b]danskmoent.dk (Hede 68)[/b], nicht die Kartusche im breiten Kranz (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small
+            round shield in bayberry branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC gibt keine Abbildungen
+            dieser Typen; die Zuordnung ist nicht bewiesen."
+          en: "The number may belong to the other variety.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; the photograph shows a round shield in a narrow wreath, as on
+            Hede 68A and on the Schou 19 specimen at [b]danskmoent.dk (Hede 68)[/b], not the cartouche in a wide wreath (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small round shield
+            in bayberry branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC gives no images of these
+            types; the attribution is not proven."
+          uk: "Номер може належати іншому різновиду.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; на фото — круглий щит у тонкому вінку, як на Hede 68A і на примірнику
+            Schou 19 у [b]danskmoent.dk (Hede 68)[/b], а не щит-картуш у широкому вінку (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small round shield in bayberry branch wreath
+            without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC не подає зображень цих типів, тож відповідність не
+            доведена."
+          da: "Nummeret kan høre til den anden variant.\n[b]Bruun Part V, lot 14147[/b]: [i]«Dav-3557; KM-292; Hede-68B; … Schou-19»[/i]; fotoet viser et rundt skjold i en smal krans som på Hede 68A og
+            på eksemplaret Schou 19 hos [b]danskmoent.dk (Hede 68)[/b], ikke kartouchen i en bred krans (Schou 18, [b]Bruun Part IV, lot 17077[/b]).\n[b]NGC[/b]: KM 287 [i]«small round shield in bayberry
+            branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]. NGC giver ingen afbildninger af disse typer;
+            henførelsen er ikke bevist."
+      - register: km
+        value: '287'
+        source: numista
+        kind: erroneous
+        reason:
+          de: "Die KM-Nummer gehört zur anderen Variante (kleiner runder Schild im schmalen Kranz).\n[b]Numista 308265[/b]: [i]«KM#287, Dav EC II#3557»[/i]; [i]«Oval three-parted shield … in an ornate frame
+            … encircled by a wreath»[/i] (Übers.: «ovaler dreigeteilter Schild … in verziertem Rahmen … von einem Kranz umgeben»); auf der Abbildung eine Kartusche im breiten Kranz.\n[b]NGC[/b]: KM 287
+            [i]«small round shield in bayberry branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]."
+          en: "The KM number belongs to the other variety (small round shield in a narrow wreath).\n[b]Numista 308265[/b]: [i]«KM#287, Dav EC II#3557»[/i]; [i]«Oval three-parted shield … in an ornate frame
+            … encircled by a wreath»[/i]; the photograph shows a cartouche in a wide wreath.\n[b]NGC[/b]: KM 287 [i]«small round shield in bayberry branch wreath without berries … Dav. #3553A»[/i]; KM 292
+            [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]."
+          uk: "Номер KM належить іншому різновиду (малий круглий щит у тонкому вінку).\n[b]Numista 308265[/b]: [i]«KM#287, Dav EC II#3557»[/i]; [i]«Oval three-parted shield … in an ornate frame … encircled
+            by a wreath»[/i] (перекл.: «овальний триполий щит … в оздобленій рамці … оточений вінком»); на фото — щит-картуш у широкому вінку.\n[b]NGC[/b]: KM 287 [i]«small round shield in bayberry branch
+            wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]."
+          da: "KM-nummeret hører til den anden variant (lille rundt skjold i en smal krans).\n[b]Numista 308265[/b]: [i]«KM#287, Dav EC II#3557»[/i]; [i]«Oval three-parted shield … in an ornate frame …
+            encircled by a wreath»[/i] (overs.: «oval tredelt skjold … i en ornamenteret ramme … omgivet af en krans»); fotoet viser en kartouche i en bred krans.\n[b]NGC[/b]: KM 287 [i]«small round shield
+            in bayberry branch wreath without berries … Dav. #3553A»[/i]; KM 292 [i]«small ornamented shield on cross, within wide bayberry branch wreath … Dav. #3557»[/i]."
     sources:
       - type: literature
         url: https://numismaster.com/MC_65451
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65452
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65458
+        ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14146, p. 58
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17077, p. 38
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14147, p. 58
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h68.htm
         ref: danskmoent.dk (Hede f3h68A)
+      - type: literature
+        url: https://en.numista.com/308265
+        ref: Numista N#308265 — 1 Speciedaler - Frederik III
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1665-1666/?tid=97366
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1667/?tid=99108
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-287-1667-cuid-1050074-duid-1237453
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-292-1667-cuid-1050111-duid-1237459
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-262-1665-1666-cuid-1050290-duid-1237451
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -88542,83 +88632,19 @@ coins:
       unit_raw: speciedalere
     composed_of:
       - denmark-numismaster-65451
-      - dk-bruun-6444
-      - dk-hede-f3h68a
-      - dk-tid-97366
-      - ngc-1050290
-  - id: c-1749860a
-    class_id: c-1749860a
-    label: unified-dk-hede-f3h68b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1667
-    year_last: 1667
-    year_label: '1667'
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '287'
-      hede: 68B
-      hede_volume: f3h
-      schou:
-        - 17-19
-        - '22'
-      sieg: '86'
-      dav: 3553A
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.775
-        source: hede
-      - value: 28.775
-        source: ngc
-      - value: 28.775
-        source: numismaster
-      - value: 28.78
-        source: ucoin
-    diameter_mm:
-      - value: 41.3
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65452
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h68.htm
-        ref: danskmoent.dk (Hede f3h68B)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1667/?tid=99108
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-287-1667-cuid-1050074-duid-1237453
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    hede_muentzfuss_yield:
-      value: 9.288
-      unit: speciedaler
-      basis: fin
-      unit_raw: speciedalere
-    composed_of:
       - denmark-numismaster-65452
+      - denmark-numismaster-65458
+      - dk-bruun-6444
+      - dk-bruun-6578
+      - dk-bruun-6579
+      - dk-hede-f3h68a
       - dk-hede-f3h68b
+      - dk-numista-308265
+      - dk-tid-97366
       - dk-tid-99108
       - ngc-1050074
+      - ngc-1050111
+      - ngc-1050290
   - id: c-f3fe9aa0
     class_id: c-f3fe9aa0
     label: unified-dk-hede-f3h69
@@ -89042,7 +89068,9 @@ coins:
     inscription_rev: DVX SL HO STO - DIT CO OL & DEL
     mint: Kopenhagen
     catalog:
-      km: '288'
+      km:
+        - '288'
+        - '289'
       hede:
         - 73A
         - 73B
@@ -89081,8 +89109,16 @@ coins:
         specimen: dk-hede-f3h73b
       - value: 0.875
         source: ngc
+        specimen: ngc-1050110
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050718
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65454
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65455
       - value: 0.875
         source: numista
       - value: 0.875
@@ -89098,8 +89134,16 @@ coins:
         specimen: dk-hede-f3h73b
       - value: 28.775
         source: ngc
+        specimen: ngc-1050110
+      - value: 28.775
+        source: ngc
+        specimen: ngc-1050718
       - value: 28.775
         source: numismaster
+        specimen: denmark-numismaster-65454
+      - value: 28.775
+        source: numismaster
+        specimen: denmark-numismaster-65455
       - value: 28.775
         source: numista
       - value: 28.78
@@ -89129,9 +89173,46 @@ coins:
           as_printed: Speciedaler
           value: silver
           seed: dk-bruun-6577
+    catalog_alts:
+      - register: schou
+        value: '16'
+        source: bruun
+        kind: suspect
+        reason:
+          de: "Die Schou-Nummer kann zur Variante mit Löwenkopf gehören.\n[b]Bruun Part III, lot 11232[/b]: [i]«Dav-3555; KM-288; Hede-73A; … Schou-16»[/i]; die Abbildung zeigt das Brustbild im Harnisch
+            ohne Löwenkopf (Hede 73A).\n[b]danskmoent.dk (Hede 73)[/b]: [i]«A) (R) Brystbillede i rustning (Hede 73A, Schou 15, Sieg 90). B) (RR) Løvehoved på kongens skulder (Hede 73B, Schou 16, Sieg 90)»[/i]
+            (Übers.: «A) Brustbild im Harnisch … B) Löwenkopf auf der Schulter des Königs»)."
+          en: "The Schou number may belong to the variety with the lion head.\n[b]Bruun Part III, lot 11232[/b]: [i]«Dav-3555; KM-288; Hede-73A; … Schou-16»[/i]; the photograph shows the bust in armour
+            without the lion head (Hede 73A).\n[b]danskmoent.dk (Hede 73)[/b]: [i]«A) (R) Brystbillede i rustning (Hede 73A, Schou 15, Sieg 90). B) (RR) Løvehoved på kongens skulder (Hede 73B, Schou 16,
+            Sieg 90)»[/i] (transl.: «A) bust in armour … B) lion head on the king's shoulder»)."
+          uk: "Номер Schou може належати різновиду з левовою головою.\n[b]Bruun Part III, lot 11232[/b]: [i]«Dav-3555; KM-288; Hede-73A; … Schou-16»[/i]; на фото — погруддя в обладунку без левової голови
+            (Hede 73A).\n[b]danskmoent.dk (Hede 73)[/b]: [i]«A) (R) Brystbillede i rustning (Hede 73A, Schou 15, Sieg 90). B) (RR) Løvehoved på kongens skulder (Hede 73B, Schou 16, Sieg 90)»[/i] (перекл.:
+            «A) погруддя в обладунку … B) левова голова на плечі короля»)."
+          da: "Schou-nummeret kan høre til varianten med løvehoved.\n[b]Bruun Part III, lot 11232[/b]: [i]«Dav-3555; KM-288; Hede-73A; … Schou-16»[/i]; fotoet viser brystbilledet i rustning uden løvehoved
+            (Hede 73A).\n[b]danskmoent.dk (Hede 73)[/b]: [i]«A) (R) Brystbillede i rustning (Hede 73A, Schou 15, Sieg 90). B) (RR) Løvehoved på kongens skulder (Hede 73B, Schou 16, Sieg 90)»[/i]."
+      - register: km
+        value: '288'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: "Die KM-Nummer gehört zur Variante ohne Löwenkopf.\n[b]Bruun Part II, lot 13160[/b]: [i]«Dav-3555A; KM-288; Hede-73B»[/i], [i]«the lion head on his shoulder»[/i] (Übers.: «der Löwenkopf auf
+            seiner Schulter»).\n[b]NGC[/b]: KM 288 [i]«Laureate bust in arms facing right without circle … Dav. #3555»[/i]; KM 289 [i]«wearing robe with lion's head on shoulder … Dav. #3555A»[/i].\n[b]IKMK
+            18219595[/b]: [i]«Nr. 73 b; Bruce - Michael 1601-1700 Nr. 289»[/i]."
+          en: "The KM number belongs to the variety without the lion head.\n[b]Bruun Part II, lot 13160[/b]: [i]«Dav-3555A; KM-288; Hede-73B»[/i], [i]«the lion head on his shoulder»[/i].\n[b]NGC[/b]: KM
+            288 [i]«Laureate bust in arms facing right without circle … Dav. #3555»[/i]; KM 289 [i]«wearing robe with lion's head on shoulder … Dav. #3555A»[/i].\n[b]IKMK 18219595[/b]: [i]«Nr. 73 b; Bruce
+            - Michael 1601-1700 Nr. 289»[/i]."
+          uk: "Номер KM належить різновиду без левової голови.\n[b]Bruun Part II, lot 13160[/b]: [i]«Dav-3555A; KM-288; Hede-73B»[/i], [i]«the lion head on his shoulder»[/i] (перекл.: «левова голова на
+            його плечі»).\n[b]NGC[/b]: KM 288 [i]«Laureate bust in arms facing right without circle … Dav. #3555»[/i]; KM 289 [i]«wearing robe with lion's head on shoulder … Dav. #3555A»[/i].\n[b]IKMK 18219595[/b]:
+            [i]«Nr. 73 b; Bruce - Michael 1601-1700 Nr. 289»[/i]."
+          da: "KM-nummeret hører til varianten uden løvehoved.\n[b]Bruun Part II, lot 13160[/b]: [i]«Dav-3555A; KM-288; Hede-73B»[/i], [i]«the lion head on his shoulder»[/i] (overs.: «løvehovedet på hans
+            skulder»).\n[b]NGC[/b]: KM 288 [i]«Laureate bust in arms facing right without circle … Dav. #3555»[/i]; KM 289 [i]«wearing robe with lion's head on shoulder … Dav. #3555A»[/i].\n[b]IKMK 18219595[/b]:
+            [i]«Nr. 73 b; Bruce - Michael 1601-1700 Nr. 289»[/i]."
     sources:
       - type: literature
         url: https://numismaster.com/MC_65454
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65455
         ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -89154,6 +89235,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-288-1667-cuid-1050110-duid-1237455
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-289-1667-cuid-1050718-duid-1237456
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 9.288
@@ -89162,6 +89246,7 @@ coins:
       unit_raw: speciedalere
     composed_of:
       - denmark-numismaster-65454
+      - denmark-numismaster-65455
       - dk-bruun-6576
       - dk-bruun-6577
       - dk-hede-f3h73a
@@ -89170,6 +89255,7 @@ coins:
       - dk-tid-97367
       - ikmk-18219595
       - ngc-1050110
+      - ngc-1050718
   - id: c-cc02ea93
     class_id: c-cc02ea93
     label: unified-dk-hede-f3h74
@@ -89252,12 +89338,10 @@ coins:
     inscription_rev: DOMI-NUS - PROVIDE-BIT 1667
     mint: Kopenhagen
     catalog:
-      km: '289'
       hede: '75'
       hede_volume: f3h
       schou: '21'
       sieg: '91'
-      dav: 3555A
       others:
         - BM# 290
     metal: silver
@@ -89270,35 +89354,21 @@ coins:
     fineness:
       - value: 0.875
         source: hede
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
     weight_rough_g:
       - value: 28.75
         source: ikmk
       - value: 28.775
         source: hede
-      - value: 28.775
-        source: ngc
-      - value: 28.775
-        source: numismaster
     diameter_mm:
       - value: 45.0
         source: ikmk
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_65455
-        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h75.htm
         ref: danskmoent.dk (Hede f3h75)
       - type: museum
         url: https://ikmk.smb.museum/object?id=18219596
         ref: IKMK Berlin 18219596
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-289-1667-cuid-1050718-duid-1237456
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 9.288
@@ -89306,10 +89376,8 @@ coins:
       basis: fin
       unit_raw: speciedalere
     composed_of:
-      - denmark-numismaster-65455
       - dk-hede-f3h75
       - ikmk-18219596
-      - ngc-1050718
   - id: c-5d3d7ab8
     class_id: c-5d3d7ab8
     label: unified-dk-hede-f3h76
@@ -107163,45 +107231,6 @@ coins:
       - denmark-numismaster-65000
       - dk-numista-307035
       - ngc-1059940
-  - id: c-892e7d26
-    class_id: c-892e7d26
-    label: unified-dk-numista-308265
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1667
-    year_last: 1667
-    year_label: '1667'
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '287'
-      numista: '308265'
-      dav: EC II 3557
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.9
-        source: numista
-    diameter_mm:
-      - value: 45.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/308265
-        ref: Numista N#308265 — 1 Speciedaler - Frederik III
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-numista-308265
   - id: c-ec8c3b74
     class_id: c-ec8c3b74
     label: unified-dk-numista-311722
