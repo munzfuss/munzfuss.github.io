@@ -329,6 +329,59 @@ The daler of 96 ß is the reckoning unit of the «udbragt til» column. The 1 ß
 | 20 July 1620 · 25 Oct 1622 · 28 Feb / 14 Dec 1623 | the duchies' edicts (`1620_moentedikt_hertugdoemmerne.md`, queued) | |
 | 10 May 1622 · 14 Feb 1624 · 4 May 1625 | Møntordning 1622 (queued); `1624_moentordning_kobenhavn.md` | the end of the Krone tariff |
 
+### 6.1 Fold — the Lower-Saxon Kreis resolutions of 1614 (Halberstadt) and 30 September 1617 (Braunschweig) (added 2026-11-19)
+
+Both stand behind this dossier's acts: the 1617 norm is what the Danish 4 ß of 1618 fell short of
+(H § 5, the 1620 Verein), and the 1614 proposal is where Wilcke finds the idea of I's «equal
+fineness» series. Neither text is in hand — Wilcke I cites Hirsch IV p. 87 for 1617 and the Tyske
+Kancelli's «Niedersächsische Crays Acta» for 1614; Hirsch is not in the cache.
+
+| Act | Date, place | What the sources give | Text |
+|---|---|---|---|
+| K14 | 1614 (relation of 7 April 1614), Kreistag at **Halberstadt** | «*Sachsen (Lauenburg) nomine Braunschweig*» proposes to strike Thaler «*som de kejserlige og Ferdinandsthalerne*» — i.e. of lower fineness — with the whole series of the same Thaler fineness; the thought first put by the Archbishop of Bremen's envoy (relation of 30 March 1611); a letter of the Kreis's convening princes to the Elector of Saxony, 14 Nov 1616 | Wilcke I s. 163 with notes 1–3 (R. A. T. Kanc. Niedersächs. C. Acta 13, 1609–12; Acta 15, 1614–18, Læg 1 and 3) — paraphrase |
+| **K17** | **30 Sept 1617**, **Braunschweig** — «*den nedersachsiske Møntprobationsdags Afsked*» | the 2 ß lübsch (= 4 ß d.) at **90 to the 7½-lot mark**; by Hamburg's council (28–29 Jan 1619): the Kreis's princes and towns «*i afvigte Aar 1617 til Mikkelsdag paa Kredsdagen i Braunschweig*» set the **Rigsdaler at 40 ß l.** and valued the small coin by it — «*vel publiceret, men ikke fulgt*» | Wilcke I s. 162 (Hirsch IV p. 87), s. 39 (Langermann p. 455–6) — paraphrase |
+
+> «*I den nedersachsiske Møntprobationsdags Afsked, dateret Braunschweig den 30. September 1617,
+> var denne Mønts Udmøntningsforhold fastsat til 90 Stkr. paa den 7 1/2 lødige Mark. I
+> Instrukserne af 5. April 1618 var 4 ß d. (2 ß l.) kommet helt ned paa 106 Stkr. af den 7 lødige
+> Mark. Den danske Mønt fyldestgjorde paa langt nær den nedersachsiske Kredses Krav.*» (s. 162)
+>
+> «*Og om end den nedersachsiske Kredses Fyrster og Stæder i afvigte Aar 1617 til Mikkelsdag paa
+> Kredsdagen i Braunschweig har vedtaget at sætte Rigsdaleren til 40 ß l og valvere og ansætte den
+> paaklagede Smaamønt herefter, saa er saadan Bestemmelse vel publiceret, men ikke fulgt, som man
+> haabede.*» (Hamburg's council, 28–29 Jan 1619, s. 39)
+>
+> «*Man optog den af Ærkebispen af Bremens Afsending paa en nedersachsisk Kredsdag fremsatte
+> Tanke: at lade Rigsdaleren blive ringere af Lødighed, hvad der ogsaa kunde udtrykkes saaledes:
+> at man skulde slaa Thalere som de kejserlige og Ferdinandsthalerne, som „Sachsen (Lauenburg)
+> nomine Braunschweig“ havde foreslaaet paa Kredsdagen i Halberstadt 1614. Til Gengæld skulde saa
+> hele Møntrækken være af samme ringere Thalerlødighed.*» (s. 163)
+
+«В ухвалі нижньосаксонського пробаційного дня, датованій Braunschweig 30 вересня 1617 р., стопу цієї
+монети встановлено на 90 штук з 7½-лотової марки. В інструкціях 5 квітня 1618 р. 4 ß d. (2 ß l.)
+зійшли аж до 106 штук із 7-лотової марки. Данська монета далеко не відповідала вимогам
+нижньосаксонської округи.» — «І хоч князі та міста нижньосаксонської округи минулого 1617 року на
+Михайла на окружному з'їзді в Braunschweig ухвалили покласти ріксдалер на 40 ß l. і відповідно
+оцінити й установити оскаржену дрібну монету, цю постанову хоч і оголошено, але не виконано, як
+сподівалися.» — «Перейняли думку, висловлену посланцем архієпископа Бременського на
+нижньосаксонському окружному з'їзді: зробити ріксдалер нижчої проби, що можна було висловити й так:
+бити талери як імператорські й фердинандові, як „Саксонія (Lauenburg) від імені Braunschweig“
+пропонувала на окружному з'їзді в Halberstadt 1614 р. Натомість увесь монетний ряд мав бути тієї
+самої нижчої талерної проби.»
+
+Recomputed (233,855 g; as computed): K17's 2 ß l. — 90 / 7½ lod = 2,598 g, 1,218 g fine, 192
+pieces = 384 ß l. per mark fine = **9,6 Rdl. at 40 ß l.** (the Reichsthaler itself 9 per mark fine:
+the small coin 6,7 % above it); the Danish 4 ß d. of 5 April 1618 — 106 / 7 lod = 2,206 g, 0,965 g
+fine, 484,6 ß l. per mark fine = 12,1 Rdl. — **20,8 % less silver** than K17's piece; the Kreis's
+own next norm, Lüneburg 12 June 1622: 108⅓ / 8 lod = 1,079 g fine (register §2).
+
+⚠ K17's two attestations may be one meeting or two: the Probationstag's Abschied is dated 30 Sept
+1617, Hamburg's council speaks of the Kreistag «til Mikkelsdag» (29 Sept) — hypothesis: the same
+session; Hirsch IV p. 87 would settle it. K14's year for the Halberstadt Kreistag rests on the
+relation's date (7 April 1614); the proposal's own wording is not quoted by Wilcke. Keys:
+`wilcke-1919-s162-probationsdag-1617-90-stkr-7-5-loedig`, `wilcke-1919-s39-braunschweig-1617-rigsdaler-40-sk`,
+`wilcke-1919-s163-halberstadt-1614-ferdinandsthaler`.
+
 ## 7. Our data
 
 - **`kronemont_chr_iv`** (`data/shared/fuesse.yml`: 12 257/700 per 13¾-lot mark = Hede's Krone
