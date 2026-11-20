@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8318 per-source seed entries.
-# Output: 1582 unified entries (one per physical coin).
+# Output: 1581 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-19'
+generated_at: '2026-11-20'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -650,19 +650,14 @@ coins:
     kind: kurant
     nominal: 8 Kroneskilling
     year_first: 1619
-    year_last: 1620
-    year_ranges:
-      -   - 1619
-          - 1620
-    year_label: 1619-1620
+    year_last: 1619
+    year_label: '1619'
     ruler: Christian IV
     mintmaster: Johan Post
     mint: Kopenhagen
     catalog:
       km: '71.1'
-      hede:
-        - '110'
-        - 110A
+      hede: 110A
       sieg: '56.1'
       bruun_collection_id: '5127'
       schou: '102'
@@ -686,13 +681,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14097, p. 41
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122202
-        ref: KMM 122202 (Inv. FP 5051.6)
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-5127
-      - kmk-122202
   - id: c-a7883be8
     class_id: c-a7883be8
     label: unified-dk-bruun-5365
@@ -19860,11 +19851,12 @@ coins:
         - '64.3'
         - '64.4'
         - '64.5'
+      numista: '142858'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -19887,6 +19879,10 @@ coins:
         source: ngc
       - value: 0.859
         source: numismaster
+      - value: 0.859
+        source: numista
+      - value: 0.86
+        source: ucoin
     weight_rough_g:
       - value: 1.53
         source: kmk
@@ -19894,6 +19890,10 @@ coins:
         source: kmk
       - value: 1.84
         source: kmk
+      - value: 1.85
+        source: numista
+      - value: 1.85
+        source: ucoin
       - value: 1.88
         source: kmk
       - value: 1.95
@@ -19913,6 +19913,28 @@ coins:
       - value: 2.101
         source: hede
         specimen: dk-hede-c4h114e
+    diameter_mm:
+      - value: 22.0
+        source: ucoin
+      - value: 22.3
+        source: numista
+    catalog_alts:
+      - register: hede
+        value: '110'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typennummer passt nicht zur Münze: auf der Rückseite steht im Oval 18, das Jahr ist 1620.\n[b]KMM 122202[/b]: Typ [i]«Hede 110»[/i], Jahr 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse
+            samt 12 i oval (= 1/12 krone)»[/i] (Übers.: «Wertangabe sowie 12 im Oval (= 1/12 Krone)»), Jahr nur 1619.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i]
+            (Übers.: «Wertangabe sowie 18 im Oval (= 1/18 Krone)»), Jahre [i]«1620, 1621»[/i]."
+          en: "The type number does not fit the coin: the reverse has 18 in the oval, the year is 1620.\n[b]KMM 122202[/b]: type [i]«Hede 110»[/i], year 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse
+            samt 12 i oval (= 1/12 krone)»[/i] (transl.: «value and 12 in an oval (= 1/12 krone)»), year 1619 only.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i]
+            (transl.: «value and 18 in an oval (= 1/18 krone)»), years [i]«1620, 1621»[/i]."
+          uk: "Номер типу не відповідає монеті: на звороті в овалі 18, рік 1620.\n[b]KMM 122202[/b]: тип [i]«Hede 110»[/i], рік 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse samt 12 i oval (=
+            1/12 krone)»[/i] (перекл.: «позначення вартості та 12 в овалі (= 1/12 krone)»), рік лише 1619.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i] (перекл.:
+            «позначення вартості та 18 в овалі (= 1/18 krone)»), роки [i]«1620, 1621»[/i]."
+          da: "Typenummeret passer ikke til mønten: bagsiden har 18 i oval, årstallet er 1620.\n[b]KMM 122202[/b]: type [i]«Hede 110»[/i], årstal 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse
+            samt 12 i oval (= 1/12 krone)»[/i], kun 1619.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i], årstal [i]«1620, 1621»[/i]."
     sources:
       - type: literature
         url: https://numismaster.com/MC_65122
@@ -19920,6 +19942,15 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h114.htm
         ref: danskmoent.dk (Hede c4h114A)
+      - type: literature
+        url: https://en.numista.com/142858
+        ref: Numista N#142858 — 8 Kroneskilling - Christian IV (Type 2)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-8-skilling-1620-1621/?tid=163026
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122202
+        ref: KMM 122202 (Inv. FP 5051.6)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/195982
         ref: KMM 195982 (Inv. FP 3108.6302)
@@ -19929,6 +19960,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/195984
         ref: KMM 195984 (Inv. FP 3108.6300)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/591529
+        ref: KMM 591529 (Inv. FP 2127.2)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/693174
         ref: KMM 693174 (Inv. FP 280.5)
@@ -19967,9 +20001,13 @@ coins:
       - dk-hede-c4h114c
       - dk-hede-c4h114d
       - dk-hede-c4h114e
+      - dk-numista-142858
+      - dk-tid-163026
+      - kmk-122202
       - kmk-195982
       - kmk-195983
       - kmk-195984
+      - kmk-591529
       - kmk-693174
       - kmk-714954
       - kmk-714955
@@ -104668,64 +104706,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-142836
-  - id: c-920eaf64
-    class_id: c-920eaf64
-    label: unified-dk-numista-142858
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1620
-    year_last: 1621
-    year_ranges:
-      -   - 1620
-          - 1621
-    year_label: 1620-1621
-    ruler: Christian IV
-    mint: Kopenhagen
-    catalog:
-      km: '82'
-      numista: '142858'
-      schou: '121'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.859
-        source: numista
-      - value: 0.86
-        source: ucoin
-    weight_rough_g:
-      - value: 1.85
-        source: numista
-      - value: 1.85
-        source: ucoin
-      - value: 1.88
-        source: kmk
-    diameter_mm:
-      - value: 22.0
-        source: ucoin
-      - value: 22.3
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/142858
-        ref: Numista N#142858 — 8 Kroneskilling - Christian IV (Type 2)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-8-skilling-1620-1621/?tid=163026
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/591529
-        ref: KMM 591529 (Inv. FP 2127.2)
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-numista-142858
-      - dk-tid-163026
-      - kmk-591529
   - id: c-7af6a520
     class_id: c-7af6a520
     label: unified-dk-numista-144761

@@ -31760,6 +31760,23 @@ coins:
         source: ucoin
       - value: 22.3
         source: numista
+    catalog_alts:
+      - register: hede
+        value: '110'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typennummer passt nicht zur Münze: auf der Rückseite steht im Oval 18, das Jahr ist 1620.\n[b]KMM 122202[/b]: Typ [i]«Hede 110»[/i], Jahr 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse
+            samt 12 i oval (= 1/12 krone)»[/i] (Übers.: «Wertangabe sowie 12 im Oval (= 1/12 Krone)»), Jahr nur 1619.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i]
+            (Übers.: «Wertangabe sowie 18 im Oval (= 1/18 Krone)»), Jahre [i]«1620, 1621»[/i]."
+          en: "The type number does not fit the coin: the reverse has 18 in the oval, the year is 1620.\n[b]KMM 122202[/b]: type [i]«Hede 110»[/i], year 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse
+            samt 12 i oval (= 1/12 krone)»[/i] (transl.: «value and 12 in an oval (= 1/12 krone)»), year 1619 only.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i]
+            (transl.: «value and 18 in an oval (= 1/18 krone)»), years [i]«1620, 1621»[/i]."
+          uk: "Номер типу не відповідає монеті: на звороті в овалі 18, рік 1620.\n[b]KMM 122202[/b]: тип [i]«Hede 110»[/i], рік 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse samt 12 i oval (=
+            1/12 krone)»[/i] (перекл.: «позначення вартості та 12 в овалі (= 1/12 krone)»), рік лише 1619.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i] (перекл.:
+            «позначення вартості та 18 в овалі (= 1/18 krone)»), роки [i]«1620, 1621»[/i]."
+          da: "Typenummeret passer ikke til mønten: bagsiden har 18 i oval, årstallet er 1620.\n[b]KMM 122202[/b]: type [i]«Hede 110»[/i], årstal 1620.\n[b]danskmoent.dk, Hede 110[/b]: [i]«værdiangivelse
+            samt 12 i oval (= 1/12 krone)»[/i], kun 1619.\n[b]danskmoent.dk, Hede 114[/b]: [i]«værdiangivelse samt 18 i oval (= 1/18 krone)»[/i], årstal [i]«1620, 1621»[/i]."
     sources:
       - type: numista
         url: https://en.numista.com/142858
@@ -31802,6 +31819,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/195984
         ref: KMM 195984 (Inv. FP 3108.6300)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/575869
         ref: KMM 575869 (Inv. FP 533.41)
@@ -32018,6 +32036,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-82-1620-1621-cuid-1049937-duid-1236693
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122202
+        ref: KMM 122202 (Inv. FP 5051.6)
     note:
       de: '8 Kroneskilling 1620-1621 — größtes Kroneskilling-Stück, Reverse «1/18 krone» · fünf Münzmeister-Varianten nach Hede 114A-E unter KM-82 zusammengefaßt: 114A trekløver (Schwabe, Sieg-1971 64.1),
         114B korslagte køller (Sieg-1971 64.2), 114C fugl (Sieg-1971 64.3), 114D korslagte glødehager (Sieg-1971 64.4), 114E ibskal (Johan Post — usikkert, Sieg-1971 64.5, eine der umstrittensten Christian-IV-Raritäten)
@@ -32041,7 +32062,6 @@ coins:
       unit_raw: daler
     composed_of:
       - c-6ad56fa0
-      - c-920eaf64
     label: km-82-chr-iv-1620
     origin: foundation
     v1_home_location: denmark
@@ -112455,11 +112475,8 @@ coins:
     mintmaster: Johan Post
     id: c-deaa6062
     year_first: 1619
-    year_last: 1620
-    year_ranges:
-      -   - 1619
-          - 1620
-    year_label: 1619-1620
+    year_last: 1619
+    year_label: '1619'
     uncertainty:
       metal:
         - kind: inferred
@@ -112471,9 +112488,7 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '71.1'
-      hede:
-        - '110'
-        - 110A
+      hede: 110A
       sieg: '56.1'
       bruun_collection_id: '5127'
       schou: '102'
@@ -112486,9 +112501,6 @@ coins:
     mint_verified: true
     verified: false
     sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/122202
-        ref: KMM 122202 (Inv. FP 5051.6)
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14097, p. 41
