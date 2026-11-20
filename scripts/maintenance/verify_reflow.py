@@ -493,6 +493,49 @@ def _member_excluded_kmm_any() -> set[str]:
     return out
 
 
+_MEMBER_RECORDS_CACHE: dict | None = None
+
+
+def _member_excluded_records() -> dict:
+    """What an isolating exclusion takes out of a class, for EVERY source.
+
+    `_member_excluded_kmm` covers KMM by object number. A `scope: member` or
+    `undocumented_stub` exclusion of any other record (ucoin, NGC, …) removes
+    that record's own `sources` entry and its own readings from the class it
+    sat in. Returns {"seeds": ids, "urls": its source urls, "readings":
+    {(field, source label, value)}} — the label is the seed's source
+    directory, which is how absorb labels a reading without `specimen`."""
+    global _MEMBER_RECORDS_CACHE
+    if _MEMBER_RECORDS_CACHE is not None:
+        return _MEMBER_RECORDS_CACHE
+    out = {"seeds": set(), "urls": set(), "readings": set()}
+    by_entity: dict[str, set[str]] = {}
+    for p in sorted((ROOT / EXCLUSIONS_REL).glob("*.yml")):
+        if p.stem.startswith("_"):
+            continue
+        for e in _read_yaml(p).get("exclusions") or []:
+            if e.get("id") and (e.get("scope") == "member"
+                                or e.get("category") == "undocumented_stub"):
+                by_entity.setdefault(p.stem, set()).add(str(e["id"]))
+    for ent, ids in by_entity.items():
+        out["seeds"] |= ids
+        for sp in (ROOT / "data" / "v2" / "seed").glob(f"*/{ent}.yml"):
+            src = sp.parent.name
+            for c in _read_yaml(sp).get("coins") or []:
+                if not isinstance(c, dict) or c.get("id") not in ids:
+                    continue
+                for s in c.get("sources") or []:
+                    if isinstance(s, dict) and s.get("url"):
+                        out["urls"].add(s["url"])
+                for f in ("weight_rough_g", "fineness", "diameter_mm"):
+                    for v in _as_list(c.get(f)):
+                        val = v.get("value") if isinstance(v, dict) else v
+                        if val is not None:
+                            out["readings"].add((f, src, val))
+    _MEMBER_RECORDS_CACHE = out
+    return out
+
+
 def _excluded_ids(entity: str) -> set[str]:
     """Seed ids the curator has excluded for `entity` (data/v2/exclusions/).
 
@@ -1623,6 +1666,30 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                                 f"{cid}.{f}: {v[:70]} (member exclusion)"
                                 for v in sorted(member_gone))
                             gone -= member_gone
+                if gone:
+                    # The same decision for a record of any other source: the
+                    # isolated record's own citation and its own readings
+                    # leave the class with it (ucoin stubs, 2026-11-20).
+                    _mr = _member_excluded_records()
+                    _hd = {_key(x): x for x in _as_list(h.get(f))}
+                    member_gone = set()
+                    for k in gone:
+                        x = _hd.get(k)
+                        if not isinstance(x, dict):
+                            continue
+                        if f == "sources":
+                            if x.get("url") in _mr["urls"]:
+                                member_gone.add(k)
+                        elif x.get("specimen"):
+                            if x["specimen"] in _mr["seeds"]:
+                                member_gone.add(k)
+                        elif (f, x.get("source"), x.get("value")) in _mr["readings"]:
+                            member_gone.add(k)
+                    if member_gone:
+                        retractions.extend(
+                            f"{cid}.{f}: {v[:70]} (member exclusion)"
+                            for v in sorted(member_gone))
+                        gone -= member_gone
                 if gone:
                     losses.append(f"LIST SHRANK  {cid}.{f}: lost {len(gone)} "
                                   f"({sorted(gone)[0][:70]}…)")
