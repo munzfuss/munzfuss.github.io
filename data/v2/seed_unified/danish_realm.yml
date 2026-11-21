@@ -2,8 +2,8 @@
 # Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8318 per-source seed entries.
-# Output: 1572 unified entries (one per physical coin).
+# Input: 8314 per-source seed entries.
+# Output: 1566 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2246,8 +2246,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '424'
         - '424.1'
+        - '424'
       hede: '109'
       sieg: '14'
       bruun_collection_id: '7135'
@@ -15234,8 +15234,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '813'
         - '813.1'
+        - '813'
       hede:
         - '16'
         - 16A
@@ -15316,8 +15316,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '812'
         - '812.1'
+        - '812'
       hede: '18'
       hede_volume: c10h
       sieg:
@@ -16715,8 +16715,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '55.2'
         - '55.1'
+        - '55.2'
       hede:
         - 100A
         - 100B
@@ -17173,15 +17173,15 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '61'
         - '61.1'
-        - '60'
         - '61.3'
         - '60.1'
         - '61.2'
         - '60.4'
         - '60.2'
         - '60.3'
+        - '61'
+        - '60'
       hede:
         - 105A
         - 105B
@@ -17525,8 +17525,8 @@ coins:
     catalog:
       km:
         - 59a
-        - '59'
         - '59.1'
+        - '59'
       hede:
         - 106A
         - 106B
@@ -18451,8 +18451,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - 58a
         - '58'
+        - 58a
       hede:
         - 107A
         - 107B
@@ -19226,8 +19226,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '70'
         - '70.1'
+        - '70'
       hede:
         - 111A
         - 111B
@@ -20074,9 +20074,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '66'
         - '66.1'
         - '66.2'
+        - '66'
       hede:
         - 118A
         - 118B
@@ -22739,10 +22739,10 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '95'
         - '95.1'
         - '95.2'
         - '95.3'
+        - '95'
       hede: '128'
       hede_volume: c4h
       schou:
@@ -26839,7 +26839,7 @@ coins:
     fuss: seed_unsorted
     phase: hede
     kind: kurant
-    nominal: 6 Skilling
+    nominal: 6 Skilling Danske
     year_first: 1627
     year_last: 1629
     year_ranges:
@@ -26849,7 +26849,7 @@ coins:
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
-      km: '110'
+      km: '109'
       hede:
         - '139'
         - 139A
@@ -26861,7 +26861,7 @@ coins:
         - 41-54
         - 55-58
       sieg: '57'
-      numista: '107718'
+      numista: '82871'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -26877,10 +26877,36 @@ coins:
         source: hede
         specimen: dk-hede-c4h139b
       - value: 0.781
+        source: ngc
+      - value: 0.781
+        source: numismaster
+      - value: 0.781
         source: numista
       - value: 0.781
         source: ucoin
     weight_rough_g:
+      - value: 1.5
+        source: kmk
+      - value: 1.51
+        source: kmk
+      - value: 1.52
+        source: kmk
+      - value: 1.53
+        source: kmk
+      - value: 1.54
+        source: kmk
+      - value: 1.55
+        source: kmk
+      - value: 1.56
+        source: kmk
+      - value: 1.57
+        source: kmk
+      - value: 1.58
+        source: kmk
+      - value: 1.59
+        source: kmk
+      - value: 1.6
+        source: kmk
       - value: 1.61
         source: kmk
       - value: 1.62
@@ -26937,20 +26963,27 @@ coins:
         source: kmk
       - value: 1.84
         source: kmk
+      - value: 11.711
+        source: ngc
+      - value: 11.711
+        source: numismaster
     diameter_mm:
-      - value: 18.78
+      - value: 19.0
         source: numista
       - value: 19.0
         source: ucoin
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65108
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/chr/c4h139.htm
         ref: danskmoent.dk (Hede c4h139A)
       - type: literature
-        url: https://en.numista.com/107718
-        ref: Numista N#107718 — 6 Skilling Dansk - Christian IV Schilling Dansch
+        url: https://en.numista.com/82871
+        ref: Numista N#82871 — 6 Skilling Dansk - Christian IV
       - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-6-skilling-1628-1629/?tid=97086
+        url: https://en.ucoin.net/coin/denmark-6-skilling-1627-1629/?tid=97085
         ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190284
@@ -26989,6 +27022,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190289
         ref: KMM 190289 (Inv. FP 3108.995)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190290
+        ref: KMM 190290 (Inv. FP 3108.994)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190291
         ref: KMM 190291 (Inv. FP 3108.993)
       - type: museum
@@ -27007,11 +27043,89 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190300
         ref: KMM 190300 (Inv. FP 3108.984)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190301
+        ref: KMM 190301 (Inv. FP 3108.983)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190303
         ref: KMM 190303 (Inv. FP 3108.981)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190304
         ref: KMM 190304 (Inv. FP 3108.980)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190305
+        ref: KMM 190305 (Inv. FP 3108.979)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190313
+        ref: KMM 190313 (Inv. FP 3108.971)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190316
+        ref: KMM 190316 (Inv. FP 3108.968)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190318
+        ref: KMM 190318 (Inv. FP 3108.966)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190320
+        ref: KMM 190320 (Inv. FP 3108.964)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190321
+        ref: KMM 190321 (Inv. FP 3108.963)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190322
+        ref: KMM 190322 (Inv. FP 3108.962)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190324
+        ref: KMM 190324 (Inv. FP 3108.960)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190326
+        ref: KMM 190326 (Inv. FP 3108.958)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190330
+        ref: KMM 190330 (Inv. FP 3108.954)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190331
+        ref: KMM 190331 (Inv. FP 3108.953)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190332
+        ref: KMM 190332 (Inv. FP 3108.952)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190333
+        ref: KMM 190333 (Inv. FP 3108.951)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190335
+        ref: KMM 190335 (Inv. FP 3108.949)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190336
+        ref: KMM 190336 (Inv. FP 3108.948)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190338
+        ref: KMM 190338 (Inv. FP 3108.946)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190339
+        ref: KMM 190339 (Inv. FP 3108.945)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190340
+        ref: KMM 190340 (Inv. FP 3108.944)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190341
+        ref: KMM 190341 (Inv. FP 3108.943)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190342
+        ref: KMM 190342 (Inv. FP 3108.942)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190343
+        ref: KMM 190343 (Inv. FP 3108.941)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190344
+        ref: KMM 190344 (Inv. FP 3108.940)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190345
+        ref: KMM 190345 (Inv. FP 3108.939)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190346
+        ref: KMM 190346 (Inv. FP 3108.938)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190306
+        ref: KMM 190306 (Inv. FP 3108.978)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190307
         ref: KMM 190307 (Inv. FP 3108.977)
@@ -27043,17 +27157,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190319
         ref: KMM 190319 (Inv. FP 3108.965)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190323
+        ref: KMM 190323 (Inv. FP 3108.961)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190325
         ref: KMM 190325 (Inv. FP 3108.959)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190327
         ref: KMM 190327 (Inv. FP 3108.957)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190328
+        ref: KMM 190328 (Inv. FP 3108.956)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190329
         ref: KMM 190329 (Inv. FP 3108.955)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190334
         ref: KMM 190334 (Inv. FP 3108.950)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190337
+        ref: KMM 190337 (Inv. FP 3108.947)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190347
+        ref: KMM 190347 (Inv. FP 3108.937)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190348
         ref: KMM 190348 (Inv. FP 3108.936)
@@ -27271,6 +27397,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190362
         ref: KMM 190362 (Inv. FP 3108.922)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190364
+        ref: KMM 190364 (Inv. FP 3108.920)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190365
         ref: KMM 190365 (Inv. FP 3108.919)
       - type: museum
@@ -27286,17 +27415,32 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190390
         ref: KMM 190390 (Inv. FP 3108.894)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190394
+        ref: KMM 190394 (Inv. FP 3108.890)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190395
+        ref: KMM 190395 (Inv. FP 3108.889)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190396
         ref: KMM 190396 (Inv. FP 3108.888)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190397
         ref: KMM 190397 (Inv. FP 3108.887)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190403
+        ref: KMM 190403 (Inv. FP 3108.881)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190412
+        ref: KMM 190412 (Inv. FP 3108.872)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190414
         ref: KMM 190414 (Inv. FP 3108.870)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190416
         ref: KMM 190416 (Inv. FP 3108.868)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190426
+        ref: KMM 190426 (Inv. FP 3108.858)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190435
         ref: KMM 190435 (Inv. FP 3108.849)
@@ -27321,6 +27465,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190442
         ref: KMM 190442 (Inv. FP 3108.842)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190443
+        ref: KMM 190443 (Inv. FP 3108.841)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190444
         ref: KMM 190444 (Inv. FP 3108.840)
@@ -27463,6 +27610,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190483
         ref: KMM 190483 (Inv. FP 3108.801)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190487
+        ref: KMM 190487 (Inv. FP 3108.797)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190488
+        ref: KMM 190488 (Inv. FP 3108.796)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190489
         ref: KMM 190489 (Inv. FP 3108.795)
       - type: museum
@@ -27483,6 +27636,15 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/190499
         ref: KMM 190499 (Inv. FP 3108.785)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191087
+        ref: KMM 191087 (Inv. FP 3108.1197)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191088
+        ref: KMM 191088 (Inv. FP 3108.1196)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191089
+        ref: KMM 191089 (Inv. FP 3108.1195)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191159
         ref: KMM 191159 (Inv. FP 3108.1125)
@@ -27661,6 +27823,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/191238
         ref: KMM 191238 (Inv. FP 3108.1046)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191160
+        ref: KMM 191160 (Inv. FP 3108.1124)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191161
         ref: KMM 191161 (Inv. FP 3108.1123)
       - type: museum
@@ -27675,6 +27840,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191166
         ref: KMM 191166 (Inv. FP 3108.1118)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191168
+        ref: KMM 191168 (Inv. FP 3108.1116)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191169
         ref: KMM 191169 (Inv. FP 3108.1115)
@@ -27703,11 +27871,20 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/191191
         ref: KMM 191191 (Inv. FP 3108.1093)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191196
+        ref: KMM 191196 (Inv. FP 3108.1088)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191200
         ref: KMM 191200 (Inv. FP 3108.1084)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191218
         ref: KMM 191218 (Inv. FP 3108.1066)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191221
+        ref: KMM 191221 (Inv. FP 3108.1063)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191228
+        ref: KMM 191228 (Inv. FP 3108.1056)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191239
         ref: KMM 191239 (Inv. FP 3108.1045)
@@ -27736,6 +27913,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/191261
         ref: KMM 191261 (Inv. FP 3108.1023)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191262
+        ref: KMM 191262 (Inv. FP 3108.1022)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191263
         ref: KMM 191263 (Inv. FP 3108.1021)
       - type: museum
@@ -27754,6 +27934,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/191266
         ref: KMM 191266 (Inv. FP 3108.1018)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191267
+        ref: KMM 191267 (Inv. FP 3108.1017)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191268
         ref: KMM 191268 (Inv. FP 3108.1016)
       - type: museum
@@ -27771,6 +27954,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191275
         ref: KMM 191275 (Inv. FP 3108.1009)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191276
+        ref: KMM 191276 (Inv. FP 3108.1008)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191277
         ref: KMM 191277 (Inv. FP 3108.1007)
@@ -27999,25 +28185,54 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191158
         ref: KMM 191158 (Inv. FP 3108.1126)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575859
+        ref: KMM 575859 (Inv. FP 533.51)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575863
+        ref: KMM 575863 (Inv. FP 533.47)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575864
+        ref: KMM 575864 (Inv. FP 533.46)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575865
+        ref: KMM 575865 (Inv. FP 533.45)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693168
+        ref: KMM 693168 (Inv. FP 280.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693169
+        ref: KMM 693169 (Inv. FP 280.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693171
+        ref: KMM 693171 (Inv. FP 280.8)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-6-skilling-km-109-1627-1629-cuid-1069021-duid-1236676
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65108
       - dk-hede-c4h139a
       - dk-hede-c4h139b
-      - dk-numista-107718
-      - dk-tid-97086
+      - dk-numista-82871
+      - dk-tid-97085
       - kmk-190284
       - kmk-190285
       - kmk-190287
       - kmk-190288
       - kmk-190289
+      - kmk-190290
       - kmk-190291
       - kmk-190292
       - kmk-190293
       - kmk-190298
       - kmk-190299
       - kmk-190300
+      - kmk-190301
       - kmk-190303
       - kmk-190304
+      - kmk-190305
+      - kmk-190306
       - kmk-190307
       - kmk-190308
       - kmk-190309
@@ -28028,10 +28243,14 @@ coins:
       - kmk-190315
       - kmk-190317
       - kmk-190319
+      - kmk-190323
       - kmk-190325
       - kmk-190327
+      - kmk-190328
       - kmk-190329
       - kmk-190334
+      - kmk-190337
+      - kmk-190347
       - kmk-190348
       - kmk-190349
       - kmk-190350
@@ -28042,15 +28261,21 @@ coins:
       - kmk-190358
       - kmk-190359
       - kmk-190362
+      - kmk-190364
       - kmk-190365
       - kmk-190368
       - kmk-190373
       - kmk-190381
       - kmk-190390
+      - kmk-190394
+      - kmk-190395
       - kmk-190396
       - kmk-190397
+      - kmk-190403
+      - kmk-190412
       - kmk-190414
       - kmk-190416
+      - kmk-190426
       - kmk-190435
       - kmk-190436
       - kmk-190437
@@ -28058,6 +28283,7 @@ coins:
       - kmk-190439
       - kmk-190440
       - kmk-190442
+      - kmk-190443
       - kmk-190444
       - kmk-190445
       - kmk-190446
@@ -28088,18 +28314,25 @@ coins:
       - kmk-190479
       - kmk-190481
       - kmk-190483
+      - kmk-190487
+      - kmk-190488
       - kmk-190489
       - kmk-190492
       - kmk-190493
       - kmk-190495
       - kmk-190497
       - kmk-190499
+      - kmk-191087
+      - kmk-191088
+      - kmk-191089
       - kmk-191159
+      - kmk-191160
       - kmk-191161
       - kmk-191162
       - kmk-191163
       - kmk-191165
       - kmk-191166
+      - kmk-191168
       - kmk-191169
       - kmk-191171
       - kmk-191172
@@ -28109,24 +28342,30 @@ coins:
       - kmk-191186
       - kmk-191190
       - kmk-191191
+      - kmk-191196
       - kmk-191200
       - kmk-191218
+      - kmk-191221
+      - kmk-191228
       - kmk-191239
       - kmk-191240
       - kmk-191241
       - kmk-191243
       - kmk-191244
       - kmk-191261
+      - kmk-191262
       - kmk-191263
       - kmk-191264
       - kmk-191265
       - kmk-191266
+      - kmk-191267
       - kmk-191268
       - kmk-191269
       - kmk-191270
       - kmk-191272
       - kmk-191274
       - kmk-191275
+      - kmk-191276
       - kmk-191277
       - kmk-191278
       - kmk-191279
@@ -28134,6 +28373,11 @@ coins:
       - kmk-191281
       - kmk-191282
       - kmk-275613
+      - kmk-575859
+      - kmk-693168
+      - kmk-693169
+      - kmk-693171
+      - ngc-1069021
   - id: c-88638fe5
     class_id: c-88638fe5
     label: unified-dk-hede-c4h14
@@ -28217,16 +28461,16 @@ coins:
     phase: hede
     kind: kurant
     nominal: 6 Skilling Danske
-    year_first: 1627
+    year_first: 1628
     year_last: 1629
     year_ranges:
-      -   - 1627
+      -   - 1628
           - 1629
-    year_label: 1627-1629
+    year_label: 1628-1629
     ruler: Christian IV
     mint: Kopenhagen
     catalog:
-      km: '109'
+      km: '110'
       hede:
         - 140A
         - 140B
@@ -28238,7 +28482,7 @@ coins:
       sieg:
         - '57'
         - '58'
-      numista: '82871'
+      numista: '107718'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -28254,10 +28498,22 @@ coins:
         source: hede
         specimen: dk-hede-c4h140b
       - value: 0.781
+        source: ngc
+      - value: 0.781
+        source: numismaster
+      - value: 0.781
         source: numista
       - value: 0.781
         source: ucoin
     weight_rough_g:
+      - value: 1.32
+        source: kmk
+      - value: 1.55
+        source: kmk
+      - value: 1.58
+        source: kmk
+      - value: 1.6
+        source: kmk
       - value: 1.63
         source: kmk
       - value: 1.64
@@ -28288,21 +28544,40 @@ coins:
         specimen: dk-hede-c4h140b
       - value: 1.771
         source: numista
+      - value: 11.711
+        source: ngc
+      - value: 11.711
+        source: numismaster
     diameter_mm:
-      - value: 19.0
+      - value: 18.78
         source: numista
       - value: 19.0
         source: ucoin
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65111
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/chr/c4h140.htm
         ref: danskmoent.dk (Hede c4h140A)
       - type: literature
-        url: https://en.numista.com/82871
-        ref: Numista N#82871 — 6 Skilling Dansk - Christian IV
+        url: https://en.numista.com/107718
+        ref: Numista N#107718 — 6 Skilling Dansk - Christian IV Schilling Dansch
       - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-6-skilling-1627-1629/?tid=97085
+        url: https://en.ucoin.net/coin/denmark-6-skilling-1628-1629/?tid=97086
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191044
+        ref: KMM 191044 (Inv. FP 3108.1240)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191045
+        ref: KMM 191045 (Inv. FP 3108.1239)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191046
+        ref: KMM 191046 (Inv. FP 3108.1238)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191245
+        ref: KMM 191245 (Inv. FP 3108.1039)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191246
         ref: KMM 191246 (Inv. FP 3108.1038)
@@ -28328,11 +28603,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/191252
         ref: KMM 191252 (Inv. FP 3108.1032)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191253
+        ref: KMM 191253 (Inv. FP 3108.1031)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191254
         ref: KMM 191254 (Inv. FP 3108.1030)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191255
         ref: KMM 191255 (Inv. FP 3108.1029)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/191257
+        ref: KMM 191257 (Inv. FP 3108.1027)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191258
         ref: KMM 191258 (Inv. FP 3108.1026)
@@ -29002,23 +29283,38 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/693166
         ref: KMM 693166 (Inv. FP 280.13)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693167
+        ref: KMM 693167 (Inv. FP 280.12)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-6-skilling-km-110-1628-1629-cuid-1050583-duid-1236681
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65111
       - dk-hede-c4h140a
       - dk-hede-c4h140b
-      - dk-numista-82871
-      - dk-tid-97085
+      - dk-numista-107718
+      - dk-tid-97086
+      - kmk-191044
+      - kmk-191045
+      - kmk-191046
+      - kmk-191245
       - kmk-191246
       - kmk-191247
       - kmk-191249
       - kmk-191250
       - kmk-191252
+      - kmk-191253
       - kmk-191254
       - kmk-191255
+      - kmk-191257
       - kmk-191258
       - kmk-191259
       - kmk-693165
       - kmk-693166
+      - kmk-693167
+      - ngc-1050583
   - id: c-cf7479f9
     class_id: c-cf7479f9
     label: unified-dk-hede-c4h141
@@ -37056,8 +37352,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '140'
         - '139'
+        - '140'
       hede: '32'
       hede_volume: c4h
       schou: 1-2
@@ -39602,8 +39898,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '104'
         - '146'
+        - '104'
       hede:
         - 56A
         - 56B
@@ -42314,8 +42610,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - 12a
         - '12'
+        - 12a
       hede:
         - '77'
         - 77A
@@ -43164,9 +43460,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '22'
         - '22.1'
         - '22.2'
+        - '22'
       hede: '81'
       hede_volume: c4h
       schou: 95-124
@@ -46029,8 +46325,8 @@ coins:
     mint: Helsingør
     catalog:
       km:
-        - '42'
         - '32.4'
+        - '42'
       hede: '96'
       hede_volume: c4h
       schou: 64-111
@@ -50374,9 +50670,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '421'
         - '421.2'
         - '421.1'
+        - '421'
       hede:
         - '112'
         - 112A
@@ -50534,8 +50830,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '374.1'
         - '374.2'
+        - '374.1'
         - '374'
       hede: 12A
       hede_volume: c5h
@@ -51335,8 +51631,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '387'
         - '376'
+        - '387'
       hede: '18'
       hede_volume: c5h
       schou:
@@ -51477,8 +51773,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '340'
         - '340.2'
+        - '340'
       hede: '2'
       hede_volume: c5h
       schou:
@@ -52498,8 +52794,8 @@ coins:
       km:
         - '415.1'
         - '415.3'
-        - '415'
         - '415.2'
+        - '415'
       hede:
         - 31A
         - 31B
@@ -52764,8 +53060,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '420'
         - '419'
+        - '420'
       hede: '33'
       hede_volume: c5h
       sieg: '123'
@@ -55101,8 +55397,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '322'
         - '349'
+        - '322'
       hede:
         - '61'
         - 61A
@@ -55373,8 +55669,8 @@ coins:
     catalog:
       km:
         - '317'
-        - '318'
         - '362'
+        - '318'
       hede:
         - '63'
         - 63A
@@ -55879,8 +56175,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '330'
         - '370'
+        - '330'
       hede:
         - 67A
         - 67B
@@ -56418,8 +56714,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '342'
         - '342.1'
+        - '342'
       hede: '70'
       hede_volume: c5h
       schou:
@@ -56583,8 +56879,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '351'
         - '351.1'
+        - '351'
       hede: '72'
       hede_volume: c5h
       schou: 11-15
@@ -57091,8 +57387,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '367'
         - '367.1'
+        - '367'
       hede: '78'
       hede_volume: c5h
       schou: 19-21
@@ -57289,8 +57585,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '377'
         - '377.1'
+        - '377'
       hede: '80'
       hede_volume: c5h
       schou:
@@ -58036,8 +58332,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '380'
         - '380.1'
+        - '380'
       hede: '87'
       hede_volume: c5h
       schou: 41-42
@@ -58271,11 +58567,11 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '401'
         - '401.2'
-        - '401.3'
         - '401.1'
+        - '401.3'
         - '401.4'
+        - '401'
       hede:
         - 90A
         - 90B
@@ -58782,10 +59078,10 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
+        - '404.4'
         - '404.1'
         - '404.2'
         - '404.3'
-        - '404.4'
         - '404'
       hede:
         - 95A
@@ -61435,8 +61731,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '798.1'
         - '798.2'
+        - '798.1'
         - '798'
       hede:
         - 13A
@@ -62191,8 +62487,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '794.1'
         - '794.2'
+        - '794.1'
         - '794'
       hede:
         - '17'
@@ -62336,9 +62632,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
+        - '793.2'
         - '793.1'
         - '793'
-        - '793.2'
       hede:
         - '18'
         - 18A
@@ -63159,8 +63455,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '775'
         - '775.1'
+        - '775'
       hede: 5A
       hede_volume: c9h
       schou: '2'
@@ -63474,8 +63770,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '791.1'
         - '791.2'
+        - '791.1'
         - '791'
       hede:
         - 8A
@@ -66819,8 +67115,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '269.2'
         - '269.3'
+        - '269.2'
         - '269'
       hede:
         - '107'
@@ -66975,10 +67271,10 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '259'
         - '259.2'
         - '259.3'
         - '259.1'
+        - '259'
       hede:
         - '108'
         - 108A
@@ -67165,8 +67461,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '198'
         - '199'
+        - '198'
       hede:
         - '10'
         - 10A
@@ -67556,9 +67852,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '274'
         - '285'
         - '275'
+        - '274'
       hede:
         - 113A
         - 113B
@@ -69660,9 +69956,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
+        - '305.1'
         - '305.2'
         - '305'
-        - '305.1'
       hede:
         - 121A
         - 121B
@@ -79901,9 +80197,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '189'
         - '189.2'
         - '189.1'
+        - '189'
       hede:
         - '130'
         - 130A
@@ -80847,8 +81143,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '249'
         - '249.1'
+        - '249'
       hede: '132'
       hede_volume: f3h
       sieg:
@@ -82964,8 +83260,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '265.2'
         - '265.1'
+        - '265.2'
         - '265'
       hede:
         - 24A
@@ -84462,8 +84758,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '264.2'
         - '264.1'
+        - '264.2'
         - '264'
       hede:
         - 40A
@@ -84792,9 +85088,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '206'
-        - '206.2'
         - '206.1'
+        - '206.2'
+        - '206'
       hede:
         - 43A
         - 43B
@@ -85430,8 +85726,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '168'
         - '169'
+        - '168'
       hede:
         - '50'
         - 50A
@@ -86347,8 +86643,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '213'
         - '239'
+        - '213'
       hede:
         - 58A
         - 58AB
@@ -87472,9 +87768,9 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '262'
-        - '292'
         - '287'
+        - '292'
+        - '262'
       hede:
         - 68A
         - 68B
@@ -89130,8 +89426,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '301'
         - '307'
+        - '301'
       hede:
         - 80A
         - 80B
@@ -90069,11 +90365,11 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '186'
-        - '187'
         - '186.2'
         - '186.1'
         - '186.3'
+        - '186'
+        - '187'
       hede:
         - 87A
         - 87AB
@@ -90752,8 +91048,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '192.2'
         - '192.3'
+        - '192.2'
         - '192.1'
       hede:
         - '91'
@@ -91190,16 +91486,16 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '194'
-        - '194.1'
-        - '194.2'
-        - 194.2a
         - 194.2b
-        - '194.4'
-        - '194.5'
         - 194.4a
         - 194.1b
         - 194.1a
+        - '194.2'
+        - '194.5'
+        - '194.1'
+        - '194.4'
+        - 194.2a
+        - '194'
       hede:
         - '95'
         - 95A
@@ -93558,8 +93854,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '486'
         - '488'
+        - '486'
       hede:
         - '15'
         - '17'
@@ -95222,8 +95518,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '479.2'
         - '479.1'
+        - '479.2'
       hede: '38'
       hede_volume: f4h
       schou: 8-10
@@ -95375,8 +95671,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '503'
         - '523'
+        - '503'
       hede: '39'
       hede_volume: f4h
       schou:
@@ -95869,8 +96165,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '504'
         - '495'
+        - '504'
       hede:
         - 43A
         - 43B
@@ -97144,8 +97440,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '512'
         - '512.1'
+        - '512'
       hede: '55'
       hede_volume: f4h
       schou: '15'
@@ -97678,8 +97974,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '568.2'
         - '568.1'
+        - '568.2'
         - '567'
         - '568'
       hede:
@@ -98805,12 +99101,12 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '587.2'
-        - '587.1'
-        - '587.5'
-        - '587.7'
         - '587.4'
+        - '587.7'
+        - '587.5'
+        - '587.2'
         - '587.6'
+        - '587.1'
         - '587.3'
         - '587'
       hede:
@@ -99391,8 +99687,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '599'
         - '601'
+        - '599'
       hede:
         - '27'
         - 27A
@@ -99726,8 +100022,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '559'
         - '560'
+        - '559'
       hede:
         - '29'
         - 29A
@@ -101170,8 +101466,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '548'
         - '550'
+        - '548'
       hede:
         - 3A
         - 3B
@@ -101729,8 +102025,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '556'
         - '554'
+        - '556'
       hede: '6'
       hede_volume: f5h
       schou:
@@ -102140,8 +102436,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '673'
         - '673.1'
+        - '673'
       hede: '11'
       hede_volume: f6h
       schou: '3'
@@ -102270,8 +102566,8 @@ coins:
     catalog:
       km:
         - '690.2'
-        - '690'
         - '690.1'
+        - '690'
       hede:
         - '29'
         - 29B
@@ -103988,8 +104284,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '136'
         - '136.1'
+        - '136'
       numista: '107716'
     metal: silver
     metal_verified: true
@@ -104330,8 +104626,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '257'
         - '257.1'
+        - '257'
       numista: '111341'
     metal: silver
     metal_verified: true
@@ -105534,8 +105830,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '191'
         - '191.1'
+        - '191'
       numista: '201276'
     metal: silver
     metal_verified: true
@@ -105710,8 +106006,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '283'
         - '283.1'
+        - '283'
       numista: '211450'
     metal: silver
     metal_verified: true
@@ -106604,8 +106900,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '818'
         - '818.1'
+        - '818'
       numista: '5568'
       others:
         - DNF# 4.4
@@ -106909,8 +107205,8 @@ coins:
     mint: Kopenhagen
     catalog:
       km:
-        - '579'
         - '579.1'
+        - '579'
       numista: '92859'
       sieg: '3'
       hede: '36'
@@ -119184,247 +119480,6 @@ coins:
     composed_of:
       - kmk-190283
       - kmk-352987
-  - id: c-3a3be2a3
-    class_id: c-3a3be2a3
-    label: unified-kmk-190290
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 6 Skilling Danske
-    year_first: 1628
-    year_last: 1629
-    year_ranges:
-      -   - 1628
-          - 1629
-    year_label: 1628-1629
-    ruler: Christian IV
-    catalog:
-      hede:
-        - '139'
-        - 139A
-        - 139B
-      schou:
-        - '34'
-        - '43'
-        - '49'
-        - '50'
-        - '51'
-        - '53'
-        - '54'
-        - '56'
-        - '57'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.5
-        source: kmk
-      - value: 1.51
-        source: kmk
-      - value: 1.52
-        source: kmk
-      - value: 1.53
-        source: kmk
-      - value: 1.54
-        source: kmk
-      - value: 1.55
-        source: kmk
-      - value: 1.56
-        source: kmk
-      - value: 1.57
-        source: kmk
-      - value: 1.58
-        source: kmk
-      - value: 1.59
-        source: kmk
-      - value: 1.6
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190290
-        ref: KMM 190290 (Inv. FP 3108.994)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190301
-        ref: KMM 190301 (Inv. FP 3108.983)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190305
-        ref: KMM 190305 (Inv. FP 3108.979)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190313
-        ref: KMM 190313 (Inv. FP 3108.971)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190316
-        ref: KMM 190316 (Inv. FP 3108.968)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190318
-        ref: KMM 190318 (Inv. FP 3108.966)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190320
-        ref: KMM 190320 (Inv. FP 3108.964)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190321
-        ref: KMM 190321 (Inv. FP 3108.963)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190322
-        ref: KMM 190322 (Inv. FP 3108.962)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190324
-        ref: KMM 190324 (Inv. FP 3108.960)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190326
-        ref: KMM 190326 (Inv. FP 3108.958)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190330
-        ref: KMM 190330 (Inv. FP 3108.954)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190331
-        ref: KMM 190331 (Inv. FP 3108.953)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190332
-        ref: KMM 190332 (Inv. FP 3108.952)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190333
-        ref: KMM 190333 (Inv. FP 3108.951)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190335
-        ref: KMM 190335 (Inv. FP 3108.949)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190336
-        ref: KMM 190336 (Inv. FP 3108.948)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190338
-        ref: KMM 190338 (Inv. FP 3108.946)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190339
-        ref: KMM 190339 (Inv. FP 3108.945)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190340
-        ref: KMM 190340 (Inv. FP 3108.944)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190341
-        ref: KMM 190341 (Inv. FP 3108.943)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190342
-        ref: KMM 190342 (Inv. FP 3108.942)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190343
-        ref: KMM 190343 (Inv. FP 3108.941)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190344
-        ref: KMM 190344 (Inv. FP 3108.940)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190345
-        ref: KMM 190345 (Inv. FP 3108.939)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190346
-        ref: KMM 190346 (Inv. FP 3108.938)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190306
-        ref: KMM 190306 (Inv. FP 3108.978)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190323
-        ref: KMM 190323 (Inv. FP 3108.961)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190328
-        ref: KMM 190328 (Inv. FP 3108.956)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190337
-        ref: KMM 190337 (Inv. FP 3108.947)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190347
-        ref: KMM 190347 (Inv. FP 3108.937)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190364
-        ref: KMM 190364 (Inv. FP 3108.920)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190394
-        ref: KMM 190394 (Inv. FP 3108.890)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190395
-        ref: KMM 190395 (Inv. FP 3108.889)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190403
-        ref: KMM 190403 (Inv. FP 3108.881)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190412
-        ref: KMM 190412 (Inv. FP 3108.872)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190426
-        ref: KMM 190426 (Inv. FP 3108.858)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190443
-        ref: KMM 190443 (Inv. FP 3108.841)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190487
-        ref: KMM 190487 (Inv. FP 3108.797)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190488
-        ref: KMM 190488 (Inv. FP 3108.796)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191160
-        ref: KMM 191160 (Inv. FP 3108.1124)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191168
-        ref: KMM 191168 (Inv. FP 3108.1116)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191196
-        ref: KMM 191196 (Inv. FP 3108.1088)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191221
-        ref: KMM 191221 (Inv. FP 3108.1063)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191228
-        ref: KMM 191228 (Inv. FP 3108.1056)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191262
-        ref: KMM 191262 (Inv. FP 3108.1022)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191267
-        ref: KMM 191267 (Inv. FP 3108.1017)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191276
-        ref: KMM 191276 (Inv. FP 3108.1008)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693168
-        ref: KMM 693168 (Inv. FP 280.11)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693169
-        ref: KMM 693169 (Inv. FP 280.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693171
-        ref: KMM 693171 (Inv. FP 280.8)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190290
-      - kmk-190301
-      - kmk-190305
-      - kmk-190306
-      - kmk-190323
-      - kmk-190328
-      - kmk-190337
-      - kmk-190347
-      - kmk-190364
-      - kmk-190394
-      - kmk-190395
-      - kmk-190403
-      - kmk-190412
-      - kmk-190426
-      - kmk-190443
-      - kmk-190487
-      - kmk-190488
-      - kmk-191160
-      - kmk-191168
-      - kmk-191196
-      - kmk-191221
-      - kmk-191228
-      - kmk-191262
-      - kmk-191267
-      - kmk-191276
-      - kmk-693168
-      - kmk-693169
-      - kmk-693171
   - id: c-7af45be2
     class_id: c-7af45be2
     label: unified-kmk-190559
@@ -119633,60 +119688,6 @@ coins:
       - kmk-714886
       - kmk-714901
       - kmk-714903
-  - id: c-2ec7e040
-    class_id: c-2ec7e040
-    label: unified-kmk-191245
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 6 Skilling Danske
-    year_first: 1628
-    year_last: 1629
-    year_ranges:
-      -   - 1628
-          - 1629
-    year_label: 1628-1629
-    ruler: Christian IV
-    catalog:
-      hede:
-        - 140A
-        - 140B
-      schou:
-        - '59'
-        - '60'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.32
-        source: kmk
-      - value: 1.55
-        source: kmk
-      - value: 1.58
-        source: kmk
-      - value: 1.6
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191245
-        ref: KMM 191245 (Inv. FP 3108.1039)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191253
-        ref: KMM 191253 (Inv. FP 3108.1031)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191257
-        ref: KMM 191257 (Inv. FP 3108.1027)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693167
-        ref: KMM 693167 (Inv. FP 280.12)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-191245
-      - kmk-191253
-      - kmk-191257
-      - kmk-693167
   - id: c-64167b10
     class_id: c-64167b10
     label: unified-kmk-192320
@@ -130074,53 +130075,6 @@ coins:
     composed_of:
       - denmark-numismaster-65449
       - ngc-1050180
-  - id: c-76fc8d82
-    class_id: c-76fc8d82
-    label: unified-ngc-1050241
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1776
-    year_last: 1780
-    year_ranges:
-      -   - 1776
-          - 1776
-      -   - 1780
-          - 1780
-    year_label: 1776, 1780
-    ruler: Frederik V
-    catalog:
-      km: '632.1'
-      dav: '1308'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 28.893
-        source: ngc
-      - value: 28.893
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65491
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-632.1-1776hsk-1780hsk-cuid-1050241-duid-1237490
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65491
-      - ngc-1050241
   - id: c-11c97151
     class_id: c-11c97151
     label: unified-ngc-1050243
@@ -130394,55 +130348,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050288
-  - id: c-cae6d0d0
-    class_id: c-cae6d0d0
-    label: unified-ngc-1050292
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1776
-    year_last: 1780
-    year_ranges:
-      -   - 1776
-          - 1780
-    year_label: 1776-1780
-    ruler: Christian VII
-    catalog:
-      km:
-        - '632.2'
-        - '632'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.89
-        source: ucoin
-      - value: 28.893
-        source: ngc
-    diameter_mm:
-      - value: 41.5
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1776-1780/?tid=79167
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-632.2-1776-cuid-1050292-duid-1237492
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-tid-79167
-      - ngc-1050292
   - id: c-7bc205d5
     class_id: c-7bc205d5
     label: unified-ngc-1050293
@@ -131838,63 +131743,6 @@ coins:
       - denmark-numismaster-65104
       - dk-tid-96999
       - ngc-1050582
-  - id: c-6b367cf8
-    class_id: c-6b367cf8
-    label: unified-ngc-1050583
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 6 Skilling
-    year_first: 1628
-    year_last: 1629
-    year_ranges:
-      -   - 1628
-          - 1629
-    year_label: 1628-1629
-    ruler: Christian IV
-    catalog:
-      km: '110'
-      hede: 139B
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.781
-        source: ngc
-      - value: 0.781
-        source: numismaster
-    weight_rough_g:
-      - value: 11.711
-        source: ngc
-      - value: 11.711
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65111
-        ref: NumisMaster
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191087
-        ref: KMM 191087 (Inv. FP 3108.1197)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191088
-        ref: KMM 191088 (Inv. FP 3108.1196)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191089
-        ref: KMM 191089 (Inv. FP 3108.1195)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-6-skilling-km-110-1628-1629-cuid-1050583-duid-1236681
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65111
-      - kmk-191087
-      - kmk-191088
-      - kmk-191089
-      - ngc-1050583
   - id: c-a8799ac9
     class_id: c-a8799ac9
     label: unified-ngc-1050584
@@ -136251,76 +136099,6 @@ coins:
       - denmark-numismaster-65067
       - dk-tid-99064
       - ngc-1069019
-  - id: c-1545e0f9
-    class_id: c-1545e0f9
-    label: unified-ngc-1069021
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 6 Skilling
-    year_first: 1627
-    year_last: 1629
-    year_ranges:
-      -   - 1627
-          - 1629
-    year_label: 1627-1629
-    ruler: Christian IV
-    catalog:
-      km: '109'
-      hede: 140B
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.781
-        source: ngc
-      - value: 0.781
-        source: numismaster
-    weight_rough_g:
-      - value: 11.711
-        source: ngc
-      - value: 11.711
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65108
-        ref: NumisMaster
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191044
-        ref: KMM 191044 (Inv. FP 3108.1240)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191045
-        ref: KMM 191045 (Inv. FP 3108.1239)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/191046
-        ref: KMM 191046 (Inv. FP 3108.1238)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575859
-        ref: KMM 575859 (Inv. FP 533.51)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575863
-        ref: KMM 575863 (Inv. FP 533.47)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575864
-        ref: KMM 575864 (Inv. FP 533.46)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575865
-        ref: KMM 575865 (Inv. FP 533.45)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-6-skilling-km-109-1627-1629-cuid-1069021-duid-1236676
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65108
-      - kmk-191044
-      - kmk-191045
-      - kmk-191046
-      - kmk-575859
-      - ngc-1069021
   - id: c-4d72f4c2
     class_id: c-4d72f4c2
     label: unified-ngc-1069027

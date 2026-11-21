@@ -2,7 +2,7 @@
 # Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1405 per-source seed entries.
+# Input: 1409 per-source seed entries.
 # Output: 255 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -446,11 +446,12 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '641.2'
-        - '641.3'
-        - '641.1'
-        - '641.4'
-        - '641'
+        dk:
+          - '641.1'
+          - '641.3'
+          - '641.4'
+          - '641.2'
+          - '641'
       bruun_collection_id:
         - '7837'
         - '7838'
@@ -701,7 +702,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '650'
+      km:
+        dk: '650'
       bruun_collection_id:
         - '7910'
         - '7912'
@@ -847,7 +849,8 @@ coins:
     mintmaster: Johan Friedrich Freund (FF)
     mint: Altona
     catalog:
-      km: '697'
+      km:
+        dk: '697'
       bruun_collection_id: '8065'
       sieg: '34'
       schou: '1'
@@ -952,7 +955,8 @@ coins:
     mintmaster: Johan Friedrich Freund (FF)
     mint: Altona
     catalog:
-      km: '713.1'
+      km:
+        dk: '713.1'
       bruun_collection_id:
         - '8105'
         - '8111'
@@ -1878,7 +1882,8 @@ coins:
     mintmaster: Albert Dionis
     mint: Glückstadt
     catalog:
-      km: '14'
+      km:
+        dk: '14'
       hede: '160'
       hede_volume: c4h
       schou:
@@ -3252,8 +3257,9 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '6.2'
-        - '6.1'
+        dk:
+          - '6.2'
+          - '6.1'
       hede: '169'
       hede_volume: c4h
       schou: 80-84
@@ -5967,7 +5973,8 @@ coins:
       - Glückstadt
       - Kopenhagen
     catalog:
-      km: '358'
+      km:
+        dk: '358'
       hede:
         - '74'
         - 74A
@@ -6107,7 +6114,8 @@ coins:
     mintmaster: Hans Schievern Knoph
     mint: Rethwisch
     catalog:
-      km: '604'
+      km:
+        dk: '604'
       hede: '10'
       hede_volume: c7h
       schou: '11'
@@ -6219,10 +6227,12 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '623'
-        - '634'
-        - '632'
-        - '632.2'
+        dk:
+          - '632.1'
+          - '632.2'
+          - '623'
+          - '634'
+          - '632'
       hede:
         - 11A
         - 11B
@@ -6253,8 +6263,8 @@ coins:
         - '90574'
       dav:
         - EC III 1307
-        - EC III 1309
         - EC III 1308
+        - EC III 1309
       others:
         - DNF# 17.4
         - DNF# 17.7
@@ -6280,6 +6290,12 @@ coins:
         specimen: dk-hede-c7h11d
       - value: 0.875
         source: ngc
+        specimen: ngc-1050241
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050292
+      - value: 0.875
+        source: ngc
         specimen: ngc-1050696
       - value: 0.875
         source: ngc
@@ -6287,6 +6303,9 @@ coins:
       - value: 0.875
         source: numismaster
         specimen: denmark-numismaster-65490
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65491
       - value: 0.875
         source: numismaster
         specimen: denmark-numismaster-65492
@@ -6307,6 +6326,9 @@ coins:
         specimen: dk-tid-79166
       - value: 0.875
         source: ucoin
+        specimen: dk-tid-79167
+      - value: 0.875
+        source: ucoin
         specimen: dk-tid-79168
     weight_rough_g:
       - value: 28.86
@@ -6314,6 +6336,9 @@ coins:
       - value: 28.89
         source: ucoin
         specimen: dk-tid-79166
+      - value: 28.89
+        source: ucoin
+        specimen: dk-tid-79167
       - value: 28.89
         source: ucoin
         specimen: dk-tid-79168
@@ -6331,6 +6356,12 @@ coins:
         specimen: dk-hede-c7h11d
       - value: 28.893
         source: ngc
+        specimen: ngc-1050241
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050292
+      - value: 28.893
+        source: ngc
         specimen: ngc-1050696
       - value: 28.893
         source: ngc
@@ -6338,6 +6369,9 @@ coins:
       - value: 28.893
         source: numismaster
         specimen: denmark-numismaster-65490
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-65491
       - value: 28.893
         source: numismaster
         specimen: denmark-numismaster-65492
@@ -6371,6 +6405,9 @@ coins:
       - value: 41.0
         source: numista
         specimen: dk-numista-90574
+      - value: 41.5
+        source: ucoin
+        specimen: dk-tid-79167
     uncertainty:
       metal:
         - kind: inferred
@@ -6388,6 +6425,9 @@ coins:
     sources:
       - type: literature
         url: https://numismaster.com/MC_65490
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65491
         ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_65492
@@ -6417,8 +6457,17 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1771/?tid=79166
         ref: ucoin
       - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1776-1780/?tid=79167
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1777/?tid=79168
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-632.1-1776hsk-1780hsk-cuid-1050241-duid-1237490
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-632.2-1776-cuid-1050292-duid-1237492
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-623-1771-cuid-1050696-duid-1237489
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -6435,6 +6484,7 @@ coins:
       unit_raw: speciedalere
     composed_of:
       - denmark-numismaster-65490
+      - denmark-numismaster-65491
       - denmark-numismaster-65492
       - denmark-numismaster-65493
       - dk-bruun-7757
@@ -6447,7 +6497,10 @@ coins:
       - dk-numista-90573
       - dk-numista-90574
       - dk-tid-79166
+      - dk-tid-79167
       - dk-tid-79168
+      - ngc-1050241
+      - ngc-1050292
       - ngc-1050696
       - ngc-1050723
   - id: c-3cd2a31c
@@ -6469,9 +6522,10 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '633.2'
-        - '633'
-        - '633.1'
+        dk:
+          - '633.1'
+          - '633.2'
+          - '633'
       hede:
         - '12'
         - 12B
@@ -6567,9 +6621,10 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '651.1'
-        - '654'
-        - '651'
+        dk: '654'
+        sh:
+          - '651.1'
+          - '651'
       hede:
         - '13'
         - 13A
@@ -6729,7 +6784,8 @@ coins:
     mintmaster: Michael Flor (MF)
     mint: Altona
     catalog:
-      km: '652'
+      km:
+        dk: '652'
       hede: '15'
       hede_volume: c7h
       schou:
@@ -6920,8 +6976,8 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '645'
-        - '260'
+        dk: '645'
+        nor: '260'
       hede: '25'
       hede_volume: c7h
       schou: '7'
@@ -7322,10 +7378,11 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '631'
-        - '631.2'
-        - '631.1'
-        - '631.3'
+        dk:
+          - '631.2'
+          - '631.1'
+          - '631.3'
+          - '631'
       hede:
         - '33'
         - 33A
@@ -7515,8 +7572,9 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '660'
-        - '660.2'
+        dk:
+          - '660.2'
+          - '660'
       hede: '35'
       hede_volume: c7h
       schou:
@@ -7582,7 +7640,8 @@ coins:
     ruler: Christian VII
     mint: Altona
     catalog:
-      km: '661'
+      km:
+        dk: '661'
       hede: '36'
       hede_volume: c7h
       schou: '2'
@@ -7669,16 +7728,17 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '616.6'
-        - '616.1'
-        - '616.3'
-        - 245a
-        - '616.8'
-        - '616.2'
-        - '616.5'
-        - '616.7'
-        - '616.4'
-        - '616'
+        dk:
+          - '616.8'
+          - '616.2'
+          - '616.3'
+          - '616.6'
+          - '616.5'
+          - '616.1'
+          - '616.7'
+          - '616.4'
+          - '616'
+        nor: 245a
       hede:
         - '37'
         - 37d
@@ -7886,10 +7946,11 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '615'
-        - '615.3'
-        - '615.2'
-        - '615.1'
+        dk:
+          - '615.3'
+          - '615.2'
+          - '615.1'
+          - '615'
       hede: '38'
       hede_volume: c7h
       schou: 22-23
@@ -9392,7 +9453,8 @@ coins:
       - Kopenhagen
       - Rethwisch
     catalog:
-      km: '603'
+      km:
+        dk: '603'
       hede: '6'
       hede_volume: c7h
       schou:
@@ -9499,7 +9561,8 @@ coins:
     mintmaster: Hans Schierven Knoph (HSK)
     mint: Rethwisch
     catalog:
-      km: '607'
+      km:
+        dk: '607'
       hede: '7'
       hede_volume: c7h
       schou: '1'
@@ -9602,7 +9665,8 @@ coins:
     mintmaster: Hans Schierven Knoph
     mint: Rethwisch
     catalog:
-      km: '608'
+      km:
+        dk: '608'
       hede: '8'
       hede_volume: c7h
       schou: 2-6
@@ -9724,8 +9788,9 @@ coins:
     mint: Rethwisch
     catalog:
       km:
-        - '606'
-        - '605'
+        dk:
+          - '605'
+          - '606'
       hede:
         - 9A
         - 9B
@@ -9906,9 +9971,10 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '726'
-        - '726.2'
-        - '726.1'
+        dk:
+          - '726.2'
+          - '726.1'
+          - '726'
       hede:
         - 11A
         - 11B
@@ -9994,8 +10060,9 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '723'
-        - '724'
+        dk:
+          - '723'
+          - '724'
       hede: 13ab
       hede_volume: c8h
       sieg:
@@ -10115,10 +10182,11 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '722.1'
-        - '722.2'
-        - '722.3'
-        - '722'
+        dk:
+          - '722.2'
+          - '722.3'
+          - '722.1'
+          - '722'
       hede:
         - '1'
         - 1A
@@ -10329,7 +10397,8 @@ coins:
     mintmaster: Johan Friedrich Freund (FF)
     mint: Altona
     catalog:
-      km: '730'
+      km:
+        dk: '730'
       hede: '2'
       hede_volume: c8h
       schou:
@@ -10442,11 +10511,12 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '720.1'
-        - '720.2'
-        - '741'
-        - '720'
-        - '720.3'
+        dk:
+          - '720.1'
+          - '720.2'
+          - '741'
+          - '720.3'
+          - '720'
       hede:
         - 3A
         - 3B
@@ -10787,9 +10857,10 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '735.1'
-        - '735.2'
-        - '735'
+        dk:
+          - '735.2'
+          - '735.1'
+          - '735'
       hede:
         - 4A
         - 4B
@@ -10970,7 +11041,8 @@ coins:
     mintmaster: Johan Friedrich Freund (FF)
     mint: Altona
     catalog:
-      km: '734'
+      km:
+        dk: '734'
       hede:
         - '5'
         - 5A
@@ -11093,7 +11165,8 @@ coins:
     ruler: Christian VIII
     mint: Kopenhagen
     catalog:
-      km: '733'
+      km:
+        dk: '733'
       hede: '6'
       hede_volume: c8h
       schou:
@@ -11197,7 +11270,8 @@ coins:
     ruler: Christian VIII
     mint: Altona
     catalog:
-      km: '737'
+      km:
+        dk: '737'
       hede: '7'
       hede_volume: c8h
       schou: '7'
@@ -11283,10 +11357,11 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '721.1'
-        - '721.3'
-        - '721'
-        - '721.2'
+        dk:
+          - '721.2'
+          - '721.3'
+          - '721.1'
+          - '721'
       hede:
         - '8'
         - 8A
@@ -11488,8 +11563,9 @@ coins:
     mint: Altona
     catalog:
       km:
-        - A730
-        - '729'
+        dk:
+          - '729'
+          - A730
       hede:
         - '9'
         - 9A
@@ -11899,9 +11975,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '40.1'
-        - '40.2'
-        - '40'
+        dk:
+          - '40.2'
+          - '40.1'
+          - '40'
       hede:
         - 145A
         - 145B
@@ -12483,10 +12560,11 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '54'
-        - '54.1'
-        - '54.2'
-        - '54.3'
+        dk:
+          - '54.1'
+          - '54.2'
+          - '54.3'
+          - '54'
       hede: '152'
       hede_volume: f3h
       schou:
@@ -12634,9 +12712,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - A43
-        - B43
-        - '95'
+        dk:
+          - B43
+          - A43
+        sh: '95'
       hede:
         - 153A
         - 153B
@@ -13643,7 +13722,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '672'
+      km:
+        dk: '672'
       hede: '14'
       hede_volume: f6h
       schou: '6'
@@ -13755,7 +13835,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '671'
+      km:
+        dk: '671'
       hede:
         - '15'
         - 15A
@@ -13927,7 +14008,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '680'
+      km:
+        dk: '680'
       hede: '17'
       hede_volume: f6h
       schou: '7'
@@ -14055,7 +14137,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: Tn3
+      km:
+        dk: Tn3
       hede: '18'
       hede_volume: f6h
       schou: '1'
@@ -14132,8 +14215,8 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - Tn2
-        - '283'
+        dk: Tn2
+        nor: '283'
       hede: '19'
       hede_volume: f6h
       schou: '4'
@@ -14238,7 +14321,8 @@ coins:
     mintmaster: Johan Friedrich Freund (IFF)
     mint: Altona
     catalog:
-      km: '698'
+      km:
+        dk: '698'
       hede: '2'
       hede_volume: f6h
       sieg: '31'
@@ -14326,8 +14410,8 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - Tn1
-        - '282'
+        dk: Tn1
+        nor: '282'
       hede: '20'
       hede_volume: f6h
       schou: 5-6
@@ -14440,7 +14524,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: Tn6
+      km:
+        dk: Tn6
       hede: '21'
       hede_volume: f6h
       schou: '1'
@@ -14535,7 +14620,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: Tn5
+      km:
+        dk: Tn5
       hede: '22'
       hede_volume: f6h
       schou: '2'
@@ -14631,7 +14717,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: Tn4
+      km:
+        dk: Tn4
       hede: '23'
       hede_volume: f6h
       schou: '3'
@@ -14732,12 +14819,13 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '683.1'
-        - '683.2'
-        - '683.4'
-        - '683'
-        - '683.5'
-        - '683.3'
+        dk:
+          - '683.4'
+          - '683.5'
+          - '683.3'
+          - '683.1'
+          - '683.2'
+          - '683'
       hede:
         - '24'
         - 24A
@@ -14995,7 +15083,8 @@ coins:
     mintmaster: Johan Friedrich Freund (IFF)
     mint: Altona
     catalog:
-      km: '693'
+      km:
+        dk: '693'
       hede: '25'
       hede_volume: f6h
       sieg: '29'
@@ -15101,11 +15190,12 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '695.1'
-        - '695.4'
-        - '695'
-        - '695.2'
-        - '695.3'
+        dk:
+          - '695.2'
+          - '695.3'
+          - '695.1'
+          - '695.4'
+          - '695'
       hede:
         - '26'
         - 26A
@@ -15394,13 +15484,14 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '696.1'
-        - '706.2'
-        - '706.1'
-        - '696'
-        - '706'
-        - '706.3'
-        - '696.2'
+        dk:
+          - '696.1'
+          - '706.3'
+          - '696.2'
+          - '706.1'
+          - '706.2'
+          - '696'
+          - '706'
       hede:
         - 27A
         - 27B
@@ -15682,7 +15773,8 @@ coins:
     mintmaster: Johann Friedrich Freund (FF)
     mint: Altona
     catalog:
-      km: '700'
+      km:
+        dk: '700'
       hede: '3'
       hede_volume: f6h
       schou: '1'
@@ -16177,8 +16269,8 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '699'
-        - '701'
+        dk: '699'
+        sh: '701'
       hede:
         - 4A
         - 4B
@@ -16320,7 +16412,8 @@ coins:
     ruler: Frederik VI
     mint: Altona
     catalog:
-      km: '664'
+      km:
+        dk: '664'
       hede: '6'
       hede_volume: f6h
       sieg: '7'
@@ -16386,7 +16479,8 @@ coins:
     ruler: Frederik VI
     mint: Altona
     catalog:
-      km: '662'
+      km:
+        dk: '662'
       hede: '7'
       hede_volume: f6h
       schou:
@@ -16458,8 +16552,9 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '663'
-        - '670'
+        dk:
+          - '670'
+          - '663'
       hede: '9'
       hede_volume: f6h
       schou:
@@ -16563,9 +16658,10 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '758.1'
-        - '758.2'
-        - '758'
+        dk:
+          - '758.1'
+          - '758.2'
+          - '758'
       hede:
         - '11'
         - 11A
@@ -16737,8 +16833,9 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '754'
-        - '756'
+        dk:
+          - '754'
+          - '756'
       hede:
         - 12A
         - 12B
@@ -16866,7 +16963,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '753'
+      km:
+        dk: '753'
       hede: '13'
       hede_volume: f7h
       schou:
@@ -16949,7 +17047,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '763'
+      km:
+        dk: '763'
       hede:
         - '16'
         - 16A
@@ -17032,7 +17131,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '767'
+      km:
+        dk: '767'
       hede:
         - 17A
         - 17B
@@ -17119,11 +17219,12 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '750.1'
-        - '750.2'
-        - '750.3'
-        - '750'
-        - '750.4'
+        dk:
+          - '750.3'
+          - '750.2'
+          - '750.4'
+          - '750.1'
+          - '750'
       hede:
         - 1A
         - 1B
@@ -17419,9 +17520,10 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '744.1'
-        - '744.2'
-        - '744'
+        dk:
+          - '744.2'
+          - '744.1'
+          - '744'
       hede:
         - 4A
         - 4B
@@ -17598,10 +17700,11 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '761.2'
-        - '761.1'
-        - '761.3'
-        - '761'
+        dk:
+          - '761.3'
+          - '761.2'
+          - '761.1'
+          - '761'
       hede:
         - 6A
         - 6B
@@ -17824,9 +17927,10 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '760.1'
-        - '760.2'
-        - '760'
+        dk:
+          - '760.2'
+          - '760.1'
+          - '760'
       hede:
         - '8'
         - 8A
@@ -18193,9 +18297,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '26'
-        - '26.1'
-        - '26.2'
+        dk:
+          - '26'
+          - '26.1'
+          - '26.2'
       numista:
         - '109009'
         - '154260'
@@ -18371,9 +18476,10 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '640'
-        - '640.1'
-        - '640.2'
+        dk:
+          - '640.2'
+          - '640'
+          - '640.1'
       numista: '131730'
       dav: EC III 1310
       sieg: '18.2'
@@ -18604,7 +18710,8 @@ coins:
     mintmaster: IFF
     mint: Altona
     catalog:
-      km: '710'
+      km:
+        dk: '710'
       numista: '24422'
     metal: billon
     metal_verified: true
@@ -18945,7 +19052,8 @@ coins:
     ruler: Frederik VI
     mint: Altona
     catalog:
-      km: '712'
+      km:
+        dk: '712'
       numista: '83071'
     metal: billon
     metal_verified: true
@@ -19037,7 +19145,8 @@ coins:
     ruler: Frederik VI
     mint: Altona
     catalog:
-      km: '711'
+      km:
+        dk: '711'
       numista: '97292'
     metal: billon
     metal_verified: true
@@ -20396,11 +20505,12 @@ coins:
     ruler: Christian IV
     catalog:
       km:
-        - '5.4'
-        - '5.2'
-        - '5.3'
-        - '5.1'
-        - '5.5'
+        dk:
+          - '5.4'
+          - '5.2'
+          - '5.3'
+          - '5.1'
+          - '5.5'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -20554,7 +20664,8 @@ coins:
     year_label: '1620'
     ruler: Christian IV
     catalog:
-      km: '7'
+      km:
+        dk: '7'
     metal: silver
     metal_verified: true
     fineness_verified: true
