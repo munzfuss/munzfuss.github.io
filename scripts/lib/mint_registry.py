@@ -997,6 +997,8 @@ _ISSUER_REGISTRY: dict[str, str | None] = {
     # ──────────────────────── Oldenburg ─────────────────────────────────
     "county of oldenburg (german states)": "grafschaft_oldenburg",
     "county of oldenburg": "grafschaft_oldenburg",
+    # Numista API v3 `issuer.name` form (type 314949, 2026-11-21).
+    "oldenburg, county of": "grafschaft_oldenburg",
     "grand duchy of oldenburg (german states)": "grafschaft_oldenburg",
 
     # ───────────────────── Osnabrück / Bremen-Verden ───────────────────
