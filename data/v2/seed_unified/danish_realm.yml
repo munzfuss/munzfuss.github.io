@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-20 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8318 per-source seed entries.
-# Output: 1574 unified entries (one per physical coin).
+# Output: 1572 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-20'
+generated_at: '2026-11-21'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -3472,98 +3472,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-8225
-  - id: c-4541658a
-    class_id: c-4541658a
-    label: unified-dk-bruun-8237
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 16 Skilling Rigsmønt
-    year_first: 1856
-    year_last: 1858
-    year_ranges:
-      -   - 1856
-          - 1858
-    year_label: 1856-1858
-    ruler: Frederik VII
-    mintmaster: Georg Vilhelm Svendsen (VS)
-    mint: Kopenhagen
-    catalog:
-      km: '765'
-      hede: 10B
-      sieg: '11'
-      bruun_collection_id:
-        - '8237'
-        - '8251'
-      schou: '4'
-      numista: '22113'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.5
-        source: ngc
-      - value: 0.5
-        source: numismaster
-      - value: 0.5
-        source: numista
-      - value: 0.5
-        source: ucoin
-    weight_rough_g:
-      - value: 3.78
-        source: bruun
-      - value: 3.898
-        source: ngc
-      - value: 3.898
-        source: numismaster
-      - value: 3.898
-        source: numista
-      - value: 3.9
-        source: ucoin
-    diameter_mm:
-      - value: 22.0
-        source: numista
-      - value: 22.0
-        source: ucoin
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 16 Skilling Rigsmønt
-          value: billon
-          seed: dk-bruun-8251
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66031
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17216, p. 94
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17220, p. 95
-      - type: literature
-        url: https://en.numista.com/22113
-        ref: Numista N#22113 — 16 Skilling Rigsmønt - Frederik VII
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-16-skilling-rigsmont-1856-1858/?tid=70689
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-16-skilling-rigsmont-km-765-1856-1858-cuid-1069088-duid-1238263
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-66031
-      - dk-bruun-8237
-      - dk-bruun-8251
-      - dk-numista-22113
-      - dk-tid-70689
-      - ngc-1069088
   - id: c-d8df0bb2
     class_id: c-d8df0bb2
     label: unified-dk-bruun-8319
@@ -49329,7 +49237,9 @@ coins:
         - Kold# 126e
         - LEB# 7215
       numista: '80206'
-      dav: EC II 3647
+      dav:
+        - EC II 3647
+        - EC II A3647
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -49341,18 +49251,26 @@ coins:
       - value: 0.833
         source: hede
       - value: 0.833
+        source: ngc
+      - value: 0.833
         source: numismaster
       - value: 0.833
         source: numista
+      - value: 0.833
+        source: ucoin
     weight_rough_g:
       - value: 35.93
         source: bruun
       - value: 35.977
         source: hede
       - value: 35.977
+        source: ngc
+      - value: 35.977
         source: numismaster
       - value: 35.977
         source: numista
+      - value: 35.98
+        source: ucoin
       - value: 36.17
         source: bruun
       - value: 36.18
@@ -49360,6 +49278,8 @@ coins:
     diameter_mm:
       - value: 34.74
         source: numista
+      - value: 34.74
+        source: ucoin
     uncertainty:
       metal:
         - kind: inferred
@@ -49399,9 +49319,15 @@ coins:
       - type: literature
         url: https://en.numista.com/80206
         ref: Numista N#80206 — 2 Krone - Christian V
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-kroner-1693-1696/?tid=97338
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122094
         ref: KMM 122094 (Inv. GP 4551.40)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-429-1693-1696-cuid-1049973-duid-1237362
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 10.4
@@ -49415,7 +49341,9 @@ coins:
       - dk-bruun-7192
       - dk-hede-c5h100
       - dk-numista-80206
+      - dk-tid-97338
       - kmk-122094
+      - ngc-1049973
   - id: c-bf11cde0
     class_id: c-bf11cde0
     label: unified-dk-hede-c5h101
@@ -102813,8 +102741,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-hede-f6h8
-  - id: c-dde90812
-    class_id: c-dde90812
+  - id: c-4541658a
+    class_id: c-4541658a
     label: unified-dk-hede-f7h10a
     fuss: seed_unsorted
     phase: hede
@@ -102829,8 +102757,10 @@ coins:
           - 1858
     year_label: 1854, 1856-1858
     ruler: Frederik VII
+    mintmaster: Georg Vilhelm Svendsen (VS)
     mint: Kopenhagen
     catalog:
+      km: '765'
       hede:
         - 10A
         - 10B
@@ -102842,13 +102772,18 @@ coins:
       sieg:
         - '11'
         - '19'
-      bruun_collection_id: '8223'
+      bruun_collection_id:
+        - '8223'
+        - '8237'
+        - '8251'
       others:
         - Pn# Pn57
+      numista: '22113'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -102858,25 +102793,80 @@ coins:
       - value: 0.5
         source: hede
         specimen: dk-hede-f7h10b
+      - value: 0.5
+        source: ngc
+      - value: 0.5
+        source: numismaster
+      - value: 0.5
+        source: numista
+      - value: 0.5
+        source: ucoin
     weight_rough_g:
+      - value: 3.78
+        source: bruun
+      - value: 3.898
+        source: ngc
+      - value: 3.898
+        source: numismaster
+      - value: 3.898
+        source: numista
+      - value: 3.9
+        source: ucoin
       - value: 4.214
         source: hede
         specimen: dk-hede-f7h10a
       - value: 4.214
         source: hede
         specimen: dk-hede-f7h10b
+    diameter_mm:
+      - value: 22.0
+        source: numista
+      - value: 22.0
+        source: ucoin
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 16 Skilling Rigsmønt
+          value: billon
+          seed: dk-bruun-8251
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_66031
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17206, p. 91
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17216, p. 94
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17220, p. 95
       - type: literature
         url: https://www.danskmoent.dk/fr/f7h10.htm
         ref: danskmoent.dk (Hede f7h10A)
+      - type: literature
+        url: https://en.numista.com/22113
+        ref: Numista N#22113 — 16 Skilling Rigsmønt - Frederik VII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-16-skilling-rigsmont-1856-1858/?tid=70689
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-16-skilling-rigsmont-km-765-1856-1858-cuid-1069088-duid-1238263
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-66031
       - dk-bruun-8223
+      - dk-bruun-8237
+      - dk-bruun-8251
       - dk-hede-f7h10a
       - dk-hede-f7h10b
+      - dk-numista-22113
+      - dk-tid-70689
+      - ngc-1069088
   - id: c-e2f1a501
     class_id: c-e2f1a501
     label: unified-dk-hede-f7h3
@@ -129177,55 +129167,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1049970
-  - id: c-3ebc03f8
-    class_id: c-3ebc03f8
-    label: unified-ngc-1049973
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Krone
-    year_first: 1693
-    year_last: 1696
-    year_ranges:
-      -   - 1693
-          - 1696
-    year_label: 1693-1696
-    ruler: Christian V
-    catalog:
-      km: '429'
-      dav: A3647
-      bruun_collection_id: '7192'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.833
-        source: ngc
-      - value: 0.833
-        source: ucoin
-    weight_rough_g:
-      - value: 35.977
-        source: ngc
-      - value: 35.98
-        source: ucoin
-    diameter_mm:
-      - value: 34.74
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-kroner-1693-1696/?tid=97338
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-429-1693-1696-cuid-1049973-duid-1237362
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-tid-97338
-      - ngc-1049973
   - id: c-bae35a4f
     class_id: c-bae35a4f
     label: unified-ngc-1049979

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1405 per-source seed entries.
-# Output: 256 unified entries (one per physical coin).
+# Output: 255 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-19'
+generated_at: '2026-11-21'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -4311,6 +4311,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/693131
         ref: KMM 693131 (Inv. FP 280.48)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-87-164z-cuid-121094-duid-309961
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92968
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -4332,6 +4335,7 @@ coins:
       - kmk-167068
       - kmk-275562
       - kmk-693131
+      - ngc-121094
       - schleswig_holstein-numismaster-92968
   - id: c-f15cd8f2
     class_id: c-f15cd8f2
@@ -20754,33 +20758,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-121093
-  - id: c-766b3393
-    class_id: c-766b3393
-    label: unified-ngc-121094
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 6 Pfennig
-    year_first: 1642
-    year_last: 1642
-    year_label: '1642'
-    ruler: Christian IV
-    catalog:
-      km: '87'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-87-164z-cuid-121094-duid-309961
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-121094
   - id: c-be3c8d25
     class_id: c-be3c8d25
     label: unified-ngc-121098

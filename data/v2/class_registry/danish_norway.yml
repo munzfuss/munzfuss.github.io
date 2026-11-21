@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 552 active, 1330 retired.
+# 550 active, 1332 retired.
 
 id: danish_norway
 classes:
@@ -533,13 +533,6 @@ classes:
     legacy_id: unified-kmk-156537
     members:
       - kmk-156537
-  - id: c-150bac76
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-102381
-    legacy_id: unified-dk-numista-102381
-    members:
-      - dk-numista-102381
   - id: c-15437772
     status: active
     created: '2026-10-22'
@@ -2556,6 +2549,7 @@ classes:
       - dk-hede-nc5h40a
       - dk-hede-nc5h40b
       - dk-hede-nc5h40c
+      - dk-numista-102381
       - ngc-1099132
   - id: c-4ab88a93
     status: active
@@ -2991,6 +2985,7 @@ classes:
     legacy_id: unified-dk-hede-nf3h12a
     members:
       - denmark-numismaster-110698
+      - denmark-numismaster-110699
       - dk-bruun-9604
       - dk-bruun-9619
       - dk-bruun-9685
@@ -2998,6 +2993,7 @@ classes:
       - dk-hede-nf3h12b
       - dk-numista-118985
       - ngc-1095594
+      - ngc-1114109
   - id: c-5b1b94e5
     status: active
     created: '2026-10-22'
@@ -4781,16 +4777,6 @@ classes:
     legacy_id: unified-kmk-156575
     members:
       - kmk-156575
-  - id: c-9382c3e8
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1114109
-    legacy_id: unified-ngc-1114109
-    split_into:
-      - c-b69d09c3
-    members:
-      - denmark-numismaster-110699
-      - ngc-1114109
   - id: c-9464e4c1
     status: active
     created: '2026-10-22'
@@ -8043,6 +8029,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-148587
+  - id: c-150bac76
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-102381
+    legacy_id: unified-dk-numista-102381
+    merged_into: c-4a8c4d2f
+    retired: '2026-11-21'
+    members:
+      - dk-numista-102381
   - id: c-151239de
     status: retired
     created: '2026-10-22'
@@ -14001,6 +13996,18 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-148428
+  - id: c-9382c3e8
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1114109
+    legacy_id: unified-ngc-1114109
+    merged_into: c-5aa52a58
+    split_into:
+      - c-b69d09c3
+    retired: '2026-11-21'
+    members:
+      - denmark-numismaster-110699
+      - ngc-1114109
   - id: c-9427f8ef
     status: retired
     created: '2026-10-22'

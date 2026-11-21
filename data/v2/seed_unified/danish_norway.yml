@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2787 per-source seed entries.
-# Output: 552 unified entries (one per physical coin).
+# Output: 550 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -15347,6 +15347,7 @@ coins:
       km: '192'
       hede:
         - 40A
+        - 40A-40C
         - 40B
         - 40C
       hede_volume: nc5h
@@ -15363,6 +15364,11 @@ coins:
       nmd:
         - 170B
         - 170C
+      numista: '102381'
+      others:
+        - Brekke# 170A-170C
+        - Ronning# 113
+      skaare: '609'
       dav:
         - '3660'
         - 3660B
@@ -15371,7 +15377,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -15388,11 +15394,15 @@ coins:
         source: ngc
       - value: 0.875
         source: numismaster
+      - value: 0.875
+        source: numista
     weight_rough_g:
       - value: 28.89
         source: ngc
       - value: 28.89
         source: numismaster
+      - value: 28.89
+        source: numista
       - value: 28.893
         source: hede
         specimen: dk-hede-nc5h40a
@@ -15404,6 +15414,9 @@ coins:
         specimen: dk-hede-nc5h40c
       - value: 29.2
         source: bruun
+    diameter_mm:
+      - value: 42.0
+        source: numista
     uncertainty:
       metal:
         - kind: inferred
@@ -15432,6 +15445,9 @@ coins:
         url: https://www.danskmoent.dk/norge/nc5h40.htm
         ref: danskmoent.dk (Hede nc5h40A)
       - type: literature
+        url: https://en.numista.com/102381
+        ref: Numista N#102381 — 1 Speciedaler - Christian V (Kongsberg type IV) - Norway
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-192-1693-cuid-1099132-duid-1448313
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
@@ -15446,6 +15462,7 @@ coins:
       - dk-hede-nc5h40a
       - dk-hede-nc5h40b
       - dk-hede-nc5h40c
+      - dk-numista-102381
       - ngc-1099132
   - id: c-ecc6c66d
     class_id: c-ecc6c66d
@@ -24509,8 +24526,16 @@ coins:
         specimen: dk-hede-nf3h12b
       - value: 0.875
         source: ngc
+        specimen: ngc-1095594
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1114109
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-110698
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-110699
       - value: 0.875
         source: numista
     weight_rough_g:
@@ -24526,8 +24551,16 @@ coins:
         specimen: dk-hede-nf3h12b
       - value: 7.18
         source: ngc
+        specimen: ngc-1095594
+      - value: 7.18
+        source: ngc
+        specimen: ngc-1114109
       - value: 7.18
         source: numismaster
+        specimen: denmark-numismaster-110698
+      - value: 7.18
+        source: numismaster
+        specimen: denmark-numismaster-110699
       - value: 7.18
         source: numista
     diameter_mm:
@@ -24557,6 +24590,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_110698
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110699
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12066, p. 173
@@ -24575,6 +24611,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-4-specie-daler-km-35-1649-1651-cuid-1095594-duid-1448961
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-1-4-specie-daler-km-45.1-1652-1654-cuid-1114109-duid-1450286
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
       value: 9.306
@@ -24583,6 +24622,7 @@ coins:
       unit_raw: spdl
     composed_of:
       - denmark-numismaster-110698
+      - denmark-numismaster-110699
       - dk-bruun-9604
       - dk-bruun-9619
       - dk-bruun-9685
@@ -24590,6 +24630,7 @@ coins:
       - dk-hede-nf3h12b
       - dk-numista-118985
       - ngc-1095594
+      - ngc-1114109
   - id: c-44b49488
     class_id: c-44b49488
     label: unified-dk-hede-nf3h13ab
@@ -38841,48 +38882,6 @@ coins:
       - dk-numista-20936
       - dk-tid-88694
       - ngc-1098069
-  - id: c-150bac76
-    class_id: c-150bac76
-    label: unified-dk-numista-102381
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1693
-    year_last: 1693
-    year_label: '1693'
-    ruler: Christian V
-    catalog:
-      km: '192'
-      numista: '102381'
-      hede: 40A-40C
-      others:
-        - Brekke# 170A-170C
-        - Ronning# 113
-      skaare: '609'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.89
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/102381
-        ref: Numista N#102381 — 1 Speciedaler - Christian V (Kongsberg type IV) - Norway
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-102381
   - id: c-a9d1bbb5
     class_id: c-a9d1bbb5
     label: unified-dk-numista-111175
@@ -47241,49 +47240,6 @@ coins:
       - denmark-numismaster-110684
       - dk-tid-145967
       - ngc-1114108
-  - id: c-9382c3e8
-    class_id: c-9382c3e8
-    label: unified-ngc-1114109
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ¼ Specie Daler
-    year_first: 1652
-    year_last: 1654
-    year_ranges:
-      -   - 1652
-          - 1654
-    year_label: 1652-1654
-    catalog:
-      km: '45.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 7.18
-        source: ngc
-      - value: 7.18
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110699
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-1-4-specie-daler-km-45.1-1652-1654-cuid-1114109-duid-1450286
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-110699
-      - ngc-1114109
   - id: c-383c2a54
     class_id: c-383c2a54
     label: unified-ngc-1114111

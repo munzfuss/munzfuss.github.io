@@ -1,0 +1,15 @@
+# Curator merge decisions — entity `grafschaft_oldenburg`.
+#
+# Two decision surfaces, both authoritative over the auto-matcher:
+#   merges:    force these member-ids into one unified class
+#   no_merges: forbid these member pairs from ever uniting
+#
+# Loaded by merge_seeds_cross_source.py::_load_decisions and applied via
+# union-find. IDs reference V2 seed-layer entries (data/v2/seed/<src>/<entity>.yml).
+
+merges:
+  - members:
+      - dk-numista-341217
+      - dk-numista-314949
+    reason: 'Curator (Serhii) 2026-11-21, Hede-letter review case 11: one coin, the Frederik V 1/6 Thaler 1761-1765, County of Oldenburg, Hede 4. Numista 341217 gives Hede 4 (KM 132), Numista 314949 Hede 4A (KM 119, Sieg 55.2 / 55.3, through the Numista API).'
+no_merges: []

@@ -12473,7 +12473,9 @@ coins:
         - 24-25
       sieg: '52'
       numista: '80206'
-      dav: EC II 3647
+      dav:
+        - EC II 3647
+        - EC II A3647
       others:
         - LEB# 7215
         - Kold# 126e
@@ -12488,18 +12490,26 @@ coins:
       - value: 0.833
         source: hede
       - value: 0.833
+        source: ngc
+      - value: 0.833
         source: numismaster
       - value: 0.833
         source: numista
+      - value: 0.833
+        source: ucoin
     weight_rough_g:
       - value: 35.93
         source: bruun
       - value: 35.977
         source: hede
       - value: 35.977
+        source: ngc
+      - value: 35.977
         source: numismaster
       - value: 35.977
         source: numista
+      - value: 35.98
+        source: ucoin
       - value: 36.17
         source: bruun
       - value: 36.18
@@ -12507,6 +12517,8 @@ coins:
     diameter_mm:
       - value: 34.74
         source: numista
+      - value: 34.74
+        source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_65360
@@ -12536,6 +12548,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14166, p. 67
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-429-1693-1696-cuid-1049973-duid-1237362
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Brustbild König Christians V. mit gelocktem Haar nach rechts; Umschrift an den Seiten. / Königskrone über dem Wahlspruch des Königs; darunter die von einem kleinen Herz geteilte Jahreszahl.
       en: Bust of King Christian V with curly hair facing right; legend divided at the sides. / Royal crown above the King's motto; below, the date divided by a small heart.
@@ -52807,9 +52822,7 @@ coins:
           seed: dk-bruun-7216
     mint: Kopenhagen
     catalog:
-      km:
-        - A430
-        - '429'
+      km: A430
       hede: '105'
       hede_volume: c5h
       schou:
@@ -52821,7 +52834,6 @@ coins:
         - '7216'
         - '7192'
       numista: '112721'
-      dav: A3647
       others:
         - Kold# 131b
     metal: silver
@@ -52862,8 +52874,6 @@ coins:
         source: numista
       - value: 25.0
         source: ucoin
-      - value: 34.74
-        source: ucoin
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -52889,9 +52899,6 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-a430-1693-1696-cuid-1050686-duid-1237366
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-krone-km-429-1693-1696-cuid-1049973-duid-1237362
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Brustbild König Christians V. mit gelocktem Haar nach rechts; Umschrift an den Seiten. / Königskrone über den Initialen des Wahlspruchs; darunter die von einem kleinen Herz geteilte 
         Jahreszahl.
@@ -52908,7 +52915,6 @@ coins:
       basis: fin
       unit_raw: rd
     composed_of:
-      - c-3ebc03f8
       - c-d33c3bc5
     label: unified-dk-hede-c5h105
     origin: promoted
@@ -103025,12 +103031,14 @@ coins:
     fraction: 1/6
     mintmaster: Georg Vilhelm Svendsen (VS)
     id: c-4541658a
-    year_first: 1856
+    year_first: 1854
     year_last: 1858
     year_ranges:
+      -   - 1854
+          - 1854
       -   - 1856
           - 1858
-    year_label: 1856-1858
+    year_label: 1854, 1856-1858
     uncertainty:
       metal:
         - kind: inferred
@@ -103045,10 +103053,21 @@ coins:
       bruun_collection_id:
         - '8251'
         - '8237'
-      sieg: '11'
-      schou: '4'
-      hede: 10B
+        - '8223'
+      sieg:
+        - '11'
+        - '19'
+      schou:
+        - '1'
+        - 3-4
+        - '7'
+      hede:
+        - 10A
+        - 10B
       numista: '22113'
+      hede_volume: f7h
+      others:
+        - Pn# Pn57
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -103057,6 +103076,12 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.5
+        source: hede
+        specimen: dk-hede-f7h10a
+      - value: 0.5
+        source: hede
+        specimen: dk-hede-f7h10b
       - value: 0.5
         source: ngc
       - value: 0.5
@@ -103076,6 +103101,12 @@ coins:
         source: numista
       - value: 3.9
         source: ucoin
+      - value: 4.214
+        source: hede
+        specimen: dk-hede-f7h10a
+      - value: 4.214
+        source: hede
+        specimen: dk-hede-f7h10b
     diameter_mm:
       - value: 22.0
         source: numista
@@ -103100,6 +103131,16 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17216, p. 94
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17206, p. 91
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h10.htm
+        ref: danskmoent.dk (Hede f7h10A)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/437657
+        ref: KMM 437657 (Inv. FP 10595.59)
+        display: false
     note:
       de: Kopf König Frederik VII. nach rechts; unter dem Hals das Datum, das Müntzzeichen und Müntzmeisterinitialen teilt. / Wert in einem Kranz aus zwei gekreuzten Eichenzweigen.
       en: Head of King Frederik VII facing right; below the neck, the date dividing the mintmark and the mintmaster's initials. / Value within a wreath of two crossed oak branches.
@@ -151652,77 +151693,6 @@ coins:
     composed_of:
       - c-1dfb0100
     label: unified-dk-hede-f6h1
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
-    kind: scheide
-    nominal: 16 Skilling Rigsmønt. København
-    ruler: Frederik VII.
-    issuing_entity: danish_realm
-    id: c-dde90812
-    year_first: 1854
-    year_last: 1858
-    year_ranges:
-      -   - 1854
-          - 1854
-      -   - 1856
-          - 1858
-    year_label: 1854, 1856-1858
-    mint: Kopenhagen
-    catalog:
-      hede:
-        - 10A
-        - 10B
-      hede_volume: f7h
-      schou:
-        - '1'
-        - 3-4
-        - '7'
-      sieg:
-        - '11'
-        - '19'
-      bruun_collection_id: '8223'
-      others:
-        - Pn# Pn57
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.5
-        source: hede
-        specimen: dk-hede-f7h10a
-      - value: 0.5
-        source: hede
-        specimen: dk-hede-f7h10b
-    weight_rough_g:
-      - value: 4.214
-        source: hede
-        specimen: dk-hede-f7h10a
-      - value: 4.214
-        source: hede
-        specimen: dk-hede-f7h10b
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f7h10.htm
-        ref: danskmoent.dk (Hede f7h10A)
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17206, p. 91
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/437657
-        ref: KMM 437657 (Inv. FP 10595.59)
-        display: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    composed_of:
-      - c-dde90812
-    label: unified-dk-hede-f7h10a
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc

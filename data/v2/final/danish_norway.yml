@@ -31162,57 +31162,6 @@ coins:
           as_printed: Hvid
           value: billon
           seed: dk-galster-hg-155
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Christian V.
-    issuing_entity: danish_norway
-    id: c-150bac76
-    year_first: 1693
-    year_last: 1693
-    year_label: '1693'
-    catalog:
-      km: '192'
-      numista: '102381'
-      hede: 40A-40C
-      others:
-        - Brekke# 170A-170C
-        - Ronning# 113
-      skaare: '609'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.89
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/102381
-        ref: Numista N#102381 — 1 Speciedaler - Christian V (Kongsberg type IV) - Norway
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-150bac76
-    label: unified-dk-numista-102381
-    origin: promoted
   - fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -41808,6 +41757,7 @@ coins:
       km: '192'
       hede:
         - 40A
+        - 40A-40C
         - 40B
         - 40C
       hede_volume: nc5h
@@ -41828,11 +41778,16 @@ coins:
         - '3660'
         - 3660B
         - 3660C
+      numista: '102381'
+      others:
+        - Brekke# 170A-170C
+        - Ronning# 113
+      skaare: '609'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -41849,11 +41804,15 @@ coins:
         source: ngc
       - value: 0.875
         source: numismaster
+      - value: 0.875
+        source: numista
     weight_rough_g:
       - value: 28.89
         source: ngc
       - value: 28.89
         source: numismaster
+      - value: 28.89
+        source: numista
       - value: 28.893
         source: hede
         specimen: dk-hede-nc5h40a
@@ -41865,6 +41824,9 @@ coins:
         specimen: dk-hede-nc5h40c
       - value: 29.2
         source: bruun
+    diameter_mm:
+      - value: 42.0
+        source: numista
     sources:
       - type: literature
         url: https://numismaster.com/MC_110748
@@ -41881,6 +41843,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-192-1693-cuid-1099132-duid-1448313
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://en.numista.com/102381
+        ref: Numista N#102381 — 1 Speciedaler - Christian V (Kongsberg type IV) - Norway
     note:
       de: 'Vorderseite: Porträt mit Stirnband, Rückseite: geviertetes Schild mit inneren Schilden. Die Randschriften werden dem Pfarrer Jørgen Kongsberg zugeschrieben; sämtliche Stempel der norwegischen
         Randschrift-Speciedaler wurden von Caspar Barth geschnitten.'
@@ -44271,8 +44236,16 @@ coins:
         specimen: dk-hede-nf3h12b
       - value: 0.875
         source: ngc
+        specimen: ngc-1095594
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1114109
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-110698
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-110699
       - value: 0.875
         source: numista
     weight_rough_g:
@@ -44288,8 +44261,16 @@ coins:
         specimen: dk-hede-nf3h12b
       - value: 7.18
         source: ngc
+        specimen: ngc-1095594
+      - value: 7.18
+        source: ngc
+        specimen: ngc-1114109
       - value: 7.18
         source: numismaster
+        specimen: denmark-numismaster-110698
+      - value: 7.18
+        source: numismaster
+        specimen: denmark-numismaster-110699
       - value: 7.18
         source: numista
     diameter_mm:
@@ -44324,6 +44305,12 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15035, p. 97
+      - type: literature
+        url: https://numismaster.com/MC_110699
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-1-4-specie-daler-km-45.1-1652-1654-cuid-1114109-duid-1450286
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 'Vorderseite: Porträt; Rückseite: norwegischer Löwe'
       en: 'Obverse: portrait; reverse: the Norwegian lion'
@@ -46425,69 +46412,6 @@ coins:
     composed_of:
       - c-add75c5b
     label: unified-ngc-1114106
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: ¼ Specie Daler
-    ruler: Frederick III
-    issuing_entity: danish_norway
-    id: c-9382c3e8
-    year_first: 1652
-    year_last: 1654
-    year_ranges:
-      -   - 1652
-          - 1654
-    year_label: 1652-1654
-    catalog:
-      km: '45.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 7.18
-        source: ngc
-      - value: 7.18
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110699
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-1-4-specie-daler-km-45.1-1652-1654-cuid-1114109-duid-1450286
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_110698
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12066, p. 173
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nf3h12.htm
-        ref: danskmoent.dk (Hede nf3h12A)
-      - type: literature
-        url: https://en.numista.com/118985
-        ref: Numista N#118985 — ¼ Speciedaler - Frederik III (Type I.B) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1649-1651/?tid=145388
-        ref: ucoin
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-9382c3e8
-    label: unified-ngc-1114109
     origin: promoted
   - fuss: seed_unsorted
     phase: ngc
