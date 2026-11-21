@@ -874,6 +874,9 @@ class KMRef(_StrictBase):
     """
     value: str
     register: str | None = None
+    # True when no source named the volume and it was read off the issuing
+    # entity (lib.km_registers); the tooltip then says so.
+    register_inferred: bool = False
 
 
 class CatalogRefs(_StrictBase):

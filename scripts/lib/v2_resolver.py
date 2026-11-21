@@ -77,6 +77,48 @@ def resolve_km_for_location(km, km_register: str, coin_id: str | None = None):
     return km
 
 
+def km_for_location(km, km_register: str | None, issuing_entity=None):
+    """The KM value a page renders, each number tagged with its Krause volume.
+
+    Volumes (lib.km_registers): a dict key names it as the source gave it; a
+    bare KM is read in the issuing entity's volume — the same reading the
+    merger applies — and is flagged `register_inferred`. Numbers that all sit
+    in the page's own volume come back in the plain shape (scalar or list),
+    which renders exactly as before. Otherwise a list of KMRef dicts, the
+    page's volume first: the renderer labels each «KM-NO#» / «KM-SH#» … so a
+    Norwegian or Schleswig-Holstein number never reads as one of the page's
+    own volume.
+    """
+    from lib.km_registers import display_register, entity_register, split_km
+
+    page = display_register(km_register)
+    items: list[tuple[str, str | None, bool]] = []
+    if isinstance(km, dict):
+        for k, v in km.items():
+            reg = display_register(k)
+            for x in split_km(v):
+                items.append((x, reg, False))
+    else:
+        nums = split_km(km)
+        ent = display_register(entity_register(issuing_entity))
+        if not nums or ent is None or ent == page:
+            return km
+        items = [(x, ent, True) for x in nums]
+    if not items:
+        return None
+    if all(r == page for _x, r, _i in items):
+        vals = [x for x, _r, _i in items]
+        return vals[0] if len(vals) == 1 else vals
+    items.sort(key=lambda t: t[1] != page)
+    out = []
+    for x, r, inf in items:
+        d = {"value": x, "register": r}
+        if inf:
+            d["register_inferred"] = True
+        out.append(d)
+    return out
+
+
 # Migration breadcrumb keys produced by `bootstrap_v2_final_from_v1.py` and
 # `seed_v2_regroup.py`. The Phase 4 build assembly strips these from
 # each coin dict before instantiating the pydantic Coin model.

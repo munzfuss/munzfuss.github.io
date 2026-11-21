@@ -249,50 +249,7 @@ def _authority_score(coin_id: str) -> float:
 #      from any non-trivial source; if both sides lack ruler too, fall
 #      back to bare `hede` key (still risky but rare in practice).
 
-_ENTITY_TO_KM_REGISTER: dict[str, str] = {
-    # Danish-realm tracks Krause's «Denmark» volume
-    "danish_realm": "dk",
-    # Krause has a separate Norway volume. Code is «nor», NOT «no» — a register
-    # code written as a YAML mapping key («no: 260») round-trips to the BOOLEAN
-    # False, silently corrupting a register-keyed km dict. Never use a YAML-bool
-    # token (no/yes/true/false/on/off/n/y) as a register code.
-    "danish_norway": "nor",
-    # Kingdom of Norway after 1814 — the same Krause Norway volume.
-    "norway": "nor",
-    # Christian II after 1523 — Krause's Denmark / Norway volumes.
-    "christian_ii_supporters": "dk",
-    "christian_ii_reconquest": "nor",
-    # Søren Norby's own Visby issues 1523-1525 — Krause's Denmark volume.
-    "norby_gotland": "dk",
-    # Erik VII on Gotland after his deposition (1439-1449) — Denmark volume.
-    "erik_gotland": "dk",
-    # Gotlandic coin struck at Visby («gullandsk mønt») — Denmark volume.
-    "gotland": "dk",
-    # SH territory — Krause «German States — Schleswig-Holstein»
-    "royal_holstein": "sh",
-    "gottorp_duchy": "sh",
-    "schauenburg_pinneberg": "sh",
-    "sonderburg_duchy": "sh",
-    "norburg_plon_duchy": "sh",
-    "glucksburg_duchy": "sh",
-    "rantzau_county": "sh",
-    "provisional_govt": "sh",
-    "holstein_schauenburg_county": "sh",
-    # Other German entities — each has its own Krause volume, keep
-    # registers explicit so cross-entity bleed (rare) doesn't false-match
-    "fuerstbisthum_luebeck": "de-fbl",
-    "hanseatic_hamburg": "de-hh",
-    "hanseatic_lubeck": "de-hl",
-    "erzbisthum_bremen_verden": "de-bv",
-    "herzogtum_braunschweig_lueneburg": "de-bl",
-    "herzogtum_sachsen_lauenburg": "de-sl",
-    "grafschaft_oldenburg": "de-old",
-    "hochstift_osnabrueck": "de-osnabr",
-    "landgrafschaft_hessen_kassel": "de-hk",
-    # No register — bare KM remains ambiguous within these synthetic buckets
-    # "_unclassified": None,
-    # "_deprecated_gesamtstaat": None,
-}
+from lib.km_registers import ENTITY_TO_KM_REGISTER as _ENTITY_TO_KM_REGISTER  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -4625,6 +4582,13 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
     by_register: dict[str, list[str]] = {}
     bare_values: list[str] = []
     conflicts: list[tuple[str, str, str]] = []
+    # Bare numbers are placed after the register-keyed ones: a bare number
+    # whose Krause base another member gives in exactly ONE volume belongs to
+    # that volume (NumisMaster {dk: 695.1} beside Bruun's bare «695.4» on an
+    # Altona coin: Denmark KM 695, not an SH KM 695). Only when no member
+    # names a volume for that base is it read in the entity's volume
+    # (lib.km_registers) — the former rule for every bare number.
+    deferred_bare: list[str] = []
 
     def _add(bucket: list[str], val: str):
         if val and val not in bucket:
@@ -4649,12 +4613,24 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
                     for vv in (val if isinstance(val, list) else [val]):
                         _add(by_register.setdefault(reg.lower(), []), str(vv).strip())
                 continue
-            val_str = str(kv).strip()
-            register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
-            if register:
-                _add(by_register.setdefault(register, []), val_str)
-            else:
-                _add(bare_values, val_str)
+            deferred_bare.append(str(kv).strip())
+
+    def _base(v: str) -> str:
+        return v.split(".", 1)[0].upper()
+
+    for val_str in deferred_bare:
+        regs = [r for r, vals in by_register.items()
+                if any(_base(v) == _base(val_str) for v in vals)]
+        if len(regs) == 1:
+            _add(by_register[regs[0]], val_str)
+            continue
+        if regs and any(val_str in by_register[r] for r in regs):
+            continue      # the number is already given, in each of its volumes
+        register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+        if register:
+            _add(by_register.setdefault(register, []), val_str)
+        else:
+            _add(bare_values, val_str)
 
     def _shape(vals: list[str]):
         """1 value → scalar (V1-compat); ≥2 → list-form (multi-KM)."""

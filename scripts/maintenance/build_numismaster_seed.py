@@ -148,6 +148,12 @@ COUNTRY_TO_ISSUING_ENTITY: dict[str, str] = {
 }
 
 
+# NumisMaster `country` → Krause volume it names (lib.km_registers codes).
+KM_VOLUME_BY_COUNTRY: dict[str, str] = {
+    "DENMARK": "dk", "NORWAY": "nor", "NORW AY": "nor",
+}
+
+
 def detect_metal(comp: str | None, denom: str | None) -> str:
     if comp:
         c = comp.lower()
@@ -395,6 +401,17 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         else:
             year_label = data.get("date_raw")
         year_ranges = [[yf, yl if yl is not None else yf]]
+
+    # Krause volume of the KM number. NumisMaster files every record under one
+    # Krause country (its `country`, = the cache folder), so for DENMARK and
+    # NORWAY the volume is named by the source: write the KM register-keyed.
+    # A bare KM would be read in the issuing entity's volume
+    # (lib.km_registers), which is wrong for a Denmark-volume number on an
+    # Altona coin routed to royal_holstein, and for a record pulled into
+    # another entity by a cross-entity merge. The German-states countries are
+    # left bare: the entity table only approximates their volumes.
+    if catalog.get("km") and country_upper in KM_VOLUME_BY_COUNTRY:
+        catalog["km"] = {KM_VOLUME_BY_COUNTRY[country_upper]: catalog["km"]}
 
     # metal_verified: when NumisMaster's «Composition» field is explicitly
     # populated (most pages), the metal classification is source-attested;

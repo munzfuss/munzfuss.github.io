@@ -532,7 +532,7 @@ def _resolve_dict_fields_per_location(coin: dict, loc_id: str, km_register: str 
     returned dict is ready for `Coin(**dict)` instantiation."""
     from lib.v2_resolver import (
         resolve_phase_for_location,
-        resolve_km_for_location,
+        km_for_location,
         strip_v2_breadcrumbs,
     )
     out = strip_v2_breadcrumbs(coin)
@@ -548,9 +548,10 @@ def _resolve_dict_fields_per_location(coin: dict, loc_id: str, km_register: str 
     catalog = out.get("catalog")
     if isinstance(catalog, dict):
         km = catalog.get("km")
-        if isinstance(km, dict):
-            resolved_km = resolve_km_for_location(km, km_register or "", cid)
-            out = {**out, "catalog": {**catalog, "km": resolved_km}}
+        if km not in (None, "", []):
+            resolved_km = km_for_location(km, km_register, out.get("issuing_entity"))
+            if resolved_km != km:
+                out = {**out, "catalog": {**catalog, "km": resolved_km}}
 
     return out
 

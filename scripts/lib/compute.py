@@ -806,10 +806,15 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
 # _compute_catalog_groups when emitting register-prefixed KM tokens.
 # Mirrors the Numista «issuer» semantics for the major Scandinavian
 # / German-states Krause volumes our project touches.
+# Tooltip KEYS (ui.yml) for a register-qualified «KM-<reg>#»: which Krause
+# volume, and — `_inferred` — that the source gave a bare number whose volume
+# was read off the issuing entity.
 _KM_REGISTER_TOOLTIP: dict[str, str] = {
-    "DK": "Krause-Mishler — Denmark volume",
-    "SH": "Krause-Mishler — Schleswig-Holstein volume",
-    "NO": "Krause-Mishler — Norway volume",
+    "DK": "marker.km_dk", "SH": "marker.km_sh", "NO": "marker.km_no",
+}
+_KM_REGISTER_TOOLTIP_INFERRED: dict[str, str] = {
+    "DK": "marker.km_dk_inferred", "SH": "marker.km_sh_inferred",
+    "NO": "marker.km_no_inferred",
 }
 
 
@@ -1169,12 +1174,16 @@ def _compute_catalog_groups(
         from .schema import KMRef  # avoid circular at module load
         if isinstance(km_raw, list):
             km_items: list[tuple[str, str | None]] = []
+            km_inferred: set[str] = set()
             for item in km_raw:
                 if isinstance(item, KMRef):
                     km_items.append((item.value, item.register))
+                    if item.register_inferred and item.register:
+                        km_inferred.add(item.register)
                 else:
                     km_items.append((str(item), None))
         else:
+            km_inferred = set()
             # Scalar: split on composite "77.1 / 77.2" / "77.1, 77.2"
             km_items = [
                 (p.strip(), None)
@@ -1193,7 +1202,8 @@ def _compute_catalog_groups(
             )
             if qualify and effective_register:
                 prefix = f"KM-{effective_register}"
-                tooltip = _KM_REGISTER_TOOLTIP.get(effective_register)
+                tooltip = (_KM_REGISTER_TOOLTIP_INFERRED if effective_register in km_inferred
+                           else _KM_REGISTER_TOOLTIP).get(effective_register)
                 add(prefix, value, tooltip)
             else:
                 add("KM", value)

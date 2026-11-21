@@ -759,6 +759,12 @@ def merge_one(
                         # lines into `others: Ernst 1940 3-13` scalars before
                         # this branch existed.
                         ex_v[sub_k] = _union_others(ex_v[sub_k], sub_v)
+                    elif sub_k == "km" and _km_bare_superseded(ex_v[sub_k], sub_v):
+                        # The parser now names the Krause volume of the very
+                        # numbers it used to give bare: the volume-keyed form
+                        # replaces them (a union would mix «603» and
+                        # {dk: 603} in one list, read as two volumes).
+                        ex_v[sub_k] = sub_v
                     elif sub_k in _list_cap:
                         ex_v[sub_k] = _drop_bare_superseded_by_cf(
                             _drop_bare_superseded_by_letter(
@@ -856,6 +862,18 @@ def merge_one(
 # numbers its specimens 15139c … 15139ddd beside a bare 15139ø, and the rule
 # silently dropped Part V lot 15186 when the parser lost the «ø» (2026-10-19).
 _PAGE_CATALOGUE_ID_RE = re.compile(r"^dk-(?:hede|galster)-")
+
+
+def _km_bare_superseded(existing, fresh) -> bool:
+    """True when `fresh` is the register-keyed km dict and every number of
+    the bare `existing` km is among its values (lib.km_registers)."""
+    if not isinstance(fresh, dict) or existing is None or isinstance(existing, dict):
+        return False
+    ex = existing if isinstance(existing, list) else [existing]
+    if any(isinstance(v, dict) for v in ex):
+        return False
+    fr = {str(x) for v in fresh.values() for x in (v if isinstance(v, list) else [v])}
+    return bool(ex) and all(str(v) in fr for v in ex)
 
 
 def merge_seed(

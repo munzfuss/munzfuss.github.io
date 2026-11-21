@@ -181,6 +181,21 @@ def _catalog(rec: dict) -> dict:
     return cat
 
 
+# NGC scope (its Krause section, in the URL: /world/denmark-…, /world/norway-…)
+# → the Krause volume it names. Only these two: the German-states sections are
+# not mapped one-to-one onto our volume codes.
+_KM_VOLUME_BY_SCOPE = {"denmark": "dk", "norway": "nor"}
+
+
+def _km_volume(cat: dict, scope: str) -> dict:
+    """Write the KM register-keyed when the NGC section names the volume, so a
+    record pulled into another entity keeps its own volume (lib.km_registers)."""
+    vol = _KM_VOLUME_BY_SCOPE.get(scope)
+    if vol and cat.get("km"):
+        cat["km"] = {vol: cat["km"]}
+    return cat
+
+
 def build_entry(rec: dict, scope: str) -> dict | None:
     cuid = rec.get("cuid")
     if not cuid:
@@ -220,7 +235,7 @@ def build_entry(rec: dict, scope: str) -> dict | None:
         "year_ranges": ranges,
         "ruler": rec.get("ruler"),
         "mint": mint,
-        "catalog": _catalog(rec),
+        "catalog": _km_volume(_catalog(rec), scope),
         "metal": metal,
         "fineness": fineness,
         "weight_rough_g": weight,
