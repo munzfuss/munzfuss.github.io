@@ -10574,37 +10574,29 @@ coins:
     ruler: Christian VI.
     issuing_entity: danish_norway
     id: c-0c2ee0b8
-    year_first: 1727
+    year_first: 1730
     year_last: 1735
     year_ranges:
-      -   - 1727
+      -   - 1730
           - 1735
-    year_label: 1727-1735
+    year_label: 1730-1735
     mint: Kongsberg
     catalog:
       km:
         - '224'
         - '224.1'
-      hede:
-        - '2'
-        - 17A-17C
+      hede: '2'
       hede_volume: nc6h
       schou:
         - '2'
         - '5'
         - 7-8
         - '9'
-      numista:
-        - '99203'
-        - '99778'
+      numista: '99203'
       others:
         - Brekke# 16-21
         - Rønning# 148
-        - Brekke# 38A
-        - Rønning# 140
-      skaare:
-        - '645'
-        - '652'
+      skaare: '652'
       sieg: '2'
     metal: silver
     metal_verified: true
@@ -10617,41 +10609,18 @@ coins:
       - value: 0.468
         source: hede
       - value: 0.468
-        source: ngc
-      - value: 0.468
-        source: numismaster
-      - value: 0.468
         source: numista
-        specimen: dk-numista-99203
-      - value: 0.468
-        source: numista
-        specimen: dk-numista-99778
     weight_rough_g:
       - value: 3.668
         source: hede
       - value: 3.67
-        source: ngc
-      - value: 3.67
-        source: numismaster
-      - value: 3.67
         source: numista
-        specimen: dk-numista-99203
-      - value: 3.67
-        source: numista
-        specimen: dk-numista-99778
       - value: 3.67
         source: ucoin
     diameter_mm:
       - value: 21.0
         source: numista
-        specimen: dk-numista-99203
-      - value: 22.5
-        source: numista
-        specimen: dk-numista-99778
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_86229
-        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nc6h2.htm
         ref: danskmoent.dk (Hede nc6h2)
@@ -10665,9 +10634,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/148340
         ref: KMM 148340 (Inv. KP 1656.1973)
         display: false
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-8-skilling-km-224-1727-1735-cuid-1096046-duid-1445045
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/351809
         ref: KMM 351809 (Inv. FP 5149 5149.549)
@@ -10827,9 +10793,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/351795
         ref: KMM 351795 (Inv. FP 5149 5149.563)
         display: false
-      - type: literature
-        url: https://en.numista.com/99778
-        ref: Numista N#99778 — 8 Skilling - Frederik IV (Type III) - Norway
     note:
       de: 1/12 Speciedaler
       en: 1/12 Speciedaler
@@ -32910,6 +32873,7 @@ coins:
         - 2-4
       hede:
         - 17A
+        - 17A-17C
         - 17B
         - 17C
       hede_volume: nf4h
@@ -32917,10 +32881,16 @@ coins:
         - '5.1'
         - '5.2'
         - '5.3'
+      numista: '99778'
+      others:
+        - Brekke# 38A
+        - Rønning# 140
+      skaare: '645'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -32934,6 +32904,8 @@ coins:
         source: hede
         specimen: dk-hede-nf4h17c
       - value: 0.468
+        source: numista
+      - value: 0.468
         source: ucoin
     weight_rough_g:
       - value: 3.668
@@ -32946,7 +32918,12 @@ coins:
         source: hede
         specimen: dk-hede-nf4h17c
       - value: 3.67
+        source: numista
+      - value: 3.67
         source: ucoin
+    diameter_mm:
+      - value: 22.5
+        source: numista
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148343
@@ -33078,6 +33055,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/574997
         ref: KMM 574997 (Inv. FP 11167.3)
         display: false
+      - type: literature
+        url: https://en.numista.com/99778
+        ref: Numista N#99778 — 8 Skilling - Frederik IV (Type III) - Norway
     note:
       de: 'Vorderseite: norwegischer Löwe, Rückseite: Wertangabe. Müntzmeisterzeichen HCM, C bzw. NBF.'
       en: "Obverse: Norwegian lion; reverse: value statement. Mintmaster's marks HCM, C and NBF."

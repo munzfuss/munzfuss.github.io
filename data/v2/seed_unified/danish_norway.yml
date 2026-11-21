@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-20 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2787 per-source seed entries.
-# Output: 550 unified entries (one per physical coin).
+# Output: 552 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,42 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-20'
+generated_at: '2026-11-21'
 coins:
+  - id: c-aad58b83
+    class_id: c-aad58b83
+    label: unified-denmark-numismaster-86229
+    fuss: seed_unsorted
+    phase: numismaster
+    kind: kurant
+    nominal: 8 Skilling
+    year_first: 1727
+    year_last: 1735
+    year_ranges:
+      -   - 1727
+          - 1735
+    year_label: 1727-1735
+    catalog:
+      km: '224'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.468
+        source: numismaster
+    weight_rough_g:
+      - value: 3.67
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_86229
+        ref: NumisMaster
+    issuing_entity: danish_norway
+    composed_of:
+      - denmark-numismaster-86229
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
     label: unified-denmark-numismaster-86285
@@ -21372,21 +21406,19 @@ coins:
     phase: hede
     kind: scheide
     nominal: 8 Skilling
-    year_first: 1727
+    year_first: 1730
     year_last: 1735
     year_ranges:
-      -   - 1727
+      -   - 1730
           - 1735
-    year_label: 1727-1735
+    year_label: 1730-1735
     ruler: Christian VI
     mint: Kongsberg
     catalog:
       km:
         - '224'
         - '224.1'
-      hede:
-        - '2'
-        - 17A-17C
+      hede: '2'
       hede_volume: nc6h
       schou:
         - '2'
@@ -21394,17 +21426,11 @@ coins:
         - 7-8
         - '9'
       sieg: '2'
-      numista:
-        - '99203'
-        - '99778'
+      numista: '99203'
       others:
         - Brekke# 16-21
         - Rønning# 148
-        - Brekke# 38A
-        - Rønning# 140
-      skaare:
-        - '645'
-        - '652'
+      skaare: '652'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -21416,68 +21442,32 @@ coins:
       - value: 0.468
         source: hede
       - value: 0.468
-        source: ngc
-      - value: 0.468
-        source: numismaster
-      - value: 0.468
         source: numista
-        specimen: dk-numista-99203
-      - value: 0.468
-        source: numista
-        specimen: dk-numista-99778
     weight_rough_g:
       - value: 3.668
         source: hede
       - value: 3.67
-        source: ngc
-      - value: 3.67
-        source: numismaster
-      - value: 3.67
         source: numista
-        specimen: dk-numista-99203
-      - value: 3.67
-        source: numista
-        specimen: dk-numista-99778
       - value: 3.67
         source: ucoin
     diameter_mm:
       - value: 21.0
         source: numista
-        specimen: dk-numista-99203
-      - value: 22.5
-        source: numista
-        specimen: dk-numista-99778
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_86229
-        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nc6h2.htm
         ref: danskmoent.dk (Hede nc6h2)
       - type: literature
         url: https://en.numista.com/99203
         ref: Numista N#99203 — 8 Skilling - Christian VI - Norway
-      - type: literature
-        url: https://en.numista.com/99778
-        ref: Numista N#99778 — 8 Skilling - Frederik IV (Type III) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-8-skilling-1730-1735/?tid=145801
         ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-8-skilling-km-224-1727-1735-cuid-1096046-duid-1445045
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: 1/12 Speciedaler
-      en: 1/12 Speciedaler
-      uk: 1/12 Speciedaler
     issuing_entity: danish_norway
     composed_of:
-      - denmark-numismaster-86229
       - dk-hede-nc6h2
       - dk-numista-99203
-      - dk-numista-99778
       - dk-tid-145801
-      - ngc-1096046
   - id: c-6884e706
     class_id: c-6884e706
     label: unified-dk-hede-nc6h3a
@@ -36774,6 +36764,7 @@ coins:
       km: '224'
       hede:
         - 17A
+        - 17A-17C
         - 17B
         - 17C
       hede_volume: nf4h
@@ -36784,10 +36775,16 @@ coins:
         - '5.1'
         - '5.2'
         - '5.3'
+      numista: '99778'
+      others:
+        - Brekke# 38A
+        - Rønning# 140
+      skaare: '645'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -36801,6 +36798,8 @@ coins:
         source: hede
         specimen: dk-hede-nf4h17c
       - value: 0.468
+        source: numista
+      - value: 0.468
         source: ucoin
     weight_rough_g:
       - value: 3.668
@@ -36813,19 +36812,32 @@ coins:
         source: hede
         specimen: dk-hede-nf4h17c
       - value: 3.67
+        source: numista
+      - value: 3.67
         source: ucoin
+    diameter_mm:
+      - value: 22.5
+        source: numista
     sources:
       - type: literature
         url: https://www.danskmoent.dk/norge/nf4h17.htm
         ref: danskmoent.dk (Hede nf4h17A)
+      - type: literature
+        url: https://en.numista.com/99778
+        ref: Numista N#99778 — 8 Skilling - Frederik IV (Type III) - Norway
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-8-skilling-1727-1730/?tid=145800
         ref: ucoin
+    note:
+      de: 1/12 Speciedaler
+      en: 1/12 Speciedaler
+      uk: 1/12 Speciedaler
     issuing_entity: danish_norway
     composed_of:
       - dk-hede-nf4h17a
       - dk-hede-nf4h17b
       - dk-hede-nf4h17c
+      - dk-numista-99778
       - dk-tid-145800
   - id: c-0d78dbf8
     class_id: c-0d78dbf8
@@ -46343,6 +46355,41 @@ coins:
       - denmark-numismaster-110802
       - dk-tid-145748
       - ngc-1095651
+  - id: c-f5b3e7c3
+    class_id: c-f5b3e7c3
+    label: unified-ngc-1096046
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 8 Skilling
+    year_first: 1727
+    year_last: 1734
+    year_ranges:
+      -   - 1727
+          - 1734
+    year_label: 1727-1734
+    catalog:
+      km: '224'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.468
+        source: ngc
+    weight_rough_g:
+      - value: 3.67
+        source: ngc
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-8-skilling-km-224-1727-1735-cuid-1096046-duid-1445045
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_norway
+    composed_of:
+      - ngc-1096046
   - id: c-0c4843f6
     class_id: c-0c4843f6
     label: unified-ngc-1096047
