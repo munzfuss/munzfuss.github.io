@@ -53865,11 +53865,6 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
-    catalog:
-      km:
-        - '147'
-        - '152'
-        - '141'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -53880,8 +53875,6 @@ coins:
     weight_rough_g:
       - value: 0.51
         source: ikmk
-      - value: 0.78
-        source: ikmk
     diameter_mm:
       - value: 17.0
         source: ikmk
@@ -53890,21 +53883,11 @@ coins:
         url: https://ikmk.smb.museum/object?id=18299820
         ref: IKMK Berlin 18299820
       - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190602
-        ref: ucoin
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18289860
-        ref: IKMK Berlin 18289860
-      - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190603
-        ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190599
         ref: ucoin
     verification_note: *id004
     composed_of:
       - c-75de49c6
-      - c-7ef473cb
     label: unified-ikmk-18299820
     origin: promoted
   - fuss: seed_unsorted
@@ -95065,4 +95048,85 @@ coins:
     composed_of:
       - c-37204ff1
     label: unified-tid-tid-92165
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 3 Kreuzer
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    id: c-7ef473cb
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.78
+        source: ikmk
+    diameter_mm:
+      - value: 17.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289860
+        ref: IKMK Berlin 18289860
+    composed_of:
+      - c-7ef473cb
+    label: unified-ikmk-18289860
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 3 Kreuzer
+    ruler: Frederick Ulrich
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    id: c-4106200e
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    catalog:
+      km: '141'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190599
+        ref: ucoin
+    composed_of:
+      - c-4106200e
+    label: unified-tid-tid-190599
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 3 Kreuzer
+    ruler: Frederick Ulrich
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    id: c-3300c1e2
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    catalog:
+      km: '147'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190602
+        ref: ucoin
+    composed_of:
+      - c-3300c1e2
+    label: unified-tid-tid-190602
     origin: promoted
