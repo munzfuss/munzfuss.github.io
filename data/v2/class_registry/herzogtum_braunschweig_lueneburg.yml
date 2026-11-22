@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 2413 active, 121 retired.
+# 2412 active, 122 retired.
 
 id: herzogtum_braunschweig_lueneburg
 classes:
@@ -1846,9 +1846,10 @@ classes:
   - id: c-1aaa0fe0
     status: active
     created: '2026-10-22'
-    label: unified-tid-tid-81967
+    label: unified-dk-numista-67728
     legacy_id: unified-tid-tid-81968
     members:
+      - dk-numista-67728
       - tid-tid-81967
       - tid-tid-81968
   - id: c-1ad82d5f
@@ -10368,13 +10369,6 @@ classes:
     legacy_id: unified-ikmk-18295816
     members:
       - ikmk-18295816
-  - id: c-92525f85
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-67728
-    legacy_id: unified-dk-numista-67728
-    members:
-      - dk-numista-67728
   - id: c-92642e7a
     status: active
     created: '2026-10-22'
@@ -19542,6 +19536,15 @@ classes:
     retired: '2026-11-07'
     members:
       - tid-tid-92363
+  - id: c-92525f85
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-67728
+    legacy_id: unified-dk-numista-67728
+    merged_into: c-1aaa0fe0
+    retired: '2026-11-22'
+    members:
+      - dk-numista-67728
   - id: c-9329af64
     status: retired
     created: '2026-10-22'

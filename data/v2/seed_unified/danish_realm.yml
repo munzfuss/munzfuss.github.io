@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8314 per-source seed entries.
-# Output: 1566 unified entries (one per physical coin).
+# Input: 8301 per-source seed entries.
+# Output: 1560 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-21'
+generated_at: '2026-11-22'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -2163,159 +2163,6 @@ coins:
       - denmark-numismaster-65332
       - dk-bruun-7127
       - ngc-1050646
-  - id: c-7fe6a45e
-    class_id: c-7fe6a45e
-    label: unified-dk-bruun-7132
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1693
-    year_last: 1696
-    year_ranges:
-      -   - 1693
-          - 1693
-      -   - 1696
-          - 1696
-    year_label: 1693, 1696
-    ruler: Christian V
-    mint: Kopenhagen
-    catalog:
-      km: '424.2'
-      bruun_collection_id: '7132'
-      sieg: '22.2'
-      schou: '59'
-      hede: 107B
-      others:
-        - Kold# 131e
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-    weight_rough_g:
-      - value: 5.568
-        source: ngc
-      - value: 5.568
-        source: numismaster
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Mark
-          value: silver
-          seed: dk-bruun-7132
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65168
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17102, p. 52
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-mark-km-424.2-1693-1696-cuid-1050148-duid-1236788
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65168
-      - dk-bruun-7132
-      - ngc-1050148
-  - id: c-b61c6a78
-    class_id: c-b61c6a78
-    label: unified-dk-bruun-7135
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1693
-    year_last: 1696
-    year_ranges:
-      -   - 1693
-          - 1696
-    year_label: 1693-1696
-    ruler: Christian V
-    mintmaster: Christian Wineke the Elder
-    mint: Kopenhagen
-    catalog:
-      km:
-        - '424.1'
-        - '424'
-      hede: '109'
-      sieg: '14'
-      bruun_collection_id: '7135'
-      schou: '61'
-      others:
-        - Kold# 135d
-      numista: '112565'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: ucoin
-      - value: 0.833
-        source: numista
-    weight_rough_g:
-      - value: 4.497
-        source: numista
-      - value: 5.568
-        source: ngc
-      - value: 5.568
-        source: numismaster
-      - value: 5.57
-        source: ucoin
-    diameter_mm:
-      - value: 24.5
-        source: numista
-      - value: 24.5
-        source: ucoin
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Mark
-          value: silver
-          seed: dk-bruun-7135
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65167
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11250, p. 113
-      - type: literature
-        url: https://en.numista.com/112565
-        ref: Numista N#112565 — 1 Mark Dansk - Christian V
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-mark-1693-1696/?tid=97126
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-mark-km-424.1-1693-1694-cuid-1050386-duid-1236786
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65167
-      - dk-bruun-7135
-      - dk-numista-112565
-      - dk-tid-97126
-      - ngc-1050386
   - id: c-9f36bcce
     class_id: c-9f36bcce
     label: unified-dk-bruun-7242
@@ -2913,157 +2760,6 @@ coins:
       - dk-numista-320055
       - dk-tid-101041
       - ngc-1050258
-  - id: c-4b289c54
-    class_id: c-4b289c54
-    label: unified-dk-bruun-7782
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 32 Skilling
-    year_first: 1775
-    year_last: 1775
-    year_label: '1775'
-    ruler: Christian VII
-    mintmaster: Hans Schierven Knoph
-    mint: Kopenhagen
-    catalog:
-      km:
-        - '627'
-        - '628'
-      hede:
-        - 26A
-        - 26B
-      sieg:
-        - '14.1'
-        - '14.2'
-        - '20'
-      bruun_collection_id:
-        - '7782'
-        - '7783'
-      schou:
-        - '2'
-        - '3'
-      fp:
-        - '27.1'
-        - '27.2'
-      numista: '148397'
-      others:
-        - DNF# 10.2
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.562
-        source: ngc
-        specimen: ngc-1049940
-      - value: 0.562
-        source: ngc
-        specimen: ngc-1059949
-      - value: 0.562
-        source: numismaster
-        specimen: denmark-numismaster-65148
-      - value: 0.562
-        source: numismaster
-        specimen: denmark-numismaster-65149
-      - value: 0.562
-        source: numista
-      - value: 0.563
-        source: ucoin
-        specimen: dk-tid-79090
-      - value: 0.563
-        source: ucoin
-        specimen: dk-tid-79091
-    weight_rough_g:
-      - value: 11.92
-        source: bruun
-      - value: 12.228
-        source: ngc
-        specimen: ngc-1049940
-      - value: 12.228
-        source: ngc
-        specimen: ngc-1059949
-      - value: 12.228
-        source: numismaster
-        specimen: denmark-numismaster-65148
-      - value: 12.228
-        source: numismaster
-        specimen: denmark-numismaster-65149
-      - value: 12.23
-        source: ucoin
-        specimen: dk-tid-79090
-      - value: 12.23
-        source: ucoin
-        specimen: dk-tid-79091
-      - value: 12.25
-        source: bruun
-      - value: 12.3
-        source: numista
-    diameter_mm:
-      - value: 31.7
-        source: numista
-      - value: 32.0
-        source: ucoin
-        specimen: dk-tid-79090
-      - value: 32.0
-        source: ucoin
-        specimen: dk-tid-79091
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 32 Skilling
-          value: billon
-          seed: dk-bruun-7782
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 32 Skilling
-          value: billon
-          seed: dk-bruun-7783
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65148
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_65149
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14203, p. 76
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11291, p. 128
-      - type: literature
-        url: https://en.numista.com/148397
-        ref: Numista N#148397 — 32 Skilling - Christian VII (Bust facing right)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-32-skilling-1775/?tid=79090
-        ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-32-skilling-1775/?tid=79091
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-skilling-km-627-1775-cuid-1049940-duid-1236752
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-skilling-km-628-1775-cuid-1059949-duid-1236753
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65148
-      - denmark-numismaster-65149
-      - dk-bruun-7782
-      - dk-bruun-7783
-      - dk-numista-148397
-      - dk-tid-79090
-      - dk-tid-79091
-      - ngc-1049940
-      - ngc-1059949
   - id: c-9f994062
     class_id: c-9f994062
     label: unified-dk-bruun-7985
@@ -50160,8 +49856,8 @@ coins:
       - dk-bruun-7219
       - dk-hede-c5h106
       - ngc-1060166
-  - id: c-1613c8fa
-    class_id: c-1613c8fa
+  - id: c-b61c6a78
+    class_id: c-b61c6a78
     label: unified-dk-hede-c5h107a
     fuss: seed_unsorted
     phase: hede
@@ -50178,6 +49874,10 @@ coins:
     ruler: Christian V
     mint: Kopenhagen
     catalog:
+      km:
+        - '424.2'
+        - '424.1'
+        - '424'
       hede:
         - 107A
         - 107B
@@ -50190,19 +49890,40 @@ coins:
       sieg:
         - '22.1'
         - '22.2'
+      bruun_collection_id: '7132'
+      others:
+        - Kold# 131e
+      numista: '112565'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050148
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1050386
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65167
+      - value: 0.671
+        source: numismaster
+        specimen: denmark-numismaster-65168
+      - value: 0.671
+        source: ucoin
       - value: 0.833
         source: hede
         specimen: dk-hede-c5h107a
       - value: 0.833
         source: hede
         specimen: dk-hede-c5h107b
+      - value: 0.833
+        source: numista
     weight_rough_g:
       - value: 4.497
         source: hede
@@ -50210,10 +49931,60 @@ coins:
       - value: 4.497
         source: hede
         specimen: dk-hede-c5h107b
+      - value: 4.497
+        source: numista
+      - value: 5.568
+        source: ngc
+        specimen: ngc-1050148
+      - value: 5.568
+        source: ngc
+        specimen: ngc-1050386
+      - value: 5.568
+        source: numismaster
+        specimen: denmark-numismaster-65167
+      - value: 5.568
+        source: numismaster
+        specimen: denmark-numismaster-65168
+      - value: 5.57
+        source: ucoin
+    diameter_mm:
+      - value: 24.5
+        source: numista
+      - value: 24.5
+        source: ucoin
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-7132
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65167
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65168
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17102, p. 52
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h107.htm
         ref: danskmoent.dk (Hede c5h107A)
+      - type: literature
+        url: https://en.numista.com/112565
+        ref: Numista N#112565 — 1 Mark Dansk - Christian V
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-mark-1693-1696/?tid=97126
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-mark-km-424.2-1693-1696-cuid-1050148-duid-1236788
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-mark-km-424.1-1693-1694-cuid-1050386-duid-1236786
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 10.4
@@ -50221,8 +49992,15 @@ coins:
       basis: fin
       unit_raw: rd
     composed_of:
+      - denmark-numismaster-65167
+      - denmark-numismaster-65168
+      - dk-bruun-7132
       - dk-hede-c5h107a
       - dk-hede-c5h107b
+      - dk-numista-112565
+      - dk-tid-97126
+      - ngc-1050148
+      - ngc-1050386
   - id: c-f160fa20
     class_id: c-f160fa20
     label: unified-dk-hede-c5h108
@@ -50367,12 +50145,16 @@ coins:
     year_last: 1693
     year_label: '1693'
     ruler: Christian V
+    mintmaster: Christian Wineke the Elder
     mint: Kopenhagen
     catalog:
       hede: '109'
       hede_volume: c5h
       schou: 61-62
       sieg: '14'
+      bruun_collection_id: '7135'
+      others:
+        - Kold# 135d
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -50385,7 +50167,18 @@ coins:
     weight_rough_g:
       - value: 4.497
         source: hede
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: Mark
+          value: silver
+          seed: dk-bruun-7135
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11250, p. 113
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h109.htm
         ref: danskmoent.dk (Hede c5h109)
@@ -50396,6 +50189,7 @@ coins:
       basis: fin
       unit_raw: rd
     composed_of:
+      - dk-bruun-7135
       - dk-hede-c5h109
   - id: c-0e277630
     class_id: c-0e277630
@@ -96501,6 +96295,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-skilling-1711-1719/?tid=94097
         ref: ucoin
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131174
+        ref: KMM 131174 (Inv. FP 2630.17)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148403
         ref: KMM 148403 (Inv. KP 1656.1910)
       - type: museum
@@ -96541,6 +96338,7 @@ coins:
       - dk-hede-f4h45
       - dk-numista-26614
       - dk-tid-94097
+      - kmk-131174
       - kmk-148403
       - kmk-152196
       - kmk-152197
@@ -109072,30 +108870,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-131169
-  - id: c-987cd9d0
-    class_id: c-987cd9d0
-    label: unified-kmk-131174
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1719
-    year_last: 1719
-    year_label: '1719'
-    ruler: Frederik IV
-    catalog:
-      schou: '10'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131174
-        ref: KMM 131174 (Inv. FP 2630.17)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-131174
   - id: c-180fb717
     class_id: c-180fb717
     label: unified-kmk-131175
@@ -131598,102 +131372,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050565
-  - id: c-b2def4e1
-    class_id: c-b2def4e1
-    label: unified-ngc-1050576
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1801
-    year_last: 1805
-    year_ranges:
-      -   - 1801
-          - 1805
-    year_label: 1801-1805
-    ruler: Christian VII
-    mint: Kopenhagen
-    catalog:
-      km:
-        - '660.1'
-        - '660'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ngc
-      - value: 0.25
-        source: numismaster
-      - value: 0.25
-        source: ucoin
-    weight_rough_g:
-      - value: 1.5
-        source: ngc
-      - value: 1.5
-        source: numismaster
-      - value: 1.5
-        source: ucoin
-    diameter_mm:
-      - value: 19.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65082
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1801-1805/?tid=79553
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-660.1-1801-cuid-1050576-duid-1236629
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65082
-      - dk-tid-79553
-      - ngc-1050576
-  - id: c-57ef5cde
-    class_id: c-57ef5cde
-    label: unified-ngc-1050577
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1801
-    year_last: 1805
-    year_ranges:
-      -   - 1801
-          - 1801
-      -   - 1805
-          - 1805
-    year_label: 1801, 1805
-    ruler: Christian VII
-    catalog:
-      km: '660.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ngc
-    weight_rough_g:
-      - value: 1.5
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-660.2-1801-1805-cuid-1050577-duid-1236630
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1050577
   - id: c-a93b023a
     class_id: c-a93b023a
     label: unified-ngc-1050582

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2787 per-source seed entries.
-# Output: 550 unified entries (one per physical coin).
+# Output: 543 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-21'
+generated_at: '2026-11-22'
 coins:
   - id: c-aad58b83
     class_id: c-aad58b83
@@ -38615,7 +38615,10 @@ coins:
     ruler: Frederik VI
     mint: Kongsberg
     catalog:
-      km: '276'
+      km:
+        - '276.1'
+        - '276.2'
+        - '276'
       hede: '2'
       hede_volume: nf6h
       schou: 3-4
@@ -38634,10 +38637,18 @@ coins:
       - value: 0.25
         source: hede
       - value: 0.25
+        source: ngc
+      - value: 0.25
+        source: numismaster
+      - value: 0.25
         source: numista
       - value: 0.25
         source: ucoin
     weight_rough_g:
+      - value: 2.05
+        source: ngc
+      - value: 2.05
+        source: numismaster
       - value: 2.05
         source: ucoin
       - value: 2.051
@@ -38651,6 +38662,12 @@ coins:
         source: ucoin
     sources:
       - type: literature
+        url: https://numismaster.com/MC_122259
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_122260
+        ref: NumisMaster
+      - type: literature
         url: https://www.danskmoent.dk/norge/nf6h2.htm
         ref: danskmoent.dk (Hede nf6h2)
       - type: literature
@@ -38659,6 +38676,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-4-skilling-1809/?tid=88719
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-276.1-1809-cuid-1097212-duid-1450277
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-276.2-1809-cuid-1098071-duid-1450385
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     hede_muentzfuss_yield:
       value: 19.0
@@ -38666,9 +38689,13 @@ coins:
       basis: fin
       unit_raw: dalere
     composed_of:
+      - denmark-numismaster-122259
+      - denmark-numismaster-122260
       - dk-hede-nf6h2
       - dk-numista-97334
       - dk-tid-88719
+      - ngc-1097212
+      - ngc-1098071
   - id: c-84289c15
     class_id: c-84289c15
     label: unified-dk-hede-nf6h3
@@ -38685,7 +38712,10 @@ coins:
     ruler: Frederik VI
     mint: Kongsberg
     catalog:
-      km: '275'
+      km:
+        - '275.2'
+        - '275.1'
+        - '275'
       hede: '3'
       hede_volume: nf6h
       schou:
@@ -38716,6 +38746,8 @@ coins:
         source: bruun
     diameter_mm:
       - value: 32.0
+        source: ngc
+      - value: 32.0
         source: ucoin
       - value: 33.0
         source: numista
@@ -38737,6 +38769,12 @@ coins:
             … C) 1810 (RRR); (Hede Norge 3, Schou 1, Sieg Norge 5)»[/i].\n[b]L. E. Bruuns Mønt- og Medaillesamling (1928), s. 330[/b], afsnittet «1808 – Frederik VI – 1814», 1810: [i]«Fireskilling af Kobber»[/i],
             Schou 1."
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_122257
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_122258
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12133, p. 208
@@ -38752,13 +38790,23 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122077
         ref: KMM 122077 (Inv. GP 4551.57)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-275.2-1809-1810-cuid-1101297-duid-1466349
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-275.1-1809-cuid-1102014-duid-1452086
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     composed_of:
+      - denmark-numismaster-122257
+      - denmark-numismaster-122258
       - dk-bruun-10942
       - dk-hede-nf6h3
       - dk-numista-97335
       - dk-tid-88718
       - kmk-122077
+      - ngc-1101297
+      - ngc-1102014
   - id: c-84e61d5d
     class_id: c-84e61d5d
     label: unified-dk-hede-nf6h4
@@ -38772,7 +38820,11 @@ coins:
     ruler: Frederik VI
     mint: Kongsberg
     catalog:
-      km: '274'
+      km:
+        - '274.2'
+        - '274.1'
+        - '274.3'
+        - '274'
       hede: '4'
       hede_volume: nf6h
       schou: 12-15
@@ -38796,10 +38848,21 @@ coins:
         source: ucoin
     diameter_mm:
       - value: 25.0
+        source: ngc
+      - value: 25.0
         source: numista
       - value: 25.0
         source: ucoin
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_122238
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_122239
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_122240
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nf6h4.htm
         ref: danskmoent.dk (Hede nf6h4)
@@ -38809,11 +38872,26 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-skilling-1809/?tid=88592
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-274.2-1809-cuid-1098068-duid-1452312
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-274.1-1809-cuid-1114535-duid-1452311
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-274.3-1809-cuid-1114536-duid-1450063
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     composed_of:
+      - denmark-numismaster-122238
+      - denmark-numismaster-122239
+      - denmark-numismaster-122240
       - dk-hede-nf6h4
       - dk-numista-49469
       - dk-tid-88592
+      - ngc-1098068
+      - ngc-1114535
+      - ngc-1114536
   - id: c-eab674bb
     class_id: c-eab674bb
     label: unified-dk-hede-nf6h5
@@ -46563,68 +46641,6 @@ coins:
     composed_of:
       - denmark-numismaster-86246
       - ngc-1097188
-  - id: c-43e2063b
-    class_id: c-43e2063b
-    label: unified-ngc-1097212
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1809
-    year_last: 1809
-    year_label: '1809'
-    ruler: Frederik IX
-    catalog:
-      km: '276.1'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122259
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-276.1-1809-cuid-1097212-duid-1450277
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122259
-      - ngc-1097212
-  - id: c-d58f828a
-    class_id: c-d58f828a
-    label: unified-ngc-1098068
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1809
-    year_last: 1809
-    year_label: '1809'
-    ruler: Frederik IX
-    catalog:
-      km: '274.2'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122239
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-274.2-1809-cuid-1098068-duid-1452312
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122239
-      - ngc-1098068
   - id: c-6c9b49f3
     class_id: c-6c9b49f3
     label: unified-ngc-1098070
@@ -46655,47 +46671,6 @@ coins:
     composed_of:
       - denmark-numismaster-122247
       - ngc-1098070
-  - id: c-4ab88a93
-    class_id: c-4ab88a93
-    label: unified-ngc-1098071
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1809
-    year_last: 1809
-    year_label: '1809'
-    ruler: Frederik IX
-    catalog:
-      km: '276.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ngc
-      - value: 0.25
-        source: numismaster
-    weight_rough_g:
-      - value: 2.05
-        source: ngc
-      - value: 2.05
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122260
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-276.2-1809-cuid-1098071-duid-1450385
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122260
-      - ngc-1098071
   - id: c-d97f3668
     class_id: c-d97f3668
     label: unified-ngc-1098084
@@ -46935,74 +46910,6 @@ coins:
     composed_of:
       - denmark-numismaster-122246
       - ngc-1101175
-  - id: c-7c66c92f
-    class_id: c-7c66c92f
-    label: unified-ngc-1101297
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1809
-    year_last: 1810
-    year_ranges:
-      -   - 1809
-          - 1810
-    year_label: 1809-1810
-    ruler: Frederik IX
-    catalog:
-      km: '275.2'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    diameter_mm:
-      - value: 32.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122258
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-275.2-1809-1810-cuid-1101297-duid-1466349
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122258
-      - ngc-1101297
-  - id: c-b6052aa3
-    class_id: c-b6052aa3
-    label: unified-ngc-1102014
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1809
-    year_last: 1809
-    year_label: '1809'
-    ruler: Frederik IX
-    catalog:
-      km: '275.1'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122257
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-4-skilling-km-275.1-1809-cuid-1102014-duid-1452086
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122257
-      - ngc-1102014
   - id: c-74c19d30
     class_id: c-74c19d30
     label: unified-ngc-1102579
@@ -47422,68 +47329,3 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - ngc-1114138
-  - id: c-c5465cc5
-    class_id: c-c5465cc5
-    label: unified-ngc-1114535
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1809
-    year_last: 1809
-    year_label: '1809'
-    ruler: Frederik IX
-    catalog:
-      km: '274.1'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    diameter_mm:
-      - value: 25.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122238
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-274.1-1809-cuid-1114535-duid-1452311
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122238
-      - ngc-1114535
-  - id: c-2c8bc5e7
-    class_id: c-2c8bc5e7
-    label: unified-ngc-1114536
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1809
-    year_last: 1809
-    year_label: '1809'
-    ruler: Frederik IX
-    catalog:
-      km: '274.3'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_122240
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-274.3-1809-cuid-1114536-duid-1450063
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-122240
-      - ngc-1114536

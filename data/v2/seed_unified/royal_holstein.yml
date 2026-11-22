@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1409 per-source seed entries.
-# Output: 255 unified entries (one per physical coin).
+# Input: 1422 per-source seed entries.
+# Output: 252 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-21'
+generated_at: '2026-11-22'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -5029,17 +5029,15 @@ coins:
     year_last: 1682
     year_ranges:
       -   - 1671
-          - 1673
-      -   - 1677
-          - 1677
-      -   - 1679
           - 1682
-    year_label: 1671-1673, 1677, 1679-1682
+    year_label: 1671-1682
     ruler: Christian V
     mintmaster: Johan Woltereck
     mint: Glückstadt
     catalog:
-      km: '63'
+      km:
+        - '63'
+        - '103'
       hede: '121'
       hede_volume: c5h
       schou:
@@ -5056,7 +5054,9 @@ coins:
       bruun_collection_id: '6772'
       others:
         - Aagaard# 5.1
-      numista: '108775'
+      numista:
+        - '108775'
+        - '313357'
       dav: EC II 3678
     metal: silver
     metal_verified: true
@@ -5124,6 +5124,9 @@ coins:
       - type: literature
         url: https://en.numista.com/108775
         ref: Numista N#108775 — 4 Mark Dansk - Christian V (Type I)
+      - type: literature
+        url: https://en.numista.com/313357
+        ref: Numista N#313357 — 1 Krone - Christian V
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1671-1682/?tid=163655
         ref: ucoin
@@ -5155,6 +5158,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/276471
         ref: KMM 276471 (Inv. FP 4227.1350)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-krone-km-103-1671-1682-cuid-101324-duid-266349
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92996
         ref: NumisMaster
     note:
@@ -5171,6 +5177,7 @@ coins:
       - dk-bruun-6772
       - dk-hede-c5h121
       - dk-numista-108775
+      - dk-numista-313357
       - dk-tid-163655
       - kmk-276462
       - kmk-276464
@@ -5180,6 +5187,7 @@ coins:
       - kmk-276469
       - kmk-276470
       - kmk-276471
+      - ngc-101324
       - schleswig_holstein-numismaster-92996
   - id: c-a400046e
     class_id: c-a400046e
@@ -5610,6 +5618,7 @@ coins:
     catalog:
       km:
         - '80.1'
+        - '80.2'
         - '80'
       hede:
         - 126A
@@ -5623,7 +5632,9 @@ coins:
       sieg:
         - '135'
         - '136'
-      numista: '108725'
+      numista:
+        - '108725'
+        - '108733'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -5640,8 +5651,16 @@ coins:
         specimen: dk-hede-c5h126b
       - value: 0.671
         source: numismaster
+        specimen: schleswig_holstein-numismaster-92994
+      - value: 0.671
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92995
       - value: 0.671
         source: numista
+        specimen: dk-numista-108725
+      - value: 0.671
+        source: numista
+        specimen: dk-numista-108733
       - value: 0.671
         source: ucoin
     weight_rough_g:
@@ -5653,13 +5672,25 @@ coins:
         specimen: dk-hede-c5h126b
       - value: 11.136
         source: numismaster
+        specimen: schleswig_holstein-numismaster-92994
+      - value: 11.136
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92995
       - value: 11.136
         source: numista
+        specimen: dk-numista-108725
+      - value: 11.136
+        source: numista
+        specimen: dk-numista-108733
       - value: 11.14
         source: ucoin
     diameter_mm:
+      - value: 32.1
+        source: numista
+        specimen: dk-numista-108733
       - value: 32.54
         source: numista
+        specimen: dk-numista-108725
       - value: 33.0
         source: ucoin
     sources:
@@ -5669,11 +5700,17 @@ coins:
       - type: literature
         url: https://en.numista.com/108725
         ref: Numista N#108725 — 2 Mark Dansk - Christian V (Type II; palm leaves)
+      - type: literature
+        url: https://en.numista.com/108733
+        ref: Numista N#108733 — 2 Mark Dansk - Christian V (Type II; laurel wreath)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-mark-dansk-1693-1696/?tid=163646
         ref: ucoin
       - type: literature
         url: https://numismaster.com/MC_92994
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_92995
         ref: NumisMaster
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
@@ -5685,8 +5722,10 @@ coins:
       - dk-hede-c5h126a
       - dk-hede-c5h126b
       - dk-numista-108725
+      - dk-numista-108733
       - dk-tid-163646
       - schleswig_holstein-numismaster-92994
+      - schleswig_holstein-numismaster-92995
   - id: c-75ecfebf
     class_id: c-75ecfebf
     label: unified-dk-hede-c5h127a
@@ -7161,25 +7200,26 @@ coins:
       - dk-numista-325285
       - ngc-1050242
       - ngc-1096051
-  - id: c-4ac05937
-    class_id: c-4ac05937
+  - id: c-4b289c54
+    class_id: c-4b289c54
     label: unified-dk-hede-c7h26a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 32 Skilling
-    year_first: 1766
-    year_last: 1808
-    year_ranges:
-      -   - 1766
-          - 1808
-    year_label: 1766-1808
-    _year_demoted: true
+    year_first: 1775
+    year_last: 1775
+    year_label: '1775'
     ruler: Christian VII
+    mintmaster: Hans Schierven Knoph
     mint:
       - Altona
       - Kopenhagen
     catalog:
+      km:
+        dk:
+          - '627'
+          - '628'
       hede:
         - 26A
         - 26B
@@ -7188,15 +7228,27 @@ coins:
         - '2'
         - '3'
       sieg:
+        - '14.1'
+        - '14.2'
         - '19'
         - '20'
+      bruun_collection_id:
+        - '7782'
+        - '7783'
+      fp:
+        - '27.1'
+        - '27.2'
+      numista: '148397'
+      others:
+        - DNF# 10.2
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
+    year_verified: true
     fineness:
       - value: 0.562
         source: hede
@@ -7204,13 +7256,66 @@ coins:
       - value: 0.562
         source: hede
         specimen: dk-hede-c7h26b
+      - value: 0.562
+        source: ngc
+        specimen: ngc-1049940
+      - value: 0.562
+        source: ngc
+        specimen: ngc-1059949
+      - value: 0.562
+        source: numismaster
+        specimen: denmark-numismaster-65148
+      - value: 0.562
+        source: numismaster
+        specimen: denmark-numismaster-65149
+      - value: 0.562
+        source: numista
+      - value: 0.563
+        source: ucoin
+        specimen: dk-tid-79090
+      - value: 0.563
+        source: ucoin
+        specimen: dk-tid-79091
     weight_rough_g:
+      - value: 11.92
+        source: bruun
       - value: 12.228
         source: hede
         specimen: dk-hede-c7h26a
       - value: 12.228
         source: hede
         specimen: dk-hede-c7h26b
+      - value: 12.228
+        source: ngc
+        specimen: ngc-1049940
+      - value: 12.228
+        source: ngc
+        specimen: ngc-1059949
+      - value: 12.228
+        source: numismaster
+        specimen: denmark-numismaster-65148
+      - value: 12.228
+        source: numismaster
+        specimen: denmark-numismaster-65149
+      - value: 12.23
+        source: ucoin
+        specimen: dk-tid-79090
+      - value: 12.23
+        source: ucoin
+        specimen: dk-tid-79091
+      - value: 12.25
+        source: bruun
+      - value: 12.3
+        source: numista
+    diameter_mm:
+      - value: 31.7
+        source: numista
+      - value: 32.0
+        source: ucoin
+        specimen: dk-tid-79090
+      - value: 32.0
+        source: ucoin
+        specimen: dk-tid-79091
     uncertainty:
       year:
         - kind: inferred
@@ -7223,10 +7328,50 @@ coins:
           source: hede
           value: 1766-1808
           seed: dk-hede-c7h26b
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 32 Skilling
+          value: billon
+          seed: dk-bruun-7782
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 32 Skilling
+          value: billon
+          seed: dk-bruun-7783
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65148
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65149
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14203, p. 76
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11291, p. 128
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h26.htm
         ref: danskmoent.dk (Hede c7h26A)
+      - type: literature
+        url: https://en.numista.com/148397
+        ref: Numista N#148397 — 32 Skilling - Christian VII (Bust facing right)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-32-skilling-1775/?tid=79090
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-32-skilling-1775/?tid=79091
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-32-skilling-km-627-1775-cuid-1049940-duid-1236752
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-32-skilling-km-628-1775-cuid-1059949-duid-1236753
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity:
       - danish_realm
       - royal_holstein
@@ -7235,8 +7380,17 @@ coins:
       unit: rigsdaler
       basis: fin
     composed_of:
+      - denmark-numismaster-65148
+      - denmark-numismaster-65149
+      - dk-bruun-7782
+      - dk-bruun-7783
       - dk-hede-c7h26a
       - dk-hede-c7h26b
+      - dk-numista-148397
+      - dk-tid-79090
+      - dk-tid-79091
+      - ngc-1049940
+      - ngc-1059949
   - id: c-05bdb1ab
     class_id: c-05bdb1ab
     label: unified-dk-hede-c7h28a
@@ -7551,8 +7705,8 @@ coins:
       - ngc-1048393
       - ngc-1048766
       - ngc-1068827
-  - id: c-d430a250
-    class_id: c-d430a250
+  - id: c-b2def4e1
+    class_id: c-b2def4e1
     label: unified-dk-hede-c7h35
     fuss: seed_unsorted
     phase: hede
@@ -7573,6 +7727,7 @@ coins:
     catalog:
       km:
         dk:
+          - '660.1'
           - '660.2'
           - '660'
       hede: '35'
@@ -7594,18 +7749,47 @@ coins:
       - value: 0.25
         source: hede
       - value: 0.25
+        source: ngc
+        specimen: ngc-1050576
+      - value: 0.25
+        source: ngc
+        specimen: ngc-1050577
+      - value: 0.25
         source: numismaster
+        specimen: denmark-numismaster-65082
+      - value: 0.25
+        source: numismaster
+        specimen: denmark-numismaster-65083
+      - value: 0.25
+        source: ucoin
     weight_rough_g:
       - value: 1.5
         source: hede
       - value: 1.5
+        source: ngc
+        specimen: ngc-1050576
+      - value: 1.5
+        source: ngc
+        specimen: ngc-1050577
+      - value: 1.5
         source: numismaster
+        specimen: denmark-numismaster-65082
+      - value: 1.5
+        source: numismaster
+        specimen: denmark-numismaster-65083
       - value: 1.5
         source: numista
+      - value: 1.5
+        source: ucoin
     diameter_mm:
       - value: 19.0
         source: numista
+      - value: 19.5
+        source: ucoin
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65082
+        ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_65083
         ref: NumisMaster
@@ -7615,6 +7799,15 @@ coins:
       - type: literature
         url: https://en.numista.com/89153
         ref: Numista N#89153 — 2 Skilling - Christian VII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1801-1805/?tid=79553
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-660.1-1801-cuid-1050576-duid-1236629
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-660.2-1801-1805-cuid-1050577-duid-1236630
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity:
       - danish_realm
       - royal_holstein
@@ -7624,9 +7817,13 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-65082
       - denmark-numismaster-65083
       - dk-hede-c7h35
       - dk-numista-89153
+      - dk-tid-79553
+      - ngc-1050576
+      - ngc-1050577
   - id: c-0ebb9320
     class_id: c-0ebb9320
     label: unified-dk-hede-c7h36
@@ -18227,57 +18424,6 @@ coins:
       - dk-numista-108662
       - dk-tid-163586
       - schleswig_holstein-numismaster-92973
-  - id: c-950a41e8
-    class_id: c-950a41e8
-    label: unified-dk-numista-108733
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Mark Danske
-    year_first: 1694
-    year_last: 1696
-    year_ranges:
-      -   - 1694
-          - 1694
-      -   - 1696
-          - 1696
-    year_label: 1694, 1696
-    ruler: Christian V
-    mint: Glückstadt
-    catalog:
-      km: '80.2'
-      numista: '108733'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: numismaster
-      - value: 0.671
-        source: numista
-    weight_rough_g:
-      - value: 11.136
-        source: numismaster
-      - value: 11.136
-        source: numista
-    diameter_mm:
-      - value: 32.1
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/108733
-        ref: Numista N#108733 — 2 Mark Dansk - Christian V (Type II; laurel wreath)
-      - type: literature
-        url: https://numismaster.com/MC_92995
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-108733
-      - schleswig_holstein-numismaster-92995
   - id: c-7a4f86ae
     class_id: c-7a4f86ae
     label: unified-dk-numista-109009
@@ -18885,40 +19031,6 @@ coins:
       - dk-numista-309418
       - ngc-167721
       - schleswig_holstein-numismaster-167721
-  - id: c-326ffab3
-    class_id: c-326ffab3
-    label: unified-dk-numista-313357
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Krone
-    year_first: 1671
-    year_last: 1682
-    year_ranges:
-      -   - 1671
-          - 1682
-    year_label: 1671-1682
-    ruler: Frederik III
-    catalog:
-      km: '103'
-      numista: '313357'
-      hede: '121'
-      sieg: '137'
-      dav: EC II 3678
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/313357
-        ref: Numista N#313357 — 1 Krone - Christian V
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-313357
   - id: c-708f86ad
     class_id: c-708f86ad
     label: unified-dk-numista-398134
@@ -20393,37 +20505,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-101322
-  - id: c-c50a7d96
-    class_id: c-c50a7d96
-    label: unified-ngc-101324
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Krone
-    year_first: 1671
-    year_last: 1682
-    year_ranges:
-      -   - 1671
-          - 1682
-    year_label: 1671-1682
-    ruler: Christian V
-    catalog:
-      km: '103'
-      dav: '3678'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-krone-km-103-1671-1682-cuid-101324-duid-266349
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-101324
   - id: c-438b051b
     class_id: c-438b051b
     label: unified-ngc-101328
