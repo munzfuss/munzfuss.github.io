@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1496 per-source seed entries.
-# Output: 255 unified entries (one per physical coin).
+# Output: 254 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -5713,6 +5713,9 @@ coins:
         specimen: ngc-1051681
       - value: 0.671
         source: ngc
+        specimen: ngc-1051972
+      - value: 0.671
+        source: ngc
         specimen: ngc-1063130
       - value: 0.671
         source: numismaster
@@ -5720,6 +5723,9 @@ coins:
       - value: 0.671
         source: numismaster
         specimen: schleswig_holstein-numismaster-92998
+      - value: 0.671
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92999
       - value: 0.671
         source: numista
         specimen: dk-numista-108735
@@ -5759,6 +5765,9 @@ coins:
         specimen: ngc-1051681
       - value: 22.272
         source: ngc
+        specimen: ngc-1051972
+      - value: 22.272
+        source: ngc
         specimen: ngc-1063130
       - value: 22.272
         source: numismaster
@@ -5766,6 +5775,9 @@ coins:
       - value: 22.272
         source: numismaster
         specimen: schleswig_holstein-numismaster-92998
+      - value: 22.272
+        source: numismaster
+        specimen: schleswig_holstein-numismaster-92999
       - value: 22.272
         source: numista
         specimen: dk-numista-108760
@@ -5785,6 +5797,33 @@ coins:
       - value: 41.0
         source: ucoin
         specimen: dk-tid-163657
+    catalog_alts:
+      - register: km
+        value: '80'
+        source: ngc
+        kind: erroneous
+        reason:
+          de: «KM# 80» steht in NumisMaster (und NGC, das dessen Daten führt) auf dem 4 Mark Danske mit Lorbeerzweigen, Glückstadt 1694–1696, Dav 3680 = Hede 125C; dieselbe Quelle führt KM 80.1 und 
+            80.2 als 2 Mark Danske und kein KM 83. [b]Numista 108735[/b] und [b]ucoin 163657[/b] geben für dieses 4 Mark Danske [i]KM 83[/i].
+          en: NumisMaster (and NGC, which carries its data) prints «KM# 80» for the 4 Mark Danske with laurel branches, Glückstadt 1694–1696, Dav 3680 = Hede 125C; the same source lists KM 80.1 and 
+            80.2 as the 2 Mark Danske and has no KM 83. [b]Numista 108735[/b] and [b]ucoin 163657[/b] give [i]KM 83[/i] for this 4 Mark Danske.
+          uk: NumisMaster (і NGC, що подає його дані) друкує «KM# 80» для 4 Mark Danske з лавровими гілками, Glückstadt 1694–1696, Dav 3680 = Hede 125C; те саме джерело подає KM 80.1 і 80.2 як 2 Mark 
+            Danske і не має KM 83. [b]Numista 108735[/b] і [b]ucoin 163657[/b] дають для цього 4 Mark Danske [i]KM 83[/i].
+          da: NumisMaster (og NGC, der gengiver dens data) angiver «KM# 80» for 4 Mark Danske med laurbærgrene, Glückstadt 1694–1696, Dav 3680 = Hede 125C; samme kilde fører KM 80.1 og 80.2 som 2 Mark
+            Danske og har intet KM 83. [b]Numista 108735[/b] og [b]ucoin 163657[/b] angiver [i]KM 83[/i] for denne 4 Mark Danske.
+      - register: km
+        value: '80'
+        source: numismaster
+        kind: erroneous
+        reason:
+          de: «KM# 80» steht in NumisMaster (und NGC, das dessen Daten führt) auf dem 4 Mark Danske mit Lorbeerzweigen, Glückstadt 1694–1696, Dav 3680 = Hede 125C; dieselbe Quelle führt KM 80.1 und 
+            80.2 als 2 Mark Danske und kein KM 83. [b]Numista 108735[/b] und [b]ucoin 163657[/b] geben für dieses 4 Mark Danske [i]KM 83[/i].
+          en: NumisMaster (and NGC, which carries its data) prints «KM# 80» for the 4 Mark Danske with laurel branches, Glückstadt 1694–1696, Dav 3680 = Hede 125C; the same source lists KM 80.1 and 
+            80.2 as the 2 Mark Danske and has no KM 83. [b]Numista 108735[/b] and [b]ucoin 163657[/b] give [i]KM 83[/i] for this 4 Mark Danske.
+          uk: NumisMaster (і NGC, що подає його дані) друкує «KM# 80» для 4 Mark Danske з лавровими гілками, Glückstadt 1694–1696, Dav 3680 = Hede 125C; те саме джерело подає KM 80.1 і 80.2 як 2 Mark 
+            Danske і не має KM 83. [b]Numista 108735[/b] і [b]ucoin 163657[/b] дають для цього 4 Mark Danske [i]KM 83[/i].
+          da: NumisMaster (og NGC, der gengiver dens data) angiver «KM# 80» for 4 Mark Danske med laurbærgrene, Glückstadt 1694–1696, Dav 3680 = Hede 125C; samme kilde fører KM 80.1 og 80.2 som 2 Mark
+            Danske og har intet KM 83. [b]Numista 108735[/b] og [b]ucoin 163657[/b] angiver [i]KM 83[/i] for denne 4 Mark Danske.
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h125.htm
@@ -5823,6 +5862,9 @@ coins:
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-77.2-1693-cuid-1051681-duid-1239786
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-80-1694-1696-cuid-1051972-duid-1239787
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-77.1-1692-1694-cuid-1063130-duid-1239783
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -5830,6 +5872,9 @@ coins:
         ref: NumisMaster
       - type: literature
         url: https://numismaster.com/MC_92998
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_92999
         ref: NumisMaster
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
@@ -5852,9 +5897,11 @@ coins:
       - ngc-101326
       - ngc-101327
       - ngc-1051681
+      - ngc-1051972
       - ngc-1063130
       - schleswig_holstein-numismaster-92997
       - schleswig_holstein-numismaster-92998
+      - schleswig_holstein-numismaster-92999
   - id: c-c64920e8
     class_id: c-c64920e8
     label: unified-dk-hede-c5h126a
@@ -21392,52 +21439,6 @@ coins:
     composed_of:
       - ngc-1051970
       - schleswig_holstein-numismaster-92979
-  - id: c-2d503457
-    class_id: c-2d503457
-    label: unified-ngc-1051972
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Mark Danske
-    year_first: 1694
-    year_last: 1696
-    year_ranges:
-      -   - 1694
-          - 1696
-    year_label: 1694-1696
-    ruler: Christian V
-    catalog:
-      km:
-        glu: '80'
-      dav: '3680'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ngc
-      - value: 0.671
-        source: numismaster
-    weight_rough_g:
-      - value: 22.272
-        source: ngc
-      - value: 22.272
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-80-1694-1696-cuid-1051972-duid-1239787
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_92999
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-1051972
-      - schleswig_holstein-numismaster-92999
   - id: c-2bf19f55
     class_id: c-2bf19f55
     label: unified-ngc-1051974
