@@ -864,16 +864,33 @@ def merge_one(
 _PAGE_CATALOGUE_ID_RE = re.compile(r"^dk-(?:hede|galster)-")
 
 
+def _km_numbers(km) -> list[str]:
+    """Every number of a km value in any shape: bare, list, register-keyed
+    dict, or a list mixing bare numbers and dicts."""
+    out: list[str] = []
+    for v in (km if isinstance(km, list) else [km]):
+        if isinstance(v, dict):
+            for x in v.values():
+                out.extend(str(y) for y in (x if isinstance(x, list) else [x]) if y not in (None, ""))
+        elif v not in (None, ""):
+            out.append(str(v))
+    return out
+
+
 def _km_bare_superseded(existing, fresh) -> bool:
     """True when `fresh` is the register-keyed km dict and every number of
-    the bare `existing` km is among its values (lib.km_registers)."""
-    if not isinstance(fresh, dict) or existing is None or isinstance(existing, dict):
+    the `existing` km is among its values (lib.km_registers).
+
+    `existing` may be bare (the parser now names the volume of numbers it
+    used to give bare) or itself register-keyed (the parser now names a
+    DIFFERENT volume for the same numbers — a corrected section reading).
+    Either way the fresh volume-keyed form replaces it: a union would keep the
+    old volume beside the new one, read as two volumes."""
+    if not isinstance(fresh, dict) or existing is None:
         return False
-    ex = existing if isinstance(existing, list) else [existing]
-    if any(isinstance(v, dict) for v in ex):
-        return False
-    fr = {str(x) for v in fresh.values() for x in (v if isinstance(v, list) else [v])}
-    return bool(ex) and all(str(v) in fr for v in ex)
+    ex = _km_numbers(existing)
+    fr = set(_km_numbers(fresh))
+    return bool(ex) and all(v in fr for v in ex)
 
 
 def merge_seed(

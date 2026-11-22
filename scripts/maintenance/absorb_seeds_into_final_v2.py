@@ -723,6 +723,73 @@ def _skeleton(fc: dict) -> dict:
     return sk
 
 
+def _norm_km_register(r) -> str:
+    c = str(r).strip().lower()
+    return "nor" if c in ("no", "false") else c
+
+
+def _drop_relabelled_km(members: list[dict], entity_id: str | None) -> list[dict]:
+    """Drop from the final's own KM (members[0]) a number filed under a
+    Krause volume in which no member gives that number any more, when the
+    members DO give the same number under another volume.
+
+    The final self-unions its stored catalogue with its members' (D18), so a
+    volume reading that changed upstream — a bare number once read in the
+    entity's volume, now named explicitly by its source as another volume —
+    left the old volume behind: KM 696 under both `sh` and `dk` on the
+    Rigsbankdaler 1826, while every member says `dk`. That is a relabel, not a
+    second number. A number no member gives at all is left alone (the
+    self-union keeps it, as before), and so is a number a member gives with no
+    resolvable volume. `_curation_holds` on catalog / catalog.km wins."""
+    if len(members) < 2:
+        return members
+    fc = members[0]
+    h = fc.get("_curation_holds")
+    held = set(h.keys() if isinstance(h, dict) else (h or []))
+    if held & {"catalog", "catalog.km"}:
+        return members
+    km = (fc.get("catalog") or {}).get("km")
+    if not isinstance(km, dict):
+        return members
+    from lib.km_registers import entity_register, split_km
+    supplied: dict[str, set[str]] = defaultdict(set)
+    for m in members[1:]:
+        if not isinstance(m, dict):
+            continue
+        mk = (m.get("catalog") or {}).get("km")
+        if mk in (None, "", []):
+            continue
+        default = entity_register(m.get("issuing_entity")) or "?"
+        for v in (mk if isinstance(mk, list) else [mk]):
+            if isinstance(v, dict):
+                for r, x in v.items():
+                    for n in split_km(x):
+                        supplied[n].add(_norm_km_register(r))
+            else:
+                for n in split_km(v):
+                    supplied[n].add(default)
+    new_km: dict = {}
+    changed = False
+    for r, x in km.items():
+        nums = split_km(x)
+        reg = _norm_km_register(r)
+        keep = [n for n in nums
+                if not (n in supplied and "?" not in supplied[n]
+                        and reg not in supplied[n])]
+        if len(keep) != len(nums):
+            changed = True
+        if keep:
+            new_km[r] = keep if (isinstance(x, list) or len(keep) > 1) else keep[0]
+    if not changed:
+        return members
+    cat = dict(fc.get("catalog") or {})
+    if new_km:
+        cat["km"] = new_km
+    else:
+        cat.pop("km", None)
+    return [{**fc, "catalog": cat}, *members[1:]]
+
+
 def _apply_catalog_km_hold(enriched: dict, fc: dict) -> None:
     """`_curation_holds: {catalog.km: "why"}` freezes ONLY the KM register of
     a final, in the exact shape stored (2026-10-23, km-105-chr-v-1683). A
@@ -1393,7 +1460,8 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 
     # Catalog: accumulate list-form on conflict (D18). Foundation entries
     # come first → their values take authority position in the list.
-    cat, cat_conflicts = _deep_merge_catalog(members, entity_id)
+    cat, cat_conflicts = _deep_merge_catalog(
+        _drop_relabelled_km(members, entity_id), entity_id)
     if cat:
         out["catalog"] = cat
     conflicts.extend(cat_conflicts)
