@@ -63,7 +63,14 @@ ENTITY_TO_KM_REGISTER: dict[str, str] = {
 
 # Internal code → the code the page shows after «KM-» and the `km_register`
 # casing of `data/v2/locations/<loc>.yml`.
-_DISPLAY = {"dk": "DK", "nor": "NO", "sh": "SH"}
+# «glu» is Krause's own «Glückstadt» section: NGC files it under Denmark
+# («Denmark GLÜCKSTADT …»), NumisMaster as country GLÜCKSTADT, Numista as the
+# issuer «Glückstadt, City of». Its numbers collide with Denmark main (KM 26 =
+# 6 Speciedaler 1604 there, 1/16 Speciedaler 1640 here) and with the S-H
+# section (Hede 120 = Glückstadt KM 73 = S-H KM 105), so it is neither «dk»
+# nor «sh». No entity reads a bare number in it: only a source that names the
+# section writes it.
+_DISPLAY = {"dk": "DK", "nor": "NO", "sh": "SH", "glu": "GLÜ"}
 
 
 def display_register(code: str | None) -> str | None:

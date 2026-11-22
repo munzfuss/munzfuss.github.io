@@ -100,7 +100,8 @@ class TestRelocationCarry(unittest.TestCase):
     def setUp(self):
         self._saved = (A._FINAL_SNAPSHOT, A._cross_entity_relocated_out,
                        A._final_is_routed_away, A._target_holds_relocated,
-                       set(A._RUN_ENTITIES))
+                       set(A._RUN_ENTITIES), A._UNIFIED_HOME_INDEX)
+        A._UNIFIED_HOME_INDEX = {"unified-s1": "tgt", "unified-s9x": "tgt"}
         A._FINAL_SNAPSHOT = {"src": [self.SRC_FINAL, self.SHELL], "tgt": []}
         A._cross_entity_relocated_out = (
             lambda e: {"s1"} if e == "src" else set())
@@ -109,7 +110,8 @@ class TestRelocationCarry(unittest.TestCase):
 
     def tearDown(self):
         (A._FINAL_SNAPSHOT, A._cross_entity_relocated_out,
-         A._final_is_routed_away, A._target_holds_relocated, run) = self._saved
+         A._final_is_routed_away, A._target_holds_relocated, run,
+         A._UNIFIED_HOME_INDEX) = self._saved
         A._RUN_ENTITIES.clear()
         A._RUN_ENTITIES.update(run)
 
@@ -125,6 +127,19 @@ class TestRelocationCarry(unittest.TestCase):
         # seed now lives in the target, it must not seed the target's fields.
         got = A._cross_entity_carry_in(
             "tgt", [{"id": "unified-s9x", "origin": "promoted", "composed_of": ["s9"]}])
+        self.assertEqual(got, [])
+
+    def test_final_that_only_lost_one_class_carries_nothing(self):
+        # 2026-11-22: a source final (Hede 45) whose snapshot still lists the
+        # departed class (NGC 1051156) next to its own head class, which stays
+        # in the source entity — only that class moved; the target (Hede 63)
+        # must not inherit the remaining coin's fields.
+        partial = {"id": "c-head", "origin": "promoted",
+                   "composed_of": ["c-head", "unified-s1"]}
+        A._FINAL_SNAPSHOT = {"src": [partial], "tgt": []}
+        A._UNIFIED_HOME_INDEX = {"c-head": "src", "unified-s1": "tgt"}
+        got = A._cross_entity_carry_in(
+            "tgt", [{"id": "unified-s1", "origin": "promoted", "composed_of": ["s1"]}])
         self.assertEqual(got, [])
 
     def test_source_keeps_copy_until_target_holds_it(self):

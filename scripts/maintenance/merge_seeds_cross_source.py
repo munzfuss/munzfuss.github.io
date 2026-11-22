@@ -867,6 +867,10 @@ def _stamp_catalog_scope_rulers(seeds: list[dict],
     return n
 
 
+# Register → the scope `_catalog_refs` compares it under (see there).
+_KM_MATCH_SCOPE = {"glu": "sh"}
+
+
 def _catalog_refs(coin: dict, entity_id: str | None = None, *,
                   fresh: bool = False) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
@@ -910,7 +914,16 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
         if isinstance(km, dict):
             for reg, v in km.items():
                 vv = v if isinstance(v, list) else [v]
-                refs[f"km/{reg.lower()}"] = _km_join(vv)
+                # Matching scope, not the displayed volume: Krause's own
+                # Glückstadt section («glu») is compared as «sh», the volume
+                # in which every bare royal_holstein KM (ucoin, Bruun) is read
+                # — a bare Glückstadt number cannot say which section it is,
+                # so separating the two here would cut it from the same
+                # number written «glu». It still never meets Denmark main.
+                key = f"km/{_KM_MATCH_SCOPE.get(reg.lower(), reg.lower())}"
+                if key in refs:
+                    vv = [*refs[key].split("|"), *vv]
+                refs[key] = _km_join(vv)
         else:
             vals = km if isinstance(km, list) else [km]
             # Bare KM — infer register from entity context.

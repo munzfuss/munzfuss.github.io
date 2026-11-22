@@ -151,6 +151,8 @@ COUNTRY_TO_ISSUING_ENTITY: dict[str, str] = {
 # NumisMaster `country` → Krause volume it names (lib.km_registers codes).
 KM_VOLUME_BY_COUNTRY: dict[str, str] = {
     "DENMARK": "dk", "NORWAY": "nor", "NORW AY": "nor",
+    # Krause's own Glückstadt section (lib.km_registers «glu»)
+    "GLÜCKSTADT": "glu", "GLUCKSTADT": "glu",
 }
 
 
