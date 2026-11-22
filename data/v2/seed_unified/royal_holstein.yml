@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1409 per-source seed entries.
-# Output: 255 unified entries (one per physical coin).
+# Input: 1482 per-source seed entries.
+# Output: 258 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-21'
+generated_at: '2026-11-22'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -293,7 +293,8 @@ coins:
     mintmaster: Simon Timpfe (ST)
     mint: Glückstadt
     catalog:
-      km: '28'
+      km:
+        glu: '28'
       hede:
         - 164A
         - 164B
@@ -363,6 +364,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-2-speciedaler-1641/?tid=163664
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-speciedaler-km-28-1640-1641-cuid-1052791-duid-1239849
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93027
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -371,6 +375,7 @@ coins:
       - dk-bruun-5638
       - dk-numista-308518
       - dk-tid-163664
+      - ngc-1052791
       - schleswig_holstein-numismaster-93027
   - id: c-20b8d266
     class_id: c-20b8d266
@@ -1181,7 +1186,8 @@ coins:
     mintmaster: Simon Timpfe, the younger
     mint: Glückstadt
     catalog:
-      km: '29'
+      km:
+        glu: '29'
       hede:
         - 153A
         - 153ab
@@ -1206,6 +1212,8 @@ coins:
     verified: false
     fineness:
       - value: 0.986
+        source: ngc
+      - value: 0.986
         source: numismaster
       - value: 0.986
         source: numista
@@ -1214,6 +1222,8 @@ coins:
     weight_rough_g:
       - value: 3.45
         source: bruun
+      - value: 3.5
+        source: ngc
       - value: 3.5
         source: numismaster
       - value: 3.5
@@ -1239,6 +1249,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-ducat-1640-1646/?tid=163665
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-29-1640-1646-cuid-1052602-duid-1239854
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93030
         ref: NumisMaster
     verification_note:
@@ -1256,6 +1269,7 @@ coins:
       - dk-hede-c4h153ab
       - dk-numista-143069
       - dk-tid-163665
+      - ngc-1052602
       - schleswig_holstein-numismaster-93030
   - id: c-31c2cebb
     class_id: c-31c2cebb
@@ -1274,7 +1288,8 @@ coins:
     mintmaster: Jacob Schwieger
     mint: Glückstadt
     catalog:
-      km: '36'
+      km:
+        glu: '36'
       hede: '154'
       hede_volume: c4h
       schou:
@@ -1301,6 +1316,8 @@ coins:
       - value: 0.979
         source: numista
       - value: 0.986
+        source: ngc
+      - value: 0.986
         source: numismaster
       - value: 0.986
         source: ucoin
@@ -1311,6 +1328,8 @@ coins:
         source: bruun
       - value: 3.49
         source: hede
+      - value: 3.5
+        source: ngc
       - value: 3.5
         source: numismaster
       - value: 3.5
@@ -1342,6 +1361,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-ducat-1645/?tid=163666
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-36-1645-1646-cuid-1051684-duid-1239857
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93031
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -1350,6 +1372,7 @@ coins:
       - dk-hede-c4h154
       - dk-numista-143065
       - dk-tid-163666
+      - ngc-1051684
       - schleswig_holstein-numismaster-93031
   - id: c-8d6620d2
     class_id: c-8d6620d2
@@ -1368,7 +1391,8 @@ coins:
     mintmaster: Jacob Schwieger
     mint: Glückstadt
     catalog:
-      km: '35'
+      km:
+        glu: '35'
       hede: '155'
       hede_volume: c4h
       sieg:
@@ -1385,9 +1409,12 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.979
+        source: ngc
       - value: 0.979
         source: numismaster
     weight_rough_g:
@@ -1395,6 +1422,8 @@ coins:
         source: bruun
       - value: 1.73
         source: bruun
+      - value: 1.745
+        source: ngc
       - value: 1.745
         source: numismaster
     uncertainty:
@@ -1422,6 +1451,9 @@ coins:
         url: https://www.danskmoent.dk/c4hede2.htm
         ref: danskmoent.dk overview c4hede2 (Hede c4h155 — Tiefenseite fehlt)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-2-ducat-km-35-1645-1646-cuid-1063239-duid-1239852
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93029
         ref: NumisMaster
     verification_note:
@@ -1438,6 +1470,7 @@ coins:
       - dk-bruun-5737
       - dk-bruun-5738
       - dk-hede-c4h155
+      - ngc-1063239
       - schleswig_holstein-numismaster-93029
   - id: c-a8147818
     class_id: c-a8147818
@@ -1461,9 +1494,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '15'
-        - '14'
-        - '20'
+        glu:
+          - '15'
+          - '20'
+        sh: '14'
       hede: '156'
       hede_volume: c4h
       schou:
@@ -1654,6 +1688,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190269
         ref: KMM 190269 (Inv. FP 3108.15)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-15-16z3-16z7-cuid-1052601-duid-1239826
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-20-1630-16z9-cuid-1063137-duid-1239830
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93016
         ref: NumisMaster
       - type: literature
@@ -1680,6 +1720,8 @@ coins:
       - dk-tid-163658
       - dk-tid-163659
       - kmk-190269
+      - ngc-1052601
+      - ngc-1063137
       - schleswig_holstein-numismaster-93016
       - schleswig_holstein-numismaster-93017
   - id: c-064dce66
@@ -1696,7 +1738,8 @@ coins:
     mintmaster: Albert Dionis
     mint: Glückstadt
     catalog:
-      km: '16'
+      km:
+        glu: '16'
       hede: '157'
       hede_volume: c4h
       sieg:
@@ -1737,6 +1780,9 @@ coins:
         url: https://en.numista.com/468489
         ref: Numista N#468489 — 2 Speciedaler - Christian IV
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-speciedaler-km-16-1623-cuid-1052062-duid-1239848
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93026
         ref: NumisMaster
     verification_note:
@@ -1753,6 +1799,7 @@ coins:
       - dk-bruun-5327
       - dk-hede-c4h157
       - dk-numista-468489
+      - ngc-1052062
       - schleswig_holstein-numismaster-93026
   - id: c-428287d0
     class_id: c-428287d0
@@ -1767,20 +1814,26 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '17'
+      km:
+        glu: '17'
       hede: '158'
       hede_volume: c4h
       sieg: '180'
+      dav: A3667
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
         ref: danskmoent.dk overview c4hede2 (Hede c4h158 — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-3-speciedaler-km-17-1623-cuid-1051683-duid-1239851
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_93028
         ref: NumisMaster
@@ -1796,6 +1849,7 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-c4h158
+      - ngc-1051683
       - schleswig_holstein-numismaster-93028
   - id: c-7560621f
     class_id: c-7560621f
@@ -1883,7 +1937,7 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        dk: '14'
+        glu: '14'
       hede: '160'
       hede_volume: c4h
       schou:
@@ -2026,7 +2080,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '13'
+      km:
+        glu: '13'
       hede: '161'
       hede_volume: c4h
       schou: 45-48
@@ -2043,6 +2098,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
@@ -2083,6 +2139,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190263
         ref: KMM 190263 (Inv. FP 3108.21)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-4-speciedaler-km-13-1623-cuid-1063134-duid-1239819
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93012
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -2096,6 +2155,7 @@ coins:
       - dk-bruun-5348
       - dk-hede-c4h161
       - kmk-190263
+      - ngc-1063134
       - schleswig_holstein-numismaster-93012
   - id: c-aca530df
     class_id: c-aca530df
@@ -2110,7 +2170,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '12'
+      km:
+        glu: '12'
       hede: '162'
       hede_volume: c4h
       sieg: '173'
@@ -2118,12 +2179,16 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
         ref: danskmoent.dk overview c4hede2 (Hede c4h162 — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-8-speciedaler-km-12-1623-cuid-1052790-duid-1239817
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_93010
         ref: NumisMaster
@@ -2139,6 +2204,7 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-c4h162
+      - ngc-1052790
       - schleswig_holstein-numismaster-93010
   - id: c-0288486e
     class_id: c-0288486e
@@ -2159,7 +2225,8 @@ coins:
     mintmaster: Simon Timpfe
     mint: Glückstadt
     catalog:
-      km: '27'
+      km:
+        glu: '27'
       hede:
         - '163'
         - 163A
@@ -2321,6 +2388,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1640-1648/?tid=163660
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-27-1640-1648-cuid-1051975-duid-1239832
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93018
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -2340,6 +2410,7 @@ coins:
       - dk-numista-199856
       - dk-numista-199893
       - dk-tid-163660
+      - ngc-1051975
       - schleswig_holstein-numismaster-93018
   - id: c-7dcfff98
     class_id: c-7dcfff98
@@ -2358,7 +2429,8 @@ coins:
     mintmaster: Jacob Schwieger (IS)
     mint: Glückstadt
     catalog:
-      km: '34'
+      km:
+        glu: '34'
       hede: '165'
       hede_volume: c4h
       schou:
@@ -2375,11 +2447,14 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.888
         source: hede
+      - value: 0.888
+        source: ngc
       - value: 0.888
         source: numismaster
     weight_rough_g:
@@ -2412,6 +2487,9 @@ coins:
         url: https://www.danskmoent.dk/chr/c4h165.htm
         ref: danskmoent.dk (Hede c4h165)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-2-speciedaler-km-34-1645-1646-cuid-1052023-duid-1239824
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93015
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -2424,6 +2502,7 @@ coins:
       - dk-bruun-5757
       - dk-bruun-5802
       - dk-hede-c4h165
+      - ngc-1052023
       - schleswig_holstein-numismaster-93015
   - id: c-66e07e1f
     class_id: c-66e07e1f
@@ -2439,7 +2518,8 @@ coins:
     mintmaster: Jacob Schwieger
     mint: Glückstadt
     catalog:
-      km: '33'
+      km:
+        glu: '33'
       hede: '166'
       hede_volume: c4h
       schou: '28'
@@ -2453,6 +2533,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
@@ -2479,6 +2560,9 @@ coins:
         url: https://www.danskmoent.dk/chr/c4h166.htm
         ref: danskmoent.dk (Hede c4h166)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-4-speciedaler-km-33-1645-cuid-1063135-duid-1239820
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93013
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -2490,6 +2574,7 @@ coins:
     composed_of:
       - dk-bruun-5758
       - dk-hede-c4h166
+      - ngc-1063135
       - schleswig_holstein-numismaster-93013
   - id: c-fe9c4171
     class_id: c-fe9c4171
@@ -2773,9 +2858,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '8'
-        - '82'
-        - '8.1'
+        sh: '82'
+        glu:
+          - '8.1'
+          - '8'
       hede:
         - '168'
         - 168ab
@@ -2800,6 +2886,9 @@ coins:
         - seed: dk-numista-313337
           source: numista
           years: '1640'
+        - seed: ngc-1051679
+          source: ngc
+          years: 1620–1623
         - seed: dk-tid-163588
           source: ucoin
           years: '1620'
@@ -2811,6 +2900,8 @@ coins:
           source: ngc
           years: '1640'
     fineness:
+      - value: 0.888
+        source: ngc
       - value: 0.888
         source: numismaster
       - value: 0.888
@@ -2864,6 +2955,8 @@ coins:
         source: kmk
       - value: 0.997
         source: kmk
+      - value: 1.008
+        source: ngc
       - value: 1.008
         source: numismaster
       - value: 1.01
@@ -3190,6 +3283,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/714833
         ref: KMM 714833 (Inv. FP 12405.217)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.1-1620-23-cuid-1051679-duid-1239748
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-km-82-ca.1640-cuid-121097-duid-309966
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -3238,6 +3334,7 @@ coins:
       - kmk-714827
       - kmk-714829
       - kmk-714833
+      - ngc-1051679
       - ngc-121097
       - schleswig_holstein-numismaster-92977
   - id: c-7b971baa
@@ -3257,7 +3354,7 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        dk:
+        glu:
           - '6.2'
           - '6.1'
       hede: '169'
@@ -3434,7 +3531,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '11'
+      km:
+        glu: '11'
       hede: '170'
       hede_volume: c4h
       schou:
@@ -3630,7 +3728,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '18'
+      km:
+        glu: '18'
       hede: '172'
       hede_volume: c4h
       schou: 35-44
@@ -3646,6 +3745,8 @@ coins:
       - value: 0.888
         source: hede
       - value: 0.888
+        source: ngc
+      - value: 0.888
         source: numismaster
       - value: 0.888
         source: ucoin
@@ -3654,6 +3755,8 @@ coins:
         source: ucoin
       - value: 2.923
         source: hede
+      - value: 2.923
+        source: ngc
       - value: 2.923
         source: numismaster
     diameter_mm:
@@ -3670,6 +3773,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/122229
         ref: KMM 122229 (Inv. FP 5051.33)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-6-skilling-lybsk-km-18-1625-cuid-1051680-duid-1239757
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92988
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -3682,6 +3788,7 @@ coins:
       - dk-hede-c4h172
       - dk-tid-163673
       - kmk-122229
+      - ngc-1051680
       - schleswig_holstein-numismaster-92988
   - id: c-f5e31581
     class_id: c-f5e31581
@@ -3701,7 +3808,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: A4
+      km:
+        glu: A4
       hede: '173'
       hede_volume: c4h
       sieg: '171'
@@ -3864,7 +3972,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '19'
+      km:
+        glu: '19'
       hede: '174'
       hede_volume: c4h
       schou: 33-37
@@ -3878,6 +3987,8 @@ coins:
     verified: false
     fineness:
       - value: 0.28
+        source: ngc
+      - value: 0.28
         source: numismaster
       - value: 0.281
         source: hede
@@ -3886,6 +3997,8 @@ coins:
     weight_rough_g:
       - value: 1.299
         source: hede
+      - value: 1.299
+        source: ngc
       - value: 1.299
         source: numismaster
       - value: 1.3
@@ -3901,12 +4014,16 @@ coins:
         url: https://en.ucoin.net/coin/denmark-2-skilling-dansk-1627/?tid=163584
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-danske-km-19-1627-cuid-1052020-duid-1239738
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92971
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-c4h174
       - dk-tid-163584
+      - ngc-1052020
       - schleswig_holstein-numismaster-92971
   - id: c-b388b587
     class_id: c-b388b587
@@ -3927,10 +4044,11 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '30.2'
-        - '30.1'
-        - '30.3'
-        - '30'
+        glu:
+          - '30.2'
+          - '30.1'
+          - '30.3'
+          - '30'
       hede:
         - 175B
         - 175a
@@ -3952,6 +4070,12 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1051729
+      - value: 0.812
+        source: ngc
+        specimen: ngc-1052787
       - value: 0.812
         source: numismaster
         specimen: schleswig_holstein-numismaster-92989
@@ -3980,6 +4104,12 @@ coins:
         source: kmk
       - value: 4.87
         source: ucoin
+      - value: 4.872
+        source: ngc
+        specimen: ngc-1051729
+      - value: 4.872
+        source: ngc
+        specimen: ngc-1052787
       - value: 4.872
         source: numismaster
         specimen: schleswig_holstein-numismaster-92989
@@ -4036,6 +4166,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/714864
         ref: KMM 714864 (Inv. FP 12405.186)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-8-skilling-lybsk-km-30.2-1642-cuid-1051729-duid-1239761
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-8-skilling-lybsk-km-30.1-1641-1645-cuid-1052787-duid-1239758
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92989
         ref: NumisMaster
       - type: literature
@@ -4062,6 +4198,8 @@ coins:
       - kmk-714862
       - kmk-714863
       - kmk-714864
+      - ngc-1051729
+      - ngc-1052787
       - schleswig_holstein-numismaster-92989
       - schleswig_holstein-numismaster-92990
   - id: c-767d75eb
@@ -4127,7 +4265,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '31'
+      km:
+        glu: '31'
       hede: '177'
       hede_volume: c4h
       schou: 103-109
@@ -4145,6 +4284,8 @@ coins:
       - value: 0.812
         source: hede
       - value: 0.812
+        source: ngc
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
@@ -4153,6 +4294,8 @@ coins:
     weight_rough_g:
       - value: 1.785
         source: hede
+      - value: 1.785
+        source: ngc
       - value: 1.785
         source: numismaster
       - value: 1.785
@@ -4175,6 +4318,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-3-skilling-lybsk-1644/?tid=163672
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-3-skilling-lybsk-km-31-1644-cuid-1051728-duid-1239754
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92983
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -4187,6 +4333,7 @@ coins:
       - dk-hede-c4h177
       - dk-numista-107773
       - dk-tid-163672
+      - ngc-1051728
       - schleswig_holstein-numismaster-92983
   - id: c-ae0d7bfb
     class_id: c-ae0d7bfb
@@ -4205,8 +4352,8 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '25'
-        - '87'
+        glu: '25'
+        sh: '87'
       hede:
         - '178'
         - 178A
@@ -4242,6 +4389,8 @@ coins:
         source: hede
         specimen: dk-hede-c4h178b
       - value: 0.312
+        source: ngc
+      - value: 0.312
         source: numismaster
       - value: 0.312
         source: ucoin
@@ -4260,6 +4409,8 @@ coins:
       - value: 0.704
         source: hede
         specimen: dk-hede-c4h178b
+      - value: 0.704
+        source: ngc
       - value: 0.704
         source: numismaster
       - value: 0.76
@@ -4317,6 +4468,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/693131
         ref: KMM 693131 (Inv. FP 280.48)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-s%C3%B8sling-lybsk-km-25-1640-1648-cuid-1063127-duid-1239722
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-87-164z-cuid-121094-duid-309961
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -4341,6 +4495,7 @@ coins:
       - kmk-167068
       - kmk-275562
       - kmk-693131
+      - ngc-1063127
       - ngc-121094
       - schleswig_holstein-numismaster-92968
   - id: c-f15cd8f2
@@ -4356,7 +4511,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '32'
+      km:
+        glu: '32'
       hede: '179'
       hede_volume: c4h
       schou: 44-54
@@ -4372,6 +4528,8 @@ coins:
     fineness:
       - value: 0.593
         source: hede
+      - value: 0.593
+        source: ngc
       - value: 0.593
         source: numismaster
       - value: 0.593
@@ -4395,6 +4553,8 @@ coins:
         source: kmk
       - value: 11.136
         source: hede
+      - value: 11.136
+        source: ngc
       - value: 11.136
         source: numismaster
       - value: 11.136
@@ -4438,6 +4598,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/275561
         ref: KMM 275561 (Inv. FP 4227.504)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-mark-danske-km-32-1645-cuid-1063128-duid-1239766
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92992
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -4457,6 +4620,7 @@ coins:
       - kmk-275559
       - kmk-275560
       - kmk-275561
+      - ngc-1063128
       - schleswig_holstein-numismaster-92992
   - id: c-a7582454
     class_id: c-a7582454
@@ -4478,9 +4642,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '64.2'
-        - '64.1'
-        - '64'
+        glu:
+          - '64.1'
+          - '64.2'
+          - '64'
       hede:
         - '115'
         - 115A
@@ -4621,7 +4786,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '66'
+      km:
+        glu: '66'
       hede: '116'
       hede_volume: c5h
       sieg: '143'
@@ -4629,18 +4795,26 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.986
+        source: ngc
+      - value: 0.986
         source: numismaster
     weight_rough_g:
+      - value: 3.5
+        source: ngc
       - value: 3.5
         source: numismaster
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c5hede1.htm
         ref: danskmoent.dk overview c5hede1 (Hede c5h116 — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-66-1679-cuid-1052604-duid-1239872
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_93038
         ref: NumisMaster
@@ -4656,6 +4830,7 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-c5h116
+      - ngc-1052604
       - schleswig_holstein-numismaster-93038
   - id: c-861c415f
     class_id: c-861c415f
@@ -4677,9 +4852,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '70.1'
-        - '70'
-        - '70.2'
+        glu:
+          - '70.1'
+          - '70.2'
+          - '70'
       hede: '117'
       hede_volume: c5h
       schou: 1-4
@@ -4715,6 +4891,12 @@ coins:
       - value: 0.979
         source: hede
       - value: 0.986
+        source: ngc
+        specimen: ngc-1052605
+      - value: 0.986
+        source: ngc
+        specimen: ngc-1063240
+      - value: 0.986
         source: numismaster
         specimen: schleswig_holstein-numismaster-93039
       - value: 0.986
@@ -4735,6 +4917,12 @@ coins:
         source: numista
       - value: 3.49
         source: hede
+      - value: 3.5
+        source: ngc
+        specimen: ngc-1052605
+      - value: 3.5
+        source: ngc
+        specimen: ngc-1063240
       - value: 3.5
         source: numismaster
         specimen: schleswig_holstein-numismaster-93039
@@ -4786,6 +4974,12 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-ducat-1680-1685/?tid=163669
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-70.2-1680-cuid-1052605-duid-1239875
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-70.1-1680-1685-cuid-1063240-duid-1239873
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93039
         ref: NumisMaster
       - type: literature
@@ -4800,6 +4994,8 @@ coins:
       - dk-hede-c5h117
       - dk-numista-275959
       - dk-tid-163669
+      - ngc-1052605
+      - ngc-1063240
       - schleswig_holstein-numismaster-93039
       - schleswig_holstein-numismaster-93040
   - id: c-3317a19c
@@ -4815,7 +5011,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '72'
+      km:
+        glu: '72'
       hede: '118'
       hede_volume: c5h
       schou: '2'
@@ -4839,6 +5036,8 @@ coins:
       - value: 0.979
         source: numista
       - value: 0.986
+        source: ngc
+      - value: 0.986
         source: numismaster
       - value: 0.986
         source: ucoin
@@ -4849,6 +5048,8 @@ coins:
         source: hede
       - value: 3.49
         source: numista
+      - value: 3.5
+        source: ngc
       - value: 3.5
         source: numismaster
       - value: 3.5
@@ -4872,6 +5073,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-ducat-1682/?tid=163670
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-72-1682-cuid-1052793-duid-1239876
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93041
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -4880,6 +5084,7 @@ coins:
       - dk-hede-c5h118
       - dk-numista-112809
       - dk-tid-163670
+      - ngc-1052793
       - schleswig_holstein-numismaster-93041
   - id: c-60868fc8
     class_id: c-60868fc8
@@ -4926,8 +5131,8 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '73'
-        - '105'
+        sh: '105'
+        glu: '73'
       hede: '120'
       hede_volume: c5h
       schou: '3'
@@ -5002,6 +5207,9 @@ coins:
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-thaler-km-105-1683-cuid-101330-duid-266371
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-73-mdclxxxiii-1683-cuid-1052025-duid-1239845
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93023
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -5017,6 +5225,7 @@ coins:
       - dk-numista-308517
       - dk-tid-163663
       - ngc-101330
+      - ngc-1052025
       - schleswig_holstein-numismaster-93023
   - id: c-d46a4495
     class_id: c-d46a4495
@@ -5039,7 +5248,8 @@ coins:
     mintmaster: Johan Woltereck
     mint: Glückstadt
     catalog:
-      km: '63'
+      km:
+        glu: '63'
       hede: '121'
       hede_volume: c5h
       schou:
@@ -5069,6 +5279,8 @@ coins:
       - value: 0.671
         source: hede
       - value: 0.671
+        source: ngc
+      - value: 0.671
         source: numismaster
       - value: 0.671
         source: numista
@@ -5097,6 +5309,8 @@ coins:
         source: ucoin
       - value: 22.272
         source: hede
+      - value: 22.272
+        source: ngc
       - value: 22.272
         source: numismaster
       - value: 22.272
@@ -5155,6 +5369,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/276471
         ref: KMM 276471 (Inv. FP 4227.1350)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-63-1671-1682-cuid-1063129-duid-1239775
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92996
         ref: NumisMaster
     note:
@@ -5180,6 +5397,7 @@ coins:
       - kmk-276469
       - kmk-276470
       - kmk-276471
+      - ngc-1063129
       - schleswig_holstein-numismaster-92996
   - id: c-a400046e
     class_id: c-a400046e
@@ -5197,7 +5415,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '65'
+      km:
+        glu: '65'
       hede: '122'
       hede_volume: c5h
       schou:
@@ -5217,6 +5436,8 @@ coins:
       - value: 0.671
         source: hede
       - value: 0.671
+        source: ngc
+      - value: 0.671
         source: numismaster
       - value: 0.671
         source: numista
@@ -5225,6 +5446,8 @@ coins:
     weight_rough_g:
       - value: 11.136
         source: hede
+      - value: 11.136
+        source: ngc
       - value: 11.136
         source: numismaster
       - value: 11.136
@@ -5247,6 +5470,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-2-mark-dansk-1679-1682/?tid=163651
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-mark-danske-km-65-1679-1682-cuid-1051971-duid-1239767
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92993
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -5259,6 +5485,7 @@ coins:
       - dk-hede-c5h122
       - dk-numista-108671
       - dk-tid-163651
+      - ngc-1051971
       - schleswig_holstein-numismaster-92993
   - id: c-3e94365a
     class_id: c-3e94365a
@@ -5310,7 +5537,8 @@ coins:
     mintmaster: Christoper Woltereck
     mint: Glückstadt
     catalog:
-      km: '69'
+      km:
+        glu: '69'
       hede: '124'
       hede_volume: c5h
       schou: 31-32
@@ -5331,6 +5559,8 @@ coins:
       - value: 0.812
         source: hede
       - value: 0.812
+        source: ngc
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
@@ -5339,6 +5569,8 @@ coins:
     weight_rough_g:
       - value: 1.785
         source: hede
+      - value: 1.785
+        source: ngc
       - value: 1.785
         source: numismaster
       - value: 1.79
@@ -5379,6 +5611,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1680/?tid=163636
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-69-1680-cuid-1051682-duid-1239816
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93009
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -5393,6 +5628,7 @@ coins:
       - dk-hede-c5h124
       - dk-numista-181803
       - dk-tid-163636
+      - ngc-1051682
       - schleswig_holstein-numismaster-93009
   - id: c-b735eb06
     class_id: c-b735eb06
@@ -5411,13 +5647,15 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '83'
-        - '77'
-        - '108'
-        - '110'
-        - '114'
-        - '77.1'
-        - '77.2'
+        glu:
+          - '83'
+          - '77'
+          - '77.2'
+          - '77.1'
+        sh:
+          - '108'
+          - '110'
+          - '114'
       hede:
         - 125A
         - 125B
@@ -5464,6 +5702,12 @@ coins:
         source: hede
         specimen: dk-hede-c5h125c
       - value: 0.671
+        source: ngc
+        specimen: ngc-1051681
+      - value: 0.671
+        source: ngc
+        specimen: ngc-1063130
+      - value: 0.671
         source: numismaster
         specimen: schleswig_holstein-numismaster-92997
       - value: 0.671
@@ -5503,6 +5747,12 @@ coins:
       - value: 22.272
         source: hede
         specimen: dk-hede-c5h125c
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1051681
+      - value: 22.272
+        source: ngc
+        specimen: ngc-1063130
       - value: 22.272
         source: numismaster
         specimen: schleswig_holstein-numismaster-92997
@@ -5563,6 +5813,12 @@ coins:
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-krone-km-114-1694-1696-cuid-101327-duid-266365
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-77.2-1693-cuid-1051681-duid-1239786
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-77.1-1692-1694-cuid-1063130-duid-1239783
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92997
         ref: NumisMaster
       - type: literature
@@ -5588,6 +5844,8 @@ coins:
       - ngc-101325
       - ngc-101326
       - ngc-101327
+      - ngc-1051681
+      - ngc-1063130
       - schleswig_holstein-numismaster-92997
       - schleswig_holstein-numismaster-92998
   - id: c-c64920e8
@@ -5609,8 +5867,9 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '80.1'
-        - '80'
+        glu:
+          - '80.1'
+          - '80'
       hede:
         - 126A
         - 126B
@@ -5639,6 +5898,8 @@ coins:
         source: hede
         specimen: dk-hede-c5h126b
       - value: 0.671
+        source: ngc
+      - value: 0.671
         source: numismaster
       - value: 0.671
         source: numista
@@ -5651,6 +5912,8 @@ coins:
       - value: 11.136
         source: hede
         specimen: dk-hede-c5h126b
+      - value: 11.136
+        source: ngc
       - value: 11.136
         source: numismaster
       - value: 11.136
@@ -5673,6 +5936,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-2-mark-dansk-1693-1696/?tid=163646
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-mark-danske-km-80.1-1693-1694-cuid-1052788-duid-1239771
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92994
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -5686,6 +5952,7 @@ coins:
       - dk-hede-c5h126b
       - dk-numista-108725
       - dk-tid-163646
+      - ngc-1052788
       - schleswig_holstein-numismaster-92994
   - id: c-75ecfebf
     class_id: c-75ecfebf
@@ -5706,8 +5973,9 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '82'
-        - '82.1'
+        glu:
+          - '82'
+          - '82.1'
       hede:
         - 127A
         - 127B
@@ -5736,6 +6004,8 @@ coins:
         source: hede
         specimen: dk-hede-c5h127b
       - value: 0.562
+        source: ngc
+      - value: 0.562
         source: numismaster
       - value: 0.562
         source: numista
@@ -5748,6 +6018,8 @@ coins:
       - value: 3.057
         source: hede
         specimen: dk-hede-c5h127b
+      - value: 3.057
+        source: ngc
       - value: 3.057
         source: numismaster
       - value: 3.057
@@ -5770,6 +6042,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-8-skilling-dansk-1694-1697/?tid=163635
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-8-skilling-danske-km-82.1-1694-cuid-1052534-duid-1239744
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92975
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -5782,6 +6057,7 @@ coins:
       - dk-hede-c5h127b
       - dk-numista-47945
       - dk-tid-163635
+      - ngc-1052534
       - schleswig_holstein-numismaster-92975
   - id: c-b5d4b00a
     class_id: c-b5d4b00a
@@ -5799,7 +6075,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '79'
+      km:
+        glu: '79'
       hede: '128'
       hede_volume: c5h
       schou:
@@ -5817,6 +6094,8 @@ coins:
       - value: 0.437
         source: hede
       - value: 0.437
+        source: ngc
+      - value: 0.437
         source: numismaster
       - value: 0.437
         source: ucoin
@@ -5825,6 +6104,8 @@ coins:
         source: ucoin
       - value: 1.951
         source: hede
+      - value: 1.951
+        source: ngc
       - value: 1.951
         source: numismaster
     diameter_mm:
@@ -5838,6 +6119,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-4-skilling-dansk-1693-1694/?tid=163587
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-skilling-danske-km-79-1693-1694-cuid-1051969-duid-1239742
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92974
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -5849,6 +6133,7 @@ coins:
     composed_of:
       - dk-hede-c5h128
       - dk-tid-163587
+      - ngc-1051969
       - schleswig_holstein-numismaster-92974
   - id: c-47f06559
     class_id: c-47f06559
@@ -5902,7 +6187,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '81'
+      km:
+        glu: '81'
       hede: '130'
       hede_volume: c5h
       schou: '48'
@@ -5918,6 +6204,8 @@ coins:
       - value: 0.305
         source: hede
       - value: 0.305
+        source: ngc
+      - value: 0.305
         source: numismaster
       - value: 0.305
         source: ucoin
@@ -5926,6 +6214,8 @@ coins:
         source: ucoin
       - value: 0.683
         source: hede
+      - value: 0.683
+        source: ngc
       - value: 0.683
         source: numismaster
     diameter_mm:
@@ -5939,6 +6229,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-skilling-dansk-1694/?tid=163582
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-skilling-danske-km-81-1694-cuid-1052533-duid-1239737
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92970
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -5950,6 +6243,7 @@ coins:
     composed_of:
       - dk-hede-c5h130
       - dk-tid-163582
+      - ngc-1052533
       - schleswig_holstein-numismaster-92970
   - id: c-238cd31b
     class_id: c-238cd31b
@@ -8052,8 +8346,8 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '138.1'
         - '138.3'
+        - '138.1'
         - '138.2'
         - '138.5'
       hede:
@@ -8563,8 +8857,8 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '130'
         - 130a
+        - '130'
         - 130b
       hede:
         - '41'
@@ -11732,7 +12026,8 @@ coins:
     mintmaster: Jacob Schwieger
     mint: Glückstadt
     catalog:
-      km: '50'
+      km:
+        glu: '50'
       hede: '142'
       hede_volume: f3h
       sieg: '157'
@@ -11745,14 +12040,19 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.986
+        source: ngc
       - value: 0.986
         source: numismaster
     weight_rough_g:
       - value: 3.45
         source: bruun
+      - value: 3.5
+        source: ngc
       - value: 3.5
         source: numismaster
     uncertainty:
@@ -11771,6 +12071,9 @@ coins:
         url: https://www.danskmoent.dk/f3hede2.htm
         ref: danskmoent.dk overview f3hede2 (Hede f3h142 — Tiefenseite fehlt)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-50-1660-cuid-1052792-duid-1239860
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93032
         ref: NumisMaster
     verification_note:
@@ -11786,6 +12089,7 @@ coins:
     composed_of:
       - dk-bruun-6345
       - dk-hede-f3h142
+      - ngc-1052792
       - schleswig_holstein-numismaster-93032
   - id: c-dd9afa0c
     class_id: c-dd9afa0c
@@ -11800,7 +12104,8 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
-      km: '52'
+      km:
+        glu: '52'
       hede: '143'
       hede_volume: f3h
       sieg: '158'
@@ -11808,18 +12113,26 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.986
+        source: ngc
+      - value: 0.986
         source: numismaster
     weight_rough_g:
+      - value: 3.5
+        source: ngc
       - value: 3.5
         source: numismaster
     sources:
       - type: literature
         url: https://www.danskmoent.dk/f3hede2.htm
         ref: danskmoent.dk overview f3hede2 (Hede f3h143 — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-52-1664-cuid-1069328-duid-1239861
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_93033
         ref: NumisMaster
@@ -11835,6 +12148,7 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-f3h143
+      - ngc-1069328
       - schleswig_holstein-numismaster-93033
   - id: c-c9d7a202
     class_id: c-c9d7a202
@@ -11855,7 +12169,8 @@ coins:
     inscription_rev: DOMINUS - PROVIDEBIT // 1666
     mint: Glückstadt
     catalog:
-      km: '56'
+      km:
+        glu: '56'
       hede: '144'
       hede_volume: f3h
       schou:
@@ -11889,6 +12204,8 @@ coins:
       - value: 0.979
         source: numista
       - value: 0.986
+        source: ngc
+      - value: 0.986
         source: numismaster
       - value: 0.986
         source: ucoin
@@ -11905,6 +12222,8 @@ coins:
         source: numista
       - value: 3.49
         source: hede
+      - value: 3.5
+        source: ngc
       - value: 3.5
         source: numismaster
       - value: 3.5
@@ -11942,6 +12261,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18219857
         ref: IKMK Berlin 18219857
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-56-1666-1669-cuid-1052603-duid-1239862
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93034
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -11954,6 +12276,7 @@ coins:
       - dk-numista-144768
       - dk-tid-163667
       - ikmk-18219857
+      - ngc-1052603
       - schleswig_holstein-numismaster-93034
   - id: c-9c278826
     class_id: c-9c278826
@@ -11975,10 +12298,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        dk:
+        glu:
+          - '40'
           - '40.2'
           - '40.1'
-          - '40'
       hede:
         - 145A
         - 145B
@@ -12151,24 +12474,17 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
-      km: '43.1'
       hede: 146ab
       hede_volume: f3h
       sieg: '154'
-      dav: '3671'
     metal: silver
     metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
     mint_verified: true
     verified: false
     sources:
       - type: literature
         url: https://www.danskmoent.dk/f3hede2.htm
         ref: danskmoent.dk overview f3hede2 (Hede f3h146ab — Tiefenseite fehlt)
-      - type: literature
-        url: https://numismaster.com/MC_93019
-        ref: NumisMaster
     verification_note:
       de: 'Nur die Übersichtsreihe von f3hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «IS 146A: Kronen bryder ringen 146B: Kronen inden for ringen.»'
@@ -12181,7 +12497,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-f3h146ab
-      - schleswig_holstein-numismaster-93019
   - id: c-aa823a15
     class_id: c-aa823a15
     label: unified-dk-hede-f3h147
@@ -12195,24 +12510,17 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
-      km: '44'
       hede: '147'
       hede_volume: f3h
       sieg: '155'
-      dav: '3672'
     metal: silver
     metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
     mint_verified: true
     verified: false
     sources:
       - type: literature
         url: https://www.danskmoent.dk/f3hede2.htm
         ref: danskmoent.dk overview f3hede2 (Hede f3h147 — Tiefenseite fehlt)
-      - type: literature
-        url: https://numismaster.com/MC_93020
-        ref: NumisMaster
     verification_note:
       de: 'Nur die Übersichtsreihe von f3hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
         1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «IS»'
@@ -12225,7 +12533,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-f3h147
-      - schleswig_holstein-numismaster-93020
   - id: c-4f818b2d
     class_id: c-4f818b2d
     label: unified-dk-hede-f3h148
@@ -12247,7 +12554,8 @@ coins:
     inscription_rev: DOMINUS - PROVIDEBIT // 1664
     mint: Glückstadt
     catalog:
-      km: '51'
+      km:
+        glu: '51'
       hede: '148'
       hede_volume: f3h
       schou:
@@ -12333,6 +12641,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18206321
         ref: IKMK Berlin 18206321
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-51-1664-1666-cuid-1051976-duid-1239843
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93022
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -12348,6 +12659,7 @@ coins:
       - dk-numista-144650
       - dk-tid-163661
       - ikmk-18206321
+      - ngc-1051976
       - schleswig_holstein-numismaster-93022
   - id: c-dfecdb5e
     class_id: c-dfecdb5e
@@ -12421,8 +12733,8 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '90'
-        - '41'
+        sh: '90'
+        glu: '41'
       hede: '150'
       hede_volume: f3h
       schou:
@@ -12444,6 +12756,8 @@ coins:
       - value: 0.312
         source: hede
       - value: 0.312
+        source: ngc
+      - value: 0.312
         source: numismaster
     weight_rough_g:
       - value: 0.6
@@ -12452,6 +12766,8 @@ coins:
         source: ucoin
       - value: 0.704
         source: hede
+      - value: 0.704
+        source: ngc
       - value: 0.704
         source: numismaster
     diameter_mm:
@@ -12468,6 +12784,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-sosling-1658-1660/?tid=163581
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-s%C3%B8sling-lybsk-km-41-1658-1660-cuid-1052019-duid-1239734
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-90-1658-1660-cuid-121095-duid-309962
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -12483,6 +12802,7 @@ coins:
       - dk-hede-f3h150
       - dk-numista-313339
       - dk-tid-163581
+      - ngc-1052019
       - ngc-121095
       - schleswig_holstein-numismaster-92969
   - id: c-7195f0d5
@@ -12560,11 +12880,11 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        dk:
+        glu:
+          - '54'
           - '54.1'
           - '54.2'
           - '54.3'
-          - '54'
       hede: '152'
       hede_volume: f3h
       schou:
@@ -12712,9 +13032,9 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        dk:
-          - B43
+        glu:
           - A43
+          - B43
         sh: '95'
       hede:
         - 153A
@@ -13109,9 +13429,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '2.1'
-        - '2.2'
-        - '2'
+        glu:
+          - '2'
+          - '2.1'
+          - '2.2'
       hede:
         - 57A
         - 57B
@@ -13146,6 +13467,12 @@ coins:
         source: hede
         specimen: dk-hede-f4h57b
       - value: 0.979
+        source: ngc
+        specimen: ngc-1051758
+      - value: 0.979
+        source: ngc
+        specimen: ngc-1069295
+      - value: 0.979
         source: numismaster
         specimen: schleswig_holstein-numismaster-85857
       - value: 0.979
@@ -13168,6 +13495,12 @@ coins:
       - value: 3.49
         source: hede
         specimen: dk-hede-f4h57b
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1051758
+      - value: 3.49
+        source: ngc
+        specimen: ngc-1069295
       - value: 3.49
         source: numismaster
         specimen: schleswig_holstein-numismaster-85857
@@ -13198,6 +13531,12 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-ducat-1705-1706/?tid=162962
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-2.1-1705-cuid-1051758-duid-1239707
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-2.2-1705-1706-cuid-1069295-duid-1239708
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_85857
         ref: NumisMaster
       - type: literature
@@ -13211,6 +13550,8 @@ coins:
       - dk-hede-f4h57b
       - dk-numista-108575
       - dk-tid-162962
+      - ngc-1051758
+      - ngc-1069295
       - schleswig_holstein-numismaster-85857
       - schleswig_holstein-numismaster-85887
   - id: c-afab30b8
@@ -13231,7 +13572,8 @@ coins:
     ruler: Frederik IV
     mint: Glückstadt
     catalog:
-      km: '1'
+      km:
+        glu: '1'
       hede: '58'
       hede_volume: f4h
       schou:
@@ -13253,6 +13595,8 @@ coins:
       - value: 0.562
         source: hede
       - value: 0.562
+        source: ngc
+      - value: 0.562
         source: numismaster
       - value: 0.562
         source: numista
@@ -13261,6 +13605,8 @@ coins:
     weight_rough_g:
       - value: 3.057
         source: hede
+      - value: 3.057
+        source: ngc
       - value: 3.057
         source: numismaster
       - value: 3.057
@@ -13292,6 +13638,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/148479
         ref: KMM 148479 (Inv. KP 1656.1834)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-8-skilling-km-1-1702-1705-cuid-1051500-duid-1239699
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_85855
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -13306,6 +13655,7 @@ coins:
       - kmk-148477
       - kmk-148478
       - kmk-148479
+      - ngc-1051500
       - schleswig_holstein-numismaster-85855
   - id: c-e32f4f0b
     class_id: c-e32f4f0b
@@ -13314,16 +13664,17 @@ coins:
     phase: hede
     kind: scheide
     nominal: 2 Skilling Danske
-    year_first: 1714
+    year_first: 1713
     year_last: 1716
     year_ranges:
-      -   - 1714
+      -   - 1713
           - 1716
-    year_label: 1714-1716
+    year_label: 1713-1716
     ruler: Frederik IV
     mint: Glückstadt
     catalog:
-      km: '4'
+      km:
+        glu: '4'
       hede: '59'
       hede_volume: f4h
       schou:
@@ -13343,12 +13694,16 @@ coins:
       - value: 0.329
         source: hede
       - value: 0.329
+        source: ngc
+      - value: 0.329
         source: numismaster
     weight_rough_g:
       - value: 1.1
         source: ucoin
       - value: 1.106
         source: hede
+      - value: 1.106
+        source: ngc
       - value: 1.106
         source: numismaster
       - value: 1.106
@@ -13369,6 +13724,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-2-skilling-1714-1716/?tid=162953
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-km-4-1714-1716-cuid-1051499-duid-1239696
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_85852
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -13381,6 +13739,7 @@ coins:
       - dk-hede-f4h59
       - dk-numista-108578
       - dk-tid-162953
+      - ngc-1051499
       - schleswig_holstein-numismaster-85852
   - id: c-3497e7be
     class_id: c-3497e7be
@@ -15869,8 +16228,8 @@ coins:
     mint: Altona
     catalog:
       km:
-        - 154a
         - '154'
+        - 154a
       hede:
         - '30'
         - 30C
@@ -18075,7 +18434,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '10'
+      km:
+        glu: '10'
       numista: '107814'
       lange:
         - '58'
@@ -18127,7 +18487,8 @@ coins:
     ruler: Frederik IV
     mint: Glückstadt
     catalog:
-      km: '3'
+      km:
+        glu: '3'
       numista: '108571'
     metal: silver
     metal_verified: true
@@ -18138,12 +18499,16 @@ coins:
     verified: false
     fineness:
       - value: 0.562
+        source: ngc
+      - value: 0.562
         source: numismaster
       - value: 0.562
         source: numista
       - value: 0.562
         source: ucoin
     weight_rough_g:
+      - value: 3.057
+        source: ngc
       - value: 3.057
         source: numismaster
       - value: 3.057
@@ -18163,12 +18528,16 @@ coins:
         url: https://en.ucoin.net/coin/denmark-8-skilling-1711-1713/?tid=162960
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-8-skilling-km-3-1711-1713-cuid-1069294-duid-1239704
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_85856
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-108571
       - dk-tid-162960
+      - ngc-1069294
       - schleswig_holstein-numismaster-85856
   - id: c-f5340640
     class_id: c-f5340640
@@ -18186,7 +18555,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '78'
+      km:
+        glu: '78'
       numista: '108662'
     metal: billon
     metal_verified: true
@@ -18197,6 +18567,8 @@ coins:
     verified: false
     fineness:
       - value: 0.343
+        source: ngc
+      - value: 0.343
         source: numismaster
       - value: 0.343
         source: ucoin
@@ -18205,6 +18577,8 @@ coins:
         source: numista
       - value: 1.22
         source: ucoin
+      - value: 1.224
+        source: ngc
       - value: 1.224
         source: numismaster
     diameter_mm:
@@ -18220,12 +18594,16 @@ coins:
         url: https://en.ucoin.net/coin/denmark-2-skilling-dansk-1693-1694/?tid=163586
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-danske-km-78-1693-1694-cuid-1051678-duid-1239740
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92973
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-108662
       - dk-tid-163586
+      - ngc-1051678
       - schleswig_holstein-numismaster-92973
   - id: c-950a41e8
     class_id: c-950a41e8
@@ -18245,7 +18623,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '80.2'
+      km:
+        glu: '80.2'
       numista: '108733'
     metal: silver
     metal_verified: true
@@ -18256,10 +18635,14 @@ coins:
     verified: false
     fineness:
       - value: 0.671
+        source: ngc
+      - value: 0.671
         source: numismaster
       - value: 0.671
         source: numista
     weight_rough_g:
+      - value: 11.136
+        source: ngc
       - value: 11.136
         source: numismaster
       - value: 11.136
@@ -18272,11 +18655,15 @@ coins:
         url: https://en.numista.com/108733
         ref: Numista N#108733 — 2 Mark Dansk - Christian V (Type II; laurel wreath)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-mark-danske-km-80.2-1694-1696-cuid-1051730-duid-1239773
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_92995
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-108733
+      - ngc-1051730
       - schleswig_holstein-numismaster-92995
   - id: c-7a4f86ae
     class_id: c-7a4f86ae
@@ -18297,7 +18684,7 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        dk:
+        glu:
           - '26'
           - '26.1'
           - '26.2'
@@ -18533,7 +18920,8 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
-      km: '57'
+      km:
+        glu: '57'
       numista: '144810'
       lange:
         - 70b
@@ -18549,6 +18937,8 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: ngc
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
@@ -18557,6 +18947,8 @@ coins:
     weight_rough_g:
       - value: 1.67
         source: numista
+      - value: 1.785
+        source: ngc
       - value: 1.785
         source: numismaster
       - value: 1.79
@@ -18574,12 +18966,16 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1667-1670/?tid=163631
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-57-1667-1670-cuid-1069327-duid-1239812
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93008
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-144810
       - dk-tid-163631
+      - ngc-1069327
       - schleswig_holstein-numismaster-93008
   - id: c-7e937b5c
     class_id: c-7e937b5c
@@ -18595,8 +18991,9 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '74'
-        - '74.1'
+        glu:
+          - '74'
+          - '74.2'
       numista: '145748'
       lange: '82'
       dav:
@@ -18632,13 +19029,17 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1682/?tid=163662
         ref: ucoin
       - type: literature
-        url: https://numismaster.com/MC_93024
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-74.2-1682-cuid-1052026-duid-1239847
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93025
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-145748
       - dk-tid-163662
-      - schleswig_holstein-numismaster-93024
+      - ngc-1052026
+      - schleswig_holstein-numismaster-93025
   - id: c-30b93dd0
     class_id: c-30b93dd0
     label: unified-dk-numista-204200
@@ -18652,7 +19053,8 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
-      km: '55'
+      km:
+        glu: '55'
       numista: '204200'
       lange: '66'
     metal: silver
@@ -18664,12 +19066,16 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: ngc
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
       - value: 0.812
         source: ucoin
     weight_rough_g:
+      - value: 3.57
+        source: ngc
       - value: 3.57
         source: numismaster
       - value: 3.57
@@ -18689,12 +19095,16 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-8-speciedaler-km-55-1665-cuid-1063133-duid-1239818
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93011
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-204200
       - dk-tid-163641
+      - ngc-1063133
       - schleswig_holstein-numismaster-93011
   - id: c-2067c665
     class_id: c-2067c665
@@ -18936,8 +19346,9 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '42.1'
-        - '42'
+        glu:
+          - '42.1'
+          - '42'
       numista: '398134'
     metal: silver
     metal_verified: true
@@ -18948,6 +19359,8 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: ngc
+      - value: 0.812
         source: numismaster
       - value: 0.812
         source: numista
@@ -18956,6 +19369,8 @@ coins:
     weight_rough_g:
       - value: 1.72
         source: numista
+      - value: 1.785
+        source: ngc
       - value: 1.785
         source: numismaster
       - value: 1.79
@@ -18973,12 +19388,16 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1658-1659/?tid=163626
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-42.1-1658-1659-cuid-1069326-duid-1239802
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_93002
         ref: NumisMaster
     issuing_entity: royal_holstein
     composed_of:
       - dk-numista-398134
       - dk-tid-163626
+      - ngc-1069326
       - schleswig_holstein-numismaster-93002
   - id: c-92d54f70
     class_id: c-92d54f70
@@ -19110,7 +19529,8 @@ coins:
     ruler: Christian V
     mint: Glückstadt
     catalog:
-      km: '79'
+      km:
+        glu: '79'
       numista: '87732'
     metal: billon
     metal_verified: true
@@ -19187,97 +19607,6 @@ coins:
       - denmark-numismaster-66008
       - dk-numista-97292
       - dk-tid-70749
-  - id: c-e0bdd066
-    class_id: c-e0bdd066
-    label: unified-dk-tid-163585
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 2 Skilling Danske
-    year_first: 1681
-    year_last: 1681
-    year_label: '1681'
-    ruler: Christian V
-    catalog:
-      km: '71'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.28
-        source: numismaster
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.299
-        source: numismaster
-      - value: 1.3
-        source: ucoin
-    diameter_mm:
-      - value: 17.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-dansk-1681/?tid=163585
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_92972
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-tid-163585
-      - schleswig_holstein-numismaster-92972
-  - id: c-d9d22f95
-    class_id: c-d9d22f95
-    label: unified-dk-tid-163589
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    year_first: 1623
-    year_last: 1625
-    year_ranges:
-      -   - 1623
-          - 1625
-    year_label: 1623-1625
-    ruler: Christian IV
-    catalog:
-      km: '11'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: ucoin
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 1.461
-        source: numismaster
-      - value: 1.79
-        source: ucoin
-    diameter_mm:
-      - value: 19.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1623-1625/?tid=163589
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_93000
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-tid-163589
-      - schleswig_holstein-numismaster-93000
   - id: c-062a2554
     class_id: c-062a2554
     label: unified-dk-tid-70745
@@ -20489,6 +20818,181 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-101329
+  - id: c-2268f597
+    class_id: c-2268f597
+    label: unified-ngc-1051685
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1672
+    year_last: 1673
+    year_ranges:
+      -   - 1672
+          - 1673
+    year_label: 1672-1673
+    catalog:
+      km:
+        glu: '64.2'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: ngc
+      - value: 0.986
+        source: numismaster
+    weight_rough_g:
+      - value: 3.5
+        source: ngc
+      - value: 3.5
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-64.2-1672-1673-cuid-1051685-duid-1239870
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93037
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1051685
+      - schleswig_holstein-numismaster-93037
+  - id: c-e0bdd066
+    class_id: c-e0bdd066
+    label: unified-ngc-1051726
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Skilling Danske
+    year_first: 1681
+    year_last: 1681
+    year_label: '1681'
+    ruler: Christian V
+    catalog:
+      km:
+        glu: '71'
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.28
+        source: ngc
+      - value: 0.28
+        source: numismaster
+      - value: 0.281
+        source: ucoin
+    weight_rough_g:
+      - value: 1.299
+        source: ngc
+      - value: 1.299
+        source: numismaster
+      - value: 1.3
+        source: ucoin
+    diameter_mm:
+      - value: 17.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-dansk-1681/?tid=163585
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-danske-km-71-1681-cuid-1051726-duid-1239739
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92972
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-tid-163585
+      - ngc-1051726
+      - schleswig_holstein-numismaster-92972
+  - id: c-24be7d2d
+    class_id: c-24be7d2d
+    label: unified-ngc-1051727
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Skilling Lybsk
+    year_first: 1620
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '8.4'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 1.008
+        source: ngc
+      - value: 1.008
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.4-1620-23-cuid-1051727-duid-1239751
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92980
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1051727
+      - schleswig_holstein-numismaster-92980
+  - id: c-5a97f6fc
+    class_id: c-5a97f6fc
+    label: unified-ngc-1051732
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1659
+    year_last: 1659
+    year_label: '1659'
+    ruler: Frederik III
+    catalog:
+      km:
+        glu: '44'
+      dav: '3672'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-44-1659-cuid-1051732-duid-1239841
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93020
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1051732
+      - schleswig_holstein-numismaster-93020
   - id: c-f6bef30d
     class_id: c-f6bef30d
     label: unified-ngc-1051946
@@ -20505,7 +21009,7 @@ coins:
     ruler: Christian IV
     catalog:
       km:
-        dk:
+        glu:
           - '5.4'
           - '5.2'
           - '5.3'
@@ -20665,7 +21169,7 @@ coins:
     ruler: Christian IV
     catalog:
       km:
-        dk: '7'
+        glu: '7'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -20707,6 +21211,777 @@ coins:
     composed_of:
       - ngc-1051947
       - schleswig_holstein-numismaster-92966
+  - id: c-92f0417c
+    class_id: c-92f0417c
+    label: unified-ngc-1051948
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: GLÜCKSTADT Søsling Lybsk
+    year_first: 1623
+    year_last: 1625
+    year_ranges:
+      -   - 1623
+          - 1625
+    year_label: 1623-1625
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '10'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.331
+        source: ngc
+      - value: 0.331
+        source: numismaster
+    weight_rough_g:
+      - value: 0.063
+        source: ngc
+      - value: 0.063
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-s%C3%B8sling-lybsk-km-10-16z3-nd-cuid-1051948-duid-1239718
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92967
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1051948
+      - schleswig_holstein-numismaster-92967
+  - id: c-68361bc7
+    class_id: c-68361bc7
+    label: unified-ngc-1051970
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Skilling Lybsk
+    year_first: 1620
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '8.3'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 1.008
+        source: ngc
+      - value: 1.008
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.3-1620-23-cuid-1051970-duid-1239750
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92979
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1051970
+      - schleswig_holstein-numismaster-92979
+  - id: c-2d503457
+    class_id: c-2d503457
+    label: unified-ngc-1051972
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 4 Mark Danske
+    year_first: 1694
+    year_last: 1696
+    year_ranges:
+      -   - 1694
+          - 1696
+    year_label: 1694-1696
+    ruler: Christian V
+    catalog:
+      km:
+        glu: '80'
+      dav: '3680'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.671
+        source: ngc
+      - value: 0.671
+        source: numismaster
+    weight_rough_g:
+      - value: 22.272
+        source: ngc
+      - value: 22.272
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-mark-danske-km-80-1694-1696-cuid-1051972-duid-1239787
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92999
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1051972
+      - schleswig_holstein-numismaster-92999
+  - id: c-2bf19f55
+    class_id: c-2bf19f55
+    label: unified-ngc-1051974
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1/16 Speciedaler
+    year_first: 1658
+    year_last: 1658
+    year_label: '1658'
+    ruler: Frederik III
+    catalog:
+      km:
+        glu: '42.3'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.812
+        source: ngc
+      - value: 0.812
+        source: numismaster
+    weight_rough_g:
+      - value: 1.785
+        source: ngc
+      - value: 1.785
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-42.3-1658-cuid-1051974-duid-1239805
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93004
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1051974
+      - schleswig_holstein-numismaster-93004
+  - id: c-b3e4a39a
+    class_id: c-b3e4a39a
+    label: unified-ngc-1052021
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Mark Danske
+    year_first: 1627
+    year_last: 1629
+    year_ranges:
+      -   - 1627
+          - 1629
+    year_label: 1627-1629
+    catalog:
+      km:
+        glu: A4
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.59
+        source: ngc
+    weight_rough_g:
+      - value: 8.352
+        source: ngc
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-mark-danske-km-a4-1617-1629-cuid-1052021-duid-1239762
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052021
+  - id: c-7821cbee
+    class_id: c-7821cbee
+    label: unified-ngc-1052022
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1/16 Speciedaler
+    year_first: 1658
+    year_last: 1658
+    year_label: '1658'
+    ruler: Frederik III
+    catalog:
+      km:
+        glu: '42.2'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.812
+        source: ngc
+      - value: 0.812
+        source: numismaster
+    weight_rough_g:
+      - value: 1.785
+        source: ngc
+      - value: 1.785
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-42.2-1658-cuid-1052022-duid-1239804
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93003
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052022
+      - schleswig_holstein-numismaster-93003
+  - id: c-96ff6839
+    class_id: c-96ff6839
+    label: unified-ngc-1052024
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1659
+    year_last: 1659
+    year_label: '1659'
+    ruler: Frederik III
+    catalog:
+      km:
+        glu: '43.2'
+      dav: 3672a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-43.2-1659-cuid-1052024-duid-1239842
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93021
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052024
+      - schleswig_holstein-numismaster-93021
+  - id: c-ccb3de98
+    class_id: c-ccb3de98
+    label: unified-ngc-1052063
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1672
+    year_last: 1676
+    year_ranges:
+      -   - 1672
+          - 1674
+      -   - 1676
+          - 1676
+    year_label: 1672-1674, 1676
+    mint: Glückstadt
+    catalog:
+      km:
+        glu: '64.1'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.986
+        source: ngc
+      - value: 0.986
+        source: numismaster
+    weight_rough_g:
+      - value: 3.5
+        source: ngc
+      - value: 3.5
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-ducat-km-64.1-1672-1676-cuid-1052063-duid-1239866
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93036
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052063
+      - schleswig_holstein-numismaster-93036
+  - id: c-c212d555
+    class_id: c-c212d555
+    label: unified-ngc-1052597
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 8 Skilling Danske
+    year_first: 1694
+    year_last: 1697
+    year_ranges:
+      -   - 1694
+          - 1695
+      -   - 1697
+          - 1697
+    year_label: 1694-1695, 1697
+    catalog:
+      km:
+        glu: '82.2'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.562
+        source: ngc
+      - value: 0.562
+        source: numismaster
+    weight_rough_g:
+      - value: 3.057
+        source: ngc
+      - value: 3.057
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-8-skilling-danske-km-82.2-1694-1697-cuid-1052597-duid-1239745
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92976
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052597
+      - schleswig_holstein-numismaster-92976
+  - id: c-27b77b65
+    class_id: c-27b77b65
+    label: unified-ngc-1052598
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Skilling Lybsk
+    year_first: 1620
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '8.2'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 1.008
+        source: ngc
+      - value: 1.008
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.2-1620-23-cuid-1052598-duid-1239749
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92978
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052598
+      - schleswig_holstein-numismaster-92978
+  - id: c-0e71b03e
+    class_id: c-0e71b03e
+    label: unified-ngc-1052599
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Skilling Lybsk
+    year_first: 1620
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '8.5'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 1.008
+        source: ngc
+      - value: 1.008
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.5-1620-23-cuid-1052599-duid-1239752
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92981
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052599
+      - schleswig_holstein-numismaster-92981
+  - id: c-a07cbfd1
+    class_id: c-a07cbfd1
+    label: unified-ngc-1052600
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Skilling Lybsk
+    year_first: 1624
+    year_last: 1630
+    year_ranges:
+      -   - 1624
+          - 1630
+    year_label: 1624-1630
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '8.6'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 1.008
+        source: ngc
+      - value: 1.008
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.6-1624-30-cuid-1052600-duid-1239753
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92982
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1052600
+      - schleswig_holstein-numismaster-92982
+  - id: c-d9d22f95
+    class_id: c-d9d22f95
+    label: unified-ngc-1063131
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1/16 Speciedaler
+    year_first: 1623
+    year_last: 1625
+    year_ranges:
+      -   - 1623
+          - 1625
+    year_label: 1623-1625
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '11'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.812
+        source: ucoin
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 1.461
+        source: ngc
+      - value: 1.461
+        source: numismaster
+      - value: 1.79
+        source: ucoin
+    diameter_mm:
+      - value: 19.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1623-1625/?tid=163589
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-11-1625-cuid-1063131-duid-1239790
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93000
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - dk-tid-163589
+      - ngc-1063131
+      - schleswig_holstein-numismaster-93000
+  - id: c-c861ef80
+    class_id: c-c861ef80
+    label: unified-ngc-1063132
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1/16 Speciedaler
+    year_first: 1660
+    year_last: 1660
+    year_label: '1660'
+    ruler: Frederik III
+    catalog:
+      km:
+        glu: '42.4'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.812
+        source: ngc
+      - value: 0.812
+        source: numismaster
+    weight_rough_g:
+      - value: 1.785
+        source: ngc
+      - value: 1.785
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-16-speciedaler-km-42.4-1660-cuid-1063132-duid-1239806
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93005
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1063132
+      - schleswig_holstein-numismaster-93005
+  - id: c-423e85c8
+    class_id: c-423e85c8
+    label: unified-ngc-1063138
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1659
+    year_last: 1659
+    year_label: '1659'
+    ruler: Frederik III
+    catalog:
+      km:
+        glu: '43.1'
+      dav: '3671'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-43.1-1659-cuid-1063138-duid-1239840
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93019
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1063138
+      - schleswig_holstein-numismaster-93019
+  - id: c-d2dd8284
+    class_id: c-d2dd8284
+    label: unified-ngc-1063238
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1682
+    year_last: 1682
+    year_label: '1682'
+    ruler: Christian V
+    catalog:
+      km:
+        glu: '74.1'
+      dav: '3676'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-74.1-1682-cuid-1063238-duid-1239846
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93024
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1063238
+      - schleswig_holstein-numismaster-93024
+  - id: c-1263f7fe
+    class_id: c-1263f7fe
+    label: unified-ngc-1069324
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 4 Skilling Lybsk
+    year_first: 1620
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '9.1'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 2.016
+        source: ngc
+      - value: 2.016
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-skilling-lybsk-km-9.1-1620-23-cuid-1069324-duid-1239755
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92985
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1069324
+      - schleswig_holstein-numismaster-92985
+  - id: c-a70ce18d
+    class_id: c-a70ce18d
+    label: unified-ngc-1069325
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 4 Skilling Lybsk
+    year_first: 1624
+    year_last: 1630
+    year_ranges:
+      -   - 1624
+          - 1630
+    year_label: 1624-1630
+    ruler: Christian IV
+    catalog:
+      km:
+        glu: '9.2'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.888
+        source: ngc
+      - value: 0.888
+        source: numismaster
+    weight_rough_g:
+      - value: 2.016
+        source: ngc
+      - value: 2.016
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-skilling-lybsk-km-9.2-1624-30-cuid-1069325-duid-1239756
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_92986
+        ref: NumisMaster
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-1069325
+      - schleswig_holstein-numismaster-92986
   - id: c-09703a83
     class_id: c-09703a83
     label: unified-ngc-1170550
@@ -21697,578 +22972,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-167733
-  - id: c-e33fa391
-    class_id: c-e33fa391
-    label: unified-schleswig_holstein-numismaster-92967
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Søsling Lybsk
-    year_first: 1623
-    year_last: 1625
-    year_ranges:
-      -   - 1623
-          - 1625
-    year_label: 1623-1625
-    ruler: Christian IV
-    catalog:
-      km: '10'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.331
-        source: numismaster
-    weight_rough_g:
-      - value: 0.063
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92967
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92967
-  - id: c-c212d555
-    class_id: c-c212d555
-    label: unified-schleswig_holstein-numismaster-92976
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 8 Skilling Danske
-    year_first: 1694
-    year_last: 1697
-    year_ranges:
-      -   - 1694
-          - 1695
-      -   - 1697
-          - 1697
-    year_label: 1694-1695, 1697
-    catalog:
-      km: '82.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.562
-        source: numismaster
-    weight_rough_g:
-      - value: 3.057
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92976
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92976
-  - id: c-27b77b65
-    class_id: c-27b77b65
-    label: unified-schleswig_holstein-numismaster-92978
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Skilling Lybsk
-    year_first: 1620
-    year_last: 1623
-    year_ranges:
-      -   - 1620
-          - 1623
-    year_label: 1620-1623
-    ruler: Christian IV
-    catalog:
-      km: '8.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 1.008
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92978
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92978
-  - id: c-f035317c
-    class_id: c-f035317c
-    label: unified-schleswig_holstein-numismaster-92979
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Skilling Lybsk
-    year_first: 1620
-    year_last: 1623
-    year_ranges:
-      -   - 1620
-          - 1623
-    year_label: 1620-1623
-    ruler: Christian IV
-    catalog:
-      km: '8.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 1.008
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92979
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92979
-  - id: c-24be7d2d
-    class_id: c-24be7d2d
-    label: unified-schleswig_holstein-numismaster-92980
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Skilling Lybsk
-    year_first: 1620
-    year_last: 1623
-    year_ranges:
-      -   - 1620
-          - 1623
-    year_label: 1620-1623
-    ruler: Christian IV
-    catalog:
-      km: '8.4'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 1.008
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92980
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92980
-  - id: c-d6617d8d
-    class_id: c-d6617d8d
-    label: unified-schleswig_holstein-numismaster-92981
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Skilling Lybsk
-    year_first: 1620
-    year_last: 1623
-    year_ranges:
-      -   - 1620
-          - 1623
-    year_label: 1620-1623
-    ruler: Christian IV
-    catalog:
-      km: '8.5'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 1.008
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92981
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92981
-  - id: c-eb7a864d
-    class_id: c-eb7a864d
-    label: unified-schleswig_holstein-numismaster-92982
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Skilling Lybsk
-    year_first: 1624
-    year_last: 1630
-    year_ranges:
-      -   - 1624
-          - 1630
-    year_label: 1624-1630
-    ruler: Christian IV
-    catalog:
-      km: '8.6'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 1.008
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92982
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92982
-  - id: c-1263f7fe
-    class_id: c-1263f7fe
-    label: unified-schleswig_holstein-numismaster-92985
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 4 Skilling Lybsk
-    year_first: 1620
-    year_last: 1623
-    year_ranges:
-      -   - 1620
-          - 1623
-    year_label: 1620-1623
-    ruler: Christian IV
-    catalog:
-      km: '9.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 2.016
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92985
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92985
-  - id: c-a70ce18d
-    class_id: c-a70ce18d
-    label: unified-schleswig_holstein-numismaster-92986
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 4 Skilling Lybsk
-    year_first: 1624
-    year_last: 1630
-    year_ranges:
-      -   - 1624
-          - 1630
-    year_label: 1624-1630
-    ruler: Christian IV
-    catalog:
-      km: '9.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.888
-        source: numismaster
-    weight_rough_g:
-      - value: 2.016
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92986
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92986
-  - id: c-932ba6ea
-    class_id: c-932ba6ea
-    label: unified-schleswig_holstein-numismaster-92999
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 4 Mark Danske
-    year_first: 1694
-    year_last: 1696
-    year_ranges:
-      -   - 1694
-          - 1696
-    year_label: 1694-1696
-    ruler: Christian V
-    catalog:
-      km: '80'
-      dav: '3680'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.671
-        source: numismaster
-    weight_rough_g:
-      - value: 22.272
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92999
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-92999
-  - id: c-7821cbee
-    class_id: c-7821cbee
-    label: unified-schleswig_holstein-numismaster-93003
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    year_first: 1658
-    year_last: 1658
-    year_label: '1658'
-    ruler: Frederik III
-    catalog:
-      km: '42.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93003
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93003
-  - id: c-2bf19f55
-    class_id: c-2bf19f55
-    label: unified-schleswig_holstein-numismaster-93004
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    year_first: 1658
-    year_last: 1658
-    year_label: '1658'
-    ruler: Frederik III
-    catalog:
-      km: '42.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93004
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93004
-  - id: c-c861ef80
-    class_id: c-c861ef80
-    label: unified-schleswig_holstein-numismaster-93005
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1/16 Speciedaler
-    year_first: 1660
-    year_last: 1660
-    year_label: '1660'
-    ruler: Frederik III
-    catalog:
-      km: '42.4'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.812
-        source: numismaster
-    weight_rough_g:
-      - value: 1.785
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93005
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93005
-  - id: c-d462eb54
-    class_id: c-d462eb54
-    label: unified-schleswig_holstein-numismaster-93021
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1659
-    year_last: 1659
-    year_label: '1659'
-    ruler: Frederik III
-    catalog:
-      km: '43.2'
-      dav: 3672a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93021
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93021
-  - id: c-091fb1ab
-    class_id: c-091fb1ab
-    label: unified-schleswig_holstein-numismaster-93025
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1682
-    year_last: 1682
-    year_label: '1682'
-    ruler: Christian V
-    catalog:
-      km: '74.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93025
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93025
-  - id: c-4d34c51a
-    class_id: c-4d34c51a
-    label: unified-schleswig_holstein-numismaster-93036
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1672
-    year_last: 1676
-    year_ranges:
-      -   - 1672
-          - 1674
-      -   - 1676
-          - 1676
-    year_label: 1672-1674, 1676
-    mint: Glückstadt
-    catalog:
-      km: '64.1'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.986
-        source: numismaster
-    weight_rough_g:
-      - value: 3.5
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93036
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93036
-  - id: c-2268f597
-    class_id: c-2268f597
-    label: unified-schleswig_holstein-numismaster-93037
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1672
-    year_last: 1673
-    year_ranges:
-      -   - 1672
-          - 1673
-    year_label: 1672-1673
-    catalog:
-      km: '64.2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.986
-        source: numismaster
-    weight_rough_g:
-      - value: 3.5
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_93037
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-93037
   - id: c-2b57ace5
     class_id: c-2b57ace5
     label: unified-sh-tid-90742
