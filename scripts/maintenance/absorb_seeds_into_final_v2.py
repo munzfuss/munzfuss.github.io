@@ -3215,6 +3215,14 @@ def _relocation_targets(fe: dict, entity_id: str, relocated_out: set,
     return out
 
 
+def _final_keeps_a_class_in(fe: dict, entity_id: str) -> bool:
+    """True when one of the final's composed_of classes lives in
+    `entity_id`'s seed_unified after this run's merge."""
+    home = _unified_home_index()
+    return any(home.get(str(m)) == entity_id
+               for m in (fe.get("composed_of") or []))
+
+
 def _cross_entity_carry_in(entity_id: str, unified_entries: list[dict]
                            ) -> list[tuple[str, str, dict]]:
     """(host unified id in `entity_id`, source entity, source final) for every
@@ -3247,6 +3255,15 @@ def _cross_entity_carry_in(entity_id: str, unified_entries: list[dict]
             # coin's fields.
             if not (_final_is_relocated(fe, ent_relocated_out)
                     or _final_is_routed_away(fe, ent)):
+                continue
+            # The snapshot predates the source's stale-composed_of purge, so a
+            # final that only LOST one class to the relocation still lists it
+            # and matches above. If any of its classes still lives in its own
+            # entity, the coin stays there — only the departed class moved,
+            # and the host must not inherit the remaining coin's fields.
+            # (2026-11-22: NGC 1051156 left Hede 45 for Hede 63, and the carry
+            # copied Hede 45's 45 sources onto Hede 63.)
+            if _final_keeps_a_class_in(fe, ent):
                 continue
             hosts = {host_of[k] for k in _final_relocation_keys(fe) if k in host_of}
             for host in sorted(hosts):
