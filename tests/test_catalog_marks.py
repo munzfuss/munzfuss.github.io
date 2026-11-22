@@ -180,3 +180,24 @@ class Render(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class VolumeKeyedKmMark(unittest.TestCase):
+    """A KM number filed under its Krause volume ({glu: '80'}) is taken out
+    by a mark on register «km» (2026-11-22: NumisMaster 92999 / NGC 1051972
+    print «KM# 80» for the Glückstadt 4 Mark Danske laurel type, Hede 125C,
+    whose KM 80.1 / 80.2 are the 2 Mark)."""
+
+    def _mark(self, km):
+        e = {"id": "x", "catalog": {"km": km, "dav": "3680"},
+             "catalog_marks": [{"register": "km", "value": "80", "kind": "erroneous",
+                                "reason": dict(REASON)}]}
+        apply_catalog_marks(e)
+        return e["catalog"]
+
+    def test_sole_volume_number_removes_km(self):
+        self.assertEqual(self._mark({"glu": "80"}), {"dav": "3680"})
+
+    def test_other_numbers_and_volumes_stay(self):
+        self.assertEqual(self._mark({"glu": ["80", "83"], "sh": "114"}),
+                         {"km": {"glu": "83", "sh": "114"}, "dav": "3680"})

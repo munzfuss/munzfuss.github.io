@@ -306,7 +306,19 @@ def apply_catalog_marks(entry) -> None:
                     else:
                         del cat["others"]
             continue
-        if isinstance(cur, list):
+        if isinstance(cur, dict):
+            # A KM number filed under its Krause volume ({glu: '80'}): the
+            # mark names the register and the number, and takes that number
+            # out of whichever volume holds it (2026-11-22, Glückstadt KM 80
+            # on the 4 Mark Danske laurel type).
+            new = {}
+            for vol, v in cur.items():
+                vals = v if isinstance(v, list) else [v]
+                kept = [x for x in vals if str(x).strip() != val]
+                if kept:
+                    new[vol] = kept[0] if len(kept) == 1 else kept
+            cat[reg] = new or None
+        elif isinstance(cur, list):
             kept = [v for v in cur if str(v).strip() != val]
             if len(kept) != len(cur):
                 cat[reg] = kept[0] if len(kept) == 1 else (kept or None)
