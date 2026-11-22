@@ -886,7 +886,18 @@ def _km_bare_superseded(existing, fresh) -> bool:
     DIFFERENT volume for the same numbers — a corrected section reading).
     Either way the fresh volume-keyed form replaces it: a union would keep the
     old volume beside the new one, read as two volumes."""
-    if not isinstance(fresh, dict) or existing is None:
+    if existing is None or fresh in (None, "", []):
+        return False
+
+    def _has_volume(km) -> bool:
+        return any(isinstance(v, dict) for v in (km if isinstance(km, list) else [km]))
+
+    # Fresh bare over existing bare stays a union (nothing to supersede).
+    # Fresh bare over an existing VOLUME-keyed reading of the same numbers
+    # means the parser no longer names that volume (a section it now knows
+    # it cannot place, e.g. NGC «Denmark HOLSTEIN-GOTTORP-RENDSBORG»): the
+    # bare reading replaces it, never `[{dk: 5}, '5']`.
+    if not _has_volume(fresh) and not _has_volume(existing):
         return False
     ex = _km_numbers(existing)
     fr = set(_km_numbers(fresh))

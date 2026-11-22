@@ -42,8 +42,15 @@ class TestSeedKmSuperseded(unittest.TestCase):
     def test_number_not_covered_keeps_union(self):
         self.assertFalse(_km_bare_superseded({"dk": ["26", "27"]}, {"sh": "26"}))
 
-    def test_fresh_bare_never_replaces(self):
-        self.assertFalse(_km_bare_superseded({"dk": "26"}, "26"))
+    def test_fresh_bare_replaces_dropped_volume(self):
+        # NGC HOLSTEIN-GOTTORP-RENDSBORG: {dk: '5'} -> bare '5', not [{dk}, '5']
+        self.assertTrue(_km_bare_superseded({"dk": "5"}, "5"))
+
+    def test_bare_over_bare_keeps_union(self):
+        self.assertFalse(_km_bare_superseded("5", ["5", "6"]))
+
+    def test_fresh_bare_not_covering_keeps_union(self):
+        self.assertFalse(_km_bare_superseded({"dk": ["5", "6"]}, "5"))
 
 
 def _final(km, holds=None):

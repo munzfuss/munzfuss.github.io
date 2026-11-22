@@ -60,7 +60,60 @@ curator's yes.
   `km 608` (the number lives on in c-31f9e790).
 - To add: unit tests for both functions.
 
-## Stage 2 — a register for Krause «Glückstadt» (needs a decision)
+## Stage 1 — DONE 194bf40 + a4f868e (2026-11-22)
+
+Orphan KM numbers (no member gives them, 76 finals) split off to the
+`orphan-km-review` session.
+
+## Stages 2 + 3 merged — measured 2026-11-22
+
+Curator chose the label «KM-GLÜ#» (internal `glu`). Measured alone, stage 2
+moved NGC Glückstadt records between Copenhagen classes (they stay in
+danish_realm, where no Glückstadt class exists) and cut bare royal_holstein
+KM (ucoin / Bruun, read as `sh`) from the same number written `glu`. So:
+the matcher compares `glu` under the `sh` scope (`_KM_MATCH_SCOPE`; display
+keeps GLÜ, Denmark main stays apart), and the NGC GLÜCKSTADT sub-section is
+routed to royal_holstein in the same re-flow.
+
+Code (uncommitted): km_registers `glu` → «GLÜ»; ui `marker.km_glu`; compute
+tooltip; build_ngc_seed sub-section → `glu` + royal_holstein;
+build_numismaster_seed country GLÜCKSTADT → `glu`; build_numista_seed issuer
+«Glückstadt, City of» → `glu`, «Schleswig and Holstein, Danish duchies of» →
+`sh`; merger `_KM_MATCH_SCOPE`.
+
+Trial (from HEAD, numista builder drift filtered out — 7 non-KM changes,
+see below): 90 NGC seeds relocated; 73 NGC Glückstadt records now sit with
+members sharing their KM base, none without; 225 seeds in Copenhagen classes
+that only lost NGC co-members; 347 in classes that only gained them; 5 real
+reshuffles; 0 lost citations. Eight of the nine over-merges resolve into the
+Hede class the Glückstadt page names (177, 126, 127, 156, 161, 166, plus the
+2 Mark 80.2 class); NGC 1052790 (⅛ Speciedaler 1623, KM 12) joins Hede 162,
+itself unclassified. verify_reflow blocks only that declassification.
+
+Decisions the trial surfaced:
+- ngc-1051680 (Glückstadt 6 Skilling Lybsk 1625, KM 18) belongs to the Hede
+  172 cross-entity group (completeness guard).
+- merge_decisions/danish_realm.yml (db78f59, basket A, 2026-11-08) merges
+  ngc-1052788 into Hede 93 «93A KM 80.1». Hede 93 (København 1691-1692)
+  prints no KM; KM 80.1 is Glückstadt 2 Mark Danske 1693-1694 = Hede 126A.
+  Relocation silently bypasses that member — the decision must be amended.
+- ngc-1052790 declassification (`kind: declassify`).
+- Speciedaler 1659 cluster: Hede f3h146ab / f3h147 vs NumisMaster
+  93019 / 93020 / 93021 (KM 43.1 / 44 / 43.x) regroup — needs a
+  merge-candidate table.
+- Housekeeping: classification decision `ngc-1052793` (danish_realm) →
+  ASSIGN-MISS after the move; shells c-c3acee1b (reichsdukatenfuss) and
+  c-b7f6ac93 (Note «rytterpenning») KEPT in danish_realm — must not stay
+  as phantom rows.
+
+Defects found: seed_merge unions an existing `{dk: '5'}` with a fresh bare
+'5' into `[{dk: '5'}, '5']` (HGR record ngc-1051156) — a fresh reading of
+the same numbers must replace in this direction too. build_numista_seed
+drift unrelated to KM (mint_verified flips on 474509, 153825, 309415; sieg 6
+gone on 40843; hede 2 gone on 427643; entity_classified_via on 31393) — a
+separate finding, not part of this change.
+
+## (superseded) Stage 2 — a register for Krause «Glückstadt»
 
 Curator decides the register code and the label (e.g. internal `glu`,
 displayed «KM-Glückstadt#» or similar) and its tooltip. Then:

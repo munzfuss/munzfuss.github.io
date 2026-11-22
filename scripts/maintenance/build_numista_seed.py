@@ -274,7 +274,19 @@ _COUNTRY_TO_KM_REGISTER = {
 }
 
 
-def _apply_km_country_register(catalog: dict, entity) -> None:
+# Numista issuer → the Krause section its KM numbers belong to, where that
+# section has its own numbering (lib.km_registers). «Glückstadt, City of» is
+# Krause's Glückstadt section (Numista 154260: KM 26 = 1/16 Reichsthaler
+# 1640; Denmark KM 26 is the 6 Speciedaler 1604); «Schleswig and Holstein,
+# Danish duchies of» the S-H section (Numista 301630: KM 105 for the
+# Speciedaler 1683 that is Glückstadt KM 73).
+_ISSUER_TO_KM_REGISTER = {
+    "glückstadt, city of": "glu",
+    "schleswig and holstein, danish duchies of": "sh",
+}
+
+
+def _apply_km_country_register(catalog: dict, entity, issuer: str | None = None) -> None:
     """Fold Numista's «<km> (<Country>)» volume tags into the register-keyed dict
     form ``{register: km}`` the schema uses for cross-volume KMs (KMRef). A bare
     (untagged) value takes the coin's own entity register. In place; a no-op
@@ -285,7 +297,10 @@ def _apply_km_country_register(catalog: dict, entity) -> None:
     if km is None:
         return
     vals = km if isinstance(km, list) else [km]
+    issuer_reg = _ISSUER_TO_KM_REGISTER.get((issuer or "").strip().lower())
     if not any("(" in str(v) for v in vals):
+        if issuer_reg and not isinstance(km, dict):
+            catalog["km"] = {issuer_reg: km}
         return
     # _ENTITY_TO_KM_REGISTER is the single source of truth for entity→volume —
     # imported lazily (only fires for the rare cross-listed coin).
@@ -295,7 +310,7 @@ def _apply_km_country_register(catalog: dict, entity) -> None:
         _sys.path.insert(0, _md)
     from merge_seeds_cross_source import _ENTITY_TO_KM_REGISTER
     reg_entity = entity[0] if isinstance(entity, list) else entity
-    entity_reg = _ENTITY_TO_KM_REGISTER.get(reg_entity)
+    entity_reg = issuer_reg or _ENTITY_TO_KM_REGISTER.get(reg_entity)
     reg_dict: dict[str, list] = {}
     for v in vals:
         s = str(v).strip()
@@ -526,7 +541,7 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
         entry["_entity_routing_hint"] = hint
     # Fold any «<km> (<Country>)» Krause-volume tag into the register-keyed km
     # form now that the entity (→ default register for bare values) is known.
-    _apply_km_country_register(entry["catalog"], routed_ent)
+    _apply_km_country_register(entry["catalog"], routed_ent, canonical.get("issuer"))
     # _source_note candidate (Phase-1, commit 80a1b62): «obverse / reverse»
     # descriptions joined, cleaned + language-tagged (en) for the later note-
     # selector. Non-schema (underscore) → stripped before the strict Coin schema

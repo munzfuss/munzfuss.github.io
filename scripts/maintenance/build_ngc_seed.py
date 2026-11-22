@@ -186,11 +186,31 @@ def _catalog(rec: dict) -> dict:
 # not mapped one-to-one onto our volume codes.
 _KM_VOLUME_BY_SCOPE = {"denmark": "dk", "norway": "nor"}
 
+# NGC's «Denmark» region also holds Krause sections that number on their own:
+# the heading names them after the country word («Denmark GLÜCKSTADT 1/16
+# Speciedaler KM# 26»). Their KM is NOT in the Denmark volume — Denmark KM 26
+# is the 6 Speciedaler 1604 (NGC 1050248, NumisMaster 65594). GLÜCKSTADT has
+# its own register (lib.km_registers «glu»). Any other sub-section
+# (HOLSTEIN-GOTTORP-RENDSBORG, whose KM 5-8 collide with Glückstadt 5-8)
+# keeps a bare KM.
+_SUBSECTION_RE = re.compile(r"^(?:Denmark|Norway)\s+([A-ZÄÖÜÆØÅ][A-ZÄÖÜÆØÅ\-]{2,})\s")
+_KM_VOLUME_BY_SUBSECTION = {"GLÜCKSTADT": "glu"}
+# …and its issuer: the royal Holstein coinage struck at Glückstadt, as
+# NumisMaster's country GLÜCKSTADT is routed (build_numismaster_seed).
+_ENTITY_BY_SUBSECTION = {"GLÜCKSTADT": "royal_holstein"}
 
-def _km_volume(cat: dict, scope: str) -> dict:
+
+def _subsection(heading: str | None) -> str | None:
+    m = _SUBSECTION_RE.match(heading or "")
+    return m.group(1) if m else None
+
+
+def _km_volume(cat: dict, scope: str, heading: str | None = None) -> dict:
     """Write the KM register-keyed when the NGC section names the volume, so a
     record pulled into another entity keeps its own volume (lib.km_registers)."""
-    vol = _KM_VOLUME_BY_SCOPE.get(scope)
+    sub = _subsection(heading)
+    vol = (_KM_VOLUME_BY_SUBSECTION.get(sub) if sub
+           else _KM_VOLUME_BY_SCOPE.get(scope))
     if vol and cat.get("km"):
         cat["km"] = {vol: cat["km"]}
     return cat
@@ -235,12 +255,13 @@ def build_entry(rec: dict, scope: str) -> dict | None:
         "year_ranges": ranges,
         "ruler": rec.get("ruler"),
         "mint": mint,
-        "catalog": _km_volume(_catalog(rec), scope),
+        "catalog": _km_volume(_catalog(rec), scope, rec.get("heading")),
         "metal": metal,
         "fineness": fineness,
         "weight_rough_g": weight,
         "diameter_mm": diam,
-        "issuing_entity": SCOPE_ENTITY.get(scope, ""),
+        "issuing_entity": (_ENTITY_BY_SUBSECTION.get(_subsection(rec.get("heading")))
+                           or SCOPE_ENTITY.get(scope, "")),
         "verified": False,
         "metal_verified": metal_ok,
         "fineness_verified": fineness is not None,
