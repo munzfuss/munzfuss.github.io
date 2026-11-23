@@ -255,11 +255,54 @@ def _split_dash_list(value):
     return value
 
 
-def _filter_catalog(refs: dict[str, str] | None) -> dict[str, str]:
-    """Drop keys not in our schema (strict-extra) and split spaced-dash lists."""
+# Numista prints some Hede references with the ruler volume in front and a dot
+# before the sub-letter: «C4 80.C» = Christian IV, Hede 80C (N#307035). The
+# merger already scopes a bare Hede number by the record's ruler, so only the
+# number is kept, in the form every other source gives («80C»). The prefix must
+# name the record's own ruler (C = Christian, F = Frederik, H = Hans, + regnal
+# number); a prefix naming another king is left as printed. A bare «80.C» (no
+# prefix) is the same number.
+_HEDE_RULER_PREFIX_RE = re.compile(
+    r"^(?:(?P<k>[CFH])(?P<n>\d{1,2})?\s+)?(?P<num>\d+)\.(?P<sub>[A-Za-z]{1,2})$")
+_HEDE_PREFIX_KING = {"C": "Christian", "F": "Frederik", "H": "Hans"}
+_ROMAN = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII",
+          8: "VIII", 9: "IX", 10: "X"}
+
+
+def _normalise_hede_value(value, ruler: str | None = None):
+    """«C4 80.C» → «80C» when the prefix names `ruler`; «80.C» → «80C».
+    Anything else (and a list's other members) is returned unchanged."""
+    if isinstance(value, list):
+        out: list = []
+        for v in value:
+            n = _normalise_hede_value(v, ruler)
+            if n not in out:
+                out.append(n)
+        return out
+    if not isinstance(value, str):
+        return value
+    m = _HEDE_RULER_PREFIX_RE.match(value.strip())
+    if not m:
+        return value
+    if m.group("k"):
+        king = _HEDE_PREFIX_KING[m.group("k")]
+        if m.group("n"):
+            king = f"{king} {_ROMAN.get(int(m.group('n')), m.group('n'))}"
+        if (ruler or "").strip() != king:
+            return value
+    return f"{m.group('num')}{m.group('sub').upper()}"
+
+
+def _filter_catalog(refs: dict[str, str] | None,
+                    ruler: str | None = None) -> dict[str, str]:
+    """Drop keys not in our schema (strict-extra), split spaced-dash lists and
+    take the ruler prefix off a Hede number (`_normalise_hede_value`)."""
     if not refs:
         return {}
-    return {k: _split_dash_list(v) for k, v in refs.items() if k in _ALLOWED_CATALOG}
+    out = {k: _split_dash_list(v) for k, v in refs.items() if k in _ALLOWED_CATALOG}
+    if "hede" in out:
+        out["hede"] = _normalise_hede_value(out["hede"], ruler)
+    return out
 
 
 # Country-volume tag Numista appends to a KM when a coin is cross-listed across
@@ -285,32 +328,57 @@ _ISSUER_TO_KM_REGISTER = {
     "schleswig and holstein, danish duchies of": "sh",
 }
 
+# Numista's country sections «Denmark» / «Norway» follow Krause's Denmark /
+# Norway volumes. Unlike the sections above they are the ORDINARY volume of
+# most coins filed there, so they only decide when the coin routes to an entity
+# read in the other volume: N#100478, Christian VI 1 Reisedaler 1732-1733 under
+# «Norway», routes to danish_realm by its Copenhagen mint, and its bare «KM 230»
+# is Norway KM 230 (NumisMaster MC_92262; Bruun «KM-539 (Denmark); KM-230
+# (Norway)»), while Denmark KM 230 is the 3 Speciedaler 1661.
+# Two limits, both from the measurement over the whole cache (2026-11-23):
+#   * only between the Denmark and Norway volumes — an S-H entity (royal_holstein)
+#     filed under «Denmark» is a separate question (39 records), not decided here;
+#   * only a SINGLE bare KM — Numista lists cross-volume numbers bare side by side
+#     (N#119248 under «Norway»: «260» is Norway, «645» is Denmark KM 645), so the
+#     section does not name the volume of each member of a list.
+_COUNTRY_ISSUER_TO_KM_REGISTER = {
+    "denmark": "dk",
+    "norway": "nor",
+}
+_COUNTRY_VOLUMES = frozenset(_COUNTRY_ISSUER_TO_KM_REGISTER.values())
+
 
 def _apply_km_country_register(catalog: dict, entity, issuer: str | None = None) -> None:
     """Fold Numista's «<km> (<Country>)» volume tags into the register-keyed dict
     form ``{register: km}`` the schema uses for cross-volume KMs (KMRef). A bare
-    (untagged) value takes the coin's own entity register. In place; a no-op
-    unless some km value carries a parenthetical tag, and left untouched entirely
-    if any tag names a country we don't map (e.g. «(OM)») or a bare value has no
+    (untagged) value takes the Krause section of the Numista issuer when it has
+    one (`_ISSUER_TO_KM_REGISTER`), or the country volume of the issuer when that
+    differs from the entity's own volume (`_COUNTRY_ISSUER_TO_KM_REGISTER`, a
+    single bare value between the Denmark and Norway volumes only),
+    else the coin's own entity register. In place; a no-op when every value is
+    bare and in the entity's own volume, and left untouched entirely if any tag
+    names a country we don't map (e.g. «(OM)») or a bare value has no
     resolvable register."""
     km = catalog.get("km")
     if km is None:
         return
     vals = km if isinstance(km, list) else [km]
-    issuer_reg = _ISSUER_TO_KM_REGISTER.get((issuer or "").strip().lower())
+    iss = (issuer or "").strip().lower()
+    issuer_reg = _ISSUER_TO_KM_REGISTER.get(iss)
+    # _ENTITY_TO_KM_REGISTER is the single source of truth for entity→volume.
+    from lib.km_registers import ENTITY_TO_KM_REGISTER as _ENTITY_TO_KM_REGISTER
+    reg_entity = entity[0] if isinstance(entity, list) else entity
+    own_reg = _ENTITY_TO_KM_REGISTER.get(reg_entity)
+    country_reg = _COUNTRY_ISSUER_TO_KM_REGISTER.get(iss)
+    if (issuer_reg is None and country_reg and own_reg in _COUNTRY_VOLUMES
+            and country_reg != own_reg and isinstance(km, str)
+            and "(" not in km):
+        issuer_reg = country_reg
     if not any("(" in str(v) for v in vals):
         if issuer_reg and not isinstance(km, dict):
             catalog["km"] = {issuer_reg: km}
         return
-    # _ENTITY_TO_KM_REGISTER is the single source of truth for entity→volume —
-    # imported lazily (only fires for the rare cross-listed coin).
-    import sys as _sys
-    _md = str(Path(__file__).resolve().parent)
-    if _md not in _sys.path:
-        _sys.path.insert(0, _md)
-    from merge_seeds_cross_source import _ENTITY_TO_KM_REGISTER
-    reg_entity = entity[0] if isinstance(entity, list) else entity
-    entity_reg = issuer_reg or _ENTITY_TO_KM_REGISTER.get(reg_entity)
+    entity_reg = issuer_reg or own_reg
     reg_dict: dict[str, list] = {}
     for v in vals:
         s = str(v).strip()
@@ -465,7 +533,8 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
     fineness = composition.get("fineness")
 
     catalog: dict[str, Any] = {"numista": str(nid)}
-    catalog.update(_filter_catalog(canonical.get("references")))
+    catalog.update(_filter_catalog(canonical.get("references"),
+                                   _resolve_ruler(canonical.get("kings"))))
 
     cid = f"dk-numista-{nid}"
 
