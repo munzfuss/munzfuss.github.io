@@ -25,7 +25,7 @@
 instruments 1/2 (the Plakate of 1808–12 known only from Wilcke's retelling — Mordhorst's digest
 ends 4 Dec 1807; three of them have no clause quoted) · C4 provenance 1/1 · C5 open questions 1/1 ·
 C6 recomputation 1/2 (the six tables and five text pages image-verified; s. 117–131 and 140–150
-otherwise from the text layer). Commit: (pending).
+otherwise from the text layer). Commit: `d1be33b`.
 
 ## 1. Identification
 
