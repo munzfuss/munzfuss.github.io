@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8227 per-source seed entries.
-# Output: 1463 unified entries (one per physical coin).
+# Output: 1464 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -67795,9 +67795,6 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-skilling-1582-1583/?tid=163001
         ref: ucoin
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139667
-        ref: KMM 139667 (Inv. KP 1715.52)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167345
         ref: KMM 167345 (Inv. FP 1892.13)
     issuing_entity: danish_realm
@@ -67810,7 +67807,6 @@ coins:
       - dk-hede-f2h28
       - dk-numista-108360
       - dk-tid-163001
-      - kmk-139667
       - kmk-167345
   - id: c-d5be1a39
     class_id: c-d5be1a39
@@ -113321,6 +113317,30 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-139659
+  - id: c-492847fd
+    class_id: c-492847fd
+    label: unified-kmk-139667
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1582
+    year_last: 1582
+    year_label: '1582'
+    ruler: Frederik II
+    catalog:
+      schou: '20'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139667
+        ref: KMM 139667 (Inv. KP 1715.52)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-139667
   - id: c-d0a6b861
     class_id: c-d0a6b861
     label: unified-kmk-139675
