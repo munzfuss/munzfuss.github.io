@@ -2,7 +2,7 @@
 # Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1497 per-source seed entries.
+# Input: 1500 per-source seed entries.
 # Output: 254 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -2592,7 +2592,8 @@ coins:
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '9'
+      km:
+        glu: '9'
       hede: '167'
       hede_volume: c4h
       schou: 36-48
@@ -2858,10 +2859,10 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        sh: '82'
         glu:
-          - '8.1'
           - '8'
+          - '8.1'
+        sh: '82'
       hede:
         - '168'
         - 168ab
@@ -8603,8 +8604,8 @@ coins:
       km:
         - '138.3'
         - '138.1'
-        - '138.2'
         - '138.5'
+        - '138.2'
       hede:
         - '39'
         - 39A
@@ -14013,7 +14014,8 @@ coins:
     mintmaster: Bastian Hille
     mint: Rendsburg
     catalog:
-      km: '8'
+      km:
+        hgr: '8'
       hede: '60'
       hede_volume: f4h
       schou: '1'
@@ -14027,11 +14029,14 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
       - value: 0.979
         source: numismaster
       - value: 0.979
@@ -14043,6 +14048,8 @@ coins:
         source: bruun
       - value: 3.49
         source: hede
+      - value: 3.49
+        source: ngc
       - value: 3.49
         source: numismaster
       - value: 3.5
@@ -14061,6 +14068,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-dukat-1718-1719/?tid=169254
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-holstein-gottorp-rendsborg-ducat-km-8-1718-1719-cuid-1051168-duid-1239898
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_66632
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -14069,6 +14079,7 @@ coins:
       - dk-bruun-7481
       - dk-hede-f4h60
       - dk-tid-169254
+      - ngc-1051168
       - schleswig_holstein-numismaster-66632
   - id: c-e787a26e
     class_id: c-e787a26e
@@ -14083,7 +14094,8 @@ coins:
     ruler: Frederik IV
     mint: Rendsburg
     catalog:
-      km: '7'
+      km:
+        hgr: '7'
       hede: '61'
       hede_volume: f4h
       schou: '2'
@@ -14095,11 +14107,14 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
       - value: 0.979
         source: numismaster
       - value: 0.979
@@ -14109,6 +14124,8 @@ coins:
         source: bruun
       - value: 1.745
         source: hede
+      - value: 1.745
+        source: ngc
       - value: 1.745
         source: numismaster
       - value: 1.75
@@ -14124,6 +14141,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-2-dukat-1719/?tid=169253
         ref: ucoin
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-holstein-gottorp-rendsborg-1-2-ducat-km-7-1719-cuid-1050478-duid-1239897
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_66629
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -14131,6 +14151,7 @@ coins:
       - dk-bruun-7482
       - dk-hede-f4h61
       - dk-tid-169253
+      - ngc-1050478
       - schleswig_holstein-numismaster-66629
   - id: c-a4a50086
     class_id: c-a4a50086
@@ -14148,7 +14169,8 @@ coins:
     ruler: Frederik IV
     mint: Rendsburg
     catalog:
-      km: '6'
+      km:
+        hgr: '6'
       hede: '62'
       hede_volume: f4h
       schou:
@@ -14169,6 +14191,8 @@ coins:
       - value: 0.562
         source: hede
       - value: 0.562
+        source: ngc
+      - value: 0.562
         source: numismaster
       - value: 0.562
         source: numista
@@ -14179,6 +14203,8 @@ coins:
         source: kmk
       - value: 3.898
         source: hede
+      - value: 3.898
+        source: ngc
       - value: 3.898
         source: numismaster
       - value: 3.898
@@ -14210,6 +14236,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/353005
         ref: KMM 353005 (Inv. FP 5085.2)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-holstein-gottorp-rendsborg-12-skilling-km-6-1716-1720-cuid-1051167-duid-1239892
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://numismaster.com/MC_66626
         ref: NumisMaster
     issuing_entity: royal_holstein
@@ -14225,6 +14254,7 @@ coins:
       - kmk-152145
       - kmk-152146
       - kmk-353005
+      - ngc-1051167
       - schleswig_holstein-numismaster-66626
   - id: c-7db600aa
     class_id: c-7db600aa
@@ -14242,7 +14272,8 @@ coins:
     ruler: Frederik IV
     mint: Rendsburg
     catalog:
-      km: '5'
+      km:
+        hgr: '5'
       hede: '63'
       hede_volume: f4h
       schou:
