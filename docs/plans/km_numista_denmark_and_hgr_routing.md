@@ -96,3 +96,15 @@ alone. The two touch different builders (B: NGC + NumisMaster; A: Numista).
 - c-9397f1cf holds Numista 83067 (Frederik d'Or 1828, KM 699) and 83069
   (1829-1838, KM 701) in one class — merge-candidate table first.
 - marker.km_sh still says «volume Schleswig-Holstein».
+
+## B — DONE 2026-11-24
+
+Builder comparison over the whole cache: exactly 8 records change, only
+`issuing_entity` (NGC 1050478 / 1051156 / 1051167 / 1051168 danish_realm →
+royal_holstein; NumisMaster 66626 / 66629 / 66632 / 66636 gottorp_duchy →
+royal_holstein). Re-seed: the same 8 move file, no id in two files; the
+re-seed's catalog-mark drift on ngc-1051972 / numismaster-92999 kept out.
+Full re-flow: seed_unified, final and class_registry byte-identical to HEAD;
+trace_coin diff 0 changes; validate_decisions --check-members clean. The
+four _cross_entity groups stay (they record the 2026-07-29 ruling); their
+member «home» notes updated.
