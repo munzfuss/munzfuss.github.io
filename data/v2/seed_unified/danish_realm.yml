@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8227 per-source seed entries.
-# Output: 1464 unified entries (one per physical coin).
+# Output: 1463 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -67773,6 +67773,10 @@ coins:
       - value: 0.187
         source: ucoin
     weight_rough_g:
+      - value: 1.36
+        source: kmk
+      - value: 1.4
+        source: kmk
       - value: 1.77
         source: numista
       - value: 1.772
@@ -67797,6 +67801,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167345
         ref: KMM 167345 (Inv. FP 1892.13)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190271
+        ref: KMM 190271 (Inv. FP 3108.13)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190272
+        ref: KMM 190272 (Inv. FP 3108.12)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 11.0
@@ -67808,6 +67818,8 @@ coins:
       - dk-numista-108360
       - dk-tid-163001
       - kmk-167345
+      - kmk-190271
+      - kmk-190272
   - id: c-d5be1a39
     class_id: c-d5be1a39
     label: unified-dk-hede-f2h29
@@ -119045,43 +119057,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-189883
-  - id: c-d12f128a
-    class_id: c-d12f128a
-    label: unified-kmk-190271
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1583
-    year_last: 1583
-    year_label: '1583'
-    ruler: Frederik II
-    catalog:
-      hede: '28'
-      schou:
-        - '19'
-        - '20'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.36
-        source: kmk
-      - value: 1.4
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190271
-        ref: KMM 190271 (Inv. FP 3108.13)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190272
-        ref: KMM 190272 (Inv. FP 3108.12)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-190271
-      - kmk-190272
   - id: c-ef937e64
     class_id: c-ef937e64
     label: unified-kmk-190277
