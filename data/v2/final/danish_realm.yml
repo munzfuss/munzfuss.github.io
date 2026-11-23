@@ -32768,9 +32768,18 @@ coins:
     ruler: Christian IV.
     issuing_entity: danish_realm
     id: km-x030-chr-iv-1619
+    mintmaster: Johan Post
     year_first: 1619
     year_last: 1619
     year_label: '1619'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Kroneskilling
+          value: billon
+          seed: dk-bruun-5127
     mint: Kopenhagen
     catalog:
       km:
@@ -32784,7 +32793,12 @@ coins:
       schou:
         - 99-102
         - '103'
-      sieg: '63'
+      sieg:
+        - '56.1'
+        - '63'
+      bruun_collection_id: '5127'
+      others:
+        - Harck# 15.3.1
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -32801,8 +32815,16 @@ coins:
         specimen: dk-hede-c4h110b
       - value: 0.859
         source: ngc
+        specimen: ngc-1050088
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1050584
       - value: 0.859
         source: numismaster
+        specimen: denmark-numismaster-65118
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65120
       - value: 0.86
         source: ucoin
     weight_rough_g:
@@ -32845,6 +32867,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149792
         ref: KMM 149792 (Inv. KP 1656.521)
         display: false
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14097, p. 41
     note:
       de: 8 Skilling Christians IV. (1619) — 1/12 Speciedaler in dänischer Theilung. Schwerer (3,1 g) als die parallele Sk-Danske-Reihe; passt rechnerisch zu 1/12 Sp (soll 2,165 g fein, ist 2,67 g 
         fein bei .86 — leicht über Schwelle). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 71</b>; in Numista nicht katalogisiert.
@@ -32869,7 +32894,6 @@ coins:
       unit_raw: daler
     composed_of:
       - c-494ab400
-      - c-a8799ac9
     label: km-x030-chr-iv-1619
     origin: foundation
     v1_home_location: denmark
@@ -111813,49 +111837,6 @@ coins:
     composed_of:
       - c-b9fd40dd
     label: unified-kmk-122105
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 8 Kroneskilling
-    ruler: Christian IV.
-    issuing_entity: danish_realm
-    mintmaster: Johan Post
-    id: c-deaa6062
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 8 Kroneskilling
-          value: billon
-          seed: dk-bruun-5127
-    mint: Kopenhagen
-    catalog:
-      km: '71.1'
-      hede: 110A
-      sieg: '56.1'
-      bruun_collection_id: '5127'
-      schou: '102'
-      others:
-        - Harck# 15.3.1
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14097, p. 41
-    verification_note: *id007
-    composed_of:
-      - c-deaa6062
-    label: unified-kmk-122202
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk

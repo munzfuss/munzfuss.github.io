@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1460 active, 4961 retired.
+# 1458 active, 4963 retired.
 
 id: danish_realm
 classes:
@@ -7438,11 +7438,14 @@ classes:
     legacy_id: unified-dk-hede-c4h110a
     members:
       - denmark-numismaster-65118
+      - denmark-numismaster-65120
+      - dk-bruun-5127
       - dk-hede-c4h110a
       - dk-hede-c4h110b
       - dk-tid-163035
       - kmk-714959
       - ngc-1050088
+      - ngc-1050584
   - id: c-49545f75
     status: active
     created: '2026-10-22'
@@ -17032,14 +17035,6 @@ classes:
     legacy_id: unified-dk-numista-152267
     members:
       - dk-numista-152267
-  - id: c-a8799ac9
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1050584
-    legacy_id: unified-ngc-1050584
-    members:
-      - denmark-numismaster-65120
-      - ngc-1050584
   - id: c-a8bb1b33
     status: active
     created: '2026-10-22'
@@ -21224,13 +21219,6 @@ classes:
     legacy_id: unified-ngc-1069112
     members:
       - ngc-1069112
-  - id: c-deaa6062
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-bruun-5127
-    legacy_id: unified-kmk-122202
-    members:
-      - dk-bruun-5127
   - id: c-deadbcae
     status: active
     created: '2026-10-22'
@@ -57512,6 +57500,16 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-326593
+  - id: c-a8799ac9
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1050584
+    legacy_id: unified-ngc-1050584
+    merged_into: c-494ab400
+    retired: '2026-11-23'
+    members:
+      - denmark-numismaster-65120
+      - ngc-1050584
   - id: c-a885e1a0
     status: retired
     created: '2026-10-22'
@@ -67738,6 +67736,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-149778
+  - id: c-deaa6062
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-bruun-5127
+    legacy_id: unified-kmk-122202
+    merged_into: c-494ab400
+    retired: '2026-11-23'
+    members:
+      - dk-bruun-5127
   - id: c-debef98a
     status: retired
     created: '2026-10-22'

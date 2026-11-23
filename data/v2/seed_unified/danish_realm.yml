@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8229 per-source seed entries.
-# Output: 1460 unified entries (one per physical coin).
+# Output: 1458 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -447,48 +447,6 @@ coins:
       - dk-numista-142558
       - dk-tid-163405
       - ngc-1050301
-  - id: c-deaa6062
-    class_id: c-deaa6062
-    label: unified-dk-bruun-5127
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 8 Kroneskilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Christian IV
-    mintmaster: Johan Post
-    mint: Kopenhagen
-    catalog:
-      km: '71.1'
-      hede: 110A
-      sieg: '56.1'
-      bruun_collection_id: '5127'
-      schou: '102'
-      others:
-        - Harck# 15.3.1
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 8 Kroneskilling
-          value: billon
-          seed: dk-bruun-5127
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 14097, p. 41
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-bruun-5127
   - id: c-a7883be8
     class_id: c-a7883be8
     label: unified-dk-bruun-5365
@@ -18747,10 +18705,12 @@ coins:
     year_last: 1619
     year_label: '1619'
     ruler: Christian IV
+    mintmaster: Johan Post
     mint: Kopenhagen
     catalog:
       km:
         - '71.1'
+        - '71.2'
         - '71'
       hede:
         - 110A
@@ -18759,7 +18719,12 @@ coins:
       schou:
         - 99-102
         - '103'
-      sieg: '63'
+      sieg:
+        - '56.1'
+        - '63'
+      bruun_collection_id: '5127'
+      others:
+        - Harck# 15.3.1
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -18776,8 +18741,16 @@ coins:
         specimen: dk-hede-c4h110b
       - value: 0.859
         source: ngc
+        specimen: ngc-1050088
+      - value: 0.859
+        source: ngc
+        specimen: ngc-1050584
       - value: 0.859
         source: numismaster
+        specimen: denmark-numismaster-65118
+      - value: 0.859
+        source: numismaster
+        specimen: denmark-numismaster-65120
       - value: 0.86
         source: ucoin
     weight_rough_g:
@@ -18794,10 +18767,24 @@ coins:
     diameter_mm:
       - value: 25.0
         source: ucoin
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 8 Kroneskilling
+          value: billon
+          seed: dk-bruun-5127
     sources:
       - type: literature
         url: https://numismaster.com/MC_65118
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65120
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14097, p. 41
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h110.htm
         ref: danskmoent.dk (Hede c4h110A)
@@ -18810,6 +18797,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-71.1-1619-cuid-1050088-duid-1236691
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-71.2-1619-cuid-1050584-duid-1236692
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 10.8
@@ -18818,11 +18808,14 @@ coins:
       unit_raw: daler
     composed_of:
       - denmark-numismaster-65118
+      - denmark-numismaster-65120
+      - dk-bruun-5127
       - dk-hede-c4h110a
       - dk-hede-c4h110b
       - dk-tid-163035
       - kmk-714959
       - ngc-1050088
+      - ngc-1050584
   - id: c-0fd91ba5
     class_id: c-0fd91ba5
     label: unified-dk-hede-c4h111a
@@ -130680,41 +130673,6 @@ coins:
       - denmark-numismaster-65104
       - dk-tid-96999
       - ngc-1050582
-  - id: c-a8799ac9
-    class_id: c-a8799ac9
-    label: unified-ngc-1050584
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 8 Skilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    catalog:
-      km: '71.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.859
-        source: ngc
-      - value: 0.859
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65120
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-8-skilling-km-71.2-1619-cuid-1050584-duid-1236692
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65120
-      - ngc-1050584
   - id: c-a5cc4716
     class_id: c-a5cc4716
     label: unified-ngc-1050587
