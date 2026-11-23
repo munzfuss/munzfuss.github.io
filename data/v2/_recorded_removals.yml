@@ -5830,3 +5830,8 @@ removals:
     field: km
     dropped: ['152']
     reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, split of c-75de49c6, «так»): final c-75de49c6 now holds only IKMK 18299820 (3 Kreuzer 1620, Unbestimmte Kippermünzstätte, cf. Welter 1320) and kept KM 152 by self-union. The number is ucoin 190603''s, which sits in c-835ca0ae; IKMK 18299820 gives no KM.'
+  - seed: dk-numista-307035
+    kind: field
+    field: hede
+    dropped: [C4 80.C]
+    reason: 'Curator (Serhii) 2026-11-23 («Так, записуй»): Numista N#307035 prints Hede as «C4 80.C» (Christian IV volume, dot before the sub-letter). The builder now reduces it to the plain «80C» (commit a24acea), which the class c-0e5dc1f1 already holds; the prefixed string was the same number in Numista''s print form, not a second index.'
