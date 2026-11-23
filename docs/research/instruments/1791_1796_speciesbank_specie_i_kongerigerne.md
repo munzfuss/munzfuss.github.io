@@ -255,7 +255,7 @@ read.**
 | Kongsberg | ⅕ | 1796–1801, 1803 | seven sums = **249 727** (column headed «R. K.») | sum ✓ |
 | Kongsberg | 1/15 | 1795–1802 | eight sums = **194 406** (column headed «R. K.») | sum ✓ |
 | København | 1 Speciedaler | 1796–1800 | 165 103 · 40 171 · 17 146 · 688 594 · 3 460 = **914 474** pieces | sum ✓ |
-| Altona | «1/1 Sp. d.» | (rows undated in the part read) | 912 231 + 32 841 = **945 072** R. Sp. | sum ✓ |
+| Altona | «1/1 Sp. d.» | 1796 · 1802 (rows dated by joining s. 68 and s. 69, 2026-11-23) | 912 231 + 32 841 = **945 072** R. Sp. | sum ✓ |
 | Altona | «1/15 Sp. d.» | 1797 and 1799 (Wilcke s. 89) | 92 380 + 20 000 = **112 380** R. Sp. | sum ✓ |
 
 Whole Speciedalere of the three mints together, as computed: 300 885 + 914 474 + 945 072 =
@@ -325,7 +325,9 @@ Rows for these are in `FUSS_REVIEW_FINDINGS.md` (§D).
    København or Kongsberg tables, and Hede's København pieces (C7 19–20) are undated trial coins.
    Whether any were struck for the kingdoms as distinct from the duchies' pieces is not known from
    the sources read.
-5. **The Altona rows of Danish specie by year** — the table s. 68–69 was read for its sums only.
+5. ~~The Altona rows of Danish specie by year~~ — settled 2026-11-23: with the year column of s. 68
+   joined to s. 69 the two sums stand in the rows of 1796 and 1802 (Hede 13A dates the Altona
+   pieces 1795, 1797, 1801 — the dates on the coins and the years of account differ).
 6. **604 or 640 shares** (⚠ 2) — Finanskollegiets Rel.- og Resl.-Protokol 1791 I Nr. 18.
 7. **«c. 135.000 R.»** (⚠ 3) — which years Wilcke means.
 8. **The bank's tables** s. 179 and 184 — to verify on the page images before any figure from
