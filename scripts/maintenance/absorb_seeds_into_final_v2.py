@@ -2334,6 +2334,37 @@ def _seed_record(entity_id: str, seed_id: str) -> dict | None:
     return None
 
 
+def _other_departed_members(gone, kept, staying_seeds, already) -> list[str]:
+    """Members of vanished classes, other than each class's label seed, that
+    now compose a DIFFERENT live class.
+
+    `_seed_of(cid)` names one seed per vanished class — the one its label was
+    built from. When that seed stays (it heads a kept class) while the class's
+    other members move to another class, their baked sources and indices were
+    left on the host final (Hede 132 / KM 249, 2026-11-23: class c-958a9cec
+    «unified-dk-hede-f3h132» held four KM 249 records). The registry keeps a
+    retired class's members, so they are read from there.
+
+    Deliberately narrow: a member counts only when `_seed_class_index` places
+    it in a live class that is not one of this final's kept classes. A member
+    that vanished from every class (excluded, removed, thinned away) is NOT
+    added — that case is left exactly as before."""
+    sci = _seed_class_index()
+    kept_set = set(kept)
+    seen = set(already) | set(staying_seeds)
+    out: list[str] = []
+    for cid in gone:
+        rec = _registry().records.get(cid)
+        for m in (rec.members if rec is not None else []):
+            if m in seen:
+                continue
+            home = sci.get(m)
+            if home and home not in kept_set:
+                out.append(m)
+                seen.add(m)
+    return out
+
+
 def _surgical_decontaminate(
     fc: dict, evicted_members: list[dict], remaining_members: list[dict]
 ) -> None:
@@ -2430,6 +2461,11 @@ def _surgical_decontaminate(
     _holds = fc.get("_curation_holds")
     _held = set(_holds.keys() if isinstance(_holds, dict) else (_holds or []))
     if isinstance(cat, dict) and "catalog" not in _held:
+        # A register may be volume-keyed (`km: {dk: "249.1"}`, the seed form
+        # NGC / NumisMaster write). Keys carry the volume (None for a flat
+        # value); the KEEP side ignores it on purpose, so a number a remaining
+        # member gives in ANY volume stays (Hede 132 / KM 249, 2026-11-23:
+        # the dict form was skipped and KM 249.1 / 249.2 stayed).
         def _cat_keys(members):
             keys = set()
             for m in members:
@@ -2437,29 +2473,57 @@ def _surgical_decontaminate(
                 if not isinstance(mc, dict):
                     continue
                 for f, v in mc.items():
-                    for x in (v if isinstance(v, list) else [v]):
-                        if x is not None and not isinstance(x, dict):
-                            keys.add((f, str(x).strip()))
+                    items = (v.items() if isinstance(v, dict) else [(None, v)])
+                    for vol, vv in items:
+                        for x in (vv if isinstance(vv, list) else [vv]):
+                            if x is not None and not isinstance(x, dict):
+                                keys.add((f, vol, str(x).strip()))
             return keys
         ev_cat = _cat_keys(evicted_members)
         if ev_cat:
-            keep_cat = _cat_keys(remaining_members)
+            keep_any = {(f, x) for f, _vol, x in _cat_keys(remaining_members)}
+            ev_any = {(f, x) for f, _vol, x in ev_cat}
+
+            def _drop(f, vol, x):
+                x = str(x).strip()
+                if (f, x) in keep_any:
+                    return False
+                if vol is None:
+                    return (f, x) in ev_any
+                return (f, vol, x) in ev_cat or (f, None, x) in ev_cat
+
+            def _thin(f, vol, v):
+                vals = v if isinstance(v, list) else [v]
+                kept = [x for x in vals if not _drop(f, vol, x)]
+                if len(kept) == len(vals):
+                    return v, False
+                if not kept:
+                    return None, True
+                return (kept if isinstance(v, list) else kept[0]), True
+
             for f in list(cat.keys()):
                 v = cat[f]
                 if isinstance(v, dict):
+                    nv, changed = {}, False
+                    for vol, vv in v.items():
+                        r, ch = _thin(f, vol, vv)
+                        changed |= ch
+                        if r is not None:
+                            nv[vol] = r
+                    if not changed:
+                        continue
+                    if nv:
+                        cat[f] = nv
+                    else:
+                        del cat[f]
                     continue
-                vals = v if isinstance(v, list) else [v]
-                kept = [x for x in vals
-                        if not ((f, str(x).strip()) in ev_cat
-                                and (f, str(x).strip()) not in keep_cat)]
-                if len(kept) == len(vals):
+                r, ch = _thin(f, None, v)
+                if not ch:
                     continue
-                if not kept:
+                if r is None:
                     del cat[f]
-                elif isinstance(v, list):
-                    cat[f] = kept
                 else:
-                    cat[f] = kept[0]
+                    cat[f] = r
 
     cur_sources = fc.get("sources")
     if isinstance(cur_sources, list):
@@ -3916,6 +3980,7 @@ def process_entity(entity_id: str) -> dict:
                 staying_seeds.add(_seed_of(cid))
             departed = [_seed_of(cid) for cid in gone
                         if _seed_of(cid) not in staying_seeds]
+            departed += _other_departed_members(gone, kept, staying_seeds, departed)
             departed_recs = [r for r in (_seed_record(entity_id, sid) for sid in departed) if r]
             if departed_recs:
                 remaining = [unified_by_id[c] for c in kept if c in unified_by_id]

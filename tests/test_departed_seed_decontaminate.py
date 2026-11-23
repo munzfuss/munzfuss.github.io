@@ -98,5 +98,78 @@ class DepartedYears(unittest.TestCase):
         self.assertEqual(fc["year_ranges"], [[1640, 1646]])
 
 
+class VolumeKeyedIndices(unittest.TestCase):
+    """NGC / NumisMaster seeds write `km: {dk: "249.1"}`; the dict form was
+    skipped, so KM 249.1 / 249.2 stayed on Hede 132 after the split."""
+
+    def test_departed_dict_km_leaves_flat_final(self):
+        fc = {"catalog": {"km": ["249.1", "249.2", "209"]}}
+        _surgical_decontaminate(
+            fc, [{"catalog": {"km": {"dk": "249.1"}}}, {"catalog": {"km": {"dk": "249.2"}}}],
+            [{"catalog": {"km": {"dk": "209"}}}])
+        self.assertEqual(fc["catalog"]["km"], ["209"])
+
+    def test_number_a_remaining_member_gives_in_any_volume_stays(self):
+        fc = {"catalog": {"km": ["249.1", "209"]}}
+        _surgical_decontaminate(fc, [{"catalog": {"km": {"dk": "249.1"}}}],
+                                [{"catalog": {"km": {"sh": "249.1"}}}])
+        self.assertEqual(fc["catalog"]["km"], ["249.1", "209"])
+
+    def test_volume_keyed_final_loses_only_that_volume(self):
+        fc = {"catalog": {"km": {"dk": ["5", "520"], "sh": "5"}}}
+        _surgical_decontaminate(fc, [{"catalog": {"km": {"dk": "5"}}}],
+                                [{"catalog": {"km": {"dk": "520"}}}])
+        self.assertEqual(fc["catalog"]["km"], {"dk": ["520"], "sh": "5"})
+
+
+class OtherMembersOfAVanishedClass(unittest.TestCase):
+    """Hede 132 / KM 249 (2026-11-23): class c-958a9cec «unified-dk-hede-f3h132»
+    held f3h132 + four KM 249 records. f3h132 stayed (it heads the kept class),
+    the KM 249 records moved to Hede 134 — and only the label seed was looked
+    at, so their citations stayed on Hede 132."""
+
+    def setUp(self):
+        import absorb_seeds_into_final_v2 as A
+        from lib.class_registry import Record
+        self.A = A
+        self._saved = (A._SEED_CLASS_INDEX, A._REGISTRY)
+
+        class Reg:
+            records = {
+                "c-old": Record(id="c-old", entity="e", created="", status="retired",
+                                label="unified-hede-132",
+                                members=["hede-132", "km249-a", "km249-b",
+                                         "gone-everywhere", "kept-elsewhere"]),
+            }
+        A._REGISTRY = Reg()
+        A._SEED_CLASS_INDEX = {
+            "hede-132": "c-keep",       # the label seed: stays, heads the kept class
+            "km249-a": "c-hede134",     # moved to another live class
+            "km249-b": "c-hede134",
+            "kept-elsewhere": "c-keep2",  # in another kept class of this final
+            # «gone-everywhere» composes no live class (excluded / removed)
+        }
+
+    def tearDown(self):
+        self.A._SEED_CLASS_INDEX, self.A._REGISTRY = self._saved
+
+    def test_moved_members_are_departed(self):
+        out = self.A._other_departed_members(
+            gone=["c-old"], kept=["c-keep", "c-keep2"],
+            staying_seeds={"hede-132"}, already=[])
+        self.assertEqual(out, ["km249-a", "km249-b"])
+
+    def test_member_in_no_live_class_is_left_alone(self):
+        out = self.A._other_departed_members(["c-old"], ["c-keep", "c-keep2"], {"hede-132"}, [])
+        self.assertNotIn("gone-everywhere", out)
+
+    def test_member_in_a_kept_class_is_not_departed(self):
+        out = self.A._other_departed_members(["c-old"], ["c-keep", "c-keep2"], {"hede-132"}, [])
+        self.assertNotIn("kept-elsewhere", out)
+
+    def test_unknown_class_adds_nothing(self):
+        self.assertEqual(self.A._other_departed_members(["c-none"], [], set(), []), [])
+
+
 if __name__ == "__main__":
     unittest.main()
