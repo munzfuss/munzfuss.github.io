@@ -2,8 +2,8 @@
 # Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8226 per-source seed entries.
-# Output: 1462 unified entries (one per physical coin).
+# Input: 8229 per-source seed entries.
+# Output: 1460 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -62207,12 +62207,17 @@ coins:
       nmd:
         - '1'
         - '2'
-      dav: '1295'
+      numista: '100478'
+      dav: EC III 1295
+      others:
+        - Brekke# 25
+        - Brekke# 26
+        - B# 23
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -62220,8 +62225,20 @@ coins:
         source: hede
       - value: 0.833
         source: ngc
+        specimen: ngc-1050095
+      - value: 0.833
+        source: ngc
+        specimen: ngc-1096793
       - value: 0.833
         source: numismaster
+        specimen: denmark-numismaster-65207
+      - value: 0.833
+        source: numismaster
+        specimen: denmark-numismaster-92262
+      - value: 0.833
+        source: numista
+      - value: 0.833
+        source: ucoin
     weight_rough_g:
       - value: 26.78
         source: bruun
@@ -62229,12 +62246,27 @@ coins:
         source: bruun
       - value: 26.84
         source: bruun
+      - value: 26.98
+        source: numista
+      - value: 26.98
+        source: ucoin
       - value: 26.983
         source: hede
       - value: 26.983
         source: ngc
+        specimen: ngc-1050095
+      - value: 26.983
+        source: ngc
+        specimen: ngc-1096793
       - value: 26.983
         source: numismaster
+        specimen: denmark-numismaster-65207
+      - value: 26.983
+        source: numismaster
+        specimen: denmark-numismaster-92262
+    diameter_mm:
+      - value: 40.0
+        source: numista
     uncertainty:
       metal:
         - kind: inferred
@@ -62259,6 +62291,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65207
         ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_92262
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1139, p. 171
@@ -62272,7 +62307,19 @@ coins:
         url: https://www.danskmoent.dk/chr/c6h5.htm
         ref: danskmoent.dk (Hede c6h5)
       - type: literature
+        url: https://en.numista.com/100478
+        ref: Numista N#100478 — 1 Reisedaler - Christian VI (Royal visit) - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-6-mark-1732-1733/?tid=145849
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292846
+        ref: KMM 292846 (Inv. RP 817.1)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-6-mark-km-539-1732-1733-cuid-1050095-duid-1236840
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-6-mark-km-230-1732-1733-cuid-1096793-duid-1446929
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Rejsedaler
@@ -62286,11 +62333,16 @@ coins:
       unit_raw: rd.kr
     composed_of:
       - denmark-numismaster-65207
+      - denmark-numismaster-92262
       - dk-bruun-7569
       - dk-bruun-7576
       - dk-bruun-7577
       - dk-hede-c6h5
+      - dk-numista-100478
+      - dk-tid-145849
+      - kmk-292846
       - ngc-1050095
+      - ngc-1096793
   - id: c-cad8ab0c
     class_id: c-cad8ab0c
     label: unified-dk-hede-c6h6a
@@ -107427,56 +107479,6 @@ coins:
       - dk-tid-49461
       - kmk-168046
       - ngc-1046091
-  - id: c-cebfa214
-    class_id: c-cebfa214
-    label: unified-dk-numista-100478
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Reisedaler = 6 Mark
-    year_first: 1732
-    year_last: 1733
-    year_ranges:
-      -   - 1732
-          - 1733
-    year_label: 1732-1733
-    ruler: Christian VI
-    mint: Kopenhagen
-    catalog:
-      km: '230'
-      numista: '100478'
-      dav: EC III 1295
-      hede: '5'
-      others:
-        - Brekke# 25
-        - Brekke# 26
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.833
-        source: numista
-    weight_rough_g:
-      - value: 26.98
-        source: numista
-    diameter_mm:
-      - value: 40.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/100478
-        ref: Numista N#100478 — 1 Reisedaler - Christian VI (Royal visit) - Norway
-    note:
-      de: Reisedaler
-      en: Reisedaler
-      uk: Reisedaler
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-numista-100478
   - id: c-cf97f16c
     class_id: c-cf97f16c
     label: unified-dk-numista-107716
@@ -122493,33 +122495,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-292792
-  - id: c-ad20d192
-    class_id: c-ad20d192
-    label: unified-kmk-292846
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 6 Mark
-    year_first: 1733
-    year_last: 1733
-    year_label: '1733'
-    ruler: Christian VI
-    catalog:
-      schou: '2'
-      others:
-        - B# 23
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292846
-        ref: KMM 292846 (Inv. RP 817.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-292846
   - id: c-f6a6219e
     class_id: c-f6a6219e
     label: unified-kmk-292847

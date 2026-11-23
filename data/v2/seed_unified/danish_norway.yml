@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-22 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 2787 per-source seed entries.
-# Output: 543 unified entries (one per physical coin).
+# Input: 2784 per-source seed entries.
+# Output: 542 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-22'
+generated_at: '2026-11-23'
 coins:
   - id: c-aad58b83
     class_id: c-aad58b83
@@ -46548,58 +46548,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - ngc-1096049
-  - id: c-76ff8fdd
-    class_id: c-76ff8fdd
-    label: unified-ngc-1096793
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 6 Mark
-    year_first: 1732
-    year_last: 1733
-    year_ranges:
-      -   - 1732
-          - 1733
-    year_label: 1732-1733
-    ruler: Christian VI
-    catalog:
-      km: '230'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.833
-        source: ngc
-      - value: 0.833
-        source: numismaster
-      - value: 0.833
-        source: ucoin
-    weight_rough_g:
-      - value: 26.98
-        source: ucoin
-      - value: 26.983
-        source: ngc
-      - value: 26.983
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_92262
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-6-mark-1732-1733/?tid=145849
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-6-mark-km-230-1732-1733-cuid-1096793-duid-1446929
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-92262
-      - dk-tid-145849
-      - ngc-1096793
   - id: c-7604fe82
     class_id: c-7604fe82
     label: unified-ngc-1097188

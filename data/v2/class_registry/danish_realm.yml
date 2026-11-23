@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1462 active, 4959 retired.
+# 1460 active, 4961 retired.
 
 id: danish_realm
 classes:
@@ -15939,11 +15939,16 @@ classes:
     legacy_id: unified-dk-hede-c6h5
     members:
       - denmark-numismaster-65207
+      - denmark-numismaster-92262
       - dk-bruun-7569
       - dk-bruun-7576
       - dk-bruun-7577
       - dk-hede-c6h5
+      - dk-numista-100478
+      - dk-tid-145849
+      - kmk-292846
       - ngc-1050095
+      - ngc-1096793
   - id: c-9d18c3cf
     status: active
     created: '2026-10-22'
@@ -17309,13 +17314,6 @@ classes:
     legacy_id: unified-kmk-137159
     members:
       - kmk-137159
-  - id: c-ad20d192
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-292846
-    legacy_id: unified-kmk-292846
-    members:
-      - kmk-292846
   - id: c-ad295cbf
     status: active
     created: '2026-10-22'
@@ -20041,13 +20039,6 @@ classes:
       - dk-numista-308327
       - ikmk-18219564
       - ngc-1060271
-  - id: c-cebfa214
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-100478
-    legacy_id: unified-dk-numista-100478
-    members:
-      - dk-numista-100478
   - id: c-ceda4d19
     status: active
     created: '2026-10-22'
@@ -58336,6 +58327,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-311201
+  - id: c-ad20d192
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-292846
+    legacy_id: unified-kmk-292846
+    merged_into: c-9c90bcc9
+    retired: '2026-11-23'
+    members:
+      - kmk-292846
   - id: c-ad35260d
     status: retired
     created: '2026-10-22'
@@ -64484,6 +64484,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-715375
+  - id: c-cebfa214
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-100478
+    legacy_id: unified-dk-numista-100478
+    merged_into: c-9c90bcc9
+    retired: '2026-11-23'
+    members:
+      - dk-numista-100478
   - id: c-cec7c16e
     status: retired
     created: '2026-10-22'
