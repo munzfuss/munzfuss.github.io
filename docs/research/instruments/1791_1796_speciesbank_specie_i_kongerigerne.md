@@ -26,8 +26,7 @@
 1,5/2 (remedium not stated anywhere read; the ⅙, 1/12 and 1/24 for the kingdoms have no output
 figure) · C3 instruments 1,5/2 (every act dated and named; none read in its own print — Mordhorst's
 digest and Wilcke's quotations) · C4 provenance 1/1 · C5 open questions 1/1 · C6 recomputation 1/2
-(seven pages image-verified; the bank tables s. 179 and 184 from the text layer only). Commit:
-(pending).
+(seven pages image-verified; the bank tables s. 179 and 184 from the text layer only). Commit: `4c24c8e`.
 
 ## 1. Identification
 
