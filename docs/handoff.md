@@ -16,6 +16,24 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-23 — Numista builder fixes + Krause S-H section registers (branch claude/focused-euclid-55f15c on top of blissful-kirch, local, unpushed)
+
+- **Shipped:** a24acea Numista Hede «C4 80.C» → «80C» (+ seed_merge `_drop_prefixed_superseded`) and a single bare KM
+  in the issuer's country volume (Norway ↔ Denmark only); 22a7978 data; 29bdc05 catalog hold on Numista 100478
+  dropped (builder gives `{nor: 230}`); 71f8930 V1 «KM-DK# 6» off the Rendsburg 12 Skilling final; dd1986b
+  per-section KM registers for Krause's S-H sections (hgr, gott, sond, ploen, norb, gluecksb, rantz, schpin beside
+  sh / glu; named sections that differ never match, bare meets any section of group «sh»); data commit after it
+  (928 seeds, NGC Rendsborg 1051167 / 1051168 / 1050478 into Hede 62 / 60 / 61, km-8-fr-iv-1718 released as an
+  empty duplicate, five KMM stub citations off Hede 62).
+- **Open (curator):** 39 royal_holstein Numista records under issuer «Denmark» with Denmark-volume KMs (603–757),
+  still read as sh; German-entity Krause sections (Brunswick lines, Hesse-Cassel, Oldenburg, Bremen) not split —
+  only Numista issuer names seen, verify against NGC first; HGR records still routed danish_realm (NGC) /
+  gottorp_duchy (NumisMaster) though the curator's 2026-07-29 ruling makes them royal_holstein; marker.km_sh
+  still says «volume Schleswig-Holstein» though sh is now Krause's SCHLESWIG-HOLSTEIN section.
+- **Seen, not done:** 14 665 hidden citations of scope-dropped KMM stubs on 433 finals of not-yet-rebuilt Fuße
+  (class B1, removed by the per-Fuß rebuild); full Numista re-seed drift (308265 km 287, 40843 sieg 6, 427643
+  hede 2, mint_verified flips) unexplained; «KM-FR#68» in Bruun `others` on the Portugaløser Hede 9.
+
 ## 2026-11-23 — Hede-base review groups 1-9 done, absorb departed-member purge (branch claude/blissful-kirch-7b7be3, local, unpushed)
 
 - **Shipped:** de27b64 absorb stale purge takes every member of a vanished class (+ volume-keyed catalogue
