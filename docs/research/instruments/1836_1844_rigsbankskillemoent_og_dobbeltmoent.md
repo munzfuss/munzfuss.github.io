@@ -25,7 +25,7 @@
 1,5/2 (remedium nowhere; the gold's legal value not fixed by the act) · C3 instruments 1,5/2 (one
 act — the Verordnung of 1844 — in full text as printed by Wilcke; the rest in his rendering) · C4
 provenance 1/1 · C5 open questions 1/1 · C6 recomputation 1/2 (five tables and four text pages
-image-verified; s. 365–379, 382–389, 391–394 from the text layer). Commit: (pending).
+image-verified; s. 365–379, 382–389, 391–394 from the text layer). Commit: `0c5e648`.
 
 ## 1. Identification
 
