@@ -1,0 +1,98 @@
+# Numista «Denmark» KMs on S-H entities, and Rendsborg routing — plan
+
+Opened 2026-11-24 after dd1986b / cb8c252 (Krause S-H section registers).
+Two changes, one at a time, each measured on a trial re-flow before any
+commit. Nothing ships without the curator's yes on the measured delta.
+
+## A. Numista issuer «Denmark» on an S-H entity → `dk` (Rendsburg → `hgr`)
+
+**Problem (verified 2026-11-23).** 68 Numista records filed under the issuer
+«Denmark» route to royal_holstein (60) or [danish_realm, royal_holstein] (8)
+by their mint (Altona 32, Altona+Kopenhagen 28, Rethwisch 5, Rendsburg 2,
+Glückstadt+Kopenhagen 1). Their bare KM is read in the entity's section
+(`sh`). Checked against NumisMaster / NGC «DENMARK» by KM + years: 66 of 68
+are Denmark-volume numbers; the 2 Rendsburg pieces (N#88660 KM 6, N#89702
+KM 5) are Krause HOLSTEIN-GOTTORP-RENDSBORG numbers (NumisMaster MC_66626 /
+MC_66636; Denmark KM 5 / 6 are the Penning 1602).
+
+**Visible effect today.** 53 of 60 finals are already right: the merger
+files a bare number in the volume another member names (`{dk: …}`). Wrong
+on the S-H page: c-2a9ecadd «KM-SH# 651, 651.1» (Denmark KM 651);
+c-9397f1cf «KM-SH# 701» (Denmark KM 701); four finals with no named volume
+show a plain number read as the S-H section (KM 600, 625, 635, 757).
+
+**Is it correct?** Yes in principle: Numista's issuer section follows the
+Krause volume (233 / 240 for the S-H issuers, 66 / 68 here, both exceptions
+explained). It is the same reading the builder already applies between
+Denmark and Norway (a24acea).
+
+**Risk.** Matching scope moves. Numista's number goes from scope `km/sh` to
+`km/dk`. It gains agreement with NumisMaster / NGC (`dk`) and LOSES it with
+the bare KMs of Bruun (110), ucoin (72) and other Numista records (19) in
+the same 62 classes, which stay in `km/sh`. A class held together only by
+that bare agreement could split. Must be measured, not assumed.
+
+**Rule.** In `build_numista_seed._apply_km_country_register`: issuer
+«Denmark», entity (or every entity of a joint list) in the S-H group, KM
+bare → `{dk: …}`; mint Rendsburg → `{hgr: …}`. A list only when all its
+numbers share one base (`['640', '640.1']`); a bare list of different bases
+stays as printed (the N#119248 case).
+
+## B. Rendsborg records of NGC and NumisMaster → royal_holstein
+
+**Problem.** NGC «Denmark HOLSTEIN-GOTTORP-RENDSBORG» (4 records) route to
+danish_realm; NumisMaster country HOLSTEIN-GOTTORP-RENDSBORG (4) routes to
+gottorp_duchy. All 8 already sit in the royal_holstein finals Hede 60-63,
+held there only by four `_cross_entity.yml` groups. Every new Rendsborg
+record would land wrong again and need a hand amendment (the completeness
+guard stopped the merger on three of them on 2026-11-23, ngc-1051156 on
+2026-11-22). The NumisMaster builder's comment justifies the gottorp route
+with «Christian August's brief HGR period 1716-1720» — the attribution the
+curator rejected on 2026-07-29 (Rendsburg a Danish royal fortress, Hede
+lists the coins in the Frederik IV volume).
+
+**Is it correct?** Yes: the curator's 2026-07-29 ruling in
+`_cross_entity.yml` («royal_holstein exactly»). No page change expected —
+the finals are royal_holstein already.
+
+**Risk.** Eight seeds change entity file (ids unchanged). The four
+cross-entity groups become same-entity; how the merger treats them is to be
+seen on the trial. A re-homed seed must not stay behind as orphan-curated in
+its old file.
+
+**Rule.** `build_ngc_seed._ENTITY_BY_SUBSECTION` +
+HOLSTEIN-GOTTORP-RENDSBORG → royal_holstein; `build_numismaster_seed`
+country map → royal_holstein, comment rewritten to the 2026-07-29 ruling.
+
+## Order: B, then A
+
+B first: smaller, no KM semantics touched, expected to leave every final as
+it is, so it gives a clean baseline. A second: it changes matching scope and
+may move members between classes; with B settled any class change is A's
+alone. The two touch different builders (B: NGC + NumisMaster; A: Numista).
+
+## Protocol for each step
+
+1. Code + unit tests (`unittest`).
+2. Old vs new builder in memory over the whole cache: list every changed
+   record. Expected — B: 8 entity changes, nothing else; A: about 60 KM
+   changes (dk) + 2 (hgr), nothing else.
+3. Re-seed that source only; keep only the intended field changes (unrelated
+   cache-vs-seed drift stays out, as in cb8c252); check no seed id sits in
+   two entity files.
+4. `trace_coin snapshot` at HEAD; full merge + absorb; `verify_reflow`,
+   `audit_lost_citations`, `trace_coin diff`, `validate_decisions
+   --check-members`, plus a seed-keyed class-membership diff (every seed
+   whose class mates changed).
+5. Build danskmoent + the S-H page; list every KM label that changed.
+6. **Stop and report** on: any class split or join, any entity change not
+   in the expected list, any loss. Otherwise show the delta, commit on yes.
+
+## Out of scope, recorded
+
+- Bruun / ucoin bare KMs on royal_holstein coins are Denmark-volume numbers
+  too (110 + 72 in these classes); ucoin's URL country and Bruun's section
+  headings could name the volume — a later step, its own measurement.
+- c-9397f1cf holds Numista 83067 (Frederik d'Or 1828, KM 699) and 83069
+  (1829-1838, KM 701) in one class — merge-candidate table first.
+- marker.km_sh still says «volume Schleswig-Holstein».
