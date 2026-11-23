@@ -125,8 +125,9 @@ def _coinage_entity_excluded(raw: str | None) -> bool:
 #   SCHLESWIG-HOLSTEIN (generic) → royal_holstein  (royal Holstein
 #                                  coinage absent specific cadet-line
 #                                  attribution)
-#   HOLSTEIN-GOTTORP-RENDSBORG → gottorp_duchy  (Rendsborg was a
-#                                Gottorp mint pre-1721)
+#   HOLSTEIN-GOTTORP-RENDSBORG → royal_holstein  (Frederik IV's coinage at
+#                                Rendsburg 1716-1720, Hede 60-63; curator
+#                                2026-07-29, _cross_entity.yml)
 COUNTRY_TO_ISSUING_ENTITY: dict[str, str] = {
     # Danish realm + personal-union extensions
     "DENMARK": "danish_realm",
@@ -139,7 +140,10 @@ COUNTRY_TO_ISSUING_ENTITY: dict[str, str] = {
     "SCHLESWIG-HOLSTEIN": "royal_holstein",
     # Independent Holstein cadet lines
     "SCHLESWIG-HOLSTEIN-GOTTORP": "gottorp_duchy",
-    "HOLSTEIN-GOTTORP-RENDSBORG": "gottorp_duchy",
+    # Krause's section name, not the issuer: Frederik IV's coinage at the
+    # royal fortress of Rendsburg 1716-1720 (Hede 60-63, Frederik IV volume;
+    # curator 2026-07-29, _cross_entity.yml).
+    "HOLSTEIN-GOTTORP-RENDSBORG": "royal_holstein",
     "SCHLESWIG-HOLSTEIN-SONDERBURG": "sonderburg_duchy",
     "SCHLESWIG-HOLSTEIN-PLOEN": "norburg_plon_duchy",
     "SCHLESWIG-HOLSTEIN-NORBURG": "norburg_plon_duchy",
@@ -298,11 +302,11 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     # determined by country specificity:
     #
     # Tier 1 (SPECIFIC subnational country): country wins.
-    #   E.g. country=HOLSTEIN-GOTTORP-RENDSBORG → gottorp_duchy. Krause
-    #   has explicitly tagged this as a sub-state coinage (Christian
-    #   August's brief HGR period 1716-1720). Mint=Rendsburg alone
-    #   would route to royal_holstein default — wrong for this catalog
-    #   attribution.
+    #   E.g. country=GLÜCKSTADT → royal_holstein, country=HOLSTEIN-
+    #   GOTTORP-RENDSBORG → royal_holstein. (The latter was routed to
+    #   gottorp_duchy as «Christian August's HGR period 1716-1720» until
+    #   2026-11-24; the curator ruled on 2026-07-29 that the Rendsburg
+    #   coinage 1716-1720 is Frederik IV's, royal_holstein.)
     #
     # Tier 2 (UMBRELLA country): mint-classifier with year wins, country
     # used as fallback when mint is None or unclassifiable.

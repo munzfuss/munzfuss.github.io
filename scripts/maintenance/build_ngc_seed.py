@@ -201,7 +201,10 @@ _SUBSECTION_RE = re.compile(
 from lib.km_registers import KRAUSE_SECTIONS as _KM_VOLUME_BY_SUBSECTION  # noqa: E402
 # …and its issuer: the royal Holstein coinage struck at Glückstadt, as
 # NumisMaster's country GLÜCKSTADT is routed (build_numismaster_seed).
-_ENTITY_BY_SUBSECTION = {"GLÜCKSTADT": "royal_holstein"}
+# HOLSTEIN-GOTTORP-RENDSBORG: Frederik IV's coinage at Rendsburg 1716-1720
+# (Hede 60-63), royal_holstein by the curator's 2026-07-29 ruling.
+_ENTITY_BY_SUBSECTION = {"GLÜCKSTADT": "royal_holstein",
+                         "HOLSTEIN-GOTTORP-RENDSBORG": "royal_holstein"}
 
 
 def _subsection(heading: str | None) -> str | None:
