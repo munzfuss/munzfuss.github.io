@@ -29,6 +29,9 @@
   assignment); 8688df3 Hede 5 Rejsedaler: three finals across danish_realm / danish_norway into danish_realm,
   Numista 100478 km → nor 230 under a catalog hold; b807971 KMM FP 8026.1 (clipped Krone fragment) excluded;
   5c8cd41 Bruun V lot 14097 into Hede 110 (Sieg 56.1 = Sieg 2018 numbering, 63 = older).
+- **Hede-base rule ON by default** (14089ae, V2_DECISIONS D57; `HEDE_BASE=0` for a comparison run). Before it:
+  3a1c581 named the members only absorb's self-union held (Hede 126 + KM 178, Hede 148 + KMM FP 1466.24/.25) and
+  excluded KMM KP 1656.2003. The default-on re-flow joined 254 groups with 0 losses; the review report stays at 0.
 - **Harvest cache:** e9912b1bb (368 KMM raadata pages, Hede 134) on top of fcb5adfee, pointer 3867996 — push the
   cache commits before the branch.
 - **Seen, not done:** Hede 140 kind (set during the Fuß review); `dk-numista-307035` hede «C4 80.C» (parser);
