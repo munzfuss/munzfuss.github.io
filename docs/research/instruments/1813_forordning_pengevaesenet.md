@@ -283,5 +283,4 @@ Tokens in all 1 288 644 Rbdlr. (sum checked). Whole Specier follow from 1822 (27
 
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 1,5 (no remedy; the debt scale
 incomplete) · C3 instruments 1,5 (dated and named, but through one retelling) · C4 provenance 1 (a
-single witness; the act not seen) · C5 open questions 2 · C6 recomputation 2 → **8/10**. Commit:
-(pending).*
+single witness; the act not seen) · C5 open questions 2 · C6 recomputation 2 → **8/10**. Commit: `b7e4030`.*
