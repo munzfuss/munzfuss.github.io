@@ -2,8 +2,8 @@
 # Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8227 per-source seed entries.
-# Output: 1463 unified entries (one per physical coin).
+# Input: 8226 per-source seed entries.
+# Output: 1462 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3011,91 +3011,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-8146
-  - id: c-58c91255
-    class_id: c-58c91255
-    label: unified-dk-bruun-8221
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Rigsdaler
-    year_first: 1854
-    year_last: 1855
-    year_ranges:
-      -   - 1854
-          - 1855
-    year_label: 1854-1855
-    ruler: Frederik VII
-    mint: Kopenhagen
-    catalog:
-      km: '759'
-      bruun_collection_id: '8221'
-      sieg: '12'
-      schou: '5'
-      hede: '9'
-      numista: '22115'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 7.22
-        source: ucoin
-      - value: 7.224
-        source: ngc
-      - value: 7.224
-        source: numismaster
-      - value: 7.224
-        source: numista
-      - value: 14.41
-        source: bruun
-    diameter_mm:
-      - value: 28.0
-        source: numista
-      - value: 28.0
-        source: ucoin
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: Rigsdaler
-          value: silver
-          seed: dk-bruun-8221
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66043
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17204, p. 91
-      - type: literature
-        url: https://en.numista.com/22115
-        ref: Numista N#22115 — ½ Rigsdaler - Frederik VII
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-rigsdaler-1854-1855/?tid=70690
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-rigsdaler-km-759-1854-1855-cuid-1050420-duid-1238272
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-66043
-      - dk-bruun-8221
-      - dk-numista-22115
-      - dk-tid-70690
-      - ngc-1050420
   - id: c-70ddaffb
     class_id: c-70ddaffb
     label: unified-dk-bruun-8224
@@ -106663,8 +106578,8 @@ coins:
       - dk-bruun-8254
       - dk-hede-f7h7
       - ngc-1065414
-  - id: c-6e868a11
-    class_id: c-6e868a11
+  - id: c-58c91255
+    class_id: c-58c91255
     label: unified-dk-hede-f7h9
     fuss: seed_unsorted
     phase: hede
@@ -106687,22 +106602,45 @@ coins:
       bruun_collection_id:
         - '8222'
         - '8231'
+      numista: '22115'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.875
         source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
+        source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
       - value: 7.18
         source: bruun
       - value: 7.22
         source: bruun
+      - value: 7.22
+        source: ucoin
       - value: 7.224
         source: hede
+      - value: 7.224
+        source: ngc
+      - value: 7.224
+        source: numismaster
+      - value: 7.224
+        source: numista
+    diameter_mm:
+      - value: 28.0
+        source: numista
+      - value: 28.0
+        source: ucoin
     uncertainty:
       metal:
         - kind: inferred
@@ -106718,6 +106656,9 @@ coins:
           value: silver
           seed: dk-bruun-8231
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_66043
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17205, p. 91
@@ -106727,15 +106668,28 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f7h9.htm
         ref: danskmoent.dk (Hede f7h9)
+      - type: literature
+        url: https://en.numista.com/22115
+        ref: Numista N#22115 — ½ Rigsdaler - Frederik VII
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-rigsdaler-1854-1855/?tid=70690
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-1-2-rigsdaler-km-759-1854-1855-cuid-1050420-duid-1238272
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 18.5
       unit: rigsbankdaler
       basis: fin
     composed_of:
+      - denmark-numismaster-66043
       - dk-bruun-8222
       - dk-bruun-8231
       - dk-hede-f7h9
+      - dk-numista-22115
+      - dk-tid-70690
+      - ngc-1050420
   - id: c-139d9db5
     class_id: c-139d9db5
     label: unified-dk-hede-f8h1

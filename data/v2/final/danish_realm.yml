@@ -41158,101 +41158,6 @@ coins:
       - c-0290fa2d
     label: unified-dk-hede-f6h38
     origin: promoted
-  - fuss: 18_5_thaler
-    phase: I
-    kind: kurant
-    nominal: ½ Rigsdaler
-    fraction: 1/2
-    ruler: Frederik VII.
-    issuing_entity: danish_realm
-    id: c-6e868a11
-    year_first: 1854
-    year_last: 1855
-    year_ranges:
-      -   - 1854
-          - 1855
-    year_label: 1854-1855
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/2 Rigsdaler
-          value: silver
-          seed: dk-bruun-8222
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/2 Rigsdaler
-          value: silver
-          seed: dk-bruun-8231
-    mint: Kopenhagen
-    catalog:
-      km: '759'
-      hede: '9'
-      hede_volume: f7h
-      schou: '6'
-      sieg: '12'
-      numista: '22115'
-      bruun_collection_id:
-        - '8231'
-        - '8222'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-    weight_rough_g:
-      - value: 7.18
-        source: bruun
-      - value: 7.22
-        source: bruun
-      - value: 7.224
-        source: hede
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66043
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17205, p. 91
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17213, p. 94
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f7h9.htm
-        ref: danskmoent.dk (Hede f7h9)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-rigsdaler-1854-1855/?tid=70690
-        ref: ucoin
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces22115.html
-        ref: Numista
-    note:
-      de: «FREDERICVS VII» · Reverse Wappenschild in Kranz
-      en: «FREDERICVS VII» · reverse coat-of-arms shield in Kranz
-      uk: «FREDERICVS VII» · реверс геральдичний щит in Kranz
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 18.5
-      unit: rigsbankdaler
-      basis: fin
-    composed_of:
-      - c-6e868a11
-    label: unified-dk-hede-f7h9
-    origin: promoted
-    _curation_holds:
-      note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-f7h9 (matched via seed-unified-bridge; V1→V2 bootstrap had dropped the note field — see 
-        restore_v1_notes_to_v2_final.py).
   - fuss: luebischer_muenzfuss
     phase: III
     kind: scheide
@@ -102451,9 +102356,9 @@ coins:
     label: unified-dk-bruun-7735
     origin: promoted
   - fuss: 18_5_thaler
-    phase: III
+    phase: I
     kind: kurant
-    nominal: 1 Rigsdaler
+    nominal: ½ Rigsdaler
     ruler: Frederik VII.
     issuing_entity: danish_realm
     fraction: 1/2
@@ -102469,17 +102374,26 @@ coins:
         - kind: inferred
           how: from_name
           source: bruun
-          as_printed: Rigsdaler
+          as_printed: 1/2 Rigsdaler
           value: silver
-          seed: dk-bruun-8221
+          seed: dk-bruun-8222
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/2 Rigsdaler
+          value: silver
+          seed: dk-bruun-8231
     mint: Kopenhagen
     catalog:
       km: '759'
-      bruun_collection_id: '8221'
       sieg: '12'
-      schou: '5'
       hede: '9'
       numista: '22115'
+      hede_volume: f7h
+      schou: '6'
+      bruun_collection_id:
+        - '8222'
+        - '8231'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -102489,6 +102403,8 @@ coins:
     verified: false
     fineness:
       - value: 0.875
+        source: hede
+      - value: 0.875
         source: ngc
       - value: 0.875
         source: numismaster
@@ -102497,25 +102413,26 @@ coins:
       - value: 0.875
         source: ucoin
     weight_rough_g:
+      - value: 7.18
+        source: bruun
+      - value: 7.22
+        source: bruun
       - value: 7.22
         source: ucoin
+      - value: 7.224
+        source: hede
       - value: 7.224
         source: ngc
       - value: 7.224
         source: numismaster
       - value: 7.224
         source: numista
-      - value: 14.41
-        source: bruun
     diameter_mm:
       - value: 28.0
         source: numista
       - value: 28.0
         source: ucoin
     sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17204, p. 91
       - type: literature
         url: https://numismaster.com/MC_66043
         ref: NumisMaster
@@ -102531,6 +102448,15 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-1-2-rigsdaler-km-759-1854-1855-cuid-1050420-duid-1238272
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17205, p. 91
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17213, p. 94
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h9.htm
+        ref: danskmoent.dk (Hede f7h9)
     note:
       de: «FREDERICVS VII» · Reverse Wappenschild in Kranz
       en: «FREDERICVS VII» · reverse coat-of-arms shield in Kranz
@@ -102544,6 +102470,10 @@ coins:
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
       da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
         specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
     composed_of:
       - c-58c91255
     label: unified-dk-bruun-8221
