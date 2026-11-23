@@ -8865,19 +8865,14 @@ coins:
     fraction: 1/48
     id: dk-tid-96470
     year_first: 1657
-    year_last: 1667
+    year_last: 1664
     year_ranges:
       -   - 1657
-          - 1658
-      -   - 1662
-          - 1667
-    year_label: 1657-1658, 1662-1667
+          - 1664
+    year_label: 1657-1664
     mint: Kopenhagen
     catalog:
-      km:
-        - '249'
-        - '249.1'
-        - '249.2'
+      km: '209'
       hede:
         - '132'
         - 132A
@@ -8891,7 +8886,9 @@ coins:
         - '18.4'
         - '18.5'
         - '18.6'
-      numista: '129036'
+      numista:
+        - '129036'
+        - '37575'
       schou:
         - '36'
         - '37'
@@ -8941,37 +8938,27 @@ coins:
         display: false
       - value: 0.989
         source: kmk
-      - value: 1.2
-        source: numista
       - value: 1.218
         source: hede
       - value: 1.299
         source: ngc
       - value: 1.299
         source: numismaster
+      - value: 1.299
+        source: numista
       - value: 1.3
         source: ucoin
       - value: 1.456
         source: kmk
     diameter_mm:
-      - value: 18.0
+      - value: 19.5
         source: numista
+      - value: 19.5
+        source: ucoin
     sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1667/?tid=96470
-        ref: ucoin
-      - type: literature
-        url: https://numismaster.com/MC_65061
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_65062
-        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h132.htm
         ref: danskmoent.dk (Hede f3h132)
-      - type: literature
-        url: https://en.numista.com/129036
-        ref: Numista N#129036 — 2 Skilling Dansk - Frederik III (Shield type VI)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/340759
         ref: KMM 340759 (Inv. FP 5609.3232)
@@ -8988,12 +8975,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149027
         ref: KMM 149027 (Inv. KP 1656.1286)
         display: false
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.1-1665-1667-cuid-1069017-duid-1236594
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.2-1664-1667-cuid-1069018-duid-1236597
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: museum
         ref: KMM 404738 (Inv. FP 2711.8)
       - type: museum
@@ -9674,6 +9655,18 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/740687
         ref: KMM 740687 (Inv. FP 410.13)
         display: false
+      - type: literature
+        url: https://numismaster.com/MC_65058
+        ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/37575
+        ref: Numista N#37575 — 2 Skilling Dansk - Frederik III (Shield type IV)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1657-1664/?tid=96467
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-209-1657-1664-cuid-1069016-duid-1236576
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Gekrönter länglicher Schild (rechteckig mit abgerundetem Boden) mit dem Wappen von Dänemark, mit kreisförmigen Ornamenten an den Seiten; der Schild kann in einem Kreis stehen oder nicht; 
         Umschrift ringsum, außerhalb des inneren Kreises, falls vorhanden. / Wert in Buchstaben in vier Zeilen in einem Perlkreis; Umschrift außen, mit Datum und Müntzzeichen am Ende.
@@ -9692,10 +9685,7 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
-      - c-958a9cec
       - c-bf4566ad
-      - c-dc787ea5
-      - c-ddbdef92
     label: dk-tid-96470
     origin: foundation
     v1_home_location: denmark
@@ -14222,7 +14212,7 @@ coins:
     v1_home_location: denmark
   - fuss: 9_25_thaler
     phase: I
-    kind: scheide
+    kind: kurant
     nominal: 2 Skilling
     ruler: Frederik III.
     issuing_entity: danish_realm
@@ -14236,6 +14226,9 @@ coins:
     year_label: 1667-1670
     mint: Kopenhagen
     catalog:
+      km:
+        - '282.1'
+        - '282.2'
       hede:
         - '140'
         - 140A
@@ -14249,7 +14242,9 @@ coins:
         - '23.4'
         - '23.5'
         - '23.6'
-      numista: '111346'
+      numista:
+        - '111346'
+        - '95823'
       others:
         - JSJ# 241
     metal: billon
@@ -14262,6 +14257,30 @@ coins:
     fineness:
       - value: 0.281
         source: hede
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1050056
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1059946
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65072
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65076
+      - value: 0.281
+        source: numista
+        specimen: dk-numista-111346
+      - value: 0.281
+        source: numista
+        specimen: dk-numista-95823
+      - value: 0.281
+        source: ucoin
+        specimen: dk-tid-96469
+      - value: 0.281
+        source: ucoin
+        specimen: dk-tid-99065
     weight_rough_g:
       - value: 0.414
         source: kmk
@@ -14275,13 +14294,50 @@ coins:
       - value: 0.684
         source: kmk
         display: false
+      - value: 1.01
+        source: numista
+        specimen: dk-numista-95823
       - value: 1.045
         source: kmk
         display: false
       - value: 1.218
         source: hede
+      - value: 1.218
+        source: numista
+        specimen: dk-numista-111346
+      - value: 1.28
+        source: ucoin
+        specimen: dk-tid-99065
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1050056
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1059946
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65072
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65076
+      - value: 1.3
+        source: ucoin
+        specimen: dk-tid-96469
       - value: 1.385
         source: kmk
+    diameter_mm:
+      - value: 18.0
+        source: numista
+        specimen: dk-numista-95823
+      - value: 18.0
+        source: ucoin
+        specimen: dk-tid-96469
+      - value: 18.25
+        source: numista
+        specimen: dk-numista-111346
+      - value: 18.25
+        source: ucoin
+        specimen: dk-tid-99065
     sources:
       - type: literature
         url: https://numismaster.com/MC_65072
@@ -14601,6 +14657,21 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276528
         ref: KMM 276528 (Inv. FP 4227.1286)
+      - type: literature
+        url: https://numismaster.com/MC_65076
+        ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/95823
+        ref: Numista N#95823 — 2 Skilling Dansk - Frederik III Shield type VIIIb
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1670/?tid=96469
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.1-1667-1669-cuid-1050056-duid-1236611
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.2-1667-1670-cuid-1059946-duid-1236614
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 'Vorderseite: Wappenschild, Rückseite: Wertangabe.'
       en: 'Obverse: coat of arms, reverse: value indication.'
@@ -93564,6 +93635,7 @@ coins:
       km:
         - A210.1
         - A210
+        - A210.2
       hede:
         - 133A
         - 133B
@@ -93593,8 +93665,18 @@ coins:
         specimen: dk-hede-f3h133b
       - value: 0.281
         source: ngc
+        specimen: ngc-1050054
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1050286
       - value: 0.281
         source: numismaster
+        specimen: denmark-numismaster-65059
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65060
+      - value: 0.281
+        source: ucoin
     weight_rough_g:
       - value: 0.675
         source: kmk
@@ -93612,8 +93694,18 @@ coins:
         source: kmk
       - value: 1.299
         source: ngc
+        specimen: ngc-1050054
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1050286
       - value: 1.299
         source: numismaster
+        specimen: denmark-numismaster-65059
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65060
+      - value: 1.3
+        source: ucoin
     diameter_mm:
       - value: 19.8
         source: numista
@@ -93771,6 +93863,15 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/175797
         ref: KMM 175797 (Inv. FP 2374.32)
         display: false
+      - type: literature
+        url: https://numismaster.com/MC_65060
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1665/?tid=96468
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-a210.2-1664-1665-cuid-1050286-duid-1236592
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Gekrönter länglicher Schild (rechteckig mit abgerundetem Boden) mit dem Wappen von Dänemark, mit ungewöhnlichen Ornamenten an den Seiten, die den Henkeln einer alten Vase ähneln; der Schild 
         kann in einem Kreis stehen oder nicht; Umschrift ringsum, außerhalb des inneren Kreises, falls vorhanden. / Wert in Buchstaben in vier Zeilen in einem Perlkreis; Umschrift außen, mit Datum und
@@ -93791,8 +93892,6 @@ coins:
       unit_raw: daler
     composed_of:
       - c-00a76180
-      - c-08b3aca3
-      - c-35b1bc84
       - c-c0436308
     label: unified-dk-hede-f3h133
     origin: promoted
@@ -93842,146 +93941,6 @@ coins:
       - value: 1.244
         source: kmk
         display: false
-  - fuss: 9_25_thaler
-    phase: I
-    kind: scheide
-    nominal: 2 Skilling
-    fraction: 1/48
-    ruler: Frederik III.
-    issuing_entity: danish_realm
-    id: c-860820e4
-    year_first: 1664
-    year_last: 1669
-    year_ranges:
-      -   - 1664
-          - 1669
-    year_label: 1664-1669
-    mint: Kopenhagen
-    catalog:
-      km:
-        - A210.2
-        - '282.1'
-      hede:
-        - 134A
-        - 134B
-        - 134C
-      hede_volume: f3h
-      sieg:
-        - '20.1'
-        - '20.2'
-        - '20.3'
-        - '20.4'
-      schou:
-        - 55-58
-        - 96-98
-        - 99-100
-        - 101-103
-        - 102-107
-        - 108-109
-        - '146'
-        - 147-152
-      numista: '111346'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.281
-        source: hede
-        specimen: dk-hede-f3h134a
-      - value: 0.281
-        source: hede
-        specimen: dk-hede-f3h134b
-      - value: 0.281
-        source: hede
-        specimen: dk-hede-f3h134c
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: numista
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.218
-        source: hede
-        specimen: dk-hede-f3h134a
-      - value: 1.218
-        source: hede
-        specimen: dk-hede-f3h134b
-      - value: 1.218
-        source: hede
-        specimen: dk-hede-f3h134c
-      - value: 1.218
-        source: numista
-      - value: 1.28
-        source: ucoin
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-    diameter_mm:
-      - value: 18.25
-        source: numista
-      - value: 18.25
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65060
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h134.htm
-        ref: danskmoent.dk (Hede f3h134A)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-a210.2-1664-1665-cuid-1050286-duid-1236592
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_65072
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/111346
-        ref: Numista N#111346 — 2 Skilling Dansk - Frederick III Shield type VIIIa
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1669/?tid=99065
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.1-1667-1669-cuid-1050056-duid-1236611
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148971
-        ref: KMM 148971 (Inv. KP 1656.1342)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148973
-        ref: KMM 148973 (Inv. KP 1656.1340)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148974
-        ref: KMM 148974 (Inv. KP 1656.1339)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149006
-        ref: KMM 149006 (Inv. KP 1656.1307)
-        display: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 14.222
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - c-860820e4
-      - c-ae0d7b03
-    label: unified-dk-hede-f3h134a
-    origin: promoted
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
@@ -103019,47 +102978,6 @@ coins:
     composed_of:
       - c-4541658a
     label: unified-dk-bruun-8251
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: scheide
-    nominal: 2 Skilling
-    ruler: Frederik III.
-    issuing_entity: danish_realm
-    fraction: 1/48
-    id: c-6a2a84dc
-    year_first: 1664
-    year_last: 1665
-    year_ranges:
-      -   - 1664
-          - 1665
-    year_label: 1664-1665
-    catalog:
-      km: A210
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.3
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1665/?tid=96468
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    composed_of:
-      - c-6a2a84dc
-    label: unified-dk-tid-96468
     origin: promoted
   - fuss: kronemont_chr_iv
     phase: I
@@ -122182,7 +122100,12 @@ coins:
       -   - 1664
           - 1667
     year_label: 1664-1667
+    mint: Kopenhagen
     catalog:
+      km:
+        - '249.1'
+        - '249.2'
+        - '249'
       hede:
         - '134'
         - 134A
@@ -122190,18 +122113,88 @@ coins:
         - 134C
       others:
         - JSJ# 240
-    metal: silver
+      hede_volume: f3h
+      schou:
+        - 55-58
+        - 96-98
+        - 99-100
+        - 101-103
+        - 102-107
+        - 108-109
+        - '146'
+        - 147-152
+      sieg:
+        - '20.1'
+        - '20.2'
+        - '20.3'
+        - '20.4'
+      numista: '129036'
+    metal: billon
     metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
-    mint_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
+    fineness:
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h134a
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h134b
+      - value: 0.281
+        source: hede
+        specimen: dk-hede-f3h134c
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1069017
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1069018
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65061
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65062
+      - value: 0.281
+        source: ucoin
     weight_rough_g:
       - value: 0.768
         source: kmk
       - value: 1.074
         source: kmk
+      - value: 1.2
+        source: numista
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h134a
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h134b
+      - value: 1.218
+        source: hede
+        specimen: dk-hede-f3h134c
       - value: 1.235
         source: kmk
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1069017
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1069018
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65061
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65062
+      - value: 1.3
+        source: ucoin
+    diameter_mm:
+      - value: 18.0
+        source: numista
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/159717
@@ -122276,7 +122269,67 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276583
         ref: KMM 276583 (Inv. FP 4227.1225)
+      - type: literature
+        url: https://numismaster.com/MC_65061
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65062
+        ref: NumisMaster
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h134.htm
+        ref: danskmoent.dk (Hede f3h134A)
+      - type: literature
+        url: https://en.numista.com/129036
+        ref: Numista N#129036 — 2 Skilling Dansk - Frederik III (Shield type VI)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1667/?tid=96470
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.1-1665-1667-cuid-1069017-duid-1236594
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.2-1664-1667-cuid-1069018-duid-1236597
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_65060
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-a210.2-1664-1665-cuid-1050286-duid-1236592
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_65072
+        ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/111346
+        ref: Numista N#111346 — 2 Skilling Dansk - Frederick III Shield type VIIIa
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1669/?tid=99065
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.1-1667-1669-cuid-1050056-duid-1236611
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148971
+        ref: KMM 148971 (Inv. KP 1656.1342)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148973
+        ref: KMM 148973 (Inv. KP 1656.1340)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148974
+        ref: KMM 148974 (Inv. KP 1656.1339)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149006
+        ref: KMM 149006 (Inv. KP 1656.1307)
+        display: false
     verification_note: *id008
+    hede_muentzfuss_yield:
+      value: 14.222
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
     composed_of:
       - c-4d0cb5b1
     label: unified-kmk-159717
@@ -144399,76 +144452,6 @@ coins:
   - fuss: 9_25_thaler
     phase: I
     kind: kurant
-    nominal: 2 Skilling
-    ruler: Frederick III (Frederik III)
-    issuing_entity: danish_realm
-    fraction: 1/48
-    id: c-6cf24fad
-    year_first: 1667
-    year_last: 1670
-    year_ranges:
-      -   - 1667
-          - 1670
-    year_label: 1667-1670
-    mint: Kopenhagen
-    catalog:
-      km: '282.2'
-      numista: '95823'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: numista
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.01
-        source: numista
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-      - value: 1.3
-        source: ucoin
-    diameter_mm:
-      - value: 18.0
-        source: numista
-      - value: 18.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65076
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/95823
-        ref: Numista N#95823 — 2 Skilling Dansk - Frederik III Shield type VIIIb
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1670/?tid=96469
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.2-1667-1670-cuid-1059946-duid-1236614
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-6cf24fad
-    label: unified-ngc-1059946
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
     nominal: 2 Mark
     ruler: Frederick III
     issuing_entity: danish_realm
@@ -144879,80 +144862,6 @@ coins:
     composed_of:
       - c-aa9adaf2
     label: unified-ngc-1069010
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    ruler: Frederick III
-    issuing_entity: danish_realm
-    id: c-878be2f2
-    year_first: 1657
-    year_last: 1664
-    year_ranges:
-      -   - 1657
-          - 1664
-    year_label: 1657-1664
-    mint: Kopenhagen
-    catalog:
-      km: '209'
-      numista: '37575'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-      - value: 1.299
-        source: numista
-      - value: 1.3
-        source: ucoin
-    diameter_mm:
-      - value: 19.5
-        source: numista
-      - value: 19.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65058
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/37575
-        ref: Numista N#37575 — 2 Skilling Dansk - Frederik III (Shield type IV)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1657-1664/?tid=96467
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-209-1657-1664-cuid-1069016-duid-1236576
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Gekrönter runder, länglicher Schild mit dem Wappen von Dänemark; viele Varianten in den Seitenverzierungen des Schildes; Umschrift ringsum, am Rand. / Wert in Buchstaben in vier Zeilen in 
-        einem Perlkreis; Umschrift außen, mit Datum und Müntzzeichen am Ende.
-      en: Crowned rounded, elongated shield with the arms of Denmark; many varieties in the side decorations of the shield; legend around, along the rim. / Value in letters on four lines within a 
-        beaded circle; legend outside, with date and mintmark at end.
-      uk: Коронований заокруглений видовжений щит з гербом Данії; багато варіантів у бічних оздобах щита; легенда довкола, по краю. / Номінал літерами у чотири рядки в перлинному колі; легенда 
-        назовні, з датою та монетним знаком у кінці.
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-878be2f2
-    label: unified-ngc-1069016
     origin: promoted
   - fuss: kronemont_chr_iv
     phase: II

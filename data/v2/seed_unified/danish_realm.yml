@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-22 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8227 per-source seed entries.
-# Output: 1488 unified entries (one per physical coin).
+# Output: 1478 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-22'
+generated_at: '2026-11-23'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -80893,28 +80893,28 @@ coins:
       - kmk-643788
       - kmk-693086
       - kmk-693100
-  - id: c-958a9cec
-    class_id: c-958a9cec
+  - id: c-bf4566ad
+    class_id: c-bf4566ad
     label: unified-dk-hede-f3h132
     fuss: seed_unsorted
     phase: hede
     kind: scheide
     nominal: 2 Skilling
     year_first: 1657
-    year_last: 1667
+    year_last: 1664
     year_ranges:
       -   - 1657
-          - 1658
-      -   - 1662
-          - 1667
-    year_label: 1657-1658, 1662-1667
+          - 1664
+    year_label: 1657-1664
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
-      km:
-        - '249.1'
-        - '249'
-      hede: '132'
+      km: '209'
+      hede:
+        - '132'
+        - 132A
+        - 132B
+        - 132C
       hede_volume: f3h
       sieg:
         - '18.1'
@@ -80928,7 +80928,9 @@ coins:
         - '37'
         - 43-44
         - 55-57
-      numista: '129036'
+      numista: '37575'
+      others:
+        - JSJ# 239
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -80946,34 +80948,569 @@ coins:
       - value: 0.281
         source: ucoin
     weight_rough_g:
-      - value: 1.2
-        source: numista
+      - value: 0.21
+        source: kmk
+        suspect:
+          de: Ein Fünftel des Gewichts der beiden Schwesterstücke derselben Nummer (0,91 g und 1,07 g). Bei dünnem, niedrighaltigem Silber dieser Jahre ist ein solcher Verlust durch Beschneiden, 
+            Korrosion oder Bruch möglich, und das Verzeichnis nennt keinen Erhaltungszustand — als Wägewert dieses Stückes bleibt die Angabe stehen, als Typengewicht ist sie nicht brauchbar.
+          en: A fifth of what the two sister pieces of the same number weigh (0.91 g and 1.07 g). On thin, base silver of these years such a loss to clipping, corrosion or breakage is possible, and 
+            the record states no condition — so the figure stands as the weight of this piece, but it cannot serve as the weight of the type.
+          uk: П'ята частина ваги двох сестринських екземплярів того самого номера (0,91 г і 1,07 г). Для тонкого низькопробного срібла цих років така втрата через обрізання, корозію чи злам можлива, а
+            запис не подає стану збереження — тож як вага цього екземпляра значення лишається, але за вагу типу служити не може.
+      - value: 0.331
+        source: kmk
+        suspect:
+          de: Deutlich unter dem Gewicht der beiden Schwesterstücke derselben Nummer (0.989 g und 1.409 g). Bei dünnem, niedrighaltigem Silber dieser Jahre ist ein solcher Verlust durch Beschneiden, 
+            Korrosion oder Bruch möglich, und das Verzeichnis nennt keinen Erhaltungszustand — als Wägewert dieses Stückes bleibt die Angabe stehen, als Typengewicht ist sie nicht brauchbar.
+          en: Well below what the two sister pieces of the same number weigh (0.989 g and 1.409 g). On thin, base silver of these years such a loss to clipping, corrosion or breakage is possible, and 
+            the record states no condition — so the figure stands as the weight of this piece, but it cannot serve as the weight of the type.
+          uk: Істотно нижче за вагу двох сестринських екземплярів того самого номера (0.989 г і 1.409 г). Для тонкого низькопробного срібла цих років така втрата через обрізання, корозію чи злам 
+            можлива, а запис не подає стану збереження — тож як вага цього екземпляра значення лишається, але за вагу типу служити не може.
+      - value: 0.428
+        source: kmk
+      - value: 0.553
+        source: kmk
+      - value: 0.558
+        source: kmk
+      - value: 0.609
+        source: kmk
+      - value: 0.626
+        source: kmk
+      - value: 0.704
+        source: kmk
+      - value: 0.708
+        source: kmk
+      - value: 0.722
+        source: kmk
+      - value: 0.723
+        source: kmk
+      - value: 0.736
+        source: kmk
+      - value: 0.75
+        source: kmk
+      - value: 0.772
+        source: kmk
+      - value: 0.78
+        source: kmk
+      - value: 0.781
+        source: kmk
+      - value: 0.802
+        source: kmk
+      - value: 0.803
+        source: kmk
+      - value: 0.811
+        source: kmk
+      - value: 0.83
+        source: kmk
+      - value: 0.842
+        source: kmk
+      - value: 0.848
+        source: kmk
+      - value: 0.858
+        source: kmk
+      - value: 0.86
+        source: kmk
+      - value: 0.863
+        source: kmk
+      - value: 0.864
+        source: kmk
+      - value: 0.888
+        source: kmk
+      - value: 0.89
+        source: kmk
+      - value: 0.901
+        source: kmk
+      - value: 0.908
+        source: kmk
+      - value: 0.91
+        source: kmk
+      - value: 0.919
+        source: kmk
+      - value: 0.94
+        source: kmk
+      - value: 0.942
+        source: kmk
+      - value: 0.945
+        source: kmk
+      - value: 0.951
+        source: kmk
+      - value: 0.956
+        source: kmk
+      - value: 0.957
+        source: kmk
+      - value: 0.96
+        source: kmk
+      - value: 0.964
+        source: kmk
+      - value: 0.967
+        source: kmk
+      - value: 0.969
+        source: kmk
+      - value: 0.97
+        source: kmk
+      - value: 0.979
+        source: kmk
+      - value: 0.98
+        source: kmk
+      - value: 0.982
+        source: kmk
+      - value: 0.989
+        source: kmk
+      - value: 0.99
+        source: kmk
+      - value: 0.992
+        source: kmk
+      - value: 1.002
+        source: kmk
+      - value: 1.008
+        source: kmk
+      - value: 1.02
+        source: kmk
+      - value: 1.021
+        source: kmk
+      - value: 1.029
+        source: kmk
+      - value: 1.03
+        source: kmk
+      - value: 1.039
+        source: kmk
+      - value: 1.041
+        source: kmk
+      - value: 1.044
+        source: kmk
+      - value: 1.047
+        source: kmk
+      - value: 1.054
+        source: kmk
+      - value: 1.061
+        source: kmk
+      - value: 1.064
+        source: kmk
+      - value: 1.069
+        source: kmk
+      - value: 1.07
+        source: kmk
+      - value: 1.084
+        source: kmk
+      - value: 1.098
+        source: kmk
+      - value: 1.102
+        source: kmk
+      - value: 1.115
+        source: kmk
+      - value: 1.13
+        source: kmk
+      - value: 1.131
+        source: kmk
+      - value: 1.133
+        source: kmk
+      - value: 1.134
+        source: kmk
+      - value: 1.14
+        source: kmk
+      - value: 1.142
+        source: kmk
+      - value: 1.158
+        source: kmk
+      - value: 1.171
+        source: kmk
+      - value: 1.183
+        source: kmk
+      - value: 1.185
+        source: kmk
+      - value: 1.207
+        source: kmk
       - value: 1.218
         source: hede
+      - value: 1.235
+        source: kmk
+      - value: 1.244
+        source: kmk
+      - value: 1.265
+        source: kmk
+      - value: 1.287
+        source: kmk
+      - value: 1.29
+        source: kmk
+      - value: 1.295
+        source: kmk
       - value: 1.299
         source: ngc
       - value: 1.299
         source: numismaster
+      - value: 1.299
+        source: numista
       - value: 1.3
         source: ucoin
+      - value: 1.307
+        source: kmk
+      - value: 1.326
+        source: kmk
+      - value: 1.327
+        source: kmk
+      - value: 1.409
+        source: kmk
+      - value: 1.456
+        source: kmk
     diameter_mm:
-      - value: 18.0
+      - value: 19.5
         source: numista
+      - value: 19.5
+        source: ucoin
     sources:
       - type: literature
-        url: https://numismaster.com/MC_65061
+        url: https://numismaster.com/MC_65058
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h132.htm
         ref: danskmoent.dk (Hede f3h132)
       - type: literature
-        url: https://en.numista.com/129036
-        ref: Numista N#129036 — 2 Skilling Dansk - Frederik III (Shield type VI)
+        url: https://en.numista.com/37575
+        ref: Numista N#37575 — 2 Skilling Dansk - Frederik III (Shield type IV)
       - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1667/?tid=96470
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1657-1664/?tid=96467
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156665
+        ref: KMM 156665 (Inv. FP 6286.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/174286
+        ref: KMM 174286 (Inv. FP 8166.95)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276617
+        ref: KMM 276617 (Inv. FP 4227.1187)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276620
+        ref: KMM 276620 (Inv. FP 4227.1184)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276618
+        ref: KMM 276618 (Inv. FP 4227.1186)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276619
+        ref: KMM 276619 (Inv. FP 4227.1185)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276621
+        ref: KMM 276621 (Inv. FP 4227.1183)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276622
+        ref: KMM 276622 (Inv. FP 4227.1182)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276623
+        ref: KMM 276623 (Inv. FP 4227.1180)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276624
+        ref: KMM 276624 (Inv. FP 4227.1179)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276625
+        ref: KMM 276625 (Inv. FP 4227.1178)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276626
+        ref: KMM 276626 (Inv. FP 4227.1177)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276627
+        ref: KMM 276627 (Inv. FP 4227.1176)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276628
+        ref: KMM 276628 (Inv. FP 4227.1175)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276629
+        ref: KMM 276629 (Inv. FP 4227.1174)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276630
+        ref: KMM 276630 (Inv. FP 4227.1173)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276631
+        ref: KMM 276631 (Inv. FP 4227.1172)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276632
+        ref: KMM 276632 (Inv. FP 4227.1171)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276633
+        ref: KMM 276633 (Inv. FP 4227.1169)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276634
+        ref: KMM 276634 (Inv. FP 4227.1168)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276636
+        ref: KMM 276636 (Inv. FP 4227.1166)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276639
+        ref: KMM 276639 (Inv. FP 4227.1163)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276640
+        ref: KMM 276640 (Inv. FP 4227.1162)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276641
+        ref: KMM 276641 (Inv. FP 4227.1161)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276642
+        ref: KMM 276642 (Inv. FP 4227.1160)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276644
+        ref: KMM 276644 (Inv. FP 4227.1157)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276646
+        ref: KMM 276646 (Inv. FP 4227.1155)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276647
+        ref: KMM 276647 (Inv. FP 4227.1154)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276648
+        ref: KMM 276648 (Inv. FP 4227.1153)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276649
+        ref: KMM 276649 (Inv. FP 4227.1152)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276650
+        ref: KMM 276650 (Inv. FP 4227.1151)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276651
+        ref: KMM 276651 (Inv. FP 4227.1150)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276654
+        ref: KMM 276654 (Inv. FP 4227.1146)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276655
+        ref: KMM 276655 (Inv. FP 4227.1145)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276656
+        ref: KMM 276656 (Inv. FP 4227.1144)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276666
+        ref: KMM 276666 (Inv. FP 4227.1133)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276669
+        ref: KMM 276669 (Inv. FP 4227.1130)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276673
+        ref: KMM 276673 (Inv. FP 4227.1125)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276674
+        ref: KMM 276674 (Inv. FP 4227.1124)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276678
+        ref: KMM 276678 (Inv. FP 4227.1120)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276679
+        ref: KMM 276679 (Inv. FP 4227.1119)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276683
+        ref: KMM 276683 (Inv. FP 4227.1114)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276979
+        ref: KMM 276979 (Inv. FP 4227.1115)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276657
+        ref: KMM 276657 (Inv. FP 4227.1143)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276658
+        ref: KMM 276658 (Inv. FP 4227.1142)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276659
+        ref: KMM 276659 (Inv. FP 4227.1141)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276660
+        ref: KMM 276660 (Inv. FP 4227.1140)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276661
+        ref: KMM 276661 (Inv. FP 4227.1139)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276662
+        ref: KMM 276662 (Inv. FP 4227.1138)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276663
+        ref: KMM 276663 (Inv. FP 4227.1136)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276664
+        ref: KMM 276664 (Inv. FP 4227.1135)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276665
+        ref: KMM 276665 (Inv. FP 4227.1134)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276667
+        ref: KMM 276667 (Inv. FP 4227.1132)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276668
+        ref: KMM 276668 (Inv. FP 4227.1131)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276670
+        ref: KMM 276670 (Inv. FP 4227.1129)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276671
+        ref: KMM 276671 (Inv. FP 4227.1128)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276672
+        ref: KMM 276672 (Inv. FP 4227.1127)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276675
+        ref: KMM 276675 (Inv. FP 4227.1123)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276676
+        ref: KMM 276676 (Inv. FP 4227.1122)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276677
+        ref: KMM 276677 (Inv. FP 4227.1121)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276680
+        ref: KMM 276680 (Inv. FP 4227.1118)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276681
+        ref: KMM 276681 (Inv. FP 4227.1117)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276682
+        ref: KMM 276682 (Inv. FP 4227.1116)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276684
+        ref: KMM 276684 (Inv. FP 4227.1113)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276685
+        ref: KMM 276685 (Inv. FP 4227.1112)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276686
+        ref: KMM 276686 (Inv. FP 4227.1111)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276687
+        ref: KMM 276687 (Inv. FP 4227.1110)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276688
+        ref: KMM 276688 (Inv. FP 4227.1109)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276698
+        ref: KMM 276698 (Inv. FP 4227.1098)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276689
+        ref: KMM 276689 (Inv. FP 4227.1108)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276690
+        ref: KMM 276690 (Inv. FP 4227.1107)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276691
+        ref: KMM 276691 (Inv. FP 4227.1106)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276692
+        ref: KMM 276692 (Inv. FP 4227.1105)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276693
+        ref: KMM 276693 (Inv. FP 4227.1103)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276694
+        ref: KMM 276694 (Inv. FP 4227.1102)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276695
+        ref: KMM 276695 (Inv. FP 4227.1101)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276696
+        ref: KMM 276696 (Inv. FP 4227.1100)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276697
+        ref: KMM 276697 (Inv. FP 4227.1099)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276699
+        ref: KMM 276699 (Inv. FP 4227.1097)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276700
+        ref: KMM 276700 (Inv. FP 4227.1096)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276701
+        ref: KMM 276701 (Inv. FP 4227.1095)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276702
+        ref: KMM 276702 (Inv. FP 4227.1094)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276703
+        ref: KMM 276703 (Inv. FP 4227.1092)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276704
+        ref: KMM 276704 (Inv. FP 4227.1091)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276705
+        ref: KMM 276705 (Inv. FP 4227.1090)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276706
+        ref: KMM 276706 (Inv. FP 4227.1089)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276707
+        ref: KMM 276707 (Inv. FP 4227.1088)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276708
+        ref: KMM 276708 (Inv. FP 4227.1087)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276709
+        ref: KMM 276709 (Inv. FP 4227.1086)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276710
+        ref: KMM 276710 (Inv. FP 4227.1085)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276711
+        ref: KMM 276711 (Inv. FP 4227.1084)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276712
+        ref: KMM 276712 (Inv. FP 4227.1083)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276713
+        ref: KMM 276713 (Inv. FP 4227.1080)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276714
+        ref: KMM 276714 (Inv. FP 4227.1079)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276715
+        ref: KMM 276715 (Inv. FP 4227.1078)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276973
+        ref: KMM 276973 (Inv. FP 4227.1181)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276974
+        ref: KMM 276974 (Inv. FP 4227.1170)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276635
+        ref: KMM 276635 (Inv. FP 4227.1167)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276637
+        ref: KMM 276637 (Inv. FP 4227.1165)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276638
+        ref: KMM 276638 (Inv. FP 4227.1164)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276643
+        ref: KMM 276643 (Inv. FP 4227.1158)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276645
+        ref: KMM 276645 (Inv. FP 4227.1156)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276652
+        ref: KMM 276652 (Inv. FP 4227.1149)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276653
+        ref: KMM 276653 (Inv. FP 4227.1147)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276975
+        ref: KMM 276975 (Inv. FP 4227.1159)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276976
+        ref: KMM 276976 (Inv. FP 4227.1148)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276977
+        ref: KMM 276977 (Inv. FP 4227.1137)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276978
+        ref: KMM 276978 (Inv. FP 4227.1126)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276980
+        ref: KMM 276980 (Inv. FP 4227.1104)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276981
+        ref: KMM 276981 (Inv. FP 4227.1093)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276982
+        ref: KMM 276982 (Inv. FP 4227.1082)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/277009
+        ref: KMM 277009 (Inv. FP 4227.1081)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279205
+        ref: KMM 279205 (Inv. FP 3528.239)
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.1-1665-1667-cuid-1069017-duid-1236594
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-209-1657-1664-cuid-1069016-duid-1236576
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
@@ -80982,13 +81519,109 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
-      - denmark-numismaster-65061
+      - denmark-numismaster-65058
       - dk-hede-f3h132
-      - dk-numista-129036
-      - dk-tid-96470
-      - ngc-1069017
-  - id: c-08b3aca3
-    class_id: c-08b3aca3
+      - dk-numista-37575
+      - dk-tid-96467
+      - kmk-156665
+      - kmk-174286
+      - kmk-276617
+      - kmk-276618
+      - kmk-276619
+      - kmk-276621
+      - kmk-276622
+      - kmk-276623
+      - kmk-276624
+      - kmk-276625
+      - kmk-276626
+      - kmk-276627
+      - kmk-276628
+      - kmk-276629
+      - kmk-276630
+      - kmk-276631
+      - kmk-276632
+      - kmk-276633
+      - kmk-276634
+      - kmk-276636
+      - kmk-276639
+      - kmk-276640
+      - kmk-276641
+      - kmk-276642
+      - kmk-276644
+      - kmk-276646
+      - kmk-276647
+      - kmk-276648
+      - kmk-276649
+      - kmk-276650
+      - kmk-276651
+      - kmk-276654
+      - kmk-276655
+      - kmk-276656
+      - kmk-276657
+      - kmk-276658
+      - kmk-276659
+      - kmk-276660
+      - kmk-276661
+      - kmk-276662
+      - kmk-276663
+      - kmk-276664
+      - kmk-276665
+      - kmk-276667
+      - kmk-276668
+      - kmk-276670
+      - kmk-276671
+      - kmk-276672
+      - kmk-276675
+      - kmk-276676
+      - kmk-276677
+      - kmk-276680
+      - kmk-276681
+      - kmk-276682
+      - kmk-276684
+      - kmk-276685
+      - kmk-276686
+      - kmk-276687
+      - kmk-276688
+      - kmk-276689
+      - kmk-276690
+      - kmk-276691
+      - kmk-276692
+      - kmk-276693
+      - kmk-276694
+      - kmk-276695
+      - kmk-276696
+      - kmk-276697
+      - kmk-276699
+      - kmk-276700
+      - kmk-276701
+      - kmk-276702
+      - kmk-276703
+      - kmk-276704
+      - kmk-276705
+      - kmk-276706
+      - kmk-276707
+      - kmk-276708
+      - kmk-276709
+      - kmk-276710
+      - kmk-276711
+      - kmk-276712
+      - kmk-276713
+      - kmk-276714
+      - kmk-276715
+      - kmk-276973
+      - kmk-276974
+      - kmk-276975
+      - kmk-276976
+      - kmk-276977
+      - kmk-276978
+      - kmk-276980
+      - kmk-276981
+      - kmk-276982
+      - kmk-277009
+      - kmk-279205
+      - ngc-1069016
+  - id: c-c0436308
+    class_id: c-c0436308
     label: unified-dk-hede-f3h133a
     fuss: seed_unsorted
     phase: hede
@@ -81003,7 +81636,10 @@ coins:
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
-      km: A210
+      km:
+        - A210.1
+        - A210.2
+        - A210
       hede:
         - 133A
         - 133B
@@ -81031,7 +81667,45 @@ coins:
       - value: 0.281
         source: hede
         specimen: dk-hede-f3h133b
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1050054
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1050286
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65059
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65060
+      - value: 0.281
+        source: ucoin
     weight_rough_g:
+      - value: 0.675
+        source: kmk
+      - value: 0.723
+        source: kmk
+      - value: 0.742
+        source: kmk
+      - value: 0.841
+        source: kmk
+      - value: 0.853
+        source: kmk
+      - value: 0.892
+        source: kmk
+      - value: 0.898
+        source: kmk
+      - value: 0.9
+        source: kmk
+      - value: 0.911
+        source: kmk
+      - value: 1.012
+        source: kmk
+      - value: 1.019
+        source: kmk
+      - value: 1.048
+        source: kmk
       - value: 1.077
         source: kmk
       - value: 1.128
@@ -81052,16 +81726,39 @@ coins:
         source: kmk
       - value: 1.266
         source: kmk
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1050054
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1050286
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65059
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65060
+      - value: 1.3
+        source: ucoin
     diameter_mm:
       - value: 19.8
         source: numista
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65059
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65060
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h133.htm
         ref: danskmoent.dk (Hede f3h133A)
       - type: literature
         url: https://en.numista.com/180731
         ref: Numista N#180731 — 2 Skilling Dansk - Frederik III (Shield type V)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1665/?tid=96468
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276602
         ref: KMM 276602 (Inv. FP 4227.1205)
@@ -81069,8 +81766,35 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/276603
         ref: KMM 276603 (Inv. FP 4227.1203)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276604
+        ref: KMM 276604 (Inv. FP 4227.1202)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276605
+        ref: KMM 276605 (Inv. FP 4227.1201)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276606
+        ref: KMM 276606 (Inv. FP 4227.1200)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276607
+        ref: KMM 276607 (Inv. FP 4227.1199)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276608
+        ref: KMM 276608 (Inv. FP 4227.1198)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276609
+        ref: KMM 276609 (Inv. FP 4227.1197)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276610
+        ref: KMM 276610 (Inv. FP 4227.1196)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276611
+        ref: KMM 276611 (Inv. FP 4227.1195)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276612
         ref: KMM 276612 (Inv. FP 4227.1194)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276613
+        ref: KMM 276613 (Inv. FP 4227.1191)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276614
         ref: KMM 276614 (Inv. FP 4227.1190)
@@ -81080,6 +81804,21 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/276616
         ref: KMM 276616 (Inv. FP 4227.1188)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276971
+        ref: KMM 276971 (Inv. FP 4227.1204)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276972
+        ref: KMM 276972 (Inv. FP 4227.1193)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/277008
+        ref: KMM 277008 (Inv. FP 4227.1192)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-a210.1-1664-1665-cuid-1050054-duid-1236590
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-a210.2-1664-1665-cuid-1050286-duid-1236592
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 14.222
@@ -81087,33 +81826,54 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-65059
+      - denmark-numismaster-65060
       - dk-hede-f3h133a
       - dk-hede-f3h133b
       - dk-numista-180731
+      - dk-tid-96468
       - kmk-276602
       - kmk-276603
+      - kmk-276604
+      - kmk-276605
+      - kmk-276606
+      - kmk-276607
+      - kmk-276608
+      - kmk-276609
+      - kmk-276610
+      - kmk-276611
       - kmk-276612
+      - kmk-276613
       - kmk-276614
       - kmk-276615
       - kmk-276616
-  - id: c-860820e4
-    class_id: c-860820e4
+      - kmk-276971
+      - kmk-276972
+      - kmk-277008
+      - ngc-1050054
+      - ngc-1050286
+  - id: c-4d0cb5b1
+    class_id: c-4d0cb5b1
     label: unified-dk-hede-f3h134a
     fuss: seed_unsorted
     phase: hede
     kind: scheide
     nominal: 2 Skilling
     year_first: 1664
-    year_last: 1669
+    year_last: 1667
     year_ranges:
       -   - 1664
-          - 1669
-    year_label: 1664-1669
+          - 1667
+    year_label: 1664-1667
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
-      km: '282.1'
+      km:
+        - '249.1'
+        - '249.2'
+        - '249'
       hede:
+        - '134'
         - 134A
         - 134B
         - 134C
@@ -81132,7 +81892,9 @@ coins:
         - '20.2'
         - '20.3'
         - '20.4'
-      numista: '111346'
+      numista: '129036'
+      others:
+        - JSJ# 240
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -81152,13 +81914,39 @@ coins:
         specimen: dk-hede-f3h134c
       - value: 0.281
         source: ngc
+        specimen: ngc-1069017
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1069018
       - value: 0.281
         source: numismaster
+        specimen: denmark-numismaster-65061
       - value: 0.281
-        source: numista
+        source: numismaster
+        specimen: denmark-numismaster-65062
       - value: 0.281
         source: ucoin
     weight_rough_g:
+      - value: 0.768
+        source: kmk
+      - value: 0.928
+        source: kmk
+      - value: 1.021
+        source: kmk
+      - value: 1.067
+        source: kmk
+      - value: 1.073
+        source: kmk
+      - value: 1.074
+        source: kmk
+      - value: 1.111
+        source: kmk
+      - value: 1.114
+        source: kmk
+      - value: 1.181
+        source: kmk
+      - value: 1.2
+        source: numista
       - value: 1.218
         source: hede
         specimen: dk-hede-f3h134a
@@ -81168,34 +81956,82 @@ coins:
       - value: 1.218
         source: hede
         specimen: dk-hede-f3h134c
-      - value: 1.218
-        source: numista
-      - value: 1.28
-        source: ucoin
+      - value: 1.235
+        source: kmk
       - value: 1.299
         source: ngc
+        specimen: ngc-1069017
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1069018
       - value: 1.299
         source: numismaster
-    diameter_mm:
-      - value: 18.25
-        source: numista
-      - value: 18.25
+        specimen: denmark-numismaster-65061
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65062
+      - value: 1.3
         source: ucoin
+    diameter_mm:
+      - value: 18.0
+        source: numista
     sources:
       - type: literature
-        url: https://numismaster.com/MC_65072
+        url: https://numismaster.com/MC_65061
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65062
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h134.htm
         ref: danskmoent.dk (Hede f3h134A)
       - type: literature
-        url: https://en.numista.com/111346
-        ref: Numista N#111346 — 2 Skilling Dansk - Frederick III Shield type VIIIa
+        url: https://en.numista.com/129036
+        ref: Numista N#129036 — 2 Skilling Dansk - Frederik III (Shield type VI)
       - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1669/?tid=99065
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1667/?tid=96470
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/264878
+        ref: KMM 264878 (Inv. FP 10088.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276583
+        ref: KMM 276583 (Inv. FP 4227.1225)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276584
+        ref: KMM 276584 (Inv. FP 4227.1224)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276586
+        ref: KMM 276586 (Inv. FP 4227.1222)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276595
+        ref: KMM 276595 (Inv. FP 4227.1212)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276596
+        ref: KMM 276596 (Inv. FP 4227.1211)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276597
+        ref: KMM 276597 (Inv. FP 4227.1210)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276598
+        ref: KMM 276598 (Inv. FP 4227.1209)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276599
+        ref: KMM 276599 (Inv. FP 4227.1208)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276600
+        ref: KMM 276600 (Inv. FP 4227.1207)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276601
+        ref: KMM 276601 (Inv. FP 4227.1206)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279204
+        ref: KMM 279204 (Inv. FP 3528.240)
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.1-1667-1669-cuid-1050056-duid-1236611
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.1-1665-1667-cuid-1069017-duid-1236594
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.2-1664-1667-cuid-1069018-duid-1236597
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
@@ -81204,13 +82040,27 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
-      - denmark-numismaster-65072
+      - denmark-numismaster-65061
+      - denmark-numismaster-65062
       - dk-hede-f3h134a
       - dk-hede-f3h134b
       - dk-hede-f3h134c
-      - dk-numista-111346
-      - dk-tid-99065
-      - ngc-1050056
+      - dk-numista-129036
+      - dk-tid-96470
+      - kmk-264878
+      - kmk-276583
+      - kmk-276584
+      - kmk-276586
+      - kmk-276595
+      - kmk-276596
+      - kmk-276597
+      - kmk-276598
+      - kmk-276599
+      - kmk-276600
+      - kmk-276601
+      - kmk-279204
+      - ngc-1069017
+      - ngc-1069018
   - id: c-2814423a
     class_id: c-2814423a
     label: unified-dk-hede-f3h134n
@@ -81717,6 +82567,9 @@ coins:
     ruler: Frederik III
     mint: Kopenhagen
     catalog:
+      km:
+        - '282.1'
+        - '282.2'
       hede:
         - '140'
         - 140A
@@ -81730,17 +82583,45 @@ coins:
         - '23.5'
         - '23.6'
       schou: 67-68
+      numista:
+        - '111346'
+        - '95823'
       others:
         - JSJ# 241
     metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.281
         source: hede
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1050056
+      - value: 0.281
+        source: ngc
+        specimen: ngc-1059946
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65072
+      - value: 0.281
+        source: numismaster
+        specimen: denmark-numismaster-65076
+      - value: 0.281
+        source: numista
+        specimen: dk-numista-111346
+      - value: 0.281
+        source: numista
+        specimen: dk-numista-95823
+      - value: 0.281
+        source: ucoin
+        specimen: dk-tid-96469
+      - value: 0.281
+        source: ucoin
+        specimen: dk-tid-99065
     weight_rough_g:
       - value: 0.414
         source: kmk
@@ -81795,6 +82676,9 @@ coins:
         source: kmk
       - value: 1.003
         source: kmk
+      - value: 1.01
+        source: numista
+        specimen: dk-numista-95823
       - value: 1.021
         source: kmk
       - value: 1.036
@@ -81837,24 +82721,76 @@ coins:
         source: kmk
       - value: 1.218
         source: hede
+      - value: 1.218
+        source: numista
+        specimen: dk-numista-111346
       - value: 1.236
         source: kmk
       - value: 1.248
         source: kmk
       - value: 1.263
         source: kmk
+      - value: 1.28
+        source: ucoin
+        specimen: dk-tid-99065
       - value: 1.285
         source: kmk
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1050056
+      - value: 1.299
+        source: ngc
+        specimen: ngc-1059946
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65072
+      - value: 1.299
+        source: numismaster
+        specimen: denmark-numismaster-65076
+      - value: 1.3
+        source: ucoin
+        specimen: dk-tid-96469
       - value: 1.317
         source: kmk
       - value: 1.329
         source: kmk
       - value: 1.385
         source: kmk
+    diameter_mm:
+      - value: 18.0
+        source: numista
+        specimen: dk-numista-95823
+      - value: 18.0
+        source: ucoin
+        specimen: dk-tid-96469
+      - value: 18.25
+        source: numista
+        specimen: dk-numista-111346
+      - value: 18.25
+        source: ucoin
+        specimen: dk-tid-99065
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65072
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65076
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h140.htm
         ref: danskmoent.dk (Hede f3h140)
+      - type: literature
+        url: https://en.numista.com/111346
+        ref: Numista N#111346 — 2 Skilling Dansk - Frederick III Shield type VIIIa
+      - type: literature
+        url: https://en.numista.com/95823
+        ref: Numista N#95823 — 2 Skilling Dansk - Frederik III Shield type VIIIb
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1670/?tid=96469
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1669/?tid=99065
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152227
         ref: KMM 152227 (Inv. FP 3574.67)
@@ -82044,6 +82980,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/279203
         ref: KMM 279203 (Inv. FP 3528.241)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.1-1667-1669-cuid-1050056-duid-1236611
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.2-1667-1670-cuid-1059946-duid-1236614
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 14.222
@@ -82051,7 +82993,13 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
+      - denmark-numismaster-65072
+      - denmark-numismaster-65076
       - dk-hede-f3h140
+      - dk-numista-111346
+      - dk-numista-95823
+      - dk-tid-96469
+      - dk-tid-99065
       - kmk-152227
       - kmk-152228
       - kmk-160398
@@ -82109,6 +83057,8 @@ coins:
       - kmk-276967
       - kmk-276968
       - kmk-279203
+      - ngc-1050056
+      - ngc-1059946
   - id: c-c936a7a2
     class_id: c-c936a7a2
     label: unified-dk-hede-f3h141a
@@ -106268,71 +107218,6 @@ coins:
     composed_of:
       - dk-numista-366746
       - dk-tid-163075
-  - id: c-878be2f2
-    class_id: c-878be2f2
-    label: unified-dk-numista-37575
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1657
-    year_last: 1664
-    year_ranges:
-      -   - 1657
-          - 1664
-    year_label: 1657-1664
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '209'
-      numista: '37575'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-      - value: 1.299
-        source: numista
-      - value: 1.3
-        source: ucoin
-    diameter_mm:
-      - value: 19.5
-        source: numista
-      - value: 19.5
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65058
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/37575
-        ref: Numista N#37575 — 2 Skilling Dansk - Frederik III (Shield type IV)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1657-1664/?tid=96467
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-209-1657-1664-cuid-1069016-duid-1236576
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65058
-      - dk-numista-37575
-      - dk-tid-96467
-      - ngc-1069016
   - id: c-8d63af90
     class_id: c-8d63af90
     label: unified-dk-numista-386681
@@ -107028,73 +107913,6 @@ coins:
       - dk-numista-92859
       - dk-tid-78929
       - ngc-1048765
-  - id: c-6cf24fad
-    class_id: c-6cf24fad
-    label: unified-dk-numista-95823
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1667
-    year_last: 1670
-    year_ranges:
-      -   - 1667
-          - 1670
-    year_label: 1667-1670
-    ruler: Frederick III (Frederik III)
-    mint: Kopenhagen
-    catalog:
-      km: '282.2'
-      numista: '95823'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-      - value: 0.281
-        source: numista
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.01
-        source: numista
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-      - value: 1.3
-        source: ucoin
-    diameter_mm:
-      - value: 18.0
-        source: numista
-      - value: 18.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65076
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/95823
-        ref: Numista N#95823 — 2 Skilling Dansk - Frederik III Shield type VIIIb
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1667-1670/?tid=96469
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-282.2-1667-1670-cuid-1059946-duid-1236614
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65076
-      - dk-numista-95823
-      - dk-tid-96469
-      - ngc-1059946
   - id: c-4085f932
     class_id: c-4085f932
     label: unified-dk-tid-163067
@@ -107205,41 +108023,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-70718
-  - id: c-6a2a84dc
-    class_id: c-6a2a84dc
-    label: unified-dk-tid-96468
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1664
-    year_last: 1665
-    year_ranges:
-      -   - 1664
-          - 1665
-    year_label: 1664-1665
-    ruler: Frederik III
-    catalog:
-      km: A210
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ucoin
-    weight_rough_g:
-      - value: 1.3
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1664-1665/?tid=96468
-        ref: ucoin
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-tid-96468
   - id: c-d95f8018
     class_id: c-d95f8018
     label: unified-dk-tid-97383
@@ -113548,649 +114331,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-156606
-  - id: c-bf4566ad
-    class_id: c-bf4566ad
-    label: unified-kmk-156665
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1657
-    year_last: 1664
-    year_ranges:
-      -   - 1657
-          - 1664
-    year_label: 1657-1664
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      hede:
-        - '132'
-        - 132A
-        - 132B
-        - 132C
-      others:
-        - JSJ# 239
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.21
-        source: kmk
-        suspect:
-          de: Ein Fünftel des Gewichts der beiden Schwesterstücke derselben Nummer (0,91 g und 1,07 g). Bei dünnem, niedrighaltigem Silber dieser Jahre ist ein solcher Verlust durch Beschneiden, 
-            Korrosion oder Bruch möglich, und das Verzeichnis nennt keinen Erhaltungszustand — als Wägewert dieses Stückes bleibt die Angabe stehen, als Typengewicht ist sie nicht brauchbar.
-          en: A fifth of what the two sister pieces of the same number weigh (0.91 g and 1.07 g). On thin, base silver of these years such a loss to clipping, corrosion or breakage is possible, and 
-            the record states no condition — so the figure stands as the weight of this piece, but it cannot serve as the weight of the type.
-          uk: П'ята частина ваги двох сестринських екземплярів того самого номера (0,91 г і 1,07 г). Для тонкого низькопробного срібла цих років така втрата через обрізання, корозію чи злам можлива, а
-            запис не подає стану збереження — тож як вага цього екземпляра значення лишається, але за вагу типу служити не може.
-      - value: 0.331
-        source: kmk
-        suspect:
-          de: Deutlich unter dem Gewicht der beiden Schwesterstücke derselben Nummer (0.989 g und 1.409 g). Bei dünnem, niedrighaltigem Silber dieser Jahre ist ein solcher Verlust durch Beschneiden, 
-            Korrosion oder Bruch möglich, und das Verzeichnis nennt keinen Erhaltungszustand — als Wägewert dieses Stückes bleibt die Angabe stehen, als Typengewicht ist sie nicht brauchbar.
-          en: Well below what the two sister pieces of the same number weigh (0.989 g and 1.409 g). On thin, base silver of these years such a loss to clipping, corrosion or breakage is possible, and 
-            the record states no condition — so the figure stands as the weight of this piece, but it cannot serve as the weight of the type.
-          uk: Істотно нижче за вагу двох сестринських екземплярів того самого номера (0.989 г і 1.409 г). Для тонкого низькопробного срібла цих років така втрата через обрізання, корозію чи злам 
-            можлива, а запис не подає стану збереження — тож як вага цього екземпляра значення лишається, але за вагу типу служити не може.
-      - value: 0.609
-        source: kmk
-      - value: 0.626
-        source: kmk
-      - value: 0.704
-        source: kmk
-      - value: 0.708
-        source: kmk
-      - value: 0.722
-        source: kmk
-      - value: 0.723
-        source: kmk
-      - value: 0.736
-        source: kmk
-      - value: 0.75
-        source: kmk
-      - value: 0.772
-        source: kmk
-      - value: 0.78
-        source: kmk
-      - value: 0.781
-        source: kmk
-      - value: 0.802
-        source: kmk
-      - value: 0.803
-        source: kmk
-      - value: 0.811
-        source: kmk
-      - value: 0.83
-        source: kmk
-      - value: 0.842
-        source: kmk
-      - value: 0.848
-        source: kmk
-      - value: 0.858
-        source: kmk
-      - value: 0.86
-        source: kmk
-      - value: 0.863
-        source: kmk
-      - value: 0.864
-        source: kmk
-      - value: 0.888
-        source: kmk
-      - value: 0.89
-        source: kmk
-      - value: 0.901
-        source: kmk
-      - value: 0.908
-        source: kmk
-      - value: 0.91
-        source: kmk
-      - value: 0.919
-        source: kmk
-      - value: 0.94
-        source: kmk
-      - value: 0.942
-        source: kmk
-      - value: 0.945
-        source: kmk
-      - value: 0.951
-        source: kmk
-      - value: 0.956
-        source: kmk
-      - value: 0.957
-        source: kmk
-      - value: 0.96
-        source: kmk
-      - value: 0.964
-        source: kmk
-      - value: 0.967
-        source: kmk
-      - value: 0.969
-        source: kmk
-      - value: 0.97
-        source: kmk
-      - value: 0.979
-        source: kmk
-      - value: 0.98
-        source: kmk
-      - value: 0.982
-        source: kmk
-      - value: 0.989
-        source: kmk
-      - value: 0.99
-        source: kmk
-      - value: 0.992
-        source: kmk
-      - value: 1.002
-        source: kmk
-      - value: 1.008
-        source: kmk
-      - value: 1.02
-        source: kmk
-      - value: 1.021
-        source: kmk
-      - value: 1.029
-        source: kmk
-      - value: 1.03
-        source: kmk
-      - value: 1.039
-        source: kmk
-      - value: 1.041
-        source: kmk
-      - value: 1.044
-        source: kmk
-      - value: 1.047
-        source: kmk
-      - value: 1.054
-        source: kmk
-      - value: 1.061
-        source: kmk
-      - value: 1.064
-        source: kmk
-      - value: 1.069
-        source: kmk
-      - value: 1.07
-        source: kmk
-      - value: 1.084
-        source: kmk
-      - value: 1.098
-        source: kmk
-      - value: 1.102
-        source: kmk
-      - value: 1.115
-        source: kmk
-      - value: 1.13
-        source: kmk
-      - value: 1.131
-        source: kmk
-      - value: 1.133
-        source: kmk
-      - value: 1.134
-        source: kmk
-      - value: 1.14
-        source: kmk
-      - value: 1.142
-        source: kmk
-      - value: 1.158
-        source: kmk
-      - value: 1.171
-        source: kmk
-      - value: 1.183
-        source: kmk
-      - value: 1.185
-        source: kmk
-      - value: 1.207
-        source: kmk
-      - value: 1.235
-        source: kmk
-      - value: 1.244
-        source: kmk
-      - value: 1.265
-        source: kmk
-      - value: 1.287
-        source: kmk
-      - value: 1.29
-        source: kmk
-      - value: 1.295
-        source: kmk
-      - value: 1.307
-        source: kmk
-      - value: 1.326
-        source: kmk
-      - value: 1.327
-        source: kmk
-      - value: 1.409
-        source: kmk
-      - value: 1.456
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156665
-        ref: KMM 156665 (Inv. FP 6286.4)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/174286
-        ref: KMM 174286 (Inv. FP 8166.95)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276617
-        ref: KMM 276617 (Inv. FP 4227.1187)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276620
-        ref: KMM 276620 (Inv. FP 4227.1184)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276618
-        ref: KMM 276618 (Inv. FP 4227.1186)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276619
-        ref: KMM 276619 (Inv. FP 4227.1185)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276621
-        ref: KMM 276621 (Inv. FP 4227.1183)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276622
-        ref: KMM 276622 (Inv. FP 4227.1182)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276623
-        ref: KMM 276623 (Inv. FP 4227.1180)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276624
-        ref: KMM 276624 (Inv. FP 4227.1179)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276625
-        ref: KMM 276625 (Inv. FP 4227.1178)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276626
-        ref: KMM 276626 (Inv. FP 4227.1177)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276627
-        ref: KMM 276627 (Inv. FP 4227.1176)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276628
-        ref: KMM 276628 (Inv. FP 4227.1175)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276629
-        ref: KMM 276629 (Inv. FP 4227.1174)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276630
-        ref: KMM 276630 (Inv. FP 4227.1173)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276631
-        ref: KMM 276631 (Inv. FP 4227.1172)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276632
-        ref: KMM 276632 (Inv. FP 4227.1171)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276633
-        ref: KMM 276633 (Inv. FP 4227.1169)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276634
-        ref: KMM 276634 (Inv. FP 4227.1168)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276636
-        ref: KMM 276636 (Inv. FP 4227.1166)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276639
-        ref: KMM 276639 (Inv. FP 4227.1163)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276640
-        ref: KMM 276640 (Inv. FP 4227.1162)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276641
-        ref: KMM 276641 (Inv. FP 4227.1161)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276642
-        ref: KMM 276642 (Inv. FP 4227.1160)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276644
-        ref: KMM 276644 (Inv. FP 4227.1157)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276646
-        ref: KMM 276646 (Inv. FP 4227.1155)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276647
-        ref: KMM 276647 (Inv. FP 4227.1154)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276648
-        ref: KMM 276648 (Inv. FP 4227.1153)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276649
-        ref: KMM 276649 (Inv. FP 4227.1152)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276651
-        ref: KMM 276651 (Inv. FP 4227.1150)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276654
-        ref: KMM 276654 (Inv. FP 4227.1146)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276655
-        ref: KMM 276655 (Inv. FP 4227.1145)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276656
-        ref: KMM 276656 (Inv. FP 4227.1144)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276666
-        ref: KMM 276666 (Inv. FP 4227.1133)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276669
-        ref: KMM 276669 (Inv. FP 4227.1130)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276673
-        ref: KMM 276673 (Inv. FP 4227.1125)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276674
-        ref: KMM 276674 (Inv. FP 4227.1124)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276678
-        ref: KMM 276678 (Inv. FP 4227.1120)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276679
-        ref: KMM 276679 (Inv. FP 4227.1119)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276683
-        ref: KMM 276683 (Inv. FP 4227.1114)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276979
-        ref: KMM 276979 (Inv. FP 4227.1115)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276657
-        ref: KMM 276657 (Inv. FP 4227.1143)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276658
-        ref: KMM 276658 (Inv. FP 4227.1142)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276659
-        ref: KMM 276659 (Inv. FP 4227.1141)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276660
-        ref: KMM 276660 (Inv. FP 4227.1140)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276661
-        ref: KMM 276661 (Inv. FP 4227.1139)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276662
-        ref: KMM 276662 (Inv. FP 4227.1138)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276663
-        ref: KMM 276663 (Inv. FP 4227.1136)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276664
-        ref: KMM 276664 (Inv. FP 4227.1135)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276667
-        ref: KMM 276667 (Inv. FP 4227.1132)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276668
-        ref: KMM 276668 (Inv. FP 4227.1131)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276670
-        ref: KMM 276670 (Inv. FP 4227.1129)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276671
-        ref: KMM 276671 (Inv. FP 4227.1128)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276672
-        ref: KMM 276672 (Inv. FP 4227.1127)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276675
-        ref: KMM 276675 (Inv. FP 4227.1123)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276676
-        ref: KMM 276676 (Inv. FP 4227.1122)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276677
-        ref: KMM 276677 (Inv. FP 4227.1121)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276680
-        ref: KMM 276680 (Inv. FP 4227.1118)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276681
-        ref: KMM 276681 (Inv. FP 4227.1117)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276682
-        ref: KMM 276682 (Inv. FP 4227.1116)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276684
-        ref: KMM 276684 (Inv. FP 4227.1113)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276685
-        ref: KMM 276685 (Inv. FP 4227.1112)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276686
-        ref: KMM 276686 (Inv. FP 4227.1111)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276687
-        ref: KMM 276687 (Inv. FP 4227.1110)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276688
-        ref: KMM 276688 (Inv. FP 4227.1109)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276698
-        ref: KMM 276698 (Inv. FP 4227.1098)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276690
-        ref: KMM 276690 (Inv. FP 4227.1107)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276691
-        ref: KMM 276691 (Inv. FP 4227.1106)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276692
-        ref: KMM 276692 (Inv. FP 4227.1105)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276693
-        ref: KMM 276693 (Inv. FP 4227.1103)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276694
-        ref: KMM 276694 (Inv. FP 4227.1102)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276695
-        ref: KMM 276695 (Inv. FP 4227.1101)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276696
-        ref: KMM 276696 (Inv. FP 4227.1100)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276697
-        ref: KMM 276697 (Inv. FP 4227.1099)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276699
-        ref: KMM 276699 (Inv. FP 4227.1097)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276700
-        ref: KMM 276700 (Inv. FP 4227.1096)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276701
-        ref: KMM 276701 (Inv. FP 4227.1095)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276702
-        ref: KMM 276702 (Inv. FP 4227.1094)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276703
-        ref: KMM 276703 (Inv. FP 4227.1092)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276704
-        ref: KMM 276704 (Inv. FP 4227.1091)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276705
-        ref: KMM 276705 (Inv. FP 4227.1090)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276706
-        ref: KMM 276706 (Inv. FP 4227.1089)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276707
-        ref: KMM 276707 (Inv. FP 4227.1088)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276708
-        ref: KMM 276708 (Inv. FP 4227.1087)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276709
-        ref: KMM 276709 (Inv. FP 4227.1086)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276710
-        ref: KMM 276710 (Inv. FP 4227.1085)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276711
-        ref: KMM 276711 (Inv. FP 4227.1084)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276712
-        ref: KMM 276712 (Inv. FP 4227.1083)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276713
-        ref: KMM 276713 (Inv. FP 4227.1080)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276714
-        ref: KMM 276714 (Inv. FP 4227.1079)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276715
-        ref: KMM 276715 (Inv. FP 4227.1078)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276973
-        ref: KMM 276973 (Inv. FP 4227.1181)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276974
-        ref: KMM 276974 (Inv. FP 4227.1170)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276635
-        ref: KMM 276635 (Inv. FP 4227.1167)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276637
-        ref: KMM 276637 (Inv. FP 4227.1165)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276638
-        ref: KMM 276638 (Inv. FP 4227.1164)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276643
-        ref: KMM 276643 (Inv. FP 4227.1158)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276645
-        ref: KMM 276645 (Inv. FP 4227.1156)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276652
-        ref: KMM 276652 (Inv. FP 4227.1149)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276653
-        ref: KMM 276653 (Inv. FP 4227.1147)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276975
-        ref: KMM 276975 (Inv. FP 4227.1159)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276976
-        ref: KMM 276976 (Inv. FP 4227.1148)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276977
-        ref: KMM 276977 (Inv. FP 4227.1137)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276978
-        ref: KMM 276978 (Inv. FP 4227.1126)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276980
-        ref: KMM 276980 (Inv. FP 4227.1104)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276981
-        ref: KMM 276981 (Inv. FP 4227.1093)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276982
-        ref: KMM 276982 (Inv. FP 4227.1082)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/277009
-        ref: KMM 277009 (Inv. FP 4227.1081)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279205
-        ref: KMM 279205 (Inv. FP 3528.239)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-156665
-      - kmk-174286
-      - kmk-276617
-      - kmk-276618
-      - kmk-276619
-      - kmk-276621
-      - kmk-276622
-      - kmk-276623
-      - kmk-276624
-      - kmk-276625
-      - kmk-276626
-      - kmk-276627
-      - kmk-276628
-      - kmk-276629
-      - kmk-276630
-      - kmk-276631
-      - kmk-276632
-      - kmk-276633
-      - kmk-276634
-      - kmk-276636
-      - kmk-276639
-      - kmk-276640
-      - kmk-276641
-      - kmk-276642
-      - kmk-276644
-      - kmk-276646
-      - kmk-276647
-      - kmk-276648
-      - kmk-276649
-      - kmk-276651
-      - kmk-276654
-      - kmk-276655
-      - kmk-276656
-      - kmk-276657
-      - kmk-276658
-      - kmk-276659
-      - kmk-276660
-      - kmk-276661
-      - kmk-276662
-      - kmk-276663
-      - kmk-276664
-      - kmk-276667
-      - kmk-276668
-      - kmk-276670
-      - kmk-276671
-      - kmk-276672
-      - kmk-276675
-      - kmk-276676
-      - kmk-276677
-      - kmk-276680
-      - kmk-276681
-      - kmk-276682
-      - kmk-276684
-      - kmk-276685
-      - kmk-276686
-      - kmk-276687
-      - kmk-276688
-      - kmk-276690
-      - kmk-276691
-      - kmk-276692
-      - kmk-276693
-      - kmk-276694
-      - kmk-276695
-      - kmk-276696
-      - kmk-276697
-      - kmk-276699
-      - kmk-276700
-      - kmk-276701
-      - kmk-276702
-      - kmk-276703
-      - kmk-276704
-      - kmk-276705
-      - kmk-276706
-      - kmk-276707
-      - kmk-276708
-      - kmk-276709
-      - kmk-276710
-      - kmk-276711
-      - kmk-276712
-      - kmk-276713
-      - kmk-276714
-      - kmk-276715
-      - kmk-276973
-      - kmk-276974
-      - kmk-276975
-      - kmk-276976
-      - kmk-276977
-      - kmk-276978
-      - kmk-276980
-      - kmk-276981
-      - kmk-276982
-      - kmk-277009
-      - kmk-279205
   - id: c-8b8f38b5
     class_id: c-8b8f38b5
     label: unified-kmk-156746
@@ -119660,105 +119800,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-20663
-  - id: c-4d0cb5b1
-    class_id: c-4d0cb5b1
-    label: unified-kmk-264878
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1664
-    year_last: 1667
-    year_ranges:
-      -   - 1664
-          - 1667
-    year_label: 1664-1667
-    ruler: Frederik III
-    catalog:
-      hede:
-        - '134'
-        - 134A
-        - 134B
-        - 134C
-      others:
-        - JSJ# 240
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.768
-        source: kmk
-      - value: 0.928
-        source: kmk
-      - value: 1.021
-        source: kmk
-      - value: 1.067
-        source: kmk
-      - value: 1.073
-        source: kmk
-      - value: 1.074
-        source: kmk
-      - value: 1.111
-        source: kmk
-      - value: 1.114
-        source: kmk
-      - value: 1.181
-        source: kmk
-      - value: 1.235
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/264878
-        ref: KMM 264878 (Inv. FP 10088.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276583
-        ref: KMM 276583 (Inv. FP 4227.1225)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276584
-        ref: KMM 276584 (Inv. FP 4227.1224)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276586
-        ref: KMM 276586 (Inv. FP 4227.1222)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276595
-        ref: KMM 276595 (Inv. FP 4227.1212)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276596
-        ref: KMM 276596 (Inv. FP 4227.1211)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276597
-        ref: KMM 276597 (Inv. FP 4227.1210)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276598
-        ref: KMM 276598 (Inv. FP 4227.1209)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276599
-        ref: KMM 276599 (Inv. FP 4227.1208)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276600
-        ref: KMM 276600 (Inv. FP 4227.1207)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276601
-        ref: KMM 276601 (Inv. FP 4227.1206)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279204
-        ref: KMM 279204 (Inv. FP 3528.240)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-264878
-      - kmk-276583
-      - kmk-276584
-      - kmk-276586
-      - kmk-276595
-      - kmk-276596
-      - kmk-276597
-      - kmk-276598
-      - kmk-276599
-      - kmk-276600
-      - kmk-276601
-      - kmk-279204
   - id: c-c8147585
     class_id: c-c8147585
     label: unified-kmk-266469
@@ -120289,150 +120330,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-276524
-  - id: c-c0436308
-    class_id: c-c0436308
-    label: unified-kmk-276604
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1664
-    year_last: 1665
-    year_ranges:
-      -   - 1664
-          - 1665
-    year_label: 1664-1665
-    ruler: Frederik III
-    catalog:
-      hede:
-        - 133A
-        - 133B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.675
-        source: kmk
-      - value: 0.723
-        source: kmk
-      - value: 0.742
-        source: kmk
-      - value: 0.841
-        source: kmk
-      - value: 0.853
-        source: kmk
-      - value: 0.892
-        source: kmk
-      - value: 0.898
-        source: kmk
-      - value: 0.9
-        source: kmk
-      - value: 0.911
-        source: kmk
-      - value: 1.012
-        source: kmk
-      - value: 1.019
-        source: kmk
-      - value: 1.048
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276604
-        ref: KMM 276604 (Inv. FP 4227.1202)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276605
-        ref: KMM 276605 (Inv. FP 4227.1201)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276606
-        ref: KMM 276606 (Inv. FP 4227.1200)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276607
-        ref: KMM 276607 (Inv. FP 4227.1199)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276608
-        ref: KMM 276608 (Inv. FP 4227.1198)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276609
-        ref: KMM 276609 (Inv. FP 4227.1197)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276610
-        ref: KMM 276610 (Inv. FP 4227.1196)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276611
-        ref: KMM 276611 (Inv. FP 4227.1195)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276613
-        ref: KMM 276613 (Inv. FP 4227.1191)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276971
-        ref: KMM 276971 (Inv. FP 4227.1204)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276972
-        ref: KMM 276972 (Inv. FP 4227.1193)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/277008
-        ref: KMM 277008 (Inv. FP 4227.1192)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-276604
-      - kmk-276605
-      - kmk-276606
-      - kmk-276607
-      - kmk-276608
-      - kmk-276609
-      - kmk-276610
-      - kmk-276611
-      - kmk-276613
-      - kmk-276971
-      - kmk-276972
-      - kmk-277008
-  - id: c-ddbdef92
-    class_id: c-ddbdef92
-    label: unified-kmk-276650
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1661
-    year_last: 1663
-    year_ranges:
-      -   - 1661
-          - 1663
-    year_label: 1661-1663
-    ruler: Frederik III
-    catalog:
-      hede:
-        - 132A
-        - 132B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.428
-        source: kmk
-      - value: 0.553
-        source: kmk
-      - value: 0.558
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276650
-        ref: KMM 276650 (Inv. FP 4227.1151)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276665
-        ref: KMM 276665 (Inv. FP 4227.1134)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276689
-        ref: KMM 276689 (Inv. FP 4227.1108)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-276650
-      - kmk-276665
-      - kmk-276689
   - id: c-a6a8d166
     class_id: c-a6a8d166
     label: unified-kmk-276751
@@ -129371,49 +129268,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050035
-  - id: c-35b1bc84
-    class_id: c-35b1bc84
-    label: unified-ngc-1050054
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1664
-    year_last: 1665
-    year_ranges:
-      -   - 1664
-          - 1665
-    year_label: 1664-1665
-    catalog:
-      km: A210.1
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-    weight_rough_g:
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65059
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-a210.1-1664-1665-cuid-1050054-duid-1236590
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65059
-      - ngc-1050054
   - id: c-b58b55d4
     class_id: c-b58b55d4
     label: unified-ngc-1050059
@@ -129981,49 +129835,6 @@ coins:
       - denmark-numismaster-64967
       - dk-tid-96989
       - ngc-1050278
-  - id: c-ae0d7b03
-    class_id: c-ae0d7b03
-    label: unified-ngc-1050286
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1664
-    year_last: 1665
-    year_ranges:
-      -   - 1664
-          - 1665
-    year_label: 1664-1665
-    catalog:
-      km: A210.2
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-    weight_rough_g:
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65060
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-a210.2-1664-1665-cuid-1050286-duid-1236592
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65060
-      - ngc-1050286
   - id: c-18e54fa0
     class_id: c-18e54fa0
     label: unified-ngc-1050287
@@ -133511,49 +133322,6 @@ coins:
       - denmark-numismaster-65019
       - dk-tid-96448
       - ngc-1069010
-  - id: c-dc787ea5
-    class_id: c-dc787ea5
-    label: unified-ngc-1069018
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1664
-    year_last: 1667
-    year_ranges:
-      -   - 1664
-          - 1667
-    year_label: 1664-1667
-    catalog:
-      km: '249.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.281
-        source: ngc
-      - value: 0.281
-        source: numismaster
-    weight_rough_g:
-      - value: 1.299
-        source: ngc
-      - value: 1.299
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65062
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-249.2-1664-1667-cuid-1069018-duid-1236597
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65062
-      - ngc-1069018
   - id: c-85d5ccf9
     class_id: c-85d5ccf9
     label: unified-ngc-1069019
