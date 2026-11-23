@@ -811,11 +811,16 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
 # was read off the issuing entity.
 _KM_REGISTER_TOOLTIP: dict[str, str] = {
     "DK": "marker.km_dk", "SH": "marker.km_sh", "NO": "marker.km_no",
-    "GLÜ": "marker.km_glu",
+    "GLÜ": "marker.km_glu", "HGR": "marker.km_hgr", "GOTT": "marker.km_gott",
+    "SOND": "marker.km_sond", "PLÖN": "marker.km_ploen", "NORB": "marker.km_norb",
+    "GLÜCKSB": "marker.km_gluecksb", "RANTZ": "marker.km_rantz",
+    "SCHPIN": "marker.km_schpin",
 }
 _KM_REGISTER_TOOLTIP_INFERRED: dict[str, str] = {
     "DK": "marker.km_dk_inferred", "SH": "marker.km_sh_inferred",
-    "NO": "marker.km_no_inferred",
+    "NO": "marker.km_no_inferred", "GOTT": "marker.km_gott_inferred",
+    "SOND": "marker.km_sond_inferred", "GLÜCKSB": "marker.km_gluecksb_inferred",
+    "RANTZ": "marker.km_rantz_inferred", "SCHPIN": "marker.km_schpin_inferred",
 }
 
 

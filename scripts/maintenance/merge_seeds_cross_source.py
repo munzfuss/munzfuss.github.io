@@ -868,7 +868,44 @@ def _stamp_catalog_scope_rulers(seeds: list[dict],
 
 
 # Register → the scope `_catalog_refs` compares it under (see there).
-_KM_MATCH_SCOPE = {"glu": "sh"}
+from lib.km_registers import (  # noqa: E402
+    entity_match_scope as _entity_km_scope,
+    is_named_section as _is_named_km_section,
+    match_group as _km_match_group,
+    split_km as _split_km_numbers,
+)
+
+
+def _km_section_pairs(coin: dict) -> set[tuple[str, str]]:
+    """(section, number) for every KM the coin's source files under a NAMED
+    Krause S-H section (km_registers.KRAUSE_SECTIONS) — a bare KM gives none."""
+    km = (coin.get("catalog") or {}).get("km")
+    out: set[tuple[str, str]] = set()
+    if isinstance(km, dict):
+        for reg, v in km.items():
+            r = str(reg).strip().lower()
+            if _is_named_km_section(r):
+                for n in _split_km_numbers(v):
+                    out.add((r, n))
+    return out
+
+
+def _km_section_conflict(coin_a: dict, coin_b: dict) -> str | None:
+    """A number both coins give, each under a different NAMED Krause section,
+    with no (section, number) in common: two different coins that happen to
+    share a number (Glückstadt KM 5 Denning 1619 vs Rendsborg KM 5 Skilling
+    1719). Curator 2026-11-23: named sections that differ never match; a bare
+    number still meets any section of its group. Returns a reason or None."""
+    pa, pb = _km_section_pairs(coin_a), _km_section_pairs(coin_b)
+    if not pa or not pb or (pa & pb):
+        return None
+    shared = {n for _r, n in pa} & {n for _r, n in pb}
+    if not shared:
+        return None
+    n = sorted(shared)[0]
+    sa = sorted(r for r, x in pa if x == n)
+    sb = sorted(r for r, x in pb if x == n)
+    return f"KM {n} in different Krause sections: {'/'.join(sa)} vs {'/'.join(sb)}"
 
 
 def _catalog_refs(coin: dict, entity_id: str | None = None, *,
@@ -920,14 +957,15 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
                 # — a bare Glückstadt number cannot say which section it is,
                 # so separating the two here would cut it from the same
                 # number written «glu». It still never meets Denmark main.
-                key = f"km/{_KM_MATCH_SCOPE.get(reg.lower(), reg.lower())}"
+                key = f"km/{_km_match_group(reg)}"
                 if key in refs:
                     vv = [*refs[key].split("|"), *vv]
                 refs[key] = _km_join(vv)
         else:
             vals = km if isinstance(km, list) else [km]
-            # Bare KM — infer register from entity context.
-            register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+            # Bare KM — infer the matching scope from entity context (an S-H
+            # house entity compares under the group «sh», km_registers).
+            register = _entity_km_scope(entity_id or "")
             refs[f"km/{register}" if register else "km"] = _km_join(vals)
 
     hede = cat.get("hede")
@@ -3125,6 +3163,12 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     # Catalog chain (entity-aware scoping for bare KM + ruler-aware for Hede)
     refs_a = _catalog_refs(coin_a, entity_id)
     refs_b = _catalog_refs(coin_b, entity_id)
+    _sec = _km_section_conflict(coin_a, coin_b)
+    if _sec:
+        why.append(f"catalog disagree: {_sec}")
+        primary["catalog"] = False
+        return {"decision": "no_match", "primary": primary,
+                "fallback": fallback, "why": why}
     chain_state, has_overlap = _catalog_chain_consistent(refs_a, refs_b)
     if chain_state == "disagree":
         why.append(f"catalog disagree: {refs_a} vs {refs_b}")

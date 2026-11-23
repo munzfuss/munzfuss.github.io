@@ -323,9 +323,23 @@ _COUNTRY_TO_KM_REGISTER = {
 # 1640; Denmark KM 26 is the 6 Speciedaler 1604); «Schleswig and Holstein,
 # Danish duchies of» the S-H section (Numista 301630: KM 105 for the
 # Speciedaler 1683 that is Glückstadt KM 73).
+# The other Schleswig-Holstein houses follow Krause's sections the same way
+# (lib.km_registers.KRAUSE_SECTIONS, curator 2026-11-23). Checked 2026-11-23
+# against NumisMaster / NGC records of the named section: of 240 Numista KMs
+# under these issuers, 233 are the same number in that section with
+# overlapping years, the other 7 the same denomination a year or two apart.
+# «Schleswig-Holstein-Norburg-Plön, Duchy of» is NOT mapped: Numista files
+# Plön and Norburg, two Krause sections, under one issuer.
 _ISSUER_TO_KM_REGISTER = {
     "glückstadt, city of": "glu",
+    "city of glückstadt (denmark)": "glu",
     "schleswig and holstein, danish duchies of": "sh",
+    "danish duchies of schleswig and holstein (german states)": "sh",
+    "schleswig-holstein-gottorp, duchy of": "gott",
+    "duchy of schleswig-holstein-gottorp (german states)": "gott",
+    "schleswig-holstein-sonderburg, duchy of": "sond",
+    "county of holstein-schaumburg-pinneberg (german states)": "schpin",
+    "holstein-schaumburg-pinneberg, county of": "schpin",
 }
 
 # Numista's country sections «Denmark» / «Norway» follow Krause's Denmark /
