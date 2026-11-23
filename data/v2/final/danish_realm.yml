@@ -107812,75 +107812,6 @@ coins:
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian IV.
-    issuing_entity: danish_realm
-    id: c-ce02fa24
-    year_first: 1615
-    year_last: 1619
-    year_ranges:
-      -   - 1615
-          - 1619
-    year_label: 1615-1619
-    mint: Kopenhagen
-    catalog:
-      km:
-        - 29.2a
-        - '29.2'
-      numista:
-        - '302280'
-        - '152595'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.156
-        source: numista
-        specimen: dk-numista-302280
-      - value: 0.171
-        source: numista
-        specimen: dk-numista-152595
-    weight_rough_g:
-      - value: 1.16
-        source: numista
-        specimen: dk-numista-302280
-      - value: 1.32
-        source: numista
-        specimen: dk-numista-152595
-    diameter_mm:
-      - value: 18.8
-        source: numista
-        specimen: dk-numista-302280
-      - value: 19.66
-        source: numista
-        specimen: dk-numista-152595
-    sources:
-      - type: literature
-        url: https://en.numista.com/302280
-        ref: Numista N#302280 — 1 Skilling Dansk - Christian IV Oval shield; date in legend
-      - type: literature
-        url: https://en.numista.com/152595
-        ref: Numista N#152595 — 1 Skilling Dansk - Christian IV Oval shield; date in legend
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-ce02fa24
-    label: unified-dk-numista-302280
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
     nominal: 10 Ducats
     ruler: Christian IV.
     issuing_entity: danish_realm
@@ -113041,15 +112972,19 @@ coins:
       -   - 1608
           - 1609
       -   - 1611
-          - 1616
-      -   - 1619
           - 1619
-    year_label: 1605, 1608-1609, 1611-1616, 1619
+    year_label: 1605, 1608-1609, 1611-1619
     mint:
       - Helsingør
       - Kopenhagen
     catalog:
-      km: '29.1'
+      km:
+        - '29.1'
+        - '29.2'
+        - '39'
+        - A40.1
+        - A40.2
+        - 29.2a
       schou:
         - 7-16
         - 22-24
@@ -113063,8 +112998,10 @@ coins:
         - 46-55
         - 48-53
         - 54-55
+        - 123-126
         - 140-141
         - 142-158
+        - 144-146
         - 147-149
       hede:
         - 80A
@@ -113073,6 +113010,8 @@ coins:
         - 80D
         - 80E
         - 80F
+        - 80G
+        - C4 80.C
       hede_volume: c4h
       sieg:
         - '29.1'
@@ -113081,9 +113020,16 @@ coins:
         - '29.4'
         - '29.5'
         - '29.6'
-      numista: '89211'
+        - '29.7'
+      numista:
+        - '89211'
+        - '152595'
+        - '302280'
+        - '307035'
       others:
         - JSJ# 219
+        - B# 224
+        - B# 225
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -113092,8 +113038,15 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.156
+        source: numista
+        specimen: dk-numista-302280
       - value: 0.17
         source: ucoin
+        specimen: dk-tid-162995
+      - value: 0.17
+        source: ucoin
+        specimen: dk-tid-162996
       - value: 0.171
         source: hede
         specimen: dk-hede-c4h80a
@@ -113113,12 +113066,64 @@ coins:
         source: hede
         specimen: dk-hede-c4h80f
       - value: 0.171
+        source: hede
+        specimen: dk-hede-c4h80g
+      - value: 0.171
         source: ngc
+        specimen: ngc-1049777
+      - value: 0.171
+        source: ngc
+        specimen: ngc-1049878
+      - value: 0.171
+        source: ngc
+        specimen: ngc-1049879
+      - value: 0.171
+        source: ngc
+        specimen: ngc-1049880
+      - value: 0.171
+        source: ngc
+        specimen: ngc-1059940
+      - value: 0.171
+        source: ngc
+        specimen: ngc-64998
       - value: 0.171
         source: numismaster
+        specimen: denmark-numismaster-64992
+      - value: 0.171
+        source: numismaster
+        specimen: denmark-numismaster-64994
+      - value: 0.171
+        source: numismaster
+        specimen: denmark-numismaster-64997
+      - value: 0.171
+        source: numismaster
+        specimen: denmark-numismaster-64998
+      - value: 0.171
+        source: numismaster
+        specimen: denmark-numismaster-65000
+      - value: 0.171
+        source: numista
+        specimen: dk-numista-152595
+      - value: 0.171
+        source: numista
+        specimen: dk-numista-307035
     weight_rough_g:
+      - value: 0.95
+        source: kmk
+      - value: 1.16
+        source: numista
+        specimen: dk-numista-302280
+      - value: 1.23
+        source: kmk
+      - value: 1.32
+        source: numista
+        specimen: dk-numista-152595
       - value: 1.6
         source: ucoin
+        specimen: dk-tid-162995
+      - value: 1.6
+        source: ucoin
+        specimen: dk-tid-162996
       - value: 1.602
         source: hede
         specimen: dk-hede-c4h80a
@@ -113138,16 +113143,66 @@ coins:
         source: hede
         specimen: dk-hede-c4h80f
       - value: 1.602
+        source: hede
+        specimen: dk-hede-c4h80g
+      - value: 1.602
         source: ngc
+        specimen: ngc-1049777
+      - value: 1.602
+        source: ngc
+        specimen: ngc-1049878
+      - value: 1.602
+        source: ngc
+        specimen: ngc-1049879
+      - value: 1.602
+        source: ngc
+        specimen: ngc-1049880
+      - value: 1.602
+        source: ngc
+        specimen: ngc-1059940
+      - value: 1.602
+        source: ngc
+        specimen: ngc-64998
       - value: 1.602
         source: numismaster
+        specimen: denmark-numismaster-64992
+      - value: 1.602
+        source: numismaster
+        specimen: denmark-numismaster-64994
+      - value: 1.602
+        source: numismaster
+        specimen: denmark-numismaster-64997
+      - value: 1.602
+        source: numismaster
+        specimen: denmark-numismaster-64998
+      - value: 1.602
+        source: numismaster
+        specimen: denmark-numismaster-65000
       - value: 1.602
         source: numista
+        specimen: dk-numista-307035
+      - value: 1.602
+        source: numista
+        specimen: dk-numista-89211
     diameter_mm:
+      - value: 18.8
+        source: numista
+        specimen: dk-numista-302280
+      - value: 19.66
+        source: numista
+        specimen: dk-numista-152595
+      - value: 20.0
+        source: numista
+        specimen: dk-numista-307035
       - value: 20.0
         source: ucoin
+        specimen: dk-tid-162995
+      - value: 20.0
+        source: ucoin
+        specimen: dk-tid-162996
       - value: 20.21
         source: numista
+        specimen: dk-numista-89211
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/130750
@@ -113674,6 +113729,161 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/160669
         ref: KMM 160669 (Inv. FP 1533.11)
+        display: false
+      - type: literature
+        url: https://numismaster.com/MC_64994
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_64997
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_64998
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65000
+        ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/152595
+        ref: Numista N#152595 — 1 Skilling Dansk - Christian IV Oval shield; date in legend
+      - type: literature
+        url: https://en.numista.com/302280
+        ref: Numista N#302280 — 1 Skilling Dansk - Christian IV Oval shield; date in legend
+      - type: literature
+        url: https://en.numista.com/307035
+        ref: Numista N#307035 — 1 Skilling Dansk - Christian IV Oval shield with inward curved sides; date under value
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-skilling-1615-1619/?tid=162996
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137637
+        ref: KMM 137637 (Inv. RP 97.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137638
+        ref: KMM 137638 (Inv. RP 98.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/158031
+        ref: KMM 158031 (Inv. FP 1466.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276001
+        ref: KMM 276001 (Inv. FP 4227.16)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194811
+        ref: KMM 194811 (Inv. FP 3108.5473)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194812
+        ref: KMM 194812 (Inv. FP 3108.5472)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194813
+        ref: KMM 194813 (Inv. FP 3108.5471)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194814
+        ref: KMM 194814 (Inv. FP 3108.5470)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194815
+        ref: KMM 194815 (Inv. FP 3108.5469)
+        display: false
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-29.2-1615-1619-cuid-1049777-duid-1236451
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-39-1608-cuid-1049879-duid-1236456
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-a40.1-1608-1611-cuid-1049880-duid-1236457
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-a40.2-1611-1615-cuid-1059940-duid-1821951
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-a40.1-1612-1615-cuid-64998-duid-181702
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155198
+        ref: KMM 155198 (Inv. FP 3115.7)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/340356
+        ref: KMM 340356 (Inv. FP 5641.28)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355029
+        ref: KMM 355029 (Inv. FP 4844.6)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194791
+        ref: KMM 194791 (Inv. FP 3108.5493)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194792
+        ref: KMM 194792 (Inv. FP 3108.5492)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/166922
+        ref: KMM 166922 (Inv. FP 1780.16)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194786
+        ref: KMM 194786 (Inv. FP 3108.5498)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194787
+        ref: KMM 194787 (Inv. FP 3108.5497)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194788
+        ref: KMM 194788 (Inv. FP 3108.5496)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194789
+        ref: KMM 194789 (Inv. FP 3108.5495)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194790
+        ref: KMM 194790 (Inv. FP 3108.5494)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/344637
+        ref: KMM 344637 (Inv. FP 5492.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/347894
+        ref: KMM 347894 (Inv. FP 5424.63)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355028
+        ref: KMM 355028 (Inv. FP 4844.7)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369874
+        ref: KMM 369874 (Inv. FP 4379.20)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160652
+        ref: KMM 160652 (Inv. FP 1533.30)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/332268
+        ref: KMM 332268 (Inv. FP 6044.8)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194808
+        ref: KMM 194808 (Inv. FP 3108.5476)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194809
+        ref: KMM 194809 (Inv. FP 3108.5475)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/194810
+        ref: KMM 194810 (Inv. FP 3108.5474)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149894
+        ref: KMM 149894 (Inv. KP 1656.419)
         display: false
     verification_note:
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -138906,111 +139116,6 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Skilling
-    issuing_entity: danish_realm
-    id: c-d7d0fd51
-    year_first: 1608
-    year_last: 1608
-    year_label: '1608'
-    mint: Kopenhagen
-    catalog:
-      km: '39'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.171
-        source: ngc
-      - value: 0.171
-        source: numismaster
-    weight_rough_g:
-      - value: 1.602
-        source: ngc
-      - value: 1.602
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_64997
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-39-1608-cuid-1049879-duid-1236456
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-d7d0fd51
-    label: unified-ngc-1049879
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Skilling
-    issuing_entity: danish_realm
-    id: c-4765da1e
-    year_first: 1608
-    year_last: 1615
-    year_ranges:
-      -   - 1608
-          - 1609
-      -   - 1611
-          - 1615
-    year_label: 1608-1609, 1611-1615
-    catalog:
-      km: A40.1
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.171
-        source: ngc
-        specimen: ngc-1049880
-      - value: 0.171
-        source: ngc
-        specimen: ngc-64998
-      - value: 0.171
-        source: numismaster
-    weight_rough_g:
-      - value: 1.602
-        source: ngc
-        specimen: ngc-1049880
-      - value: 1.602
-        source: ngc
-        specimen: ngc-64998
-      - value: 1.602
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_64998
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-a40.1-1608-1611-cuid-1049880-duid-1236457
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-a40.1-1612-1615-cuid-64998-duid-181702
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-4765da1e
-    label: unified-ngc-1049880
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Skilling
     ruler: Frederick III
     issuing_entity: danish_realm
     id: c-75fd0a3d
@@ -143521,67 +143626,6 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Skilling
-    ruler: Christian IV
-    issuing_entity: danish_realm
-    id: c-cfdee14b
-    year_first: 1611
-    year_last: 1615
-    year_ranges:
-      -   - 1611
-          - 1615
-    year_label: 1611-1615
-    mint: Kopenhagen
-    catalog:
-      km: A40.2
-      numista: '307035'
-      hede: C4 80.C
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.171
-        source: ngc
-      - value: 0.171
-        source: numismaster
-      - value: 0.171
-        source: numista
-    weight_rough_g:
-      - value: 1.602
-        source: ngc
-      - value: 1.602
-        source: numismaster
-      - value: 1.602
-        source: numista
-    diameter_mm:
-      - value: 20.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65000
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/307035
-        ref: Numista N#307035 — 1 Skilling Dansk - Christian IV Oval shield with inward curved sides; date under value
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-a40.2-1611-1615-cuid-1059940-duid-1821951
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - c-cfdee14b
-    label: unified-ngc-1059940
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Skilling
     ruler: Frederik 3
     issuing_entity: danish_realm
     id: c-bedfa98e
@@ -147581,159 +147625,6 @@ coins:
       - c-5ce84232
     label: unified-dk-hede-c4h53c
     origin: promoted
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: scheide
-    nominal: 1 Skilling
-    ruler: Christian IV.
-    issuing_entity: danish_realm
-    id: c-c3645747
-    year_first: 1615
-    year_last: 1619
-    year_ranges:
-      -   - 1615
-          - 1615
-      -   - 1617
-          - 1619
-    year_label: 1615, 1617-1619
-    mint:
-      - Helsingør
-      - Kopenhagen
-    catalog:
-      km: '29.2'
-      hede: 80G
-      hede_volume: c4h
-      schou:
-        - '34'
-        - 123-126
-        - 144-146
-      sieg: '29.7'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.17
-        source: ucoin
-      - value: 0.171
-        source: hede
-      - value: 0.171
-        source: ngc
-      - value: 0.171
-        source: numismaster
-    weight_rough_g:
-      - value: 1.6
-        source: ucoin
-      - value: 1.602
-        source: hede
-      - value: 1.602
-        source: ngc
-      - value: 1.602
-        source: numismaster
-    diameter_mm:
-      - value: 20.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_64994
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h80.htm
-        ref: danskmoent.dk (Hede c4h80G)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-skilling-1615-1619/?tid=162996
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155198
-        ref: KMM 155198 (Inv. FP 3115.7)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/340356
-        ref: KMM 340356 (Inv. FP 5641.28)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/355029
-        ref: KMM 355029 (Inv. FP 4844.6)
-        display: false
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-skilling-km-29.2-1615-1619-cuid-1049777-duid-1236451
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194791
-        ref: KMM 194791 (Inv. FP 3108.5493)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194792
-        ref: KMM 194792 (Inv. FP 3108.5492)
-        display: false
-      - type: literature
-        url: https://en.numista.com/152595
-        ref: Numista N#152595 — 1 Skilling Dansk - Christian IV Oval shield; date in legend
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/166922
-        ref: KMM 166922 (Inv. FP 1780.16)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194786
-        ref: KMM 194786 (Inv. FP 3108.5498)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194787
-        ref: KMM 194787 (Inv. FP 3108.5497)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194788
-        ref: KMM 194788 (Inv. FP 3108.5496)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194789
-        ref: KMM 194789 (Inv. FP 3108.5495)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194790
-        ref: KMM 194790 (Inv. FP 3108.5494)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/344637
-        ref: KMM 344637 (Inv. FP 5492.1)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/347894
-        ref: KMM 347894 (Inv. FP 5424.63)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/355028
-        ref: KMM 355028 (Inv. FP 4844.7)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/369874
-        ref: KMM 369874 (Inv. FP 4379.20)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/160652
-        ref: KMM 160652 (Inv. FP 1533.30)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/332268
-        ref: KMM 332268 (Inv. FP 6044.8)
-        display: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 12.871
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - c-c3645747
-    label: unified-dk-hede-c4h80g
-    origin: promoted
   - fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -151467,96 +151358,6 @@ coins:
     composed_of:
       - c-48f7b00c
     label: unified-kmk-190273
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian 4
-    issuing_entity: danish_realm
-    id: c-df21a8c3
-    year_first: 1611
-    year_last: 1614
-    year_ranges:
-      -   - 1611
-          - 1611
-      -   - 1614
-          - 1614
-    year_label: 1611, 1614
-    mint: Helsingør
-    catalog:
-      hede:
-        - 80A
-        - 80C
-      schou:
-        - '27'
-        - '35'
-      others:
-        - B# 224
-        - B# 225
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.95
-        source: kmk
-      - value: 1.23
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276001
-        ref: KMM 276001 (Inv. FP 4227.16)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194808
-        ref: KMM 194808 (Inv. FP 3108.5476)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194809
-        ref: KMM 194809 (Inv. FP 3108.5475)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194810
-        ref: KMM 194810 (Inv. FP 3108.5474)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194811
-        ref: KMM 194811 (Inv. FP 3108.5473)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194812
-        ref: KMM 194812 (Inv. FP 3108.5472)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194813
-        ref: KMM 194813 (Inv. FP 3108.5471)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194814
-        ref: KMM 194814 (Inv. FP 3108.5470)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/194815
-        ref: KMM 194815 (Inv. FP 3108.5469)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137637
-        ref: KMM 137637 (Inv. RP 97.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137638
-        ref: KMM 137638 (Inv. RP 98.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/158031
-        ref: KMM 158031 (Inv. FP 1466.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149894
-        ref: KMM 149894 (Inv. KP 1656.419)
-        display: false
-    verification_note: *id020
-    composed_of:
-      - c-df21a8c3
-    label: unified-kmk-276001
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
