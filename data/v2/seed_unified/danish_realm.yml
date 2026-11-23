@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 8227 per-source seed entries.
-# Output: 1469 unified entries (one per physical coin).
+# Output: 1463 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -44975,7 +44975,11 @@ coins:
       - Helsingør
       - Kopenhagen
     catalog:
+      km:
+        - '16.2'
+        - '16.1'
       hede:
+        - '79'
         - 79A
         - 79B
         - 79C
@@ -45000,10 +45004,15 @@ coins:
         - '38.2'
         - '38.3'
         - '38.4'
+      numista: '47998'
+      others:
+        - B# 176a
+        - B# 175
     metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -45019,7 +45028,17 @@ coins:
       - value: 0.296
         source: hede
         specimen: dk-hede-c4h79d
+      - value: 0.296
+        source: numista
+      - value: 0.298
+        source: ucoin
+        specimen: dk-tid-163008
+      - value: 0.298
+        source: ucoin
+        specimen: dk-tid-163009
     weight_rough_g:
+      - value: 0.302
+        source: kmk
       - value: 0.95
         source: kmk
       - value: 1.16
@@ -45030,6 +45049,14 @@ coins:
         source: kmk
       - value: 1.35
         source: kmk
+      - value: 1.78
+        source: numista
+      - value: 1.78
+        source: ucoin
+        specimen: dk-tid-163008
+      - value: 1.78
+        source: ucoin
+        specimen: dk-tid-163009
       - value: 2.088
         source: hede
         specimen: dk-hede-c4h79a
@@ -45042,10 +45069,52 @@ coins:
       - value: 2.088
         source: hede
         specimen: dk-hede-c4h79d
+    diameter_mm:
+      - value: 22.3
+        source: numista
+      - value: 22.3
+        source: ucoin
+        specimen: dk-tid-163008
+      - value: 22.3
+        source: ucoin
+        specimen: dk-tid-163009
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65035
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65037
+        ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h79.htm
         ref: danskmoent.dk (Hede c4h79A)
+      - type: literature
+        url: https://en.numista.com/47998
+        ref: Numista N#47998 — 2 Skilling Dansk - Christian IV Year under value
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1603-1613/?tid=163008
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1618/?tid=163009
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137635
+        ref: KMM 137635 (Inv. RP 95.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137636
+        ref: KMM 137636 (Inv. RP 96.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152261
+        ref: KMM 152261 (Inv. FP 3574.33)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167339
+        ref: KMM 167339 (Inv. FP 1892.15)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167341
+        ref: KMM 167341 (Inv. FP 1892.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167342
+        ref: KMM 167342 (Inv. FP 1892.16)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/174300
         ref: KMM 174300 (Inv. FP 8166.87)
@@ -45070,6 +45139,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/574965
         ref: KMM 574965 (Inv. FP 11161.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/591530
+        ref: KMM 591530 (Inv. FP 2127.1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/693154
         ref: KMM 693154 (Inv. FP 280.25)
@@ -45184,6 +45256,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/191551
         ref: KMM 191551 (Inv. FP 3108.1733)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-16.2-1618-cuid-1050502-duid-1236533
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-16.1-1603-1613-cuid-1059944-duid-1236523
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_realm
     hede_muentzfuss_yield:
       value: 11.432
@@ -45191,17 +45269,31 @@ coins:
       basis: fin
       unit_raw: dlr
     composed_of:
+      - denmark-numismaster-65035
+      - denmark-numismaster-65037
       - dk-hede-c4h79a
       - dk-hede-c4h79b
       - dk-hede-c4h79c
       - dk-hede-c4h79d
+      - dk-numista-47998
+      - dk-tid-163008
+      - dk-tid-163009
+      - kmk-137635
+      - kmk-137636
+      - kmk-152261
+      - kmk-167339
+      - kmk-167341
+      - kmk-167342
       - kmk-174300
       - kmk-276003
       - kmk-276004
       - kmk-276005
       - kmk-276006
       - kmk-574965
+      - kmk-591530
       - kmk-693154
+      - ngc-1050502
+      - ngc-1059944
   - id: c-c134c34d
     class_id: c-c134c34d
     label: unified-dk-hede-c4h80a
@@ -109741,86 +109833,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-426966
-  - id: c-73800b76
-    class_id: c-73800b76
-    label: unified-dk-numista-47998
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1603
-    year_last: 1613
-    year_ranges:
-      -   - 1603
-          - 1605
-      -   - 1607
-          - 1609
-      -   - 1611
-          - 1611
-      -   - 1613
-          - 1613
-    year_label: 1603-1605, 1607-1609, 1611, 1613
-    ruler: Christian IV
-    mint: Kopenhagen
-    catalog:
-      km: '16.1'
-      numista: '47998'
-      hede: '79'
-      schou:
-        - '132'
-        - '133'
-      others:
-        - B# 176a
-        - B# 175
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.296
-        source: numista
-      - value: 0.298
-        source: ucoin
-    weight_rough_g:
-      - value: 1.78
-        source: numista
-      - value: 1.78
-        source: ucoin
-    diameter_mm:
-      - value: 22.3
-        source: numista
-      - value: 22.3
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65035
-        ref: NumisMaster
-      - type: literature
-        url: https://en.numista.com/47998
-        ref: Numista N#47998 — 2 Skilling Dansk - Christian IV Year under value
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1603-1613/?tid=163008
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137635
-        ref: KMM 137635 (Inv. RP 95.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/137636
-        ref: KMM 137636 (Inv. RP 96.1)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-16.1-1603-1613-cuid-1059944-duid-1236523
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65035
-      - dk-numista-47998
-      - dk-tid-163008
-      - kmk-137635
-      - kmk-137636
-      - ngc-1059944
   - id: c-150da363
     class_id: c-150da363
     label: unified-dk-numista-521607
@@ -118864,78 +118876,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-167336
-  - id: c-af7d2a6b
-    class_id: c-af7d2a6b
-    label: unified-kmk-167339
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1603
-    year_last: 1603
-    year_label: '1603'
-    ruler: Christian IV
-    catalog:
-      schou: '29'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167339
-        ref: KMM 167339 (Inv. FP 1892.15)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-167339
-  - id: c-5f38baa8
-    class_id: c-5f38baa8
-    label: unified-kmk-167341
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1609
-    year_last: 1609
-    year_label: '1609'
-    ruler: Christian IV
-    catalog:
-      schou: '43'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167341
-        ref: KMM 167341 (Inv. FP 1892.17)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-167341
-  - id: c-0c39b682
-    class_id: c-0c39b682
-    label: unified-kmk-167342
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1604
-    year_last: 1604
-    year_label: '1604'
-    ruler: Christian IV
-    catalog:
-      schou: '37'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167342
-        ref: KMM 167342 (Inv. FP 1892.16)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-167342
   - id: c-16c97ffe
     class_id: c-16c97ffe
     label: unified-kmk-167346
@@ -125518,35 +125458,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-591524
-  - id: c-7fe741d5
-    class_id: c-7fe741d5
-    label: unified-kmk-591530
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1608
-    year_last: 1608
-    year_label: '1608'
-    ruler: Christian IV
-    catalog:
-      hede: '79'
-      schou: '132'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.302
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/591530
-        ref: KMM 591530 (Inv. FP 2127.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-591530
   - id: c-f3cca086
     class_id: c-f3cca086
     label: unified-kmk-591612
@@ -130560,56 +130471,6 @@ coins:
     composed_of:
       - denmark-numismaster-65021
       - ngc-1050501
-  - id: c-21f62a86
-    class_id: c-21f62a86
-    label: unified-ngc-1050502
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Christian IV
-    mint: Kopenhagen
-    catalog:
-      km: '16.2'
-      hede: 79D
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.298
-        source: ucoin
-    weight_rough_g:
-      - value: 1.78
-        source: ucoin
-    diameter_mm:
-      - value: 22.3
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65037
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-skilling-1618/?tid=163009
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/152261
-        ref: KMM 152261 (Inv. FP 3574.33)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-16.2-1618-cuid-1050502-duid-1236533
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65037
-      - dk-tid-163009
-      - kmk-152261
-      - ngc-1050502
   - id: c-a3a2adbd
     class_id: c-a3a2adbd
     label: unified-ngc-1050511
