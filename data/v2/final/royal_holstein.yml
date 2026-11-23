@@ -5366,7 +5366,6 @@ coins:
     composed_of:
       - c-0bf076b2
       - c-85fe69cc
-      - c-8678981c
     label: km-79-chr-iv-1623
     origin: foundation
     v1_home_location: schleswig_holstein
@@ -7235,7 +7234,6 @@ coins:
       unit_raw: daler
     composed_of:
       - c-b3e4a39a
-      - c-e8383c93
       - c-f5e31581
     label: unified-dk-hede-c4h173
     origin: promoted
@@ -17409,10 +17407,10 @@ coins:
     year_last: 1640
     year_ranges:
       -   - 1620
-          - 1630
+          - 1620
       -   - 1640
           - 1640
-    year_label: 1620-1630, 1640
+    year_label: 1620, 1640
     year_verified: true
     uncertainty:
       year:
@@ -17427,6 +17425,16 @@ coins:
           source: numista
           value: 1620-1630
           seed: dk-numista-108002
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1588-1648
+          seed: kmk-693130
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1616-1625
+          seed: kmk-714836
         - kind: hedged
           how: museum
           source: kmk
@@ -17501,17 +17509,17 @@ coins:
           how: museum
           source: kmk
           value: 1616-1625
+          seed: kmk-714856
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1616-1625
           seed: kmk-714857
         - kind: hedged
           how: museum
           source: kmk
           value: 1616-1625
           seed: kmk-714859
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1588-1648
-          seed: kmk-693130
         - kind: hedged
           how: circa
           source: ngc
@@ -17543,6 +17551,7 @@ coins:
         source: hede
       - value: 0.888
         source: numista
+        specimen: dk-numista-108002
       - value: 0.888
         source: ucoin
     weight_rough_g:
@@ -17552,8 +17561,10 @@ coins:
         source: kmk
       - value: 1.9
         source: numista
+        specimen: dk-numista-301532
       - value: 1.93
         source: numista
+        specimen: dk-numista-108002
       - value: 1.93
         source: ucoin
       - value: 2.016
@@ -17563,6 +17574,7 @@ coins:
     diameter_mm:
       - value: 18.0
         source: numista
+        specimen: dk-numista-108002
       - value: 18.0
         source: ucoin
     sources:
@@ -17709,7 +17721,6 @@ coins:
       basis: fin
       unit_raw: daler
     composed_of:
-      - c-278d3c2d
       - c-be3c8d25
       - c-fe9c4171
     label: unified-dk-hede-c4h167

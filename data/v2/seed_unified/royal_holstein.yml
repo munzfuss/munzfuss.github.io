@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1497 per-source seed entries.
-# Output: 254 unified entries (one per physical coin).
+# Output: 251 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2584,20 +2584,26 @@ coins:
     kind: kurant
     nominal: 4 Skilling Lybsk
     year_first: 1620
-    year_last: 1630
+    year_last: 1640
     year_ranges:
       -   - 1620
-          - 1630
-    year_label: 1620-1630
+          - 1620
+      -   - 1640
+          - 1640
+    year_label: 1620, 1640
     ruler: Christian IV
     mint: Glückstadt
     catalog:
-      km: '9'
+      km:
+        - '85'
+        - '9'
       hede: '167'
       hede_volume: c4h
       schou: 36-48
       sieg: '168'
-      numista: '108002'
+      numista:
+        - '108002'
+        - '301532'
       lange: '55'
     metal: silver
     metal_verified: true
@@ -2612,9 +2618,16 @@ coins:
         source: hede
       - value: 0.888
         source: numista
+        specimen: dk-numista-108002
       - value: 0.888
         source: ucoin
     weight_rough_g:
+      - value: 1.52
+        source: kmk
+      - value: 1.63
+        source: kmk
+      - value: 1.73
+        source: kmk
       - value: 1.75
         source: kmk
       - value: 1.77
@@ -2631,10 +2644,14 @@ coins:
         source: kmk
       - value: 1.9
         source: kmk
+      - value: 1.9
+        source: numista
+        specimen: dk-numista-301532
       - value: 1.93
         source: kmk
       - value: 1.93
         source: numista
+        specimen: dk-numista-108002
       - value: 1.93
         source: ucoin
       - value: 1.94
@@ -2656,6 +2673,7 @@ coins:
     diameter_mm:
       - value: 18.0
         source: numista
+        specimen: dk-numista-108002
       - value: 18.0
         source: ucoin
     uncertainty:
@@ -2671,6 +2689,16 @@ coins:
           source: numista
           value: 1620-1630
           seed: dk-numista-108002
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1588-1648
+          seed: kmk-693130
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1616-1625
+          seed: kmk-714836
         - kind: hedged
           how: museum
           source: kmk
@@ -2745,6 +2773,11 @@ coins:
           how: museum
           source: kmk
           value: 1616-1625
+          seed: kmk-714856
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1616-1625
           seed: kmk-714857
         - kind: hedged
           how: museum
@@ -2758,9 +2791,39 @@ coins:
       - type: literature
         url: https://en.numista.com/108002
         ref: Numista N#108002 — 4 Skilling Lybsk - Christian IV Wire money
+      - type: literature
+        url: https://en.numista.com/301532
+        ref: Numista N#301532 — 4 Schilling "Reuterpfennig" - Christian IV
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693130
+        ref: KMM 693130 (Inv. FP 280.49)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714836
+        ref: KMM 714836 (Inv. FP 12405.214)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714847
+        ref: KMM 714847 (Inv. FP 12405.203)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714848
+        ref: KMM 714848 (Inv. FP 12405.202)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714850
+        ref: KMM 714850 (Inv. FP 12405.200)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714852
+        ref: KMM 714852 (Inv. FP 12405.198)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714853
+        ref: KMM 714853 (Inv. FP 12405.197)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714858
+        ref: KMM 714858 (Inv. FP 12405.192)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714860
+        ref: KMM 714860 (Inv. FP 12405.190)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714837
         ref: KMM 714837 (Inv. FP 12405.213)
@@ -2804,6 +2867,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/714855
         ref: KMM 714855 (Inv. FP 12405.195)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714856
+        ref: KMM 714856 (Inv. FP 12405.194)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714857
         ref: KMM 714857 (Inv. FP 12405.193)
       - type: museum
@@ -2822,7 +2888,10 @@ coins:
     composed_of:
       - dk-hede-c4h167
       - dk-numista-108002
+      - dk-numista-301532
       - dk-tid-163638
+      - kmk-693130
+      - kmk-714836
       - kmk-714837
       - kmk-714838
       - kmk-714839
@@ -2837,6 +2906,7 @@ coins:
       - kmk-714851
       - kmk-714854
       - kmk-714855
+      - kmk-714856
       - kmk-714857
       - kmk-714859
   - id: c-d691279b
@@ -3629,9 +3699,13 @@ coins:
     weight_rough_g:
       - value: 0.444
         source: kmk
+      - value: 0.45
+        source: kmk
       - value: 0.464
         source: kmk
       - value: 0.521
+        source: kmk
+      - value: 0.6
         source: kmk
       - value: 0.64
         source: numista
@@ -3705,6 +3779,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167000
         ref: KMM 167000 (Inv. FP 1780.63)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693132
+        ref: KMM 693132 (Inv. FP 280.47)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693133
+        ref: KMM 693133 (Inv. FP 280.46)
     issuing_entity: royal_holstein
     composed_of:
       - dk-hede-c4h171
@@ -3715,6 +3795,8 @@ coins:
       - kmk-166988
       - kmk-166989
       - kmk-167000
+      - kmk-693132
+      - kmk-693133
   - id: c-016eca90
     class_id: c-016eca90
     label: unified-dk-hede-c4h172
@@ -3835,6 +3917,8 @@ coins:
       - value: 0.59
         source: numismaster
     weight_rough_g:
+      - value: 7.52
+        source: kmk
       - value: 7.61
         source: kmk
       - value: 7.68
@@ -3929,6 +4013,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275570
         ref: KMM 275570 (Inv. FP 4227.494)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/276867
+        ref: KMM 276867 (Inv. FP 4227.502)
       - type: literature
         url: https://numismaster.com/MC_92991
         ref: NumisMaster
@@ -3958,6 +4045,7 @@ coins:
       - kmk-275568
       - kmk-275569
       - kmk-275570
+      - kmk-276867
       - schleswig_holstein-numismaster-92991
   - id: c-ce09f0ed
     class_id: c-ce09f0ed
@@ -19439,90 +19527,6 @@ coins:
       - denmark-numismaster-66005
       - dk-numista-24422
       - dk-tid-70747
-  - id: c-278d3c2d
-    class_id: c-278d3c2d
-    label: unified-dk-numista-301532
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 4 Skilling lybsk
-    year_first: 1640
-    year_last: 1640
-    year_label: '1640'
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      km: '85'
-      numista: '301532'
-      hede: '167'
-      lange: '55'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.52
-        source: kmk
-      - value: 1.63
-        source: kmk
-      - value: 1.73
-        source: kmk
-      - value: 1.9
-        source: numista
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1588-1648
-          seed: kmk-693130
-    sources:
-      - type: literature
-        url: https://en.numista.com/301532
-        ref: Numista N#301532 — 4 Schilling "Reuterpfennig" - Christian IV
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693130
-        ref: KMM 693130 (Inv. FP 280.49)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714836
-        ref: KMM 714836 (Inv. FP 12405.214)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714847
-        ref: KMM 714847 (Inv. FP 12405.203)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714848
-        ref: KMM 714848 (Inv. FP 12405.202)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714850
-        ref: KMM 714850 (Inv. FP 12405.200)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714852
-        ref: KMM 714852 (Inv. FP 12405.198)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714853
-        ref: KMM 714853 (Inv. FP 12405.197)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714858
-        ref: KMM 714858 (Inv. FP 12405.192)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714860
-        ref: KMM 714860 (Inv. FP 12405.190)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714856
-        ref: KMM 714856 (Inv. FP 12405.194)
-    note:
-      de: rytterpenning
-      en: rytterpenning
-      uk: rytterpenning
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-301532
-      - kmk-693130
-      - kmk-714836
-      - kmk-714856
   - id: c-701e067d
     class_id: c-701e067d
     label: unified-dk-numista-309418
@@ -20354,35 +20358,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-168013
-  - id: c-e8383c93
-    class_id: c-e8383c93
-    label: unified-kmk-276867
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1629
-    year_last: 1629
-    year_label: '1629'
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      hede: '173'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 7.52
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/276867
-        ref: KMM 276867 (Inv. FP 4227.502)
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-276867
   - id: c-25c1f619
     class_id: c-25c1f619
     label: unified-kmk-329739
@@ -20510,45 +20485,6 @@ coins:
     composed_of:
       - kmk-492892
       - kmk-492893
-  - id: c-8678981c
-    class_id: c-8678981c
-    label: unified-kmk-693132
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1624
-    year_last: 1625
-    year_ranges:
-      -   - 1624
-          - 1625
-    year_label: 1624-1625
-    ruler: Christian IV
-    mint: Glückstadt
-    catalog:
-      hede: '171'
-      schou: '67'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.45
-        source: kmk
-      - value: 0.6
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693132
-        ref: KMM 693132 (Inv. FP 280.47)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693133
-        ref: KMM 693133 (Inv. FP 280.46)
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-693132
-      - kmk-693133
   - id: c-f9ab2208
     class_id: c-f9ab2208
     label: unified-kmk-714752

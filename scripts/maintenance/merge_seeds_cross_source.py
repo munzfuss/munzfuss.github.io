@@ -2390,12 +2390,14 @@ _REIGN_GATE = os.environ.get("REIGN_GATE", "1") != "0"
 # label the same alloy either way), one Hede base, no explicit curator
 # no_merges between them. A chain through a neutral class must not carry a
 # conflict («1 Skilling» — «(?)» — «4 Skilling»), so one incompatible pair
-# refuses the whole group, which is then left to the curator. OFF by default
-# until the curator accepts its measured result: `HEDE_BASE=1` turns it on for
-# a measurement run (`HEDE_BASE_DUMP=<file>` writes every refused group with
-# its classes' members, `HEDE_BASE_EQUIV_LOG=1` prints groups joined only
-# through a nominal equivalence).
-_HEDE_BASE_RULE = os.environ.get("HEDE_BASE", "0") == "1"
+# refuses the whole group, which is then left to the curator. ON by default
+# since 2026-11-23 (V2_DECISIONS D57): the curator reviewed every group the
+# rule would join across finals (output/review/hede_base_groups.html, down to
+# 0) and named the members absorb's self-union alone held to their coin.
+# `HEDE_BASE=0` turns it off for a comparison run (`HEDE_BASE_DUMP=<file>`
+# writes every refused group with its classes' members, `HEDE_BASE_EQUIV_LOG=1`
+# prints groups joined only through a nominal equivalence).
+_HEDE_BASE_RULE = os.environ.get("HEDE_BASE", "1") != "0"
 # Untied-edge gate (step 2a', curator 2026-11-12). UNTIED_GATE=0 turns it off.
 _UNTIED_GATE = os.environ.get("UNTIED_GATE", "0") == "1"
 _HEDE_BASE_TOKEN = re.compile(r"^\s*(\d+)[A-Za-z]*\s*$")

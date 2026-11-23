@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 254 active, 562 retired.
+# 251 active, 565 retired.
 
 id: royal_holstein
 classes:
@@ -541,23 +541,6 @@ classes:
       - dk-numista-26710
       - dk-tid-70720
       - ngc-1050459
-  - id: c-278d3c2d
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-301532
-    legacy_id: unified-dk-numista-301532
-    members:
-      - dk-numista-301532
-      - kmk-693130
-      - kmk-714836
-      - kmk-714847
-      - kmk-714848
-      - kmk-714850
-      - kmk-714852
-      - kmk-714853
-      - kmk-714856
-      - kmk-714858
-      - kmk-714860
   - id: c-27b77b65
     status: active
     created: '2026-10-22'
@@ -1694,6 +1677,8 @@ classes:
       - kmk-368039
       - kmk-369864
       - kmk-492513
+      - kmk-693132
+      - kmk-693133
   - id: c-861c415f
     status: active
     created: '2026-10-22'
@@ -1711,14 +1696,6 @@ classes:
       - ngc-1063240
       - schleswig_holstein-numismaster-93039
       - schleswig_holstein-numismaster-93040
-  - id: c-8678981c
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-693132
-    legacy_id: unified-kmk-149624
-    members:
-      - kmk-693132
-      - kmk-693133
   - id: c-8956296d
     status: active
     created: '2026-10-22'
@@ -2819,13 +2796,6 @@ classes:
       - dk-hede-f4h61
       - dk-tid-169253
       - schleswig_holstein-numismaster-66629
-  - id: c-e8383c93
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-276867
-    legacy_id: unified-kmk-276867
-    members:
-      - kmk-276867
   - id: c-e8d37364
     status: active
     created: '2026-10-22'
@@ -2952,6 +2922,7 @@ classes:
       - kmk-275568
       - kmk-275569
       - kmk-275570
+      - kmk-276867
       - schleswig_holstein-numismaster-92991
   - id: c-f624971d
     status: active
@@ -3057,7 +3028,10 @@ classes:
     members:
       - dk-hede-c4h167
       - dk-numista-108002
+      - dk-numista-301532
       - dk-tid-163638
+      - kmk-693130
+      - kmk-714836
       - kmk-714837
       - kmk-714838
       - kmk-714839
@@ -3068,12 +3042,20 @@ classes:
       - kmk-714844
       - kmk-714845
       - kmk-714846
+      - kmk-714847
+      - kmk-714848
       - kmk-714849
+      - kmk-714850
       - kmk-714851
+      - kmk-714852
+      - kmk-714853
       - kmk-714854
       - kmk-714855
+      - kmk-714856
       - kmk-714857
+      - kmk-714858
       - kmk-714859
+      - kmk-714860
   - id: c-ffe6bc55
     status: active
     created: '2026-10-22'
@@ -3924,6 +3906,25 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-676933
+  - id: c-278d3c2d
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-301532
+    legacy_id: unified-dk-numista-301532
+    merged_into: c-fe9c4171
+    retired: '2026-11-23'
+    members:
+      - dk-numista-301532
+      - kmk-693130
+      - kmk-714836
+      - kmk-714847
+      - kmk-714848
+      - kmk-714850
+      - kmk-714852
+      - kmk-714853
+      - kmk-714856
+      - kmk-714858
+      - kmk-714860
   - id: c-27b5b991
     status: retired
     created: '2026-10-22'
@@ -5694,6 +5695,16 @@ classes:
     retired: '2026-11-06'
     members:
       - kmk-639308
+  - id: c-8678981c
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-693132
+    legacy_id: unified-kmk-149624
+    merged_into: c-85fe69cc
+    retired: '2026-11-23'
+    members:
+      - kmk-693132
+      - kmk-693133
   - id: c-86a305b4
     status: retired
     created: '2026-10-22'
@@ -7458,6 +7469,15 @@ classes:
     retired: '2026-11-05'
     members:
       - kmk-639301
+  - id: c-e8383c93
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-276867
+    legacy_id: unified-kmk-276867
+    merged_into: c-f5e31581
+    retired: '2026-11-23'
+    members:
+      - kmk-276867
   - id: c-e877d9d5
     status: retired
     created: '2026-10-22'
