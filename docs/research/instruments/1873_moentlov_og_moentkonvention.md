@@ -20,7 +20,7 @@
 Bekendtgørelser of 1874–76 only by title from a register) · C4 provenance 1/1 · C5 open questions
 1/1 · C6 recomputation 0,5/2 (figures recomputed; of the texts, Algreen-Ussing S. 294, 295, 296,
 298, 299, 519 and Traktater s. 363, 384, 396, 458, 459 read on the page image, the rest from the
-text layer; no output figures in hand). Commit: (pending).
+text layer; no output figures in hand). Commit: `55ee23a`.
 
 ## 1. Identification
 
