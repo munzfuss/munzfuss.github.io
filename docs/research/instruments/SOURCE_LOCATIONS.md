@@ -34,8 +34,8 @@ domain) · **IA:** `<id>` = `https://archive.org/details/<id>` · **GB:** `<id>`
 | Repertorium diplomaticum, 2. række (1451–1513) | 0 | HathiTrust record 006782806 | unverified; listed US-only |
 | Kolderup-Rosenvinge IV (1824) | 0 | DDB item `5O7ABU3E3Z7TISEWSD5CWBGFUB3XAPYY` → BSB scan | unverified |
 | Paus, Samling af gamle norske Love, 1,1 | 0 | DDB item `Q3NPGFORBA6TCVNLPMGVBGWIEOK7K3CJ` → BSB scan | unverified; vol. 2 not found; nb.no not searched |
-| Danske Kancelliregistranter 1535–1550 | 0 | IA: `danskekancellire00denm` | metadata |
-| Kong Frederik den Førstes danske Registranter | 0 | IA: `kongfrederikden00fredgoog` | metadata |
+| Danske Kancelliregistranter 1535–1550 | 0 | IA: `danskekancellire00denm` | in the corpus since 2026-11-24 as `danske-kancelliregistranter-1535-1550` |
+| Kong Frederik den Førstes danske Registranter | 0 | IA: `kongfrederikden00fredgoog` | in the corpus since 2026-11-24 as `frederik-i-danske-registranter` |
 | Schleswig-Holstein-Lauenburgische Regesten und Urkunden 1–3 | 0 | MDZ `bsb00073266` · `bsb00073267` · `bsb00073263` | unverified; **end at 1340** — nothing for 1390–1558 |
 | Diplomatarium Flensborgense 2 | 0 | MDZ `bsb11159317` | unverified; vol. 1 not found |
 | Aarsberetninger fra Geheimearchivet 3 · 6 | 0 | IA: `aarsberetninger00rigsgoog` · `aarsberetninger02wegegoog` | checked; **the volume with the Haandfæstninger (reported as Bd. 2) not identified** — candidates `aarsberetninger0{0,1,3,4,5}wegegoog` |
