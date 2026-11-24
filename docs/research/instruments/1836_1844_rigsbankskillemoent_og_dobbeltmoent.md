@@ -258,7 +258,7 @@ mill.
   and 1/15 Speciedaler, which § 1 of 1844 admits as 12 and 4 Courantschilling; dossier
   `1791_1796_speciesbank_specie_i_kongerigerne.md`); the kurant small coin called in 1844 (dossier
   `1801_1812_smaamoent_og_kobber.md`).
-- **After:** the «Rigsmønt» of 1854 and the Møntlov of 1873 — no source in hand (PLAN §1e).
+- **After:** the «Rigsmønt» of 10 February 1854 (`1854_rigsmoent_lov_og_patenter.md`; its Patents repeal the Verordnung of 26 June 1844) and the Møntlov of 1873 (`1873_moentlov_og_moentkonvention.md`).
 
 ## 7. Our data
 
