@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1513 per-source seed entries.
-# Output: 253 unified entries (one per physical coin).
+# Output: 252 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13139,8 +13139,8 @@ coins:
       - ngc-1052019
       - ngc-121095
       - schleswig_holstein-numismaster-92969
-  - id: c-7195f0d5
-    class_id: c-7195f0d5
+  - id: c-30b93dd0
+    class_id: c-30b93dd0
     label: unified-dk-hede-f3h151
     fuss: seed_unsorted
     phase: hede
@@ -13152,25 +13152,49 @@ coins:
     ruler: Frederik III
     mint: Glückstadt
     catalog:
-      km: '55'
+      km:
+        glu: '55'
       hede: '151'
       hede_volume: f3h
       schou: 51-52
       sieg: '152'
       bruun_collection_id: '6485'
       lange: '66'
+      numista: '204200'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.812
         source: hede
+      - value: 0.812
+        source: ngc
+      - value: 0.812
+        source: numismaster
+      - value: 0.812
+        source: numista
+      - value: 0.812
+        source: ucoin
     weight_rough_g:
       - value: 3.57
         source: hede
+      - value: 3.57
+        source: ngc
+      - value: 3.57
+        source: numismaster
+      - value: 3.57
+        source: ucoin
+      - value: 3.63
+        source: numista
+    diameter_mm:
+      - value: 25.0
+        source: ucoin
+      - value: 25.4
+        source: numista
     uncertainty:
       metal:
         - kind: inferred
@@ -13186,6 +13210,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h151.htm
         ref: danskmoent.dk (Hede f3h151)
+      - type: literature
+        url: https://en.numista.com/204200
+        ref: Numista N#204200 — ⅛ Reichs Daler - Frederik III
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-8-speciedaler-km-55-1665-cuid-1063133-duid-1239818
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_93011
+        ref: NumisMaster
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 10.076
@@ -13195,6 +13231,10 @@ coins:
     composed_of:
       - dk-bruun-6485
       - dk-hede-f3h151
+      - dk-numista-204200
+      - dk-tid-163641
+      - ngc-1063133
+      - schleswig_holstein-numismaster-93011
   - id: c-128abb8a
     class_id: c-128abb8a
     label: unified-dk-hede-f3h152
@@ -19469,72 +19509,6 @@ coins:
       - dk-tid-163662
       - ngc-1052026
       - schleswig_holstein-numismaster-93025
-  - id: c-30b93dd0
-    class_id: c-30b93dd0
-    label: unified-dk-numista-204200
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅛ Thaler
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    ruler: Frederik III
-    mint: Glückstadt
-    catalog:
-      km:
-        glu: '55'
-      numista: '204200'
-      lange: '66'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: ngc
-      - value: 0.812
-        source: numismaster
-      - value: 0.812
-        source: numista
-      - value: 0.812
-        source: ucoin
-    weight_rough_g:
-      - value: 3.57
-        source: ngc
-      - value: 3.57
-        source: numismaster
-      - value: 3.57
-        source: ucoin
-      - value: 3.63
-        source: numista
-    diameter_mm:
-      - value: 25.0
-        source: ucoin
-      - value: 25.4
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/204200
-        ref: Numista N#204200 — ⅛ Reichs Daler - Frederik III
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-8-speciedaler-km-55-1665-cuid-1063133-duid-1239818
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_93011
-        ref: NumisMaster
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-numista-204200
-      - dk-tid-163641
-      - ngc-1063133
-      - schleswig_holstein-numismaster-93011
   - id: c-2067c665
     class_id: c-2067c665
     label: unified-dk-numista-24422

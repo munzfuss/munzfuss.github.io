@@ -11004,78 +11004,6 @@ coins:
       - c-9c278826
     label: unified-dk-hede-f3h145a
     origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: scheide
-    nominal: 6 Skilling Lybsk
-    fraction: 1/16
-    ruler: Frederik III.
-    issuing_entity: royal_holstein
-    id: c-7195f0d5
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/8 Reichsdaler (6 Skilling Lybsk)
-          value: billon
-          seed: dk-bruun-6485
-    mint: Glückstadt
-    catalog:
-      km: '55'
-      hede: '151'
-      hede_volume: f3h
-      schou: 51-52
-      sieg: '152'
-      bruun_collection_id: '6485'
-      lange: '66'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: hede
-    weight_rough_g:
-      - value: 3.57
-        source: hede
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h151.htm
-        ref: danskmoent.dk (Hede f3h151)
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11229, p. 102
-      - type: numista
-        url: https://en.numista.com/204200
-        ref: Numista
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
-        ref: ucoin
-    note:
-      de: 'Vorderseite: Porträt, Rückseite: Wertangabe »VIII EINEN REICHSDALER« (= 1/8 Reichsthaler). Mit Müntzmeisterzeichen.'
-      en: "Obverse: portrait; reverse: value statement 'VIII EINEN REICHSDALER' (= 1/8 Reichsthaler). With a mintmaster's mark."
-      uk: 'Аверс: портрет; реверс: позначення номіналу «VIII EINEN REICHSDALER» (= 1/8 Reichsthaler). Зі знаком монетного майстра.'
-      da: 'Forside: portræt, bagside: værdiangivelse: VIII EINEN REICHSDALER (= 1/8 rigsdaler).'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 10.076
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - c-7195f0d5
-    label: unified-dk-hede-f3h151
-    origin: promoted
   - fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -16648,9 +16576,9 @@ coins:
       - c-5e81b057
     label: unified-dk-numista-181803
     origin: promoted
-  - fuss: 9_thaler
-    phase: II
-    kind: kurant
+  - fuss: 9_25_thaler
+    phase: I
+    kind: scheide
     nominal: ⅛ Thaler
     ruler: Frederik III.
     issuing_entity: royal_holstein
@@ -16659,6 +16587,14 @@ coins:
     year_first: 1665
     year_last: 1665
     year_label: '1665'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/8 Reichsdaler (6 Skilling Lybsk)
+          value: billon
+          seed: dk-bruun-6485
     mint: Glückstadt
     catalog:
       km:
@@ -16666,6 +16602,10 @@ coins:
       numista: '204200'
       lange: '66'
       bruun_collection_id: '6485'
+      hede: '151'
+      hede_volume: f3h
+      schou: 51-52
+      sieg: '152'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -16675,6 +16615,8 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: hede
+      - value: 0.812
         source: ngc
       - value: 0.812
         source: numismaster
@@ -16683,6 +16625,8 @@ coins:
       - value: 0.812
         source: ucoin
     weight_rough_g:
+      - value: 3.57
+        source: hede
       - value: 3.57
         source: ngc
       - value: 3.57
@@ -16712,6 +16656,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-8-speciedaler-km-55-1665-cuid-1063133-duid-1239818
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h151.htm
+        ref: danskmoent.dk (Hede f3h151)
     note:
       de: '⅛ Reichs Daler Friedrichs III. · Obverse römische Büste «FRIDERIC : 3 : D:G: DA : NOR : VA : GOT : REX»; Reverse «MONETA · NOVA · GLVCKSTADENSIS» — «VIII EINEN REICHS DALER · 1665». Glückstadter
         Theilstück im 9¼-Fuß bei reduziertem Feingehalt .812.'
@@ -16728,6 +16675,11 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
       da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    hede_muentzfuss_yield:
+      value: 10.076
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
     composed_of:
       - c-30b93dd0
     label: unified-dk-numista-204200
