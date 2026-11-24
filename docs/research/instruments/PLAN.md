@@ -145,6 +145,10 @@ are marked «not seen». The register has no rows for 1390–1480. The collectio
 named from memory; **availability online is not checked** — do that first, then
 `add-source-work` (downloads only with the curator's yes).
 
+**Searched 2026-11-25:** where each collection can be read online, by tier, is in
+[`SOURCE_LOCATIONS.md`](SOURCE_LOCATIONS.md) — most are in full view (nb.no, archive.org,
+Google Books); nothing downloaded yet.
+
 | ✓ | Period | In the cache | Missing | Closes |
 |---|---|---|---|---|
 | ☐ | 1390–1513 | Den danske Rigslovgivning (4 vols, to 1558); Hanserecesse I/2, 4–8, II/1–3, 6, III/1, 3–5; Lübeckisches UB 5 | Hanserecesse I/1, I/3, II/4–5, II/7, III/2, III/6–9; the other volumes of the Lübeckisches UB; Diplomatarium Norvegicum; Norges gamle Love (2. række); Repertorium diplomaticum regni Danici; charters of Slesvig and Holstein | register rows before 1480; the Lübeck and union-period links |
