@@ -351,7 +351,7 @@ _ISSUER_TO_KM_REGISTER = {
 # (Norway)»), while Denmark KM 230 is the 3 Speciedaler 1661.
 # Two limits, both from the measurement over the whole cache (2026-11-23):
 #   * only between the Denmark and Norway volumes — an S-H entity (royal_holstein)
-#     filed under «Denmark» is a separate question (39 records), not decided here;
+#     filed under «Denmark» has its own rule below (_DENMARK_ISSUER);
 #   * only a SINGLE bare KM — Numista lists cross-volume numbers bare side by side
 #     (N#119248 under «Norway»: «260» is Norway, «645» is Denmark KM 645), so the
 #     section does not name the volume of each member of a list.
@@ -361,15 +361,46 @@ _COUNTRY_ISSUER_TO_KM_REGISTER = {
 }
 _COUNTRY_VOLUMES = frozenset(_COUNTRY_ISSUER_TO_KM_REGISTER.values())
 
+# Numista issuer «Denmark» on a coin that routes to a Schleswig-Holstein entity
+# (royal_holstein, by its Altona / Rethwisch / Rendsburg mint): the bare KM is a
+# Krause Denmark-volume number, not an S-H-section one. Checked 2026-11-23
+# against NumisMaster / NGC «DENMARK» records by KM and years: 66 of 68 such
+# records match the Denmark volume. The two exceptions are the Rendsburg pieces
+# (N#88660 KM 6, N#89702 KM 5), which are Krause HOLSTEIN-GOTTORP-RENDSBORG
+# numbers (NumisMaster MC_66626 / MC_66636; Denmark KM 5 / 6 are the Penning
+# 1602) — hence mint Rendsburg → «hgr». A list is folded only when all its
+# numbers share one base («640», «640.1»); a list of different bases may mix
+# volumes (the N#119248 case) and stays as printed.
+_DENMARK_ISSUER = "denmark"
+_RENDSBURG_KM_REGISTER = "hgr"
+_KM_BASE_RE = re.compile(r"([A-Za-z]*\d+)")
 
-def _apply_km_country_register(catalog: dict, entity, issuer: str | None = None) -> None:
+
+def _km_single_base(vals) -> bool:
+    bases = set()
+    for v in vals:
+        m = _KM_BASE_RE.match(str(v).strip())
+        if not m:
+            return False
+        bases.add(m.group(1).upper())
+    return len(bases) == 1
+
+
+def _mint_is_rendsburg(mint) -> bool:
+    ms = mint if isinstance(mint, list) else [mint]
+    return any("rendsburg" in str(m or "").lower() for m in ms)
+
+
+def _apply_km_country_register(catalog: dict, entity, issuer: str | None = None,
+                                mint=None) -> None:
     """Fold Numista's «<km> (<Country>)» volume tags into the register-keyed dict
     form ``{register: km}`` the schema uses for cross-volume KMs (KMRef). A bare
     (untagged) value takes the Krause section of the Numista issuer when it has
     one (`_ISSUER_TO_KM_REGISTER`), or the country volume of the issuer when that
     differs from the entity's own volume (`_COUNTRY_ISSUER_TO_KM_REGISTER`, a
-    single bare value between the Denmark and Norway volumes only),
-    else the coin's own entity register. In place; a no-op when every value is
+    single bare value between the Denmark and Norway volumes only), or — issuer
+    «Denmark» on an S-H-group entity — the Denmark volume («hgr» for mint
+    Rendsburg; `_DENMARK_ISSUER`), else the coin's own entity register. In place; a no-op when every value is
     bare and in the entity's own volume, and left untouched entirely if any tag
     names a country we don't map (e.g. «(OM)») or a bare value has no
     resolvable register."""
@@ -388,6 +419,14 @@ def _apply_km_country_register(catalog: dict, entity, issuer: str | None = None)
             and country_reg != own_reg and isinstance(km, str)
             and "(" not in km):
         issuer_reg = country_reg
+    from lib.km_registers import match_group as _match_group
+    if (issuer_reg is None and iss == _DENMARK_ISSUER
+            and any(_match_group(_ENTITY_TO_KM_REGISTER.get(e)) == "sh"
+                    for e in (entity if isinstance(entity, list) else [entity]))
+            and not isinstance(km, dict)
+            and not any("(" in str(v) for v in vals) and _km_single_base(vals)):
+        issuer_reg = (_RENDSBURG_KM_REGISTER if _mint_is_rendsburg(mint)
+                      else _COUNTRY_ISSUER_TO_KM_REGISTER[_DENMARK_ISSUER])
     if not any("(" in str(v) for v in vals):
         if issuer_reg and not isinstance(km, dict):
             catalog["km"] = {issuer_reg: km}
@@ -624,7 +663,8 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
         entry["_entity_routing_hint"] = hint
     # Fold any «<km> (<Country>)» Krause-volume tag into the register-keyed km
     # form now that the entity (→ default register for bare values) is known.
-    _apply_km_country_register(entry["catalog"], routed_ent, canonical.get("issuer"))
+    _apply_km_country_register(entry["catalog"], routed_ent, canonical.get("issuer"),
+                               canonical.get("mint"))
     # _source_note candidate (Phase-1, commit 80a1b62): «obverse / reverse»
     # descriptions joined, cleaned + language-tagged (en) for the later note-
     # selector. Non-schema (underscore) → stripped before the strict Coin schema

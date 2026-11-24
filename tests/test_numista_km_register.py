@@ -78,8 +78,9 @@ class TestIssuerCountryVolume(unittest.TestCase):
         self.assertEqual(self._km(["260", "645"], "danish_realm", "Norway"),
                          ["260", "645"])
 
-    def test_sh_entity_not_decided(self):
-        self.assertEqual(self._km("640", "royal_holstein", "Denmark"), "640")
+    def test_sh_entity_under_denmark_is_denmark_volume(self):
+        # was undecided until 2026-11-24; see TestDenmarkIssuerOnSHEntity
+        self.assertEqual(self._km("640", "royal_holstein", "Denmark"), {"dk": "640"})
 
     def test_sections_with_own_numbering_unchanged(self):
         self.assertEqual(self._km("26", "royal_holstein", "Glückstadt, City of"),
@@ -109,6 +110,43 @@ class TestMergerCrossRegisterSingleKm(unittest.TestCase):
         # dk on a danish_norway coin → keep the dict (don't drop the register)
         km, _ = _merge_km_field([{"id": "x", "catalog": {"km": {"dk": "479"}}}], "danish_norway")
         self.assertEqual(km, {"dk": "479"})
+
+
+class TestDenmarkIssuerOnSHEntity(unittest.TestCase):
+    """Issuer «Denmark» on an S-H-group entity: bare KM is the Denmark volume,
+    mint Rendsburg the HOLSTEIN-GOTTORP-RENDSBORG section (2026-11-24)."""
+
+    def _apply(self, km, entity, issuer="Denmark", mint="Altona, Schleswig-Holstein"):
+        cat = {"km": km}
+        bns._apply_km_country_register(cat, entity, issuer, mint)
+        return cat["km"]
+
+    def test_altona_bare_goes_to_dk(self):
+        # N#132002-type: Denmark KM 651 struck in Altona
+        self.assertEqual(self._apply("651", "royal_holstein"), {"dk": "651"})
+
+    def test_rendsburg_goes_to_hgr(self):
+        # N#88660: Krause HOLSTEIN-GOTTORP-RENDSBORG KM 6 (MC_66626)
+        self.assertEqual(self._apply("6", "royal_holstein", mint="Rendsburg"), {"hgr": "6"})
+        self.assertEqual(self._apply("5", "royal_holstein", mint=["Rendsburg, Germany"]),
+                         {"hgr": "5"})
+
+    def test_single_base_list_folds(self):
+        self.assertEqual(self._apply(["640", "640.1"], "royal_holstein"),
+                         {"dk": ["640", "640.1"]})
+
+    def test_mixed_base_list_left_as_printed(self):
+        self.assertEqual(self._apply(["260", "645"], "royal_holstein"), ["260", "645"])
+
+    def test_joint_list_led_by_danish_realm_unchanged(self):
+        # bare value already reads in the Denmark volume
+        self.assertEqual(self._apply("758", ["danish_realm", "royal_holstein"]), "758")
+
+    def test_other_issuer_on_sh_entity_unchanged(self):
+        self.assertEqual(self._apply("651", "royal_holstein", issuer="Norway"), "651")
+
+    def test_tagged_value_not_overridden(self):
+        self.assertEqual(self._apply("75 (Norway)", "royal_holstein"), {"nor": "75"})
 
 
 if __name__ == "__main__":
