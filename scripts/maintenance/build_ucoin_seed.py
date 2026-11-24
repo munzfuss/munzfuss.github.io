@@ -134,6 +134,7 @@ ENTITY_WINDOW: dict[str, tuple[int, int]] = {
     # 1914. `--all` iterates ENTITY_WINDOW.keys() + build_seed gates on
     # membership, so these MUST be here for the entities to be processed.
     "erzbisthum_bremen_verden": (1559, 1914),
+    "hanseatic_bremen": (1559, 1914),
     "grafschaft_oldenburg": (1559, 1914),
     "herzogtum_braunschweig_lueneburg": (1559, 1914),
     "herzogtum_sachsen_lauenburg": (1559, 1914),
@@ -157,6 +158,18 @@ _DEPRECATED_ENTITIES = frozenset({"gesamtstaat"})
 # `_resolve_target_entity` — the catch-all default tier. See that
 # function's docstring for why every other tag is left alone.
 _MINT_ROUTED_ENTITY = "danish_realm"
+
+# ucoin's `bremen-` URL holds two issuers: the archbishopric («Archbishopric
+# of Bremen», 29 records) and the city («Free Imperial City of Bremen» 92,
+# «Free Hanseatic City of Bremen» 12). The URL map predates the
+# hanseatic_bremen entity (2026-11-07) and sent all of them to
+# erzbisthum_bremen_verden, where the city's coins rendered on the
+# archbishopric page. The city series route to the city (curator
+# 2026-11-24).
+_BREMEN_CITY_SERIES: dict[str, str] = {
+    "free imperial city of bremen": "hanseatic_bremen",
+    "free hanseatic city of bremen": "hanseatic_bremen",
+}
 
 # ucoin `period` series → V2 issuing_entity, for the records where ucoin
 # publishes NO mint at all.
@@ -806,6 +819,11 @@ def _resolve_target_entity(cache: dict) -> str | list[str] | None:
     `audit_entity_misclassifications.py`, which reports them.
     """
     by_url = URL_COUNTRY_TO_ENTITY.get(_url_country_token(cache.get("url")))
+    # ucoin files the city and the archbishopric of Bremen under one
+    # `bremen-` URL; its `period` series tells them apart (2026-11-24).
+    series_ent = _BREMEN_CITY_SERIES.get(_period_series(cache.get("period")))
+    if by_url == "erzbisthum_bremen_verden" and series_ent:
+        return series_ent
     if by_url != _MINT_ROUTED_ENTITY:
         return by_url
     mint = cache.get("mint_text")

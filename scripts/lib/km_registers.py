@@ -53,6 +53,7 @@ ENTITY_TO_KM_REGISTER: dict[str, str] = {
     "hanseatic_hamburg": "de-hh",
     "hanseatic_lubeck": "de-hl",
     "erzbisthum_bremen_verden": "de-bv",
+    "hanseatic_bremen": "de-hb",
     "herzogtum_braunschweig_lueneburg": "de-bl",
     "herzogtum_sachsen_lauenburg": "de-sl",
     "grafschaft_oldenburg": "de-old",
