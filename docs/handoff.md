@@ -34,6 +34,11 @@
   state's mint belongs to the issuer — curator); Plön Thaler 1761 / Ducat 1760 and Gottorp Thaler 1673 joined their
   finals; Bremen 2 Mark 1904 moved from hanseatic_hamburg to hanseatic_bremen, and the German Empire page now consumes
   hanseatic_bremen 1871-1914 (Bremen has no state page); six Bremen medals excluded as exonumia.
+- **Bremen city (2026-11-24):** location `bremen` created, listed `unpublished` in the munzfuss profile (validated,
+  not rendered — publish by removing the id); ucoin's 104 city coins moved off the archbishopric page into
+  hanseatic_bremen (66 joined Numista classes), KM register de-hb. KM tooltips now say «розділ» / Abschnitt /
+  section for Krause Denmark / Norway / Schleswig-Holstein. Separate German-entity Krause registers NOT added:
+  no cross-section merges measured, and ucoin's «Duchy of Brunswick-Lüneburg» is ambiguous (Calenberg / Celle).
 - **Open:** the merged KM 55 row shows nominal «⅛ Thaler» (Numista) where Hede has «6 Skilling Lybsk», coin «VIII
   EINEN REICHS DALER»; five .812 fractions (1/16 Speciedaler 1658-1680) sit in 9_thaler II by the 2026-05-29
   automatic placement, which that phase's text does not cover; Plön Thaler 1761 (c-92d54f70, KM 28 PLOEN) routed to
