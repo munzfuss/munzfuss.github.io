@@ -212,11 +212,17 @@ def _resolve_default_entity(canonical: dict[str, Any]) -> str | list[str] | None
     """
     year = canonical.get("year_first")
     mint = canonical.get("mint")
+    issuer = canonical.get("issuer")
+    # A state that had its coin struck at another state's mint is the issuer;
+    # the mint city is only where it was struck (curator 2026-11-24). Numista's
+    # issuer decides for these issuers, the mint stays the coin's mint.
+    iss_ent = classify_issuer_to_entity(issuer) if issuer else None
+    if iss_ent in _ISSUER_OVER_MINT:
+        return iss_ent
     if mint:
         ent = classify_mint_to_entity(mint, year=year)
         if ent is not None:
             return ent
-    issuer = canonical.get("issuer")
     if issuer:
         ent = classify_issuer_to_entity(issuer)
         if ent is not None:
@@ -233,6 +239,27 @@ def _resolve_default_entity(canonical: dict[str, Any]) -> str | list[str] | None
 
 
 _GENERIC_COUNTRIES = frozenset({"german states", "germany"})
+
+# Issuers whose coins Numista files under a mint of ANOTHER state: the issuer
+# decides the entity, not the mint (the rule the ucoin builder already
+# follows — «mint city is not issuer», build_ucoin_seed._resolve_target_entity).
+# Measured 2026-11-24 over the whole Numista cache, every case a coin of the
+# issuer struck elsewhere: Plön Thaler 1761 at Rethwisch (Plön's own mint
+# until the line died out that year; N#41864 = KM 28) and Ducat 1760 at
+# Hamburg (N#222051 = KM 27); Gottorp Thaler 1673-1674 at Hamburg (N#313829 =
+# KM 118, Bruun lot 14417 the same); Bremen 2 Mark 1904 at Hamburg (N#20410,
+# KM 250, mint J); Lauenburg ⅔ Thaler 1830 at Altona (N#31393). NOT for the
+# issuers of one sovereign's several territories — «Denmark», «Norway»,
+# «Danish duchies of Schleswig and Holstein», «Holstein-Schaumburg-Pinneberg»:
+# there the mint and the currency system decide between danish_realm /
+# royal_holstein / royal_slesvig / danish_norway (or Pinneberg / Schaumburg),
+# which is no commission at another state's mint.
+_ISSUER_OVER_MINT = frozenset({
+    "norburg_plon_duchy",
+    "gottorp_duchy",
+    "hanseatic_bremen",
+    "herzogtum_sachsen_lauenburg",
+})
 
 
 _SPACED_DASH = re.compile(r"\s+-\s+")
