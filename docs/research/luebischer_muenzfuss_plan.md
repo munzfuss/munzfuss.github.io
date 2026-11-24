@@ -117,7 +117,11 @@
 | ☐ | 8.2 `docs/handoff.md` | — |
 | ☐ | 8.3 Christian I / Christoffer / Erik of Pomerania silver under the same card (Hvid since c. 1440). Curator direction 2026-10-24: the Hvid line follows its own standard from the start of the Lübeck system in Denmark, c. 1400 (found in another session), so the Fuß is not cut at 1481; the Skilling and Søsling of 1468–1513 belong to the Lübeck 11½- and 13-mark systems and did not affect the Hvid — they are to become separate Fuß later (not in this session). Candidates: `output/lybsk_candidates.md` group C (regenerate; gitignored). | denmark.yml phases, fuesse.yml card, classification_decisions |
 
+| ⏸ | 8.4 (curator 2026-11-24, deferred until the card's denominations section exists) One sentence there on Hvid = Witten (4 Pf) in period 0: Flensborg rows carry the German names (Witten / Dreiling / Penning — Holstein counts' coinage «efter hanseatisk Mønster», Nöbbe 1930 s. 2), the Ribe row the Danish «Hvid» (town coin of the kingdom; Galster 1, Märcher «Ribe-hvid»). Märcher 2018 s. 371 draws the same line in one sentence: «Denne produktion af hvide var nok foranlediget af Flensburgs udmøntninger af witten». Nominals stay as they are (curator agreed); no unification. Cite via `cite-source` (new key for the Märcher s. 371 passage) | fuesse.yml card (denominations), refs_pool |
+
 ## Log
+
+- 2026-11-24 — 8.4 added: Hvid vs Witten naming in period 0 kept as is; explanatory sentence deferred to the denominations section.
 
 - 2026-10-15 — Card built (3.1–3.5, 4.1, 4.3): `fuesse.yml::luebischer_muenzfuss` (name «Lübischer Müntzfuß», grid 103½ Schilling / rough Cologne mark @ 9 Lot = Jesse's 15 June 1468 treaty, reaffirmed 1483/1492; rows 1468 · Haandfæstning 1483 · Period I · Haandfæstning 1513; card text; fractions 2 / 1 / ½ Schilling only — Hvid has no Lübeck counterpart in 1468, open; events 1481–1513, std_end approx); denmark.yml: name override «Lybsk Møntfod», spec, pdate_label, phase I, timeline bar (order 7.5, timeline from 1480). Six new pool keys (Jesse ×2, Wilcke 7-1 s. 134/143, Eriksson s. 5 ×2). Not yet: instruments blocks, closing, coins (6.x), neighbour cross-refs (4.4).
 
