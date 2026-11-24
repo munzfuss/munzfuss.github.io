@@ -30,6 +30,7 @@ def _html(name: str) -> str:
     return (CACHE / name).read_text(encoding="utf-8", errors="replace")
 
 
+@unittest.skipUnless((CACHE / "f6hede.htm").exists(), "harvest cache (scripts/cache submodule) not attached")
 class RootCoinPages(unittest.TestCase):
     def test_scanner_sees_hede_cell_links(self):
         found = set()
