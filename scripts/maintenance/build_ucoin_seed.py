@@ -197,6 +197,55 @@ def _period_series(period: str | None) -> str:
     return re.sub(r"\s*\(.*$", "", str(period)).strip().lower()
 
 
+# ucoin `period` series → the Krause section a bare «KM# N» of the record is
+# numbered in, on a coin that routes to a Schleswig-Holstein-group entity.
+# ucoin's territorial series follow Krause's sections, and its currency eras on
+# a `denmark-` URL are Krause's Denmark volume. Checked 2026-11-24 against
+# NumisMaster / NGC records by KM base and years over the 86 royal_holstein
+# ucoin records with a bare KM: «Glückstadt» 50 — 42 match the Glückstadt section,
+# 7 that section and a Norway number by coincidence, 1 unmatched (KM 83, the
+# 4 Mark 1694-1696, whose class already reads glu 83); «Holstein-Gottorp-
+# Rendsburg» 4 / 4 hgr; «Duchy of Schleswig-Holstein» 13 / 13 and «Provisional
+# Government» 2 / 2 sh; «Rigsdaler» 5 / 5 and «Rigsbankdaler» 12 / 12 Denmark.
+# Without it a Denmark number was read in the S-H section and could not meet
+# the same coin's Denmark-volume KM from NumisMaster / NGC / Numista
+# (tid 79557, KM 661, 2026-11-24).
+_PERIOD_SERIES_TO_KM_REGISTER: dict[str, str] = {
+    "glückstadt": "glu",
+    "gluckstadt": "glu",
+    "glueckstadt": "glu",
+    "holstein-gottorp-rendsburg": "hgr",
+    "duchy of schleswig-holstein": "sh",
+    "provisional government": "sh",
+}
+# Currency eras — Denmark volume only on a `denmark-` URL (ucoin files the same
+# era names under Norway as well).
+_DENMARK_ERA_SERIES = frozenset({
+    "rigsdaler", "rigsbankdaler", "speciedaler", "rigsdaler rigsmønt",
+})
+
+
+def _apply_km_period_register(catalog: dict, issuing, cache: dict) -> None:
+    """Name the Krause section of a bare single KM on an S-H-group coin, from
+    ucoin's `period` (`_PERIOD_SERIES_TO_KM_REGISTER`, `_DENMARK_ERA_SERIES`).
+    In place; a no-op for any other entity, for a dict / list KM, or for a
+    series not in the tables."""
+    km = catalog.get("km")
+    if not isinstance(km, str) or "(" in km:
+        return
+    from lib.km_registers import ENTITY_TO_KM_REGISTER, match_group
+    ents = issuing if isinstance(issuing, list) else [issuing]
+    if not any(match_group(ENTITY_TO_KM_REGISTER.get(e)) == "sh" for e in ents):
+        return
+    series = _period_series(cache.get("period"))
+    reg = _PERIOD_SERIES_TO_KM_REGISTER.get(series)
+    if reg is None and series in _DENMARK_ERA_SERIES \
+            and _url_country_token(cache.get("url")) == "denmark":
+        reg = "dk"
+    if reg:
+        catalog["km"] = {reg: km}
+
+
 def _mint_to_entity(mint) -> str | list[str] | None:
     """Map mint(s) → V2 issuing_entity per mint-driven classification.
     Single mint → scalar entity; joint → sorted list. None when missing."""
@@ -497,6 +546,7 @@ def _build_entry_from_cache(cache: dict, entity: str,
     # and homes to the overlap member rather than the alphabetical first.
     # They coincide for the scalar case, which is most records.
     issuing = issuing_entity if issuing_entity is not None else entity
+    _apply_km_period_register(catalog, issuing, cache)
 
     metal_attested = bool(cache.get("composition_text"))
 
