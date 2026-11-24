@@ -26,9 +26,12 @@
   branch and its worktree are deleted.
 - **Shipped:** 8c471f4 — the KM 76 suspect-mark reason on the Bruun seed cited Bruun Part II lot 14063 by PDF
   page 219 (printed 193); healed with heal_bruun_printed_pages.py. Full unittest suite now OK (2102).
-- **Open (curator):** three superseded shells in royal_holstein that absorb keeps («KEPT because they carry
-  curation», monotonic guard) — each is a self-only class whose seed lives in another final, so the coin
-  renders twice. Present on `main` too (not from this merge):
+- **Done (eb3210f, curator «Так, усі три»):** the three shells below folded as `_recorded_removals` kind: shell;
+  Hede 124 and Hede 44 now render once. Still open: the Fuß of c-5e81b057 (Hede 124, 9_thaler II by automatic
+  placement; Hede gives «Marken fin udbragt til 10,076 daler») and the Hede 44 Note on c-1d4f183a, which gives the
+  legend without «SCHLESW.HOLST.» (Hede prints it with). Was: three superseded shells in royal_holstein that absorb
+  kept («KEPT because they carry curation», monotonic guard) — each a self-only class whose seed lives in another
+  final, so the coin rendered twice. Present on `main` too (not from this merge):
   - c-ff5dd463 Hede 124, 3 Skilling Lybsk 1680, 9_25_thaler I — real class c-5e81b057 «1⁄16 Thaler», 9_thaler II
     (its own note says «у 9¼-Fuß»); both rows render.
   - c-ab298d00 Hede 44, 1/24 Speciedaler 1787–1801, 9_25_thaler II — real class c-1d4f183a, 9_25_thaler III;
