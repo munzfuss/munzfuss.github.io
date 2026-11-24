@@ -790,6 +790,32 @@ def _drop_relabelled_km(members: list[dict], entity_id: str | None) -> list[dict
     return [{**fc, "catalog": cat}, *members[1:]]
 
 
+def _unwrap_own_km(members: list[dict], entity_id: str | None) -> list[dict]:
+    """The final's own KM (members[0]) in the entity's single own volume
+    («{sh: '116'}» on a royal_holstein final) enters the merge as the bare
+    number, so whether the volume is named or inferred is decided by the
+    member seeds alone (`_merge_km_field`, named_regs) and a label the final
+    once stored does not keep itself alive. Multi-volume dicts and a
+    `_curation_holds` on catalog / catalog.km are left as they are."""
+    if not members:
+        return members
+    fc = members[0]
+    h = fc.get("_curation_holds")
+    held = set(h.keys() if isinstance(h, dict) else (h or []))
+    if held & {"catalog", "catalog.km"}:
+        return members
+    km = (fc.get("catalog") or {}).get("km")
+    if not isinstance(km, dict) or len(km) != 1:
+        return members
+    (reg, val), = km.items()
+    from lib.km_registers import ENTITY_TO_KM_REGISTER
+    if _norm_km_register(reg) != ENTITY_TO_KM_REGISTER.get(entity_id or ""):
+        return members
+    cat = dict(fc.get("catalog") or {})
+    cat["km"] = val
+    return [{**fc, "catalog": cat}, *members[1:]]
+
+
 def _apply_catalog_km_hold(enriched: dict, fc: dict) -> None:
     """`_curation_holds: {catalog.km: "why"}` freezes ONLY the KM register of
     a final, in the exact shape stored (2026-10-23, km-105-chr-v-1683). A
@@ -1461,7 +1487,8 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # Catalog: accumulate list-form on conflict (D18). Foundation entries
     # come first → their values take authority position in the list.
     cat, cat_conflicts = _deep_merge_catalog(
-        _drop_relabelled_km(members, entity_id), entity_id)
+        _unwrap_own_km(_drop_relabelled_km(members, entity_id), entity_id),
+        entity_id)
     if cat:
         out["catalog"] = cat
     conflicts.extend(cat_conflicts)

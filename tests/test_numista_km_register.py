@@ -101,10 +101,21 @@ class TestNorwayRegisterIsNotYamlBoolean(unittest.TestCase):
 
 
 class TestMergerCrossRegisterSingleKm(unittest.TestCase):
-    def test_single_register_matching_entity_collapses(self):
-        # dk on a danish_realm coin → bare (unchanged behaviour)
+    def test_named_own_register_kept(self):
+        # a member that names the entity's own volume keeps it named, so the
+        # page does not label an attested section «inferred» (2026-11-24)
         km, _ = _merge_km_field([{"id": "x", "catalog": {"km": {"dk": "75"}}}], "danish_realm")
+        self.assertEqual(km, {"dk": "75"})
+
+    def test_bare_own_register_collapses(self):
+        km, _ = _merge_km_field([{"id": "x", "catalog": {"km": "75"}},
+                                 {"id": "y", "catalog": {"km": "75"}}], "danish_realm")
         self.assertEqual(km, "75")
+
+    def test_bare_joins_named_own_register(self):
+        km, _ = _merge_km_field([{"id": "x", "catalog": {"km": {"sh": "130"}}},
+                                 {"id": "y", "catalog": {"km": "130a"}}], "royal_holstein")
+        self.assertEqual(km, {"sh": ["130", "130a"]})
 
     def test_single_register_cross_volume_kept(self):
         # dk on a danish_norway coin → keep the dict (don't drop the register)

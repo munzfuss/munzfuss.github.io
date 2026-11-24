@@ -4646,6 +4646,13 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
     # names a volume for that base is it read in the entity's volume
     # (lib.km_registers) — the former rule for every bare number.
     deferred_bare: list[str] = []
+    # Registers some member names explicitly ({sh: …}), as opposed to a bare
+    # number read in the entity's volume. The entity's own volume collapses to
+    # a bare KM only when no member names it — otherwise the page would label
+    # an attested section «inferred» (curator 2026-11-24: 312 rows on the
+    # Denmark / S-H pages showed «the citing source gives only the number»
+    # while NumisMaster / NGC / Numista / ucoin named the section).
+    named_regs: set[str] = set()
 
     def _add(bucket: list[str], val: str):
         if val and val not in bucket:
@@ -4669,6 +4676,7 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
                     # docs/SOURCES.md §13.x / catalog_codes._flatten_str_repr_list.
                     for vv in (val if isinstance(val, list) else [val]):
                         _add(by_register.setdefault(reg.lower(), []), str(vv).strip())
+                    named_regs.add(reg.lower())
                 continue
             deferred_bare.append(str(kv).strip())
 
@@ -4706,7 +4714,8 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
             # Denmark-volume «479 (Denmark)» on a Norway coin) MUST keep the
             # dict-form, else the register is lost and the value mis-scopes to
             # the entity default (re-opening the §9.4 cross-volume clash).
-            if only_reg == _ENTITY_TO_KM_REGISTER.get(entity_id or ""):
+            if (only_reg == _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+                    and only_reg not in named_regs):
                 return _shape(only_vals), conflicts
             return {only_reg: _shape(only_vals)}, conflicts
         return {reg: _shape(vals) for reg, vals in by_register.items()}, conflicts
