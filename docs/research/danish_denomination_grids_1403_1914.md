@@ -348,7 +348,7 @@ the unit, «*kaldtes en krone. Denne deltes i 100 øre*» («called a Krone, div
   5 % under it.
 - Germany: 8 kr = 9 Mark by the two gold parities (card `kronefod`; 0,4032 / 0,3584 g) — a fixed but
   non-integer link to the Mark grid, which the duchies (Prussian from 1867) used from 1873/75.
-- ⚠ Union date: `dk_kronefod_1873_research.md` 5 May 1873 (signature), Galster s. 43 27 May 1873.
+- ⚠ Union date: `dk_kronefod_1873_research.md` 5 May 1873 (signature), Galster s. 43 27 May 1873. The print of the convention has 27 May 1873, København (`instruments/1873_moentlov_og_moentkonvention.md` §3.4); «5 May» is in no print read.
 
 ## 9. The Danish : Lübeck tie as a grid question
 

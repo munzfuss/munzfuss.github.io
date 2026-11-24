@@ -38,6 +38,10 @@ Krone). Adoption history:
 
 - **5 May 1873** — Denmark + Sweden sign the Scandinavian Monetary
   Convention.
+  ⚠ **Not confirmed by the prints (2026-11-24):** the three-state convention was signed at
+  Stockholm on 18 Dec 1872 and lapsed; the Denmark–Sweden convention was signed at København
+  on **27 May 1873** (Danske Traktater II nr. 54, 57). The origin of «5 May» is not
+  established — see `instruments/1873_moentlov_og_moentkonvention.md` ⚠ 6.
 - **23 May 1873** — Denmark passes Møntloven.
 - **1 January 1875** — new Krone system takes effect; Norway joins.
 - **2 August 1914** — Danmarks Nationalbank suspends gold convertibility
