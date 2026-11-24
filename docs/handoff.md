@@ -26,8 +26,14 @@
 - **Follow-up done the same day:** ucoin `period` → Krause section (86 seeds); Bruun left as printed (Altona lots mix
   volumes); fragments joined — Hede 36 (NGC 1050288, KMM 78473), Hede 29 (Bruun 8045), Hede 5 (NumisMaster 65971 +
   NGC 1050443, NumisMaster's «Copenhagen» marked suspect).
-- **Open:** Bruun bare Glückstadt-section numbers on royal_holstein still render as plain «KM#» (display only);
-  marker.km_sh wording.
+- **Then:** 0419216 Glückstadt 1/8 Speciedaler 1665 (KM 55) — two finals in two Fuße become one, 9_25_thaler I
+  scheide (classification decision on Hede 151); merger/absorb keep a KM volume a member names (1197 finals change
+  shape only, values identical) — the false «inferred» tooltip is gone from 312 rows; 6 genuinely inferred remain
+  (Norway 250 / 243, Rantzau 1 / 2, Schpin 130 — all verified).
+- **Open:** the merged KM 55 row shows nominal «⅛ Thaler» (Numista) where Hede has «6 Skilling Lybsk», coin «VIII
+  EINEN REICHS DALER»; five .812 fractions (1/16 Speciedaler 1658-1680) sit in 9_thaler II by the 2026-05-29
+  automatic placement, which that phase's text does not cover; Plön Thaler 1761 (c-92d54f70, KM 28 PLOEN) routed to
+  royal_holstein (seed_unsorted); marker.km_sh wording.
 
 ## 2026-11-23 — Numista builder fixes + Krause S-H section registers (branch claude/focused-euclid-55f15c on top of blissful-kirch, local, unpushed)
 
