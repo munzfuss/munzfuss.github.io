@@ -25,7 +25,7 @@
 of the new pieces are in no instrument seen — § 8.1) · C3 instruments 2/2 (Lov, both Patents and
 six Bekendtgørelser in full text) · C4 provenance 1/1 · C5 open questions 1/1 · C6 recomputation
 1/2 (every text read on the page image; figures recomputed; the output of 1854–55 only from
-Wilcke's report of the minister's account, not from a mint account). Commit: `PENDING`.
+Wilcke's report of the minister's account, not from a mint account). Commit: `9eb0d83`.
 
 ## 1. Identification
 
