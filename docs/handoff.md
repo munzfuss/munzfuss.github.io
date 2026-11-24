@@ -23,9 +23,11 @@
   three curator-approved group additions it surfaced — KM 701 (Hede 4), KM 651 (Hede 13, the 2026-06-28 «KM 651 =
   S-H volume» reading corrected in the group reason), KM 661 (Hede 36 merge for ucoin 79557). Detail:
   `docs/plans/km_numista_denmark_and_hgr_routing.md` §«A — DONE».
-- **Open:** Bruun / ucoin bare KMs on royal_holstein coins (629, 689, 690.1 still bare); Hede 36 fragments NGC
-  1050288 / KMM 78473 in danish_realm seed_unsorted; c-9397f1cf mixes KM 699 (1828 København) and 701 (Altona) by
-  design (Hede 4A/4B); marker.km_sh wording.
+- **Follow-up done the same day:** ucoin `period` → Krause section (86 seeds); Bruun left as printed (Altona lots mix
+  volumes); fragments joined — Hede 36 (NGC 1050288, KMM 78473), Hede 29 (Bruun 8045), Hede 5 (NumisMaster 65971 +
+  NGC 1050443, NumisMaster's «Copenhagen» marked suspect).
+- **Open:** Bruun bare Glückstadt-section numbers on royal_holstein still render as plain «KM#» (display only);
+  marker.km_sh wording.
 
 ## 2026-11-23 — Numista builder fixes + Krause S-H section registers (branch claude/focused-euclid-55f15c on top of blissful-kirch, local, unpushed)
 

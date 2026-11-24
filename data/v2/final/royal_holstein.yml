@@ -9047,12 +9047,16 @@ coins:
       - value: 0.25
         source: hede
       - value: 0.25
+        source: ngc
+      - value: 0.25
         source: numismaster
       - value: 0.25
         source: ucoin
     weight_rough_g:
       - value: 2.598
         source: hede
+      - value: 2.598
+        source: ngc
       - value: 2.598
         source: numismaster
       - value: 2.6
@@ -9077,6 +9081,16 @@ coins:
       - type: literature
         url: https://en.numista.com/54934
         ref: Numista N#54934 — 4 Skilling Dansk - Christian VII
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78473
+        ref: KMM 78473 (Inv. GP 678.137)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-skilling-km-661-1807-cuid-1050288-duid-1236674
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159731
+        ref: KMM 159731 (Inv. FP 3931.86)
+        display: false
     note:
       de: Gekröntes Königsmonogramm. / Wert und Jahreszahl in fünf Zeilen, darunter das Müntzzeichen.
       en: Crowned King's monogram. / Value and date on five lines; mintmark below.
@@ -10342,9 +10356,23 @@ coins:
       -   - 1775
           - 1775
     year_label: 1771, 1775
+    mint_alts:
+      - value: Kopenhagen
+        source: numismaster
+        kind: suspect
+        reason:
+          de: Münzstätte fraglich. NumisMaster (MC_65971) gibt «Copenhagen» («København») an; danskmoent (Hede 5) nennt «1 Christian d'or, Altona», Bruun Part I (Lose 1151 und 1156) «Altona Mint» 
+            («Münzstätte Altona»). Prägezahlen (207 ohne Jahr 1771, 22.721 im Jahr 1775), Gewicht und Feingehalt stimmen bei beiden überein.
+          en: Mint doubtful. NumisMaster (MC_65971) gives «Copenhagen»; danskmoent (Hede 5) gives «1 Christian d'or, Altona», Bruun Part I (lots 1151 and 1156) «Altona Mint». Mintages (207 undated in 
+            1771, 22,721 in 1775), weight and fineness agree in both.
+          uk: Місце карбування сумнівне. NumisMaster (MC_65971) подає «Copenhagen» («København»); danskmoent (Hede 5) — «1 Christian d'or, Altona», Bruun Part I (лоти 1151 і 1156) — «Altona Mint» 
+            («монетний двір Altona»). Наклади (207 без року в 1771, 22 721 у 1775), вага і проба в обох збігаються.
+          da: Møntsted tvivlsomt. NumisMaster (MC_65971) angiver «Copenhagen» («København»); danskmoent (Hede 5) angiver «1 Christian d'or, Altona», Bruun Part I (lot 1151 og 1156) «Altona Mint» 
+            («Altona møntsted»). Oplag (207 uden årstal i 1771, 22.721 i 1775), vægt og finhed stemmer overens i begge.
     mint: Altona
     catalog:
-      km: '629'
+      km:
+        dk: '629'
       hede:
         - '5'
         - 5A
@@ -10366,16 +10394,25 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.903
         source: hede
+      - value: 0.903
+        source: ngc
+      - value: 0.903
+        source: numismaster
     weight_rough_g:
       - value: 6.67
         source: bruun
       - value: 6.681
         source: hede
+      - value: 6.681
+        source: ngc
+      - value: 6.681
+        source: numismaster
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h5.htm
@@ -10386,6 +10423,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1156, p. 191
+      - type: literature
+        url: https://numismaster.com/MC_65971
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-christians-dor-km-629-1771-1775-cuid-1050443-duid-1238195
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Christian d'Or 1775 Hede-5B · Untervariante zur Erst-Emission KM-629 Hede-5A; erste Goldprägung nach Vereinigung Holsteins 1773
       en: Christian d'Or 1775 Hede-5B · sub-variant of the initial issue KM-629 Hede-5A; first gold issue after the 1773 unification of Holstein
@@ -16074,7 +16117,8 @@ coins:
     year_label: '1818'
     mint: Altona
     catalog:
-      km: '689'
+      km:
+        dk: '689'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -25061,49 +25105,6 @@ coins:
     composed_of:
       - c-274c5663
     label: unified-dk-hede-f7h13
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 32 Skilling
-    ruler: Frederik VI
-    mintmaster: Cajus Branth
-    issuing_entity: royal_holstein
-    id: c-5cd784ac
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 32 Skilling
-          value: billon
-          seed: dk-bruun-8045
-    mint: Altona
-    catalog:
-      km: '690.1'
-      hede: 29A
-      sieg: '25.1'
-      bruun_collection_id: '8045'
-      schou: '2'
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 6.13
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11300, p. 132
-    composed_of:
-      - c-5cd784ac
-    label: unified-dk-bruun-8045
     origin: promoted
   - fuss: seed_unsorted
     phase: bruun

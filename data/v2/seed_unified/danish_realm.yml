@@ -2,8 +2,8 @@
 # Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8216 per-source seed entries.
-# Output: 1451 unified entries (one per physical coin).
+# Input: 8213 per-source seed entries.
+# Output: 1448 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -105776,7 +105776,7 @@ coins:
           - 1820
     year_label: 1818, 1820
     ruler: Frederik VI
-    mintmaster: Johan Friedrich Freund (IFF)
+    mintmaster: Cajus Branth
     mint: Altona
     catalog:
       km:
@@ -105785,6 +105785,7 @@ coins:
         - '690.1'
       hede:
         - '29'
+        - 29A
         - 29B
       hede_volume: f6h
       schou:
@@ -105792,8 +105793,11 @@ coins:
         - '3'
       sieg:
         - '25'
+        - '25.1'
         - '25.2'
-      bruun_collection_id: '8053'
+      bruun_collection_id:
+        - '8045'
+        - '8053'
       numista: '24424'
     metal: silver
     metal_verified: true
@@ -105841,6 +105845,8 @@ coins:
       - value: 6.129
         source: numista
       - value: 6.13
+        source: bruun
+      - value: 6.13
         source: ucoin
     diameter_mm:
       - value: 25.5
@@ -105849,6 +105855,12 @@ coins:
         source: numista
     uncertainty:
       metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 32 Skilling
+          value: billon
+          seed: dk-bruun-8045
         - kind: inferred
           how: from_name
           source: bruun
@@ -105862,6 +105874,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_66038
         ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11300, p. 132
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17161, p. 77
@@ -105889,6 +105904,7 @@ coins:
     composed_of:
       - denmark-numismaster-66036
       - denmark-numismaster-66038
+      - dk-bruun-8045
       - dk-bruun-8053
       - dk-hede-f6h29
       - dk-numista-24424
@@ -127264,32 +127280,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-78438
-  - id: c-94933a9d
-    class_id: c-94933a9d
-    label: unified-kmk-78473
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1807
-    year_last: 1807
-    year_label: '1807'
-    ruler: Christian VII
-    catalog:
-      hede: '36'
-      schou: '2'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/78473
-        ref: KMM 78473 (Inv. GP 678.137)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-78473
   - id: c-8f95a327
     class_id: c-8f95a327
     label: unified-kmk-78510
@@ -129390,39 +129380,6 @@ coins:
     composed_of:
       - denmark-numismaster-65100
       - ngc-1050287
-  - id: c-5595b215
-    class_id: c-5595b215
-    label: unified-ngc-1050288
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1807
-    year_last: 1807
-    year_label: '1807'
-    ruler: Christian VII
-    catalog:
-      km: '661'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.25
-        source: ngc
-    weight_rough_g:
-      - value: 2.598
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-4-skilling-km-661-1807-cuid-1050288-duid-1236674
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1050288
   - id: c-7bc205d5
     class_id: c-7bc205d5
     label: unified-ngc-1050293
@@ -130017,53 +129974,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050428
-  - id: c-f5aaad22
-    class_id: c-f5aaad22
-    label: unified-ngc-1050443
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Christians D'or
-    year_first: 1771
-    year_last: 1775
-    year_ranges:
-      -   - 1771
-          - 1771
-      -   - 1775
-          - 1775
-    year_label: 1771, 1775
-    ruler: Christian VII
-    mint: Kopenhagen
-    catalog:
-      km: '629'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.903
-        source: ngc
-      - value: 0.903
-        source: numismaster
-    weight_rough_g:
-      - value: 6.681
-        source: ngc
-      - value: 6.681
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65971
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-christians-dor-km-629-1771-1775-cuid-1050443-duid-1238195
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65971
-      - ngc-1050443
   - id: c-c6fdd6a6
     class_id: c-c6fdd6a6
     label: unified-ngc-1050450

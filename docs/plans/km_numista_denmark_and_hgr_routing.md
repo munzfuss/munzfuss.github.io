@@ -145,3 +145,29 @@ Still bare Denmark-volume numbers on royal_holstein finals, from Bruun / ucoin
 only (the out-of-scope item below): c-5703ae73 629, c-062a2554 689,
 c-5cd784ac 690.1. Related, not done: NGC 1050288 and KMM 78473 (Hede 36, KM 661)
 sit in danish_realm seed_unsorted classes, outside the Hede 36 class.
+
+## Follow-up 2026-11-24 — Bruun / ucoin bare KMs, Hede 36 / 29 / 5 fragments
+
+Bare KMs of Bruun (145) and ucoin (86) on royal_holstein are mixed volumes —
+against NumisMaster / NGC by KM base + years: Bruun 66 dk, 59 glu, 15 sh, 4 hgr;
+ucoin 17 dk, 50 glu, 15 sh, 4 hgr. No single rule.
+
+- ucoin: `period` names the Krause section without exception (Glückstadt →
+  glu, Holstein-Gottorp-Rendsburg → hgr, Duchy of Schleswig-Holstein /
+  Provisional Government → sh, Rigsdaler / Rigsbankdaler on a `denmark-` URL →
+  dk) → `build_ucoin_seed._apply_km_period_register`; 86 seeds, only km. Final
+  effect: c-062a2554 KM 689 → dk.
+- Bruun: no rule. Altona lots under the same «DENMARK. … Altona Mint.» heading
+  carry Denmark numbers (608, 625, 629) and S-H-section ones (138.x, 152,
+  154a); Glückstadt / S-H labels would only change display (same match group),
+  and Denmark KM 358 is a Copenhagen + Glückstadt type.
+- The two Bruun-only Denmark numbers left bare were fragments: Bruun 8045
+  (Hede 29A, KM 690.1, CB, 6.13 g) → the Hede 29 group; KM 629 → new Hede 5
+  group with NumisMaster 65971 / NGC 1050443 (mintages 207 / 22,721 = Hede 5;
+  c-f5aaad22 had rendered beside it). NumisMaster prints mint Copenhagen
+  against Hede / Bruun Altona: «suspect» mint_mark on its seed (curator, «(*)»),
+  class mint stays Altona.
+- Hede 36: NGC 1050288 («1807 MF», KM 661) and KMM 78473 (H 36, Sch 2) joined
+  via a cross-entity group, replacing the same-entity merge of 4f90624.
+
+Re-flow: 0 losses; 3 seeds out of seed_unsorted; 3 danish_realm finals folded.

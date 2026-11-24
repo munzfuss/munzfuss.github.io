@@ -33,6 +33,41 @@
 # `excludes`.
 
 merges:
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c7h5                # home: royal_holstein  (Hede 5A / 5B, Schou 1, Sieg 47 — Altona, undated 1771 and 1775)
+      - dk-bruun-7983               # home: royal_holstein  (Bruun I lot 1156: «Christian d'Or, ND (1771). Altona Mint … KM-629», Hede 5A)
+      - dk-bruun-7784               # home: royal_holstein  (Bruun I lot 1151: «Christian d'Or, 1775. Altona Mint … KM-629; Hede-5B»)
+      - denmark-numismaster-65971   # home: danish_realm    (MC_65971 DENMARK «KM# 629», rows «ND-1771 W 207», «1775 W 22,721»; mint printed Copenhagen, marked suspect)
+      - ngc-1050443                 # home: danish_realm    (NGC «Denmark Chr(istians) D'or KM# 629», rows «-1771 W» 207, «1775 W» 22,721)
+    reason: |-
+      One coin — Christian VII 1 Christian d'Or, Hede 5 (5A undated 1771, 5B 1775), Krause Denmark KM 629.
+      danskmoent c7h5: «1 Christian d'or, Altona U.år (1771; R), 1775 … I 1771 blev slået 207 stk. uden
+      årstal og i 1775 blev slået 22.721 stk.» («in 1771, 207 pieces were struck without a date and in 1775,
+      22,721 pieces»), 6.681 g, .903. NumisMaster MC_65971 and NGC cuid 1050443 give the same two rows with
+      the same mintages, 6.681 g, .903; Bruun I lots 1151 / 1156 print KM-629 with Hede 5B / 5A. NumisMaster
+      prints the mint as Copenhagen against Hede's and Bruun's Altona — kept on its seed with a «suspect»
+      mint mark, so the class mint stays Altona. NGC and NumisMaster sat as a separate danish_realm final
+      (c-f5aaad22, pistolenfuss), rendered beside the Hede 5 class. Curator 2026-11-24.
+
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c7h36               # home: royal_holstein  (Hede 36, Schou 2, Sieg 13 — Altona 1807, MF)
+      - dk-numista-54934            # home: royal_holstein  (N#54934, KM 661 Denmark, Hede 36, Sieg 13)
+      - denmark-numismaster-65105   # home: royal_holstein  (MC_65105 DENMARK «KM# 661», Altona, 1807 MF)
+      - dk-tid-79557                # home: royal_holstein  (ucoin tid 79557 «KM# 661», Altona, 1807)
+      - ngc-1050288                 # home: danish_realm    (NGC «Denmark 4 Skilling KM# 661», 1807 MF)
+      - kmk-78473                   # home: danish_realm    (KMM 78473, Christian 7, 4 Skilling 1807, H 36, Sch 2)
+    reason: |-
+      One coin — Christian VII 4 Skilling 1807, Altona, Hede 36 (Schou 2, Sieg 13), Krause Denmark KM 661.
+      danskmoent c7h36 prints «4 skilling 1807, Altona … MF», 2.598 g, .250; it is the only 4 Skilling of
+      1806-1808 in our data. NumisMaster MC_65105 «KM# 661 4 Skilling 1807 Altona, 1807 MF», NGC cuid
+      1050288 «Denmark 4 Skilling KM# 661», row «1807 MF»; ucoin tid 79557 «KM# 661», Altona, 1807 (ruler
+      printed «Frederick VI», wrong for 1807 — the curator's 2026-10-22 shell review put it in this class);
+      KMM 78473 gives H 36, Sch 2 on a 4 Skilling 1807 of Christian 7. NGC and KMM print no mint and routed
+      to danish_realm, outside the Altona class. Curator 2026-11-24; replaces the same-entity merge of
+      the first four written earlier that day.
+
   - target_entity: danish_norway
     members:
       - dk-galster-hg-153   # home: danish_norway
@@ -3039,6 +3074,7 @@ merges:
       - dk-bruun-8053
       - dk-numista-24424
       - dk-tid-70756
+      - dk-bruun-8045               # home: royal_holstein  (Bruun III lot 11300: «32 Skilling, 1818. Altona … KM-690.1; Hede-29A; Sieg-25.1; Schou-2», 6.13 g, mintmaster Cajus Branth = CB). Curator 2026-11-24
     reason: '32 Rigsbankskilling, Frederik VI, Altona 1818 (CB) and 1820 (IFF) = Hede 29 (danskmoent f6h29) = KM 690.1 / 690.2 = Sieg 25. One coin per §9.4 (KM base 690, Hede 29), split over royal_holstein km-690-2-fr-vi-1820 and two danish_realm classes. Denmark page only, though struck in Altona: no Schilling Courant value, and the duchies would not take Rigsbank coin (Galster 1973, p. 42: «man ikke ville vide af rigsbankmønten»). Curator (Serhii) 2026-11-07.'
   - target_entity: provisional_govt
     issuing_entity: provisional_govt

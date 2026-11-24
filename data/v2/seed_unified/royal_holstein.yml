@@ -2,8 +2,8 @@
 # Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1510 per-source seed entries.
-# Output: 254 unified entries (one per physical coin).
+# Input: 1513 per-source seed entries.
+# Output: 253 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -795,49 +795,6 @@ coins:
       - dk-numista-83066
       - dk-tid-101039
       - ngc-1050225
-  - id: c-5cd784ac
-    class_id: c-5cd784ac
-    label: unified-dk-bruun-8045
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 32 Skilling
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    ruler: Frederik VI
-    mintmaster: Cajus Branth
-    mint: Altona
-    catalog:
-      km: '690.1'
-      hede: 29A
-      sieg: '25.1'
-      bruun_collection_id: '8045'
-      schou: '2'
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 6.13
-        source: bruun
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 32 Skilling
-          value: billon
-          seed: dk-bruun-8045
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11300, p. 132
-    issuing_entity: royal_holstein
-    composed_of:
-      - dk-bruun-8045
   - id: c-c53249ef
     class_id: c-c53249ef
     label: unified-dk-bruun-8065
@@ -4646,8 +4603,8 @@ coins:
       km:
         glu:
           - '64.1'
-          - '64.2'
           - '64'
+          - '64.2'
       hede:
         - '115'
         - 115A
@@ -8288,12 +8245,16 @@ coins:
       - value: 0.25
         source: hede
       - value: 0.25
+        source: ngc
+      - value: 0.25
         source: numismaster
       - value: 0.25
         source: ucoin
     weight_rough_g:
       - value: 2.598
         source: hede
+      - value: 2.598
+        source: ngc
       - value: 2.598
         source: numismaster
       - value: 2.6
@@ -8318,6 +8279,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-skilling-1807/?tid=79557
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78473
+        ref: KMM 78473 (Inv. GP 678.137)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-skilling-km-661-1807-cuid-1050288-duid-1236674
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: royal_holstein
     hede_muentzfuss_yield:
       value: 15000.0
@@ -8329,6 +8296,8 @@ coins:
       - dk-hede-c7h36
       - dk-numista-54934
       - dk-tid-79557
+      - kmk-78473
+      - ngc-1050288
   - id: c-3adade94
     class_id: c-3adade94
     label: unified-dk-hede-c7h37
@@ -10015,7 +9984,8 @@ coins:
     mintmaster: Hans Schivern Knoph
     mint: Altona
     catalog:
-      km: '629'
+      km:
+        dk: '629'
       hede:
         - '5'
         - 5A
@@ -10037,17 +10007,42 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.903
         source: hede
+      - value: 0.903
+        source: ngc
+      - value: 0.903
+        source: numismaster
     weight_rough_g:
       - value: 6.67
         source: bruun
       - value: 6.681
         source: hede
+      - value: 6.681
+        source: ngc
+      - value: 6.681
+        source: numismaster
+    mint_alts:
+      - value: Kopenhagen
+        source: numismaster
+        kind: suspect
+        reason:
+          de: Münzstätte fraglich. NumisMaster (MC_65971) gibt «Copenhagen» («København») an; danskmoent (Hede 5) nennt «1 Christian d'or, Altona», Bruun Part I (Lose 1151 und 1156) «Altona Mint» 
+            («Münzstätte Altona»). Prägezahlen (207 ohne Jahr 1771, 22.721 im Jahr 1775), Gewicht und Feingehalt stimmen bei beiden überein.
+          en: Mint doubtful. NumisMaster (MC_65971) gives «Copenhagen»; danskmoent (Hede 5) gives «1 Christian d'or, Altona», Bruun Part I (lots 1151 and 1156) «Altona Mint». Mintages (207 undated in 
+            1771, 22,721 in 1775), weight and fineness agree in both.
+          uk: Місце карбування сумнівне. NumisMaster (MC_65971) подає «Copenhagen» («København»); danskmoent (Hede 5) — «1 Christian d'or, Altona», Bruun Part I (лоти 1151 і 1156) — «Altona Mint» 
+            («монетний двір Altona»). Наклади (207 без року в 1771, 22 721 у 1775), вага і проба в обох збігаються.
+          da: Møntsted tvivlsomt. NumisMaster (MC_65971) angiver «Copenhagen» («København»); danskmoent (Hede 5) angiver «1 Christian d'or, Altona», Bruun Part I (lot 1151 og 1156) «Altona Mint» 
+            («Altona møntsted»). Oplag (207 uden årstal i 1771, 22.721 i 1775), vægt og finhed stemmer overens i begge.
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65971
+        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1151, p. 185
@@ -10057,11 +10052,16 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h5.htm
         ref: danskmoent.dk (Hede c7h5)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-christians-dor-km-629-1771-1775-cuid-1050443-duid-1238195
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: royal_holstein
     composed_of:
+      - denmark-numismaster-65971
       - dk-bruun-7784
       - dk-bruun-7983
       - dk-hede-c7h5
+      - ngc-1050443
   - id: c-62e72f59
     class_id: c-62e72f59
     label: unified-dk-hede-c7h6
@@ -20015,7 +20015,8 @@ coins:
     ruler: Frederik VI
     mint: Altona
     catalog:
-      km: '689'
+      km:
+        dk: '689'
     metal: copper
     metal_verified: true
     fineness_verified: false
