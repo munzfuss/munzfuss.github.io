@@ -136,3 +136,25 @@ Sources in hand: Mordhorst c7 (to 4 Dec 1807, digest), **Wilcke IV** (1788–184
 | ◐ | **Per-Fuß review items — now accumulated in `FUSS_REVIEW_FINDINGS.md`** (this folder; keyed by Fuß / entity; one row per finding with seed ids, the act's grid and the dossier section; every new dossier adds its rows there in the same commit) — 1514–17 small coin; Frederik II round coin and Klippinge 1559–78; 1582–85 and 1594–1609 small coin under `9_thaler` I; Løvedaler 1608; species .875/.888; Swedish Ørtug; Flensborg; Norwegian 4-Hvid tiers; Christiania 1641–70; the 1671 small-coin tier; Kroner 1693–99; Gottorp 1596–1612; KMM `kind: kurant` default | 1480 → 1700 | curator, per Fuß — `docs/TODO.md` §EA |
 | ☐ | T.K. 160 scans pp. 41–219 unindexed (the 1582 original is no. 8) | 1582 | scan-reading task |
 | ☑ | 1700–1914 tranche: build the register §1d (Mordhorst f4/c6/f5/c7, Schou Bd 2–25) before planning its dossiers | plan | Stage 2–3 again for the next period | — done 2026-11-23 for 1790–1845 (Mordhorst c7, Wilcke IV); 1849–1914 are placeholders, no source in hand (§1e) |
+
+## §4 · Source collections not in the cache — gap analysis of 2026-11-25
+
+Of the 257 Danish-Norwegian rows of the register (1480–1914), 53 are written from the
+instrument's own text; the rest rest on Wilcke, Mordhorst's digest or a Schou title, and 13
+are marked «not seen». The register has no rows for 1390–1480. The collections below are
+named from memory; **availability online is not checked** — do that first, then
+`add-source-work` (downloads only with the curator's yes).
+
+| ✓ | Period | In the cache | Missing | Closes |
+|---|---|---|---|---|
+| ☐ | 1390–1513 | Den danske Rigslovgivning (4 vols, to 1558); Hanserecesse I/2, 4–8, II/1–3, 6, III/1, 3–5; Lübeckisches UB 5 | Hanserecesse I/1, I/3, II/4–5, II/7, III/2, III/6–9; the other volumes of the Lübeckisches UB; Diplomatarium Norvegicum; Norges gamle Love (2. række); Repertorium diplomaticum regni Danici; charters of Slesvig and Holstein | register rows before 1480; the Lübeck and union-period links |
+| ☐ | 1513–1558 | Rigslovgivning 1513–1523, 1523–1558; Wilcke VII | Kolderup-Rosenvinge IV (Google Books link in `moentordning_1541.md` §9.3); Paus (one act captured); Norske Rigsregistranter; Danske Kancelliregistranter; Danske Magazin | the ◐ rows 1523, 1551 |
+| ☐ | 1558–1660 | Secher, all 6 vols | Kancelliets Brevbøger; Norske Rigsregistranter; collections for the duchies (edicts of 1620–1623 «not seen»); Hirsch Theil 3, 4, 6, 8, 9 | the six «not seen» rows of §1b, the Norwegian rows |
+| ☐ | 1660–1670 | Mordhorst's digest only | any print of the acts (Secher ends 1660, Schou begins 1670) | §1c rows of Frederik III |
+| ☐ | 1670–1699 | Schou I (extracts, not full texts) | the yearly prints of the royal Forordninger | full texts behind the Schou-title rows |
+| ☐ | 1700–1813 | Wilcke III, IV; Mordhorst to 1808 (digest) | Schou vol. II onwards (nb.no, see SOURCES.md); Fogtman's Rescripter; Wessel Berg (Norway); Chronologische Sammlung (duchies); prints of the Forordning of 5 Jan 1813 and the Verordnungen of 29 Feb 1788 | §1d (57 rows, none from the act) |
+| ☐ | 1813–1848 | Wilcke IV; Christensen's register (titles) | Collegial-Tidende; Schou to 1849; Mordhorst for Frederik VI – Frederik VII (danskmoent pages are stubs) | §1e |
+| ☐ | 1849–1914 | Departementstidenden 1854; Gesetz- und Ministerialblatt 1854; Algreen-Ussing 1873; Danske Traktater II; Statistisk Aarbog 1914 | the same series for the other years (first 1855–1857: Lov 2 April 1855, Lov 4 June 1856 and its Bekendtgørelser); Lovtidende; Rigsdagstidende; Wilcke V in print | open questions of the 1854 and 1873 dossiers |
+| ☐ | Territories | — | Norway to 1814 (no Norwegian collection cached; c. 25 register rows); the Gottorp share (4 rows, no collection); Lauenburg 1815–1864 (Wilcke V w5lau unread); Iceland (Lovsamling for Island: 2 of 21 vols), West Indies, Tranquebar | — |
+| ☐ | Scope — curator's call | — | Oldenburg and Delmenhorst 1667–1773 (under the Danish king; not on any page now); Sweden in the union periods (2 register rows) | whether to collect at all |
+
