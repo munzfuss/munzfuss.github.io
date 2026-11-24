@@ -40,6 +40,15 @@
     in norburg_plon_duchy.
   Fix is `_recorded_removals.yml` `kind: shell` per shell, after the curator settles the Fuß / phase of the real
   class and whether the shells' notes move.
+- **Shipped (open-items pass, curator 2026-11-24):** c7af495 + ccbca88 — stale «Kopenhagen» (V1 ucoin default,
+  kept by self-union) dropped from seven Frederiksborg finals: Hede 24, 27, 28, 29, 121, 122, 123 (recorded
+  field removals). 42c5e3e — ½ Krone 1624 (Hede 126 = KM 94, not an over-merge; Hede 128 = KM 95) — ucoin's
+  Frederiksborg marked suspect «(*)», class mint København. Decided with no change: kmk-276003 / kmk-276004 stay
+  in Hede 79 (weights 1,21 / 1,30 g like their FP 4227 siblings with valid 79A years; only the printed «79A» for
+  1618 is off); Bruun IV lot 17215 «Schou-5» stays unmarked (danskmoent's Zinck list also gives 8B Schou 5);
+  Hede 5 Dav (EC III 1295) is consistent across all sources.
+- **Still open:** Hede 140 kind; the .812 Glückstadt 1/16 fractions in 9_thaler II (incl. Hede 124); KM 55 nominal;
+  marker.km_sh wording; Hede 44 Note legend (waits for the curator's Note pass).
 - **Push order:** harvest cache commits up to e9912b1bb first, then this branch.
 
 ## 2026-11-24 — Rendsborg routing (B) and Numista «Denmark» KMs on S-H entities (A) (same branch, local, unpushed)
