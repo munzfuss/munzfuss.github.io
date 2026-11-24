@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_bremen`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_bremen.yml across all sources.
 #
-# Input: 104 per-source seed entries.
-# Output: 104 unified entries (one per physical coin).
+# Input: 209 per-source seed entries.
+# Output: 143 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_bremen
-generated_at: '2026-11-07'
+generated_at: '2026-11-24'
 coins:
   - id: c-923ddf8b
     class_id: c-923ddf8b
@@ -40,18 +40,26 @@ coins:
     weight_rough_g:
       - value: 0.65
         source: numista
+      - value: 0.65
+        source: ucoin
     diameter_mm:
       - value: 16.0
         source: numista
+      - value: 16.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/118450
         ref: Numista N#118450 — 1 Groten - City of Bremen (1737-1740)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1737-1740/?tid=101132
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-118450
-  - id: c-cc58e776
-    class_id: c-cc58e776
+      - tid-tid-101132
+  - id: c-209b89b2
+    class_id: c-209b89b2
     label: unified-dk-numista-134789
     fuss: seed_unsorted
     phase: numista
@@ -80,18 +88,26 @@ coins:
     weight_rough_g:
       - value: 0.7
         source: numista
+      - value: 0.7
+        source: ucoin
     diameter_mm:
       - value: 16.0
         source: numista
+      - value: 16.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/134789
         ref: Numista N#134789 — 1 Groten - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1763-1764/?tid=101149
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-134789
-  - id: c-cefce6bd
-    class_id: c-cefce6bd
+      - tid-tid-101149
+  - id: c-b6c45a22
+    class_id: c-b6c45a22
     label: unified-dk-numista-136604
     fuss: seed_unsorted
     phase: numista
@@ -119,16 +135,24 @@ coins:
     weight_rough_g:
       - value: 3.17
         source: numista
+      - value: 3.17
+        source: ucoin
     diameter_mm:
       - value: 23.0
         source: numista
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/136604
         ref: Numista N#136604 — 1⁄12 Thaler - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-12-thaler-1763-1764/?tid=101263
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-136604
+      - tid-tid-101263
   - id: c-1b2eb0dc
     class_id: c-1b2eb0dc
     label: unified-dk-numista-152166
@@ -167,6 +191,9 @@ coins:
       - type: literature
         url: https://en.numista.com/152166
         ref: Numista N#152166 — 2 Grote - City of Bremen 1641-1646
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-grote-1641-1646/?tid=101251
+        ref: ucoin
     note:
       de: 1/36 Thaler
       en: 1/36 Thaler
@@ -175,6 +202,7 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-152166
+      - tid-tid-101251
   - id: c-5547f23b
     class_id: c-5547f23b
     label: unified-dk-numista-15677
@@ -212,13 +240,20 @@ coins:
     weight_rough_g:
       - value: 3.43
         source: numista
+      - value: 3.43
+        source: ucoin
     diameter_mm:
       - value: 20.0
         source: numista
+      - value: 20.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/15677
         ref: Numista N#15677 — 2½ Schwaren - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-1-2-schwaren-1841-1866/?tid=101115
+        ref: ucoin
     note:
       de: 1/144 Taler
       en: 1/144 Taler
@@ -227,8 +262,9 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-15677
-  - id: c-a045823e
-    class_id: c-a045823e
+      - tid-tid-101115
+  - id: c-434548c8
+    class_id: c-434548c8
     label: unified-dk-numista-159443
     fuss: seed_unsorted
     phase: numista
@@ -237,6 +273,7 @@ coins:
     year_first: 1672
     year_last: 1672
     year_label: '1672'
+    mint: Bremen
     catalog:
       km: '148'
       numista: '159443'
@@ -247,21 +284,29 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
       - value: 3.7
         source: numista
+      - value: 3.7
+        source: ucoin
     diameter_mm:
       - value: 27.0
         source: numista
+      - value: 27.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/159443
         ref: Numista N#159443 — 6 Grote - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-6-grote-1672/?tid=101262
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-159443
+      - tid-tid-101262
   - id: c-8ad02af2
     class_id: c-8ad02af2
     label: unified-dk-numista-163199
@@ -293,9 +338,13 @@ coins:
       - type: literature
         url: https://en.numista.com/163199
         ref: Numista N#163199 — 2 Grote - City of Bremen (1709)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-grote-1709/?tid=101254
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-163199
+      - tid-tid-101254
   - id: c-0f6287c9
     class_id: c-0f6287c9
     label: unified-dk-numista-183138
@@ -323,15 +372,21 @@ coins:
     weight_rough_g:
       - value: 58.39
         source: numista
+      - value: 58.39
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/183138
         ref: Numista N#183138 — 2 Thalers - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-thaler-1744/?tid=101325
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-183138
-  - id: c-4ebbe4d9
-    class_id: c-4ebbe4d9
+      - tid-tid-101325
+  - id: c-07420426
+    class_id: c-07420426
     label: unified-dk-numista-18415
     fuss: seed_unsorted
     phase: numista
@@ -362,21 +417,31 @@ coins:
     fineness:
       - value: 0.739583
         source: numista
+      - value: 0.74
+        source: ucoin
     weight_rough_g:
       - value: 3.889
         source: numista
+      - value: 3.89
+        source: ucoin
     diameter_mm:
       - value: 23.0
         source: numista
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/18415
         ref: Numista N#18415 — 12 Grote - City of Bremen - Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-12-grote-1840-1846/?tid=101272
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-18415
-  - id: c-66677dd3
-    class_id: c-66677dd3
+      - tid-tid-101272
+  - id: c-4d1cb0ac
+    class_id: c-4d1cb0ac
     label: unified-dk-numista-185275
     fuss: seed_unsorted
     phase: numista
@@ -404,16 +469,24 @@ coins:
     weight_rough_g:
       - value: 0.7
         source: numista
+      - value: 0.7
+        source: ucoin
     diameter_mm:
       - value: 20.0
         source: numista
+      - value: 20.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/185275
         ref: Numista N#185275 — 1 Groten - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1623-1627/?tid=101125
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-185275
+      - tid-tid-101125
   - id: c-884aa4a2
     class_id: c-884aa4a2
     label: unified-dk-numista-20409
@@ -448,18 +521,27 @@ coins:
     mint_verified: false
     verified: false
     fineness:
+      - value: 0.986
+        source: ucoin
       - value: 0.9861
         source: numista
     weight_rough_g:
       - value: 8.77
         source: numista
+      - value: 8.77
+        source: ucoin
     diameter_mm:
       - value: 31.0
         source: numista
+      - value: 31.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/20409
         ref: Numista N#20409 — 36 Grote - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-36-grote-1840-1859/?tid=101276
+        ref: ucoin
     note:
       de: ½ Taler
       en: ½ Taler
@@ -468,6 +550,46 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-20409
+      - tid-tid-101276
+  - id: c-3689fda1
+    class_id: c-3689fda1
+    label: unified-dk-numista-20410
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Marks
+    year_first: 1904
+    year_last: 1904
+    year_label: '1904'
+    mint: Hamburg
+    catalog:
+      km: '250'
+      numista: '20410'
+      others:
+        - J# 59
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.9
+        source: numista
+    weight_rough_g:
+      - value: 11.111
+        source: numista
+    diameter_mm:
+      - value: 28.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/20410
+        ref: Numista N#20410 — 2 Mark - City of Bremen
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - dk-numista-20410
   - id: c-9671470a
     class_id: c-9671470a
     label: unified-dk-numista-20411
@@ -659,18 +781,27 @@ coins:
     mint_verified: false
     verified: false
     fineness:
+      - value: 0.986
+        source: ucoin
       - value: 0.9861
         source: numista
     weight_rough_g:
       - value: 8.7
         source: numista
+      - value: 8.77
+        source: ucoin
     diameter_mm:
       - value: 29.7
         source: numista
+      - value: 31.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/20418
         ref: Numista N#20418 — 36 Grote - City of Bremen – Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-36-grote-1859-1864/?tid=101277
+        ref: ucoin
     note:
       de: ½ Thaler
       en: ½ Thaler
@@ -679,6 +810,7 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-20418
+      - tid-tid-101277
   - id: c-a8d6eb22
     class_id: c-a8d6eb22
     label: unified-dk-numista-20496
@@ -783,21 +915,31 @@ coins:
     fineness:
       - value: 0.739583
         source: numista
+      - value: 0.74
+        source: ucoin
     weight_rough_g:
+      - value: 1.94
+        source: ucoin
       - value: 1.944
         source: numista
     diameter_mm:
       - value: 20.0
         source: numista
+      - value: 20.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/20498
         ref: Numista N#20498 — 6 Grote - City of Bremen - Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-6-grote-1840/?tid=101265
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-20498
-  - id: c-fb7f26a3
-    class_id: c-fb7f26a3
+      - tid-tid-101265
+  - id: c-afbf2d40
+    class_id: c-afbf2d40
     label: unified-dk-numista-20499
     fuss: seed_unsorted
     phase: numista
@@ -823,16 +965,25 @@ coins:
     fineness:
       - value: 0.493056
         source: numista
+      - value: 0.494
+        source: ucoin
     weight_rough_g:
+      - value: 2.8
+        source: ucoin
       - value: 2.92
         source: numista
     diameter_mm:
       - value: 20.0
         source: numista
+      - value: 20.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/20499
         ref: Numista N#20499 — 6 Grote - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-6-grote-1857/?tid=101266
+        ref: ucoin
     note:
       de: 1/12 Taler
       en: 1/12 Taler
@@ -841,8 +992,9 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-20499
-  - id: c-b304f803
-    class_id: c-b304f803
+      - tid-tid-101266
+  - id: c-73412e9e
+    class_id: c-73412e9e
     label: unified-dk-numista-20500
     fuss: seed_unsorted
     phase: numista
@@ -867,16 +1019,25 @@ coins:
     fineness:
       - value: 0.493056
         source: numista
+      - value: 0.494
+        source: ucoin
     weight_rough_g:
       - value: 2.92
         source: numista
+      - value: 2.92
+        source: ucoin
     diameter_mm:
       - value: 20.0
         source: numista
+      - value: 20.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/20500
         ref: Numista N#20500 — 6 Grote - City of Bremen – Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-6-grote-1861/?tid=101267
+        ref: ucoin
     note:
       de: 1/12 Thaler
       en: 1/12 Thaler
@@ -885,6 +1046,7 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-20500
+      - tid-tid-101267
   - id: c-a05d045b
     class_id: c-a05d045b
     label: unified-dk-numista-20501
@@ -911,13 +1073,20 @@ coins:
     weight_rough_g:
       - value: 1.21
         source: numista
+      - value: 1.21
+        source: ucoin
     diameter_mm:
+      - value: 16.3
+        source: ucoin
       - value: 16.31
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/20501
         ref: Numista N#20501 — 1 Schwaren - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-schwaren-1859/?tid=101112
+        ref: ucoin
     note:
       de: 1/360 Taler
       en: 1/360 Taler
@@ -926,8 +1095,9 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-20501
-  - id: c-ee9fb14a
-    class_id: c-ee9fb14a
+      - tid-tid-101112
+  - id: c-205537df
+    class_id: c-205537df
     label: unified-dk-numista-21156
     fuss: seed_unsorted
     phase: numista
@@ -962,15 +1132,21 @@ coins:
     diameter_mm:
       - value: 34.0
         source: numista
+      - value: 34.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/21156
         ref: Numista N#21156 — 24 Grote - City of Bremen — Leopold I 1658-1672
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-24-grote-1658-1672/?tid=101274
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-21156
-  - id: c-f118450d
-    class_id: c-f118450d
+      - tid-tid-101274
+  - id: c-36fa6838
+    class_id: c-36fa6838
     label: unified-dk-numista-21759
     fuss: seed_unsorted
     phase: numista
@@ -993,20 +1169,29 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
     diameter_mm:
       - value: 45.0
         source: numista
+      - value: 45.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/21759
         ref: Numista N#21759 — 1 Thaler - City of Bremen 1650, 1657
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1650-1657/?tid=101303
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-21759
+      - tid-tid-101303
   - id: c-0accb246
     class_id: c-0accb246
     label: unified-dk-numista-22516
@@ -1046,8 +1231,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-22516
-  - id: c-ef813f56
-    class_id: c-ef813f56
+  - id: c-98b383f1
+    class_id: c-98b383f1
     label: unified-dk-numista-22532
     fuss: seed_unsorted
     phase: numista
@@ -1076,13 +1261,19 @@ coins:
     diameter_mm:
       - value: 38.5
         source: numista
+      - value: 38.5
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/22532
         ref: Numista N#22532 — ½ Thaler (New Business Exchange) - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-thaler-1747-1748/?tid=101296
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-22532
+      - tid-tid-101296
   - id: c-a7deb8ae
     class_id: c-a7deb8ae
     label: unified-dk-numista-22914
@@ -1101,20 +1292,29 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
     diameter_mm:
       - value: 43.0
         source: numista
+      - value: 43.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/22914
         ref: Numista N#22914 — 1 Thaler - City of Bremen (1743)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1743/?tid=101307
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-22914
+      - tid-tid-101307
   - id: c-e6fb3502
     class_id: c-e6fb3502
     label: unified-dk-numista-241992
@@ -1183,9 +1383,13 @@ coins:
       - type: literature
         url: https://en.numista.com/251414
         ref: Numista N#251414 — 4 Grote - City of Bremen — Leopold I 1660
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-4-grote-1660/?tid=101260
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-251414
+      - tid-tid-101260
   - id: c-e438b0ba
     class_id: c-e438b0ba
     label: unified-dk-numista-258190
@@ -1241,8 +1445,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-258190
-  - id: c-f2c7f1de
-    class_id: c-f2c7f1de
+  - id: c-89523fad
+    class_id: c-89523fad
     label: unified-dk-numista-266126
     fuss: seed_unsorted
     phase: numista
@@ -1267,13 +1471,19 @@ coins:
     weight_rough_g:
       - value: 17.44
         source: numista
+      - value: 17.44
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/266126
         ref: Numista N#266126 — 48 Grote - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-48-grote-1753/?tid=106933
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-266126
+      - tid-tid-106933
   - id: c-86730326
     class_id: c-86730326
     label: unified-dk-numista-266574
@@ -1281,12 +1491,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Thaler
-    year_first: 1635
+    year_first: 1634
     year_last: 1635
-    year_label: '1635'
+    year_ranges:
+      -   - 1634
+          - 1635
+    year_label: 1634-1635
     ruler: Ferdinand II
     catalog:
-      km: '91.3'
+      km:
+        - '91.3'
+        - '91'
       numista: '266574'
       others:
         - Jungk# 474
@@ -1295,19 +1510,28 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
       - value: 28.53
         source: numista
+      - value: 29.0
+        source: ucoin
+    diameter_mm:
+      - value: 45.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/266574
         ref: Numista N#266574 — 1 Thaler - City of Bremen 1635
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1634-1635/?tid=101301
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-266574
+      - tid-tid-101301
   - id: c-b02f9340
     class_id: c-b02f9340
     label: unified-dk-numista-266575
@@ -1337,11 +1561,15 @@ coins:
       - type: literature
         url: https://en.numista.com/266575
         ref: Numista N#266575 — 1/2 Thaler - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-thaler-1661/?tid=101294
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-266575
-  - id: c-f2dd1314
-    class_id: c-f2dd1314
+      - tid-tid-101294
+  - id: c-b042e9b5
+    class_id: c-b042e9b5
     label: unified-dk-numista-266576
     fuss: seed_unsorted
     phase: numista
@@ -1366,20 +1594,28 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 29.0
+        source: ucoin
       - value: 29.45
         source: numista
     diameter_mm:
       - value: 43.0
         source: numista
+      - value: 43.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/266576
         ref: Numista N#266576 — 1 Thaler - City of Bremen (1723)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1723/?tid=101305
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-266576
-  - id: c-e4e3a81a
-    class_id: c-e4e3a81a
+      - tid-tid-101305
+  - id: c-dd332314
+    class_id: c-dd332314
     label: unified-dk-numista-266577
     fuss: seed_unsorted
     phase: numista
@@ -1400,24 +1636,35 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.986
         source: numista
+      - value: 0.986
+        source: ucoin
     weight_rough_g:
       - value: 3.49
         source: numista
+      - value: 3.5
+        source: ucoin
+    diameter_mm:
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/266577
         ref: Numista N#266577 — 1 Ducat - City of Bremen (1723)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-ducat-1723/?tid=101333
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-266577
-  - id: c-b30b465b
-    class_id: c-b30b465b
+      - tid-tid-101333
+  - id: c-1ba0eb01
+    class_id: c-1ba0eb01
     label: unified-dk-numista-266578
     fuss: seed_unsorted
     phase: numista
@@ -1442,15 +1689,21 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 58.39
+        source: ucoin
       - value: 58.51
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/266578
         ref: Numista N#266578 — 2 Thalers - City of Bremen (1723)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-thaler-1723/?tid=101321
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-266578
+      - tid-tid-101321
   - id: c-60edec9c
     class_id: c-60edec9c
     label: unified-dk-numista-266579
@@ -1542,19 +1795,28 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 29.0
+        source: ucoin
       - value: 29.12
         source: numista
+    diameter_mm:
+      - value: 43.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/268529
         ref: Numista N#268529 — 1 Thaler - City of Bremen, Francis I 1748
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1748/?tid=101309
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-268529
+      - tid-tid-101309
   - id: c-2e0cf8f8
     class_id: c-2e0cf8f8
     label: unified-dk-numista-271035
@@ -1628,8 +1890,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-271036
-  - id: c-d3daf14f
-    class_id: c-d3daf14f
+  - id: c-77d8e882
+    class_id: c-77d8e882
     label: unified-dk-numista-27350
     fuss: seed_unsorted
     phase: numista
@@ -1661,16 +1923,24 @@ coins:
     weight_rough_g:
       - value: 2.92
         source: numista
+      - value: 4.06
+        source: ucoin
     diameter_mm:
       - value: 20.0
         source: numista
+      - value: 20.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/27350
         ref: Numista N#27350 — 2½ Schwaren - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-1-2-schwaren-1797-1802/?tid=101113
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-27350
+      - tid-tid-101113
   - id: c-419e0830
     class_id: c-419e0830
     label: unified-dk-numista-274367
@@ -1752,12 +2022,17 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     year_first: 1650
-    year_last: 1650
-    year_label: '1650'
+    year_last: 1657
+    year_ranges:
+      -   - 1650
+          - 1657
+    year_label: 1650-1657
     ruler: Ferdinand III
     mint: Bremen
     catalog:
-      km: '117.1'
+      km:
+        - '117.1'
+        - '117'
       numista: '295416'
       dav: CCT 5101A
       others:
@@ -1776,11 +2051,15 @@ coins:
       - type: literature
         url: https://en.numista.com/295416
         ref: Numista N#295416 — 2 Thalers - City of Bremen 1650
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-thaler-1650-1657/?tid=101315
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-295416
-  - id: c-116a22a6
-    class_id: c-116a22a6
+      - tid-tid-101315
+  - id: c-1048cdad
+    class_id: c-1048cdad
     label: unified-dk-numista-297011
     fuss: seed_unsorted
     phase: numista
@@ -1800,21 +2079,30 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 29.0
+        source: ucoin
       - value: 29.33
         source: numista
+    diameter_mm:
+      - value: 45.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/297011
         ref: Numista N#297011 — 1 Thaler - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1624/?tid=101298
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-297011
-  - id: c-355a8c34
-    class_id: c-355a8c34
+      - tid-tid-101298
+  - id: c-1db261ac
+    class_id: c-1db261ac
     label: unified-dk-numista-30130
     fuss: seed_unsorted
     phase: numista
@@ -1838,6 +2126,7 @@ coins:
       -   - 1797
           - 1797
     year_label: 1719-1720, 1726, 1730-1732, 1740-1741, 1768, 1781, 1797
+    mintmaster: DB
     mint: Bremen
     catalog:
       km: '166'
@@ -1852,16 +2141,24 @@ coins:
     weight_rough_g:
       - value: 1.51
         source: numista
+      - value: 1.51
+        source: ucoin
     diameter_mm:
       - value: 17.0
         source: numista
+      - value: 17.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/30130
         ref: Numista N#30130 — 1 Schwaren - City of Bremen (1719-1797)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-schwaren-1719-1797/?tid=101110
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-30130
+      - tid-tid-101110
   - id: c-3751fade
     class_id: c-3751fade
     label: unified-dk-numista-30216
@@ -1892,16 +2189,25 @@ coins:
     fineness:
       - value: 0.739583
         source: numista
+      - value: 0.74
+        source: ucoin
     weight_rough_g:
       - value: 3.889
         source: numista
+      - value: 3.89
+        source: ucoin
     diameter_mm:
       - value: 22.0
         source: numista
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/30216
         ref: Numista N#30216 — 12 Grote - City of Bremen – Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-12-grote-1859-1860/?tid=101273
+        ref: ucoin
     note:
       de: ⅙ Thaler
       en: ⅙ Thaler
@@ -1910,6 +2216,7 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-30216
+      - tid-tid-101273
   - id: c-469205be
     class_id: c-469205be
     label: unified-dk-numista-303053
@@ -1945,6 +2252,9 @@ coins:
       - type: literature
         url: https://en.numista.com/303053
         ref: Numista N#303053 — 4 Grote - City of Bremen 1646-1649
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-4-grote-1646-1649/?tid=101259
+        ref: ucoin
     note:
       de: 1/18 Thaler
       en: 1/18 Thaler
@@ -1953,6 +2263,7 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-303053
+      - tid-tid-101259
   - id: c-7d615e9b
     class_id: c-7d615e9b
     label: unified-dk-numista-31051
@@ -1983,19 +2294,29 @@ coins:
     fineness:
       - value: 0.986
         source: numista
+      - value: 0.986
+        source: ucoin
     weight_rough_g:
       - value: 3.5
         source: numista
+      - value: 3.5
+        source: ucoin
     diameter_mm:
       - value: 23.0
         source: numista
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/31051
         ref: Numista N#31051 — 1 Ducat - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-ducat-1745-1746/?tid=101334
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-31051
+      - tid-tid-101334
   - id: c-9ee28fbb
     class_id: c-9ee28fbb
     label: unified-dk-numista-313079
@@ -2039,6 +2360,7 @@ coins:
     year_first: 1781
     year_last: 1781
     year_label: '1781'
+    mintmaster: DB
     catalog:
       km: '215'
       numista: '313084'
@@ -2053,9 +2375,13 @@ coins:
       - type: literature
         url: https://en.numista.com/313084
         ref: Numista N#313084 — 1 Schwaren - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-schwaren-1781/?tid=101111
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-313084
+      - tid-tid-101111
   - id: c-7ee56d5c
     class_id: c-7ee56d5c
     label: unified-dk-numista-314918
@@ -2124,8 +2450,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-314922
-  - id: c-ca97d078
-    class_id: c-ca97d078
+  - id: c-909f315e
+    class_id: c-909f315e
     label: unified-dk-numista-314924
     fuss: seed_unsorted
     phase: numista
@@ -2145,22 +2471,33 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.986
         source: numista
+      - value: 0.986
+        source: ucoin
     weight_rough_g:
       - value: 3.48
         source: numista
+      - value: 3.5
+        source: ucoin
+    diameter_mm:
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/314924
         ref: Numista N#314924 — 1 Ducat - City of Bremen (1672)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-ducat-1672/?tid=101331
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-314924
+      - tid-tid-101331
   - id: c-8d994029
     class_id: c-8d994029
     label: unified-dk-numista-314927
@@ -2194,26 +2531,37 @@ coins:
     fineness:
       - value: 0.986
         source: numista
+      - value: 0.986
+        source: ucoin
     weight_rough_g:
       - value: 7.0
         source: numista
+      - value: 7.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/314927
         ref: Numista N#314927 — 2 Ducats - City of Bremen — Leopold I 1659, 1667
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-ducat-1659-1667/?tid=101336
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-314927
-  - id: c-3ca2c418
-    class_id: c-3ca2c418
+      - tid-tid-101336
+  - id: c-1a230446
+    class_id: c-1a230446
     label: unified-dk-numista-314930
     fuss: seed_unsorted
     phase: numista
     kind: kurant
     nominal: 1 Ducat
-    year_first: 1667
+    year_first: 1659
     year_last: 1667
-    year_label: '1667'
+    year_ranges:
+      -   - 1659
+          - 1667
+    year_label: 1659-1667
     catalog:
       km: '125'
       numista: '314930'
@@ -2224,24 +2572,35 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
     fineness:
       - value: 0.986
         source: numista
+      - value: 0.986
+        source: ucoin
     weight_rough_g:
       - value: 3.47
         source: numista
+      - value: 3.5
+        source: ucoin
+    diameter_mm:
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/314930
         ref: Numista N#314930 — 1 Ducat - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-ducat-1659-1667/?tid=101330
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-314930
-  - id: c-2786ad91
-    class_id: c-2786ad91
+      - tid-tid-101330
+  - id: c-20fb3595
+    class_id: c-20fb3595
     label: unified-dk-numista-314932
     fuss: seed_unsorted
     phase: numista
@@ -2262,24 +2621,35 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
       - value: 0.986
         source: numista
+      - value: 0.986
+        source: ucoin
     weight_rough_g:
+      - value: 3.5
+        source: ucoin
       - value: 3.54
         source: numista
+    diameter_mm:
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/314932
         ref: Numista N#314932 — 1 Ducat - City of Bremen (1710)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-ducat-1710/?tid=101332
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-314932
-  - id: c-a9fcc272
-    class_id: c-a9fcc272
+      - tid-tid-101332
+  - id: c-0c12c75d
+    class_id: c-0c12c75d
     label: unified-dk-numista-31530
     fuss: seed_unsorted
     phase: numista
@@ -2307,15 +2677,22 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 0.5
+        source: ucoin
       - value: 0.7
         source: numista
     diameter_mm:
+      - value: 15.0
+        source: ucoin
       - value: 16.5
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/31530
         ref: Numista N#31530 — 1 Groten - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1746-1752/?tid=101141
+        ref: ucoin
     note:
       de: 1/72 Thaler
       en: 1/72 Thaler
@@ -2324,6 +2701,7 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-31530
+      - tid-tid-101141
   - id: c-bb75a8fb
     class_id: c-bb75a8fb
     label: unified-dk-numista-317314
@@ -2445,8 +2823,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-317316
-  - id: c-aabc364d
-    class_id: c-aabc364d
+  - id: c-76c2bfcf
+    class_id: c-76c2bfcf
     label: unified-dk-numista-317319
     fuss: seed_unsorted
     phase: numista
@@ -2478,11 +2856,15 @@ coins:
       - type: literature
         url: https://en.numista.com/317319
         ref: Numista N#317319 — ½ Thaler - City of Bremen 1643
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-thaler-1643/?tid=101292
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-317319
-  - id: c-e032a73c
-    class_id: c-e032a73c
+      - tid-tid-101292
+  - id: c-58582216
+    class_id: c-58582216
     label: unified-dk-numista-317321
     fuss: seed_unsorted
     phase: numista
@@ -2514,9 +2896,13 @@ coins:
       - type: literature
         url: https://en.numista.com/317321
         ref: Numista N#317321 — 1 Groten - City of Bremen (1674)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1674/?tid=101127
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-317321
+      - tid-tid-101127
   - id: c-93c15069
     class_id: c-93c15069
     label: unified-dk-numista-317322
@@ -2552,11 +2938,15 @@ coins:
       - type: literature
         url: https://en.numista.com/317322
         ref: Numista N#317322 — 1 Schwaren - City of Bremen (1676)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-schwaren-1676/?tid=101108
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-317322
-  - id: c-3cba69e1
-    class_id: c-3cba69e1
+      - tid-tid-101108
+  - id: c-0ac9d8b7
+    class_id: c-0ac9d8b7
     label: unified-dk-numista-317323
     fuss: seed_unsorted
     phase: numista
@@ -2580,18 +2970,26 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 29.0
+        source: ucoin
       - value: 29.14
         source: numista
     diameter_mm:
       - value: 42.0
         source: numista
+      - value: 43.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/317323
         ref: Numista N#317323 — 1 Thaler - City of Bremen (1742)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1742/?tid=101306
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-317323
+      - tid-tid-101306
   - id: c-2af1daee
     class_id: c-2af1daee
     label: unified-dk-numista-320854
@@ -2620,9 +3018,13 @@ coins:
       - type: literature
         url: https://en.numista.com/320854
         ref: Numista N#320854 — 1/4 Thaler - City of Bremen 1651
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-4-thaler-1651/?tid=101291
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-320854
+      - tid-tid-101291
   - id: c-c4ff1ae0
     class_id: c-c4ff1ae0
     label: unified-dk-numista-353700
@@ -2697,8 +3099,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-382445
-  - id: c-db65c8f9
-    class_id: c-db65c8f9
+  - id: c-338311fe
+    class_id: c-338311fe
     label: unified-dk-numista-38956
     fuss: seed_unsorted
     phase: numista
@@ -2716,20 +3118,29 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 8.3
+        source: ucoin
     diameter_mm:
       - value: 32.0
         source: numista
+      - value: 32.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/38956
         ref: Numista N#38956 — 24 Grote - City of Bremen, Francis I 1749
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-24-grote-1749/?tid=101275
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-38956
+      - tid-tid-101275
   - id: c-be408d3c
     class_id: c-be408d3c
     label: unified-dk-numista-390833
@@ -2833,8 +3244,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-397639
-  - id: c-6297a3a0
-    class_id: c-6297a3a0
+  - id: c-3e0b8f87
+    class_id: c-3e0b8f87
     label: unified-dk-numista-397665
     fuss: seed_unsorted
     phase: numista
@@ -2872,9 +3283,13 @@ coins:
       - type: literature
         url: https://en.numista.com/397665
         ref: Numista N#397665 — 12 Grote - City of Bremen — Leopold I 1658-1672
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-12-grote-1658-1672/?tid=101271
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-397665
+      - tid-tid-101271
   - id: c-f4057d37
     class_id: c-f4057d37
     label: unified-dk-numista-397858
@@ -2929,17 +3344,25 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 5.3
+        source: ucoin
     diameter_mm:
       - value: 28.0
         source: numista
+      - value: 28.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/39799
         ref: Numista N#39799 — 12 Grote - City of Bremen 1654, 1657
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-12-grote-1654-1657/?tid=101270
+        ref: ucoin
     note:
       de: 1/6 Thaler
       en: 1/6 Thaler
@@ -2948,8 +3371,9 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-39799
-  - id: c-a5315d25
-    class_id: c-a5315d25
+      - tid-tid-101270
+  - id: c-4d6b8d8d
+    class_id: c-4d6b8d8d
     label: unified-dk-numista-39800
     fuss: seed_unsorted
     phase: numista
@@ -2983,9 +3407,13 @@ coins:
       - type: literature
         url: https://en.numista.com/39800
         ref: Numista N#39800 — 2 Grote - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-grote-1660-1671/?tid=101253
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-39800
+      - tid-tid-101253
   - id: c-5c6beab4
     class_id: c-5c6beab4
     label: unified-dk-numista-399084
@@ -3059,8 +3487,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-401336
-  - id: c-fe22cdee
-    class_id: c-fe22cdee
+  - id: c-2509bb4d
+    class_id: c-2509bb4d
     label: unified-dk-numista-42048
     fuss: seed_unsorted
     phase: numista
@@ -3086,16 +3514,24 @@ coins:
     weight_rough_g:
       - value: 0.63
         source: numista
+      - value: 0.65
+        source: ucoin
     diameter_mm:
+      - value: 16.0
+        source: ucoin
       - value: 17.0
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/42048
         ref: Numista N#42048 — 1 Groten - City of Bremen (1743-1744)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1743-1744/?tid=101136
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-42048
+      - tid-tid-101136
   - id: c-06d28a4a
     class_id: c-06d28a4a
     label: unified-dk-numista-422620
@@ -3114,17 +3550,24 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 58.39
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/422620
         ref: Numista N#422620 — 2 Thalers - City of Bremen Charles VII (1743)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-thaler-1743/?tid=101324
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-422620
+      - tid-tid-101324
   - id: c-35ea22f6
     class_id: c-35ea22f6
     label: unified-dk-numista-422621
@@ -3143,17 +3586,27 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
+    diameter_mm:
+      - value: 43.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/422621
         ref: Numista N#422621 — 1 Thaler - Charles VII - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1744/?tid=101308
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-422621
+      - tid-tid-101308
   - id: c-f574ac93
     class_id: c-f574ac93
     label: unified-dk-numista-422622
@@ -3243,22 +3696,25 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-426228
-  - id: c-bfeba400
-    class_id: c-bfeba400
+  - id: c-79a6ff77
+    class_id: c-79a6ff77
     label: unified-dk-numista-434472
     fuss: seed_unsorted
     phase: numista
     kind: kurant
     nominal: 2 Thalers
-    year_first: 1641
+    year_first: 1640
     year_last: 1642
     year_ranges:
-      -   - 1641
+      -   - 1640
           - 1642
-    year_label: 1641-1642
+    year_label: 1640-1642
     ruler: Ferdinand III
+    mint: Bremen
     catalog:
-      km: '102.2'
+      km:
+        - '102.2'
+        - '102'
       numista: '434472'
       dav: CCT 5099
       others:
@@ -3268,7 +3724,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
       - value: 57.24
@@ -3277,9 +3733,13 @@ coins:
       - type: literature
         url: https://en.numista.com/434472
         ref: Numista N#434472 — 2 Thalers - City of Bremen 1641-1642
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-thaler-1640-1642/?tid=101314
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-434472
+      - tid-tid-101314
   - id: c-18b587da
     class_id: c-18b587da
     label: unified-dk-numista-46655
@@ -3311,13 +3771,20 @@ coins:
     weight_rough_g:
       - value: 0.74
         source: numista
+      - value: 0.74
+        source: ucoin
     diameter_mm:
+      - value: 16.4
+        source: ucoin
       - value: 16.44
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/46655
         ref: Numista N#46655 — 1 Groten - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1746-1753/?tid=101142
+        ref: ucoin
     note:
       de: 1/72 Thaler
       en: 1/72 Thaler
@@ -3326,6 +3793,7 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-46655
+      - tid-tid-101142
   - id: c-2fac2b65
     class_id: c-2fac2b65
     label: unified-dk-numista-484969
@@ -3391,18 +3859,26 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 0.7
+        source: ucoin
       - value: 0.71
         source: numista
     diameter_mm:
+      - value: 16.0
+        source: ucoin
       - value: 16.1
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/48569
         ref: Numista N#48569 — 1 Groten - City of Bremen, Francis I 1750-1751
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1750-1751/?tid=101145
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-48569
+      - tid-tid-101145
   - id: c-32322da6
     class_id: c-32322da6
     label: unified-dk-numista-51461
@@ -3446,16 +3922,19 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-51461
-  - id: c-a871bcda
-    class_id: c-a871bcda
+  - id: c-843558c0
+    class_id: c-843558c0
     label: unified-dk-numista-535008
     fuss: seed_unsorted
     phase: numista
     kind: kurant
     nominal: 1 Schwaren
-    year_first: 1708
+    year_first: 1687
     year_last: 1708
-    year_label: '1708'
+    year_ranges:
+      -   - 1687
+          - 1708
+    year_label: 1687-1708
     catalog:
       km: '155'
       numista: '535008'
@@ -3464,17 +3943,24 @@ coins:
     metal: billon
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 1.51
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/535008
         ref: Numista N#535008 — 1 Schwaren - City of Bremen (1708)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-schwaren-1687-1708/?tid=101109
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-535008
+      - tid-tid-101109
   - id: c-8878e43d
     class_id: c-8878e43d
     label: unified-dk-numista-535010
@@ -3507,9 +3993,13 @@ coins:
       - type: literature
         url: https://en.numista.com/535010
         ref: Numista N#535010 — 1 Schwaren - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-schwaren-1671/?tid=101107
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-535010
+      - tid-tid-101107
   - id: c-c79c54b9
     class_id: c-c79c54b9
     label: unified-dk-numista-535011
@@ -3560,6 +4050,7 @@ coins:
     year_last: 1764
     year_label: '1764'
     ruler: Francis I
+    mint: Bremen
     catalog:
       km: '207'
       numista: '550341'
@@ -3570,23 +4061,31 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
       - value: 2.7
         source: numista
+      - value: 3.17
+        source: ucoin
     diameter_mm:
       - value: 22.0
         source: numista
+      - value: 23.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/550341
         ref: Numista N#550341 — 6 Grote / 1⁄12 Thaler - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-12-thaler-1764/?tid=101264
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-550341
-  - id: c-4bf89c3c
-    class_id: c-4bf89c3c
+      - tid-tid-101264
+  - id: c-0e1c2130
+    class_id: c-0e1c2130
     label: unified-dk-numista-574751
     fuss: seed_unsorted
     phase: numista
@@ -3612,16 +4111,24 @@ coins:
     fineness:
       - value: 0.986
         source: numista
+      - value: 0.986
+        source: ucoin
     weight_rough_g:
       - value: 7.0
         source: numista
+      - value: 7.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/574751
         ref: Numista N#574751 — 2 Ducats - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-ducat-1746/?tid=101337
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-574751
+      - tid-tid-101337
   - id: c-ca8eaf59
     class_id: c-ca8eaf59
     label: unified-dk-numista-57613
@@ -3689,18 +4196,26 @@ coins:
     weight_rough_g:
       - value: 1.0
         source: numista
+      - value: 1.0
+        source: ucoin
     diameter_mm:
       - value: 18.0
         source: numista
+      - value: 18.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/59009
         ref: Numista N#59009 — 3 Grote - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-3-grote-1634-1637/?tid=101257
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-59009
-  - id: c-f85c7411
-    class_id: c-f85c7411
+      - tid-tid-101257
+  - id: c-61642c14
+    class_id: c-61642c14
     label: unified-dk-numista-59226
     fuss: seed_unsorted
     phase: numista
@@ -3723,18 +4238,26 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 3.5
+        source: ucoin
       - value: 3.55
         source: numista
     diameter_mm:
+      - value: 20.0
+        source: ucoin
       - value: 21.0
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/59226
         ref: Numista N#59226 — 2½ Schwaren - City of Bremen - Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-1-2-schwaren-1820/?tid=101114
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-59226
+      - tid-tid-101114
   - id: c-321f0bb4
     class_id: c-321f0bb4
     label: unified-dk-numista-59227
@@ -3777,8 +4300,8 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-59227
-  - id: c-97909c9f
-    class_id: c-97909c9f
+  - id: c-299d47b9
+    class_id: c-299d47b9
     label: unified-dk-numista-69257
     fuss: seed_unsorted
     phase: numista
@@ -3801,18 +4324,26 @@ coins:
     weight_rough_g:
       - value: 0.61
         source: numista
+      - value: 0.65
+        source: ucoin
     diameter_mm:
       - value: 16.0
         source: numista
+      - value: 16.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/69257
         ref: Numista N#69257 — 1 Groten - City of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1745/?tid=101140
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-69257
-  - id: c-20669a6f
-    class_id: c-20669a6f
+      - tid-tid-101140
+  - id: c-15e34728
+    class_id: c-15e34728
     label: unified-dk-numista-73028
     fuss: seed_unsorted
     phase: numista
@@ -3835,18 +4366,26 @@ coins:
     weight_rough_g:
       - value: 0.75
         source: numista
+      - value: 0.75
+        source: ucoin
     diameter_mm:
       - value: 16.0
         source: numista
+      - value: 16.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/73028
         ref: Numista N#73028 — 1 Groten - City of Bremen, Francis I 1749
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1749/?tid=101144
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-73028
-  - id: c-f115fc98
-    class_id: c-f115fc98
+      - tid-tid-101144
+  - id: c-607f3229
+    class_id: c-607f3229
     label: unified-dk-numista-89155
     fuss: seed_unsorted
     phase: numista
@@ -3867,18 +4406,26 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 0.65
+        source: ucoin
       - value: 0.66
         source: numista
     diameter_mm:
       - value: 16.0
         source: numista
+      - value: 16.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/89155
         ref: Numista N#89155 — 1 Groten - City of Bremen (1742)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1742/?tid=101134
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-89155
+      - tid-tid-101134
   - id: c-1ecce120
     class_id: c-1ecce120
     label: unified-dk-numista-89157
@@ -3932,6 +4479,7 @@ coins:
           - 1739
     year_label: 1738-1739
     ruler: Charles VI (Karl VI)
+    mintmaster: GLC
     catalog:
       km: '177'
       numista: '95652'
@@ -3948,10 +4496,1149 @@ coins:
     diameter_mm:
       - value: 18.0
         source: numista
+      - value: 18.0
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/95652
         ref: Numista N#95652 — 2 Grote - City of Bremen (1738-1739)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-grote-1738-1739/?tid=101255
+        ref: ucoin
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-95652
+      - tid-tid-101255
+  - id: c-758646b9
+    class_id: c-758646b9
+    label: unified-tid-tid-101116
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1624
+    year_last: 1624
+    year_label: '1624'
+    catalog:
+      km: '82'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1624/?tid=101116
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101116
+  - id: c-35e33838
+    class_id: c-35e33838
+    label: unified-tid-tid-101117
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1640
+    year_last: 1733
+    year_ranges:
+      -   - 1640
+          - 1733
+    year_label: 1640-1733
+    catalog:
+      km: '100.1'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1640-1733/?tid=101117
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101117
+  - id: c-8285d197
+    class_id: c-8285d197
+    label: unified-tid-tid-101118
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1741
+    year_last: 1752
+    year_ranges:
+      -   - 1741
+          - 1752
+    year_label: 1741-1752
+    catalog:
+      km: '100.2'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1741-1752/?tid=101118
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101118
+  - id: c-fa55adba
+    class_id: c-fa55adba
+    label: unified-tid-tid-101119
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1765
+    year_last: 1765
+    year_label: '1765'
+    catalog:
+      km: '208'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1765/?tid=101119
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101119
+  - id: c-f79a7048
+    class_id: c-f79a7048
+    label: unified-tid-tid-101120
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1768
+    year_last: 1768
+    year_label: '1768'
+    catalog:
+      km: '209'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1768/?tid=101120
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101120
+  - id: c-0a3d9268
+    class_id: c-0a3d9268
+    label: unified-tid-tid-101121
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1771
+    year_last: 1772
+    year_ranges:
+      -   - 1771
+          - 1772
+    year_label: 1771-1772
+    catalog:
+      km: '210'
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1771-1772/?tid=101121
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101121
+  - id: c-74552421
+    class_id: c-74552421
+    label: unified-tid-tid-101122
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1781
+    year_last: 1781
+    year_label: '1781'
+    catalog:
+      km: '216'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.73
+        source: ucoin
+    diameter_mm:
+      - value: 15.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1781/?tid=101122
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101122
+  - id: c-2c86fee3
+    class_id: c-2c86fee3
+    label: unified-tid-tid-101123
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1789
+    year_last: 1789
+    year_label: '1789'
+    catalog:
+      km: '217'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.73
+        source: ucoin
+    diameter_mm:
+      - value: 15.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1789/?tid=101123
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101123
+  - id: c-a9d16d09
+    class_id: c-a9d16d09
+    label: unified-tid-tid-101124
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Grote
+    year_first: 1841
+    year_last: 1841
+    year_label: '1841'
+    catalog:
+      km: '236'
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 3.2
+        source: ucoin
+    diameter_mm:
+      - value: 20.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-grote-1841/?tid=101124
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101124
+  - id: c-bfea1eb1
+    class_id: c-bfea1eb1
+    label: unified-tid-tid-101129
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1708
+    year_last: 1709
+    year_ranges:
+      -   - 1708
+          - 1709
+    year_label: 1708-1709
+    catalog:
+      km: '160'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1708-1709/?tid=101129
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101129
+  - id: c-f42463d2
+    class_id: c-f42463d2
+    label: unified-tid-tid-101130
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1733
+    year_last: 1734
+    year_ranges:
+      -   - 1733
+          - 1734
+    year_label: 1733-1734
+    catalog:
+      km: '175'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1733-1734/?tid=101130
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101130
+  - id: c-8ade8040
+    class_id: c-8ade8040
+    label: unified-tid-tid-101138
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1745
+    year_last: 1745
+    year_label: '1745'
+    catalog:
+      km: '199'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.65
+        source: ucoin
+    diameter_mm:
+      - value: 16.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1745/?tid=101138
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101138
+  - id: c-26a84790
+    class_id: c-26a84790
+    label: unified-tid-tid-101143
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1747
+    year_last: 1763
+    year_ranges:
+      -   - 1747
+          - 1763
+    year_label: 1747-1763
+    catalog:
+      km: '213'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.9
+        source: ucoin
+    diameter_mm:
+      - value: 16.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1747-1763/?tid=101143
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101143
+  - id: c-9bac6f41
+    class_id: c-9bac6f41
+    label: unified-tid-tid-101146
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1763
+    year_last: 1763
+    year_label: '1763'
+    catalog:
+      km: '219'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.9
+        source: ucoin
+    diameter_mm:
+      - value: 16.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1763/?tid=101146
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101146
+  - id: c-85071b1c
+    class_id: c-85071b1c
+    label: unified-tid-tid-101147
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1763
+    year_last: 1763
+    year_label: '1763'
+    catalog:
+      km: '222'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.9
+        source: ucoin
+    diameter_mm:
+      - value: 16.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1763/?tid=101147
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101147
+  - id: c-4aad1eb6
+    class_id: c-4aad1eb6
+    label: unified-tid-tid-101148
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1763
+    year_last: 1763
+    year_label: '1763'
+    catalog:
+      km: '223'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.9
+        source: ucoin
+    diameter_mm:
+      - value: 16.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1763/?tid=101148
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101148
+  - id: c-cece1508
+    class_id: c-cece1508
+    label: unified-tid-tid-101150
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Grote
+    year_first: 1840
+    year_last: 1840
+    year_label: '1840'
+    catalog:
+      km: '230'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.281
+        source: ucoin
+    weight_rough_g:
+      - value: 0.77
+        source: ucoin
+    diameter_mm:
+      - value: 15.8
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-grote-1840/?tid=101150
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101150
+  - id: c-47609616
+    class_id: c-47609616
+    label: unified-tid-tid-101240
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 2 Grote
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
+    catalog:
+      km: '86'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-grote-1625/?tid=101240
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101240
+  - id: c-3bbc7efb
+    class_id: c-3bbc7efb
+    label: unified-tid-tid-101252
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 2 Grote
+    year_first: 1646
+    year_last: 1646
+    year_label: '1646'
+    catalog:
+      km: '110'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-grote-1646/?tid=101252
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101252
+  - id: c-903b9e64
+    class_id: c-903b9e64
+    label: unified-tid-tid-101256
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 3 Grote
+    year_first: 1629
+    year_last: 1629
+    year_label: '1629'
+    catalog:
+      km: '88'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-3-grote-1629/?tid=101256
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101256
+  - id: c-d0991347
+    class_id: c-d0991347
+    label: unified-tid-tid-101258
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 3 Grote
+    year_first: 1677
+    year_last: 1677
+    year_label: '1677'
+    catalog:
+      km: '147'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.0
+        source: ucoin
+    diameter_mm:
+      - value: 18.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-3-grote-1677/?tid=101258
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101258
+  - id: c-b751bf16
+    class_id: c-b751bf16
+    label: unified-tid-tid-101261
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 4 Grote
+    year_first: 1671
+    year_last: 1671
+    year_label: '1671'
+    catalog:
+      km: '146'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-4-grote-1671/?tid=101261
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101261
+  - id: c-389b4f6d
+    class_id: c-389b4f6d
+    label: unified-tid-tid-101268
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 12 Grote
+    year_first: 1623
+    year_last: 1623
+    year_label: '1623'
+    mint: Bremen
+    catalog:
+      km: '79'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 3.6
+        source: ucoin
+    diameter_mm:
+      - value: 26.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-12-grote-1623/?tid=101268
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101268
+  - id: c-2e930ab9
+    class_id: c-2e930ab9
+    label: unified-tid-tid-101269
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 12 Grote
+    year_first: 1653
+    year_last: 1653
+    year_label: '1653'
+    catalog:
+      km: '121'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-12-grote-1653/?tid=101269
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101269
+  - id: c-e8259d73
+    class_id: c-e8259d73
+    label: unified-tid-tid-101293
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
+    catalog:
+      km: '115'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-thaler-1650/?tid=101293
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101293
+  - id: c-a16261fe
+    class_id: c-a16261fe
+    label: unified-tid-tid-101295
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1666
+    year_last: 1666
+    year_label: '1666'
+    catalog:
+      km: '136'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-thaler-1666/?tid=101295
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101295
+  - id: c-1851320a
+    class_id: c-1851320a
+    label: unified-tid-tid-101297
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ½ Thaler
+    year_first: 1748
+    year_last: 1748
+    year_label: '1748'
+    catalog:
+      km: '192'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    diameter_mm:
+      - value: 38.5
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-2-thaler-1748/?tid=101297
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101297
+  - id: c-3baafd09
+    class_id: c-3baafd09
+    label: unified-tid-tid-101299
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1624
+    year_last: 1624
+    year_label: '1624'
+    catalog:
+      km: '84'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
+    diameter_mm:
+      - value: 45.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1624/?tid=101299
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101299
+  - id: c-c40e8cc2
+    class_id: c-c40e8cc2
+    label: unified-tid-tid-101300
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1623
+    year_last: 1624
+    year_ranges:
+      -   - 1623
+          - 1624
+    year_label: 1623-1624
+    catalog:
+      km: '80'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
+    diameter_mm:
+      - value: 45.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1623-1624/?tid=101300
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101300
+  - id: c-e53ee998
+    class_id: c-e53ee998
+    label: unified-tid-tid-101302
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1640
+    year_last: 1644
+    year_ranges:
+      -   - 1640
+          - 1644
+    year_label: 1640-1644
+    catalog:
+      km: '101'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
+    diameter_mm:
+      - value: 45.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1640-1644/?tid=101302
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101302
+  - id: c-ba79a791
+    class_id: c-ba79a791
+    label: unified-tid-tid-101304
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1660
+    year_last: 1668
+    year_ranges:
+      -   - 1660
+          - 1668
+    year_label: 1660-1668
+    catalog:
+      km: '132'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 29.0
+        source: ucoin
+    diameter_mm:
+      - value: 45.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-thaler-1660-1668/?tid=101304
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101304
+  - id: c-9dbf63e3
+    class_id: c-9dbf63e3
+    label: unified-tid-tid-101319
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 2 Thaler
+    year_first: 1660
+    year_last: 1668
+    year_ranges:
+      -   - 1660
+          - 1668
+    year_label: 1660-1668
+    mint: Bremen
+    catalog:
+      km: '133'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-thaler-1660-1668/?tid=101319
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101319
+  - id: c-264a153d
+    class_id: c-264a153d
+    label: unified-tid-tid-101323
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 2 Thaler
+    year_first: 1742
+    year_last: 1742
+    year_label: '1742'
+    catalog:
+      km: '182'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 58.39
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-thaler-1742/?tid=101323
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101323
+  - id: c-7e7972cc
+    class_id: c-7e7972cc
+    label: unified-tid-tid-101327
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1635
+    year_last: 1637
+    year_ranges:
+      -   - 1635
+          - 1637
+    year_label: 1635-1637
+    catalog:
+      km: '93'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: ucoin
+    weight_rough_g:
+      - value: 3.3
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-goldgulden-1635-1637/?tid=101327
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101327
+  - id: c-f318e34d
+    class_id: c-f318e34d
+    label: unified-tid-tid-101328
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_first: 1640
+    year_last: 1640
+    year_label: '1640'
+    mint: Bremen
+    catalog:
+      km: '103'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.986
+        source: ucoin
+    weight_rough_g:
+      - value: 3.3
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-goldgulden-1640/?tid=101328
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101328
+  - id: c-1e5f98fc
+    class_id: c-1e5f98fc
+    label: unified-tid-tid-101329
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 1 Ducat
+    year_first: 1640
+    year_last: 1652
+    year_ranges:
+      -   - 1640
+          - 1652
+    year_label: 1640-1652
+    catalog:
+      km: '104'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: ucoin
+    weight_rough_g:
+      - value: 3.5
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-ducat-1640-1652/?tid=101329
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101329
+  - id: c-c7e96be4
+    class_id: c-c7e96be4
+    label: unified-tid-tid-101335
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 2 Ducat
+    year_first: 1640
+    year_last: 1652
+    year_ranges:
+      -   - 1640
+          - 1652
+    year_label: 1640-1652
+    catalog:
+      km: '105'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.986
+        source: ucoin
+    weight_rough_g:
+      - value: 7.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-ducat-1640-1652/?tid=101335
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-101335
+  - id: c-d3894493
+    class_id: c-d3894493
+    label: unified-tid-tid-107057
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: ⅛ Thaler
+    year_first: 1623
+    year_last: 1623
+    year_label: '1623'
+    mint: Bremen
+    catalog:
+      others:
+        - ucoin# 1
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-8-thaler-1623/?tid=107057
+        ref: ucoin
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - tid-tid-107057

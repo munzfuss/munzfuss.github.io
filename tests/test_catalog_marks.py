@@ -118,6 +118,58 @@ class Render(unittest.TestCase):
         self.assertEqual(marks["Galster|48"][0], "suspect")
         self.assertEqual(marks["Galster|49"], ("unverified", None))
 
+    def test_attested_number_hides_the_same_marked_number(self):
+        # Hede 68: NGC carries KM 287 unmarked, Numista prints KM 287 on the
+        # KM 292 variety (marked «(!)»); the page shows a plain 287.
+        coin = schema.Coin.model_construct(
+            catalog_alts=[schema.CatalogAlt(register="km", value="287",
+                                            source="numista", kind="erroneous",
+                                            reason=REASON)],
+            catalog_unverified=None, catalog_marks=None)
+        groups = [("KM", ["262", "287", "292"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(groups[0][1], ["262", "287", "292"])
+        self.assertNotIn("KM|287", marks)
+
+    def test_attested_under_a_qualified_km_and_ec_dav(self):
+        # The class renders its KM list as «KM-DK#» and Davenport as
+        # «EC II 3557»; Bruun's marks are km 292 and davenport 3557.
+        coin = schema.Coin.model_construct(
+            catalog_alts=[
+                schema.CatalogAlt(register="km", value="292", source="bruun",
+                                  kind="suspect", reason=REASON),
+                schema.CatalogAlt(register="davenport", value="3557", source="bruun",
+                                  kind="suspect", reason=REASON)],
+            catalog_unverified=None, catalog_marks=None)
+        groups = [("KM-DK", ["262", "292", "287"], None),
+                  ("Dav", ["EC II 3553", "EC II 3557"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(marks, {})
+        self.assertEqual([g[0] for g in groups], ["KM-DK", "Dav"])
+        self.assertEqual(groups[1][1], ["EC II 3553", "EC II 3557"])
+
+    def test_unattested_km_mark_joins_the_qualified_group(self):
+        coin = schema.Coin.model_construct(
+            catalog_alts=[schema.CatalogAlt(register="km", value="239", source="bruun",
+                                            kind="erroneous", reason=REASON)],
+            catalog_unverified=None, catalog_marks=None)
+        groups = [("KM-DK", ["213", "A213"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(groups, [("KM-DK", ["213", "A213", "239"], None)])
+        self.assertEqual(marks["KM-DK|239"][0], "erroneous")
+
+    def test_a_query_number_does_not_hide_a_marked_one(self):
+        coin = schema.Coin.model_construct(
+            catalog_alts=[schema.CatalogAlt(register="galster", value="49",
+                                            source="numista", kind="suspect",
+                                            reason=REASON)],
+            catalog_unverified=[schema.CatalogUnverified(
+                register="galster", value="49", source="kmk")],
+            catalog_marks=None)
+        groups = [("Galster", ["49"], None)]
+        marks = _apply_catalog_value_marks(coin, groups)
+        self.assertEqual(marks["Galster|49"][0], "suspect")
+
     def test_schema_accepts_the_fields(self):
         schema.CatalogMark.model_validate(MARKS[0])
         schema.CatalogMark.model_validate(MARKS[1])
@@ -128,3 +180,24 @@ class Render(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class VolumeKeyedKmMark(unittest.TestCase):
+    """A KM number filed under its Krause volume ({glu: '80'}) is taken out
+    by a mark on register «km» (2026-11-22: NumisMaster 92999 / NGC 1051972
+    print «KM# 80» for the Glückstadt 4 Mark Danske laurel type, Hede 125C,
+    whose KM 80.1 / 80.2 are the 2 Mark)."""
+
+    def _mark(self, km):
+        e = {"id": "x", "catalog": {"km": km, "dav": "3680"},
+             "catalog_marks": [{"register": "km", "value": "80", "kind": "erroneous",
+                                "reason": dict(REASON)}]}
+        apply_catalog_marks(e)
+        return e["catalog"]
+
+    def test_sole_volume_number_removes_km(self):
+        self.assertEqual(self._mark({"glu": "80"}), {"dav": "3680"})
+
+    def test_other_numbers_and_volumes_stay(self):
+        self.assertEqual(self._mark({"glu": ["80", "83"], "sh": "114"}),
+                         {"km": {"glu": "83", "sh": "114"}, "dav": "3680"})

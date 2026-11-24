@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `norburg_plon_duchy`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norburg_plon_duchy.yml across all sources.
 #
-# Input: 53 per-source seed entries.
+# Input: 55 per-source seed entries.
 # Output: 23 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norburg_plon_duchy
-generated_at: '2026-11-10'
+generated_at: '2026-11-24'
 coins:
   - id: c-ce380806
     class_id: c-ce380806
@@ -26,7 +26,8 @@ coins:
     ruler: August
     mint: Magdeburg
     catalog:
-      km: '5'
+      km:
+        norb: '5'
       bruun_collection_id: '14702'
       sieg: '1.1'
       lange: 767a
@@ -77,7 +78,8 @@ coins:
     ruler: August
     mint: Magdeburg
     catalog:
-      km: '6'
+      km:
+        norb: '6'
       bruun_collection_id: '14703'
       sieg: '1.2'
       lange: 767b
@@ -128,7 +130,8 @@ coins:
     ruler: Friedrich Karl
     mint: Hamburg
     catalog:
-      km: '26'
+      km:
+        ploen: '26'
       bruun_collection_id: '14704'
       sieg: '2'
       lange: 769a
@@ -142,25 +145,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-bruun-14704
-          source: bruun
-          years: '1760'
-        - seed: ngc-1203761
-          source: ngc
-          years: '1760'
-        - seed: schleswig_holstein-numismaster-73989
-          source: numismaster
-          years: '1760'
-        - seed: schleswig_holstein-numismaster-73990
-          source: numismaster
-          years: '1760'
-      uncertain:
-        - seed: ngc-1140635
-          source: ngc
-          years: '1760'
     fineness:
       - value: 0.986
         source: ngc
@@ -189,14 +173,6 @@ coins:
       - value: 3.5
         source: numismaster
         specimen: schleswig_holstein-numismaster-73990
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCCLX (1760) G
-          value: '1760'
-          seed: ngc-1140635
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -233,10 +209,12 @@ coins:
     ruler: Friedrich Karl
     mint: Hamburg
     catalog:
-      km: '27'
+      km:
+        ploen: '27'
       bruun_collection_id: '14705'
       sieg: '3'
       lange: 769b
+      numista: '222051'
       fr: '3098'
     metal: gold
     metal_verified: true
@@ -250,7 +228,11 @@ coins:
         source: ngc
       - value: 0.986
         source: numismaster
+      - value: 0.986
+        source: numista
     weight_rough_g:
+      - value: 3.46
+        source: numista
       - value: 3.48
         source: bruun
       - value: 3.5
@@ -262,6 +244,9 @@ coins:
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14254, p. 292
       - type: literature
+        url: https://en.numista.com/222051
+        ref: Numista N#222051 — 1 Ducat - Frederick Charles
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-ploen-ducat-km-27-1760-cuid-1141505-duid-1380426
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -270,6 +255,7 @@ coins:
     issuing_entity: norburg_plon_duchy
     composed_of:
       - dk-bruun-14705
+      - dk-numista-222051
       - ngc-1141505
       - schleswig_holstein-numismaster-73991
   - id: c-43bd27ef
@@ -284,7 +270,8 @@ coins:
     year_label: '1690'
     ruler: Johann Adolf I
     catalog:
-      km: '17'
+      km:
+        ploen: '17'
       numista: '278267'
       lange: 762b
       dav: SG 572
@@ -325,7 +312,8 @@ coins:
     year_label: '1690'
     ruler: Johann Adolf I
     catalog:
-      km: '16'
+      km:
+        ploen: '16'
       numista: '278268'
       lange: 761d
       dav: SG 571
@@ -354,6 +342,45 @@ coins:
       - dk-numista-278268
       - ngc-1141407
       - schleswig_holstein-numismaster-73977
+  - id: c-5278bf19
+    class_id: c-5278bf19
+    label: unified-dk-numista-41864
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    year_first: 1761
+    year_last: 1761
+    year_label: '1761'
+    ruler: Frederick Charles
+    mint: Rethwisch
+    catalog:
+      km:
+        ploen: '28'
+      numista: '41864'
+      dav: '1354'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/41864
+        ref: Numista N#41864 — 1 Thaler - Frederick Charles
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-ploen-thaler-km-28-1761-cuid-1139509-duid-1380405
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_73983
+        ref: NumisMaster
+    issuing_entity: norburg_plon_duchy
+    composed_of:
+      - dk-numista-41864
+      - ngc-1139509
+      - schleswig_holstein-numismaster-73983
   - id: c-0f1952f7
     class_id: c-0f1952f7
     label: unified-kmk-290997
@@ -418,7 +445,8 @@ coins:
     year_label: '1690'
     ruler: Johann Adolf
     catalog:
-      km: '15'
+      km:
+        ploen: '15'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -437,38 +465,6 @@ coins:
     composed_of:
       - ngc-1139508
       - schleswig_holstein-numismaster-73974
-  - id: c-5278bf19
-    class_id: c-5278bf19
-    label: unified-ngc-1139509
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1761
-    year_last: 1761
-    year_label: '1761'
-    ruler: Friedrich Karl
-    catalog:
-      km: '28'
-      dav: '1354'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-ploen-thaler-km-28-1761-cuid-1139509-duid-1380405
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_73983
-        ref: NumisMaster
-    issuing_entity: norburg_plon_duchy
-    composed_of:
-      - ngc-1139509
-      - schleswig_holstein-numismaster-73983
   - id: c-3ec0f75d
     class_id: c-3ec0f75d
     label: unified-ngc-1140213
@@ -481,7 +477,8 @@ coins:
     year_label: '1690'
     ruler: Johann Adolf
     catalog:
-      km: '14'
+      km:
+        ploen: '14'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -513,7 +510,8 @@ coins:
     ruler: Joachim Ernst
     mint: Plön
     catalog:
-      km: '5'
+      km:
+        ploen: '5'
       dav: '3719'
       lange: '748'
       others:
@@ -555,7 +553,8 @@ coins:
     year_label: '1677'
     ruler: Johann Adolf
     catalog:
-      km: '12'
+      km:
+        ploen: '12'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -596,7 +595,8 @@ coins:
     year_label: '1690'
     ruler: Johann Adolf
     catalog:
-      km: '19'
+      km:
+        ploen: '19'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -637,7 +637,8 @@ coins:
     year_label: '1761'
     ruler: Friedrich Karl
     catalog:
-      km: '29'
+      km:
+        ploen: '29'
       dav: '1355'
     metal: silver
     metal_verified: true
@@ -669,7 +670,8 @@ coins:
     year_label: '1677'
     ruler: Johann Adolf
     catalog:
-      km: '10'
+      km:
+        ploen: '10'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -700,7 +702,8 @@ coins:
     year_label: '1625'
     ruler: Joachim Ernst
     catalog:
-      km: '6'
+      km:
+        ploen: '6'
       dav: '3720'
     metal: silver
     metal_verified: true
@@ -732,7 +735,8 @@ coins:
     year_label: '1690'
     ruler: Johann Adolf
     catalog:
-      km: '18'
+      km:
+        ploen: '18'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -763,7 +767,8 @@ coins:
     year_label: '1677'
     ruler: Johann Adolf
     catalog:
-      km: '11'
+      km:
+        ploen: '11'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -794,7 +799,8 @@ coins:
     year_label: '1690'
     ruler: Johann Adolf
     catalog:
-      km: '13'
+      km:
+        ploen: '13'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -824,7 +830,8 @@ coins:
     year_last: 1676
     year_label: '1676'
     catalog:
-      km: '8'
+      km:
+        norb: '8'
       lange: '766'
     metal: gold
     metal_verified: true
@@ -865,7 +872,8 @@ coins:
     year_last: 1676
     year_label: '1676'
     catalog:
-      km: '7'
+      km:
+        norb: '7'
       lange: '766'
     metal: gold
     metal_verified: true
@@ -907,7 +915,8 @@ coins:
     year_label: '1761'
     ruler: Friedrich Karl
     catalog:
-      km: '30'
+      km:
+        ploen: '30'
       dav: 1354a
     metal: silver
     metal_verified: true

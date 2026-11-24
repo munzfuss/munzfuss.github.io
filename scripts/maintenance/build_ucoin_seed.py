@@ -134,6 +134,7 @@ ENTITY_WINDOW: dict[str, tuple[int, int]] = {
     # 1914. `--all` iterates ENTITY_WINDOW.keys() + build_seed gates on
     # membership, so these MUST be here for the entities to be processed.
     "erzbisthum_bremen_verden": (1559, 1914),
+    "hanseatic_bremen": (1559, 1914),
     "grafschaft_oldenburg": (1559, 1914),
     "herzogtum_braunschweig_lueneburg": (1559, 1914),
     "herzogtum_sachsen_lauenburg": (1559, 1914),
@@ -157,6 +158,18 @@ _DEPRECATED_ENTITIES = frozenset({"gesamtstaat"})
 # `_resolve_target_entity` — the catch-all default tier. See that
 # function's docstring for why every other tag is left alone.
 _MINT_ROUTED_ENTITY = "danish_realm"
+
+# ucoin's `bremen-` URL holds two issuers: the archbishopric («Archbishopric
+# of Bremen», 29 records) and the city («Free Imperial City of Bremen» 92,
+# «Free Hanseatic City of Bremen» 12). The URL map predates the
+# hanseatic_bremen entity (2026-11-07) and sent all of them to
+# erzbisthum_bremen_verden, where the city's coins rendered on the
+# archbishopric page. The city series route to the city (curator
+# 2026-11-24).
+_BREMEN_CITY_SERIES: dict[str, str] = {
+    "free imperial city of bremen": "hanseatic_bremen",
+    "free hanseatic city of bremen": "hanseatic_bremen",
+}
 
 # ucoin `period` series → V2 issuing_entity, for the records where ucoin
 # publishes NO mint at all.
@@ -195,6 +208,55 @@ def _period_series(period: str | None) -> str:
     if not period:
         return ""
     return re.sub(r"\s*\(.*$", "", str(period)).strip().lower()
+
+
+# ucoin `period` series → the Krause section a bare «KM# N» of the record is
+# numbered in, on a coin that routes to a Schleswig-Holstein-group entity.
+# ucoin's territorial series follow Krause's sections, and its currency eras on
+# a `denmark-` URL are Krause's Denmark volume. Checked 2026-11-24 against
+# NumisMaster / NGC records by KM base and years over the 86 royal_holstein
+# ucoin records with a bare KM: «Glückstadt» 50 — 42 match the Glückstadt section,
+# 7 that section and a Norway number by coincidence, 1 unmatched (KM 83, the
+# 4 Mark 1694-1696, whose class already reads glu 83); «Holstein-Gottorp-
+# Rendsburg» 4 / 4 hgr; «Duchy of Schleswig-Holstein» 13 / 13 and «Provisional
+# Government» 2 / 2 sh; «Rigsdaler» 5 / 5 and «Rigsbankdaler» 12 / 12 Denmark.
+# Without it a Denmark number was read in the S-H section and could not meet
+# the same coin's Denmark-volume KM from NumisMaster / NGC / Numista
+# (tid 79557, KM 661, 2026-11-24).
+_PERIOD_SERIES_TO_KM_REGISTER: dict[str, str] = {
+    "glückstadt": "glu",
+    "gluckstadt": "glu",
+    "glueckstadt": "glu",
+    "holstein-gottorp-rendsburg": "hgr",
+    "duchy of schleswig-holstein": "sh",
+    "provisional government": "sh",
+}
+# Currency eras — Denmark volume only on a `denmark-` URL (ucoin files the same
+# era names under Norway as well).
+_DENMARK_ERA_SERIES = frozenset({
+    "rigsdaler", "rigsbankdaler", "speciedaler", "rigsdaler rigsmønt",
+})
+
+
+def _apply_km_period_register(catalog: dict, issuing, cache: dict) -> None:
+    """Name the Krause section of a bare single KM on an S-H-group coin, from
+    ucoin's `period` (`_PERIOD_SERIES_TO_KM_REGISTER`, `_DENMARK_ERA_SERIES`).
+    In place; a no-op for any other entity, for a dict / list KM, or for a
+    series not in the tables."""
+    km = catalog.get("km")
+    if not isinstance(km, str) or "(" in km:
+        return
+    from lib.km_registers import ENTITY_TO_KM_REGISTER, match_group
+    ents = issuing if isinstance(issuing, list) else [issuing]
+    if not any(match_group(ENTITY_TO_KM_REGISTER.get(e)) == "sh" for e in ents):
+        return
+    series = _period_series(cache.get("period"))
+    reg = _PERIOD_SERIES_TO_KM_REGISTER.get(series)
+    if reg is None and series in _DENMARK_ERA_SERIES \
+            and _url_country_token(cache.get("url")) == "denmark":
+        reg = "dk"
+    if reg:
+        catalog["km"] = {reg: km}
 
 
 def _mint_to_entity(mint) -> str | list[str] | None:
@@ -497,6 +559,7 @@ def _build_entry_from_cache(cache: dict, entity: str,
     # and homes to the overlap member rather than the alphabetical first.
     # They coincide for the scalar case, which is most records.
     issuing = issuing_entity if issuing_entity is not None else entity
+    _apply_km_period_register(catalog, issuing, cache)
 
     metal_attested = bool(cache.get("composition_text"))
 
@@ -756,6 +819,11 @@ def _resolve_target_entity(cache: dict) -> str | list[str] | None:
     `audit_entity_misclassifications.py`, which reports them.
     """
     by_url = URL_COUNTRY_TO_ENTITY.get(_url_country_token(cache.get("url")))
+    # ucoin files the city and the archbishopric of Bremen under one
+    # `bremen-` URL; its `period` series tells them apart (2026-11-24).
+    series_ent = _BREMEN_CITY_SERIES.get(_period_series(cache.get("period")))
+    if by_url == "erzbisthum_bremen_verden" and series_ent:
+        return series_ent
     if by_url != _MINT_ROUTED_ENTITY:
         return by_url
     mint = cache.get("mint_text")

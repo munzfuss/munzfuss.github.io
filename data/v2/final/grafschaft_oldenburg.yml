@@ -13,15 +13,7 @@ coins:
     year_first: 1538
     year_last: 1538
     year_label: '1538'
-    year_verified: false
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1538)
-          value: '1538'
-          seed: dk-bruun-15088
       metal:
         - kind: inferred
           how: from_name
@@ -383,15 +375,7 @@ coins:
       -   - 1614
           - 1622
     year_label: 1614-1622
-    year_verified: false
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1614-1619)
-          value: 1614-1619
-          seed: dk-bruun-15106
       metal:
         - kind: inferred
           how: from_name
@@ -452,15 +436,7 @@ coins:
       -   - 1614
           - 1619
     year_label: 1614-1619
-    year_verified: false
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1614-1619)
-          value: 1614-1619
-          seed: dk-bruun-15107
       metal:
         - kind: inferred
           how: from_name
@@ -513,15 +489,7 @@ coins:
       -   - 1614
           - 1622
     year_label: 1614-1622
-    year_verified: false
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1614-1622)
-          value: 1614-1622
-          seed: dk-bruun-15108
       metal:
         - kind: inferred
           how: from_name
@@ -574,15 +542,7 @@ coins:
       -   - 1619
           - 1622
     year_label: 1619-1622
-    year_verified: false
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1619-1622)
-          value: 1619-1622
-          seed: dk-bruun-15109
       metal:
         - kind: inferred
           how: from_name
@@ -1990,47 +1950,6 @@ coins:
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1/6 Thaler
-    ruler: Frederick V (Friedrich V)
-    issuing_entity: grafschaft_oldenburg
-    id: c-bb1c85dd
-    year_first: 1761
-    year_last: 1761
-    year_label: '1761'
-    catalog:
-      km: '119'
-      numista: '314949'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.5
-        source: numista
-    weight_rough_g:
-      - value: 5.85
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/314949
-        ref: Numista N#314949 — 1/6 Thaler - Frederick V - County of Oldenburg
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    composed_of:
-      - c-bb1c85dd
-    label: unified-dk-numista-314949
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
     nominal: 1/12 Thaler
     ruler: Frederick V (Friedrich V)
     issuing_entity: grafschaft_oldenburg
@@ -3181,36 +3100,63 @@ coins:
     ruler: Frederick V (Friedrich V)
     issuing_entity: grafschaft_oldenburg
     id: c-0935db33
-    year_first: 1763
+    year_first: 1761
     year_last: 1765
     year_ranges:
+      -   - 1761
+          - 1761
       -   - 1763
           - 1765
-    year_label: 1763-1765
+    year_label: 1761, 1763-1765
+    mint: Oldenburg
     catalog:
-      km: '132'
-      numista: '341217'
-      sieg: '55'
-      hede: '4'
+      km:
+        - '132'
+        - '119'
+      numista:
+        - '341217'
+        - '314949'
+      sieg:
+        - '55'
+        - '55.2'
+        - '55.3'
+      hede:
+        - '4'
+        - 4A
       others:
         - Jaeg 6 NWD# 18
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.5
         source: numista
+        specimen: dk-numista-314949
+      - value: 0.5
+        source: numista
+        specimen: dk-numista-341217
     weight_rough_g:
+      - value: 5.8
+        source: numista
+        specimen: dk-numista-314949
       - value: 5.85
         source: numista
+        specimen: dk-numista-341217
+    diameter_mm:
+      - value: 24.0
+        source: numista
+        specimen: dk-numista-314949
     sources:
       - type: literature
         url: https://en.numista.com/341217
         ref: Numista N#341217 — 1/6 Thaler - Frederick V of Denmark - County of Oldenburg
+      - type: literature
+        url: https://en.numista.com/314949
+        ref: Numista N#314949 — ⅙ Thaler - Frederick V (Bauert portrait; without initials on reverse)
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'

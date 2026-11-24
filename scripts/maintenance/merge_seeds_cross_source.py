@@ -249,50 +249,7 @@ def _authority_score(coin_id: str) -> float:
 #      from any non-trivial source; if both sides lack ruler too, fall
 #      back to bare `hede` key (still risky but rare in practice).
 
-_ENTITY_TO_KM_REGISTER: dict[str, str] = {
-    # Danish-realm tracks Krause's «Denmark» volume
-    "danish_realm": "dk",
-    # Krause has a separate Norway volume. Code is «nor», NOT «no» — a register
-    # code written as a YAML mapping key («no: 260») round-trips to the BOOLEAN
-    # False, silently corrupting a register-keyed km dict. Never use a YAML-bool
-    # token (no/yes/true/false/on/off/n/y) as a register code.
-    "danish_norway": "nor",
-    # Kingdom of Norway after 1814 — the same Krause Norway volume.
-    "norway": "nor",
-    # Christian II after 1523 — Krause's Denmark / Norway volumes.
-    "christian_ii_supporters": "dk",
-    "christian_ii_reconquest": "nor",
-    # Søren Norby's own Visby issues 1523-1525 — Krause's Denmark volume.
-    "norby_gotland": "dk",
-    # Erik VII on Gotland after his deposition (1439-1449) — Denmark volume.
-    "erik_gotland": "dk",
-    # Gotlandic coin struck at Visby («gullandsk mønt») — Denmark volume.
-    "gotland": "dk",
-    # SH territory — Krause «German States — Schleswig-Holstein»
-    "royal_holstein": "sh",
-    "gottorp_duchy": "sh",
-    "schauenburg_pinneberg": "sh",
-    "sonderburg_duchy": "sh",
-    "norburg_plon_duchy": "sh",
-    "glucksburg_duchy": "sh",
-    "rantzau_county": "sh",
-    "provisional_govt": "sh",
-    "holstein_schauenburg_county": "sh",
-    # Other German entities — each has its own Krause volume, keep
-    # registers explicit so cross-entity bleed (rare) doesn't false-match
-    "fuerstbisthum_luebeck": "de-fbl",
-    "hanseatic_hamburg": "de-hh",
-    "hanseatic_lubeck": "de-hl",
-    "erzbisthum_bremen_verden": "de-bv",
-    "herzogtum_braunschweig_lueneburg": "de-bl",
-    "herzogtum_sachsen_lauenburg": "de-sl",
-    "grafschaft_oldenburg": "de-old",
-    "hochstift_osnabrueck": "de-osnabr",
-    "landgrafschaft_hessen_kassel": "de-hk",
-    # No register — bare KM remains ambiguous within these synthetic buckets
-    # "_unclassified": None,
-    # "_deprecated_gesamtstaat": None,
-}
+from lib.km_registers import ENTITY_TO_KM_REGISTER as _ENTITY_TO_KM_REGISTER  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -910,6 +867,47 @@ def _stamp_catalog_scope_rulers(seeds: list[dict],
     return n
 
 
+# Register → the scope `_catalog_refs` compares it under (see there).
+from lib.km_registers import (  # noqa: E402
+    entity_match_scope as _entity_km_scope,
+    is_named_section as _is_named_km_section,
+    match_group as _km_match_group,
+    split_km as _split_km_numbers,
+)
+
+
+def _km_section_pairs(coin: dict) -> set[tuple[str, str]]:
+    """(section, number) for every KM the coin's source files under a NAMED
+    Krause S-H section (km_registers.KRAUSE_SECTIONS) — a bare KM gives none."""
+    km = (coin.get("catalog") or {}).get("km")
+    out: set[tuple[str, str]] = set()
+    if isinstance(km, dict):
+        for reg, v in km.items():
+            r = str(reg).strip().lower()
+            if _is_named_km_section(r):
+                for n in _split_km_numbers(v):
+                    out.add((r, n))
+    return out
+
+
+def _km_section_conflict(coin_a: dict, coin_b: dict) -> str | None:
+    """A number both coins give, each under a different NAMED Krause section,
+    with no (section, number) in common: two different coins that happen to
+    share a number (Glückstadt KM 5 Denning 1619 vs Rendsborg KM 5 Skilling
+    1719). Curator 2026-11-23: named sections that differ never match; a bare
+    number still meets any section of its group. Returns a reason or None."""
+    pa, pb = _km_section_pairs(coin_a), _km_section_pairs(coin_b)
+    if not pa or not pb or (pa & pb):
+        return None
+    shared = {n for _r, n in pa} & {n for _r, n in pb}
+    if not shared:
+        return None
+    n = sorted(shared)[0]
+    sa = sorted(r for r, x in pa if x == n)
+    sb = sorted(r for r, x in pb if x == n)
+    return f"KM {n} in different Krause sections: {'/'.join(sa)} vs {'/'.join(sb)}"
+
+
 def _catalog_refs(coin: dict, entity_id: str | None = None, *,
                   fresh: bool = False) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
@@ -953,11 +951,21 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
         if isinstance(km, dict):
             for reg, v in km.items():
                 vv = v if isinstance(v, list) else [v]
-                refs[f"km/{reg.lower()}"] = _km_join(vv)
+                # Matching scope, not the displayed volume: Krause's own
+                # Glückstadt section («glu») is compared as «sh», the volume
+                # in which every bare royal_holstein KM (ucoin, Bruun) is read
+                # — a bare Glückstadt number cannot say which section it is,
+                # so separating the two here would cut it from the same
+                # number written «glu». It still never meets Denmark main.
+                key = f"km/{_km_match_group(reg)}"
+                if key in refs:
+                    vv = [*refs[key].split("|"), *vv]
+                refs[key] = _km_join(vv)
         else:
             vals = km if isinstance(km, list) else [km]
-            # Bare KM — infer register from entity context.
-            register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+            # Bare KM — infer the matching scope from entity context (an S-H
+            # house entity compares under the group «sh», km_registers).
+            register = _entity_km_scope(entity_id or "")
             refs[f"km/{register}" if register else "km"] = _km_join(vals)
 
     hede = cat.get("hede")
@@ -2420,12 +2428,14 @@ _REIGN_GATE = os.environ.get("REIGN_GATE", "1") != "0"
 # label the same alloy either way), one Hede base, no explicit curator
 # no_merges between them. A chain through a neutral class must not carry a
 # conflict («1 Skilling» — «(?)» — «4 Skilling»), so one incompatible pair
-# refuses the whole group, which is then left to the curator. OFF by default
-# until the curator accepts its measured result: `HEDE_BASE=1` turns it on for
-# a measurement run (`HEDE_BASE_DUMP=<file>` writes every refused group with
-# its classes' members, `HEDE_BASE_EQUIV_LOG=1` prints groups joined only
-# through a nominal equivalence).
-_HEDE_BASE_RULE = os.environ.get("HEDE_BASE", "0") == "1"
+# refuses the whole group, which is then left to the curator. ON by default
+# since 2026-11-23 (V2_DECISIONS D57): the curator reviewed every group the
+# rule would join across finals (output/review/hede_base_groups.html, down to
+# 0) and named the members absorb's self-union alone held to their coin.
+# `HEDE_BASE=0` turns it off for a comparison run (`HEDE_BASE_DUMP=<file>`
+# writes every refused group with its classes' members, `HEDE_BASE_EQUIV_LOG=1`
+# prints groups joined only through a nominal equivalence).
+_HEDE_BASE_RULE = os.environ.get("HEDE_BASE", "1") != "0"
 # Untied-edge gate (step 2a', curator 2026-11-12). UNTIED_GATE=0 turns it off.
 _UNTIED_GATE = os.environ.get("UNTIED_GATE", "0") == "1"
 _HEDE_BASE_TOKEN = re.compile(r"^\s*(\d+)[A-Za-z]*\s*$")
@@ -3155,6 +3165,12 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     # Catalog chain (entity-aware scoping for bare KM + ruler-aware for Hede)
     refs_a = _catalog_refs(coin_a, entity_id)
     refs_b = _catalog_refs(coin_b, entity_id)
+    _sec = _km_section_conflict(coin_a, coin_b)
+    if _sec:
+        why.append(f"catalog disagree: {_sec}")
+        primary["catalog"] = False
+        return {"decision": "no_match", "primary": primary,
+                "fallback": fallback, "why": why}
     chain_state, has_overlap = _catalog_chain_consistent(refs_a, refs_b)
     if chain_state == "disagree":
         why.append(f"catalog disagree: {refs_a} vs {refs_b}")
@@ -4625,6 +4641,20 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
     by_register: dict[str, list[str]] = {}
     bare_values: list[str] = []
     conflicts: list[tuple[str, str, str]] = []
+    # Bare numbers are placed after the register-keyed ones: a bare number
+    # whose Krause base another member gives in exactly ONE volume belongs to
+    # that volume (NumisMaster {dk: 695.1} beside Bruun's bare «695.4» on an
+    # Altona coin: Denmark KM 695, not an SH KM 695). Only when no member
+    # names a volume for that base is it read in the entity's volume
+    # (lib.km_registers) — the former rule for every bare number.
+    deferred_bare: list[str] = []
+    # Registers some member names explicitly ({sh: …}), as opposed to a bare
+    # number read in the entity's volume. The entity's own volume collapses to
+    # a bare KM only when no member names it — otherwise the page would label
+    # an attested section «inferred» (curator 2026-11-24: 312 rows on the
+    # Denmark / S-H pages showed «the citing source gives only the number»
+    # while NumisMaster / NGC / Numista / ucoin named the section).
+    named_regs: set[str] = set()
 
     def _add(bucket: list[str], val: str):
         if val and val not in bucket:
@@ -4648,13 +4678,26 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
                     # docs/SOURCES.md §13.x / catalog_codes._flatten_str_repr_list.
                     for vv in (val if isinstance(val, list) else [val]):
                         _add(by_register.setdefault(reg.lower(), []), str(vv).strip())
+                    named_regs.add(reg.lower())
                 continue
-            val_str = str(kv).strip()
-            register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
-            if register:
-                _add(by_register.setdefault(register, []), val_str)
-            else:
-                _add(bare_values, val_str)
+            deferred_bare.append(str(kv).strip())
+
+    def _base(v: str) -> str:
+        return v.split(".", 1)[0].upper()
+
+    for val_str in deferred_bare:
+        regs = [r for r, vals in by_register.items()
+                if any(_base(v) == _base(val_str) for v in vals)]
+        if len(regs) == 1:
+            _add(by_register[regs[0]], val_str)
+            continue
+        if regs and any(val_str in by_register[r] for r in regs):
+            continue      # the number is already given, in each of its volumes
+        register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+        if register:
+            _add(by_register.setdefault(register, []), val_str)
+        else:
+            _add(bare_values, val_str)
 
     def _shape(vals: list[str]):
         """1 value → scalar (V1-compat); ≥2 → list-form (multi-KM)."""
@@ -4673,7 +4716,8 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
             # Denmark-volume «479 (Denmark)» on a Norway coin) MUST keep the
             # dict-form, else the register is lost and the value mis-scopes to
             # the entity default (re-opening the §9.4 cross-volume clash).
-            if only_reg == _ENTITY_TO_KM_REGISTER.get(entity_id or ""):
+            if (only_reg == _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+                    and only_reg not in named_regs):
                 return _shape(only_vals), conflicts
             return {only_reg: _shape(only_vals)}, conflicts
         return {reg: _shape(vals) for reg, vals in by_register.items()}, conflicts

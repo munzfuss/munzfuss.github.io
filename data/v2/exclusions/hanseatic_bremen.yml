@@ -1,0 +1,40 @@
+# Curator per-coin EXCLUSIONS — entity `hanseatic_bremen`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: hanseatic_bremen
+exclusions:
+  - id: dk-numista-382445
+    category: exonumia
+    reason: '«Otto Gildemeister - City of Bremen» (Numista N#382445, 1902) — a medal (personal / anniversary / award), no denomination; exonumia (CLAUDE.md 9.2). Surfaced when the German Empire page began to consume hanseatic_bremen 1871-1914. Curator (Serhii) 2026-11-24: «Так, виключи».'
+  - id: dk-numista-390833
+    category: exonumia
+    reason: '«Theodor Mommsen - Philology Day Bremen - City of Bremen» (Numista N#390833, 1899) — a medal (personal / anniversary / award), no denomination; exonumia (CLAUDE.md 9.2). Surfaced when the German Empire page began to consume hanseatic_bremen 1871-1914. Curator (Serhii) 2026-11-24: «Так, виключи».'
+  - id: dk-numista-397639
+    category: exonumia
+    reason: '«Golden wedding of Professor Dr. Victor and Elisabeth Boehmert - City of Bremen» (Numista N#397639, 1911) — a medal (personal / anniversary / award), no denomination; exonumia (CLAUDE.md 9.2). Surfaced when the German Empire page began to consume hanseatic_bremen 1871-1914. Curator (Serhii) 2026-11-24: «Так, виключи».'
+  - id: dk-numista-397858
+    category: exonumia
+    reason: '«Award medal of the city of Bremen - City of Bremen» (Numista N#397858, 1902) — a medal (personal / anniversary / award), no denomination; exonumia (CLAUDE.md 9.2). Surfaced when the German Empire page began to consume hanseatic_bremen 1871-1914. Curator (Serhii) 2026-11-24: «Так, виключи».'
+  - id: dk-numista-399084
+    category: exonumia
+    reason: '«Award medal for rescue from danger (Bremen) - City of Bremen» (Numista N#399084, 1908) — a medal (personal / anniversary / award), no denomination; exonumia (CLAUDE.md 9.2). Surfaced when the German Empire page began to consume hanseatic_bremen 1871-1914. Curator (Serhii) 2026-11-24: «Так, виключи».'
+  - id: dk-numista-401336
+    category: exonumia
+    reason: '«50th anniversary of the Norddeutsche Lloyd - City of Bremen» (Numista N#401336, 1907) — a medal (personal / anniversary / award), no denomination; exonumia (CLAUDE.md 9.2). Surfaced when the German Empire page began to consume hanseatic_bremen 1871-1914. Curator (Serhii) 2026-11-24: «Так, виключи».'

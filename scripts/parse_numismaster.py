@@ -173,6 +173,30 @@ _ND_RANGE_RE = re.compile(r"\bND\(\s*(\d{4})\s*-\s*(\d{1,4})\s*\)")
 _ND_SINGLE_RE = re.compile(r"\bND\(\s*(?:ca\.?\s*|circa\s*|c\.?\s*)?(\d{4})\s*\)", re.I)
 
 
+def _nd_scope(text: str) -> str:
+    """The «Value information» price table, where the ND(…) marker sits (NOT
+    the header) — from «Value information» to the «Related coins» sidebar, the
+    SAME bounds parse_dates_table uses, so a related coin's ND marker in the
+    sidebar can't bleed in."""
+    m_vi = re.search(r"\bValue information\b", text)
+    start_pos = m_vi.end() if m_vi else 0
+    m_end = re.search(
+        r"\b(?:Related coins|Notes|Subscription|Back to|Permalink|"
+        r"Tilbage til|Copyright|Connect with us|About Us)\b", text[start_pos:])
+    return text[start_pos:start_pos + m_end.start()] if m_end else text[start_pos:]
+
+
+def extract_nd_marker(text: str | None) -> str | None:
+    """The ND(…) marker verbatim («ND(1618-22)», «ND(ca1640)»), or None — the
+    source's own wording for Coin.uncertainty (whether NumisMaster hedges the
+    dating, curator 2026-11-19)."""
+    if not text:
+        return None
+    scope = _nd_scope(text)
+    m = _ND_RANGE_RE.search(scope) or _ND_SINGLE_RE.search(scope)
+    return m.group(0) if m else None
+
+
 def extract_nd_range(text: str | None) -> tuple[int, int] | None:
     """Read the «ND(YYYY-YY)» / «ND(YYYY)» display marker → (year_first, year_last),
     or None when no ND marker is present.
@@ -186,16 +210,7 @@ def extract_nd_range(text: str | None) -> tuple[int, int] | None:
     """
     if not text:
         return None
-    # The ND(…) marker sits in the «Value information» price-table Date column
-    # (NOT the header). Scope to that table — from «Value information» to the
-    # «Related coins» sidebar — the SAME bounds parse_dates_table uses, so a
-    # related-coin's ND marker in the sidebar can't bleed in.
-    m_vi = re.search(r"\bValue information\b", text)
-    start_pos = m_vi.end() if m_vi else 0
-    m_end = re.search(
-        r"\b(?:Related coins|Notes|Subscription|Back to|Permalink|"
-        r"Tilbage til|Copyright|Connect with us|About Us)\b", text[start_pos:])
-    scope = text[start_pos:start_pos + m_end.start()] if m_end else text[start_pos:]
+    scope = _nd_scope(text)
     m = _ND_RANGE_RE.search(scope)
     if m:
         start = int(m.group(1))
@@ -485,6 +500,7 @@ def parse_page(html_path: Path, sub_scope: str) -> dict:
         "year_first": yf,
         "year_last": yl,
         "undated": undated,
+        "nd_as_printed": extract_nd_marker(text) if undated else None,
         "dates_explicit": dates_explicit,
         "ruler": ruler,
         "mint": mint,

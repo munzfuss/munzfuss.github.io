@@ -181,6 +181,48 @@ def _catalog(rec: dict) -> dict:
     return cat
 
 
+# NGC scope (its Krause section, in the URL: /world/denmark-…, /world/norway-…)
+# → the Krause volume it names. Only these two: the German-states sections are
+# not mapped one-to-one onto our volume codes.
+_KM_VOLUME_BY_SCOPE = {"denmark": "dk", "norway": "nor"}
+
+# NGC's «Denmark» region also holds Krause sections that number on their own:
+# the heading names them after the country word («Denmark GLÜCKSTADT 1/16
+# Speciedaler KM# 26»). Their KM is NOT in the Denmark volume — Denmark KM 26
+# is the 6 Speciedaler 1604 (NGC 1050248, NumisMaster 65594). GLÜCKSTADT has
+# its own register (lib.km_registers «glu»), and so does every Krause section
+# of a Schleswig-Holstein house, whether NGC files it under «Denmark»
+# («Denmark HOLSTEIN-GOTTORP-RENDSBORG», KM 5-8 colliding with Glückstadt 5-8)
+# or under «German States» («German States SCHLESWIG-HOLSTEIN-GOTTORP»)
+# (lib.km_registers.KRAUSE_SECTIONS, curator 2026-11-23). Any other
+# sub-section keeps a bare KM.
+_SUBSECTION_RE = re.compile(
+    r"^(?:Denmark|Norway|German States)\s+([A-ZÄÖÜÆØÅ][A-ZÄÖÜÆØÅ\-]{2,})\s")
+from lib.km_registers import KRAUSE_SECTIONS as _KM_VOLUME_BY_SUBSECTION  # noqa: E402
+# …and its issuer: the royal Holstein coinage struck at Glückstadt, as
+# NumisMaster's country GLÜCKSTADT is routed (build_numismaster_seed).
+# HOLSTEIN-GOTTORP-RENDSBORG: Frederik IV's coinage at Rendsburg 1716-1720
+# (Hede 60-63), royal_holstein by the curator's 2026-07-29 ruling.
+_ENTITY_BY_SUBSECTION = {"GLÜCKSTADT": "royal_holstein",
+                         "HOLSTEIN-GOTTORP-RENDSBORG": "royal_holstein"}
+
+
+def _subsection(heading: str | None) -> str | None:
+    m = _SUBSECTION_RE.match(heading or "")
+    return m.group(1) if m else None
+
+
+def _km_volume(cat: dict, scope: str, heading: str | None = None) -> dict:
+    """Write the KM register-keyed when the NGC section names the volume, so a
+    record pulled into another entity keeps its own volume (lib.km_registers)."""
+    sub = _subsection(heading)
+    vol = (_KM_VOLUME_BY_SUBSECTION.get(sub) if sub
+           else _KM_VOLUME_BY_SCOPE.get(scope))
+    if vol and cat.get("km"):
+        cat["km"] = {vol: cat["km"]}
+    return cat
+
+
 def build_entry(rec: dict, scope: str) -> dict | None:
     cuid = rec.get("cuid")
     if not cuid:
@@ -220,12 +262,13 @@ def build_entry(rec: dict, scope: str) -> dict | None:
         "year_ranges": ranges,
         "ruler": rec.get("ruler"),
         "mint": mint,
-        "catalog": _catalog(rec),
+        "catalog": _km_volume(_catalog(rec), scope, rec.get("heading")),
         "metal": metal,
         "fineness": fineness,
         "weight_rough_g": weight,
         "diameter_mm": diam,
-        "issuing_entity": SCOPE_ENTITY.get(scope, ""),
+        "issuing_entity": (_ENTITY_BY_SUBSECTION.get(_subsection(rec.get("heading")))
+                           or SCOPE_ENTITY.get(scope, "")),
         "verified": False,
         "metal_verified": metal_ok,
         "fineness_verified": fineness is not None,
@@ -246,7 +289,8 @@ def build_entry(rec: dict, scope: str) -> dict | None:
     # ('16Z4') IS read (parse_ngc._Z_YEAR); the cells as NGC printed them are
     # kept in `_ngc_dates_as_printed` so the reading stays auditable (§3a: the
     # year fields themselves carry plain digits only). An undated coin the
-    # catalogue attributes to a span («(1618-22)») keeps the span, with '(?)'.
+    # catalogue attributes to a span («(1618-22)») keeps the span; it takes
+    # '(?)' only when NGC hedges it («(ca1611)»), not for a plain span.
     if (rec.get("year_partially_illegible") or rec.get("year_attributed")
             or yf is None):
         entry["year_verified"] = False
@@ -265,8 +309,18 @@ def build_entry(rec: dict, scope: str) -> dict | None:
                 how = "circa"
             else:
                 how = "attributed"
-            unc.add(entry, "year", how, "ngc", as_printed=printed,
-                    value=unc.year_value(yf, entry.get("year_last")))
+            if how == "attributed" and (unc.plain_dating(printed)
+                                        or unc.roman_dated(printed)):
+                # «(1616-59)» / «ND (1747)»: NGC dates the undated coin without
+                # a reservation of its own — a known year, no «(?)» (curator
+                # 2026-11-19; a reign-equal range is caught by absorb's
+                # reign-span rule). «MDCCLX (1760) G» is a dated coin whose
+                # Roman date the cache (parsed before parse_ngc learnt
+                # `roman_dated`) still flags as attributed.
+                entry.pop("year_verified", None)
+            else:
+                unc.add(entry, "year", how, "ngc", as_printed=printed,
+                        value=unc.year_value(yf, entry.get("year_last")))
 
     for key, dst in (("obverse", "_obverse"), ("reverse", "_reverse"),
                      ("obverse_legend", "_obverse_legend"),

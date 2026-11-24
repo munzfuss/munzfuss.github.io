@@ -16,6 +16,111 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-24 — focused-euclid merged into blissful-kirch; Bruun page test fixed (local, unpushed)
+
+- **Shipped:** 95452de merges claude/focused-euclid-55f15c (f241e8e, the two entries below) into this branch.
+  Conflicts only in generated files (class_registry, seed_unified, finals danish_realm / danish_norway); taken
+  from this branch, then a full merger + absorb with the merged seeds / decisions / code, so the Hede-base rule
+  (D57) and the child's Numista / ucoin / Krause / Rendsborg / Bremen rules all apply. Seed-keyed diff against
+  both parents: no seed vanished, no final lost sources; verify_reflow vs HEAD and vs f241e8e clean. The child
+  branch and its worktree are deleted.
+- **Shipped:** 8c471f4 — the KM 76 suspect-mark reason on the Bruun seed cited Bruun Part II lot 14063 by PDF
+  page 219 (printed 193); healed with heal_bruun_printed_pages.py. Full unittest suite now OK (2102).
+- **Done (eb3210f, curator «Так, усі три»):** the three shells below folded as `_recorded_removals` kind: shell;
+  Hede 124 and Hede 44 now render once. Still open: the Fuß of c-5e81b057 (Hede 124, 9_thaler II by automatic
+  placement; Hede gives «Marken fin udbragt til 10,076 daler») and the Hede 44 Note on c-1d4f183a, which gives the
+  legend without «SCHLESW.HOLST.» (Hede prints it with). Was: three superseded shells in royal_holstein that absorb
+  kept («KEPT because they carry curation», monotonic guard) — each a self-only class whose seed lives in another
+  final, so the coin rendered twice. Present on `main` too (not from this merge):
+  - c-ff5dd463 Hede 124, 3 Skilling Lybsk 1680, 9_25_thaler I — real class c-5e81b057 «1⁄16 Thaler», 9_thaler II
+    (its own note says «у 9¼-Fuß»); both rows render.
+  - c-ab298d00 Hede 44, 1/24 Speciedaler 1787–1801, 9_25_thaler II — real class c-1d4f183a, 9_25_thaler III;
+    both render on the 9_25_thaler page.
+  - c-92d54f70 Numista 41864 Plön Thaler 1761, seed_unsorted (not rendered) — real final km-28-fr-karl-plon-1761
+    in norburg_plon_duchy.
+  Fix is `_recorded_removals.yml` `kind: shell` per shell, after the curator settles the Fuß / phase of the real
+  class and whether the shells' notes move.
+- **Shipped (open-items pass, curator 2026-11-24):** c7af495 + ccbca88 — stale «Kopenhagen» (V1 ucoin default,
+  kept by self-union) dropped from seven Frederiksborg finals: Hede 24, 27, 28, 29, 121, 122, 123 (recorded
+  field removals). 42c5e3e — ½ Krone 1624 (Hede 126 = KM 94, not an over-merge; Hede 128 = KM 95) — ucoin's
+  Frederiksborg marked suspect «(*)», class mint København. Decided with no change: kmk-276003 / kmk-276004 stay
+  in Hede 79 (weights 1,21 / 1,30 g like their FP 4227 siblings with valid 79A years; only the printed «79A» for
+  1618 is off); Bruun IV lot 17215 «Schou-5» stays unmarked (danskmoent's Zinck list also gives 8B Schou 5);
+  Hede 5 Dav (EC III 1295) is consistent across all sources.
+- **Still open:** Hede 140 kind; the .812 Glückstadt 1/16 fractions in 9_thaler II (incl. Hede 124); KM 55 nominal;
+  marker.km_sh wording; Hede 44 Note legend (waits for the curator's Note pass).
+- **Push order:** harvest cache commits up to e9912b1bb first, then this branch.
+
+## 2026-11-24 — Rendsborg routing (B) and Numista «Denmark» KMs on S-H entities (A) (same branch, local, unpushed)
+
+- **Shipped:** d2cd5c5 + 617563b (B: NGC / NumisMaster Rendsborg records route to royal_holstein, no final change);
+  A: Numista issuer «Denmark» on an S-H-group entity → `{dk: …}`, mint Rendsburg → `{hgr: …}` (68 seeds), with
+  three curator-approved group additions it surfaced — KM 701 (Hede 4), KM 651 (Hede 13, the 2026-06-28 «KM 651 =
+  S-H volume» reading corrected in the group reason), KM 661 (Hede 36 merge for ucoin 79557). Detail:
+  `docs/plans/km_numista_denmark_and_hgr_routing.md` §«A — DONE».
+- **Follow-up done the same day:** ucoin `period` → Krause section (86 seeds); Bruun left as printed (Altona lots mix
+  volumes); fragments joined — Hede 36 (NGC 1050288, KMM 78473), Hede 29 (Bruun 8045), Hede 5 (NumisMaster 65971 +
+  NGC 1050443, NumisMaster's «Copenhagen» marked suspect).
+- **Then:** 0419216 Glückstadt 1/8 Speciedaler 1665 (KM 55) — two finals in two Fuße become one, 9_25_thaler I
+  scheide (classification decision on Hede 151); merger/absorb keep a KM volume a member names (1197 finals change
+  shape only, values identical) — the false «inferred» tooltip is gone from 312 rows; 6 genuinely inferred remain
+  (Norway 250 / 243, Rantzau 1 / 2, Schpin 130 — all verified).
+- **Also 2026-11-24:** Numista issuer decides over mint for Plön, Gottorp, Bremen, Lauenburg (a coin struck at another
+  state's mint belongs to the issuer — curator); Plön Thaler 1761 / Ducat 1760 and Gottorp Thaler 1673 joined their
+  finals; Bremen 2 Mark 1904 moved from hanseatic_hamburg to hanseatic_bremen, and the German Empire page now consumes
+  hanseatic_bremen 1871-1914 (Bremen has no state page); six Bremen medals excluded as exonumia.
+- **Bremen city (2026-11-24):** location `bremen` created, listed `unpublished` in the munzfuss profile (validated,
+  not rendered — publish by removing the id); ucoin's 104 city coins moved off the archbishopric page into
+  hanseatic_bremen (66 joined Numista classes), KM register de-hb. KM tooltips now say «розділ» / Abschnitt /
+  section for Krause Denmark / Norway / Schleswig-Holstein. Separate German-entity Krause registers NOT added:
+  no cross-section merges measured, and ucoin's «Duchy of Brunswick-Lüneburg» is ambiguous (Calenberg / Celle).
+- **Open:** the merged KM 55 row shows nominal «⅛ Thaler» (Numista) where Hede has «6 Skilling Lybsk», coin «VIII
+  EINEN REICHS DALER»; five .812 fractions (1/16 Speciedaler 1658-1680) sit in 9_thaler II by the 2026-05-29
+  automatic placement, which that phase's text does not cover; Plön Thaler 1761 (c-92d54f70, KM 28 PLOEN) routed to
+  royal_holstein (seed_unsorted); marker.km_sh wording.
+
+## 2026-11-23 — Numista builder fixes + Krause S-H section registers (branch claude/focused-euclid-55f15c on top of blissful-kirch, local, unpushed)
+
+- **Shipped:** a24acea Numista Hede «C4 80.C» → «80C» (+ seed_merge `_drop_prefixed_superseded`) and a single bare KM
+  in the issuer's country volume (Norway ↔ Denmark only); 22a7978 data; 29bdc05 catalog hold on Numista 100478
+  dropped (builder gives `{nor: 230}`); 71f8930 V1 «KM-DK# 6» off the Rendsburg 12 Skilling final; dd1986b
+  per-section KM registers for Krause's S-H sections (hgr, gott, sond, ploen, norb, gluecksb, rantz, schpin beside
+  sh / glu; named sections that differ never match, bare meets any section of group «sh»); data commit after it
+  (928 seeds, NGC Rendsborg 1051167 / 1051168 / 1050478 into Hede 62 / 60 / 61, km-8-fr-iv-1718 released as an
+  empty duplicate, five KMM stub citations off Hede 62).
+- **Open (curator):** 39 royal_holstein Numista records under issuer «Denmark» with Denmark-volume KMs (603–757),
+  still read as sh; German-entity Krause sections (Brunswick lines, Hesse-Cassel, Oldenburg, Bremen) not split —
+  only Numista issuer names seen, verify against NGC first; HGR records still routed danish_realm (NGC) /
+  gottorp_duchy (NumisMaster) though the curator's 2026-07-29 ruling makes them royal_holstein; marker.km_sh
+  still says «volume Schleswig-Holstein» though sh is now Krause's SCHLESWIG-HOLSTEIN section.
+- **Seen, not done:** 14 665 hidden citations of scope-dropped KMM stubs on 433 finals of not-yet-rebuilt Fuße
+  (class B1, removed by the per-Fuß rebuild); full Numista re-seed drift (308265 km 287, 40843 sieg 6, 427643
+  hede 2, mint_verified flips) unexplained; «KM-FR#68» in Bruun `others` on the Portugaløser Hede 9.
+
+## 2026-11-23 — Hede-base review groups 1-9 done, absorb departed-member purge (branch claude/blissful-kirch-7b7be3, local, unpushed)
+
+- **Shipped:** de27b64 absorb stale purge takes every member of a vanished class (+ volume-keyed catalogue
+  decontamination); 460797d kmm-triage reads the KMM cache through `lib.paths` (it read the empty worktree
+  submodule). Data, one commit per group of `output/review/hede_base_groups.html` (regenerated by
+  `output/review/hb_capture2.py` + `hb_table.py`; now 0 groups): 465f9cc / 7a42cfb F3 Hede 132-140 split by KM;
+  1b2a7cd Hede 134 KMM classes; e3cd4b3 Hede 80 (seven classes, KM 29.1 / 39 / A40 / 29.2); 470a0ed Hede 79 (V1 shell
+  km-16-1 dropped, `kind: shell`); 4b61b0b KMM KP 1715.52 excluded (images: Cnut Pointed Helmet penny, not Hede 28);
+  ac57a98 Hede 28 Balle KMM; b1db582 Bruun IV lot 17204 = 1 Rigsdaler Hede 8A (KM-759 / Hede-9 / Sieg-12 marked (!),
+  joins the Hede 8 cross-entity coin), KM 759 into Hede 9 (host c-58c91255 nominal fixed by hand, phase I by
+  assignment); 8688df3 Hede 5 Rejsedaler: three finals across danish_realm / danish_norway into danish_realm,
+  Numista 100478 km → nor 230 under a catalog hold; b807971 KMM FP 8026.1 (clipped Krone fragment) excluded;
+  5c8cd41 Bruun V lot 14097 into Hede 110 (Sieg 56.1 = Sieg 2018 numbering, 63 = older).
+- **Hede-base rule ON by default** (14089ae, V2_DECISIONS D57; `HEDE_BASE=0` for a comparison run). Before it:
+  3a1c581 named the members only absorb's self-union held (Hede 126 + KM 178, Hede 148 + KMM FP 1466.24/.25) and
+  excluded KMM KP 1656.2003. The default-on re-flow joined 254 groups with 0 losses; the review report stays at 0.
+- **Harvest cache:** e9912b1bb (368 KMM raadata pages, Hede 134) on top of fcb5adfee, pointer 3867996 — push the
+  cache commits before the branch.
+- **Seen, not done:** Hede 140 kind (set during the Fuß review); `dk-numista-307035` hede «C4 80.C» (parser);
+  `c-209ba326` (Hede 28) stale mint «Kopenhagen» + two stale KMM URLs — 9_thaler self-union until rebuilt;
+  Bruun IV lot 17215 Altona Hede 8B with Schou-5 (Hede gives 4); kmk-276003 / 276004 (Hede 79A, 1618, no image)
+  are analogues of the excluded FP 4227.14 / .15; Numista builder files Norway-section bare KM in the Danish volume
+  (only Hede 5 fixed, by hold); Dav on Hede 5 now «EC III 1295».
+
 ## 2026-11-17 — Hede index stubs for page-less rows, N14A split, merger nominal flaw (branch claude/hede-index-only-rows-a7ba47, local, unpushed)
 
 - **Shipped on the branch (not merged into main):** 3e0f6bb Hede index stubs for page-less Norge rows; 61d642f

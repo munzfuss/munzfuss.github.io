@@ -847,6 +847,7 @@ def build_entry(data: dict) -> dict | None:
     year_verified = True
     issuer_source = None
     year_unc: list[tuple[str, str | None, str]] = []   # (how, as_printed, source)
+    plain_dating = False
     if year_first is None or year_last is None:
         # Undated «u.år» entry — anchor to the ruler reign window per
         # CLAUDE.md §3a (renderer adds `(?)` via year_verified=false), EXCEPT
@@ -874,8 +875,14 @@ def build_entry(data: dict) -> dict | None:
                 how, printed = _printed_dating(
                     data, ("query", "attributed", "century", "decade", "circa"),
                     years=hint)
-                year_unc.append((how or "attributed",
-                                 printed or data.get("year_hint"), "galster"))
+                as_printed = printed or data.get("year_hint")
+                if (how or "attributed") == "attributed" and unc.plain_dating(as_printed):
+                    # «u.år (1534)», a «1481-83» group header: the page dates
+                    # the undated coin without a reservation — a known year,
+                    # no «(?)» (curator 2026-11-19).
+                    plain_dating = True
+                else:
+                    year_unc.append((how or "attributed", as_printed, "galster"))
         elif data.get("page_shape") == "grevenfejde":
             reign = _GREVENS_FEJDE_WINDOW
             m = _PRINTED_UNDATED.search(data.get("raw_text_excerpt") or "")
@@ -895,8 +902,8 @@ def build_entry(data: dict) -> dict | None:
         if reign is None:
             return None
         year_first, year_last = reign
-        year_verified = False
-        if not year_unc:
+        year_verified = plain_dating
+        if not year_unc and not plain_dating:
             m = _PRINTED_UNDATED.search(data.get("raw_text_excerpt") or "")
             year_unc.append(("reign", m.group(0) if m else data.get("year_label"),
                              "galster"))
@@ -960,7 +967,7 @@ def build_entry(data: dict) -> dict | None:
     # no «u.år» prefix. For undated entries we use the reign-window
     # range as year_label and set year_verified=false (renderer
     # emits `(?)`).
-    if not year_verified:
+    if not year_verified or plain_dating:
         if year_first == year_last:
             year_label_out = str(year_first)
         else:
@@ -975,7 +982,7 @@ def build_entry(data: dict) -> dict | None:
     # span-comparison then keeps the discrete form over a looser Numista
     # min/max range. Undated (reign-window) entries have no per-year source
     # detail → single span.
-    if year_verified:
+    if year_verified and not plain_dating:
         yr_ranges = parse_year_ranges(data.get("year_label")) or [[year_first, year_last]]
     else:
         yr_ranges = [[year_first, year_last]]

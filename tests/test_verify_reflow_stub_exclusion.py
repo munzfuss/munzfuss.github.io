@@ -69,5 +69,45 @@ class TestStubExclusionCitations(unittest.TestCase):
         self.assertNotIn("6", got)
 
 
+class TestStubExclusionAnySource(unittest.TestCase):
+    """The same decision for a record of another source (ucoin stubs,
+    2026-11-20): its own citation and its own readings leave the class."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        root = Path(self.tmp.name)
+        (root / "data/v2/exclusions").mkdir(parents=True)
+        (root / "data/v2/seed/ucoin").mkdir(parents=True)
+        (root / "data/v2/exclusions/ent.yml").write_text(yaml.safe_dump({"exclusions": [
+            {"id": "dk-tid-1", "category": "undocumented_stub", "scope": "member"},
+            {"id": "dk-tid-9", "category": "exonumia"},
+        ]}))
+        u = lambda n: {"type": "ucoin", "url": f"https://en.ucoin.net/coin/x/?tid={n}"}
+        (root / "data/v2/seed/ucoin/ent.yml").write_text(yaml.safe_dump({"coins": [
+            {"id": "dk-tid-1", "sources": [u(1)], "weight_rough_g": 5.57, "fineness": 0.672},
+            {"id": "dk-tid-2", "sources": [u(2)], "weight_rough_g": 4.5},
+            {"id": "dk-tid-9", "sources": [u(9)], "weight_rough_g": 9.9},
+        ]}))
+        self._root, VR.ROOT = VR.ROOT, root
+        VR._MEMBER_RECORDS_CACHE = None
+
+    def tearDown(self):
+        VR.ROOT = self._root
+        VR._MEMBER_RECORDS_CACHE = None
+        self.tmp.cleanup()
+
+    def test_member_stub_citation_and_readings(self):
+        r = VR._member_excluded_records()
+        self.assertEqual(r["seeds"], {"dk-tid-1"})
+        self.assertEqual(r["urls"], {"https://en.ucoin.net/coin/x/?tid=1"})
+        self.assertIn(("weight_rough_g", "ucoin", 5.57), r["readings"])
+        self.assertIn(("fineness", "ucoin", 0.672), r["readings"])
+
+    def test_other_records_and_plain_exclusions_are_not(self):
+        r = VR._member_excluded_records()
+        self.assertNotIn(("weight_rough_g", "ucoin", 4.5), r["readings"])
+        self.assertNotIn(("weight_rough_g", "ucoin", 9.9), r["readings"])
+
+
 if __name__ == "__main__":
     unittest.main()

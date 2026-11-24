@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 504 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-11-17'
+generated_at: '2026-11-24'
 coins:
   - id: c-a208b610
     class_id: c-a208b610
@@ -275,7 +275,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '24'
+      km:
+        schpin: '24'
       bruun_collection_id: '14834'
       lange: 834b
       others:
@@ -332,7 +333,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '37'
+      km:
+        schpin: '37'
       bruun_collection_id: '14846'
       others:
         - Weinmeister# 95
@@ -394,7 +396,8 @@ coins:
     mintmaster: Henning Hanses
     mint: Altona
     catalog:
-      km: '74'
+      km:
+        schpin: '74'
       bruun_collection_id: '14871'
       others:
         - Weinmeister# 130
@@ -455,7 +458,8 @@ coins:
     mintmaster: Christoph Feistell
     mint: Altona
     catalog:
-      km: '106'
+      km:
+        schpin: '106'
       bruun_collection_id: '14891'
       dav: '3739'
     metal: silver
@@ -546,7 +550,8 @@ coins:
     inscription_rev: OBIIT / AN CHRI MDCXXII / DIE XVII IANUAR INT / VII ET VIII MATUTINAM / CUM / VIXISSET ANOS LII / MENS III DIES XXIV H I / IN REGIMINE VERO / ANNOS XX ME VI / DIE XV HO IV
     mint: Altona
     catalog:
-      km: '130'
+      km:
+        schpin: '130'
       bruun_collection_id: '14907'
       numista: '137400'
       dav:
@@ -565,25 +570,6 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-bruun-14907
-          source: bruun
-          years: '1622'
-        - seed: dk-numista-137400
-          source: numista
-          years: '1622'
-        - seed: ikmk-18219260
-          source: ikmk
-          years: '1622'
-        - seed: schleswig_holstein-numismaster-96149
-          source: numismaster
-          years: '1622'
-      uncertain:
-        - seed: ngc-1159741
-          source: ngc
-          years: '1622'
     weight_rough_g:
       - value: 28.0
         source: ngc
@@ -603,13 +589,6 @@ coins:
       - value: 43.0
         source: numista
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCXXII (1622)
-          value: '1622'
-          seed: ngc-1159741
       metal:
         - kind: inferred
           how: from_name
@@ -653,7 +632,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '38'
+      km:
+        schpin: '38'
       bruun_collection_id: '14912'
       others:
         - Weinmeister# 97
@@ -726,7 +706,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '40'
+      km:
+        schpin: '40'
       bruun_collection_id: '14913'
       lange: 836b
       others:
@@ -800,7 +781,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '41'
+      km:
+        schpin: '41'
       bruun_collection_id: '14914'
       others:
         - Weinmeister# 99
@@ -876,7 +858,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '30'
+      km:
+        schpin: '30'
       bruun_collection_id: '14915'
       lange: 831c
       others:
@@ -954,7 +937,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '102'
+      km:
+        schpin: '102'
       bruun_collection_id: '14918'
       others:
         - Weinmeister# 159
@@ -1031,7 +1015,8 @@ coins:
     ruler: Justus Herman (Jobst Hermann) (1622-1635) — under Emperor Ferdinand II
     mint: Altona
     catalog:
-      km: '143'
+      km:
+        schpin: '143'
       bruun_collection_id: '14953'
       lange: '954'
       others:
@@ -1087,7 +1072,8 @@ coins:
     year_label: 1600-1609
     ruler: Ernest / Rudolph II
     catalog:
-      km: '8'
+      km:
+        schpin: '8'
       numista: '112883'
     metal: silver
     metal_verified: true
@@ -1121,7 +1107,8 @@ coins:
     year_label: '1620'
     ruler: Ernest (Ernst)
     catalog:
-      km: '101'
+      km:
+        schpin: '101'
       numista: '122595'
       others:
         - Weing Corvey# 219
@@ -1158,7 +1145,8 @@ coins:
     ruler: Ernest
     mint: Altona
     catalog:
-      km: '109'
+      km:
+        schpin: '109'
       numista: '133206'
       dav: EC II 3741
     metal: silver
@@ -1457,7 +1445,8 @@ coins:
     year_label: '1603'
     ruler: Ernest (Ernst)
     catalog:
-      km: '24'
+      km:
+        schpin: '24'
       numista: '137294'
       dav: Lg 462
     metal: silver
@@ -1492,7 +1481,8 @@ coins:
     year_label: 1601-1622
     ruler: Ernest (Ernst)
     catalog:
-      km: '38'
+      km:
+        schpin: '38'
       numista: '137295'
       dav: Lg 472
       lange: 831a
@@ -1531,7 +1521,8 @@ coins:
     ruler: Ernest (Ernst)
     mint: Altona
     catalog:
-      km: '40'
+      km:
+        schpin: '40'
       numista: '137296'
       dav: Lg 479
     metal: silver
@@ -1569,7 +1560,8 @@ coins:
     ruler: Ernest / Rudolph II
     mint: Altona
     catalog:
-      km: '47'
+      km:
+        schpin: '47'
       numista: '137298'
     metal: silver
     metal_verified: true
@@ -1603,7 +1595,8 @@ coins:
     year_label: '1610'
     ruler: Ernest (Ernst)
     catalog:
-      km: '61'
+      km:
+        schpin: '61'
       numista: '137299'
       others:
         - Weinm# 120
@@ -1646,7 +1639,8 @@ coins:
     year_label: 1612, 1614-1616, 1618
     ruler: Ernest (Ernst)
     catalog:
-      km: '64.2'
+      km:
+        schpin: '64.2'
       numista: '137300'
     metal: silver
     metal_verified: true
@@ -1683,7 +1677,8 @@ coins:
     year_label: 1611-1613
     ruler: Ernest (Ernst)
     catalog:
-      km: '65'
+      km:
+        schpin: '65'
       numista: '137301'
     metal: silver
     metal_verified: true
@@ -1721,7 +1716,8 @@ coins:
     ruler: Ernest / Matthias
     mint: Altona
     catalog:
-      km: '72'
+      km:
+        schpin: '72'
       numista: '137302'
     metal: silver
     metal_verified: true
@@ -1758,7 +1754,8 @@ coins:
     year_label: 1616-1619
     ruler: Ernest (Ernst)
     catalog:
-      km: '75'
+      km:
+        schpin: '75'
       numista: '137303'
     metal: silver
     metal_verified: true
@@ -1795,7 +1792,8 @@ coins:
     year_label: 1616-1620
     ruler: Ernest (Ernst)
     catalog:
-      km: '77'
+      km:
+        schpin: '77'
       numista: '137304'
     metal: silver
     metal_verified: true
@@ -1823,7 +1821,8 @@ coins:
     year_label: '1620'
     ruler: Ernest (Ernst)
     catalog:
-      km: '86'
+      km:
+        schpin: '86'
       numista: '137309'
       lange: 942A
       others:
@@ -1860,7 +1859,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '87'
+      km:
+        schpin: '87'
       numista: '137315'
       others:
         - Weinm# 314
@@ -1925,7 +1925,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '88'
+      km:
+        schpin: '88'
       numista: '137320'
       lange: '942'
       others:
@@ -1969,7 +1970,8 @@ coins:
     year_last: 1620
     year_label: '1620'
     catalog:
-      km: '90'
+      km:
+        schpin: '90'
       numista: '137325'
       lange: '941'
       others:
@@ -2005,7 +2007,8 @@ coins:
     year_last: 1621
     year_label: '1621'
     catalog:
-      km: '91'
+      km:
+        schpin: '91'
       numista: '137328'
     metal: silver
     metal_verified: true
@@ -2035,7 +2038,8 @@ coins:
     year_last: 1621
     year_label: '1621'
     catalog:
-      km: '92'
+      km:
+        schpin: '92'
       numista: '137330'
     metal: silver
     metal_verified: true
@@ -2065,7 +2069,8 @@ coins:
     year_last: 1621
     year_label: '1621'
     catalog:
-      km: '93'
+      km:
+        schpin: '93'
       numista: '137336'
     metal: silver
     metal_verified: true
@@ -2093,7 +2098,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '97'
+      km:
+        schpin: '97'
       numista: '137341'
     metal: silver
     metal_verified: true
@@ -2143,7 +2149,8 @@ coins:
     inscription_obv: '[E] P E C - H S E S'
     inscription_rev: FERDI D G R I S A Z0
     catalog:
-      km: '99'
+      km:
+        schpin: '99'
       numista: '137342'
       others:
         - Weinmeister# 290
@@ -2228,7 +2235,8 @@ coins:
     year_label: '1620'
     ruler: Ernest
     catalog:
-      km: '105'
+      km:
+        schpin: '105'
       numista: '137343'
       lange: '838'
     metal: silver
@@ -2263,7 +2271,8 @@ coins:
     year_label: '1620'
     ruler: Ernest
     catalog:
-      km: '106'
+      km:
+        schpin: '106'
       numista: '137344'
       dav: EC II 3739
     metal: silver
@@ -2295,7 +2304,8 @@ coins:
     year_label: '1620'
     ruler: Ernest
     catalog:
-      km: '108'
+      km:
+        schpin: '108'
       numista: '137345'
       dav: EC II 3741
     metal: silver
@@ -2329,7 +2339,8 @@ coins:
           - 1622
     year_label: 1620-1622
     catalog:
-      km: '113'
+      km:
+        schpin: '113'
       numista: '137346'
       dav: EC II 3744
       others:
@@ -2366,7 +2377,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '116'
+      km:
+        schpin: '116'
       numista: '137347'
     metal: silver
     metal_verified: true
@@ -2405,7 +2417,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '117'
+      km:
+        schpin: '117'
       numista: '137348'
     metal: silver
     metal_verified: true
@@ -2440,7 +2453,8 @@ coins:
     year_label: '1622'
     ruler: Jobst Hermann
     catalog:
-      km: '123'
+      km:
+        schpin: '123'
       numista: '137397'
       others:
         - Weinm# 373
@@ -2491,7 +2505,8 @@ coins:
     year_label: 1622-1627, 1630-1633, 1635
     ruler: Jobst Hermann
     catalog:
-      km: '124'
+      km:
+        schpin: '124'
       numista: '137399'
     metal: silver
     metal_verified: true
@@ -2534,7 +2549,8 @@ coins:
     year_label: 1638-1639
     ruler: Otto V / Ferdinand II
     catalog:
-      km: '150'
+      km:
+        schpin: '150'
       numista: '137410'
     metal: silver
     metal_verified: true
@@ -2600,7 +2616,8 @@ coins:
     year_label: '1603'
     ruler: Ernest
     catalog:
-      km: '26'
+      km:
+        schpin: '26'
       numista: '137413'
       lange: 834a
       dav: Lg 461
@@ -2638,7 +2655,8 @@ coins:
     year_label: 1601-1622
     ruler: Ernest
     catalog:
-      km: '39'
+      km:
+        schpin: '39'
       numista: '137415'
       lange: 832a
       dav: Lg 475
@@ -2678,8 +2696,9 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '128.1'
-        - '128'
+        schpin:
+          - '128.1'
+          - '128'
       numista:
         - '137416'
         - '278296'
@@ -2725,7 +2744,8 @@ coins:
     ruler: Justus Herman / Ferdinand II
     mint: Altona
     catalog:
-      km: '137'
+      km:
+        schpin: '137'
       numista: '137417'
     metal: silver
     metal_verified: true
@@ -2797,7 +2817,8 @@ coins:
           - 1620
     year_label: 1614-1620
     catalog:
-      km: '73'
+      km:
+        schpin: '73'
       numista: '143279'
     metal: silver
     metal_verified: true
@@ -2868,7 +2889,8 @@ coins:
     year_label: '1601'
     ruler: Ernest (Ernst)
     catalog:
-      km: '9'
+      km:
+        schpin: '9'
       numista: '268868'
       dav: Lg 460
     metal: silver
@@ -2912,7 +2934,8 @@ coins:
       - Altona
       - Rinteln
     catalog:
-      km: '27'
+      km:
+        schpin: '27'
       numista: '270483'
       fr: '3062'
       others:
@@ -2960,7 +2983,8 @@ coins:
     year_label: 1601-1622
     ruler: Ernest (Ernst)
     catalog:
-      km: '15'
+      km:
+        schpin: '15'
       numista: '270484'
       lange: '287'
     metal: gold
@@ -2998,7 +3022,8 @@ coins:
     year_label: '1624'
     ruler: Jobst Hermann
     catalog:
-      km: A139
+      km:
+        schpin: A139
       numista: '276028'
       lange: 946A
       fr: 3067a
@@ -3182,7 +3207,8 @@ coins:
     year_label: '1603'
     ruler: Ernest
     catalog:
-      km: '34'
+      km:
+        schpin: '34'
       numista: '278280'
       lange: 832b
       dav: Lg 476
@@ -3217,7 +3243,8 @@ coins:
     year_label: '1603'
     ruler: Ernest
     catalog:
-      km: '33'
+      km:
+        schpin: '33'
       numista: '278281'
       lange: 873b
       dav: Lg 473
@@ -3252,7 +3279,8 @@ coins:
     year_label: '1603'
     ruler: Ernest
     catalog:
-      km: '35'
+      km:
+        schpin: '35'
       numista: '278282'
       lange: 913c
       dav: Lg 482
@@ -3322,7 +3350,8 @@ coins:
     year_last: 1607
     year_label: '1607'
     catalog:
-      km: '30'
+      km:
+        schpin: '30'
       numista: '278285'
       dav: Lg 474
       lange: 831c
@@ -3358,7 +3387,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '49'
+      km:
+        schpin: '49'
       numista: '278286'
       dav: EC II 3729
       others:
@@ -3408,7 +3438,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '68'
+      km:
+        schpin: '68'
       numista: '278287'
       dav: EC II 3737
       lange: '850'
@@ -3451,7 +3482,8 @@ coins:
     year_label: '1603'
     ruler: Ernest
     catalog:
-      km: '25'
+      km:
+        schpin: '25'
       numista: '278289'
       lange: 834b
       dav: Lg 464
@@ -3485,7 +3517,8 @@ coins:
     year_last: 1606
     year_label: '1606'
     catalog:
-      km: '37'
+      km:
+        schpin: '37'
       numista: '278290'
       dav: Lg 470
       lange: '835'
@@ -3528,7 +3561,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '50'
+      km:
+        schpin: '50'
       numista: '278291'
       dav: EC II 3730
       lange: '844'
@@ -3570,7 +3604,8 @@ coins:
     year_last: 1610
     year_label: '1610'
     catalog:
-      km: '55'
+      km:
+        schpin: '55'
       numista: '278292'
       dav: EC II 3731 A
       lange: '846'
@@ -3606,7 +3641,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '70'
+      km:
+        schpin: '70'
       numista: '278293'
       dav: EC II 3735
     metal: silver
@@ -3645,7 +3681,8 @@ coins:
     year_last: 1628
     year_label: '1628'
     catalog:
-      km: '142'
+      km:
+        schpin: '142'
       numista: '278295'
       dav: EC II 3752 B
       others:
@@ -3679,7 +3716,8 @@ coins:
     year_label: '1622'
     ruler: Ernst III
     catalog:
-      km: '125'
+      km:
+        schpin: '125'
       numista: '278297'
       others:
         - Weinm# 346
@@ -3722,8 +3760,9 @@ coins:
           value: '1622'
           seed: ngc-1159634
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca.1622)
           value: '1622'
           seed: schleswig_holstein-numismaster-96076
     sources:
@@ -3753,7 +3792,8 @@ coins:
     year_label: '1622'
     ruler: Ernst III
     catalog:
-      km: '127'
+      km:
+        schpin: '127'
       numista: '278298'
       lange: 945b
       others:
@@ -3765,19 +3805,6 @@ coins:
     diameter_mm_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-numista-278298
-          source: numista
-          years: '1622'
-        - seed: schleswig_holstein-numismaster-96113
-          source: numismaster
-          years: '1622'
-      uncertain:
-        - seed: ngc-1156901
-          source: ngc
-          years: '1622'
     weight_rough_g:
       - value: 14.0
         source: ngc
@@ -3788,14 +3815,6 @@ coins:
     diameter_mm:
       - value: 36.0
         source: ngc
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCXXII (1622) Rare
-          value: '1622'
-          seed: ngc-1156901
     sources:
       - type: literature
         url: https://en.numista.com/278298
@@ -3823,7 +3842,8 @@ coins:
     year_label: '1622'
     ruler: Ernst III
     catalog:
-      km: '129'
+      km:
+        schpin: '129'
       numista: '278299'
       dav: EC II 3745
       lange: '943'
@@ -3836,19 +3856,6 @@ coins:
     diameter_mm_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-numista-278299
-          source: numista
-          years: '1622'
-        - seed: schleswig_holstein-numismaster-96148
-          source: numismaster
-          years: '1622'
-      uncertain:
-        - seed: ngc-1156628
-          source: ngc
-          years: '1622'
     weight_rough_g:
       - value: 28.0
         source: ngc
@@ -3859,14 +3866,6 @@ coins:
     diameter_mm:
       - value: 43.0
         source: ngc
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCXXII (1622)
-          value: '1622'
-          seed: ngc-1156628
     sources:
       - type: literature
         url: https://en.numista.com/278299
@@ -3928,7 +3927,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '57'
+      km:
+        schpin: '57'
       numista: '278302'
       lange: '867'
     metal: silver
@@ -3978,7 +3978,8 @@ coins:
     year_label: 1622-1623
     ruler: Jobst Hermann
     catalog:
-      km: '134'
+      km:
+        schpin: '134'
       numista: '278793'
       dav: EC II 3749
       lange: 949a
@@ -4026,7 +4027,8 @@ coins:
     year_label: '1622'
     ruler: Jobst Hermann
     catalog:
-      km: '126'
+      km:
+        schpin: '126'
       numista: '278795'
       others:
         - Weinm# 345
@@ -4073,7 +4075,8 @@ coins:
     year_last: 1622
     year_label: '1622'
     catalog:
-      km: '139'
+      km:
+        schpin: '139'
       numista: '278796'
       dav: EC II 3751
       lange: '953'
@@ -4111,7 +4114,8 @@ coins:
     year_label: 1626-1628
     ruler: Jobst Hermann
     catalog:
-      km: B139
+      km:
+        schpin: B139
       numista: '309994'
       others:
         - Weinm# 378
@@ -4162,7 +4166,8 @@ coins:
     year_label: 1624-1625
     ruler: Jobst Hermann
     catalog:
-      km: A135
+      km:
+        schpin: A135
       numista: '319276'
       lange: '975'
     metal: silver
@@ -5644,7 +5649,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '85'
+      km:
+        schpin: '85'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -5696,7 +5702,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '89'
+      km:
+        schpin: '89'
       others:
         - Weinmeister# 313
     metal: copper
@@ -5739,7 +5746,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '90'
+      km:
+        schpin: '90'
       others:
         - Weinmeister# 310
     metal: copper
@@ -5814,7 +5822,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '93'
+      km:
+        schpin: '93'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5863,7 +5872,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '94'
+      km:
+        schpin: '94'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5912,7 +5922,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '95'
+      km:
+        schpin: '95'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5962,7 +5973,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '55'
+      km:
+        schpin: '55'
       dav: 3731A
     metal: silver
     metal_verified: true
@@ -6000,7 +6012,8 @@ coins:
       - Altona
       - Oldendorf
     catalog:
-      km: '75'
+      km:
+        schpin: '75'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6008,20 +6021,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1616-19); (1616-19) (e); (1616-19) (t)
-          value: 1616-1619
-          seed: ngc-1153433
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1616-1619
-          seed: schleswig_holstein-numismaster-96080
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-schreckenberger-km-75-1616-19-cuid-1153433-duid-1387172
@@ -6046,7 +6045,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '66'
+      km:
+        schpin: '66'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6082,7 +6082,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '120'
+      km:
+        schpin: '120'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6119,7 +6120,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '104'
+      km:
+        schpin: '104'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6159,7 +6161,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '19'
+      km:
+        schpin: '19'
       dav: '3725'
     metal: silver
     metal_verified: true
@@ -6191,7 +6194,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '21'
+      km:
+        schpin: '21'
       dav: 3726A
     metal: silver
     metal_verified: true
@@ -6219,7 +6223,8 @@ coins:
     year_label: '1604'
     ruler: Ernst III
     catalog:
-      km: '112'
+      km:
+        schpin: '112'
       dav: '3743'
     metal: silver
     metal_verified: true
@@ -6260,7 +6265,8 @@ coins:
     year_label: '1604'
     ruler: Ernst III
     catalog:
-      km: '113'
+      km:
+        schpin: '113'
       dav: '3744'
     metal: silver
     metal_verified: true
@@ -6301,7 +6307,8 @@ coins:
     year_label: '1622'
     ruler: Jobst Hermann
     catalog:
-      km: '131'
+      km:
+        schpin: '131'
       dav: '3747'
     metal: silver
     metal_verified: true
@@ -6336,7 +6343,8 @@ coins:
     year_label: '1624'
     ruler: Jobst Hermann
     catalog:
-      km: '138'
+      km:
+        schpin: '138'
       dav: '3750'
     metal: silver
     metal_verified: true
@@ -6371,7 +6379,8 @@ coins:
     year_label: '1628'
     ruler: Jobst Hermann
     catalog:
-      km: '142'
+      km:
+        schpin: '142'
       dav: 3752B
     metal: silver
     metal_verified: true
@@ -6406,7 +6415,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '23'
+      km:
+        schpin: '23'
       dav: LS463
     metal: silver
     metal_verified: true
@@ -6438,7 +6448,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '33'
+      km:
+        schpin: '33'
       dav: LS473
     metal: silver
     metal_verified: true
@@ -6471,7 +6482,8 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     catalog:
-      km: '10'
+      km:
+        schpin: '10'
       dav: LS549
     metal: silver
     metal_verified: true
@@ -6503,7 +6515,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '12'
+      km:
+        schpin: '12'
       dav: LS478
     metal: silver
     metal_verified: true
@@ -6536,7 +6549,8 @@ coins:
     year_label: '1610'
     ruler: Ernst III
     catalog:
-      km: '15.1'
+      km:
+        schpin: '15.1'
       fr: '3066'
     metal: gold
     metal_verified: true
@@ -6572,7 +6586,8 @@ coins:
     year_label: '1610'
     ruler: Ernst III
     catalog:
-      km: '16'
+      km:
+        schpin: '16'
       fr: '3064'
     metal: gold
     metal_verified: true
@@ -6608,7 +6623,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '114'
+      km:
+        schpin: '114'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6645,7 +6661,8 @@ coins:
       - Altona
       - Oldendorf
     catalog:
-      km: '7'
+      km:
+        schpin: '7'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6684,7 +6701,8 @@ coins:
     inscription_obv: E [...] - E S C D
     inscription_rev: MATT I [D G] R I S A 16-18
     catalog:
-      km: '73'
+      km:
+        schpin: '73'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6743,7 +6761,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '72'
+      km:
+        schpin: '72'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6785,7 +6804,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '58'
+      km:
+        schpin: '58'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -6819,7 +6839,8 @@ coins:
     year_label: '1604'
     ruler: Ernst III
     catalog:
-      km: '28'
+      km:
+        schpin: '28'
       dav: '3727'
     metal: silver
     metal_verified: true
@@ -6847,7 +6868,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '29'
+      km:
+        schpin: '29'
       dav: LS467
     metal: silver
     metal_verified: true
@@ -6879,7 +6901,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '25'
+      km:
+        schpin: '25'
       dav: LS464
     metal: silver
     metal_verified: true
@@ -6916,7 +6939,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '86'
+      km:
+        schpin: '86'
       others:
         - Weinmeister# 316
     metal: copper
@@ -6967,7 +6991,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '47'
+      km:
+        schpin: '47'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7006,7 +7031,8 @@ coins:
     year_label: '1607'
     ruler: Ernst III
     catalog:
-      km: '31'
+      km:
+        schpin: '31'
       dav: LS483
     metal: silver
     metal_verified: true
@@ -7038,7 +7064,8 @@ coins:
     year_label: '1628'
     ruler: Jobst Hermann
     catalog:
-      km: '143'
+      km:
+        schpin: '143'
       dav: '3753'
     metal: silver
     metal_verified: true
@@ -7073,7 +7100,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '26'
+      km:
+        schpin: '26'
       dav: LS461
     metal: silver
     metal_verified: true
@@ -7110,7 +7138,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '92'
+      km:
+        schpin: '92'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7159,7 +7188,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '96'
+      km:
+        schpin: '96'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7214,7 +7244,8 @@ coins:
       - Oldendorf
       - Rinteln
     catalog:
-      km: '100'
+      km:
+        schpin: '100'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7256,7 +7287,8 @@ coins:
     ruler: Jobst Hermann
     mint: Altona
     catalog:
-      km: '128.1'
+      km:
+        schpin: '128.1'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7296,7 +7328,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '46'
+      km:
+        schpin: '46'
       dav: '3728'
     metal: silver
     metal_verified: true
@@ -7331,7 +7364,8 @@ coins:
     year_label: 1619-1620
     ruler: Ernst III
     catalog:
-      km: '107'
+      km:
+        schpin: '107'
       dav: '3740'
     metal: silver
     metal_verified: true
@@ -7340,24 +7374,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: schleswig_holstein-numismaster-96141
-          source: numismaster
-          years: 1619–1620
-      uncertain:
-        - seed: ngc-1156626
-          source: ngc
-          years: '1620'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1620)//(16)19
-          value: '1620'
-          seed: ngc-1156626
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-km-107-1620-1619-cuid-1156626-duid-1406337
@@ -7381,7 +7397,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '110'
+      km:
+        schpin: '110'
       dav: '3742'
     metal: silver
     metal_verified: true
@@ -7413,7 +7430,8 @@ coins:
     year_label: '1616'
     ruler: Ernst III
     catalog:
-      km: '78'
+      km:
+        schpin: '78'
       fr: '3063'
     metal: gold
     metal_verified: true
@@ -7445,7 +7463,8 @@ coins:
     year_label: '1628'
     ruler: Jobst Hermann
     catalog:
-      km: '141'
+      km:
+        schpin: '141'
       dav: 3752A
     metal: silver
     metal_verified: true
@@ -7480,7 +7499,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '35'
+      km:
+        schpin: '35'
       dav: LS482
     metal: silver
     metal_verified: true
@@ -7517,7 +7537,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '36'
+      km:
+        schpin: '36'
       dav: LS468
     metal: silver
     metal_verified: true
@@ -7554,7 +7575,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '45'
+      km:
+        schpin: '45'
       dav: LS485
     metal: silver
     metal_verified: true
@@ -7592,7 +7614,8 @@ coins:
     year_label: '1610'
     ruler: Ernst III
     catalog:
-      km: A17
+      km:
+        schpin: A17
       fr: '3065'
     metal: gold
     metal_verified: true
@@ -7628,7 +7651,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '115'
+      km:
+        schpin: '115'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7662,7 +7686,8 @@ coins:
     year_label: 1616-1619
     ruler: Ernst III
     catalog:
-      km: '76'
+      km:
+        schpin: '76'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7670,20 +7695,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1616-19)
-          value: 1616-1619
-          seed: ngc-1156896
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1616-1619
-          seed: schleswig_holstein-numismaster-96081
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-schreckenberger-km-76-1616-19-cuid-1156896-duid-1387278
@@ -7707,7 +7718,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '119'
+      km:
+        schpin: '119'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7743,7 +7755,8 @@ coins:
     year_label: '1608'
     ruler: Ernst III
     catalog:
-      km: '48'
+      km:
+        schpin: '48'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7782,7 +7795,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '22'
+      km:
+        schpin: '22'
       dav: LS465
     metal: silver
     metal_verified: true
@@ -7818,7 +7832,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '79'
+      km:
+        schpin: '79'
       dav: 3738A
     metal: silver
     metal_verified: true
@@ -7850,7 +7865,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '111'
+      km:
+        schpin: '111'
       dav: 3742A
     metal: silver
     metal_verified: true
@@ -7878,7 +7894,8 @@ coins:
     year_label: '1622'
     ruler: Jobst Hermann
     catalog:
-      km: '132'
+      km:
+        schpin: '132'
       dav: '3748'
     metal: silver
     metal_verified: true
@@ -7913,7 +7930,8 @@ coins:
     year_label: '1624'
     ruler: Jobst Hermann
     catalog:
-      km: '139'
+      km:
+        schpin: '139'
       dav: '3751'
     metal: silver
     metal_verified: true
@@ -7948,7 +7966,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '32'
+      km:
+        schpin: '32'
       dav: LS466
     metal: silver
     metal_verified: true
@@ -7980,7 +7999,8 @@ coins:
     year_label: '1601'
     ruler: Ernst III
     catalog:
-      km: '9'
+      km:
+        schpin: '9'
       dav: LS458
     metal: silver
     metal_verified: true
@@ -8017,7 +8037,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '42'
+      km:
+        schpin: '42'
       dav: LS469
     metal: silver
     metal_verified: true
@@ -8057,7 +8078,8 @@ coins:
     year_label: 1638-1639
     ruler: Otto VI
     catalog:
-      km: '150'
+      km:
+        schpin: '150'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8090,7 +8112,8 @@ coins:
     year_label: '1622'
     ruler: Ernst III
     catalog:
-      km: '98'
+      km:
+        schpin: '98'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8130,7 +8153,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '63'
+      km:
+        schpin: '63'
       dav: '3734'
     metal: silver
     metal_verified: true
@@ -8168,7 +8192,8 @@ coins:
       - Altona
       - Rinteln
     catalog:
-      km: '8'
+      km:
+        schpin: '8'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8212,7 +8237,8 @@ coins:
     inscription_rev: MAT I D G R I S A 6-18
     mint: Altona
     catalog:
-      km: '64.2'
+      km:
+        schpin: '64.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8265,7 +8291,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '101'
+      km:
+        schpin: '101'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8296,7 +8323,8 @@ coins:
     year_label: '1612'
     ruler: Ernst III
     catalog:
-      km: '69'
+      km:
+        schpin: '69'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8331,7 +8359,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '17'
+      km:
+        schpin: '17'
       dav: '3723'
     metal: silver
     metal_verified: true
@@ -8364,7 +8393,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '18'
+      km:
+        schpin: '18'
       dav: '3724'
     metal: silver
     metal_verified: true
@@ -8397,7 +8427,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '59'
+      km:
+        schpin: '59'
       dav: '3731'
     metal: silver
     metal_verified: true
@@ -8430,7 +8461,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '71'
+      km:
+        schpin: '71'
       dav: '3736'
     metal: silver
     metal_verified: true
@@ -8462,7 +8494,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '109'
+      km:
+        schpin: '109'
       dav: 3741A
     metal: silver
     metal_verified: true
@@ -8490,7 +8523,8 @@ coins:
     year_label: '1628'
     ruler: Jobst Hermann
     catalog:
-      km: '140'
+      km:
+        schpin: '140'
       dav: '3752'
     metal: silver
     metal_verified: true
@@ -8528,7 +8562,8 @@ coins:
     year_label: 1601-1602
     ruler: Ernst III
     catalog:
-      km: '11'
+      km:
+        schpin: '11'
       dav: LS460
     metal: silver
     metal_verified: true
@@ -8565,7 +8600,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '44'
+      km:
+        schpin: '44'
       dav: LS477
     metal: silver
     metal_verified: true
@@ -8603,7 +8639,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '13'
+      km:
+        schpin: '13'
       dav: LS480
     metal: silver
     metal_verified: true
@@ -8641,7 +8678,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '118'
+      km:
+        schpin: '118'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8671,7 +8709,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '121'
+      km:
+        schpin: '121'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8701,7 +8740,8 @@ coins:
     year_label: '1621'
     ruler: Ernst III
     catalog:
-      km: '122'
+      km:
+        schpin: '122'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8731,7 +8771,8 @@ coins:
     year_label: '1624'
     ruler: Jobst Hermann
     catalog:
-      km: '136'
+      km:
+        schpin: '136'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8771,7 +8812,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '105'
+      km:
+        schpin: '105'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8811,7 +8853,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '61'
+      km:
+        schpin: '61'
       dav: '3732'
     metal: silver
     metal_verified: true
@@ -8843,7 +8886,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '108'
+      km:
+        schpin: '108'
       dav: '3741'
     metal: silver
     metal_verified: true
@@ -8871,7 +8915,8 @@ coins:
     year_label: '1622'
     ruler: Jobst Hermann
     catalog:
-      km: '133'
+      km:
+        schpin: '133'
       dav: 3748A
     metal: silver
     metal_verified: true
@@ -8906,7 +8951,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '39'
+      km:
+        schpin: '39'
       dav: LS475
     metal: silver
     metal_verified: true
@@ -8945,7 +8991,8 @@ coins:
     ruler: Jobst Hermann
     mint: Altona
     catalog:
-      km: '128.2'
+      km:
+        schpin: '128.2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9064,7 +9111,8 @@ coins:
     year_label: '1640'
     ruler: Otto VI
     catalog:
-      km: '152'
+      km:
+        schpin: '152'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9140,7 +9188,8 @@ coins:
     year_label: '1610'
     ruler: Ernst III
     catalog:
-      km: '15.2'
+      km:
+        schpin: '15.2'
       fr: '3066'
     metal: gold
     metal_verified: true
@@ -9176,7 +9225,8 @@ coins:
     year_label: '1638'
     ruler: Otto VI
     catalog:
-      km: '148'
+      km:
+        schpin: '148'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9216,7 +9266,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '64.1'
+      km:
+        schpin: '64.1'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9250,7 +9301,8 @@ coins:
     year_label: '1620'
     ruler: Ernst III
     catalog:
-      km: '91'
+      km:
+        schpin: '91'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9303,7 +9355,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '65'
+      km:
+        schpin: '65'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9348,7 +9401,8 @@ coins:
       - Altona
       - Oldendorf
     catalog:
-      km: '77'
+      km:
+        schpin: '77'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9380,7 +9434,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '103'
+      km:
+        schpin: '103'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9419,7 +9474,8 @@ coins:
     year_label: '1624'
     ruler: Jobst Hermann
     catalog:
-      km: '137'
+      km:
+        schpin: '137'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9458,7 +9514,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '20'
+      km:
+        schpin: '20'
       dav: '3726'
     metal: silver
     metal_verified: true
@@ -9487,7 +9544,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '51'
+      km:
+        schpin: '51'
       dav: 3730A
     metal: silver
     metal_verified: true
@@ -9523,7 +9581,8 @@ coins:
     ruler: Ernst III
     mint: Altona
     catalog:
-      km: '62'
+      km:
+        schpin: '62'
       dav: '3733'
     metal: silver
     metal_verified: true
@@ -9555,7 +9614,8 @@ coins:
     year_label: '1603'
     ruler: Ernst III
     catalog:
-      km: '34'
+      km:
+        schpin: '34'
       dav: LS476
     metal: silver
     metal_verified: true
@@ -9592,7 +9652,8 @@ coins:
     year_label: '1606'
     ruler: Ernst III
     catalog:
-      km: '43'
+      km:
+        schpin: '43'
       dav: LS471
     metal: silver
     metal_verified: true
@@ -9630,7 +9691,8 @@ coins:
     year_label: '1610'
     ruler: Ernst III
     catalog:
-      km: '14'
+      km:
+        schpin: '14'
       fr: '3067'
     metal: gold
     metal_verified: true
@@ -9685,23 +9747,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: ngc-171183
-          source: ngc
-          years: 1538–1539, 1545, 1562, 1566–1568
-      uncertain:
-        - seed: schleswig_holstein-numismaster-171183
-          source: numismaster
-          years: 1566–1568
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1566-1568
-          seed: schleswig_holstein-numismaster-171183
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-pfennig-mb-2-1538-1566-68-cuid-171183-duid-386604
@@ -10721,7 +10766,8 @@ coins:
     year_last: 1601
     year_label: '1601'
     catalog:
-      km: '10'
+      km:
+        schpin: '10'
     metal: silver
     metal_verified: true
     fineness_verified: false

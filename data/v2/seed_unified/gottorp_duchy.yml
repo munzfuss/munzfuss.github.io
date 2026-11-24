@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-11-13 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 549 per-source seed entries.
+# Input: 550 per-source seed entries.
 # Output: 224 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-11-13'
+generated_at: '2026-11-24'
 coins:
   - id: c-3f6e23f9
     class_id: c-3f6e23f9
@@ -186,7 +186,8 @@ coins:
     mintmaster: Jonas Georgens
     mint: Steinbeck
     catalog:
-      km: '17'
+      km:
+        gott: '17'
       bruun_collection_id: '14118'
       sieg: '12.1'
       others:
@@ -265,7 +266,8 @@ coins:
     mintmaster: Jonas Georgen
     mint: Steinbeck
     catalog:
-      km: '25'
+      km:
+        gott: '25'
       bruun_collection_id: '14121'
       sieg: '8.1'
       numista: '301092'
@@ -363,7 +365,8 @@ coins:
     mintmaster: Heinrich Puls
     mint: Schleswig
     catalog:
-      km: '21'
+      km:
+        gott: '21'
       bruun_collection_id:
         - '14125'
         - '14128'
@@ -435,7 +438,8 @@ coins:
     ruler: Johann Adolf
     mint: Schleswig
     catalog:
-      km: '27'
+      km:
+        gott: '27'
       bruun_collection_id: '14129'
       sieg: '9.18'
       lange: '270'
@@ -490,7 +494,8 @@ coins:
     mintmaster: Matz Puls
     mint: Schleswig
     catalog:
-      km: '34'
+      km:
+        gott: '34'
       bruun_collection_id: '14132'
       sieg: '9.20'
       lange: 271c
@@ -602,18 +607,10 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 73.07
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1607-16)
-          value: 1607-1616
-          seed: dk-bruun-14147
       metal:
         - kind: inferred
           how: from_name
@@ -646,7 +643,8 @@ coins:
     ruler: Friedrich III
     mint: Schleswig
     catalog:
-      km: '49'
+      km:
+        gott: '49'
       bruun_collection_id: '14160'
       sieg: '11.1'
       dav: '3695'
@@ -700,7 +698,8 @@ coins:
     mintmaster: Samuel Timpf
     mint: Schleswig
     catalog:
-      km: '64'
+      km:
+        gott: '64'
       bruun_collection_id: '14175'
       sieg: '11.5'
       lange:
@@ -769,7 +768,8 @@ coins:
     mintmaster: Hans Glaser
     mint: Schleswig
     catalog:
-      km: '94'
+      km:
+        gott: '94'
       bruun_collection_id: '14257'
       sieg: '15.2'
       lange: '317'
@@ -821,7 +821,8 @@ coins:
     ruler: Friedrich III
     mint: Schleswig
     catalog:
-      km: '99'
+      km:
+        gott: '99'
       bruun_collection_id: '14338'
       sieg: '11.9'
       lange:
@@ -878,7 +879,8 @@ coins:
     year_label: '1664'
     ruler: Christian Albrecht
     catalog:
-      km: '109'
+      km:
+        gott: '109'
       bruun_collection_id: '14361'
       sieg: '10.1'
       lange: 371C
@@ -934,11 +936,13 @@ coins:
     mintmaster: Matthias Freude the Y ounger
     mint: Hamburg
     catalog:
-      km: '118'
+      km:
+        gott: '118'
       bruun_collection_id: '14417'
       sieg: '7.1'
       lange: '374'
-      dav: '3703'
+      numista: '313829'
+      dav: EC II 3703
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -962,6 +966,9 @@ coins:
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14219, p. 272
       - type: literature
+        url: https://en.numista.com/313829
+        ref: Numista N#313829 — 1 Thaler - Christian Albert
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-thaler-km-118-1673-1674-cuid-1157530-duid-1387387
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -970,6 +977,7 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-bruun-14417
+      - dk-numista-313829
       - ngc-1157530
       - schleswig_holstein-numismaster-99462
   - id: c-1438a9f4
@@ -985,7 +993,8 @@ coins:
     ruler: Christian Albrecht
     mint: Stade
     catalog:
-      km: '123'
+      km:
+        gott: '123'
       bruun_collection_id: '14418'
       sieg: '10.3'
       lange: 371D
@@ -1038,7 +1047,8 @@ coins:
     mintmaster: Andreas Hille
     mint: Stade
     catalog:
-      km: '120'
+      km:
+        gott: '120'
       bruun_collection_id: '14419'
       sieg: '7.1'
       lange: '375'
@@ -1099,7 +1109,8 @@ coins:
     ruler: Christian Albrecht
     mint: Schleswig
     catalog:
-      km: '127'
+      km:
+        gott: '127'
       bruun_collection_id: '14420'
       sieg: '4.2'
       lange: 380A
@@ -1149,7 +1160,8 @@ coins:
     ruler: Christian Albrecht
     mint: Schleswig
     catalog:
-      km: '134'
+      km:
+        gott: '134'
       bruun_collection_id: '14433'
       sieg: '16.2'
       lange:
@@ -1213,7 +1225,8 @@ coins:
     mintmaster: Claus Jakob Mecklenburg
     mint: Schleswig
     catalog:
-      km: '136'
+      km:
+        gott: '136'
       bruun_collection_id: '14434'
       sieg: '16.3'
       lange:
@@ -1274,7 +1287,8 @@ coins:
     ruler: Christian Albrecht
     mint: Schleswig
     catalog:
-      km: '133'
+      km:
+        gott: '133'
       bruun_collection_id: '14435'
       sieg: '15'
       lange: '404'
@@ -1324,7 +1338,8 @@ coins:
     ruler: Christian Albrecht
     mint: Tönning
     catalog:
-      km: '147'
+      km:
+        gott: '147'
       bruun_collection_id: '14464'
       sieg: '10.4'
       lange: '372'
@@ -1386,8 +1401,9 @@ coins:
     mint: Tönning
     catalog:
       km:
-        - '146'
-        - '69'
+        gott:
+          - '146'
+          - '69'
       bruun_collection_id: '14465'
       sieg: '10.5'
       lange: '373'
@@ -1450,7 +1466,8 @@ coins:
     ruler: Christian Albrecht
     mint: Schleswig
     catalog:
-      km: '135'
+      km:
+        gott: '135'
       bruun_collection_id: '14473'
       sieg: '16.1'
       lange: 399C
@@ -1512,7 +1529,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '160'
+      km:
+        gott: '160'
       bruun_collection_id: '14479'
       sieg: '9.1'
       lange: 427A
@@ -1568,7 +1586,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '170'
+      km:
+        gott: '170'
       bruun_collection_id: '14486'
       sieg: '12.1'
       lange: '426'
@@ -1620,7 +1639,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '169'
+      km:
+        gott: '169'
       bruun_collection_id: '14488'
       sieg: '12.4'
       lange: 426B
@@ -1679,7 +1699,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '73'
+      km:
+        gott: '73'
       bruun_collection_id: '14490'
       sieg: '12.7'
       fr: '3083'
@@ -1730,7 +1751,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '164'
+      km:
+        gott: '164'
       bruun_collection_id: '14491'
       sieg: '5'
       lange: 430B
@@ -1772,7 +1794,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '167'
+      km:
+        gott: '167'
       bruun_collection_id: '14493'
       sieg: '9.2'
       lange: '429'
@@ -1824,7 +1847,8 @@ coins:
     mintmaster: Hans Heinrich Luders
     mint: Tönning
     catalog:
-      km: '166'
+      km:
+        gott: '166'
       bruun_collection_id: '14494'
       sieg: '7'
       lange: 430AA
@@ -1875,7 +1899,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '165'
+      km:
+        gott: '165'
       bruun_collection_id: '14495'
       sieg: '6'
       lange: 430A
@@ -1935,7 +1960,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '170'
+      km:
+        gott: '170'
       bruun_collection_id: '14504'
       sieg: '12.8'
       lange: '427'
@@ -1980,7 +2006,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '176'
+      km:
+        gott: '176'
       bruun_collection_id: '14505'
       sieg: '9.3'
       lange: '430'
@@ -2038,7 +2065,8 @@ coins:
     ruler: Friedrich IV
     mint: Tönning
     catalog:
-      km: '181'
+      km:
+        gott: '181'
       bruun_collection_id: '14510'
       sieg: '10'
       lange: '428'
@@ -2050,22 +2078,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: dk-bruun-14510
-          source: bruun
-          years: '1702'
-        - seed: dk-numista-301632
-          source: numista
-          years: '1702'
-        - seed: schleswig_holstein-numismaster-167369
-          source: numismaster
-          years: '1702'
-      uncertain:
-        - seed: ngc-1177479
-          source: ngc
-          years: '1702'
     weight_rough_g:
       - value: 43.9
         source: ngc
@@ -2076,13 +2088,6 @@ coins:
       - value: 43.93
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCCII (1702)
-          value: '1702'
-          seed: ngc-1177479
       metal:
         - kind: inferred
           how: from_name
@@ -2123,7 +2128,8 @@ coins:
     mintmaster: Bastian Hille
     mint: Tönning
     catalog:
-      km: '188'
+      km:
+        gott: '188'
       bruun_collection_id:
         - '14527'
         - '14528'
@@ -2222,7 +2228,8 @@ coins:
     mintmaster: Bastian Hille
     mint: Tönning
     catalog:
-      km: '189'
+      km:
+        gott: '189'
       bruun_collection_id:
         - '14529'
         - '14533'
@@ -2300,7 +2307,8 @@ coins:
     mintmaster: Bastian Hille
     mint: Tönning
     catalog:
-      km: '200'
+      km:
+        gott: '200'
       bruun_collection_id: '14550'
       sieg: '10.2'
       lange: '449'
@@ -2365,7 +2373,8 @@ coins:
     mintmaster: Bastian Hille (BH)
     mint: Tönning
     catalog:
-      km: '203'
+      km:
+        gott: '203'
       bruun_collection_id:
         - '14572'
         - '14580'
@@ -2452,8 +2461,9 @@ coins:
     mint: Mannheim
     catalog:
       km:
-        - '226.1'
-        - '226'
+        gott:
+          - '226'
+          - '226.1'
       bruun_collection_id: '14640'
       sieg: '1'
       lange: 491b
@@ -2676,7 +2686,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '193'
+      km:
+        gott: '193'
       numista: '143519'
       lange: 472-478
     metal: silver
@@ -2719,7 +2730,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '201'
+      km:
+        gott: '201'
       numista: '224070'
       lange: 470c
     metal: silver
@@ -2757,7 +2769,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '194'
+      km:
+        gott: '194'
       numista: '233862'
       lange: '480'
     metal: copper
@@ -2800,7 +2813,8 @@ coins:
     year_label: 1599-1603
     ruler: Johann Adolf / Rudolph II
     catalog:
-      km: '7'
+      km:
+        gott: '7'
       numista: '257985'
       lange: '303'
     metal: silver
@@ -2835,7 +2849,8 @@ coins:
     year_label: '1675'
     ruler: Christian Albert
     catalog:
-      km: '126'
+      km:
+        gott: '126'
       numista: '271046'
     metal: silver
     metal_verified: true
@@ -2877,7 +2892,8 @@ coins:
     year_label: '1711'
     ruler: Charles Frederick (Karl Friedrich)
     catalog:
-      km: '207'
+      km:
+        gott: '207'
       numista: '276023'
       fr: '3087'
       lange: '450'
@@ -2929,7 +2945,8 @@ coins:
     year_label: '1711'
     ruler: Charles Frederick (Karl Friedrich)
     catalog:
-      km: '208'
+      km:
+        gott: '208'
       numista: '276025'
       fr: '3087'
       lange: '452'
@@ -2986,8 +3003,9 @@ coins:
     mint: Schleswig
     catalog:
       km:
-        - '106'
-        - '56'
+        gott:
+          - '106'
+          - '56'
       numista: '276168'
       lange: '383'
     metal: silver
@@ -3030,7 +3048,8 @@ coins:
     year_label: '1681'
     ruler: Christian Albert
     catalog:
-      km: '131'
+      km:
+        gott: '131'
       numista: '276520'
       lange: '406'
     metal: silver
@@ -3074,7 +3093,8 @@ coins:
     ruler: Charles Frederick
     mint: Kiel
     catalog:
-      km: '204'
+      km:
+        gott: '204'
       numista: '292243'
       lange: '481'
     metal: billon
@@ -3121,7 +3141,8 @@ coins:
     _year_demoted: true
     ruler: Johann Adolf
     catalog:
-      km: '3'
+      km:
+        gott: '3'
       numista: '292424'
       dav: Lg 444
       lange: 264D
@@ -3132,7 +3153,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 44.38
         source: numista
@@ -3144,21 +3164,10 @@ coins:
           value: 1590-1616
           seed: dk-numista-292424
         - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1590-1616)
-          value: 1590-1616
-          seed: ngc-167367
-        - kind: hedged
           how: span
           source: ngc
           value: 1590–1616
           seed: ngc-167367
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1590-1616
-          seed: schleswig_holstein-numismaster-167367
         - kind: hedged
           how: span
           source: numismaster
@@ -3192,7 +3201,8 @@ coins:
     ruler: Frederick III
     mint: Schleswig
     catalog:
-      km: '61'
+      km:
+        gott: '61'
       numista: '301094'
       lange:
         - '333'
@@ -3235,7 +3245,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '132'
+      km:
+        gott: '132'
       numista: '301095'
       lange:
         - 404A
@@ -3281,7 +3292,8 @@ coins:
     ruler: Johann Adolf
     mint: Schleswig
     catalog:
-      km: '5'
+      km:
+        gott: '5'
       numista: '301149'
       lange:
         - 280-290
@@ -3376,7 +3388,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '186'
+      km:
+        gott: '186'
       numista: '301150'
       lange: 463A
     metal: silver
@@ -3426,7 +3439,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '104'
+      km:
+        gott: '104'
       numista: '301216'
       lange: 399A
     metal: silver
@@ -3472,7 +3486,8 @@ coins:
     ruler: Frederick III
     mint: Steinbeck
     catalog:
-      km: '71'
+      km:
+        gott: '71'
       numista: '301534'
       lange:
         - '330'
@@ -3518,7 +3533,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '214'
+      km:
+        gott: '214'
       numista: '301538'
       lange: '470'
     metal: silver
@@ -3560,7 +3576,8 @@ coins:
     year_label: 1599, 1601-1603
     ruler: Johann Adolf
     catalog:
-      km: '8'
+      km:
+        gott: '8'
       numista: '301545'
       lange:
         - 295A
@@ -3612,7 +3629,8 @@ coins:
     year_label: 1683, 1688
     ruler: Christian Albert
     catalog:
-      km: '143'
+      km:
+        gott: '143'
       numista: '301546'
     metal: silver
     metal_verified: true
@@ -3654,7 +3672,8 @@ coins:
     ruler: Frederick III
     mint: Burg auf Fehmarn
     catalog:
-      km: '46'
+      km:
+        gott: '46'
       numista: '301663'
       lange:
         - '339'
@@ -3697,7 +3716,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '212'
+      km:
+        gott: '212'
       numista: '301664'
       lange:
         - 462-63
@@ -3739,7 +3759,8 @@ coins:
       - Gottorp
       - Schleswig
     catalog:
-      km: '115'
+      km:
+        gott: '115'
       numista: '301744'
       lange:
         - '376'
@@ -3792,7 +3813,8 @@ coins:
     ruler: Johann Adolf
     mint: Schleswig
     catalog:
-      km: '6'
+      km:
+        gott: '6'
       numista: '301812'
       lange:
         - '304'
@@ -3843,7 +3865,8 @@ coins:
     year_label: 1623-1625, 1628
     ruler: Frederick III
     catalog:
-      km: '69'
+      km:
+        gott: '69'
       numista: '301813'
       lange:
         - '340'
@@ -3919,7 +3942,8 @@ coins:
     ruler: Frederick IV
     mint: Tönning
     catalog:
-      km: '155'
+      km:
+        gott: '155'
       numista: '301828'
       lange:
         - 431-32
@@ -3976,7 +4000,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '139'
+      km:
+        gott: '139'
       numista: '303372'
       lange: '408'
     metal: silver
@@ -4034,7 +4059,8 @@ coins:
     year_label: 1594-1595, 1597, 1599, 1602, 1604
     ruler: Johann Adolf
     catalog:
-      km: '4'
+      km:
+        gott: '4'
       numista: '312875'
       lange: 307-312
     metal: silver
@@ -4080,7 +4106,8 @@ coins:
     year_label: 1602-1604, 1607-1608
     ruler: Johann Adolf / Rudolph II
     catalog:
-      km: '12'
+      km:
+        gott: '12'
       numista: '313116'
     metal: silver
     metal_verified: true
@@ -4112,7 +4139,8 @@ coins:
     ruler: Johann Adolf
     mint: Schleswig
     catalog:
-      km: '16'
+      km:
+        gott: '16'
       numista: '313235'
       lange:
         - 264c
@@ -4158,7 +4186,8 @@ coins:
     ruler: Johann Adolf
     mint: Schleswig
     catalog:
-      km: '32'
+      km:
+        gott: '32'
       numista: '313239'
       lange:
         - 277A
@@ -4201,7 +4230,8 @@ coins:
     ruler: Johann Adolf
     mint: Steinbeck
     catalog:
-      km: '35'
+      km:
+        gott: '35'
       numista:
         - '313301'
         - '313303'
@@ -4254,7 +4284,8 @@ coins:
     ruler: Johann Adolf / Matthias
     mint: Schleswig
     catalog:
-      km: '40'
+      km:
+        gott: '40'
       numista: '313340'
     metal: silver
     metal_verified: true
@@ -4285,7 +4316,8 @@ coins:
     year_label: '1655'
     ruler: Frederick III
     catalog:
-      km: '44'
+      km:
+        gott: '44'
       numista: '313342'
       lange: 358E
     metal: silver
@@ -4295,28 +4327,16 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: true
     weight_rough_g:
       - value: 2.04
         source: numista
     uncertainty:
       year:
         - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1616-59)
-          value: 1616-1659
-          seed: ngc-1186463
-        - kind: hedged
           how: span
           source: ngc
           value: 1616–1659
           seed: ngc-1186463
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1616-1659
-          seed: schleswig_holstein-numismaster-167284
         - kind: hedged
           how: span
           source: numismaster
@@ -4349,7 +4369,8 @@ coins:
     year_label: '1617'
     ruler: Frederick III
     catalog:
-      km: A46
+      km:
+        gott: A46
       numista: '313366'
       lange: 339Aa
     metal: silver
@@ -4397,7 +4418,8 @@ coins:
       - Gottorp
       - Schleswig
     catalog:
-      km: '55'
+      km:
+        gott: '55'
       numista: '313367'
       lange:
         - 354a-354b
@@ -4447,7 +4469,8 @@ coins:
     year_label: 1622-1623
     ruler: Frederick III
     catalog:
-      km: '59'
+      km:
+        gott: '59'
       numista: '313518'
       lange:
         - 354A
@@ -4487,7 +4510,8 @@ coins:
     ruler: Frederick III
     mint: Schleswig
     catalog:
-      km: '60'
+      km:
+        gott: '60'
       numista: '313520'
       lange: '335'
     metal: silver
@@ -4533,7 +4557,8 @@ coins:
     ruler: Frederick III
     mint: Schleswig
     catalog:
-      km: '62'
+      km:
+        gott: '62'
       numista: '313521'
       lange:
         - '329'
@@ -4582,7 +4607,8 @@ coins:
     year_label: 1625-1626, 1635-1636, 1656-1657
     ruler: Frederick III
     catalog:
-      km: '75'
+      km:
+        gott: '75'
       numista: '313684'
       lange: 336-338A
     metal: silver
@@ -4622,7 +4648,8 @@ coins:
     year_label: 1626-1628
     ruler: Frederick III
     catalog:
-      km: '78'
+      km:
+        gott: '78'
       numista: '313685'
       dav: EC II 3699
       lange: 274e
@@ -4673,7 +4700,8 @@ coins:
     ruler: Frederick III
     mint: Steinbeck
     catalog:
-      km: '83'
+      km:
+        gott: '83'
       numista: '313686'
       dav: EC II 3700
     metal: silver
@@ -4716,7 +4744,8 @@ coins:
     ruler: Frederick III
     mint: Schleswig
     catalog:
-      km: '91'
+      km:
+        gott: '91'
       numista: '313754'
       lange: 358 C IV
     metal: silver
@@ -4752,7 +4781,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '105'
+      km:
+        gott: '105'
       numista: '313814'
     metal: silver
     metal_verified: true
@@ -4798,7 +4828,8 @@ coins:
     year_label: 1668, 1670-1672, 1675-1676
     ruler: Christian Albert
     catalog:
-      km: '111'
+      km:
+        gott: '111'
       numista: '313815'
     metal: silver
     metal_verified: true
@@ -4838,7 +4869,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '112'
+      km:
+        gott: '112'
       numista: '313816'
     metal: silver
     metal_verified: true
@@ -4878,7 +4910,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '129'
+      km:
+        gott: '129'
       numista: '313830'
       dav: SG 573
     metal: silver
@@ -4918,7 +4951,8 @@ coins:
     year_label: '1689'
     ruler: Christian Albert
     catalog:
-      km: '145'
+      km:
+        gott: '145'
       numista: '313891'
       dav: SG 575
     metal: silver
@@ -4959,7 +4993,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '149'
+      km:
+        gott: '149'
       numista: '317502'
       lange:
         - '409'
@@ -5004,7 +5039,8 @@ coins:
     year_label: 1696-1698
     ruler: Frederick IV
     catalog:
-      km: '158'
+      km:
+        gott: '158'
       numista: '317503'
       lange: '433'
     metal: silver
@@ -5045,7 +5081,8 @@ coins:
     ruler: Frederick IV
     mint: Tönning
     catalog:
-      km: '174'
+      km:
+        gott: '174'
       numista: '319103'
       lange:
         - 439A
@@ -5090,7 +5127,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '199'
+      km:
+        gott: '199'
       numista: '319171'
       lange: 468a
     metal: silver
@@ -5131,7 +5169,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '220'
+      km:
+        gott: '220'
       numista: '319268'
       lange: '479'
     metal: silver
@@ -5204,7 +5243,8 @@ coins:
     ruler: Christian Albert
     mint: Schleswig
     catalog:
-      km: '137'
+      km:
+        gott: '137'
       numista: '354511'
       dav: EC II 3706
     metal: silver
@@ -5247,7 +5287,8 @@ coins:
     year_label: 1722-1726
     ruler: Charles Frederick
     catalog:
-      km: '218'
+      km:
+        gott: '218'
       numista: '38954'
       lange: 454-457
     metal: silver
@@ -5291,7 +5332,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '185'
+      km:
+        gott: '185'
       numista: '38955'
       lange: 458-461
       others:
@@ -5333,7 +5375,8 @@ coins:
     year_label: '1682'
     ruler: Christian Albert
     catalog:
-      km: '140'
+      km:
+        gott: '140'
       numista: '48549'
       lange: 407a-407b
     metal: silver
@@ -5380,7 +5423,8 @@ coins:
     ruler: Charles Frederick
     mint: Tönning
     catalog:
-      km: '183'
+      km:
+        gott: '183'
       numista: '73161'
       lange: 463B-467
       others:
@@ -5430,7 +5474,8 @@ coins:
     year_label: 1669-1671, 1675
     ruler: Christian Albert
     catalog:
-      km: '113'
+      km:
+        gott: '113'
       numista: '84421'
     metal: silver
     metal_verified: true
@@ -5473,7 +5518,8 @@ coins:
     year_label: 1642, 1645-1653, 1657-1658
     ruler: Frederick III
     catalog:
-      km: '93'
+      km:
+        gott: '93'
       numista: '85360'
       lange: 342-353
     metal: silver
@@ -7489,7 +7535,8 @@ coins:
     year_label: 1711-1712
     ruler: Karl Friedrich
     catalog:
-      km: '209'
+      km:
+        gott: '209'
       fr: '3091'
     metal: gold
     metal_verified: true
@@ -7531,7 +7578,8 @@ coins:
     year_label: '1710'
     ruler: Karl Friedrich
     catalog:
-      km: '202'
+      km:
+        gott: '202'
       fr: '3093'
     metal: gold
     metal_verified: true
@@ -7576,7 +7624,8 @@ coins:
     fraction: '1'
     ruler: Friedrich III
     catalog:
-      km: '53'
+      km:
+        gott: '53'
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -7656,7 +7705,8 @@ coins:
     fraction: '1'
     ruler: Christian Albrecht
     catalog:
-      km: '108'
+      km:
+        gott: '108'
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -7731,7 +7781,8 @@ coins:
     year_label: '1673'
     ruler: Christian Albrecht
     catalog:
-      km: '117'
+      km:
+        gott: '117'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7762,7 +7813,8 @@ coins:
     year_label: '1676'
     ruler: Christian Albrecht
     catalog:
-      km: '130'
+      km:
+        gott: '130'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -7796,7 +7848,8 @@ coins:
     fraction: '1'
     ruler: Friedrich III
     catalog:
-      km: '79'
+      km:
+        gott: '79'
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -7869,7 +7922,8 @@ coins:
     year_label: '1614'
     ruler: Johann Adolf
     catalog:
-      km: '41'
+      km:
+        gott: '41'
       dav: '3692'
       lange: 274b
     metal: silver
@@ -7916,7 +7970,8 @@ coins:
     year_label: '1617'
     ruler: Friedrich III
     catalog:
-      km: '47'
+      km:
+        gott: '47'
       dav: '3693'
     metal: silver
     metal_verified: true
@@ -7948,7 +8003,8 @@ coins:
     year_label: '1622'
     ruler: Friedrich III
     catalog:
-      km: '63'
+      km:
+        gott: '63'
       dav: '3697'
     metal: silver
     metal_verified: true
@@ -7980,7 +8036,8 @@ coins:
     year_label: '1674'
     ruler: Christian Albrecht
     catalog:
-      km: '121'
+      km:
+        gott: '121'
       dav: '3705'
     metal: silver
     metal_verified: true
@@ -8012,7 +8069,8 @@ coins:
     year_label: '1609'
     ruler: Johann Adolf
     catalog:
-      km: '28'
+      km:
+        gott: '28'
       dav: '3681'
     metal: silver
     metal_verified: true
@@ -8044,7 +8102,8 @@ coins:
     year_label: '1609'
     ruler: Johann Adolf
     catalog:
-      km: '29'
+      km:
+        gott: '29'
       dav: '3686'
     metal: silver
     metal_verified: true
@@ -8076,7 +8135,8 @@ coins:
     year_label: '1674'
     ruler: Christian Albrecht
     catalog:
-      km: '122'
+      km:
+        gott: '122'
       dav: A3705
     metal: silver
     metal_verified: true
@@ -8108,7 +8168,8 @@ coins:
     year_label: '1601'
     ruler: Johann Adolf
     catalog:
-      km: '10'
+      km:
+        gott: '10'
       fr: '3075'
     metal: gold
     metal_verified: true
@@ -8150,7 +8211,8 @@ coins:
     year_label: '1622'
     ruler: Friedrich III
     catalog:
-      km: '65'
+      km:
+        gott: '65'
       dav: 3698A
     metal: silver
     metal_verified: true
@@ -8182,7 +8244,8 @@ coins:
     year_label: '1647'
     ruler: Friedrich III
     catalog:
-      km: '98'
+      km:
+        gott: '98'
       dav: '3701'
     metal: silver
     metal_verified: true
@@ -8214,7 +8277,8 @@ coins:
     year_label: '1659'
     ruler: Friedrich III
     catalog:
-      km: '100'
+      km:
+        gott: '100'
       dav: 3702A
     metal: silver
     metal_verified: true
@@ -8246,7 +8310,8 @@ coins:
     year_label: '1659'
     ruler: Friedrich III
     catalog:
-      km: '101'
+      km:
+        gott: '101'
       dav: 3702B
     metal: silver
     metal_verified: true
@@ -8278,7 +8343,8 @@ coins:
     year_label: '1622'
     ruler: Friedrich III
     catalog:
-      km: '66'
+      km:
+        gott: '66'
       dav: 3698B
     metal: silver
     metal_verified: true
@@ -8310,7 +8376,8 @@ coins:
     year_label: '1698'
     ruler: Friedrich IV
     catalog:
-      km: '171'
+      km:
+        gott: '171'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -8351,7 +8418,8 @@ coins:
     year_label: '1608'
     ruler: Johann Adolf
     catalog:
-      km: '22'
+      km:
+        gott: '22'
       dav: '3683'
     metal: silver
     metal_verified: true
@@ -8388,7 +8456,8 @@ coins:
     year_label: 1611-1612, 1615
     ruler: Johann Adolf
     catalog:
-      km: '33'
+      km:
+        gott: '33'
       dav: '3688'
     metal: silver
     metal_verified: true
@@ -8420,7 +8489,8 @@ coins:
     year_label: '1613'
     ruler: Johann Adolf
     catalog:
-      km: '38'
+      km:
+        gott: '38'
       dav: '3691'
     metal: silver
     metal_verified: true
@@ -8452,7 +8522,8 @@ coins:
     year_label: '1621'
     ruler: Friedrich III
     catalog:
-      km: '57'
+      km:
+        gott: '57'
       dav: '3696'
     metal: silver
     metal_verified: true
@@ -8484,7 +8555,8 @@ coins:
     year_label: '1693'
     ruler: Christian Albrecht
     catalog:
-      km: '153'
+      km:
+        gott: '153'
       dav: '3708'
     metal: silver
     metal_verified: true
@@ -8516,7 +8588,8 @@ coins:
     year_label: '1618'
     ruler: Friedrich III
     catalog:
-      km: '50'
+      km:
+        gott: '50'
       dav: '3694'
     metal: silver
     metal_verified: true
@@ -8548,7 +8621,8 @@ coins:
     year_label: '1697'
     ruler: Friedrich IV
     catalog:
-      km: '161'
+      km:
+        gott: '161'
       dav: '3709'
     metal: silver
     metal_verified: true
@@ -8580,7 +8654,8 @@ coins:
     year_label: '1674'
     ruler: Christian Albrecht
     catalog:
-      km: '124'
+      km:
+        gott: '124'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -8621,7 +8696,8 @@ coins:
     year_label: '1615'
     ruler: Johann Adolf
     catalog:
-      km: '42'
+      km:
+        gott: '42'
       lange: 292A
     metal: silver
     metal_verified: true
@@ -8656,7 +8732,8 @@ coins:
     year_label: 1707-1711
     ruler: Karl Friedrich
     catalog:
-      km: '197'
+      km:
+        gott: '197'
       lange: 482-484
     metal: billon
     metal_verified: true
@@ -8692,7 +8769,8 @@ coins:
     _year_demoted: true
     ruler: Friedrich III
     catalog:
-      km: '52'
+      km:
+        gott: '52'
       lange: '359'
     metal: silver
     metal_verified: true
@@ -8701,25 +8779,13 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     uncertainty:
       year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: (1616-59)
-          value: 1616-1659
-          seed: ngc-1180482
         - kind: hedged
           how: span
           source: ngc
           value: 1616–1659
           seed: ngc-1180482
-        - kind: hedged
-          how: attributed
-          source: numismaster
-          value: 1616-1659
-          seed: schleswig_holstein-numismaster-167256
         - kind: hedged
           how: span
           source: numismaster
@@ -8751,7 +8817,8 @@ coins:
     year_label: 1696-1699
     ruler: Friedrich IV
     catalog:
-      km: '157'
+      km:
+        gott: '157'
       lange: '439'
     metal: silver
     metal_verified: true
@@ -8790,7 +8857,8 @@ coins:
     year_label: 1642, 1645-1646, 1653
     ruler: Friedrich III
     catalog:
-      km: '91'
+      km:
+        gott: '91'
       lange:
         - 358CIV
         - 358D
@@ -8834,7 +8902,8 @@ coins:
     year_label: 1600-1605
     ruler: Johann Adolf
     catalog:
-      km: '5'
+      km:
+        gott: '5'
       lange: 280-290
       others:
         - Roeper# 3069 (1594)
@@ -8869,7 +8938,8 @@ coins:
     year_label: 1722, 1724
     ruler: Karl Friedrich
     catalog:
-      km: '217'
+      km:
+        gott: '217'
       lange: '471'
     metal: silver
     metal_verified: true
@@ -8901,7 +8971,8 @@ coins:
     year_label: '1693'
     ruler: Christian Albrecht
     catalog:
-      km: '152'
+      km:
+        gott: '152'
       dav: '578'
       lange: 403A
     metal: silver
@@ -8937,7 +9008,8 @@ coins:
     year_label: 1614-1615
     ruler: Johann Adolf
     catalog:
-      km: '40'
+      km:
+        gott: '40'
       lange: 293-94
     metal: silver
     metal_verified: true
@@ -8972,7 +9044,8 @@ coins:
     year_label: 1606-1607
     ruler: Johann Adolf
     catalog:
-      km: '14'
+      km:
+        gott: '14'
       lange:
         - 275A
         - 275B
@@ -9006,7 +9079,8 @@ coins:
     year_label: '1706'
     ruler: Karl Friedrich
     catalog:
-      km: '195'
+      km:
+        gott: '195'
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -9037,7 +9111,8 @@ coins:
     year_label: '1705'
     ruler: Karl Friedrich
     catalog:
-      km: PnA4
+      km:
+        gott: PnA4
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -9064,7 +9139,8 @@ coins:
     year_label: '1706'
     ruler: Karl Friedrich
     catalog:
-      km: '192'
+      km:
+        gott: '192'
       lange: 479A
     metal: billon
     metal_verified: true
@@ -9096,7 +9172,8 @@ coins:
     year_label: '1698'
     ruler: Friedrich IV
     catalog:
-      km: '163'
+      km:
+        gott: '163'
       lange: '435'
     metal: silver
     metal_verified: true
@@ -9137,7 +9214,8 @@ coins:
     year_label: 1646-1647, 1650, 1652-1653, 1657
     ruler: Friedrich III
     catalog:
-      km: '96'
+      km:
+        gott: '96'
       lange:
         - 357A-357B
         - 358-358C
@@ -9171,7 +9249,8 @@ coins:
     year_label: '1693'
     ruler: Christian Albrecht
     catalog:
-      km: '150'
+      km:
+        gott: '150'
       lange: 407A
     metal: silver
     metal_verified: true
@@ -9203,7 +9282,8 @@ coins:
     year_label: '1693'
     ruler: Christian Albrecht
     catalog:
-      km: '151'
+      km:
+        gott: '151'
       lange: 405A
     metal: silver
     metal_verified: true
@@ -9235,7 +9315,8 @@ coins:
     year_label: '1623'
     ruler: Friedrich III
     catalog:
-      km: '68'
+      km:
+        gott: '68'
       lange: '355'
     metal: silver
     metal_verified: true
@@ -9272,7 +9353,8 @@ coins:
     year_label: 1724, 1726
     ruler: Karl Friedrich
     catalog:
-      km: '222'
+      km:
+        gott: '222'
       lange: '485'
     metal: billon
     metal_verified: true
@@ -9304,7 +9386,8 @@ coins:
     year_label: '1703'
     ruler: Karl Friedrich
     catalog:
-      km: '184'
+      km:
+        gott: '184'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9338,7 +9421,8 @@ coins:
     year_label: 1599-1603
     ruler: Johann Adolf
     catalog:
-      km: '7'
+      km:
+        gott: '7'
       lange:
         - 295B
         - 296-297
@@ -9384,7 +9468,8 @@ coins:
     year_label: 1602-1604, 1607-1608
     ruler: Johann Adolf
     catalog:
-      km: '12'
+      km:
+        gott: '12'
       lange:
         - 287A
         - 288b
@@ -9428,7 +9513,8 @@ coins:
     year_label: 1609, 1612, 1617
     ruler: Johann Adolf
     catalog:
-      km: '24'
+      km:
+        gott: '24'
       lange:
         - 277B
         - 278A
@@ -9463,7 +9549,8 @@ coins:
     year_label: '1611'
     ruler: Johann Adolf
     catalog:
-      km: '36'
+      km:
+        gott: '36'
       lange: '263'
     metal: gold
     metal_verified: true
@@ -9508,7 +9595,8 @@ coins:
     year_label: 1623-1624
     ruler: Friedrich III
     catalog:
-      km: '70'
+      km:
+        gott: '70'
       lange: 334-334A
     metal: silver
     metal_verified: true
@@ -9547,7 +9635,8 @@ coins:
     year_label: 1632, 1636, 1642
     ruler: Friedrich III
     catalog:
-      km: '81'
+      km:
+        gott: '81'
       lange: 358CI-358CIII
     metal: silver
     metal_verified: true
@@ -9579,7 +9668,8 @@ coins:
     year_label: '1640'
     ruler: Friedrich III
     catalog:
-      km: '88'
+      km:
+        gott: '88'
       lange: '319'
     metal: silver
     metal_verified: true
@@ -9603,8 +9693,9 @@ coins:
           value: '1640'
           seed: ngc-1189706
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1640)
           value: '1640'
           seed: schleswig_holstein-numismaster-167368
     sources:
@@ -9630,7 +9721,8 @@ coins:
     year_label: '1607'
     ruler: Johann Adolf
     catalog:
-      km: '18'
+      km:
+        gott: '18'
       lange: 264A
     metal: silver
     metal_verified: true
@@ -9662,7 +9754,8 @@ coins:
     year_label: '1608'
     ruler: Johann Adolf
     catalog:
-      km: '23'
+      km:
+        gott: '23'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9696,7 +9789,8 @@ coins:
     year_label: '1711'
     ruler: Karl Friedrich
     catalog:
-      km: '206'
+      km:
+        gott: '206'
       dav: '1352'
     metal: silver
     metal_verified: true
@@ -9728,7 +9822,8 @@ coins:
     year_label: '1711'
     ruler: Karl Friedrich
     catalog:
-      km: '210'
+      km:
+        gott: '210'
       fr: '3090'
     metal: gold
     metal_verified: true
@@ -9770,7 +9865,8 @@ coins:
     year_label: '1609'
     ruler: Johann Adolf
     catalog:
-      km: '26'
+      km:
+        gott: '26'
       dav: '3684'
     metal: silver
     metal_verified: true
@@ -9802,7 +9898,8 @@ coins:
     year_label: '1682'
     ruler: Christian Albrecht
     catalog:
-      km: '141'
+      km:
+        gott: '141'
       dav: '3707'
     metal: silver
     metal_verified: true
@@ -9834,7 +9931,8 @@ coins:
     year_label: '1609'
     ruler: Johann Adolf
     catalog:
-      km: '11'
+      km:
+        gott: '11'
       dav: '3685'
     metal: silver
     metal_verified: true
@@ -9867,7 +9965,8 @@ coins:
     ruler: Karl Peter Ulrich
     mint: Mannheim
     catalog:
-      km: '226.2'
+      km:
+        gott: '226.2'
       dav: 1353A
     metal: silver
     metal_verified: true
@@ -9899,7 +9998,8 @@ coins:
     year_label: '1706'
     ruler: Karl Friedrich
     catalog:
-      km: '191'
+      km:
+        gott: '191'
       lange: 481A
     metal: billon
     metal_verified: true
@@ -9931,7 +10031,8 @@ coins:
     year_label: '1722'
     ruler: Karl Friedrich
     catalog:
-      km: '216'
+      km:
+        gott: '216'
       lange: 478A
     metal: silver
     metal_verified: true
@@ -9963,7 +10064,8 @@ coins:
     year_label: '1642'
     ruler: Friedrich III
     catalog:
-      km: '92'
+      km:
+        gott: '92'
       lange: '357'
     metal: silver
     metal_verified: true
@@ -9995,7 +10097,8 @@ coins:
     year_label: '1608'
     ruler: Johann Adolf
     catalog:
-      km: '20'
+      km:
+        gott: '20'
       lange: 275C
     metal: silver
     metal_verified: true
@@ -10027,7 +10130,8 @@ coins:
     year_label: '1702'
     ruler: Friedrich III
     catalog:
-      km: '180'
+      km:
+        gott: '180'
       lange: 428A
     metal: silver
     metal_verified: true
@@ -10036,24 +10140,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
-    year_conflict:
-      confident:
-        - seed: schleswig_holstein-numismaster-167366
-          source: numismaster
-          years: '1702'
-      uncertain:
-        - seed: ngc-1209916
-          source: ngc
-          years: '1702'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: ngc
-          as_printed: MDCCII (1702)
-          value: '1702'
-          seed: ngc-1209916
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-thaler-km-180-mdccii-1702-cuid-1209916-duid-1395833
@@ -10077,7 +10163,8 @@ coins:
     year_label: '1640'
     ruler: Friedrich III
     catalog:
-      km: '89'
+      km:
+        gott: '89'
       lange: 318A
     metal: silver
     metal_verified: true
@@ -10101,8 +10188,9 @@ coins:
           value: '1640'
           seed: ngc-1209917
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1640)
           value: '1640'
           seed: schleswig_holstein-numismaster-167372
     sources:
@@ -10128,7 +10216,8 @@ coins:
     year_label: '1698'
     ruler: Friedrich IV
     catalog:
-      km: '172'
+      km:
+        gott: '172'
       fr: '3083'
     metal: gold
     metal_verified: true
@@ -10178,8 +10267,9 @@ coins:
           value: '1565'
           seed: ngc-167233
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1565)
           value: '1565'
           seed: schleswig_holstein-numismaster-167233
     sources:
@@ -10287,7 +10377,8 @@ coins:
     year_label: '1599'
     ruler: Johann Adolf
     catalog:
-      km: '8'
+      km:
+        gott: '8'
       lange:
         - 295A
         - 298-300

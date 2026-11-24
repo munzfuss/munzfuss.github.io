@@ -25,6 +25,10 @@ Profile fields:
     out_dir       build output tree, relative to the repo root
     locations     explicit allowlist of location ids            ┐ exactly
     all_except    every location EXCEPT these ids               ┘ one of
+    unpublished   location ids that exist in the data (validated with the
+                  rest) but that this site does not render yet — a page being
+                  prepared (bremen, 2026-11-24). Dropped after the scope
+                  above; every id must exist, like the scope's own ids
     languages     languages to render (the one place `da` is switched on);
                   required — a site's language set is explicit, never inherited
     root_lang     the language additionally copied to `<out>/index.html`
@@ -79,6 +83,7 @@ class SiteProfile(_StrictBase):
     out_dir: str = "site"
     locations: list[str] | None = None
     all_except: list[str] | None = None
+    unpublished: list[str] = []
     languages: list[str]
     root_lang: str = "en"
     landing: bool = True
@@ -125,7 +130,8 @@ class SiteProfile(_StrictBase):
         error, never a quietly smaller site.
         """
         named = self.locations if self.locations is not None else self.all_except
-        unknown = [lid for lid in (named or []) if lid not in available]
+        unknown = [lid for lid in [*(named or []), *self.unpublished]
+                   if lid not in available]
         if unknown:
             raise SiteProfileError(
                 f"site '{self.id}': unknown location id(s) "
@@ -136,6 +142,7 @@ class SiteProfile(_StrictBase):
             keep = set(self.locations)
         else:
             keep = set(available) - set(self.all_except or [])
+        keep -= set(self.unpublished)
         resolved = [lid for lid in available if lid in keep]
         if not resolved:
             raise SiteProfileError(

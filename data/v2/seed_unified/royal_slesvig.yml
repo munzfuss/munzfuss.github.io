@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_slesvig`.
-# Generated 2026-11-12 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
 # Input: 139 per-source seed entries.
-# Output: 51 unified entries (one per physical coin).
+# Output: 50 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_slesvig
-generated_at: '2026-11-12'
+generated_at: '2026-11-19'
 coins:
   - id: c-9a0deeea
     class_id: c-9a0deeea
@@ -100,16 +100,16 @@ coins:
     year_verified: false
     year_conflict:
       confident:
-        - seed: dk-numista-461448
-          source: numista
-          years: '1534'
-      uncertain:
         - seed: dk-galster-c3g-130
           source: galster
           years: '1534'
         - seed: dk-bruun-14783
           source: bruun
           years: '1534'
+        - seed: dk-numista-461448
+          source: numista
+          years: '1534'
+      uncertain:
         - seed: ngc-167745
           source: ngc
           years: '1535'
@@ -159,26 +159,15 @@ coins:
     uncertainty:
       year:
         - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1534)
-          value: '1534'
-          seed: dk-bruun-14783
-        - kind: hedged
-          how: attributed
-          source: galster
-          as_printed: u.år (1534)
-          value: '1534'
-          seed: dk-galster-c3g-130
-        - kind: hedged
           how: circa
           source: ngc
           as_printed: (ca1535) Rare
           value: '1535'
           seed: ngc-167745
         - kind: hedged
-          how: attributed
+          how: circa
           source: numismaster
+          as_printed: ND(ca1535)
           value: '1535'
           seed: schleswig_holstein-numismaster-167745
       metal:
@@ -2010,6 +1999,7 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     fineness:
       - value: 0.406
         source: hede
@@ -2040,6 +2030,44 @@ coins:
       - value: 1.292
         source: hede
         specimen: dk-hede-c3h21c
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år (RRR)
+          value: 1534-1559
+          seed: dk-hede-c3h21c
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-139673
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-150119
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-291045
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-411793
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-692608
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1545'
+          seed: kmk-83085
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h21.htm
@@ -2848,9 +2876,15 @@ coins:
       sieg:
         - '33.1'
         - '33.2'
-      numista: '313332'
-      mb: '75'
-      lange: '28'
+      numista:
+        - '309419'
+        - '313332'
+      mb:
+        - '70'
+        - '75'
+      lange:
+        - 27a
+        - '28'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2870,14 +2904,34 @@ coins:
         source: kmk
       - value: 1.51
         source: numista
+      - value: 1.59
+        source: numista
       - value: 1.856
         source: hede
         specimen: dk-hede-f2h30a
       - value: 1.856
         source: hede
         specimen: dk-hede-f2h30b
+    year_alts:
+      - value: '1565'
+        source: numista
+        kind: suspect
+        reason:
+          de: "Das Jahr ist im Katalog Hede nicht belegt.\n[b]Numista 309419[/b] gibt [i]«1565»[/i] mit dem Verweis [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: die Variante 30A hat [i]«A) 1566,
+            U.år»[/i] (Übers.: «A) 1566, ohne Jahr»); 1565 ist nicht darunter."
+          en: "The year is not attested by the Hede catalogue.\n[b]Numista 309419[/b] gives [i]«1565»[/i] with the reference [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: variant 30A has [i]«A)
+            1566, U.år»[/i] (transl.: «A) 1566, undated»); 1565 is not among them."
+          uk: "Рік не засвідчений каталогом Hede.\n[b]Numista 309419[/b] подає [i]«1565»[/i] з посиланням [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: варіант 30A має [i]«A) 1566, U.år»[/i] (перекл.:
+            «A) 1566, без року»); 1565 серед них немає."
+          da: "Året er ikke belagt i Hede-kataloget.\n[b]Numista 309419[/b] angiver [i]«1565»[/i] med henvisningen [i]«Hede# 30 A»[/i].\n[b]danskmoent.dk (Hede 30)[/b]: variant 30A har [i]«A) 1566, U.år»[/i];
+            1565 er ikke blandt dem."
     uncertainty:
       year:
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1566, U.år
+          seed: dk-hede-f2h30a
         - kind: hedged
           how: museum
           source: kmk
@@ -2887,6 +2941,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h30.htm
         ref: danskmoent.dk (Hede f2h30A)
+      - type: literature
+        url: https://en.numista.com/309419
+        ref: Numista N#309419 — 1 Schilling - Frederick II
       - type: literature
         url: https://en.numista.com/313332
         ref: Numista N#313332 — 1 Schilling - Frederick II
@@ -2902,6 +2959,7 @@ coins:
     composed_of:
       - dk-hede-f2h30a
       - dk-hede-f2h30b
+      - dk-numista-309419
       - dk-numista-313332
       - kmk-345172
   - id: c-92caf7d6
@@ -2937,6 +2995,7 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     fineness:
       - value: 0.328
         source: hede
@@ -2953,6 +3012,17 @@ coins:
         specimen: dk-hede-f2h31b
     uncertainty:
       year:
+        - kind: hedged
+          how: undated
+          source: hede
+          as_printed: 1566 (R), U.år
+          seed: dk-hede-f2h31a
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1559-1588
+          seed: dk-hede-f2h31b
         - kind: hedged
           how: museum
           source: kmk
@@ -3379,40 +3449,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-309411
-  - id: c-70c27b86
-    class_id: c-70c27b86
-    label: unified-dk-numista-309419
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Schilling
-    year_first: 1565
-    year_last: 1565
-    year_label: '1565'
-    ruler: Frederick II (Frederik II)
-    mint: Flensburg
-    catalog:
-      numista: '309419'
-      mb: '70'
-      hede: 30A
-      lange: 27a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.59
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/309419
-        ref: Numista N#309419 — 1 Schilling - Frederick II
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-numista-309419
   - id: c-66488a70
     class_id: c-66488a70
     label: unified-kmk-123178

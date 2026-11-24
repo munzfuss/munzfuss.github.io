@@ -30,6 +30,18 @@
 # coin, another coin in the same operation, a citation, all still block.
 generated_at: '2026-08-21'
 removals:
+  - seed: dk-hede-f3h84ab
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-19 (Hede-base review group 9, «мердж»; stope chosen in chat): Frederik III Krone (4 Mark) 1651-1652, Hede 84 — the Hede class unified-dk-hede-f3h84ab (c-70c207e5) merged into the class of its 13 KMM records (c-cf463548), which takes kronemont_chr_iv / II by classification decision. The superseded shell final c-70c207e5 is dropped; every specimen and citation lives in the successor class.'
+  - seed: dk-bruun-7627
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-19 (Hede-base review group 27, «мердж»; stope chosen in chat): Frederik V Krone 1747, Hede 29B (KM 560) — class unified-dk-bruun-7627 (c-ab643ae9) merged into the Hede 29 class (c-f98ae55b, final dk-tid-94158, kronemont_fine / I). The superseded shell final c-ab643ae9 is dropped; every specimen and citation lives in the successor class.'
+  - seed: kmk-591530
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-23 (Hede-base review group 6, «так, зливай»): Christian IV 2 Skilling 1603-1618, Hede 79 = KM 16.1 / 16.2 — the four KMM classes of the V1 foundation final km-16-1-chr-iv-1603 (unified-kmk-591530, -167339, -167341, -167342) merged into the Hede 79 class c-e1bf466d (9_thaler / I). The emptied shell final km-16-1-chr-iv-1603 is dropped; every specimen of its members lives in the successor class. Not carried: its V1 Note (de/en/uk only, a metrology paraphrase of Hede and ucoin) and 55 hidden KMM citations whose records the KMM stub scope rule already dropped (data/v2/_scope_dropped/kmk.yml, no_weight_no_image).'
+  - seed: dk-hede-f7h9
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-23 (Hede-base review group 4, «погоджу»): Frederik VII ½ Rigsdaler 1854-1855, Hede 9 = KM 759 — the Hede 9 class merged with the KM 759 records into class c-58c91255 once Bruun IV lot 17204 (a 1 Rigsdaler, Hede 8A) left for Hede 8. The superseded shell final c-6e868a11 is dropped; every specimen and citation lives in the successor class, and its V1 Note is the same text the successor carries.'
   # ── §9a thinning, kmk re-seed of 2026-08-21 ───────────────────────────────
   # The 2026-08-21 mint fixes changed `mint`, which is part of the thinning
   # bucket key, so the buckets re-formed and the min/middle/max quota kept a
@@ -5462,3 +5474,430 @@ removals:
     dropped:
       - Hede- 26A, note p. 194
     reason: "Curator (Serhii) 2026-11-17 («так»): not removed but folded into «Hede-26A, note p. 194». The space after the register's hyphen is a print variant in the Bruun lot; the seed builder now drops it, so the same citation from two lots is one line."
+  - seed: dk-bruun-8042
+    kind: field
+    field: weight_rough_g
+    dropped:
+      - source: bruun
+        value: 12.45
+    reason: Pattern 2 Rigsbankskilling 1818 (Hede 35 = KM Pn52, Bruun lot 17158) separated from the circulation coin KM 689 = Hede 36 and excluded; its values leave the class with it. Curator (Serhii) 2026-11-18.
+  - seed: dk-bruun-8042
+    kind: field
+    field: bruun_collection_id
+    dropped:
+      - '8042'
+    reason: Pattern 2 Rigsbankskilling 1818 (Hede 35 = KM Pn52, Bruun lot 17158) separated from the circulation coin KM 689 = Hede 36 and excluded; its values leave the class with it. Curator (Serhii) 2026-11-18.
+  - seed: dk-bruun-8042
+    kind: field
+    field: others
+    dropped:
+      - Pn# Pn52
+    reason: Pattern 2 Rigsbankskilling 1818 (Hede 35 = KM Pn52, Bruun lot 17158) separated from the circulation coin KM 689 = Hede 36 and excluded; its values leave the class with it. Curator (Serhii) 2026-11-18.
+  - seed: dk-numista-184954
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-a2d8ec29 (24 Mariengroschen 1693-1698, _unclassified) — its class retired into c-421a0727; seed dk-numista-184954 now sits in final c-421a0727 (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-266132
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-f883cc51 (32 Schilling 1627-1635, _unclassified) — its class retired into c-5dc7e621; seed dk-numista-266132 now sits in final lu-tid-102702 (hanseatic_lubeck), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-266509
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-a5b28851 (2 Thaler 1681, 1688, _unclassified) — its class retired into c-6aa11311; seed dk-numista-266509 now sits in final c-6aa11311 (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-266520
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-e2fac443 (1 Thaler 1692, _unclassified) — its class retired into c-3d0c85ce; seed dk-numista-266520 now sits in final c-3d0c85ce (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-266679
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-9378bbd3 (2 Thalers 1634, _unclassified) — its class retired into c-420e264a; seed dk-numista-266679 now sits in final c-420e264a (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-278654
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-aee20a35 (1 Thaler 1683, 1685-1687, _unclassified) — its class retired into c-8552c3c0; seed dk-numista-278654 now sits in final c-8552c3c0 (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-295950
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-6b723535 (1 Ducat 1673, 1679, _unclassified) — its class retired into c-13227659; seed dk-numista-295950 now sits in final c-13227659 (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-31053
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-e664cc10 (⅔ Thaler 1676-1679, _unclassified) — its class retired into c-4b792d39; seed dk-numista-31053 now sits in final c-4b792d39 (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more. Its source-note text exists nowhere else; curator: notes will be regenerated, losing it is acceptable.'
+  - seed: dk-numista-537621
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-f2a1cace (1 Mariengroschen 1673-1679, _unclassified) — its class retired into c-eae7885c; seed dk-numista-537621 now sits in final c-eae7885c (herzogtum_braunschweig_lueneburg), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-162572
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-4097d7fb (1 Albus 1723-1729, _unclassified) — its class retired into c-34547031; seed dk-numista-162572 now sits in final c-34547031 (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-162986
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-f80a7ee2 (6 Hellers 1772, _unclassified) — its class retired into c-24f061a3; seed dk-numista-162986 now sits in final c-24f061a3 (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-173707
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-5343cdb5 (8 Heller 1737, 1743, _unclassified) — its class retired into c-2e87c8f1; seed dk-numista-173707 now sits in final c-2e87c8f1 (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-182066
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-8bb37fcd (4 Hellers 1773, _unclassified) — its class retired into c-3e4c947f; seed dk-numista-182066 now sits in final c-3e4c947f (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-262622
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-ba7e4d49 (3 Heller 1720, _unclassified) — its class retired into c-4ea1cdd5; seed dk-numista-262622 now sits in final c-4ea1cdd5 (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-262626
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-8cc8657c (4 Hellers 1671, 1673-1682, 1685, 1687, 1690-1692, 1694, 1697, 1699, 1702, _unclassified) — its class retired into c-0a32f07d; seed dk-numista-262626 now sits in final c-0a32f07d (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-38691
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-9d842df1 (2 Albus 1768, 1770-1771, 1774-1783, _unclassified) — its class retired into c-6e344dbb; seed dk-numista-38691 now sits in final c-6e344dbb (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-47383
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-8363a7b8 (3 Heller 1843-1846, _unclassified) — its class retired into c-7149bfcb; seed dk-numista-47383 now sits in final c-7149bfcb (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-53007
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-f2b42854 (8 Heller 1772, _unclassified) — its class retired into c-b56f5a6b; seed dk-numista-53007 now sits in final c-b56f5a6b (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more. Its source-note text exists nowhere else; curator: notes will be regenerated, losing it is acceptable.'
+  - seed: dk-numista-149231
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-98d63077 (1 Sechsling 1750, _unclassified) — its class retired into c-94588b79; seed dk-numista-149231 now sits in final c-94588b79 (hanseatic_lubeck), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-154600
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-bc562fb9 (½ Ducat 1731, 1737, _unclassified) — its class retired into c-2a4f0173; seed dk-numista-154600 now sits in final c-2a4f0173 (landgrafschaft_hessen_kassel), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-20264
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-c6b5cdc5 (32 Schilling 1752, _unclassified) — its class retired into c-40016ca5; seed dk-numista-20264 now sits in final lu-tid-102694 (hanseatic_lubeck), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-numista-422499
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-a0223d5b (32 Schilling 1747-1748, _unclassified) — its class retired into c-01e0c3b7; seed dk-numista-422499 now sits in final lu-tid-102692 (hanseatic_lubeck), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-bruun-5821
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-320a1040 (1 Speciedaler 1647, royal_holstein) — its class retired into c-0288486e; seed dk-bruun-5821 now sits in final km-27-chr-iv-1641 (royal_holstein), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - seed: dk-bruun-7864
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, «всі погоджую»): superseded shell c-47cf3b6f (½ Speciedaler 1786, royal_holstein) — its class retired into c-3cd2a31c; seed dk-bruun-7864 now sits in final c-3cd2a31c (royal_holstein), which carries every source URL and catalogue value the shell held. The shell kept a KM no member gives any more.'
+  - final: km-68-chr-iv-1619
+    kind: empty_duplicate
+    hosts:
+      - dk-tid-163014
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review): V1 foundation «2 Kroneskilling 1622, KM 68» with no member. Its Numista 142850 («2 Kroneskilling – Christian IV (Type 1)», 1619), NumisMaster 65039 and ucoin 163014 live in dk-tid-163014 (Hede 112A/B), now classified kronemont_chr_iv by curator decision. The rest is residue: the Bruun Part II lot 13110 citation belongs to the 1627 Speciedaler dk-bruun-5536 (KM-68 erratum 2026-06-03); year 1622 and the KMM weights 2.22 / 2.24 came from a wrong 2026-06-04 union with KMM 8 Skilling 1622 records (kmk-190657 / kmk-190690, Hede 122 class).'
+  - seed: tid-tid-190759
+    kind: field
+    field: km
+    dropped:
+      - '52'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 52 — checked on the seeds and on every member's raw source record. ucoin tid 190759 «1 thaler 1613-1635 KM-52» (Dav 6303 class c-a0824a9d); this class is the 1631/1633 Daler, Dav 6307, ucoin KM 380. The number came with seed tid-tid-190759, which now sits in that class; the final kept it by self-union."
+  - seed: tid-tid-190476
+    kind: field
+    field: km
+    dropped:
+      - '332'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 332 — checked on the seeds and on every member's raw source record. ucoin tid 190476 «3 pfennig 1622-1623 KM-332» now in c-2ea870e8 (1622-1623); this class holds tid 190475 KM 333 (1622). The number came with seed tid-tid-190476, which now sits in that class; the final kept it by self-union."
+  - seed: tid-tid-190475
+    kind: field
+    field: km
+    dropped:
+      - '333'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 333 — checked on the seeds and on every member's raw source record. ucoin tid 190475 «3 pfennig 1622 KM-333» now in c-805fb3f2 (1622); this class holds tid 190476 KM 332 (1622-1623). The number came with seed tid-tid-190475, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65489
+    kind: field
+    field: km
+    dropped:
+      - '608'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 608 — checked on the seeds and on every member's raw source record. Krause Denmark KM 608 is Hede 8 (NumisMaster 65489, NGC 1060265 «Denmark»; Bruun lots print «KM-608; Hede-8»); the «sh» label on this final was only inferred from its entity. This coin is Hede 7 = KM 607. The number came with seed denmark-numismaster-65489, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-145597
+    kind: field
+    field: km
+    dropped:
+      - '39'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 39 — checked on the seeds and on every member's raw source record. KM 39 belongs to 3 Speciedaler 1649-1652, Hede ['10A', '10AB', '10B'] (class c-ceeb65ad), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 3 Speciedaler 1652, Hede 16. The number came with seed dk-tid-145597, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-145477
+    kind: field
+    field: km
+    dropped:
+      - 38a
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 38a — checked on the seeds and on every member's raw source record. KM 38a belongs to 2 Speciedaler 1653-1656, Hede 18 (class c-3166a136), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 2 Speciedaler 1656-1657, Hede 22. The number came with seed dk-tid-145477, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-145470
+    kind: field
+    field: km
+    dropped:
+      - '70'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 70 — checked on the seeds and on every member's raw source record. KM 70 belongs to 1 Speciedaler 1664, Hede ['52A', '52B', '52ab'] (class c-dd3534b3), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 1 Speciedaler 1662-1664, Hede 43. The number came with seed dk-tid-145470, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-146029
+    kind: field
+    field: km
+    dropped:
+      - '52'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 52 — checked on the seeds and on every member's raw source record. KM 52 belongs to 2 Specie Daler 1663-1664, Hede 50 (class c-ee49e302), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 2 Speciedaler 1662-1664, Hede 44. The number came with seed dk-tid-146029, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-145471
+    kind: field
+    field: km
+    dropped:
+      - '74'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 74 — checked on the seeds and on every member's raw source record. KM 74 belongs to 1 Speciedaler 1665-1667, Hede 57 (class c-1f98a0d1), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 1 Speciedaler 1665, Hede 55. The number came with seed dk-tid-145471, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-145472
+    kind: field
+    field: km
+    dropped:
+      - '83'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 83 — checked on the seeds and on every member's raw source record. KM 83 belongs to 1 Speciedaler 1667-1669, Hede 62 (class c-55a645b6), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 1 Speciedaler 1665-1667, Hede 57. The number came with seed dk-tid-145472, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-145510
+    kind: field
+    field: km
+    dropped:
+      - '76'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 76 — checked on the seeds and on every member's raw source record. KM 76 belongs to 2 Speciedaler 1665-1667, Hede 58 (class c-b98670c1), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 2 Speciedaler 1667-1669, Hede 63. The number came with seed dk-tid-145510, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-110803
+    kind: field
+    field: km
+    dropped:
+      - '120'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 120 — checked on the seeds and on every member's raw source record. KM 120 belongs to 2 Dukat 1674, 1676, Hede 8 (class c-fe845bbf), same Krause Norway volume (NumisMaster / NGC print it explicitly); this coin is 2 Dukat 1673, 1678-1679, Hede ['16', '16A', '16B']. The number came with seed denmark-numismaster-110803, which now sits in that class; the final kept it by self-union."
+  - seed: ngc-1066807
+    kind: field
+    field: km
+    dropped:
+      - '32.5'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 32.5 — checked on the seeds and on every member's raw source record. KM 32.5 belongs to 8 Skilling 1606-1609, 1644, Hede ['93A', '93B'] (class dk-tid-163033), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 8 Skilling 1608, Hede 96. The number came with seed ngc-1066807, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-169251
+    kind: field
+    field: km
+    dropped:
+      - '5'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 5 — checked on the seeds and on every member's raw source record. KM 5 is the Rendsburg 1 Skilling 1719-1720, Hede 63 (NumisMaster S-H 66636; NGC «Denmark HOLSTEIN-GOTTORP-RENDSBORG Skilling KM# 5»), class c-7db600aa. This coin is the Copenhagen Hede 51 = KM-DK 520. The number came with seed dk-tid-169251, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65876
+    kind: field
+    field: km
+    dropped:
+      - '347'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 347 — checked on the seeds and on every member's raw source record. KM 347 belongs to 2 Dukat 1675, Hede 8 (class km-347-chr-v-1675), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Dukat 1670-1699, Hede 58. The number came with seed denmark-numismaster-65876, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65883
+    kind: field
+    field: km
+    dropped:
+      - '419'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 419 — checked on the seeds and on every member's raw source record. KM 419 belongs to 2 Dukat 1692, Hede 33 (class c-cf3e8695), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Dukat 1670-1699, Hede 58. The number came with seed denmark-numismaster-65883, which now sits in that class; the final kept it by self-union."
+  - seed: dk-bruun-7204
+    kind: field
+    field: km
+    dropped:
+      - '434'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 434 — checked on the seeds and on every member's raw source record. KM 434 belongs to 2 Dukat 1694, 1696, Hede 42 (class c-10d5c2f4), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Dukat 1670-1699, Hede 58. The number came with seed dk-bruun-7204, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-97370
+    kind: field
+    field: km
+    dropped:
+      - '322'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 322 — checked on the seeds and on every member's raw source record. KM 322 belongs to 1 Speciedaler 1670, 1674, Hede ['61', '61A', '61B', '61C'] (class c-46b4c6d7), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 1 Speciedaler 1670, Hede 60. The number came with seed dk-tid-97370, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-94334
+    kind: field
+    field: km
+    dropped:
+      - '548'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 548 — checked on the seeds and on every member's raw source record. KM 548 belongs to 1 Ducat 1646, 1746, Hede ['3A', '3B'] (class c-8e7e1b6b), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 1 Dukat 1746, Hede ['5A', '5B']. The number came with seed dk-tid-94334, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65400
+    kind: field
+    field: km
+    dropped:
+      - '18'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 18 — checked on the seeds and on every member's raw source record. KM 18 belongs to 1 Speciedaler 1603, Hede 50 (class c-00a1ba10), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 1 Speciedaler 1603, Hede 49. The number came with seed denmark-numismaster-65400, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65886
+    kind: field
+    field: km
+    dropped:
+      - '446'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 446 — checked on the seeds and on every member's raw source record. KM 446 belongs to 2 Ducats 1696, Hede 47 (class km-446-chr-v-1696), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Dukat 1694, 1696, Hede 42. The number came with seed denmark-numismaster-65886, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65887
+    kind: field
+    field: km
+    dropped:
+      - A447
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM A447 — checked on the seeds and on every member's raw source record. KM A447 belongs to 2 Dukat 1696, Hede ['50A', '50B'] (class c-82842e6b), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Dukat 1694, 1696, Hede 42. The number came with seed denmark-numismaster-65887, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-96455
+    kind: field
+    field: km
+    dropped:
+      - '382'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 382 — checked on the seeds and on every member's raw source record. KM 382 belongs to 1 Skilling 1686, Hede 85 (class c-ddc8c72d), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 1 Skilling 1676, 1680, Hede ['75', '75A']. The number came with seed dk-tid-96455, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65539
+    kind: field
+    field: km
+    dropped:
+      - '196.1'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 196.1 — checked on the seeds and on every member's raw source record. KM 196.1 belongs to 2 Speciedaler 1653, Hede ['53A', '53AB', '53B'] (class dk-tid-97376), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Speciedaler 1669, Hede 81. The number came with seed denmark-numismaster-65539, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65562
+    kind: field
+    field: km
+    dropped:
+      - '310'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 310 — checked on the seeds and on every member's raw source record. KM 310 belongs to 2 Speciedaler 1669, Hede 79B (class c-3688707d), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Speciedaler 1669, Hede 81. The number came with seed denmark-numismaster-65562, which now sits in that class; the final kept it by self-union."
+  - seed: denmark-numismaster-65895
+    kind: field
+    field: km
+    dropped:
+      - '476'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 476 — checked on the seeds and on every member's raw source record. KM 476 belongs to 2 Dukat 1701, 1704, Hede 10 (class c-481e7fdb), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 2 Dukat 1702, Hede 21. The number came with seed denmark-numismaster-65895, which now sits in that class; the final kept it by self-union."
+  - seed: ngc-1050269
+    kind: field
+    field: km
+    dropped:
+      - '412.1'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 412.1 — checked on the seeds and on every member's raw source record. KM 412.1 belongs to 1 Ducat 1691-1692, Hede ['26A', '26B'] (class c-89885bd3), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 1 Dukat 1691-1692, Hede 28. The number came with seed ngc-1050269, which now sits in that class; the final kept it by self-union."
+  - seed: ngc-1060341
+    kind: field
+    field: km
+    dropped:
+      - '412.2'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 412.2 — checked on the seeds and on every member's raw source record. KM 412.2 belongs to 1 Ducat 1691-1692, Hede ['26A', '26B'] (class c-89885bd3), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 1 Dukat 1691-1693, 1696, Hede ['31A', '31B', '31C']. The number came with seed ngc-1060341, which now sits in that class; the final kept it by self-union."
+  - seed: ngc-1050270
+    kind: field
+    field: km
+    dropped:
+      - '413'
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM 413 — checked on the seeds and on every member's raw source record. KM 413 belongs to 1 Dukat 1691-1692, Hede 28 (class c-516d5bd3), same Krause Denmark volume (NumisMaster / NGC print it explicitly); this coin is 1 Dukat 1692, Hede 32. The number came with seed ngc-1050270, which now sits in that class; the final kept it by self-union."
+  - seed: dk-tid-163653
+    kind: field
+    field: km
+    dropped:
+      - A43
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM A43 — checked on the seeds and on every member's raw source record. KM A43 is the Glückstadt 4 Mark Danske 1659-1660, Hede 153 (NumisMaster S-H, ucoin; NGC heads B43 «Denmark GLÜCKSTADT»), class c-35178b3c. This coin is the Copenhagen Hede 100 = KM-DK 221 / 222. The number came with seed dk-tid-163653, which now sits in that class; the final kept it by self-union."
+  - seed: ngc-1054237
+    kind: field
+    field: km
+    dropped:
+      - B43
+    reason: "Curator (Serhii) 2026-11-22 (orphan-KM review group B, «так, 29»): no member of this final gives KM B43 — checked on the seeds and on every member's raw source record. KM B43 is the Glückstadt 4 Mark Danske 1659-1660, Hede 153 (NGC «Denmark GLÜCKSTADT 4 Mark Danske KM# B43»), class c-35178b3c. This coin is the Copenhagen Hede 100 = KM-DK 221 / 222. The number came with seed ngc-1054237, which now sits in that class; the final kept it by self-union."
+  - seed: dk-numista-108733
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review group C case 9, «Так, погоджую все»): superseded shell c-950a41e8 (2 Mark Danske 1694, 1696, Glückstadt, royal_holstein, 9_25_thaler I) — its seeds dk-numista-108733 and schleswig_holstein-numismaster-92995 (KM 80.2, laurel wreath = Hede 126B) now sit in final c-c64920e8 (Hede 126, kronemont II), which carries every source URL and catalogue value the shell held.'
+  - final: km-5-fr-iv-1719
+    kind: empty_duplicate
+    hosts:
+      - c-7db600aa
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review group C case 7, «Так, погоджую все»): V1 foundation «Skilling 1719, KM 5, Hede 63» left with no member once its sole seed kmk-131174 («Schou 10», 1719) went to Hede 45 (c-8f75b235). Its Bruun Part IV lot 17116 and danskmoent f4h63 citations live in the Hede 63 final c-7db600aa (royal_holstein). The 38 KMM citations it also carried are records the KMM scope rule dropped (curator 2026-11-05: no weight, no image; data/v2/_scope_dropped/kmk.yml); they stayed only by self-union.'
+  - seed: dk-tid-169251
+    kind: field
+    field: sources
+    dropped: ['https://en.ucoin.net/coin/denmark-1-skilling-1719-1720/?tid=169251']
+    reason: 'Curator (Serhii) 2026-11-22 («У дочірній сесії», relayed from the parent session): self-union leftover on final c-69a162d0 (Hede 51, 1 Skilling København 1720-1723, KM 520). No member of the final (dk-hede-f4h51 + 5 KMM; NumisMaster 58029, Numista 62351, ucoin 94098, NGC 1048384) gives this source; it entered with the over-merge at 9c147fe / 8e0f0ad and stayed after 3c3dc79 split it, like the KM 5 dropped in fa44b77. The seed is the Rendsborg 1 Skilling 1719-1720, Hede 63 (KM 5).'
+  - seed: ngc-1051156
+    kind: field
+    field: sources
+    dropped: ['https://www.ngccoin.com/price-guide/world/denmark-holstein-gottorp-rendsborg-skilling-km-5-1719-1720-cuid-1051156-duid-1239900']
+    reason: 'Curator (Serhii) 2026-11-22 («У дочірній сесії», relayed from the parent session): self-union leftover on final c-69a162d0 (Hede 51, 1 Skilling København 1720-1723, KM 520). No member of the final (dk-hede-f4h51 + 5 KMM; NumisMaster 58029, Numista 62351, ucoin 94098, NGC 1048384) gives this source; it entered with the over-merge at 9c147fe / 8e0f0ad and stayed after 3c3dc79 split it, like the KM 5 dropped in fa44b77. The seed is the Rendsborg 1 Skilling 1719-1720, Hede 63 (KM 5).'
+  # ── NGC 1052790 declassified, 2026-11-22 ──────────────────────────────────
+  - seed: ngc-1052790
+    kind: declassify
+    reason: >-
+      NGC «Denmark GLÜCKSTADT 1/8 Speciedaler KM# 12», 1623: its 9-Thaler-Fuß
+      came only from an over-merge into the København 1 Mark class (Hede 77)
+      on the bare KM 12, which in the Denmark volume is the Mark 1602-1604.
+      With Krause's Glückstadt section read as its own register it joins
+      Hede 162, itself not yet classified. Curator (Serhii) 2026-11-22: «3 – так».
+  # ── Glückstadt KM numbers left on Hede classes after the split, 2026-11-22 ──
+  - seed: ngc-1052788
+    kind: field
+    field: km
+    dropped: ['80.1']
+    reason: >-
+      Krause Glückstadt KM 80.1 (2 Mark Danske 1693-1694, palm leaves) left on
+      the Hede 93 class (København 1691-1692) after NGC 1052788 moved to Hede
+      126A; the Hede 93 page prints no KM. Curator (Serhii) 2026-11-22: «1, 2
+      так», after a merge-candidate table.
+  - seed: schleswig_holstein-numismaster-93019
+    kind: field
+    field: km
+    dropped: ['43.1']
+    reason: >-
+      Krause Glückstadt KM 43.1 left on the Hede 146AB class (Speciedaler 1659)
+      after the Hede and Krause records were kept apart; it stays on the KM
+      43.1 records. Curator (Serhii) 2026-11-22: «3 окремо».
+  - seed: schleswig_holstein-numismaster-93020
+    kind: field
+    field: km
+    dropped: ['44']
+    reason: >-
+      Krause Glückstadt KM 44 left on the Hede 147 class (Speciedaler 1659)
+      after the Hede and Krause records were kept apart; it stays on the KM 44
+      records. Curator (Serhii) 2026-11-22: «3 окремо».
+  - seed: ngc-1052534
+    kind: field
+    field: km
+    dropped: ['82', '82.1', '82.2']
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review group D-2, «D-2 і D-3 так»): final c-1d2dbfd8 (8 Skilling Danske, København 1695, Hede 113) kept KM 82 / 82.1 / 82.2 by self-union. They came with NGC 1052534 / 1052597 («Denmark GLÜCKSTADT 8 Skilling Danske KM# 82.1 / 82.2»), which the Glückstadt KM register moved to the Hede 127 class (c-75ecfebf, royal_holstein). The remaining members (Hede 113, KMM 122396 / 122397) give no KM.'
+  - seed: ngc-1051730
+    kind: field
+    field: km
+    dropped: ['80.2']
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review group D-3, «D-2 і D-3 так»): final c-2384d941 (2 Mark, København 1690, Hede 89) kept KM 80.2 by self-union. It came with NGC 1051730 («Denmark GLÜCKSTADT 2 Mark Danske KM# 80.2», laurel branches, 1694 CW), now in the Hede 126 class (c-c64920e8, royal_holstein). Hede 89 gives no KM.'
+  - final: km-80-1-chr-v-1693
+    kind: empty_duplicate
+    hosts:
+      - c-b735eb06
+      - c-c64920e8
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review group D-1, «(а) так»): V1 foundation «2 Mark Danske, KM 80.1» left with no member once NumisMaster 92999 and NGC 1051972 (4 Mark Danske laurel, Dav 3680) went to Hede 125 (c-b735eb06). Its nominal, KM 80.1 and the Numista 108725 / ucoin 163646 / NumisMaster 92994 citations are the 2 Mark Danske palm type, Hede 126A, held by c-c64920e8; the NumisMaster 92999 and NGC 1051972 citations are in c-b735eb06.'
+  - seed: tid-tid-190603
+    kind: field
+    field: km
+    dropped: ['152']
+    reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, split of c-75de49c6, «так»): final c-75de49c6 now holds only IKMK 18299820 (3 Kreuzer 1620, Unbestimmte Kippermünzstätte, cf. Welter 1320) and kept KM 152 by self-union. The number is ucoin 190603''s, which sits in c-835ca0ae; IKMK 18299820 gives no KM.'
+  - seed: dk-numista-307035
+    kind: field
+    field: hede
+    dropped: [C4 80.C]
+    reason: 'Curator (Serhii) 2026-11-23 («Так, записуй»): Numista N#307035 prints Hede as «C4 80.C» (Christian IV volume, dot before the sub-letter). The builder now reduces it to the plain «80C» (commit a24acea), which the class c-0e5dc1f1 already holds; the prefixed string was the same number in Numista''s print form, not a second index.'
+  - seed: dk-numista-88660
+    kind: field
+    field: others
+    dropped: ['KM-DK# 6']
+    reason: 'Curator (Serhii) 2026-11-23 («Так, прибери»): Frederik IV 12 Skilling 1716-1720, Rendsburg (Hede 62, final km-x010-fr-iv-1716). «KM-DK# 6» came from the V1 bootstrap note («KM-DK# 6 (Royal Danish)», 214f991), carried by no seed and kept only by the final''s self-union. KM 6 is the number of Krause''s own HOLSTEIN-GOTTORP-RENDSBORG section (NumisMaster MC_66626, NGC cuid 1051167); Denmark KM 6 is the Penning 1602.'
+  - final: km-8-fr-iv-1718
+    kind: empty_duplicate
+    hosts: [c-3497e7be]
+    reason: 'Curator (Serhii) 2026-11-23 («прибери порожнє якщо буде»): V1 foundation «1 Ducat 1719 Kopenhagen», danish_realm reichsdukatenfuss/III, whose only member was NGC 1051168 (Denmark HOLSTEIN-GOTTORP-RENDSBORG Ducat KM# 8, .979, 3.49 g) — the Frederik IV Ducat 1718-1719 of Rendsburg, Hede 60. NGC 1051168 joins the royal_holstein Hede 60 group (_cross_entity.yml); its citations Bruun II lot 13211 and ucoin 169254 are members there. Its bruun_collection_id 7367 is printed nowhere in the Bruun catalogues (lot 13211 is Bruun-7465).'
+  - seed: dk-hede-c5h124
+    kind: shell
+    reason: 'Curator (Serhii) 2026-11-24 (shell review, «Так, усі три»): superseded shell c-ff5dd463 (3 Skilling Lybsk 1680, Glückstadt, Hede 124, royal_holstein, 9_25_thaler I by the 2026-05-19 bulk promotion) — seed dk-hede-c5h124 now sits in final c-5e81b057 (merge decision 2026-11-19, Hede-base group 64), which carries every source URL, weight, fineness and catalogue value the shell held. The Fuß of that final (9_thaler II, automatic placement) stays an open question.'
+  - seed: dk-hede-c7h44
+    kind: shell
+    reason: "Curator (Serhii) 2026-11-24 (shell review, «Так, усі три»): superseded shell c-ab298d00 (1/24 Speciedaler 1787-1801, Altona, Hede 44, royal_holstein, 9_25_thaler II by the 2026-05-19 bulk promotion; phase II ends 1788) — seed dk-hede-c7h44 now sits in final c-1d4f183a (Hede 44, KM 124, 9_25_thaler III), which carries every source URL, weight, fineness and catalogue value the shell held. The shell's Note (Hede's legend, MF, contemporary forgeries) goes with it."
+  - seed: dk-numista-41864
+    kind: shell
+    reason: "Curator (Serhii) 2026-11-24 (shell review, «Так, усі три»): superseded shell c-92d54f70 (Plön Thaler 1761, KM 28, royal_holstein, seed_unsorted) — seed dk-numista-41864 now sits in final km-28-fr-karl-plon-1761 (norburg_plon_duchy), which carries every source URL and catalogue value the shell held. The shell's Numista design Note goes with it."
+  - seed: dk-tid-163001
+    kind: field
+    field: mint
+    dropped:
+      - Kopenhagen
+    reason: 'Curator (Serhii) 2026-11-24 («Так, прибери»): Hede 28 (1 Skilling 1582-1583, final c-209ba326) — «Kopenhagen» was the V1 default mint of the ucoin seed (mint_verified false), long gone from that seed and kept on the final only by self-union. Hede gives «Frederik 2., 1 Skilling, Frederiksborg» and Numista 108360 Frederiksborg; no member gives Kopenhagen.'
+  - seed: dk-hede-f2h24
+    kind: field
+    field: mint
+    dropped:
+      - Kopenhagen
+    reason: 'Curator (Serhii) 2026-11-24 («Так, з усіх шести»): Hede 24, 8 Skilling 1582 (final c-c40456d0) — «Kopenhagen» kept on the final only by self-union, a leftover of the V1 default mint; Hede gives Frederiksborg; the KMM member gives no mint, and no member gives Kopenhagen. Same case as Hede 28.'
+  - seed: dk-tid-163011
+    kind: field
+    field: mint
+    dropped:
+      - Kopenhagen
+    reason: 'Curator (Serhii) 2026-11-24 («Так, з усіх шести»): Hede 27, 2 Skilling 1582-1583, 1585 (final c-55a52a9a) — «Kopenhagen» kept on the final only by self-union, a leftover of the V1 default mint; Hede, Bruun 4558 and Numista 151842 give Frederiksborg, and no member gives Kopenhagen. Same case as Hede 28.'
+  - seed: dk-tid-162984
+    kind: field
+    field: mint
+    dropped:
+      - Kopenhagen
+    reason: 'Curator (Serhii) 2026-11-24 («Так, з усіх шести»): Hede 29, 1 Hvid 1582-1583 (final c-d5be1a39) — «Kopenhagen» kept on the final only by self-union, a leftover of the V1 default mint; Hede, Bruun 4547 and Numista 131454 give Frederiksborg, and no member gives Kopenhagen. Same case as Hede 28.'
+  - seed: dk-tid-163036
+    kind: field
+    field: mint
+    dropped:
+      - Kopenhagen
+    reason: 'Curator (Serhii) 2026-11-24 («Так, з усіх шести»): Hede 123, 6 Skilling Danske 1622 (final km-x016-chr-iv-1622) — «Kopenhagen» kept on the final only by self-union, a leftover of the V1 default mint; Hede gives Frederiksborg, and no member gives Kopenhagen. Same case as Hede 28.'
+  - seed: dk-tid-163037
+    kind: field
+    field: mint
+    dropped:
+      - Kopenhagen
+    reason: 'Curator (Serhii) 2026-11-24 («Так, з усіх шести»): Hede 121, 12 Skilling 1622-1623 (final c-d57c53be) — «Kopenhagen» kept on the final only by self-union, a leftover of the V1 default mint; Hede and Numista 306969 give Frederiksborg, and no member gives Kopenhagen. Same case as Hede 28.'
+  - seed: dk-tid-163027
+    kind: field
+    field: mint
+    dropped:
+      - Kopenhagen
+    reason: 'Curator (Serhii) 2026-11-24 («Так, з усіх шести»): Hede 122, 8 Skilling Danske 1622-1623 (final c-e288cd02) — «Kopenhagen» kept on the final only by self-union, a leftover of the V1 default mint; Hede and Numista 92044 give Frederiksborg, and no member gives Kopenhagen. Same case as Hede 28.'
+  - seed: dk-tid-163057
+    kind: field
+    field: mint
+    dropped:
+      - Frederiksborg
+    reason: "Curator (Serhii) 2026-11-24 («краще як підозрілий (*)»): ½ Krone 1624, Hede 126 = KM 94 (final c-fa0ed1d9). ucoin's «Frederiksborg» is marked suspect on the ucoin seed (mint_mark) and now shows as a mint_alts entry «(*)»; the class mint is København (Hede, Bruun Part III lot 11195, Numista 197665). The final kept Frederiksborg only by self-union."

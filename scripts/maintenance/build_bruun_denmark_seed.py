@@ -499,11 +499,12 @@ def parse_year_span(lot: dict) -> tuple[int, int, bool] | None:
 
     Returns `(year_first, year_last, year_verified=False)` when the meta_line
     carries an in-scope «ND (…)» attribution, else `None` (caller then uses the
-    plain single-year `parse_year` path for genuinely dated strikes). «ca.» is
-    honoured but does not change the result shape — every ND attribution is
-    unverified, so the renderer emits the «(?)» marker on the year column
-    (CLAUDE.md §4 / §3a: the year_label stays a clean decimal year/range, the
-    uncertainty lives in the per-field verified flag).
+    plain single-year `parse_year` path for genuinely dated strikes). The
+    caller keeps `year_verified=False` («(?)») only when Bruun hedges the
+    dating itself («ND (ca. 1496-97)», «ND (1669-70?)»); a plain «ND (1670)» /
+    «ND (1607-11)» is a known year on an undated coin and takes no «(?)»
+    (curator 2026-11-19, `uncertainty.plain_dating`). The year_label stays a
+    clean decimal year/range either way (CLAUDE.md §3a).
     """
     meta = lot.get("meta_line") or ""
     # «ND (» + optional circa marker + a 4-digit lower year + optional «-<upper>»,
@@ -1371,9 +1372,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         if rec["field"] == "bruun_collection_id":
             id_lot = {**lot, "refs": {**(lot.get("refs") or {}), "Bruun": rec["correct"]}}
     cid = lot_id(part, id_lot)
-    # Year fields: an «ND (…)» attribution carries a range + the undated flag
-    # (year_verified=False → «(?)» marker); a dated strike keeps the plain
-    # single year. See parse_year_span / SOURCES.md §13.3.
+    # Year fields: an «ND (…)» attribution carries a range; it is flagged
+    # year_verified=False («(?)») only when Bruun hedges it itself; a dated
+    # strike keeps the plain single year. See parse_year_span / SOURCES.md §13.3.
     span = parse_year_span(lot)
     year_unc = None
     if span:
@@ -1386,8 +1387,15 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
             "year_verified": yv,
         }
         printed = nd_printed(lot)
-        year_unc = (printed[0] if printed else "attributed",
-                    printed[1] if printed else None, unc.year_value(yf, yl))
+        if printed and printed[0] == "attributed" and unc.plain_dating(printed[1]):
+            # «ND (1670)» / «ND (1481-1512)»: Bruun dates the undated coin
+            # without a reservation of its own — a known year, no «(?)»
+            # (curator 2026-11-19). A range equal to the ruler's reign is
+            # still caught by absorb's reign-span rule.
+            year_fields.pop("year_verified", None)
+        else:
+            year_unc = (printed[0] if printed else "attributed",
+                        printed[1] if printed else None, unc.year_value(yf, yl))
     else:
         year_fields = {
             "year_label": str(year),

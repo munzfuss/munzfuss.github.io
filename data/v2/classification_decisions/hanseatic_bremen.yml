@@ -1,0 +1,84 @@
+# Classification decisions for entity `hanseatic_bremen` (Phase 4).
+# Curator-authoritative file (committed). Two sections:
+#
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
+#    Example:
+#      assignments:
+#        - coin_id: dk-numismaster-12345
+#          fuss: 9_25_thaler
+#          phase: A
+#          kind: kurant
+#          reason: 'specimen Δ ambiguous; per Hede assignment'
+#
+# 2. `pending:` — auto-populated diagnostic list of unified
+#    entries with no match in current final. Curator either:
+#    moves an entry to `assignments:` with classification,
+#    OR fixes the matcher rules so the coin gets absorbed,
+#    OR confirms it's a genuinely new coin needing addition
+#    (will be auto-routed by §8a once that's built).
+#
+# This file is REGENERATED on every absorb run for the
+# `pending:` section; existing `assignments:` entries are
+# preserved.
+
+entity_id: hanseatic_bremen
+generated_at: '2026-11-24'
+assignments:
+  - coin_id: dk-numista-20410
+    fuss: reichsgoldmuenzfuss
+    phase: I
+    kind: scheide
+    reason: 'German Empire gold-Mark standard (Muenzgesetz 4 Dec 1871): gold = Kurant per Reichsgoldmuenzfuss; token silver 2/3/5 Mark + copper-nickel base = Scheidemuenze (metal value below face, limited
+      legal tender to 20 Mark) per CLAUDE.md 6 (Wikipedia DE Goldmark). RELOCATED 2026-11-24: the coin moved to hanseatic_bremen — Numista N#20410 is «2 Mark - City of Bremen», struck at the Hamburg mint
+      (J) for Bremen; the classification is unchanged.'
+    was: unified-dk-numista-20410
+pending: []
+multi_match_warnings: []
+promoted_near_peers:
+  - c-07420426
+  - c-0ac9d8b7
+  - c-0e1c2130
+  - c-1048cdad
+  - c-15e34728
+  - c-1851320a
+  - c-1a230446
+  - c-1ba0eb01
+  - c-1db261ac
+  - c-1e5f98fc
+  - c-209b89b2
+  - c-20fb3595
+  - c-2509bb4d
+  - c-264a153d
+  - c-299d47b9
+  - c-2e930ab9
+  - c-36fa6838
+  - c-389b4f6d
+  - c-3baafd09
+  - c-3bbc7efb
+  - c-3e0b8f87
+  - c-47609616
+  - c-4d1cb0ac
+  - c-4d6b8d8d
+  - c-607f3229
+  - c-61642c14
+  - c-76c2bfcf
+  - c-77d8e882
+  - c-79a6ff77
+  - c-909f315e
+  - c-98b383f1
+  - c-9dbf63e3
+  - c-a16261fe
+  - c-b042e9b5
+  - c-b751bf16
+  - c-ba79a791
+  - c-c40e8cc2
+  - c-c7e96be4
+  - c-dd332314
+  - c-e53ee998
+  - c-e8259d73

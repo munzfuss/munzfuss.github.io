@@ -28,9 +28,34 @@
 # preserved.
 
 entity_id: royal_holstein
-generated_at: '2026-11-08'
+generated_at: '2026-11-22'
 bulk_promote_pending: all
 assignments:
+  - coin_id: dk-hede-f3h151
+    fuss: 9_25_thaler
+    phase: I
+    kind: scheide
+    reason: 'Curator 2026-11-24. Frederik III 6 Skilling Lybsk (1/8 Reichsdaler) 1665, Glückstadt, Hede 151 / KM 55. danskmoent f3h151 gives 3.570 g, .812, 2.900 g fine, «Marken fin udbragt til 10,076 daler»
+      — the same standard as its half, the 3 Skilling Lybsk 1665 (Hede 152, 9_25_thaler I, scheide). Computed: 1/8 of a 9¼-Fuß Speciedaler is 3.160 g fine (Δ −8.2 %), of a 9-Fuß one 3.248 g (Δ −10.7 %).
+      The S-H 9_thaler II phase is written for two issues only (½ Speciedaler 1645/46, Hede 165; Speciedaler 1683, Hede 120); the 9_thaler II placement of c-30b93dd0 was an automatic one (2026-05-29).'
+  - coin_id: ngc-1050443
+    fuss: pistolenfuss
+    phase: I
+    kind: kurant
+    reason: "1 Christians D'or 1771, 1775 — phase repair, not a new classification. The Müntzfuß pistolenfuss is the curator classification that migrated onto this NGC host when its foundation was purged;
+      the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1771 against
+      this entity’s declared windows for the fuss. Curator 2026-08-18. RELOCATED 2026-11-24: the coin moved to royal_holstein with the Hede 5 cross-entity group (KM 629, curator 2026-11-24); the classification
+      is unchanged."
+    was: unified-ngc-1050443
+  - coin_id: ngc-1050449
+    fuss: pistolenfuss
+    phase: I
+    kind: kurant
+    reason: "1 Frederiks D'or 1829-1831, 1833-1835, 1837-1838 — phase repair, not a new classification. The Müntzfuß pistolenfuss is the curator classification that migrated onto this NGC host when its
+      foundation was purged; the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first
+      1829 against this entity’s declared windows for the fuss. Curator 2026-08-18. RELOCATED 2026-11-24: the coin moved to royal_holstein with the Hede 4 cross-entity group (KM 701, curator 2026-11-24);
+      the classification is unchanged."
+    was: unified-ngc-1050449
   - coin_id: dk-hede-f3h145a
     fuss: guldkrone
     phase: I
@@ -77,10 +102,11 @@ assignments:
     reason: 11⅓-Thaler Kurantmøntfod; see unified-dk-hede-c7h28. SH phases collapsed to single I[1726-1813]; phase II→I.
     was: unified-dk-hede-c7h22ab
   - coin_id: dk-bruun-7864
-    fuss: 11_333_thaler
-    phase: I
+    fuss: 9_25_thaler
+    phase: II
     kind: kurant
-    reason: 11⅓-Thaler Kurantmøntfod; see unified-dk-hede-c7h28. SH phases collapsed to single I[1726-1813]; phase II→I.
+    reason: 'Curator (Serhii) 2026-11-19: the lot is the 1786 issue of the Hede 12 1/2 Speciedaler (Hede 12B), merged into the Hede 12 class (Hede-base review group 65); 14.447 g at .875 is the 1/2 Speciedaler
+      of the 9 1/4-Thaler-Fuss. Replaces the bulk 11 1/3-Thaler assignment (see unified-dk-hede-c7h28).'
     was: unified-dk-bruun-7864
   - coin_id: dk-bruun-5326
     fuss: reichsdukatenfuss
@@ -372,11 +398,27 @@ assignments:
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1813 against this entity’s
       declared windows for the fuss. Curator 2026-08-18. RELOCATED 2026-11-13 from danish_norway: the class moved to royal_holstein (joint København / Altona mints).'
     was: unified-ngc-1102813
+  - coin_id: dk-hede-c5h126a
+    fuss: kronemont
+    phase: II
+    kind: kurant
+    reason: 'Curator (Serhii) 2026-11-22, orphan-KM review group C case 9: Christian V 2 Mark Danske, Glückstadt 1693-1696, Hede 126A/B (KM 80.1 / 80.2). The KM 80.2 class (9_25_thaler I) merges into Hede
+      126 and takes its classification, kronemont II.'
+  - coin_id: dk-tid-79091
+    fuss: 11_333_thaler
+    phase: I
+    kind: kurant
+    reason: 'Curator (Serhii) 2026-11-19: Christian VII 32 Skilling 1775, Hede 26 (26A KM 628, 26B KM 627), merged into one class (Hede-base review group 29); the 26A class carried 11 1/3-Thaler / I, the
+      26B class was unsorted — the classification carries over to the merged class. RELOCATED 2026-11-22 to royal_holstein with the cross-entity merge of the Hede 26 page records (orphan-KM review group
+      C case 5): the joint København / Altona class has its home file there.'
 pending: []
 multi_match_warnings: []
 promoted_near_peers:
+  - c-423e85c8
   - c-54bc804b
+  - c-5a97f6fc
   - c-79f1f02a
+  - c-96ff6839
   - unified-dk-bruun-14757
   - unified-dk-bruun-5484
   - unified-dk-bruun-5632

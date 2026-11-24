@@ -709,12 +709,111 @@ def _skeleton(fc: dict) -> dict:
         if v is False and (k.endswith("_verified") or k == "verified"):
             keep.add(k)
     sk = {k: copy.deepcopy(v) for k, v in fc.items() if k in keep}
+    # The stored year hedges travel with a carried year False, so the
+    # enrichment can tell when that False has lost its only reason
+    # (curator 2026-11-19). Consumed by `_enrich_final_entry`, never written.
+    if fc.get("year_verified") is False:
+        sk["__stored_year_unc__"] = copy.deepcopy(
+            (fc.get("uncertainty") or {}).get("year") or [])
     # The stored key order, so the rebuilt entry serialises as the stored
     # one did (the order of a final is historical, not canonical — three
     # orders of nominal / ruler / fraction / mintmaster coexist) and a
     # second run is byte-identical. Consumed by `_enrich_final_entry`.
     sk["__order__"] = list(fc.keys())
     return sk
+
+
+def _norm_km_register(r) -> str:
+    c = str(r).strip().lower()
+    return "nor" if c in ("no", "false") else c
+
+
+def _drop_relabelled_km(members: list[dict], entity_id: str | None) -> list[dict]:
+    """Drop from the final's own KM (members[0]) a number filed under a
+    Krause volume in which no member gives that number any more, when the
+    members DO give the same number under another volume.
+
+    The final self-unions its stored catalogue with its members' (D18), so a
+    volume reading that changed upstream — a bare number once read in the
+    entity's volume, now named explicitly by its source as another volume —
+    left the old volume behind: KM 696 under both `sh` and `dk` on the
+    Rigsbankdaler 1826, while every member says `dk`. That is a relabel, not a
+    second number. A number no member gives at all is left alone (the
+    self-union keeps it, as before), and so is a number a member gives with no
+    resolvable volume. `_curation_holds` on catalog / catalog.km wins."""
+    if len(members) < 2:
+        return members
+    fc = members[0]
+    h = fc.get("_curation_holds")
+    held = set(h.keys() if isinstance(h, dict) else (h or []))
+    if held & {"catalog", "catalog.km"}:
+        return members
+    km = (fc.get("catalog") or {}).get("km")
+    if not isinstance(km, dict):
+        return members
+    from lib.km_registers import entity_register, split_km
+    supplied: dict[str, set[str]] = defaultdict(set)
+    for m in members[1:]:
+        if not isinstance(m, dict):
+            continue
+        mk = (m.get("catalog") or {}).get("km")
+        if mk in (None, "", []):
+            continue
+        default = entity_register(m.get("issuing_entity")) or "?"
+        for v in (mk if isinstance(mk, list) else [mk]):
+            if isinstance(v, dict):
+                for r, x in v.items():
+                    for n in split_km(x):
+                        supplied[n].add(_norm_km_register(r))
+            else:
+                for n in split_km(v):
+                    supplied[n].add(default)
+    new_km: dict = {}
+    changed = False
+    for r, x in km.items():
+        nums = split_km(x)
+        reg = _norm_km_register(r)
+        keep = [n for n in nums
+                if not (n in supplied and "?" not in supplied[n]
+                        and reg not in supplied[n])]
+        if len(keep) != len(nums):
+            changed = True
+        if keep:
+            new_km[r] = keep if (isinstance(x, list) or len(keep) > 1) else keep[0]
+    if not changed:
+        return members
+    cat = dict(fc.get("catalog") or {})
+    if new_km:
+        cat["km"] = new_km
+    else:
+        cat.pop("km", None)
+    return [{**fc, "catalog": cat}, *members[1:]]
+
+
+def _unwrap_own_km(members: list[dict], entity_id: str | None) -> list[dict]:
+    """The final's own KM (members[0]) in the entity's single own volume
+    («{sh: '116'}» on a royal_holstein final) enters the merge as the bare
+    number, so whether the volume is named or inferred is decided by the
+    member seeds alone (`_merge_km_field`, named_regs) and a label the final
+    once stored does not keep itself alive. Multi-volume dicts and a
+    `_curation_holds` on catalog / catalog.km are left as they are."""
+    if not members:
+        return members
+    fc = members[0]
+    h = fc.get("_curation_holds")
+    held = set(h.keys() if isinstance(h, dict) else (h or []))
+    if held & {"catalog", "catalog.km"}:
+        return members
+    km = (fc.get("catalog") or {}).get("km")
+    if not isinstance(km, dict) or len(km) != 1:
+        return members
+    (reg, val), = km.items()
+    from lib.km_registers import ENTITY_TO_KM_REGISTER
+    if _norm_km_register(reg) != ENTITY_TO_KM_REGISTER.get(entity_id or ""):
+        return members
+    cat = dict(fc.get("catalog") or {})
+    cat["km"] = val
+    return [{**fc, "catalog": cat}, *members[1:]]
 
 
 def _apply_catalog_km_hold(enriched: dict, fc: dict) -> None:
@@ -1123,6 +1222,31 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if _u:
         out["uncertainty"] = _u
 
+    # A stale «(?)» whose only reason has left (curator 2026-11-19). The
+    # year_verified OR-merge reads the final's stored flag as a member, so a
+    # False the final once took from a member's year hedge outlives the hedge
+    # — the plain datings («ND (1670)», «(1616-59)») stopped counting as
+    # hedges and 96 finals kept «(?)» with nothing behind it. The stored False
+    # is dropped when every hedged year entry the final carried came from a
+    # seed that is still a member and now records no year entry, and no live
+    # member flags the year itself. V1 foundations included: the curator
+    # dropped the flag on all 13 such foundations on 2026-11-19 («одобрюю»);
+    # a hold still freezes it. A reign span is re-flagged below.
+    if (out.get("year_verified") is False
+            and "year_verified" not in holds_keys):
+        _live = [_m for _m in members[1:] if isinstance(_m, dict)]
+        _stored = [e for e in (final_entry.get("__stored_year_unc__")
+                               or (final_entry.get("uncertainty") or {}).get("year") or [])
+                   if isinstance(e, dict) and e.get("kind") == "hedged"]
+        _live_seeds = {str(s) for _m in _live for s in (_m.get("composed_of") or [])} \
+            | {str(_m.get("id")) for _m in _live}
+        _now = {str(e.get("seed")) for e in ((_u or {}).get("year") or [])}
+        if (_live and _stored
+                and not any(_m.get("year_verified") is False for _m in _live)
+                and all(e.get("seed") and str(e["seed"]) in _live_seeds
+                        and str(e["seed"]) not in _now for e in _stored)):
+            out.pop("year_verified", None)
+
     # nominal_equiv / nominal_verified travel with the nominal they belong to:
     # taken from the live member whose nominal the final shows (2026-10-26).
     for _k in ("nominal_equiv", "nominal_verified"):
@@ -1362,7 +1486,9 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 
     # Catalog: accumulate list-form on conflict (D18). Foundation entries
     # come first → their values take authority position in the list.
-    cat, cat_conflicts = _deep_merge_catalog(members, entity_id)
+    cat, cat_conflicts = _deep_merge_catalog(
+        _unwrap_own_km(_drop_relabelled_km(members, entity_id), entity_id),
+        entity_id)
     if cat:
         out["catalog"] = cat
     conflicts.extend(cat_conflicts)
@@ -1730,6 +1856,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 
     # A skeleton (`_skeleton`, --no-self-union) carries the stored key order;
     # re-impose it so the rebuilt entry serialises as the stored one did.
+    out.pop("__stored_year_unc__", None)
     order = final_entry.get("__order__")
     if order:
         out.pop("__order__", None)
@@ -2234,6 +2361,37 @@ def _seed_record(entity_id: str, seed_id: str) -> dict | None:
     return None
 
 
+def _other_departed_members(gone, kept, staying_seeds, already) -> list[str]:
+    """Members of vanished classes, other than each class's label seed, that
+    now compose a DIFFERENT live class.
+
+    `_seed_of(cid)` names one seed per vanished class — the one its label was
+    built from. When that seed stays (it heads a kept class) while the class's
+    other members move to another class, their baked sources and indices were
+    left on the host final (Hede 132 / KM 249, 2026-11-23: class c-958a9cec
+    «unified-dk-hede-f3h132» held four KM 249 records). The registry keeps a
+    retired class's members, so they are read from there.
+
+    Deliberately narrow: a member counts only when `_seed_class_index` places
+    it in a live class that is not one of this final's kept classes. A member
+    that vanished from every class (excluded, removed, thinned away) is NOT
+    added — that case is left exactly as before."""
+    sci = _seed_class_index()
+    kept_set = set(kept)
+    seen = set(already) | set(staying_seeds)
+    out: list[str] = []
+    for cid in gone:
+        rec = _registry().records.get(cid)
+        for m in (rec.members if rec is not None else []):
+            if m in seen:
+                continue
+            home = sci.get(m)
+            if home and home not in kept_set:
+                out.append(m)
+                seen.add(m)
+    return out
+
+
 def _surgical_decontaminate(
     fc: dict, evicted_members: list[dict], remaining_members: list[dict]
 ) -> None:
@@ -2330,6 +2488,11 @@ def _surgical_decontaminate(
     _holds = fc.get("_curation_holds")
     _held = set(_holds.keys() if isinstance(_holds, dict) else (_holds or []))
     if isinstance(cat, dict) and "catalog" not in _held:
+        # A register may be volume-keyed (`km: {dk: "249.1"}`, the seed form
+        # NGC / NumisMaster write). Keys carry the volume (None for a flat
+        # value); the KEEP side ignores it on purpose, so a number a remaining
+        # member gives in ANY volume stays (Hede 132 / KM 249, 2026-11-23:
+        # the dict form was skipped and KM 249.1 / 249.2 stayed).
         def _cat_keys(members):
             keys = set()
             for m in members:
@@ -2337,29 +2500,57 @@ def _surgical_decontaminate(
                 if not isinstance(mc, dict):
                     continue
                 for f, v in mc.items():
-                    for x in (v if isinstance(v, list) else [v]):
-                        if x is not None and not isinstance(x, dict):
-                            keys.add((f, str(x).strip()))
+                    items = (v.items() if isinstance(v, dict) else [(None, v)])
+                    for vol, vv in items:
+                        for x in (vv if isinstance(vv, list) else [vv]):
+                            if x is not None and not isinstance(x, dict):
+                                keys.add((f, vol, str(x).strip()))
             return keys
         ev_cat = _cat_keys(evicted_members)
         if ev_cat:
-            keep_cat = _cat_keys(remaining_members)
+            keep_any = {(f, x) for f, _vol, x in _cat_keys(remaining_members)}
+            ev_any = {(f, x) for f, _vol, x in ev_cat}
+
+            def _drop(f, vol, x):
+                x = str(x).strip()
+                if (f, x) in keep_any:
+                    return False
+                if vol is None:
+                    return (f, x) in ev_any
+                return (f, vol, x) in ev_cat or (f, None, x) in ev_cat
+
+            def _thin(f, vol, v):
+                vals = v if isinstance(v, list) else [v]
+                kept = [x for x in vals if not _drop(f, vol, x)]
+                if len(kept) == len(vals):
+                    return v, False
+                if not kept:
+                    return None, True
+                return (kept if isinstance(v, list) else kept[0]), True
+
             for f in list(cat.keys()):
                 v = cat[f]
                 if isinstance(v, dict):
+                    nv, changed = {}, False
+                    for vol, vv in v.items():
+                        r, ch = _thin(f, vol, vv)
+                        changed |= ch
+                        if r is not None:
+                            nv[vol] = r
+                    if not changed:
+                        continue
+                    if nv:
+                        cat[f] = nv
+                    else:
+                        del cat[f]
                     continue
-                vals = v if isinstance(v, list) else [v]
-                kept = [x for x in vals
-                        if not ((f, str(x).strip()) in ev_cat
-                                and (f, str(x).strip()) not in keep_cat)]
-                if len(kept) == len(vals):
+                r, ch = _thin(f, None, v)
+                if not ch:
                     continue
-                if not kept:
+                if r is None:
                     del cat[f]
-                elif isinstance(v, list):
-                    cat[f] = kept
                 else:
-                    cat[f] = kept[0]
+                    cat[f] = r
 
     cur_sources = fc.get("sources")
     if isinstance(cur_sources, list):
@@ -3115,6 +3306,14 @@ def _relocation_targets(fe: dict, entity_id: str, relocated_out: set,
     return out
 
 
+def _final_keeps_a_class_in(fe: dict, entity_id: str) -> bool:
+    """True when one of the final's composed_of classes lives in
+    `entity_id`'s seed_unified after this run's merge."""
+    home = _unified_home_index()
+    return any(home.get(str(m)) == entity_id
+               for m in (fe.get("composed_of") or []))
+
+
 def _cross_entity_carry_in(entity_id: str, unified_entries: list[dict]
                            ) -> list[tuple[str, str, dict]]:
     """(host unified id in `entity_id`, source entity, source final) for every
@@ -3147,6 +3346,15 @@ def _cross_entity_carry_in(entity_id: str, unified_entries: list[dict]
             # coin's fields.
             if not (_final_is_relocated(fe, ent_relocated_out)
                     or _final_is_routed_away(fe, ent)):
+                continue
+            # The snapshot predates the source's stale-composed_of purge, so a
+            # final that only LOST one class to the relocation still lists it
+            # and matches above. If any of its classes still lives in its own
+            # entity, the coin stays there — only the departed class moved,
+            # and the host must not inherit the remaining coin's fields.
+            # (2026-11-22: NGC 1051156 left Hede 45 for Hede 63, and the carry
+            # copied Hede 45's 45 sources onto Hede 63.)
+            if _final_keeps_a_class_in(fe, ent):
                 continue
             hosts = {host_of[k] for k in _final_relocation_keys(fe) if k in host_of}
             for host in sorted(hosts):
@@ -3799,6 +4007,7 @@ def process_entity(entity_id: str) -> dict:
                 staying_seeds.add(_seed_of(cid))
             departed = [_seed_of(cid) for cid in gone
                         if _seed_of(cid) not in staying_seeds]
+            departed += _other_departed_members(gone, kept, staying_seeds, departed)
             departed_recs = [r for r in (_seed_record(entity_id, sid) for sid in departed) if r]
             if departed_recs:
                 remaining = [unified_by_id[c] for c in kept if c in unified_by_id]

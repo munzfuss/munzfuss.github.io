@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `herzogtum_braunschweig_lueneburg`.
-# Generated 2026-11-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 2948 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_braunschweig_lueneburg
-generated_at: '2026-11-16'
+generated_at: '2026-11-23'
 coins:
   - id: c-08c0fcf7
     class_id: c-08c0fcf7
@@ -24,12 +24,15 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
+    inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
+    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
     mint: Wolfenbüttel
     catalog:
       km:
         - '65.1'
         - '65.2'
       hede:
+        - '6'
         - 6A
         - 6B
       sieg:
@@ -46,11 +49,19 @@ coins:
         - Aagaard# 15.3
         - Harck# 27.8.2
         - Harck# 27.8.1
-    metal_verified: false
+    metal: silver
+    metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 2.04
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -58,10 +69,14 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11200, p. 84
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250999
+        ref: IKMK Berlin 18250999
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-bruun-5537
       - dk-bruun-5538
+      - ikmk-18250999
   - id: c-27ceb3b7
     class_id: c-27ceb3b7
     label: unified-dk-numista-100475
@@ -12493,8 +12508,8 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-numista-67595
-  - id: c-92525f85
-    class_id: c-92525f85
+  - id: c-1aaa0fe0
+    class_id: c-1aaa0fe0
     label: unified-dk-numista-67728
     fuss: seed_unsorted
     phase: numista
@@ -12508,7 +12523,10 @@ coins:
     year_label: 1819-1820
     ruler: George IV
     catalog:
-      km: '1079'
+      km:
+        - '1079'
+        - '1079.1'
+        - '1079.2'
       numista: '67728'
       others:
         - AKS# 46
@@ -12522,16 +12540,30 @@ coins:
     weight_rough_g:
       - value: 1.69
         source: numista
+      - value: 1.93
+        source: ucoin
     diameter_mm:
       - value: 20.0
         source: numista
+      - value: 20.0
+        source: ucoin
+      - value: 20.4
+        source: ucoin
     sources:
       - type: literature
         url: https://en.numista.com/67728
         ref: Numista N#67728 — 1 Pfennig - George IV - Duchy of Brunswick
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1819-1820/?tid=81967
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1820/?tid=81968
+        ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-numista-67728
+      - tid-tid-81967
+      - tid-tid-81968
   - id: c-403af866
     class_id: c-403af866
     label: unified-dk-numista-67988
@@ -17088,41 +17120,6 @@ coins:
     composed_of:
       - ikmk-18236491
       - ikmk-18236492
-  - id: c-67287e0f
-    class_id: c-67287e0f
-    label: unified-ikmk-18250999
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Groschen
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV.
-    inscription_obv: MONACH REICHS SCHROT V K -/ I / GVTER GROSCH / 1627
-    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
-    mint: Wolfenbüttel
-    catalog:
-      hede: '6'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.04
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18250999
-        ref: IKMK Berlin 18250999
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18250999
   - id: c-f0988087
     class_id: c-f0988087
     label: unified-ikmk-18251000
@@ -36809,12 +36806,8 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
-    ruler: Frederick Ulrich
-    catalog:
-      km: '141'
     metal: silver
     metal_verified: true
-    fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: false
@@ -36829,13 +36822,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18289860
         ref: IKMK Berlin 18289860
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190599
-        ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18289860
-      - tid-tid-190599
   - id: c-43aad9f0
     class_id: c-43aad9f0
     label: unified-ikmk-18289861
@@ -54651,12 +54640,8 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
-    ruler: Frederick Ulrich
-    catalog:
-      km: '147'
     metal: silver
     metal_verified: true
-    fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: false
@@ -54671,13 +54656,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18299820
         ref: IKMK Berlin 18299820
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190602
-        ref: ucoin
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18299820
-      - tid-tid-190602
   - id: c-dbb0a1c3
     class_id: c-dbb0a1c3
     label: unified-ikmk-18299821
@@ -63007,6 +62988,32 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-190597
+  - id: c-4106200e
+    class_id: c-4106200e
+    label: unified-tid-tid-190599
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 3 Kreuzer
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    ruler: Frederick Ulrich
+    catalog:
+      km: '141'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190599
+        ref: ucoin
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    composed_of:
+      - tid-tid-190599
   - id: c-42fbe9de
     class_id: c-42fbe9de
     label: unified-tid-tid-190600
@@ -63036,6 +63043,32 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-190600
+  - id: c-3300c1e2
+    class_id: c-3300c1e2
+    label: unified-tid-tid-190602
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 3 Kreuzer
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    ruler: Frederick Ulrich
+    catalog:
+      km: '147'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-3-kreuzer-1620/?tid=190602
+        ref: ucoin
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    composed_of:
+      - tid-tid-190602
   - id: c-7b957e4b
     class_id: c-7b957e4b
     label: unified-tid-tid-190631
@@ -65075,50 +65108,6 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - tid-tid-81966
-  - id: c-1aaa0fe0
-    class_id: c-1aaa0fe0
-    label: unified-tid-tid-81967
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Pfennig
-    year_first: 1819
-    year_last: 1820
-    year_ranges:
-      -   - 1819
-          - 1820
-    year_label: 1819-1820
-    ruler: Charles II
-    catalog:
-      km:
-        - '1079.1'
-        - '1079.2'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.93
-        source: ucoin
-    diameter_mm:
-      - value: 20.0
-        source: ucoin
-      - value: 20.4
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1819-1820/?tid=81967
-        ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick-1-pfennig-1820/?tid=81968
-        ref: ucoin
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - tid-tid-81967
-      - tid-tid-81968
   - id: c-863e1c4c
     class_id: c-863e1c4c
     label: unified-tid-tid-81979

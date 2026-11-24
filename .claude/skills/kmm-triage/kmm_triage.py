@@ -47,8 +47,10 @@ from lib.v2_index import V2Index  # noqa: E402
 
 _L = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 _SKIP = {"galster_volume", "bruun_collection_id", "numista"}
-_WEB = ROOT / "scripts" / "cache" / "kmk" / "web"
-_API = ROOT / "scripts" / "cache" / "kmk"
+from lib.paths import KMK_CACHE  # noqa: E402  (honours MUNZFUSS_HARVEST_DIR)
+
+_WEB = KMK_CACHE / "web"
+_API = KMK_CACHE
 
 
 def _registers(cat) -> dict[str, set[str]]:

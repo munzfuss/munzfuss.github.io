@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-17T08:07:11Z'
+generated_at: '2026-11-18T19:44:19Z'
 entity: danish_norway
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -1402,14 +1402,9 @@ coins:
     phase: hede
     kind: kurant
     nominal: 1 Mark
-    year_label: 1648–1651
+    year_label: 1648-1670
     year_first: 1648
-    year_last: 1651
-    year_ranges:
-      - [1648, 1648]
-      - [1649, 1649]
-      - [1650, 1650]
-      - [1651, 1651]
+    year_last: 1670
     ruler: Frederik III.
     mint: Christiania
     catalog:
@@ -1434,6 +1429,14 @@ coins:
         hhv. 31, 26-27 og 40) C) 1651-1658 (samtlige årstal); Møntmestermærke humle (Hede Norge 68C, Schou varia) D) 1659 (R); Kronet F3 indenfor ringen. Møntmestermærke humle (Hede Norge 68D, Schou 88)
         E) 1659 (R); Kronet F3 indenfor ringen. Møntmestermærke treblad: (Hede Norge 68E, Schou 86-87) F) 1660; Kronen bryder ringen. Møntmestermærke treblad: . Bagsideomskrift (Hede Norge 68F, Schou 61-62)
         G) 1660…'
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1648-1670
   - id: dk-hede-nf3h8a
     fuss: seed_unsorted
     phase: hede
@@ -6095,23 +6098,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/c5hede2.htm
         ref: danskmoent.dk overview c5hede2 (Hede nc5h65ab — Tiefenseite fehlt)
+      - type: literature
+        url: https://www.danskmoent.dk/solvmont.htm
+        ref: danskmoent.dk (Hede nc5h65ab)
     issuing_entity: danish_norway
     verified: false
     metal_verified: true
     mint_verified: true
     verification_note:
-      de: 'Nur die Übersichtsreihe von c5hede2.htm belegt diesen Eintrag; die Hede-Tiefenseite fehlt auf danskmoent.dk. Gewicht und Probe sind dort nicht angegeben; sie wären den gedruckten Ausgaben Hede
-        1971 und Galster 1965 zu entnehmen. Anmerkung im Index: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve,
-        som her skal opfattes som kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
-      en: 'Only the overview-table row of c5hede2.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the printed
-        Hede 1971 and Galster 1965. Index note: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve, som her skal
-        opfattes som kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
-      uk: 'Цей запис підтверджує лише рядок оглядової таблиці c5hede2.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
-        1965. Коментар з індексу: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve, som her skal opfattes som
-        kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
-      da: 'Kun oversigtsrækken hos c5hede2.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
-        1965. Bemærkning i indekset: «N65A: Stjerne på øksebladet N65B: Uden stjerne på øksebladet. Hede: NNÅ 1957-58 "Bør ikke anses som norske, men danske trods den norske løve, som her skal opfattes
-        som kongens personlige mærke og bør ej heller anses som mønter, men jetons." Jørgen Sømod»'
+      de: Die Felder stammen aus der Übersichtsreihe von c5hede2.htm; die eigene Münzseite danskmoent.dk/solvmont.htm wird zitiert, aber nicht ausgelesen.
+      en: The fields come from the overview row of c5hede2.htm; the coin's own page danskmoent.dk/solvmont.htm is cited but not parsed.
+      uk: Поля взято з рядка оглядової таблиці c5hede2.htm; власну сторінку монети danskmoent.dk/solvmont.htm наведено як джерело, але не розібрано.
+      da: Felterne stammer fra oversigtsrækken hos c5hede2.htm; møntens egen side danskmoent.dk/solvmont.htm citeres, men læses ikke.
   - id: dk-hede-nc5h66
     fuss: seed_unsorted
     phase: hede

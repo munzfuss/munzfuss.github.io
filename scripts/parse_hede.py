@@ -40,6 +40,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.paths import HEDE_CACHE as CACHE_DIR  # noqa: E402
 from lib.mint_registry import canon_for_alias  # noqa: E402
+from fetch_hede import ROOT_COIN_PAGES as _ROOT_COIN_PAGES  # noqa: E402
 
 
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -1245,6 +1246,7 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                 for lh in (_split_hede_key(h)[1] for h, _ in matched)
             )
             agg_years: list[dict] = []
+            agg_undated: str | None = None
             agg_refs: dict[str, list[str]] = {}
             agg_noms: set[str] = set()
             seen_y: set[int] = set()
@@ -1256,6 +1258,8 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                     if y["year"] not in seen_y:
                         agg_years.append(y)
                         seen_y.add(y["year"])
+                if grp.get("undated") and not agg_undated:
+                    agg_undated = grp["undated"]
                 for cat, vals in grp["catalog_refs"].items():
                     cur = agg_refs.setdefault(cat, [])
                     for v in vals:
@@ -1265,6 +1269,8 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                     agg_noms.add(hede_to_nominal[hnum])
             if agg_years and "years" not in by_hede[key]:
                 by_hede[key] = {**by_hede[key], "years": agg_years}
+            if agg_undated and "undated" not in by_hede[key]:
+                by_hede[key] = {**by_hede[key], "undated": agg_undated}
             # Combined-key nominal (spec table emits «100AB» without its own
             # nominal label; the descriptive «Hede 100A»/«100B» groups both
             # carry «4 Mark»). Without this the seed builder can't take the
@@ -1436,6 +1442,10 @@ def _split_combined_letter_keys(by_hede: dict, desc_groups: dict) -> dict:
                 refs = {**refs, **(dg.get("catalog_refs") or {})}
                 if dg.get("years"):
                     sub["years"] = dg["years"]
+                # «U.år» belongs to the letter whose line prints it.
+                sub.pop("undated", None)
+                if dg.get("undated"):
+                    sub["undated"] = dg["undated"]
             sub["catalog_refs"] = refs
             out[f"{base}{letter}"] = sub
     return out
@@ -1499,6 +1509,15 @@ _REF_RUN_TAIL_RE = re.compile(
     re.IGNORECASE)
 
 
+def _expand_letter_range(tag: str) -> str:
+    """«57B-C» → «57BC», «63A-F» → «63ABCDEF»; any other tag unchanged."""
+    m = re.fullmatch(r"(\d+)([A-Za-z])\s*-\s*([A-Za-z])", tag.strip())
+    if not m or ord(m.group(3).upper()) < ord(m.group(2).upper()):
+        return tag.strip()
+    a, b = ord(m.group(2).upper()), ord(m.group(3).upper())
+    return m.group(1) + "".join(chr(c) for c in range(a, b + 1))
+
+
 def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
     """Parse the descriptive section into per-Hede-number year + catalog data.
 
@@ -1523,8 +1542,12 @@ def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
     # («, Schou» / «, Sieg» / «, Fr»). This distinguishes the group from a
     # «Som Hede 84A» cross-reference (which is followed by « (Hede …», not
     # a ref), so cross-refs don't spawn phantom sub-entries.
+    # A letter range («Hede 57B-C, Schou …», f3h57; «Hede 63A-F», c4h63) is a
+    # group too: before 2026-11-19 it did not match, so its line's years
+    # («B) 1661, 1662 (RR): … (Hede 57B-C, …)») fell into the NEXT group's
+    # span and Hede 58A (2 Speciedaler 1657, 1661) gained a 1662.
     anchor_re = re.compile(
-        _HEDE_ANCHOR + r"(\d+[A-Za-z]*)\s*,\s*(?:Schou|Sieg|Fr\b|Fr\.)",
+        _HEDE_ANCHOR + r"(\d+[A-Za-z]*(?:\s*-\s*[A-Za-z])?)\s*,\s*(?:Schou|Sieg|Fr\b|Fr\.)",
         re.IGNORECASE)
     anchors = list(anchor_re.finditer(flat))
     if not anchors:
@@ -1532,12 +1555,20 @@ def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
     out: dict[str, dict] = {}
     prev_group_end = 0
     for i, m in enumerate(anchors):
-        hnum = m.group(1)
+        hnum = _expand_letter_range(m.group(1))
         # Year span: text before THIS group's anchor, back to the previous
         # group's end but capped at 250 chars so a far-away intro / legal-act
         # year («Møntordning af 1544») can't leak onto the first sub-entry.
         span_start = max(prev_group_end, m.start() - 250)
         span = flat[span_start: m.start()]
+        # A letter line («A) 1657 (RR), 1661 (RR): Som Hede 57A (Hede 58A …»)
+        # owns only what follows its own «A)»: an off-strike aside above it
+        # («Guldafslag 3 Dukat 1661 og 5 Dukat 1661», f3h57) is not its year.
+        # Only when that line carries a year itself: a design-only line («A)
+        # Forside: FV (Hede 38A …») takes the page-head year as before.
+        letter_marks = list(re.finditer(r"(?:^|[\s.;:])([A-Z])\)\s", span))
+        if letter_marks and _extract_years(span[letter_marks[-1].start(1):]):
+            span = span[letter_marks[-1].start(1):]
         years = _extract_years(span)
         # Ref segment: the group itself — anchor to the closing «)» or the
         # next «Hede » anchor or +150 chars, whichever comes first — so a
@@ -1553,6 +1584,9 @@ def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
         refs = _extract_refs(flat[m.start(): seg_end])
         refs.pop("Hede", None)
         g = out.setdefault(hnum, {"years": [], "catalog_refs": {}})
+        undated = _undated_as_printed(span)
+        if undated and not g.get("undated"):
+            g["undated"] = undated
         seen_y = {y["year"] for y in g["years"]}
         for y in years:
             if y["year"] not in seen_y:
@@ -1922,6 +1956,40 @@ def _looks_like_overview(html: str) -> bool:
 # Distinct from the «multi-Hede page» case (specs.by_hede), where each
 # sub-Hede has its OWN spec block. Here the spec block is shared and
 # the only per-variant data is years + mintmaster + catalog sub-refs.
+# «U.år» (uden årstal, undated) in a variant's year list. Hede writes it
+# BESIDE the dated years when the variant also exists without a date — «A)
+# 1566, U.år» (f2h30), «A) 1660 (R), 1661 (RR), U.år (R)» (f3h16), each with
+# its own rarity — or alone, when the variant is undated («B) U.år», f2h31).
+# The year list is returned as printed, so the seed can say that undated
+# pieces exist without turning the dated years into guesses (curator
+# 2026-11-18). One token: a year, a year range or «U.år», with an optional
+# short rarity parenthesis.
+_UAR_RE = re.compile(r"(?<![A-Za-zÆØÅæøå])[Uu]\.\s*år(?![A-Za-zæøå])")
+# A parenthesis after a token: a rarity («(RR)», «(Unik)») or Hede's
+# attribution of an undated piece, one level of nesting allowed — «U.år (1611)»,
+# «U.år (1609 (Hede) eller 1611 (Harck))», «U.år (1661) (RRR)». Never a
+# catalogue group («(Hede 84B, Schou …)»).
+_YEARLIST_PAREN = r"\s*\((?![^()]*(?:Hede|Schou|Sieg))(?:[^()]|\([^()]*\)){1,60}\)"
+_YEARLIST_TOK = (r"(?:\d{4}(?:\s*[-–]\s*\d{2,4})?|[Uu]\.\s*år)"
+                 rf"(?:{_YEARLIST_PAREN})*")
+_YEARLIST_RUN_RE = re.compile(
+    rf"(?<![\w.]){_YEARLIST_TOK}(?:\s*(?:,|og)\s*{_YEARLIST_TOK})*")
+
+
+def _undated_as_printed(text: str) -> str | None:
+    """The year list that carries «U.år», verbatim (whitespace folded), or
+    None. «1566, U.år» → «1566, U.år»; «B) U.år; Uden møntmærke» → «U.år».
+    The LAST such list wins: in a descriptive span it is the one nearest the
+    catalogue group, not a «u. år» in the page heading (nf3h39)."""
+    if not text or not _UAR_RE.search(text):
+        return None
+    hit = None
+    for m in _YEARLIST_RUN_RE.finditer(text):
+        if _UAR_RE.search(m.group(0)):
+            hit = m.group(0)
+    return re.sub(r"\s+", " ", hit).strip() if hit else None
+
+
 _LETTER_GROUP_BLOCK_RE = re.compile(
     r"^[ \t]*([A-Z])\)\s+"            # «A)» / «B)» at line start
     r"([\s\S]+?)"                     # body — years + mm + refs (lazy)
@@ -2075,6 +2143,9 @@ def _extract_letter_groups(text: str, page_hede: str) -> dict | None:
             "catalog_refs": refs,
             "mintmaster": mintmaster,
         }
+        undated = _undated_as_printed(years_text)
+        if undated:
+            out[letter]["undated"] = undated
     return out if len(out) >= 2 else None
 
 
@@ -2257,6 +2328,8 @@ def parse_one(html: str, basename: str) -> dict:
                                 # block's years in place.
                                 if lv["years"]:
                                     specs["by_hede"][k]["years"] = lv["years"]
+                                if lv.get("undated"):
+                                    specs["by_hede"][k]["undated"] = lv["undated"]
                                 break
 
     # Per-letter (sub-variant) mint. A Hede page's letters can name DIFFERENT
@@ -2837,6 +2910,14 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
         }
         if hede_printed.upper() != hede_no:
             stub["hede_as_printed"] = hede_printed
+        # The Hede cell links a root-level page of this very coin
+        # (fetch_hede.ROOT_COIN_PAGES, e.g. Hede 6 → /6delrdlr.htm): the
+        # row stays the data, the page becomes the citation.
+        href = re.search(r"<A\s+HREF=[\"']([^\"']+)[\"']", first_td, re.I)
+        if href:
+            path = "/" + href.group(1).lstrip("/")
+            if _ROOT_COIN_PAGES.get(path) == stub_id:
+                stub["coin_page"] = path
         if parsed_row.get("years_by_letter"):
             stub["years_by_letter"] = parsed_row["years_by_letter"]
         # Transient keys for `main`, popped before the sidecar is written.

@@ -306,7 +306,19 @@ def apply_catalog_marks(entry) -> None:
                     else:
                         del cat["others"]
             continue
-        if isinstance(cur, list):
+        if isinstance(cur, dict):
+            # A KM number filed under its Krause volume ({glu: '80'}): the
+            # mark names the register and the number, and takes that number
+            # out of whichever volume holds it (2026-11-22, Glückstadt KM 80
+            # on the 4 Mark Danske laurel type).
+            new = {}
+            for vol, v in cur.items():
+                vals = v if isinstance(v, list) else [v]
+                kept = [x for x in vals if str(x).strip() != val]
+                if kept:
+                    new[vol] = kept[0] if len(kept) == 1 else kept
+            cat[reg] = new or None
+        elif isinstance(cur, list):
             kept = [v for v in cur if str(v).strip() != val]
             if len(kept) != len(cur):
                 cat[reg] = kept[0] if len(kept) == 1 else (kept or None)
@@ -516,6 +528,31 @@ def _drop_bare_superseded_by_letter(v, fresh_v):
         return v
     out = [x for x in v if not (isinstance(x, (str, int)) and str(x).strip() in lettered
                                 and str(x).strip() not in fr)]
+    return out[0] if len(out) == 1 else out
+
+
+_RULER_PREFIXED_DOT_RE = re.compile(r"[CFH]\d{0,2}\s+(\d+)\.([A-Za-z]{1,2})")
+
+
+def _drop_prefixed_superseded(v, fresh_v):
+    """A ruler-prefixed dotted reading «C4 80.C» is dropped when the fresh
+    reading gives the same number in plain form «80C» — the same re-reading
+    case as `_drop_bare_superseded_by_letter`. Numista prints some Hede numbers
+    that way (N#307035); once the builder reduced it to «80C» the union held
+    `['80C', 'C4 80.C']` and the stale form stood beside the number as a second
+    index (2026-11-23). Only a prefixed value whose plain form the FRESH
+    reading gives is dropped."""
+    if not isinstance(v, list):
+        return v
+    fr = {str(x).strip().upper()
+          for x in (fresh_v if isinstance(fresh_v, list) else [fresh_v])
+          if isinstance(x, (str, int))}
+
+    def _stale(x) -> bool:
+        m = _RULER_PREFIXED_DOT_RE.fullmatch(str(x).strip()) if isinstance(x, str) else None
+        return bool(m) and f"{m.group(1)}{m.group(2)}".upper() in fr
+
+    out = [x for x in v if not _stale(x)]
     return out[0] if len(out) == 1 else out
 
 
@@ -759,10 +796,18 @@ def merge_one(
                         # lines into `others: Ernst 1940 3-13` scalars before
                         # this branch existed.
                         ex_v[sub_k] = _union_others(ex_v[sub_k], sub_v)
+                    elif sub_k == "km" and _km_bare_superseded(ex_v[sub_k], sub_v):
+                        # The parser now names the Krause volume of the very
+                        # numbers it used to give bare: the volume-keyed form
+                        # replaces them (a union would mix «603» and
+                        # {dk: 603} in one list, read as two volumes).
+                        ex_v[sub_k] = sub_v
                     elif sub_k in _list_cap:
                         ex_v[sub_k] = _drop_bare_superseded_by_cf(
-                            _drop_bare_superseded_by_letter(
-                                _union_cat_values(ex_v[sub_k], sub_v), sub_v))
+                            _drop_prefixed_superseded(
+                                _drop_bare_superseded_by_letter(
+                                    _union_cat_values(ex_v[sub_k], sub_v), sub_v),
+                                sub_v))
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue
@@ -856,6 +901,46 @@ def merge_one(
 # numbers its specimens 15139c … 15139ddd beside a bare 15139ø, and the rule
 # silently dropped Part V lot 15186 when the parser lost the «ø» (2026-10-19).
 _PAGE_CATALOGUE_ID_RE = re.compile(r"^dk-(?:hede|galster)-")
+
+
+def _km_numbers(km) -> list[str]:
+    """Every number of a km value in any shape: bare, list, register-keyed
+    dict, or a list mixing bare numbers and dicts."""
+    out: list[str] = []
+    for v in (km if isinstance(km, list) else [km]):
+        if isinstance(v, dict):
+            for x in v.values():
+                out.extend(str(y) for y in (x if isinstance(x, list) else [x]) if y not in (None, ""))
+        elif v not in (None, ""):
+            out.append(str(v))
+    return out
+
+
+def _km_bare_superseded(existing, fresh) -> bool:
+    """True when `fresh` is the register-keyed km dict and every number of
+    the `existing` km is among its values (lib.km_registers).
+
+    `existing` may be bare (the parser now names the volume of numbers it
+    used to give bare) or itself register-keyed (the parser now names a
+    DIFFERENT volume for the same numbers — a corrected section reading).
+    Either way the fresh volume-keyed form replaces it: a union would keep the
+    old volume beside the new one, read as two volumes."""
+    if existing is None or fresh in (None, "", []):
+        return False
+
+    def _has_volume(km) -> bool:
+        return any(isinstance(v, dict) for v in (km if isinstance(km, list) else [km]))
+
+    # Fresh bare over existing bare stays a union (nothing to supersede).
+    # Fresh bare over an existing VOLUME-keyed reading of the same numbers
+    # means the parser no longer names that volume (a section it now knows
+    # it cannot place, e.g. NGC «Denmark HOLSTEIN-GOTTORP-RENDSBORG»): the
+    # bare reading replaces it, never `[{dk: 5}, '5']`.
+    if not _has_volume(fresh) and not _has_volume(existing):
+        return False
+    ex = _km_numbers(existing)
+    fr = set(_km_numbers(fresh))
+    return bool(ex) and all(v in fr for v in ex)
 
 
 def merge_seed(

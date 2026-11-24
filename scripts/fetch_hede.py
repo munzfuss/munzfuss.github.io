@@ -164,6 +164,34 @@ def _extract_links(html: str) -> set[str]:
 #   «l», number 1.
 IRREGULAR_COIN_PAGES = {"/engelot.htm": "f2h7d.htm", "/lauenbor.htm": "f6hl1.htm"}
 
+# Root-level coin pages linked from the Hede-number cell of a reign table
+# (2026-11-18). Each documents one coin under a denomination name
+# («/6delrdlr.htm» = Frederik VI 1/6 Rigsdaler 1808, Hede 6), but in a
+# different layout from the cNhM deep pages — one line «year, mint
+# (Hede N, Schou N, Sieg N)», literature, an image — and the deep-page
+# parser misreads it (the reign span 1588-1648 as years, «Albertsdaler»
+# as mint). So these are NOT routed through IRREGULAR_COIN_PAGES: they are
+# cached under `root/` (outside the parser's `*.htm` glob), the overview
+# row stays the data (`index_stub`), and the stub cites the coin's own
+# page instead of the overview. Value: the stub id the overview row makes.
+# Left out: /20skill.htm (Hede 146 AND 147 on one page), /halvkr.htm
+# (Christian 10, after 1914), and the side series (DVI, Wolfenbüttel W,
+# Bremen-Verden BV, Oldenburg O, Iceland IS, Greenland GR), whose rows
+# are not in the seed either.
+ROOT_COIN_PAGES = {
+    "/halvglkr.htm": "c4h27",      # Christian IV 1/2 Guldkrone 1619
+    "/loeve.htm": "c4h65",         # Christian IV Loevedaler 1608
+    "/2penning.htm": "c4h87",      # Christian IV 2 Penning
+    "/kvartkr.htm": "c4h108ab",    # Christian IV 1/4 Krone 1618
+    "/ottdelkr.htm": "c4h109",     # Christian IV 1/8 Krone 1618
+    "/2skilybs.htm": "c4h168ab",   # Christian IV 2 Skilling lybsk, Glueckstadt
+    "/albert.htm": "c7h22ab",      # Christian VII Albertsdaler
+    "/femdlrbs.htm": "c8h13ab",    # Christian VIII 1/5 Rigsbankskilling
+    "/solvmont.htm": "nc5h65ab",   # Christian V Soelvmoent, Christiania
+    "/6delrdlr.htm": "f6h6",       # Frederik VI 1/6 Rigsdaler 1808, Altona
+}
+ROOT_PAGES_SUBDIR = "root"
+
 _ANCHOR_RE = re.compile(r'(?is)<a\b[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>')
 _COIN_BASENAME_RE = re.compile(
     r"^(?:chr/|fr/|norge/)?n?(?:c|f)\d+h[\w\-]*\.htm$", re.IGNORECASE,
@@ -171,6 +199,8 @@ _COIN_BASENAME_RE = re.compile(
 # Anchor text that reads as a bibliographic citation rather than a
 # denomination — «Aagaard: NNUM 1989 s. 162-177.» and friends.
 _CITATION_TEXT_RE = re.compile(r":|\bs\.\s*\d|\b1[5-9]\d{2}\b|\b20\d{2}\b")
+# A Hede-number cell: optional series letters, a number, optional letters.
+_HEDE_NUMBER_TEXT_RE = re.compile(r"^[A-Z]{0,4}\s?\d+[A-Z]*$")
 
 
 def _text_of(html: str) -> str:
@@ -211,6 +241,23 @@ def _scan_irregular_coin_links(html: str) -> set[str]:
             text = _text_of(anchor_html)
             if _CITATION_TEXT_RE.search(text) or len(text.split()) > 4:
                 continue
+            out.add("/" + path)
+    # Second shape: the link sits on the Hede number itself — a cell that
+    # holds one anchor and nothing else, whose text is a Hede number
+    # («6», «108AB», «N65AB», «DVI 40»). /6delrdlr.htm and /lauenbor.htm
+    # were missed by the nominal-cell test above for exactly this reason.
+    for cell in re.split(r"(?i)<TD[ >]", html):
+        cell = re.split(r"(?i)</TD>", cell)[0]
+        anchors = _ANCHOR_RE.findall(cell)
+        if len(anchors) != 1:
+            continue
+        url, anchor_html = anchors[0]
+        path = url.lstrip("/")
+        if path.lower().startswith(("http", "mailto")) or _COIN_BASENAME_RE.match(path):
+            continue
+        if re.sub(r"[\s\.]", "", _text_of(_ANCHOR_RE.sub(" ", cell))):
+            continue
+        if _HEDE_NUMBER_TEXT_RE.match(_text_of(anchor_html)):
             out.add("/" + path)
     return out
 
@@ -262,6 +309,8 @@ def discover() -> dict:
             overviews_found.append(path)
             new_links = _extract_links(html)
             for irregular in _scan_irregular_coin_links(html):
+                if irregular in ROOT_COIN_PAGES:
+                    continue  # fetched by fetch_root_pages(), not a deep page
                 if irregular in IRREGULAR_COIN_PAGES:
                     new_links.add(irregular)
                 else:
@@ -341,6 +390,23 @@ def fetch() -> None:
     )
 
 
+def fetch_root_pages() -> None:
+    """Fetch ROOT_COIN_PAGES into `<cache>/root/<basename>` (skip existing)."""
+    target_dir = CACHE_DIR / ROOT_PAGES_SUBDIR
+    target_dir.mkdir(parents=True, exist_ok=True)
+    opener = _make_session()
+    for link in ROOT_COIN_PAGES:
+        target = target_dir / Path(link).name
+        if target.exists():
+            continue
+        text = _try_fetch(opener, BASE + link, timeout=45)
+        if text is None:
+            print(f"  [{link}] failed", file=sys.stderr)
+            continue
+        target.write_text(text, encoding="utf-8")
+        time.sleep(SLEEP_SECS)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("phase", nargs="?",
@@ -350,6 +416,7 @@ def main() -> int:
         discover()
     if args.phase in ("fetch", "both"):
         fetch()
+        fetch_root_pages()
     return 0
 
 

@@ -8,6 +8,14 @@ compilation of several datings). The two are to be kept apart in the data, in
 the tooltip and in the glyph. Finals are never cleaned by hand: every new field
 is built from the members only, never from the final's stored copy.
 
+## Status 2026-11-19 — plain datings take no «(?)»
+
+Curator rule: «(?)» only when the source itself hedges the year. A plain
+dating of an undated coin («ND (1670)», «(1616-59)», «U.år (1611)») is a known
+year and records no entry (`uncertainty.plain_dating`; Bruun, NGC, NumisMaster,
+Hede, Galster builders). A reign-equal range stays with absorb's reign-span
+rule. NumisMaster ND marker text: now recorded (`nd_as_printed`). D51.
+
 ## Stage A — the merger's year_verified rule (done in code 2026-10-29)
 
 The OR-merge counted an absent `year_verified` (builders flag only the

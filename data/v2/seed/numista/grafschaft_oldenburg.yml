@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-10-09T16:00:14Z'
+generated_at: '2026-11-21T13:42:14Z'
 entity: grafschaft_oldenburg
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -1429,33 +1429,40 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1/6 Thaler
+    nominal: ⅙ Thaler
     year_label: '1761'
     year_first: 1761
     year_last: 1761
     year_ranges:
       -   - 1761
           - 1761
-    ruler: Frederick V (Friedrich V)
-    mint:
+    ruler: Frederick V
+    mint: Oldenburg
     catalog:
       numista: '314949'
       km: '119'
+      sieg:
+        - '55.2'
+        - '55.3'
+      hede: 4A
     metal: silver
     fineness: 0.5
-    weight_rough_g: 5.85
-    diameter_mm:
+    weight_rough_g: 5.8
+    diameter_mm: 24
     issuing_entity: grafschaft_oldenburg
     verified: false
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
     sources:
       - type: literature
         url: https://en.numista.com/314949
-        ref: Numista N#314949 — 1/6 Thaler - Frederick V - County of Oldenburg
+        ref: Numista N#314949 — ⅙ Thaler - Frederick V (Bauert portrait; without initials on reverse)
+    _source_note:
+      en: Bust of King Frederik V facing right surrounded by inscription, beaded ring on the rim. / Value and date on four lines, in a solid ring. Surrounded by inscription with flowering at the top, 
+        beaded ring on the rim
   - id: dk-numista-314951
     fuss: seed_unsorted
     phase: numista

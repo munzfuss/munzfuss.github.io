@@ -125,8 +125,9 @@ def _coinage_entity_excluded(raw: str | None) -> bool:
 #   SCHLESWIG-HOLSTEIN (generic) → royal_holstein  (royal Holstein
 #                                  coinage absent specific cadet-line
 #                                  attribution)
-#   HOLSTEIN-GOTTORP-RENDSBORG → gottorp_duchy  (Rendsborg was a
-#                                Gottorp mint pre-1721)
+#   HOLSTEIN-GOTTORP-RENDSBORG → royal_holstein  (Frederik IV's coinage at
+#                                Rendsburg 1716-1720, Hede 60-63; curator
+#                                2026-07-29, _cross_entity.yml)
 COUNTRY_TO_ISSUING_ENTITY: dict[str, str] = {
     # Danish realm + personal-union extensions
     "DENMARK": "danish_realm",
@@ -139,12 +140,26 @@ COUNTRY_TO_ISSUING_ENTITY: dict[str, str] = {
     "SCHLESWIG-HOLSTEIN": "royal_holstein",
     # Independent Holstein cadet lines
     "SCHLESWIG-HOLSTEIN-GOTTORP": "gottorp_duchy",
-    "HOLSTEIN-GOTTORP-RENDSBORG": "gottorp_duchy",
+    # Krause's section name, not the issuer: Frederik IV's coinage at the
+    # royal fortress of Rendsburg 1716-1720 (Hede 60-63, Frederik IV volume;
+    # curator 2026-07-29, _cross_entity.yml).
+    "HOLSTEIN-GOTTORP-RENDSBORG": "royal_holstein",
     "SCHLESWIG-HOLSTEIN-SONDERBURG": "sonderburg_duchy",
     "SCHLESWIG-HOLSTEIN-PLOEN": "norburg_plon_duchy",
     "SCHLESWIG-HOLSTEIN-NORBURG": "norburg_plon_duchy",
     "SCHLESWIG-HOLSTEIN-GLUCKSBURG": "glucksburg_duchy",
     "SCHAUMBURG-PINNEBERG": "schauenburg_pinneberg",
+}
+
+
+from lib.km_registers import KRAUSE_SECTIONS  # noqa: E402
+
+# NumisMaster `country` → Krause volume it names (lib.km_registers codes).
+KM_VOLUME_BY_COUNTRY: dict[str, str] = {
+    "DENMARK": "dk", "NORWAY": "nor", "NORW AY": "nor",
+    # Krause's own sections of the Schleswig-Holstein houses, Glückstadt
+    # included (lib.km_registers.KRAUSE_SECTIONS, curator 2026-11-23).
+    **KRAUSE_SECTIONS,
 }
 
 
@@ -287,11 +302,11 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     # determined by country specificity:
     #
     # Tier 1 (SPECIFIC subnational country): country wins.
-    #   E.g. country=HOLSTEIN-GOTTORP-RENDSBORG → gottorp_duchy. Krause
-    #   has explicitly tagged this as a sub-state coinage (Christian
-    #   August's brief HGR period 1716-1720). Mint=Rendsburg alone
-    #   would route to royal_holstein default — wrong for this catalog
-    #   attribution.
+    #   E.g. country=GLÜCKSTADT → royal_holstein, country=HOLSTEIN-
+    #   GOTTORP-RENDSBORG → royal_holstein. (The latter was routed to
+    #   gottorp_duchy as «Christian August's HGR period 1716-1720» until
+    #   2026-11-24; the curator ruled on 2026-07-29 that the Rendsburg
+    #   coinage 1716-1720 is Frederik IV's, royal_holstein.)
     #
     # Tier 2 (UMBRELLA country): mint-classifier with year wins, country
     # used as fallback when mint is None or unclassifiable.
@@ -396,6 +411,17 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
             year_label = data.get("date_raw")
         year_ranges = [[yf, yl if yl is not None else yf]]
 
+    # Krause volume of the KM number. NumisMaster files every record under one
+    # Krause country (its `country`, = the cache folder), so for DENMARK and
+    # NORWAY the volume is named by the source: write the KM register-keyed.
+    # A bare KM would be read in the issuing entity's volume
+    # (lib.km_registers), which is wrong for a Denmark-volume number on an
+    # Altona coin routed to royal_holstein, and for a record pulled into
+    # another entity by a cross-entity merge. The German-states countries are
+    # left bare: the entity table only approximates their volumes.
+    if catalog.get("km") and country_upper in KM_VOLUME_BY_COUNTRY:
+        catalog["km"] = {KM_VOLUME_BY_COUNTRY[country_upper]: catalog["km"]}
+
     # metal_verified: when NumisMaster's «Composition» field is explicitly
     # populated (most pages), the metal classification is source-attested;
     # flip the flag to true so the (?) marker doesn't render. Pages whose
@@ -437,12 +463,16 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     # flag year_verified: false so the renderer shows «(?)» AND the coin is excluded
     # from phase/timeline outer-span expansion (build._expand_outer_phase_span,
     # timeline.derive_mint_overrides). Curator direction 2026-07-09 (Serhii).
-    if undated:
+    # Since 2026-11-19 only a dating NumisMaster hedges itself («ND(ca1640)»)
+    # takes «(?)»; a plain «ND(1616-59)» is a known year on an undated coin
+    # (a reign-equal range is still caught by absorb's reign-span rule; the
+    # timeline excludes only reign-span coins since 2026-07-10). With no
+    # marker text at hand the record keeps the mark, as before.
+    nd_text = data.get("nd_as_printed")
+    if undated and not unc.plain_dating(nd_text):
         entry["year_verified"] = False
-        # The parsed record keeps the ND marker's range, not its text (`date_raw`
-        # is the collapsed Date field), so `as_printed` stays empty until
-        # parse_numismaster records the marker verbatim.
-        unc.add(entry, "year", "attributed", "numismaster",
+        how = "circa" if nd_text and re.search(r"\(\s*c", nd_text, re.I) else "attributed"
+        unc.add(entry, "year", how, "numismaster", as_printed=nd_text,
                 value=unc.year_value(entry.get("year_first"), entry.get("year_last")))
     # Enrichment fields not in Coin schema — prefix with `_` so build.py's
     # seed-merger strips them at validation time (line 343 in build.py). The
@@ -512,6 +542,14 @@ def collect_from_cache(cache_name: str, location: str) -> tuple[list[dict], int]
         except json.JSONDecodeError as e:
             print(f"  [{json_path.name}] parse error: {e}", file=sys.stderr)
             continue
+        if data.get("undated") and "nd_as_printed" not in data:
+            # A cache parsed before parse_numismaster recorded the ND(…)
+            # marker: read it from the page beside the record.
+            html_path = json_path.with_name(json_path.name.replace(".parsed.json", ".html"))
+            if html_path.exists():
+                from parse_numismaster import extract_nd_marker, strip_tags
+                data["nd_as_printed"] = extract_nd_marker(
+                    strip_tags(html_path.read_text(encoding="utf-8")))
         entry = build_entry(data, location, year_from, year_to)
         if entry:
             entries.append(entry)

@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 2413 active, 121 retired.
+# 2413 active, 123 retired.
 
 id: herzogtum_braunschweig_lueneburg
 classes:
@@ -518,6 +518,7 @@ classes:
     members:
       - dk-bruun-5537
       - dk-bruun-5538
+      - ikmk-18250999
   - id: c-08dcb0b0
     status: active
     created: '2026-10-22'
@@ -1846,9 +1847,10 @@ classes:
   - id: c-1aaa0fe0
     status: active
     created: '2026-10-22'
-    label: unified-tid-tid-81967
+    label: unified-dk-numista-67728
     legacy_id: unified-tid-tid-81968
     members:
+      - dk-numista-67728
       - tid-tid-81967
       - tid-tid-81968
   - id: c-1ad82d5f
@@ -3673,6 +3675,12 @@ classes:
     legacy_id: unified-dk-numista-19994
     members:
       - dk-numista-19994
+  - id: c-3300c1e2
+    status: active
+    created: '2026-11-22'
+    label: unified-tid-tid-190602
+    members:
+      - tid-tid-190602
   - id: c-331023bc
     status: active
     created: '2026-10-22'
@@ -4809,6 +4817,12 @@ classes:
     members:
       - dk-numista-132576
       - tid-tid-91622
+  - id: c-4106200e
+    status: active
+    created: '2026-11-22'
+    label: unified-tid-tid-190599
+    members:
+      - tid-tid-190599
   - id: c-4122776c
     status: active
     created: '2026-10-22'
@@ -7204,12 +7218,6 @@ classes:
     legacy_id: unified-tid-tid-190574
     members:
       - tid-tid-190574
-  - id: c-67287e0f
-    status: active
-    created: '2026-11-10'
-    label: unified-ikmk-18250999
-    members:
-      - ikmk-18250999
   - id: c-672ae65f
     status: active
     created: '2026-10-22'
@@ -8292,9 +8300,10 @@ classes:
     created: '2026-10-22'
     label: unified-ikmk-18299820
     legacy_id: unified-ikmk-18299820
+    split_into:
+      - c-3300c1e2
     members:
       - ikmk-18299820
-      - tid-tid-190602
   - id: c-76128b3a
     status: active
     created: '2026-10-22'
@@ -8908,9 +8917,10 @@ classes:
     created: '2026-10-22'
     label: unified-ikmk-18289860
     legacy_id: unified-ikmk-18289860
+    split_into:
+      - c-4106200e
     members:
       - ikmk-18289860
-      - tid-tid-190599
   - id: c-7f4c5421
     status: active
     created: '2026-10-22'
@@ -10368,13 +10378,6 @@ classes:
     legacy_id: unified-ikmk-18295816
     members:
       - ikmk-18295816
-  - id: c-92525f85
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-67728
-    legacy_id: unified-dk-numista-67728
-    members:
-      - dk-numista-67728
   - id: c-92642e7a
     status: active
     created: '2026-10-22'
@@ -19376,6 +19379,14 @@ classes:
     retired: '2026-11-16'
     members:
       - tid-tid-91604
+  - id: c-67287e0f
+    status: retired
+    created: '2026-11-10'
+    label: unified-ikmk-18250999
+    merged_into: c-08c0fcf7
+    retired: '2026-11-23'
+    members:
+      - ikmk-18250999
   - id: c-68af5842
     status: retired
     created: '2026-10-22'
@@ -19542,6 +19553,15 @@ classes:
     retired: '2026-11-07'
     members:
       - tid-tid-92363
+  - id: c-92525f85
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-67728
+    legacy_id: unified-dk-numista-67728
+    merged_into: c-1aaa0fe0
+    retired: '2026-11-22'
+    members:
+      - dk-numista-67728
   - id: c-9329af64
     status: retired
     created: '2026-10-22'

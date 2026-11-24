@@ -806,10 +806,21 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
 # _compute_catalog_groups when emitting register-prefixed KM tokens.
 # Mirrors the Numista «issuer» semantics for the major Scandinavian
 # / German-states Krause volumes our project touches.
+# Tooltip KEYS (ui.yml) for a register-qualified «KM-<reg>#»: which Krause
+# volume, and — `_inferred` — that the source gave a bare number whose volume
+# was read off the issuing entity.
 _KM_REGISTER_TOOLTIP: dict[str, str] = {
-    "DK": "Krause-Mishler — Denmark volume",
-    "SH": "Krause-Mishler — Schleswig-Holstein volume",
-    "NO": "Krause-Mishler — Norway volume",
+    "DK": "marker.km_dk", "SH": "marker.km_sh", "NO": "marker.km_no",
+    "GLÜ": "marker.km_glu", "HGR": "marker.km_hgr", "GOTT": "marker.km_gott",
+    "SOND": "marker.km_sond", "PLÖN": "marker.km_ploen", "NORB": "marker.km_norb",
+    "GLÜCKSB": "marker.km_gluecksb", "RANTZ": "marker.km_rantz",
+    "SCHPIN": "marker.km_schpin",
+}
+_KM_REGISTER_TOOLTIP_INFERRED: dict[str, str] = {
+    "DK": "marker.km_dk_inferred", "SH": "marker.km_sh_inferred",
+    "NO": "marker.km_no_inferred", "GOTT": "marker.km_gott_inferred",
+    "SOND": "marker.km_sond_inferred", "GLÜCKSB": "marker.km_gluecksb_inferred",
+    "RANTZ": "marker.km_rantz_inferred", "SCHPIN": "marker.km_schpin_inferred",
 }
 
 
@@ -895,6 +906,12 @@ def _is_norwegian_hede(cat) -> bool:
 
 
 # Render priority: lower = earlier. Unknown prefixes get a mid-rank.
+# Seed-side catalogue registers that the class renders under another name
+# (Bruun's `davenport` lands in the class's `dav`, merge_seeds_cross_source
+# OUTPUT_CATALOG_KEY_SYNONYMS); a catalogue mark keyed by the seed register
+# is matched against the class register.
+_REGISTER_ALIAS: dict[str, str] = {"davenport": "dav", "friedberg": "fr"}
+
 _PREFIX_PRIORITY: dict[str, int] = {
     # `KM#` (no suffix) defaults to the territorial Krause-Mishler register
     # for the location being documented (Schleswig-Holstein for our base).
@@ -985,6 +1002,7 @@ def _apply_catalog_value_marks(
             elif mk.reason is not None:
                 alts.append(mk)
     named = {f for f, _l in _NAMED_FIELDS}
+    unver_keys = {(u.register, str(u.value)) for u in unver}
 
     def plain_group() -> list[str]:
         for prefix, vals, _tip in groups:
@@ -994,8 +1012,23 @@ def _apply_catalog_value_marks(
         groups.append(("", vals, None))
         return vals
 
+    def _norm(v) -> str:
+        # «EC II 3557» (Davenport European Crowns vol. II) and a bare «3557»
+        # are one Davenport number; case is not significant (48c = 48C).
+        return re.sub(r"^EC\s+[IVX]+\s+", "", str(v).strip(), flags=re.I).upper()
+
+    def target_group(register: str) -> tuple[str, list[str]]:
+        # A KM number renders under «KM» or a register-qualified «KM-DK» /
+        # «KM-SH» …; a marked KM joins the class's existing KM group.
+        if register == "km":
+            for prefix, vals, _tip in groups:
+                if prefix == "KM" or prefix.startswith("KM-"):
+                    return prefix, vals
+        return group_for(register)
+
     for a in alts:
-        if a.register not in named:
+        a_reg = _REGISTER_ALIAS.get(a.register, a.register)
+        if a_reg not in named:
             # A register held in `others` («Ernst 1940») renders as a plain
             # «others» line, so its marked number does too: its own line
             # «Ernst 1940# 3-13», keyed «|<line>» for the template.
@@ -1005,7 +1038,19 @@ def _apply_catalog_value_marks(
                 vals.append(line)
             marks[f"|{line}"] = (a.kind, a.reason)
             continue
-        label, vals = group_for(a.register)
+        attested = (a.register, a.value) not in unver_keys and any(
+            _norm(a.value) in {_norm(x) for x in vals}
+            for prefix, vals, _tip in groups
+            if prefix == labels.get(a_reg, "")
+            or (a_reg == "km" and (prefix == "KM" or prefix.startswith("KM-"))))
+        if attested:
+            # Another member of the class carries the same number unmarked:
+            # the attested number wins and the mark is not shown (it stays in
+            # the data). Curator 2026-11-19 — a class that merges two
+            # varieties holds each one's KM, and a member that printed the
+            # other variety's number must not mute the correct one.
+            continue
+        label, vals = target_group(a_reg)
         if a.value not in vals:
             vals.append(a.value)
         marks[f"{label}|{a.value}"] = (a.kind, a.reason)
@@ -1135,12 +1180,16 @@ def _compute_catalog_groups(
         from .schema import KMRef  # avoid circular at module load
         if isinstance(km_raw, list):
             km_items: list[tuple[str, str | None]] = []
+            km_inferred: set[str] = set()
             for item in km_raw:
                 if isinstance(item, KMRef):
                     km_items.append((item.value, item.register))
+                    if item.register_inferred and item.register:
+                        km_inferred.add(item.register)
                 else:
                     km_items.append((str(item), None))
         else:
+            km_inferred = set()
             # Scalar: split on composite "77.1 / 77.2" / "77.1, 77.2"
             km_items = [
                 (p.strip(), None)
@@ -1159,7 +1208,8 @@ def _compute_catalog_groups(
             )
             if qualify and effective_register:
                 prefix = f"KM-{effective_register}"
-                tooltip = _KM_REGISTER_TOOLTIP.get(effective_register)
+                tooltip = (_KM_REGISTER_TOOLTIP_INFERRED if effective_register in km_inferred
+                           else _KM_REGISTER_TOOLTIP).get(effective_register)
                 add(prefix, value, tooltip)
             else:
                 add("KM", value)

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `grafschaft_oldenburg`.
-# Generated 2026-11-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-21 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/grafschaft_oldenburg.yml across all sources.
 #
 # Input: 153 per-source seed entries.
-# Output: 135 unified entries (one per physical coin).
+# Output: 134 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: grafschaft_oldenburg
-generated_at: '2026-11-17'
+generated_at: '2026-11-21'
 coins:
   - id: c-8522ce4c
     class_id: c-8522ce4c
@@ -35,18 +35,10 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 28.41
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1538)
-          value: '1538'
-          seed: dk-bruun-15088
       metal:
         - kind: inferred
           how: from_name
@@ -334,18 +326,10 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 59.05
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1614-1619)
-          value: 1614-1619
-          seed: dk-bruun-15106
       metal:
         - kind: inferred
           how: from_name
@@ -388,18 +372,10 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 29.15
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1614-1619)
-          value: 1614-1619
-          seed: dk-bruun-15107
       metal:
         - kind: inferred
           how: from_name
@@ -442,18 +418,10 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 29.06
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1614-1622)
-          value: 1614-1622
-          seed: dk-bruun-15108
       metal:
         - kind: inferred
           how: from_name
@@ -494,18 +462,10 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 28.78
         source: bruun
     uncertainty:
-      year:
-        - kind: hedged
-          how: attributed
-          source: bruun
-          as_printed: ND (1619-1622)
-          value: 1619-1622
-          seed: dk-bruun-15109
       metal:
         - kind: inferred
           how: from_name
@@ -1904,40 +1864,75 @@ coins:
     issuing_entity: grafschaft_oldenburg
     composed_of:
       - dk-numista-314943
-  - id: c-bb1c85dd
-    class_id: c-bb1c85dd
+  - id: c-0935db33
+    class_id: c-0935db33
     label: unified-dk-numista-314949
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1/6 Thaler
+    nominal: ⅙ Thaler
     year_first: 1761
-    year_last: 1761
-    year_label: '1761'
-    ruler: Frederick V (Friedrich V)
+    year_last: 1765
+    year_ranges:
+      -   - 1761
+          - 1761
+      -   - 1763
+          - 1765
+    year_label: 1761, 1763-1765
+    ruler: Frederick V
+    mint: Oldenburg
     catalog:
-      km: '119'
-      numista: '314949'
+      km:
+        - '119'
+        - '132'
+      numista:
+        - '314949'
+        - '341217'
+      sieg:
+        - '55'
+        - '55.2'
+        - '55.3'
+      hede:
+        - '4'
+        - 4A
+      others:
+        - Jaeg 6 NWD# 18
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.5
         source: numista
+        specimen: dk-numista-314949
+      - value: 0.5
+        source: numista
+        specimen: dk-numista-341217
     weight_rough_g:
+      - value: 5.8
+        source: numista
+        specimen: dk-numista-314949
       - value: 5.85
         source: numista
+        specimen: dk-numista-341217
+    diameter_mm:
+      - value: 24.0
+        source: numista
+        specimen: dk-numista-314949
     sources:
       - type: literature
         url: https://en.numista.com/314949
-        ref: Numista N#314949 — 1/6 Thaler - Frederick V - County of Oldenburg
+        ref: Numista N#314949 — ⅙ Thaler - Frederick V (Bauert portrait; without initials on reverse)
+      - type: literature
+        url: https://en.numista.com/341217
+        ref: Numista N#341217 — 1/6 Thaler - Frederick V of Denmark - County of Oldenburg
     issuing_entity: grafschaft_oldenburg
     composed_of:
       - dk-numista-314949
+      - dk-numista-341217
   - id: c-605b1802
     class_id: c-605b1802
     label: unified-dk-numista-314951
@@ -3074,47 +3069,6 @@ coins:
     issuing_entity: grafschaft_oldenburg
     composed_of:
       - dk-numista-341129
-  - id: c-0935db33
-    class_id: c-0935db33
-    label: unified-dk-numista-341217
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1/6 Thaler
-    year_first: 1763
-    year_last: 1765
-    year_ranges:
-      -   - 1763
-          - 1765
-    year_label: 1763-1765
-    ruler: Frederick V (Friedrich V)
-    catalog:
-      km: '132'
-      numista: '341217'
-      sieg: '55'
-      hede: '4'
-      others:
-        - Jaeg 6 NWD# 18
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.5
-        source: numista
-    weight_rough_g:
-      - value: 5.85
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/341217
-        ref: Numista N#341217 — 1/6 Thaler - Frederick V of Denmark - County of Oldenburg
-    issuing_entity: grafschaft_oldenburg
-    composed_of:
-      - dk-numista-341217
   - id: c-3e53fdef
     class_id: c-3e53fdef
     label: unified-dk-numista-341249

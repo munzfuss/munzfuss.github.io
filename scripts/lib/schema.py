@@ -105,7 +105,9 @@ class UncertainReading(_StrictBase):
     """How and by whom one field's value is uncertain (see Coin.uncertainty).
 
     `kind` hedged: the source gives the value and marks it uncertain itself
-    («ca. 1380», «ND (1607-11)», «U.år (1523?)», «Christian 1?»). `kind`
+    («ca. 1380», «ND (ca. 1496-97)», «U.år (1523?)», «Christian 1?»). A plain
+    dating of an undated coin («ND (1607-11)», «U.år (1611)») is a known year
+    and records nothing (curator 2026-11-19, `uncertainty.plain_dating`). `kind`
     inferred: the source gives no value and the pipeline supplies one (the
     reign of an undated coin, the standard's fineness, a curator window).
     `as_printed` is the source's own text, verbatim; `value` is what the field
@@ -119,6 +121,9 @@ class UncertainReading(_StrictBase):
         # a year a source gives that does not count as attested: a span from a
         # catalogue that never flags undated coins, a museum's dating
         "span", "museum",
+        # the source lists undated pieces beside the dated years («1566,
+        # U.år», Hede): the dated years stand, the undated pieces have none
+        "undated",
         # inferred — the pipeline's basis
         "reign", "other_page", "feud_window", "text_year", "standard",
         "standard_weight", "reign_holstein",
@@ -869,6 +874,9 @@ class KMRef(_StrictBase):
     """
     value: str
     register: str | None = None
+    # True when no source named the volume and it was read off the issuing
+    # entity (lib.km_registers); the tooltip then says so.
+    register_inferred: bool = False
 
 
 class CatalogRefs(_StrictBase):
