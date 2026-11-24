@@ -45,9 +45,33 @@ VOLUMES = {
     3: "URN:NBN:no-nb_digibok_2014050824016",
     4: "URN:NBN:no-nb_digibok_2014050824018",
     5: "URN:NBN:no-nb_digibok_2014050824017",
+    # 6-25: lokalhistoriewiki.no list, checked against the nb.no catalogue API
+    # 2026-11-25 (14, 15 and 25 from the list only). 19 is in two volumes:
+    # 19 = parts 1-3 (1823-1825), 1904 = part 4 (1826).
+    6: "URN:NBN:no-nb_digibok_2014050824014",   # 1775-1777
+    7: "URN:NBN:no-nb_digibok_2009101603026",   # 1778-1780
+    8: "URN:NBN:no-nb_digibok_2014050824015",   # 1781-1784
+    9: "URN:NBN:no-nb_digibok_2014050824013",   # 1785-1788
+    10: "URN:NBN:no-nb_digibok_2014050824019",  # 1789-1792
+    11: "URN:NBN:no-nb_digibok_2014050824012",  # 1793-1796
+    12: "URN:NBN:no-nb_digibok_2014050824004",  # 1797-1799
+    13: "URN:NBN:no-nb_digibok_2010020503014",  # 1800-1803
+    14: "URN:NBN:no-nb_digibok_2014050824011",  # 1804-1808
+    15: "URN:NBN:no-nb_digibok_2014050824006",  # 1808-1811
+    16: "URN:NBN:no-nb_digibok_2014050824007",  # 1812-1813
+    17: "URN:NBN:no-nb_digibok_2014050824005",  # 1814-1817
+    18: "URN:NBN:no-nb_digibok_2014050824009",  # 1818-1822
+    19: "URN:NBN:no-nb_digibok_2014050926010",  # 1823-1825 (19:1-3)
+    1904: "URN:NBN:no-nb_digibok_2014050926009",  # 1826 (19:4)
+    20: "URN:NBN:no-nb_digibok_2008040802005",  # 1829-1833
+    21: "URN:NBN:no-nb_digibok_2021011448521",  # 1834-1837
+    22: "URN:NBN:no-nb_digibok_2008091503008",  # 1838-1839
+    23: "URN:NBN:no-nb_digibok_2008091003012",  # 1839-1843
+    24: "URN:NBN:no-nb_digibok_2012041238001",  # 1844-1847
+    25: "URN:NBN:no-nb_digibok_2009091403004",  # 1848-1849
 }
 API = "https://api.nb.no/catalog/v1"
-USER_AGENT = "Mozilla/5.0 (research; muentzfuesse project; non-commercial scholarly register)"
+USER_AGENT = "Mozilla/5.0 (research; non-commercial scholarly register)"
 SLEEP_SECS = 0.25
 
 
