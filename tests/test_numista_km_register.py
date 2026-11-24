@@ -50,6 +50,43 @@ class TestCountryRegisterParse(unittest.TestCase):
                          ["260", "645 (Denmark)"])
 
 
+class TestIssuerCountryVolume(unittest.TestCase):
+    """A single bare KM on a page Numista files under «Norway» / «Denmark» is in
+    that country's Krause volume when the coin routes to the other kingdom."""
+
+    def _km(self, km, entity, issuer):
+        cat = {"km": km}
+        bns._apply_km_country_register(cat, entity, issuer)
+        return cat.get("km")
+
+    def test_norway_section_on_danish_realm(self):
+        # N#100478, Christian VI Reisedaler 1732-1733: Norway KM 230
+        # (Denmark KM 230 is the 3 Speciedaler 1661).
+        self.assertEqual(self._km("230", "danish_realm", "Norway"), {"nor": "230"})
+
+    def test_denmark_section_on_danish_norway(self):
+        # N#83064, Danish Asiatic Company Piastre 1777: Denmark KM 639.
+        self.assertEqual(self._km("639", "danish_norway", "Denmark"), {"dk": "639"})
+
+    def test_same_volume_untouched(self):
+        self.assertEqual(self._km("230", "danish_norway", "Norway"), "230")
+        self.assertEqual(self._km("640", "danish_realm", "Denmark"), "640")
+
+    def test_bare_list_untouched(self):
+        # N#119248 under «Norway»: «260» is Norway, «645» Denmark — the section
+        # does not name the volume of each member of a bare list.
+        self.assertEqual(self._km(["260", "645"], "danish_realm", "Norway"),
+                         ["260", "645"])
+
+    def test_sh_entity_under_denmark_is_denmark_volume(self):
+        # was undecided until 2026-11-24; see TestDenmarkIssuerOnSHEntity
+        self.assertEqual(self._km("640", "royal_holstein", "Denmark"), {"dk": "640"})
+
+    def test_sections_with_own_numbering_unchanged(self):
+        self.assertEqual(self._km("26", "royal_holstein", "Glückstadt, City of"),
+                         {"glu": "26"})
+
+
 class TestNorwayRegisterIsNotYamlBoolean(unittest.TestCase):
     def test_nor_code(self):
         self.assertEqual(_ENTITY_TO_KM_REGISTER["danish_norway"], "nor")
@@ -64,15 +101,68 @@ class TestNorwayRegisterIsNotYamlBoolean(unittest.TestCase):
 
 
 class TestMergerCrossRegisterSingleKm(unittest.TestCase):
-    def test_single_register_matching_entity_collapses(self):
-        # dk on a danish_realm coin → bare (unchanged behaviour)
+    def test_named_own_register_kept(self):
+        # a member that names the entity's own volume keeps it named, so the
+        # page does not label an attested section «inferred» (2026-11-24)
         km, _ = _merge_km_field([{"id": "x", "catalog": {"km": {"dk": "75"}}}], "danish_realm")
+        self.assertEqual(km, {"dk": "75"})
+
+    def test_bare_own_register_collapses(self):
+        km, _ = _merge_km_field([{"id": "x", "catalog": {"km": "75"}},
+                                 {"id": "y", "catalog": {"km": "75"}}], "danish_realm")
         self.assertEqual(km, "75")
+
+    def test_bare_joins_named_own_register(self):
+        km, _ = _merge_km_field([{"id": "x", "catalog": {"km": {"sh": "130"}}},
+                                 {"id": "y", "catalog": {"km": "130a"}}], "royal_holstein")
+        self.assertEqual(km, {"sh": ["130", "130a"]})
 
     def test_single_register_cross_volume_kept(self):
         # dk on a danish_norway coin → keep the dict (don't drop the register)
         km, _ = _merge_km_field([{"id": "x", "catalog": {"km": {"dk": "479"}}}], "danish_norway")
         self.assertEqual(km, {"dk": "479"})
+
+
+class TestDenmarkIssuerOnSHEntity(unittest.TestCase):
+    """Issuer «Denmark» on an S-H-group entity: bare KM is the Denmark volume,
+    mint Rendsburg the HOLSTEIN-GOTTORP-RENDSBORG section (2026-11-24)."""
+
+    def _apply(self, km, entity, issuer="Denmark", mint="Altona, Schleswig-Holstein"):
+        cat = {"km": km}
+        bns._apply_km_country_register(cat, entity, issuer, mint)
+        return cat["km"]
+
+    def test_altona_bare_goes_to_dk(self):
+        # N#132002-type: Denmark KM 651 struck in Altona
+        self.assertEqual(self._apply("651", "royal_holstein"), {"dk": "651"})
+
+    def test_rendsburg_goes_to_hgr(self):
+        # N#88660: Krause HOLSTEIN-GOTTORP-RENDSBORG KM 6 (MC_66626)
+        self.assertEqual(self._apply("6", "royal_holstein", mint="Rendsburg"), {"hgr": "6"})
+        self.assertEqual(self._apply("5", "royal_holstein", mint=["Rendsburg, Germany"]),
+                         {"hgr": "5"})
+
+    def test_single_base_list_folds(self):
+        self.assertEqual(self._apply(["640", "640.1"], "royal_holstein"),
+                         {"dk": ["640", "640.1"]})
+
+    def test_mixed_base_list_left_as_printed(self):
+        self.assertEqual(self._apply(["260", "645"], "royal_holstein"), ["260", "645"])
+
+    def test_joint_list_with_sh_entity_goes_to_dk(self):
+        # N#132002-type: the seed may sit in royal_holstein while the builder
+        # gives [danish_realm, royal_holstein]; name the volume either way
+        self.assertEqual(self._apply("758", ["danish_realm", "royal_holstein"]),
+                         {"dk": "758"})
+
+    def test_danish_realm_alone_unchanged(self):
+        self.assertEqual(self._apply("758", "danish_realm"), "758")
+
+    def test_other_issuer_on_sh_entity_unchanged(self):
+        self.assertEqual(self._apply("651", "royal_holstein", issuer="Norway"), "651")
+
+    def test_tagged_value_not_overridden(self):
+        self.assertEqual(self._apply("75 (Norway)", "royal_holstein"), {"nor": "75"})
 
 
 if __name__ == "__main__":

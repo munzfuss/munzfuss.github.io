@@ -33,6 +33,41 @@
 # `excludes`.
 
 merges:
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c7h5                # home: royal_holstein  (Hede 5A / 5B, Schou 1, Sieg 47 — Altona, undated 1771 and 1775)
+      - dk-bruun-7983               # home: royal_holstein  (Bruun I lot 1156: «Christian d'Or, ND (1771). Altona Mint … KM-629», Hede 5A)
+      - dk-bruun-7784               # home: royal_holstein  (Bruun I lot 1151: «Christian d'Or, 1775. Altona Mint … KM-629; Hede-5B»)
+      - denmark-numismaster-65971   # home: danish_realm    (MC_65971 DENMARK «KM# 629», rows «ND-1771 W 207», «1775 W 22,721»; mint printed Copenhagen, marked suspect)
+      - ngc-1050443                 # home: danish_realm    (NGC «Denmark Chr(istians) D'or KM# 629», rows «-1771 W» 207, «1775 W» 22,721)
+    reason: |-
+      One coin — Christian VII 1 Christian d'Or, Hede 5 (5A undated 1771, 5B 1775), Krause Denmark KM 629.
+      danskmoent c7h5: «1 Christian d'or, Altona U.år (1771; R), 1775 … I 1771 blev slået 207 stk. uden
+      årstal og i 1775 blev slået 22.721 stk.» («in 1771, 207 pieces were struck without a date and in 1775,
+      22,721 pieces»), 6.681 g, .903. NumisMaster MC_65971 and NGC cuid 1050443 give the same two rows with
+      the same mintages, 6.681 g, .903; Bruun I lots 1151 / 1156 print KM-629 with Hede 5B / 5A. NumisMaster
+      prints the mint as Copenhagen against Hede's and Bruun's Altona — kept on its seed with a «suspect»
+      mint mark, so the class mint stays Altona. NGC and NumisMaster sat as a separate danish_realm final
+      (c-f5aaad22, pistolenfuss), rendered beside the Hede 5 class. Curator 2026-11-24.
+
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c7h36               # home: royal_holstein  (Hede 36, Schou 2, Sieg 13 — Altona 1807, MF)
+      - dk-numista-54934            # home: royal_holstein  (N#54934, KM 661 Denmark, Hede 36, Sieg 13)
+      - denmark-numismaster-65105   # home: royal_holstein  (MC_65105 DENMARK «KM# 661», Altona, 1807 MF)
+      - dk-tid-79557                # home: royal_holstein  (ucoin tid 79557 «KM# 661», Altona, 1807)
+      - ngc-1050288                 # home: danish_realm    (NGC «Denmark 4 Skilling KM# 661», 1807 MF)
+      - kmk-78473                   # home: danish_realm    (KMM 78473, Christian 7, 4 Skilling 1807, H 36, Sch 2)
+    reason: |-
+      One coin — Christian VII 4 Skilling 1807, Altona, Hede 36 (Schou 2, Sieg 13), Krause Denmark KM 661.
+      danskmoent c7h36 prints «4 skilling 1807, Altona … MF», 2.598 g, .250; it is the only 4 Skilling of
+      1806-1808 in our data. NumisMaster MC_65105 «KM# 661 4 Skilling 1807 Altona, 1807 MF», NGC cuid
+      1050288 «Denmark 4 Skilling KM# 661», row «1807 MF»; ucoin tid 79557 «KM# 661», Altona, 1807 (ruler
+      printed «Frederick VI», wrong for 1807 — the curator's 2026-10-22 shell review put it in this class);
+      KMM 78473 gives H 36, Sch 2 on a 4 Skilling 1807 of Christian 7. NGC and KMM print no mint and routed
+      to danish_realm, outside the Altona class. Curator 2026-11-24; replaces the same-entity merge of
+      the first four written earlier that day.
+
   - target_entity: danish_norway
     members:
       - dk-galster-hg-153   # home: danish_norway
@@ -539,6 +574,13 @@ merges:
       - kmk-317575                # KMM, Hede 13, «1 Speciemønt»
       - ngc-1050724                   # home: danish_realm  (NGC, km 654, 1799-1799)
       - dk-bruun-7928                 # Bruun II lot 11295, KM 651.1 + Hede 13A + Sieg 25.1
+      - denmark-numismaster-65502     # home: danish_realm  (MC_65502 DENMARK «KM# 651.1», rows 1795/1797/1801 MF; B = Hede 13A). 2026-11-24
+      - ngc-1050294                   # home: danish_realm  (NGC «Denmark Speciedaler KM# 651.1», 1795/1797/1801 MF; B = Hede 13A). 2026-11-24
+      - denmark-numismaster-65504     # home: danish_realm  (MC_65504 DENMARK «KM# 651.2», rows 1796/1797 CHL; B = Hede 13B). 2026-11-24
+      - ngc-1050697                   # home: danish_realm  (NGC «KM# 651.2», 1796/1797 CHL; B = Hede 13B). 2026-11-24
+      - denmark-numismaster-65505     # home: danish_realm  (MC_65505 DENMARK «KM# 651.3», rows 1798/1799 HIAB; B = Hede 13C). 2026-11-24
+      - ngc-1069043                   # home: danish_realm  (NGC «KM# 651.3», 1798/1799 HIAB; B = Hede 13C). 2026-11-24
+      - dk-tid-79169                  # home: danish_realm  (ucoin tid 79169 «KM# 651», 1795-1801, 28.89 g, .875). 2026-11-24
     excludes:
       # Curator 2026-09-12 — EXCLUDED, deliberately not merged. KMM prints the type as
       # «Hede 13 ell. 39» and the mint as «København ell. Altona»: the museum declines
@@ -551,7 +593,10 @@ merges:
       - kmk-317571
       - kmk-317572
       - kmk-317574
-    reason: 'Curator 2026-06-28: c7h13 «1 Speciedaler» Christian VII 1795-1801 (Altona+Kopenhagen) is ONE coin = Hede 13, catalogued in two Krause volumes — KM 651 (Schleswig-Holstein/German volume, royal_holstein) and KM 654 (Denmark volume, danish_realm km-654/bruun-7940). The DK-volume cluster was bucketed into danish_realm; pull it into royal_holstein (the SH∩Denmark overlap home, so the coin renders on both pages) and union with the Hede-13 cluster. Final keeps the KM provenance split via dict-form km {sh:[651,651.1], dk:[654]} so the two Krause traditions are not conflated (as c5h125).'
+    reason: |-
+      Curator 2026-06-28: c7h13 «1 Speciedaler» Christian VII 1795-1801 (Altona+Kopenhagen) is ONE coin = Hede 13, catalogued in two Krause volumes — KM 651 (Schleswig-Holstein/German volume, royal_holstein) and KM 654 (Denmark volume, danish_realm km-654/bruun-7940). The DK-volume cluster was bucketed into danish_realm; pull it into royal_holstein (the SH∩Denmark overlap home, so the coin renders on both pages) and union with the Hede-13 cluster. Final keeps the KM provenance split via dict-form km {sh:[651,651.1], dk:[654]} so the two Krause traditions are not conflated (as c5h125).
+
+      CORRECTION, curator 2026-11-24: the volume reading above is wrong. KM 651 is NOT a Schleswig-Holstein-section number; Krause numbers this type in the DENMARK volume under both 651 and 654. NumisMaster (country DENMARK) has KM# 651.1 = 1795/1797/1801 «MF; B», 651.2 = 1796/1797 «CHL; B», 651.3 = 1798/1799 «HIAB; B», 654 = 1799 «HIAB; PG» — exactly Hede 13A / 13B / 13C / 13D as danskmoent c7h13 separates them (bagside MF / CHL / HIAB; 13D forside PG); NGC lists the same four as «Denmark Speciedaler». Bruun III lot 11295 prints «DENMARK … KM-651.1; … Hede-13A», Bruun I lot 1155 «DENMARK … KM-654; … Hede-13D». No KM 651 in any other section exists in the NumisMaster or NGC caches. The coin stays one (Hede 13) and stays homed in royal_holstein; its KM is {dk: [651…, 654]}. The seven danish_realm records of KM 651.1-651.3 join; they had sat in three seed_unsorted classes because the bare 651 of the members was read in the S-H section.
   - target_entity: royal_holstein
     members:
       - dk-hede-c7h25
@@ -1044,6 +1089,9 @@ merges:
       - dk-numista-83069
       - dk-bruun-8095               # home: royal_holstein  (Bruun V lot 14211 p. 78, KM 701, Hede 4B, Sieg 33, Schou 2, Altona 1834). Curator 2026-10-18
       - dk-bruun-8074               # home: royal_holstein  (Bruun V lot 14209 p. 78, KM 699, Hede 4A, Sieg 32, Schou 2, 1828, 6.63 g). Already in the class; listed once its metal read gold, 2026-11-10
+      - denmark-numismaster-66099   # home: danish_realm    (NumisMaster MC_66099, DENMARK «KM# 701», rows 1829-1831 / 1833-1835 / 1837-1838 FA//FF, 6.642 g, .896). 2026-11-24
+      - dk-tid-132804               # home: danish_realm    (ucoin tid 132804, «KM# 701», 1829-1838, 6.64 g, .896). 2026-11-24
+      - ngc-1050449                 # home: danish_realm    (NGC cuid 1050449 «Denmark Fr(Ederiks) D'or KM# 701», rows 1829-1838 FA//FF, .896). 2026-11-24
     reason: |-
       One coin — Frederik VI 1 Frederik d'Or, Hede 4 (sub-variants 4A/4B),
       struck 1828 at København and 1829-1838 at Altona.
@@ -1070,6 +1118,8 @@ merges:
       Curator-approved 2026-07-29 (Serhii).
 
       Bruun Part III lot 11303 p. 134 joins the group 2026-09-21: it prints «Fr-287; KM-701; Hede-4B; Sieg-33; Schou-2; Bruun-8101» on an Altona 1835 specimen weighing 6.62 g, so hede 4 / schou 2 / sieg 33 unify it with dk-hede-f6h4b and no field conflicts. It is the only member carrying KM 701 — the 4B side had no KM at all, the rest carry KM 699 for the 1828 København sub-variant. Surfaced when the completeness guard stopped comparing nominals with a whitespace-strip that read «1 Frederik d'Or» and «Frederik d'Or» as different coins. Adding it surfaced dk-numista-83069 on the same KM 701: Numista's own 4B entry, Altona, .896, 6.642 g, years 1829-1831 / 1833-1835 / 1837-1838 — the year set dk-hede-f6h4b prints, exactly. The group already held Numista's 1828 sibling 83067 under KM 699, so it spans 4A and 4B as its first line says.
+
+      Curator 2026-11-24: NumisMaster MC_66099, NGC cuid 1050449 and ucoin tid 132804 join. All three are Krause Denmark KM 701 and print the 4B year set (NumisMaster and NGC rows «1829 FA//FF» … «1838 FA//FF» — medaillør FA, mintmaster FF, exactly danskmoent f6h4 B). They stood as a separate danish_realm class (c-5219f66c) because Numista 83069's bare KM 701 was read in the S-H section; once Numista issuer «Denmark» KMs read in the Denmark volume the completeness guard named them.
 
   # ─────────────────────────────────────────────────────────────────────
   # 2026-07-29 (second batch) — Hede pages whose letters name DIFFERENT
@@ -1626,7 +1676,8 @@ merges:
       - kmk-152145                  # home: royal_holstein  (KMM, Hede 62, Rendsburg)
       - kmk-152146                  # home: royal_holstein  (KMM, Hede 62, Rendsburg)
       - kmk-326011                  # home: royal_holstein  (KMM, Hede 62, 1716-1720)
-      - schleswig_holstein-numismaster-66626  # home: gottorp_duchy (KM 6, .562, 3.898 g)
+      - schleswig_holstein-numismaster-66626  # home: royal_holstein (until 2026-11-24: gottorp_duchy) (KM 6, .562, 3.898 g)
+      - ngc-1051167                 # home: royal_holstein (until 2026-11-24: danish_realm)  (NGC HOLSTEIN-GOTTORP-RENDSBORG KM 6, 1716-1720, .562, 3.898 g)
     reason: |
       One coin — Frederik IV 12 Skilling 1716-1720, Rendsburg. Key: KM 6,
       with fineness .562 and weight 3.898 g identical to the third decimal
@@ -1638,9 +1689,9 @@ merges:
       - dk-hede-f4h63               # home: royal_holstein  (Hede 63, Sieg 58/58.1/58.2, .187, 0.769 g)
       - dk-numista-89702            # home: royal_holstein  (KM 5)
       - dk-tid-169251          # home: royal_holstein  (ucoin, KM 5, .187, 0.76 g)
-      - schleswig_holstein-numismaster-66636  # home: gottorp_duchy (KM 5, .187, 0.769 g)
+      - schleswig_holstein-numismaster-66636  # home: royal_holstein (until 2026-11-24: gottorp_duchy) (KM 5, .187, 0.769 g)
       - dk-bruun-7488                 # Bruun IV lot 17116, KM 5 + Hede 63 + Sieg 58.2
-      - ngc-1051156                 # home: danish_realm  (NGC HOLSTEIN-GOTTORP-RENDSBORG KM 5, 1719-1720 BH small/large monogram, .187, 0.769 g)
+      - ngc-1051156                 # home: royal_holstein (until 2026-11-24: danish_realm)  (NGC HOLSTEIN-GOTTORP-RENDSBORG KM 5, 1719-1720 BH small/large monogram, .187, 0.769 g)
     reason: |
       One coin — Frederik IV 1 Skilling 1719-1720, Rendsburg. Key: KM 5,
       fineness .187 and weight 0.769 g identical on both sides. The metal
@@ -1658,7 +1709,8 @@ merges:
       - dk-bruun-7465               # home: royal_holstein  (KM 8, Fr 226, Bruun II lot 13211 p. 128, 1718)
       - dk-bruun-7481               # home: royal_holstein  (KM 8, Lange 100, 1719)
       - dk-tid-169254          # home: royal_holstein  (ucoin, KM 8, .979, 3.5 g)
-      - schleswig_holstein-numismaster-66632  # home: gottorp_duchy (KM 8, .979, 3.49 g)
+      - schleswig_holstein-numismaster-66632  # home: royal_holstein (until 2026-11-24: gottorp_duchy) (KM 8, .979, 3.49 g)
+      - ngc-1051168                 # home: royal_holstein (until 2026-11-24: danish_realm)  (NGC HOLSTEIN-GOTTORP-RENDSBORG KM 8, 1719, .979, 3.49 g)
     reason: |
       One coin — Frederik IV 1 Dukat 1718-1719, Rendsburg. Key: KM 8, which
       the Bruun lots carry alongside Hede 60; fineness .979 and weight
@@ -1669,7 +1721,8 @@ merges:
     members:
       - dk-hede-f4h61               # home: royal_holstein  (Hede 61, Sieg 60, Schou 2, .979, 1.745 g)
       - dk-tid-169253               # home: royal_holstein  (ucoin, KM 7, 1.75 g)
-      - schleswig_holstein-numismaster-66629  # home: gottorp_duchy (KM 7, .979, 1.745 g)
+      - schleswig_holstein-numismaster-66629  # home: royal_holstein (until 2026-11-24: gottorp_duchy) (KM 7, .979, 1.745 g)
+      - ngc-1050478                 # home: royal_holstein (until 2026-11-24: danish_realm)  (NGC HOLSTEIN-GOTTORP-RENDSBORG KM 7, 1719, .979, 1.745 g)
       - dk-bruun-7482                 # Bruun II lot 13212, KM 7 + Hede 61 + Sieg 60
     reason: |
       One coin — Frederik IV ½ Dukat 1719, Rendsburg. Key: KM 7, with
@@ -3021,6 +3074,7 @@ merges:
       - dk-bruun-8053
       - dk-numista-24424
       - dk-tid-70756
+      - dk-bruun-8045               # home: royal_holstein  (Bruun III lot 11300: «32 Skilling, 1818. Altona … KM-690.1; Hede-29A; Sieg-25.1; Schou-2», 6.13 g, mintmaster Cajus Branth = CB). Curator 2026-11-24
     reason: '32 Rigsbankskilling, Frederik VI, Altona 1818 (CB) and 1820 (IFF) = Hede 29 (danskmoent f6h29) = KM 690.1 / 690.2 = Sieg 25. One coin per §9.4 (KM base 690, Hede 29), split over royal_holstein km-690-2-fr-vi-1820 and two danish_realm classes. Denmark page only, though struck in Altona: no Schilling Courant value, and the duchies would not take Rigsbank coin (Galster 1973, p. 42: «man ikke ville vide af rigsbankmønten»). Curator (Serhii) 2026-11-07.'
   - target_entity: provisional_govt
     issuing_entity: provisional_govt

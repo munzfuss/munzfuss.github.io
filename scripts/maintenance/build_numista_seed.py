@@ -212,11 +212,17 @@ def _resolve_default_entity(canonical: dict[str, Any]) -> str | list[str] | None
     """
     year = canonical.get("year_first")
     mint = canonical.get("mint")
+    issuer = canonical.get("issuer")
+    # A state that had its coin struck at another state's mint is the issuer;
+    # the mint city is only where it was struck (curator 2026-11-24). Numista's
+    # issuer decides for these issuers, the mint stays the coin's mint.
+    iss_ent = classify_issuer_to_entity(issuer) if issuer else None
+    if iss_ent in _ISSUER_OVER_MINT:
+        return iss_ent
     if mint:
         ent = classify_mint_to_entity(mint, year=year)
         if ent is not None:
             return ent
-    issuer = canonical.get("issuer")
     if issuer:
         ent = classify_issuer_to_entity(issuer)
         if ent is not None:
@@ -233,6 +239,27 @@ def _resolve_default_entity(canonical: dict[str, Any]) -> str | list[str] | None
 
 
 _GENERIC_COUNTRIES = frozenset({"german states", "germany"})
+
+# Issuers whose coins Numista files under a mint of ANOTHER state: the issuer
+# decides the entity, not the mint (the rule the ucoin builder already
+# follows — «mint city is not issuer», build_ucoin_seed._resolve_target_entity).
+# Measured 2026-11-24 over the whole Numista cache, every case a coin of the
+# issuer struck elsewhere: Plön Thaler 1761 at Rethwisch (Plön's own mint
+# until the line died out that year; N#41864 = KM 28) and Ducat 1760 at
+# Hamburg (N#222051 = KM 27); Gottorp Thaler 1673-1674 at Hamburg (N#313829 =
+# KM 118, Bruun lot 14417 the same); Bremen 2 Mark 1904 at Hamburg (N#20410,
+# KM 250, mint J); Lauenburg ⅔ Thaler 1830 at Altona (N#31393). NOT for the
+# issuers of one sovereign's several territories — «Denmark», «Norway»,
+# «Danish duchies of Schleswig and Holstein», «Holstein-Schaumburg-Pinneberg»:
+# there the mint and the currency system decide between danish_realm /
+# royal_holstein / royal_slesvig / danish_norway (or Pinneberg / Schaumburg),
+# which is no commission at another state's mint.
+_ISSUER_OVER_MINT = frozenset({
+    "norburg_plon_duchy",
+    "gottorp_duchy",
+    "hanseatic_bremen",
+    "herzogtum_sachsen_lauenburg",
+})
 
 
 _SPACED_DASH = re.compile(r"\s+-\s+")
@@ -255,11 +282,54 @@ def _split_dash_list(value):
     return value
 
 
-def _filter_catalog(refs: dict[str, str] | None) -> dict[str, str]:
-    """Drop keys not in our schema (strict-extra) and split spaced-dash lists."""
+# Numista prints some Hede references with the ruler volume in front and a dot
+# before the sub-letter: «C4 80.C» = Christian IV, Hede 80C (N#307035). The
+# merger already scopes a bare Hede number by the record's ruler, so only the
+# number is kept, in the form every other source gives («80C»). The prefix must
+# name the record's own ruler (C = Christian, F = Frederik, H = Hans, + regnal
+# number); a prefix naming another king is left as printed. A bare «80.C» (no
+# prefix) is the same number.
+_HEDE_RULER_PREFIX_RE = re.compile(
+    r"^(?:(?P<k>[CFH])(?P<n>\d{1,2})?\s+)?(?P<num>\d+)\.(?P<sub>[A-Za-z]{1,2})$")
+_HEDE_PREFIX_KING = {"C": "Christian", "F": "Frederik", "H": "Hans"}
+_ROMAN = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII",
+          8: "VIII", 9: "IX", 10: "X"}
+
+
+def _normalise_hede_value(value, ruler: str | None = None):
+    """«C4 80.C» → «80C» when the prefix names `ruler`; «80.C» → «80C».
+    Anything else (and a list's other members) is returned unchanged."""
+    if isinstance(value, list):
+        out: list = []
+        for v in value:
+            n = _normalise_hede_value(v, ruler)
+            if n not in out:
+                out.append(n)
+        return out
+    if not isinstance(value, str):
+        return value
+    m = _HEDE_RULER_PREFIX_RE.match(value.strip())
+    if not m:
+        return value
+    if m.group("k"):
+        king = _HEDE_PREFIX_KING[m.group("k")]
+        if m.group("n"):
+            king = f"{king} {_ROMAN.get(int(m.group('n')), m.group('n'))}"
+        if (ruler or "").strip() != king:
+            return value
+    return f"{m.group('num')}{m.group('sub').upper()}"
+
+
+def _filter_catalog(refs: dict[str, str] | None,
+                    ruler: str | None = None) -> dict[str, str]:
+    """Drop keys not in our schema (strict-extra), split spaced-dash lists and
+    take the ruler prefix off a Hede number (`_normalise_hede_value`)."""
     if not refs:
         return {}
-    return {k: _split_dash_list(v) for k, v in refs.items() if k in _ALLOWED_CATALOG}
+    out = {k: _split_dash_list(v) for k, v in refs.items() if k in _ALLOWED_CATALOG}
+    if "hede" in out:
+        out["hede"] = _normalise_hede_value(out["hede"], ruler)
+    return out
 
 
 # Country-volume tag Numista appends to a KM when a coin is cross-listed across
@@ -280,37 +350,115 @@ _COUNTRY_TO_KM_REGISTER = {
 # 1640; Denmark KM 26 is the 6 Speciedaler 1604); «Schleswig and Holstein,
 # Danish duchies of» the S-H section (Numista 301630: KM 105 for the
 # Speciedaler 1683 that is Glückstadt KM 73).
+# The other Schleswig-Holstein houses follow Krause's sections the same way
+# (lib.km_registers.KRAUSE_SECTIONS, curator 2026-11-23). Checked 2026-11-23
+# against NumisMaster / NGC records of the named section: of 240 Numista KMs
+# under these issuers, 233 are the same number in that section with
+# overlapping years, the other 7 the same denomination a year or two apart.
+# «Schleswig-Holstein-Norburg-Plön, Duchy of» is NOT mapped: Numista files
+# Plön and Norburg, two Krause sections, under one issuer.
 _ISSUER_TO_KM_REGISTER = {
     "glückstadt, city of": "glu",
+    "city of glückstadt (denmark)": "glu",
     "schleswig and holstein, danish duchies of": "sh",
+    "danish duchies of schleswig and holstein (german states)": "sh",
+    "schleswig-holstein-gottorp, duchy of": "gott",
+    "duchy of schleswig-holstein-gottorp (german states)": "gott",
+    "schleswig-holstein-sonderburg, duchy of": "sond",
+    "county of holstein-schaumburg-pinneberg (german states)": "schpin",
+    "holstein-schaumburg-pinneberg, county of": "schpin",
 }
 
+# Numista's country sections «Denmark» / «Norway» follow Krause's Denmark /
+# Norway volumes. Unlike the sections above they are the ORDINARY volume of
+# most coins filed there, so they only decide when the coin routes to an entity
+# read in the other volume: N#100478, Christian VI 1 Reisedaler 1732-1733 under
+# «Norway», routes to danish_realm by its Copenhagen mint, and its bare «KM 230»
+# is Norway KM 230 (NumisMaster MC_92262; Bruun «KM-539 (Denmark); KM-230
+# (Norway)»), while Denmark KM 230 is the 3 Speciedaler 1661.
+# Two limits, both from the measurement over the whole cache (2026-11-23):
+#   * only between the Denmark and Norway volumes — an S-H entity (royal_holstein)
+#     filed under «Denmark» has its own rule below (_DENMARK_ISSUER);
+#   * only a SINGLE bare KM — Numista lists cross-volume numbers bare side by side
+#     (N#119248 under «Norway»: «260» is Norway, «645» is Denmark KM 645), so the
+#     section does not name the volume of each member of a list.
+_COUNTRY_ISSUER_TO_KM_REGISTER = {
+    "denmark": "dk",
+    "norway": "nor",
+}
+_COUNTRY_VOLUMES = frozenset(_COUNTRY_ISSUER_TO_KM_REGISTER.values())
 
-def _apply_km_country_register(catalog: dict, entity, issuer: str | None = None) -> None:
+# Numista issuer «Denmark» on a coin that routes to a Schleswig-Holstein entity
+# (royal_holstein, by its Altona / Rethwisch / Rendsburg mint): the bare KM is a
+# Krause Denmark-volume number, not an S-H-section one. Checked 2026-11-23
+# against NumisMaster / NGC «DENMARK» records by KM and years: 66 of 68 such
+# records match the Denmark volume. The two exceptions are the Rendsburg pieces
+# (N#88660 KM 6, N#89702 KM 5), which are Krause HOLSTEIN-GOTTORP-RENDSBORG
+# numbers (NumisMaster MC_66626 / MC_66636; Denmark KM 5 / 6 are the Penning
+# 1602) — hence mint Rendsburg → «hgr». A list is folded only when all its
+# numbers share one base («640», «640.1»); a list of different bases may mix
+# volumes (the N#119248 case) and stays as printed.
+_DENMARK_ISSUER = "denmark"
+_RENDSBURG_KM_REGISTER = "hgr"
+_KM_BASE_RE = re.compile(r"([A-Za-z]*\d+)")
+
+
+def _km_single_base(vals) -> bool:
+    bases = set()
+    for v in vals:
+        m = _KM_BASE_RE.match(str(v).strip())
+        if not m:
+            return False
+        bases.add(m.group(1).upper())
+    return len(bases) == 1
+
+
+def _mint_is_rendsburg(mint) -> bool:
+    ms = mint if isinstance(mint, list) else [mint]
+    return any("rendsburg" in str(m or "").lower() for m in ms)
+
+
+def _apply_km_country_register(catalog: dict, entity, issuer: str | None = None,
+                                mint=None) -> None:
     """Fold Numista's «<km> (<Country>)» volume tags into the register-keyed dict
     form ``{register: km}`` the schema uses for cross-volume KMs (KMRef). A bare
-    (untagged) value takes the coin's own entity register. In place; a no-op
-    unless some km value carries a parenthetical tag, and left untouched entirely
-    if any tag names a country we don't map (e.g. «(OM)») or a bare value has no
+    (untagged) value takes the Krause section of the Numista issuer when it has
+    one (`_ISSUER_TO_KM_REGISTER`), or the country volume of the issuer when that
+    differs from the entity's own volume (`_COUNTRY_ISSUER_TO_KM_REGISTER`, a
+    single bare value between the Denmark and Norway volumes only), or — issuer
+    «Denmark» on an S-H-group entity — the Denmark volume («hgr» for mint
+    Rendsburg; `_DENMARK_ISSUER`), else the coin's own entity register. In place; a no-op when every value is
+    bare and in the entity's own volume, and left untouched entirely if any tag
+    names a country we don't map (e.g. «(OM)») or a bare value has no
     resolvable register."""
     km = catalog.get("km")
     if km is None:
         return
     vals = km if isinstance(km, list) else [km]
-    issuer_reg = _ISSUER_TO_KM_REGISTER.get((issuer or "").strip().lower())
+    iss = (issuer or "").strip().lower()
+    issuer_reg = _ISSUER_TO_KM_REGISTER.get(iss)
+    # _ENTITY_TO_KM_REGISTER is the single source of truth for entity→volume.
+    from lib.km_registers import ENTITY_TO_KM_REGISTER as _ENTITY_TO_KM_REGISTER
+    reg_entity = entity[0] if isinstance(entity, list) else entity
+    own_reg = _ENTITY_TO_KM_REGISTER.get(reg_entity)
+    country_reg = _COUNTRY_ISSUER_TO_KM_REGISTER.get(iss)
+    if (issuer_reg is None and country_reg and own_reg in _COUNTRY_VOLUMES
+            and country_reg != own_reg and isinstance(km, str)
+            and "(" not in km):
+        issuer_reg = country_reg
+    from lib.km_registers import match_group as _match_group
+    if (issuer_reg is None and iss == _DENMARK_ISSUER
+            and any(_match_group(_ENTITY_TO_KM_REGISTER.get(e)) == "sh"
+                    for e in (entity if isinstance(entity, list) else [entity]))
+            and not isinstance(km, dict)
+            and not any("(" in str(v) for v in vals) and _km_single_base(vals)):
+        issuer_reg = (_RENDSBURG_KM_REGISTER if _mint_is_rendsburg(mint)
+                      else _COUNTRY_ISSUER_TO_KM_REGISTER[_DENMARK_ISSUER])
     if not any("(" in str(v) for v in vals):
         if issuer_reg and not isinstance(km, dict):
             catalog["km"] = {issuer_reg: km}
         return
-    # _ENTITY_TO_KM_REGISTER is the single source of truth for entity→volume —
-    # imported lazily (only fires for the rare cross-listed coin).
-    import sys as _sys
-    _md = str(Path(__file__).resolve().parent)
-    if _md not in _sys.path:
-        _sys.path.insert(0, _md)
-    from merge_seeds_cross_source import _ENTITY_TO_KM_REGISTER
-    reg_entity = entity[0] if isinstance(entity, list) else entity
-    entity_reg = issuer_reg or _ENTITY_TO_KM_REGISTER.get(reg_entity)
+    entity_reg = issuer_reg or own_reg
     reg_dict: dict[str, list] = {}
     for v in vals:
         s = str(v).strip()
@@ -465,7 +613,8 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
     fineness = composition.get("fineness")
 
     catalog: dict[str, Any] = {"numista": str(nid)}
-    catalog.update(_filter_catalog(canonical.get("references")))
+    catalog.update(_filter_catalog(canonical.get("references"),
+                                   _resolve_ruler(canonical.get("kings"))))
 
     cid = f"dk-numista-{nid}"
 
@@ -541,7 +690,8 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
         entry["_entity_routing_hint"] = hint
     # Fold any «<km> (<Country>)» Krause-volume tag into the register-keyed km
     # form now that the entity (→ default register for bare values) is known.
-    _apply_km_country_register(entry["catalog"], routed_ent, canonical.get("issuer"))
+    _apply_km_country_register(entry["catalog"], routed_ent, canonical.get("issuer"),
+                               canonical.get("mint"))
     # _source_note candidate (Phase-1, commit 80a1b62): «obverse / reverse»
     # descriptions joined, cleaned + language-tagged (en) for the later note-
     # selector. Non-schema (underscore) → stripped before the strict Coin schema

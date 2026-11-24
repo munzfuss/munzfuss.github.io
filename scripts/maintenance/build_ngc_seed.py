@@ -190,14 +190,21 @@ _KM_VOLUME_BY_SCOPE = {"denmark": "dk", "norway": "nor"}
 # the heading names them after the country word («Denmark GLÜCKSTADT 1/16
 # Speciedaler KM# 26»). Their KM is NOT in the Denmark volume — Denmark KM 26
 # is the 6 Speciedaler 1604 (NGC 1050248, NumisMaster 65594). GLÜCKSTADT has
-# its own register (lib.km_registers «glu»). Any other sub-section
-# (HOLSTEIN-GOTTORP-RENDSBORG, whose KM 5-8 collide with Glückstadt 5-8)
-# keeps a bare KM.
-_SUBSECTION_RE = re.compile(r"^(?:Denmark|Norway)\s+([A-ZÄÖÜÆØÅ][A-ZÄÖÜÆØÅ\-]{2,})\s")
-_KM_VOLUME_BY_SUBSECTION = {"GLÜCKSTADT": "glu"}
+# its own register (lib.km_registers «glu»), and so does every Krause section
+# of a Schleswig-Holstein house, whether NGC files it under «Denmark»
+# («Denmark HOLSTEIN-GOTTORP-RENDSBORG», KM 5-8 colliding with Glückstadt 5-8)
+# or under «German States» («German States SCHLESWIG-HOLSTEIN-GOTTORP»)
+# (lib.km_registers.KRAUSE_SECTIONS, curator 2026-11-23). Any other
+# sub-section keeps a bare KM.
+_SUBSECTION_RE = re.compile(
+    r"^(?:Denmark|Norway|German States)\s+([A-ZÄÖÜÆØÅ][A-ZÄÖÜÆØÅ\-]{2,})\s")
+from lib.km_registers import KRAUSE_SECTIONS as _KM_VOLUME_BY_SUBSECTION  # noqa: E402
 # …and its issuer: the royal Holstein coinage struck at Glückstadt, as
 # NumisMaster's country GLÜCKSTADT is routed (build_numismaster_seed).
-_ENTITY_BY_SUBSECTION = {"GLÜCKSTADT": "royal_holstein"}
+# HOLSTEIN-GOTTORP-RENDSBORG: Frederik IV's coinage at Rendsburg 1716-1720
+# (Hede 60-63), royal_holstein by the curator's 2026-07-29 ruling.
+_ENTITY_BY_SUBSECTION = {"GLÜCKSTADT": "royal_holstein",
+                         "HOLSTEIN-GOTTORP-RENDSBORG": "royal_holstein"}
 
 
 def _subsection(heading: str | None) -> str | None:

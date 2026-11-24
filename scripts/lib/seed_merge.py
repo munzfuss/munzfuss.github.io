@@ -531,6 +531,31 @@ def _drop_bare_superseded_by_letter(v, fresh_v):
     return out[0] if len(out) == 1 else out
 
 
+_RULER_PREFIXED_DOT_RE = re.compile(r"[CFH]\d{0,2}\s+(\d+)\.([A-Za-z]{1,2})")
+
+
+def _drop_prefixed_superseded(v, fresh_v):
+    """A ruler-prefixed dotted reading «C4 80.C» is dropped when the fresh
+    reading gives the same number in plain form «80C» — the same re-reading
+    case as `_drop_bare_superseded_by_letter`. Numista prints some Hede numbers
+    that way (N#307035); once the builder reduced it to «80C» the union held
+    `['80C', 'C4 80.C']` and the stale form stood beside the number as a second
+    index (2026-11-23). Only a prefixed value whose plain form the FRESH
+    reading gives is dropped."""
+    if not isinstance(v, list):
+        return v
+    fr = {str(x).strip().upper()
+          for x in (fresh_v if isinstance(fresh_v, list) else [fresh_v])
+          if isinstance(x, (str, int))}
+
+    def _stale(x) -> bool:
+        m = _RULER_PREFIXED_DOT_RE.fullmatch(str(x).strip()) if isinstance(x, str) else None
+        return bool(m) and f"{m.group(1)}{m.group(2)}".upper() in fr
+
+    out = [x for x in v if not _stale(x)]
+    return out[0] if len(out) == 1 else out
+
+
 def _drop_bare_superseded_by_cf(v):
     """«cf. X» supersedes a bare «X» in the same catalogue field.
 
@@ -779,8 +804,10 @@ def merge_one(
                         ex_v[sub_k] = sub_v
                     elif sub_k in _list_cap:
                         ex_v[sub_k] = _drop_bare_superseded_by_cf(
-                            _drop_bare_superseded_by_letter(
-                                _union_cat_values(ex_v[sub_k], sub_v), sub_v))
+                            _drop_prefixed_superseded(
+                                _drop_bare_superseded_by_letter(
+                                    _union_cat_values(ex_v[sub_k], sub_v), sub_v),
+                                sub_v))
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue

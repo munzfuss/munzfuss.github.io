@@ -34,14 +34,17 @@ ENTITY_TO_KM_REGISTER: dict[str, str] = {
     "erik_gotland": "dk",
     # Gotlandic coin struck at Visby («gullandsk mønt») — Denmark volume.
     "gotland": "dk",
-    # SH territory — Krause «German States — Schleswig-Holstein»
+    # SH territory — Krause «German States» numbers each Schleswig-Holstein
+    # house in a section of its own (KRAUSE_SECTIONS below). The royal
+    # duchies are the section «Schleswig-Holstein» («sh»); every other house
+    # entity is read in its own section. norburg_plon_duchy holds two sections
+    # (Plön and Norburg), so a bare number there has no section to be read in.
     "royal_holstein": "sh",
-    "gottorp_duchy": "sh",
-    "schauenburg_pinneberg": "sh",
-    "sonderburg_duchy": "sh",
-    "norburg_plon_duchy": "sh",
-    "glucksburg_duchy": "sh",
-    "rantzau_county": "sh",
+    "gottorp_duchy": "gott",
+    "schauenburg_pinneberg": "schpin",
+    "sonderburg_duchy": "sond",
+    "glucksburg_duchy": "gluecksb",
+    "rantzau_county": "rantz",
     "provisional_govt": "sh",
     "holstein_schauenburg_county": "sh",
     # Other German entities — each has its own Krause volume, keep
@@ -50,6 +53,7 @@ ENTITY_TO_KM_REGISTER: dict[str, str] = {
     "hanseatic_hamburg": "de-hh",
     "hanseatic_lubeck": "de-hl",
     "erzbisthum_bremen_verden": "de-bv",
+    "hanseatic_bremen": "de-hb",
     "herzogtum_braunschweig_lueneburg": "de-bl",
     "herzogtum_sachsen_lauenburg": "de-sl",
     "grafschaft_oldenburg": "de-old",
@@ -70,7 +74,63 @@ ENTITY_TO_KM_REGISTER: dict[str, str] = {
 # section (Hede 120 = Glückstadt KM 73 = S-H KM 105), so it is neither «dk»
 # nor «sh». No entity reads a bare number in it: only a source that names the
 # section writes it.
-_DISPLAY = {"dk": "DK", "nor": "NO", "sh": "SH", "glu": "GLÜ"}
+_DISPLAY = {"dk": "DK", "nor": "NO", "sh": "SH", "glu": "GLÜ",
+            "hgr": "HGR", "gott": "GOTT", "sond": "SOND", "ploen": "PLÖN",
+            "norb": "NORB", "gluecksb": "GLÜCKSB", "rantz": "RANTZ",
+            "schpin": "SCHPIN"}
+
+
+# Krause's own sections for the Schleswig-Holstein houses, by the heading the
+# sources print (NumisMaster country, NGC «German States <SECTION>» /
+# «Denmark <SECTION>»). Each numbers from 1 on its own, and the numbers collide
+# (KM 5: Plön Thaler 1625, Norburg Thaler 1676, Gottorp 1/16 Thaler 1594-1605,
+# Sonderburg 2 Schilling 1618, Glückstadt Denning 1619, Rendsborg Skilling
+# 1719-1720). Curator 2026-11-23: a register per section.
+KRAUSE_SECTIONS: dict[str, str] = {
+    "SCHLESWIG-HOLSTEIN": "sh",
+    "GLÜCKSTADT": "glu",
+    "GLUCKSTADT": "glu",
+    "HOLSTEIN-GOTTORP-RENDSBORG": "hgr",
+    "SCHLESWIG-HOLSTEIN-GOTTORP": "gott",
+    "SCHLESWIG-HOLSTEIN-SONDERBURG": "sond",
+    "SCHLESWIG-HOLSTEIN-PLOEN": "ploen",
+    "SCHLESWIG-HOLSTEIN-NORBURG": "norb",
+    "SCHLESWIG-HOLSTEIN-GLUCKSBURG": "gluecksb",
+    "RANTZAU": "rantz",
+    "SCHAUMBURG-PINNEBERG": "schpin",
+}
+
+# Matching group of a register. The merger compares every number of the
+# group under one scope key («km/sh»), so a bare number whose section the
+# source does not name (ucoin, Bruun, Hede, KMM) still meets the same number
+# written in a named section; two NAMED sections that differ never match
+# (merge_seeds_cross_source._km_section_conflict).
+KM_MATCH_GROUP: dict[str, str] = {code: "sh" for code in set(KRAUSE_SECTIONS.values())}
+
+# Entities in the group with no section of their own (several sections).
+_ENTITY_GROUP_ONLY: dict[str, str] = {"norburg_plon_duchy": "sh"}
+
+
+def match_group(register: str | None) -> str | None:
+    """The scope a register is compared under: «gott» → «sh», «dk» → «dk»."""
+    if not register:
+        return None
+    r = str(register).strip().lower()
+    return KM_MATCH_GROUP.get(r, r)
+
+
+def entity_match_scope(entity) -> str | None:
+    """The scope a BARE KM of this entity is compared under."""
+    ent = entity[0] if isinstance(entity, list) else entity
+    reg = ENTITY_TO_KM_REGISTER.get(ent or "")
+    if reg:
+        return match_group(reg)
+    return _ENTITY_GROUP_ONLY.get(ent or "")
+
+
+def is_named_section(register: str | None) -> bool:
+    """True for a register that is one of Krause's S-H sections."""
+    return bool(register) and str(register).strip().lower() in KM_MATCH_GROUP
 
 
 def display_register(code: str | None) -> str | None:

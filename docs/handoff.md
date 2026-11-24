@@ -16,6 +16,52 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-24 — Rendsborg routing (B) and Numista «Denmark» KMs on S-H entities (A) (same branch, local, unpushed)
+
+- **Shipped:** d2cd5c5 + 617563b (B: NGC / NumisMaster Rendsborg records route to royal_holstein, no final change);
+  A: Numista issuer «Denmark» on an S-H-group entity → `{dk: …}`, mint Rendsburg → `{hgr: …}` (68 seeds), with
+  three curator-approved group additions it surfaced — KM 701 (Hede 4), KM 651 (Hede 13, the 2026-06-28 «KM 651 =
+  S-H volume» reading corrected in the group reason), KM 661 (Hede 36 merge for ucoin 79557). Detail:
+  `docs/plans/km_numista_denmark_and_hgr_routing.md` §«A — DONE».
+- **Follow-up done the same day:** ucoin `period` → Krause section (86 seeds); Bruun left as printed (Altona lots mix
+  volumes); fragments joined — Hede 36 (NGC 1050288, KMM 78473), Hede 29 (Bruun 8045), Hede 5 (NumisMaster 65971 +
+  NGC 1050443, NumisMaster's «Copenhagen» marked suspect).
+- **Then:** 0419216 Glückstadt 1/8 Speciedaler 1665 (KM 55) — two finals in two Fuße become one, 9_25_thaler I
+  scheide (classification decision on Hede 151); merger/absorb keep a KM volume a member names (1197 finals change
+  shape only, values identical) — the false «inferred» tooltip is gone from 312 rows; 6 genuinely inferred remain
+  (Norway 250 / 243, Rantzau 1 / 2, Schpin 130 — all verified).
+- **Also 2026-11-24:** Numista issuer decides over mint for Plön, Gottorp, Bremen, Lauenburg (a coin struck at another
+  state's mint belongs to the issuer — curator); Plön Thaler 1761 / Ducat 1760 and Gottorp Thaler 1673 joined their
+  finals; Bremen 2 Mark 1904 moved from hanseatic_hamburg to hanseatic_bremen, and the German Empire page now consumes
+  hanseatic_bremen 1871-1914 (Bremen has no state page); six Bremen medals excluded as exonumia.
+- **Bremen city (2026-11-24):** location `bremen` created, listed `unpublished` in the munzfuss profile (validated,
+  not rendered — publish by removing the id); ucoin's 104 city coins moved off the archbishopric page into
+  hanseatic_bremen (66 joined Numista classes), KM register de-hb. KM tooltips now say «розділ» / Abschnitt /
+  section for Krause Denmark / Norway / Schleswig-Holstein. Separate German-entity Krause registers NOT added:
+  no cross-section merges measured, and ucoin's «Duchy of Brunswick-Lüneburg» is ambiguous (Calenberg / Celle).
+- **Open:** the merged KM 55 row shows nominal «⅛ Thaler» (Numista) where Hede has «6 Skilling Lybsk», coin «VIII
+  EINEN REICHS DALER»; five .812 fractions (1/16 Speciedaler 1658-1680) sit in 9_thaler II by the 2026-05-29
+  automatic placement, which that phase's text does not cover; Plön Thaler 1761 (c-92d54f70, KM 28 PLOEN) routed to
+  royal_holstein (seed_unsorted); marker.km_sh wording.
+
+## 2026-11-23 — Numista builder fixes + Krause S-H section registers (branch claude/focused-euclid-55f15c on top of blissful-kirch, local, unpushed)
+
+- **Shipped:** a24acea Numista Hede «C4 80.C» → «80C» (+ seed_merge `_drop_prefixed_superseded`) and a single bare KM
+  in the issuer's country volume (Norway ↔ Denmark only); 22a7978 data; 29bdc05 catalog hold on Numista 100478
+  dropped (builder gives `{nor: 230}`); 71f8930 V1 «KM-DK# 6» off the Rendsburg 12 Skilling final; dd1986b
+  per-section KM registers for Krause's S-H sections (hgr, gott, sond, ploen, norb, gluecksb, rantz, schpin beside
+  sh / glu; named sections that differ never match, bare meets any section of group «sh»); data commit after it
+  (928 seeds, NGC Rendsborg 1051167 / 1051168 / 1050478 into Hede 62 / 60 / 61, km-8-fr-iv-1718 released as an
+  empty duplicate, five KMM stub citations off Hede 62).
+- **Open (curator):** 39 royal_holstein Numista records under issuer «Denmark» with Denmark-volume KMs (603–757),
+  still read as sh; German-entity Krause sections (Brunswick lines, Hesse-Cassel, Oldenburg, Bremen) not split —
+  only Numista issuer names seen, verify against NGC first; HGR records still routed danish_realm (NGC) /
+  gottorp_duchy (NumisMaster) though the curator's 2026-07-29 ruling makes them royal_holstein; marker.km_sh
+  still says «volume Schleswig-Holstein» though sh is now Krause's SCHLESWIG-HOLSTEIN section.
+- **Seen, not done:** 14 665 hidden citations of scope-dropped KMM stubs on 433 finals of not-yet-rebuilt Fuße
+  (class B1, removed by the per-Fuß rebuild); full Numista re-seed drift (308265 km 287, 40843 sieg 6, 427643
+  hede 2, mint_verified flips) unexplained; «KM-FR#68» in Bruun `others` on the Portugaløser Hede 9.
+
 ## 2026-11-23 — Hede-base review groups 1-9 done, absorb departed-member purge (branch claude/blissful-kirch-7b7be3, local, unpushed)
 
 - **Shipped:** de27b64 absorb stale purge takes every member of a vanished class (+ volume-keyed catalogue

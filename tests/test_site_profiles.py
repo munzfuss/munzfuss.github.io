@@ -116,6 +116,13 @@ class ShippedProfiles(unittest.TestCase):
         self.assertFalse(set(m.all_except) - set(d.locations),
                          "a location munzfuss drops must be published somewhere")
 
+    def test_unpublished_is_dropped_but_must_exist(self):
+        """A page being prepared: in the data, rendered by no site yet."""
+        p = _profile(locations=None, all_except=[], unpublished=["b"])
+        self.assertEqual(p.resolve_locations(["a", "b", "c"]), ["a", "c"])
+        with self.assertRaises(SiteProfileError):
+            _profile(locations=None, all_except=[], unpublished=["gone"]).resolve_locations(["a"])
+
     def test_only_the_danish_site_renders_danish(self):
         """Danish exists for this one page. Switching it on for munzfuss too
         would put a language with no prose behind it on twelve German pages,

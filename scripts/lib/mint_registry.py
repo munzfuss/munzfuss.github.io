@@ -366,7 +366,10 @@ _MINT_REGISTRY: dict[str, dict] = {
         # ran as a BRANCH of the Copenhagen mint 1769-70 (Christian VII
         # Speciedaler). So the flat `royal_holstein` default reflects only the
         # POST-1761 crown coinage; the 1761 Plön issue (Friedrich Karl) seeds by
-        # ITS issuer → norburg_plon_duchy and never relies on this mint entity.
+        # ITS issuer → norburg_plon_duchy (NGC / NumisMaster by their Plön
+        # section; Numista by `build_numista_seed._ISSUER_OVER_MINT` since
+        # 2026-11-24 — before that N#41864 landed in royal_holstein by this
+        # mint).
         # (Corrected 2026-07-08 — was wrongly «royal Holstein after 1640».)
         # Source: de.wikipedia.org/wiki/Münze_zu_Rethwisch.
         # Spelling variants across sources, all for the SAME 1769 Christian

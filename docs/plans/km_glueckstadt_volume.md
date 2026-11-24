@@ -143,3 +143,12 @@ verdict.
 - ngc-101324 (KM 103 Krone) vs Hede 121: merge-candidate table.
 - c-e9e00fad carries mint «Kopenhagen» that no member gives (all say
   Rethwisch) — same stale self-union pattern, check separately.
+
+## Follow-up 2026-11-23 — every S-H Krause section its own register
+
+Curator: «так, і для інших у яких власний розділ у Краузе». Done in dd1986b
+(code) + the data commit after it: sections from NGC / NumisMaster headings
+and checked Numista issuers; matching group «sh» replaces
+`_KM_MATCH_SCOPE = {glu: sh}`, with `_km_section_conflict` vetoing two
+different named sections on the same number (Glückstadt KM 5 vs Rendsborg
+KM 5). German-entity sections left for a later pass.

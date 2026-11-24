@@ -5830,3 +5830,17 @@ removals:
     field: km
     dropped: ['152']
     reason: 'Curator (Serhii) 2026-11-22 (orphan-KM review, split of c-75de49c6, «так»): final c-75de49c6 now holds only IKMK 18299820 (3 Kreuzer 1620, Unbestimmte Kippermünzstätte, cf. Welter 1320) and kept KM 152 by self-union. The number is ucoin 190603''s, which sits in c-835ca0ae; IKMK 18299820 gives no KM.'
+  - seed: dk-numista-307035
+    kind: field
+    field: hede
+    dropped: [C4 80.C]
+    reason: 'Curator (Serhii) 2026-11-23 («Так, записуй»): Numista N#307035 prints Hede as «C4 80.C» (Christian IV volume, dot before the sub-letter). The builder now reduces it to the plain «80C» (commit a24acea), which the class c-0e5dc1f1 already holds; the prefixed string was the same number in Numista''s print form, not a second index.'
+  - seed: dk-numista-88660
+    kind: field
+    field: others
+    dropped: ['KM-DK# 6']
+    reason: 'Curator (Serhii) 2026-11-23 («Так, прибери»): Frederik IV 12 Skilling 1716-1720, Rendsburg (Hede 62, final km-x010-fr-iv-1716). «KM-DK# 6» came from the V1 bootstrap note («KM-DK# 6 (Royal Danish)», 214f991), carried by no seed and kept only by the final''s self-union. KM 6 is the number of Krause''s own HOLSTEIN-GOTTORP-RENDSBORG section (NumisMaster MC_66626, NGC cuid 1051167); Denmark KM 6 is the Penning 1602.'
+  - final: km-8-fr-iv-1718
+    kind: empty_duplicate
+    hosts: [c-3497e7be]
+    reason: 'Curator (Serhii) 2026-11-23 («прибери порожнє якщо буде»): V1 foundation «1 Ducat 1719 Kopenhagen», danish_realm reichsdukatenfuss/III, whose only member was NGC 1051168 (Denmark HOLSTEIN-GOTTORP-RENDSBORG Ducat KM# 8, .979, 3.49 g) — the Frederik IV Ducat 1718-1719 of Rendsburg, Hede 60. NGC 1051168 joins the royal_holstein Hede 60 group (_cross_entity.yml); its citations Bruun II lot 13211 and ucoin 169254 are members there. Its bruun_collection_id 7367 is printed nowhere in the Bruun catalogues (lot 13211 is Bruun-7465).'

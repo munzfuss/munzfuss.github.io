@@ -146,7 +146,8 @@ coins:
     year_label: '1787'
     mint: Altona
     catalog:
-      km: '116'
+      km:
+        sh: '116'
       numista: '35000'
       sieg:
         - '34'
@@ -229,7 +230,8 @@ coins:
     year_label: '1787'
     mint: Altona
     catalog:
-      km: '118'
+      km:
+        sh: '118'
       numista: '33159'
       lange: '147'
       sieg:
@@ -424,7 +426,8 @@ coins:
     year_label: 1809, 1812
     mint: Altona
     catalog:
-      km: '150'
+      km:
+        sh: '150'
       numista: '61491'
       sieg: '8'
       hede: '16'
@@ -2042,7 +2045,8 @@ coins:
     year_label: '1771'
     mint: Altona
     catalog:
-      km: '625'
+      km:
+        dk: '625'
       numista: '320054'
       bruun_collection_id: '7779'
       hede_volume: c7h
@@ -3558,7 +3562,8 @@ coins:
     year_label: '1719'
     mint: Rendsburg
     catalog:
-      km: '7'
+      km:
+        hgr: '7'
       hede: '61'
       sieg: '60'
       bruun_collection_id:
@@ -3572,11 +3577,14 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
       - value: 0.979
         source: numismaster
       - value: 0.979
@@ -3586,6 +3594,8 @@ coins:
         source: bruun
       - value: 1.745
         source: hede
+      - value: 1.745
+        source: ngc
       - value: 1.745
         source: numismaster
       - value: 1.75
@@ -3603,6 +3613,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_66629
         ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-holstein-gottorp-rendsborg-1-2-ducat-km-7-1719-cuid-1050478-duid-1239897
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: ½ Ducat 1719-BH · explizit als <i>Schleswig-Holstein</i>-Prägung deklariert · Rendsburger Münze unter Münzmeister BH
       en: ½ Ducat 1719-BH · explicitly declared as a <i>Schleswig-Holstein</i> issue · Rendsburg mint under mintmaster BH
@@ -5197,7 +5210,8 @@ coins:
     year_label: 1623-1625
     mint: Glückstadt
     catalog:
-      km: '79'
+      km:
+        sh: '79'
       hede_volume: c4h
       schou:
         - '67'
@@ -6303,9 +6317,8 @@ coins:
     year_label: 1716-1720
     mint: Rendsburg
     catalog:
-      km: '6'
-      others:
-        - KM-DK# 6
+      km:
+        hgr: '6'
       hede: '62'
       hede_volume: f4h
       schou:
@@ -6326,6 +6339,8 @@ coins:
       - value: 0.562
         source: hede
       - value: 0.562
+        source: ngc
+      - value: 0.562
         source: numismaster
       - value: 0.562
         source: numista
@@ -6336,6 +6351,8 @@ coins:
         source: kmk
       - value: 3.898
         source: hede
+      - value: 3.898
+        source: ngc
       - value: 3.898
         source: numismaster
       - value: 3.898
@@ -6837,6 +6854,29 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/353005
         ref: KMM 353005 (Inv. FP 5085.2)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-holstein-gottorp-rendsborg-12-skilling-km-6-1716-1720-cuid-1051167-duid-1239892
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740635
+        ref: KMM 740635 (Inv. FP 410.65)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740636
+        ref: KMM 740636 (Inv. FP 410.64)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740627
+        ref: KMM 740627 (Inv. FP 410.73)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740628
+        ref: KMM 740628 (Inv. FP 410.72)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740629
+        ref: KMM 740629 (Inv. FP 410.71)
+        display: false
     note:
       de: 12 Skilling Frederiks IV. von Dänemark · interimistische Prägung für die besetzten Gottorpschen Lande 1716–1720 (siehe km-x008). ucoin-Periode «Holstein-Gottorp-Rendsburg» — eine eigene 
         Münzstätten-Angabe fehlt in den Quellen. <b>KM-DK# 6</b> (Royal Danish). Mittel-Scheidemünze (12 Sk = 1/8 Speciedaler) bei Feingehalt .562. ucoin-Eintrag tid 169252; in Numista nicht 
@@ -9029,12 +9069,16 @@ coins:
       - value: 0.25
         source: hede
       - value: 0.25
+        source: ngc
+      - value: 0.25
         source: numismaster
       - value: 0.25
         source: ucoin
     weight_rough_g:
       - value: 2.598
         source: hede
+      - value: 2.598
+        source: ngc
       - value: 2.598
         source: numismaster
       - value: 2.6
@@ -9059,6 +9103,16 @@ coins:
       - type: literature
         url: https://en.numista.com/54934
         ref: Numista N#54934 — 4 Skilling Dansk - Christian VII
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78473
+        ref: KMM 78473 (Inv. GP 678.137)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-skilling-km-661-1807-cuid-1050288-duid-1236674
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159731
+        ref: KMM 159731 (Inv. FP 3931.86)
+        display: false
     note:
       de: Gekröntes Königsmonogramm. / Wert und Jahreszahl in fünf Zeilen, darunter das Müntzzeichen.
       en: Crowned King's monogram. / Value and date on five lines; mintmark below.
@@ -9121,7 +9175,8 @@ coins:
           seed: dk-bruun-7931
     mint: Altona
     catalog:
-      km: '135'
+      km:
+        sh: '135'
       hede:
         - '40'
         - 40A
@@ -9305,9 +9360,10 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '130'
-        - 130a
-        - 130b
+        sh:
+          - 130a
+          - '130'
+          - 130b
       hede:
         - '41'
         - 41A
@@ -9988,8 +10044,9 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        dk: '699'
-        sh: '701'
+        dk:
+          - '699'
+          - '701'
       hede:
         - 4A
         - 4B
@@ -10024,8 +10081,16 @@ coins:
         specimen: dk-hede-f6h4b
       - value: 0.896
         source: ngc
+        specimen: ngc-1050449
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1060682
       - value: 0.896
         source: numismaster
+        specimen: denmark-numismaster-66098
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66099
       - value: 0.896
         source: numista
         specimen: dk-numista-83067
@@ -10034,6 +10099,10 @@ coins:
         specimen: dk-numista-83069
       - value: 0.896
         source: ucoin
+        specimen: dk-tid-132803
+      - value: 0.896
+        source: ucoin
+        specimen: dk-tid-132804
     weight_rough_g:
       - value: 6.6
         source: bruun
@@ -10043,6 +10112,10 @@ coins:
         source: bruun
       - value: 6.64
         source: ucoin
+        specimen: dk-tid-132803
+      - value: 6.64
+        source: ucoin
+        specimen: dk-tid-132804
       - value: 6.642
         source: hede
         specimen: dk-hede-f6h4a
@@ -10051,8 +10124,16 @@ coins:
         specimen: dk-hede-f6h4b
       - value: 6.642
         source: ngc
+        specimen: ngc-1050449
+      - value: 6.642
+        source: ngc
+        specimen: ngc-1060682
       - value: 6.642
         source: numismaster
+        specimen: denmark-numismaster-66098
+      - value: 6.642
+        source: numismaster
+        specimen: denmark-numismaster-66099
       - value: 6.642
         source: numista
         specimen: dk-numista-83067
@@ -10060,6 +10141,9 @@ coins:
         source: numista
         specimen: dk-numista-83069
     diameter_mm:
+      - value: 23.0
+        source: ucoin
+        specimen: dk-tid-132804
       - value: 23.5
         source: numista
         specimen: dk-numista-83069
@@ -10068,6 +10152,7 @@ coins:
         specimen: dk-numista-83067
       - value: 24.0
         source: ucoin
+        specimen: dk-tid-132803
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h4.htm
@@ -10096,6 +10181,18 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 14211, p. 78
+      - type: literature
+        url: https://numismaster.com/MC_66099
+        ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dor-1829-1838/?tid=132804
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-frederiks-dor-km-701-1829-1838-cuid-1050449-duid-1238374
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-d-or-1829-1838/?tid=132804
+        ref: ucoin
     note:
       de: Kopf König Frederik VI. nach links; Graveursignatur am Halsabschnitt. / Gekröntes großes Wappen von Dänemark und seinen Territorien, teilt den Wert zu den Seiten. Darunter die Jahreszahl, an
         den Seiten von den Müntzmeisterinitialen geteilt.
@@ -10126,7 +10223,8 @@ coins:
     year_label: '1853'
     mint: Altona
     catalog:
-      km: '757'
+      km:
+        dk: '757'
       hede: '2'
       hede_volume: f7h
       schou: '2'
@@ -10282,9 +10380,23 @@ coins:
       -   - 1775
           - 1775
     year_label: 1771, 1775
+    mint_alts:
+      - value: Kopenhagen
+        source: numismaster
+        kind: suspect
+        reason:
+          de: Münzstätte fraglich. NumisMaster (MC_65971) gibt «Copenhagen» («København») an; danskmoent (Hede 5) nennt «1 Christian d'or, Altona», Bruun Part I (Lose 1151 und 1156) «Altona Mint» 
+            («Münzstätte Altona»). Prägezahlen (207 ohne Jahr 1771, 22.721 im Jahr 1775), Gewicht und Feingehalt stimmen bei beiden überein.
+          en: Mint doubtful. NumisMaster (MC_65971) gives «Copenhagen»; danskmoent (Hede 5) gives «1 Christian d'or, Altona», Bruun Part I (lots 1151 and 1156) «Altona Mint». Mintages (207 undated in 
+            1771, 22,721 in 1775), weight and fineness agree in both.
+          uk: Місце карбування сумнівне. NumisMaster (MC_65971) подає «Copenhagen» («København»); danskmoent (Hede 5) — «1 Christian d'or, Altona», Bruun Part I (лоти 1151 і 1156) — «Altona Mint» 
+            («монетний двір Altona»). Наклади (207 без року в 1771, 22 721 у 1775), вага і проба в обох збігаються.
+          da: Møntsted tvivlsomt. NumisMaster (MC_65971) angiver «Copenhagen» («København»); danskmoent (Hede 5) angiver «1 Christian d'or, Altona», Bruun Part I (lot 1151 og 1156) «Altona Mint» 
+            («Altona møntsted»). Oplag (207 uden årstal i 1771, 22.721 i 1775), vægt og finhed stemmer overens i begge.
     mint: Altona
     catalog:
-      km: '629'
+      km:
+        dk: '629'
       hede:
         - '5'
         - 5A
@@ -10306,16 +10418,25 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.903
         source: hede
+      - value: 0.903
+        source: ngc
+      - value: 0.903
+        source: numismaster
     weight_rough_g:
       - value: 6.67
         source: bruun
       - value: 6.681
         source: hede
+      - value: 6.681
+        source: ngc
+      - value: 6.681
+        source: numismaster
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h5.htm
@@ -10326,6 +10447,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1156, p. 191
+      - type: literature
+        url: https://numismaster.com/MC_65971
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-christians-dor-km-629-1771-1775-cuid-1050443-duid-1238195
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Christian d'Or 1775 Hede-5B · Untervariante zur Erst-Emission KM-629 Hede-5A; erste Goldprägung nach Vereinigung Holsteins 1773
       en: Christian d'Or 1775 Hede-5B · sub-variant of the initial issue KM-629 Hede-5A; first gold issue after the 1773 unification of Holstein
@@ -10900,78 +11027,6 @@ coins:
     composed_of:
       - c-9c278826
     label: unified-dk-hede-f3h145a
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: scheide
-    nominal: 6 Skilling Lybsk
-    fraction: 1/16
-    ruler: Frederik III.
-    issuing_entity: royal_holstein
-    id: c-7195f0d5
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 1/8 Reichsdaler (6 Skilling Lybsk)
-          value: billon
-          seed: dk-bruun-6485
-    mint: Glückstadt
-    catalog:
-      km: '55'
-      hede: '151'
-      hede_volume: f3h
-      schou: 51-52
-      sieg: '152'
-      bruun_collection_id: '6485'
-      lange: '66'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.812
-        source: hede
-    weight_rough_g:
-      - value: 3.57
-        source: hede
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h151.htm
-        ref: danskmoent.dk (Hede f3h151)
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11229, p. 102
-      - type: numista
-        url: https://en.numista.com/204200
-        ref: Numista
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
-        ref: ucoin
-    note:
-      de: 'Vorderseite: Porträt, Rückseite: Wertangabe »VIII EINEN REICHSDALER« (= 1/8 Reichsthaler). Mit Müntzmeisterzeichen.'
-      en: "Obverse: portrait; reverse: value statement 'VIII EINEN REICHSDALER' (= 1/8 Reichsthaler). With a mintmaster's mark."
-      uk: 'Аверс: портрет; реверс: позначення номіналу «VIII EINEN REICHSDALER» (= 1/8 Reichsthaler). Зі знаком монетного майстра.'
-      da: 'Forside: portræt, bagside: værdiangivelse: VIII EINEN REICHSDALER (= 1/8 rigsdaler).'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 10.076
-      unit: speciedaler
-      basis: fin
-      unit_raw: daler
-    composed_of:
-      - c-7195f0d5
-    label: unified-dk-hede-f3h151
     origin: promoted
   - fuss: reichsdukatenfuss
     phase:
@@ -12712,10 +12767,11 @@ coins:
     mint: Altona
     catalog:
       km:
-        - '138.1'
-        - '138.3'
-        - '138.2'
-        - '138.5'
+        sh:
+          - '138.3'
+          - '138.1'
+          - '138.5'
+          - '138.2'
       hede:
         - '39'
         - 39A
@@ -13020,7 +13076,8 @@ coins:
       - Altona
       - Poppenbüttel
     catalog:
-      km: '120'
+      km:
+        sh: '120'
       hede: '45'
       hede_volume: c7h
       schou:
@@ -13970,7 +14027,8 @@ coins:
     year_label: 1718-1719
     mint: Rendsburg
     catalog:
-      km: '8'
+      km:
+        hgr: '8'
       hede: '60'
       hede_volume: f4h
       schou: '1'
@@ -13984,11 +14042,14 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.979
         source: hede
+      - value: 0.979
+        source: ngc
       - value: 0.979
         source: numismaster
       - value: 0.979
@@ -14000,6 +14061,8 @@ coins:
         source: bruun
       - value: 3.49
         source: hede
+      - value: 3.49
+        source: ngc
       - value: 3.49
         source: numismaster
       - value: 3.5
@@ -14020,6 +14083,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17115, p. 60
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-holstein-gottorp-rendsborg-ducat-km-8-1718-1719-cuid-1051168-duid-1239898
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 1 Dukat Frederiks IV. von Dänemark · interimistische Goldprägung für die besetzten Gottorpschen Lande 1718–1719 (siehe km-x008). ucoin-Periode «Holstein-Gottorp-Rendsburg (1716–1720)» — eine
         eigene Münzstätten-Angabe fehlt in den Quellen. <b>KM-DK# 8</b> (Royal Danish). Glückstadt-Praxisstandard .979 (vs. nominaler Reichsdukatenfuß-Norm .986). ucoin-Eintrag tid 169254; in Numista 
@@ -14074,8 +14140,9 @@ coins:
     mint: Altona
     catalog:
       km:
-        - 154a
-        - '154'
+        sh:
+          - '154'
+          - 154a
       hede:
         - '30'
         - 30C
@@ -14258,7 +14325,8 @@ coins:
           seed: dk-bruun-8047
     mint: Altona
     catalog:
-      km: '152'
+      km:
+        sh: '152'
       hede:
         - '31'
         - 31B
@@ -14777,7 +14845,8 @@ coins:
           seed: dk-bruun-7488
     mint: Rendsburg
     catalog:
-      km: '5'
+      km:
+        hgr: '5'
       hede: '63'
       hede_volume: f4h
       schou:
@@ -15855,7 +15924,8 @@ coins:
           seed: dk-bruun-7877
     mint: Altona
     catalog:
-      km: '124'
+      km:
+        sh: '124'
       bruun_collection_id: '7877'
       sieg:
         - '37'
@@ -16004,7 +16074,8 @@ coins:
     year_label: '1818'
     mint: Altona
     catalog:
-      km: '689'
+      km:
+        dk: '689'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -16284,7 +16355,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '600'
+      km:
+        dk: '600'
       numista: '131337'
       dav: EC III 1302
       sieg: '18'
@@ -16533,9 +16605,9 @@ coins:
       - c-5e81b057
     label: unified-dk-numista-181803
     origin: promoted
-  - fuss: 9_thaler
-    phase: II
-    kind: kurant
+  - fuss: 9_25_thaler
+    phase: I
+    kind: scheide
     nominal: ⅛ Thaler
     ruler: Frederik III.
     issuing_entity: royal_holstein
@@ -16544,6 +16616,14 @@ coins:
     year_first: 1665
     year_last: 1665
     year_label: '1665'
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: bruun
+          as_printed: 1/8 Reichsdaler (6 Skilling Lybsk)
+          value: billon
+          seed: dk-bruun-6485
     mint: Glückstadt
     catalog:
       km:
@@ -16551,6 +16631,10 @@ coins:
       numista: '204200'
       lange: '66'
       bruun_collection_id: '6485'
+      hede: '151'
+      hede_volume: f3h
+      schou: 51-52
+      sieg: '152'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -16560,6 +16644,8 @@ coins:
     verified: false
     fineness:
       - value: 0.812
+        source: hede
+      - value: 0.812
         source: ngc
       - value: 0.812
         source: numismaster
@@ -16568,6 +16654,8 @@ coins:
       - value: 0.812
         source: ucoin
     weight_rough_g:
+      - value: 3.57
+        source: hede
       - value: 3.57
         source: ngc
       - value: 3.57
@@ -16597,6 +16685,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-1-8-speciedaler-km-55-1665-cuid-1063133-duid-1239818
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h151.htm
+        ref: danskmoent.dk (Hede f3h151)
     note:
       de: '⅛ Reichs Daler Friedrichs III. · Obverse römische Büste «FRIDERIC : 3 : D:G: DA : NOR : VA : GOT : REX»; Reverse «MONETA · NOVA · GLVCKSTADENSIS» — «VIII EINEN REICHS DALER · 1665». Glückstadter
         Theilstück im 9¼-Fuß bei reduziertem Feingehalt .812.'
@@ -16613,6 +16704,11 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
       da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    hede_muentzfuss_yield:
+      value: 10.076
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
     composed_of:
       - c-30b93dd0
     label: unified-dk-numista-204200
@@ -16774,48 +16870,6 @@ coins:
     composed_of:
       - c-708f86ad
     label: unified-dk-numista-398134
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Thaler
-    ruler: Frederick Charles
-    issuing_entity: royal_holstein
-    id: c-92d54f70
-    year_first: 1761
-    year_last: 1761
-    year_label: '1761'
-    mint: Rethwisch
-    catalog:
-      km: '28'
-      numista: '41864'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/41864
-        ref: Numista N#41864 — 1 Thaler - Frederick Charles
-    note:
-      de: Kleines Brustbild nach rechts. / Kleine Krone über verziertem Wappen in Zweigen, teilt die Jahreszahl.
-      en: Small bust right. / Small crown over ornate arms amid sprays, dividing the date.
-      uk: Мале погруддя праворуч. / Мала корона над оздобленим гербом серед гілок, розділяє дату.
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-92d54f70
-    label: unified-dk-numista-41864
     origin: promoted
   - fuss: seed_unsorted
     phase: numismaster
@@ -17529,8 +17583,8 @@ coins:
     mint: Glückstadt
     catalog:
       km:
-        - '85'
-        - '9'
+        glu: '9'
+        sh: '85'
       hede: '167'
       hede_volume: c4h
       schou: 36-48
@@ -20544,10 +20598,12 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        dk: '654'
-        sh:
-          - '651.1'
+        dk:
+          - '654'
           - '651'
+          - '651.1'
+          - '651.2'
+          - '651.3'
       hede:
         - '13'
         - 13A
@@ -20603,10 +20659,32 @@ coins:
         specimen: dk-hede-c7h13d
       - value: 0.875
         source: ngc
+        specimen: ngc-1050294
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050697
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050724
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1069043
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65502
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65504
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65505
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65508
       - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
       - value: 28.79
         source: kmk
@@ -20614,6 +20692,8 @@ coins:
         source: bruun
       - value: 28.87
         source: bruun
+      - value: 28.89
+        source: ucoin
       - value: 28.893
         source: hede
         specimen: dk-hede-c7h13a
@@ -20628,13 +20708,35 @@ coins:
         specimen: dk-hede-c7h13d
       - value: 28.893
         source: ngc
+        specimen: ngc-1050294
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050697
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050724
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1069043
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-65502
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-65504
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-65505
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-65508
       - value: 28.9
         source: numista
     diameter_mm:
       - value: 40.0
         source: numista
+      - value: 40.05
+        source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_65508
@@ -20702,6 +20804,21 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148165
         ref: KMM 148165 (Inv. KP 1656.2148)
+      - type: literature
+        url: https://numismaster.com/MC_65504
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65505
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.1-1795-1801-cuid-1050294-duid-1237529
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.2-1796-1797-cuid-1050697-duid-1237532
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.3-1798-1799-cuid-1069043-duid-1237534
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 'Speciedaler 1795-1801 · späte Christian-VII.-Speciedaler-Serie (Kopenhagen + Altona) · vier Stempelvarianten nach Hede 13A-D unter KM-654 zusammengefaßt: 13A 1795, 1797, 1801; 13B 1796-97; 13C
         1798-99; 13D 1799 (Bruun-Specimen). Anm.: N#131730 (KM 640, «Albertsdaler» 1781-1796) gehört nicht hierher (Hede c7h22) und wurde aus den Katalogverweisen entfernt.1 (Schleswig-Holstein/deutsch)
@@ -20999,8 +21116,9 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '635.1'
-        - '635'
+        dk:
+          - '635'
+          - '635.1'
       hede:
         - '28'
         - 28A
@@ -21217,7 +21335,8 @@ coins:
     year_label: 1659-1660
     mint: Glückstadt
     catalog:
-      km: '92'
+      km:
+        sh: '92'
       dav: '3674'
     metal: silver
     metal_verified: true
@@ -21250,7 +21369,8 @@ coins:
     year_last: 1664
     year_label: '1664'
     catalog:
-      km: '98'
+      km:
+        sh: '98'
       dav: '3673'
     metal: silver
     metal_verified: true
@@ -21292,7 +21412,8 @@ coins:
           value: '1670'
           seed: ngc-101329
     catalog:
-      km: '100'
+      km:
+        sh: '100'
       dav: '3676'
     metal: silver
     metal_verified: true
@@ -21506,7 +21627,8 @@ coins:
           - 1790
     year_label: 1788-1790
     catalog:
-      km: '138.4'
+      km:
+        sh: '138.4'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -24943,49 +25065,6 @@ coins:
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 32 Skilling
-    ruler: Frederik VI
-    mintmaster: Cajus Branth
-    issuing_entity: royal_holstein
-    id: c-5cd784ac
-    year_first: 1818
-    year_last: 1818
-    year_label: '1818'
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: bruun
-          as_printed: 32 Skilling
-          value: billon
-          seed: dk-bruun-8045
-    mint: Altona
-    catalog:
-      km: '690.1'
-      hede: 29A
-      sieg: '25.1'
-      bruun_collection_id: '8045'
-      schou: '2'
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 6.13
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11300, p. 132
-    composed_of:
-      - c-5cd784ac
-    label: unified-dk-bruun-8045
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
     nominal: ¼ Speciedaler
     ruler: Frederik VI
     mintmaster: Johan Friedrich Freund
@@ -25143,7 +25222,8 @@ coins:
       - Altona
       - Poppenbüttel
     catalog:
-      km: '128'
+      km:
+        sh: '128'
       hede: '42'
       hede_volume: c7h
       schou:
@@ -25277,7 +25357,8 @@ coins:
       - Altona
       - Poppenbüttel
     catalog:
-      km: '126'
+      km:
+        sh: '126'
       hede: '43'
       hede_volume: c7h
       schou:
@@ -27242,6 +27323,48 @@ coins:
     composed_of:
       - c-423e85c8
     label: unified-ngc-1063138
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Thaler
+    ruler: Frederick Charles
+    issuing_entity: royal_holstein
+    id: c-92d54f70
+    year_first: 1761
+    year_last: 1761
+    year_label: '1761'
+    mint: Rethwisch
+    catalog:
+      km: '28'
+      numista: '41864'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/41864
+        ref: Numista N#41864 — 1 Thaler - Frederick Charles
+    note:
+      de: Kleines Brustbild nach rechts. / Kleine Krone über verziertem Wappen in Zweigen, teilt die Jahreszahl.
+      en: Small bust right. / Small crown over ornate arms amid sprays, dividing the date.
+      uk: Мале погруддя праворуч. / Мала корона над оздобленим гербом серед гілок, розділяє дату.
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
+        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
+        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    composed_of:
+      - c-92d54f70
+    label: unified-dk-numista-41864
     origin: promoted
   - fuss: 9_25_thaler
     phase: I

@@ -2134,6 +2134,10 @@ def main():
         print(f"❌ Site profile: {exc}")
         sys.exit(1)
     apply_site(site)
+    # A location the site lists as `unpublished` is never rendered, but a
+    # --validate-only run checks it with the rest, so a page being prepared
+    # cannot carry a schema error into the day it is published.
+    load_scope = site_scope | (set(site.unpublished) if args.validate_only else set())
     print(f"🌐 Site: {site.id} ({len(site_scope)} location(s), "
           f"mount={site.mount}, landing={site.landing}) → "
           f"{site.out_dir}/ · {site.origin}")
@@ -2191,7 +2195,7 @@ def main():
         location_filter = [s.strip() for s in args.location.split(",") if s.strip()]
         # A --location outside the site's scope would otherwise resolve to
         # zero locations and exit 0 — a build that looks like it worked.
-        off_site = [lid for lid in location_filter if lid not in site_scope]
+        off_site = [lid for lid in location_filter if lid not in load_scope]
         if off_site:
             print(f"❌ --location {', '.join(off_site)} is not part of site "
                   f"'{site.id}' (scope: {', '.join(sorted(site_scope))})")
@@ -2207,7 +2211,7 @@ def main():
     if build_v2:
         print("📦 Loading V2 entity-keyed locations...")
         v2_locations = load_v2_locations(filter_id=location_filter,
-                                        scope=site_scope)
+                                        scope=load_scope)
         print(f"   V2 locations: {len(v2_locations)} "
               f"({', '.join(l.id for l in v2_locations)})")
     print()
