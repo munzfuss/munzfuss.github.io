@@ -1,0 +1,53 @@
+id: bremen
+name:
+  de: Bremen
+  en: Bremen
+  uk: Bremen
+summary:
+  de: Freie Hansestadt Bremen — Münzprägung der Stadt Bremen, vom Erzbisthum Bremen-Verden zu unterscheiden. Die Reichswährungsmünzen ab 1871 erscheinen auch auf der Seite Deutsches Reich.
+  en: Free Hanseatic City of Bremen — the coinage of the city of Bremen, distinct from the Archbishopric of Bremen-Verden. The Reich-currency coins from 1871 also appear on the German Empire page.
+  uk: Вільне ганзейське місто Bremen — карбування міста Bremen, відмінне від Архієпископства Бремен-Верден. Монети Reichswährung з 1871 року показані також на сторінці Німецької імперії.
+consumes_entities:
+  - hanseatic_bremen
+fuss_order:
+  - reichsgoldmuenzfuss
+  - seed_unsorted
+fuss_periods:
+  seed_unsorted:
+    pdate_label:
+      de: Bulk-Seed-Sammelbucket — Geltungsbereich pro Münze noch zuzuweisen
+      en: Bulk seed bucket — period of validity to be assigned per coin
+      uk: Bulk-seed загальний кошик — період дії потрібно призначити per coin
+    hintergrund:
+      de: Technischer Sammelbucket für bulk-importierte Münzen aus Numista. Bei künftiger Detail-Bearbeitung wandern die Stücke in den jeweils passenden eigentlichen Müntzfuß.
+      en: Technical catch-all bucket for bulk-imported coins from Numista. On future detailed work the pieces will move to their proper Münzfuß.
+      uk: Технічний загальний кошик для bulk-імпортованих монет із Numista. При майбутній детальній роботі монети перейдуть у відповідну Müntzfuß.
+phases:
+  reichsgoldmuenzfuss:
+    - id: I
+      year_from: 1871
+      year_to: 1914
+      from_label: '1871'
+      to_label: '1914'
+      title:
+        de: 'Reichswährung 1871–1914'
+        en: 'Reich currency 1871–1914'
+        uk: 'Імперська валюта 1871–1914'
+      description:
+        de: 'Reichseinheitliche Mark-Währung: Gold 5/10/20 Mark als Kurant nach dem Reichsgoldmünzfuß, Silber 2/3/5 Mark und Kupfer-Nickel als Scheidemünze. Geltung bis zur Goldsuspendierung 1914.'
+        en: 'Reich-wide Mark currency: gold 5/10/20 Mark as Kurant on the Reichsgoldmünzfuß, silver 2/3/5 Mark and copper-nickel as Scheidemünze. In force until the gold suspension of 1914.'
+        uk: 'Загальноімперська марка: золото 5/10/20 Mark як Kurant за Reichsgoldmünzfuß, срібло 2/3/5 Mark і мідно-нікель як Scheidemünze. Чинна до призупинення золота 1914.'
+  seed_unsorted:
+    - id: numista
+      year_from: 1559
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · Numista
+        en: Bulk seed · Numista
+        uk: Bulk-seed · Numista
+      description:
+        de: 'Sammelperiode für die aus Numista bulk-importierten Stücke — user-edited Münzkatalog. Die Werte sind noch nicht einzeln gegen die Primärquellen verifiziert.'
+        en: 'Catch-all period for coins bulk-imported from Numista — user-edited coin catalogue. The values are not yet individually verified against the primary sources.'
+        uk: 'Збірний період для монет, bulk-імпортованих з Numista — користувацький каталог монет. Значення ще не звірені поодинці з первинними джерелами.'
