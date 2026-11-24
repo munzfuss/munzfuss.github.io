@@ -12,15 +12,15 @@
 > København on 27 May 1873**, ratified 21 June, announced 26 June 1873; Norway accedes by the
 > additional convention of **16 October 1875** (from 1 April 1876). **Excluded:** the making of
 > the reform (commissions of 1872, the Rigsdag's debates), the Nationalbank and note
-> convertibility, the output of the mint, the later amendments of the convention, Iceland, the
+> convertibility, the mint's output by year (the total 1873–1914 is given), the later amendments of the convention, Iceland, the
 > Færøerne and the West Indies beyond the dates named, everything after 1876.
 
-**Score (research-dossier rubric, self-assessed 2026-11-24): 8/10.** C1 scope 2/2 · C2 parameters
+**Score (research-dossier rubric, self-assessed 2026-11-24): 8,5/10.** C1 scope 2/2 · C2 parameters
 2/2 · C3 instruments 1,5/2 (the law and the three conventions in full text; the executing
 Bekendtgørelser of 1874–76 only by title from a register) · C4 provenance 1/1 · C5 open questions
-1/1 · C6 recomputation 0,5/2 (figures recomputed; of the texts, Algreen-Ussing S. 294, 295, 296,
+1/1 · C6 recomputation 1/2 (figures recomputed; of the texts, Algreen-Ussing S. 294, 295, 296,
 298, 299, 519 and Traktater s. 363, 384, 396, 458, 459 read on the page image, the rest from the
-text layer; no output figures in hand). Commit: `55ee23a`.
+text layer; the output total 1873–1914 from Statistisk Aarbog 1914, image-read and recomputed; no yearly series). Commit: `55ee23a`.
 
 ## 1. Identification
 
@@ -288,6 +288,29 @@ Gold besides: at most 5 g on each lot of 10 kg of Møntguld (0,5 ‰). Bronze: n
 | 1 Apr 1876 | the convention extends to Norway | Traktater II nr. 71 |
 | 1 Oct 1876 | the older silver ceases | Anordning 17 March 1876 (title) |
 
+### 4.5 Output and melting, 1 April 1873 – 31 March 1914 (Statistisk Aarbog 1914, Tabel 84, s. 98; page image read)
+
+| Coin | Struck, pieces | Struck, Kroner | Melted, pieces | Melted, Kroner |
+|---|---|---|---|---|
+| 20 Kroner | 3 695 452 | 73 909 040,00 | 371 | 7 420,00 |
+| 10 Kroner | 1 695 169 | 16 951 690,00 | 1 835 | 18 350,00 |
+| 2 Kroner | 5 738 535 | 11 477 070,00 | 87 243 | 174 486,00 |
+| 1 Krone | 6 225 388 | 6 225 388,00 | 52 830 | 52 830,00 |
+| 25 Øre | 21 448 049 | 5 362 012,25 | 4 819 613 | 1 204 903,25 |
+| 10 Øre | 38 685 061 | 3 868 506,10 | 3 197 726 | 319 772,60 |
+| 5 Øre | 12 539 571 | 626 978,55 | 407 180 | 20 359,00 |
+| 2 Øre | 45 755 684 | 915 113,68 | 905 294 | 18 105,88 |
+| 1 Øre | 71 819 229 | 718 192,29 | 324 356 | 3 243,56 |
+| **Total** | **207 602 138** | **120 053 990,87** | **9 796 448** | **1 819 470,29** |
+
+Every row recomputes (pieces × face value = Kroner) and both totals add up. The gold struck —
+90 860 730 Kroner — holds 36 637,4 kg fine (÷ 2 480, as computed). The table has **no row for
+50 Øre or 40 Øre**: none was struck at the royal mint in these forty-one years. The same table
+gives the last year, 1 April 1913 – 31 March 1914: 311 904 ten-Krone pieces, 2 015 624 pieces of
+25 Øre, 2 128 000 of 10 Øre, 1 000 591 of 5 Øre, 2 498 986 of 2 Øre, 5 011 462 of 1 Øre
+(12 966 567 pieces, 3 985 869,89 Kroner). A cumulative table of the mint, by fiscal year
+1 April – 31 March; the yearly series is not in it.
+
 ### ⚠ Source-internal discrepancies and recomputation checks
 
 | # | Where | What is printed | What the other passage or the recomputation gives | Status |
@@ -305,8 +328,10 @@ The law names none («i hvilket Møntværksted»); § 12 forbids leasing. The Be
 23 Aug 1873 gives the mint mark of the gold as a heart with the mintmaster's initials.
 Instructions for the Guardein and the Møntmester of Den kongelige Mønt i København were issued on
 17 July 1873 (nr. 201, 202; titles only). By the law of 6 Nov 1874 (nr. 142, title only) the
-mint's exclusive right to melt gold and silver ended. Persons and output: not in the sources in
-hand.
+mint's exclusive right to melt gold and silver ended. Output: § 4.5. Persons: not read in a source in hand — Wilcke V, Andet Afsnit, names them (seen
+only as search snippets of the 2024 reprint, not usable); Christensen's register gives for 1876
+«Entledigelse af den kst. møntdirektør» and for 1893 «Konstitution af møntmester», «Udnævnelse
+af møntmester» (Ministerialtidende B, titles only).
 
 ## 6. Antecedent and successor instruments
 
@@ -335,9 +360,9 @@ Seed-keyed look at `data/v2/final/danish_realm.yml` (2026-11-24); no data change
 | `c-3e43ba00` | 10 Øre 1914–19, silver | `kronefod` I · **kurant** | Skillemønt by § 1 |
 | `c-12918331`, `c-f17de056`, `c-d82add67`, `c-e21dfb11`, `c-e841f620`, `c-061f4134` | 1, 2, 5 Øre bronze to 1912 | `kronefod` I · scheide | agrees |
 | `c-9ab34539`, `c-8c788610`, `c-f34cb585` | 1, 2, 5 Øre 1913–23, bronze | `kronefod` I · **kurant** | Skillemønt by § 1, § 6 |
-| `c-c44ca616`, `c-0e947a9e` | 25 Øre «1913–1919», «1914–1919», copper-nickel | `kronefod` I · scheide | the law of 1873 knows silver and bronze only; the act that allowed copper-nickel and the years are not in the sources read |
+| `c-c44ca616`, `c-0e947a9e` | 25 Øre «1913–1919», «1914–1919», copper-nickel | `kronefod` I · scheide | the law of 1873 knows silver and bronze only; copper-nickel Skillemønt comes with Lov nr. 179 of 1 May 1920 (Christensen's register) — metal or years of these records to check |
 | `c-8abfd07e`, `c-d8df0bb2`, `c-b9bb94e4` (NGC) and 39 classes in `seed_unified` | Kroner / Øre 1873–1914 | `seed_unsorted` | belong to the same law; not classified |
-| — | 50 Øre, 40 Øre | no record | allowed by § 5; whether struck is not known from the sources read |
+| — | 50 Øre, 40 Øre | no record | allowed by § 5; not struck 1873–1914 (§ 4.5) — agrees |
 
 Card and timeline: `fuesse.yml::kronefod` — `grundwerte.subheading` «Lov nr. 66 af 23. maj 1873
 om Mønten» (the prints: «Møntlov»); `fineness_display` «800 ‰ Silber (1/2 Kr) → 600 ‰ (25 øre)»
@@ -348,10 +373,14 @@ the first gold. `dk_kronefod_1873_research.md` carries the same «5 May 1873 (St
 
 ## 8. Open questions
 
-1. **Output and the mint's persons 1873–1914** — Wilcke V, Andet Afsnit; the mint director's
-   reports (Ministerialtidende B 1874 S. 185, 1875 S. 235).
-2. **Were the 50 and 40 Øre struck?** The law allows them; our data has none. Hede's Christian IX
-   list or Wilcke V.
+1. **Output by year and the mint's persons 1873–1914** — the total is in § 4.5; the yearly
+   series is in Wilcke V, Andet Afsnit (table «Udmøntningen 1873–1914», no free scan found
+   2026-11-24) or can be built from the «last year» column of Statistisk Aarbog 1896–1914
+   (slaegtsbibliotek.dk) and, for 1873–95, the mint's yearly reports in Ministerialtidende B. The
+   mint director's report for 1873–74 is excerpted in Nationaløkonomisk Tidsskrift 1874, p. 462 ff.
+   (Google Books, not cached).
+2. **50 and 40 Øre** — not struck 1873–1914 (§ 4.5). Why the law carries them is not in a source
+   read (a snippet of Wilcke V: the 40 Øre was kept for Norway's sake — to verify).
 3. **The Bekendtgørelser of 1874–76 in text** — Lovtidende 1874–76 or Algreen-Ussing's volumes
    for those years: the exact wording of the date of 1 Jan 1875, the Øre designs, the calling-in
    of the Rigsmønt (which coins on which date).
@@ -362,7 +391,11 @@ the first gold. `dk_kronefod_1873_research.md` carries the same «5 May 1873 (St
    Galster 1973 and Salmonsen) — not read; relevant to the Norway and Sweden pages only.
 6. **The later history of the convention** (amendments, the suspension of gold payments in 1914,
    the end of the union) — outside this dossier; no source in hand.
-7. **Copper-nickel 25 Øre** in our finals — which act, which years.
+7. **Copper-nickel 25 Øre** in our finals — Christensen's register has «Lov nr. 179 af 1. maj
+   [1920] om skillemønt af kobbernikkel» and «Bek. nr. 387 af 6. juli [1920] angående udmøntning
+   af 25- og 10-ørestykker i kobbernikkel»; iron 5, 2, 1 Øre by Lov nr. 527 of 26 Oct 1917. Our
+   year labels «1913–1919», «1914–1919» on copper-nickel records precede the act — to check on
+   the seeds; outside this dossier's period.
 
 ## 9. Sources consulted
 
@@ -372,6 +405,7 @@ the first gold. `dk_kronefod_1873_research.md` carries the same «5 May 1873 (St
   images read: s. 363, 384, 396, 458, 459.
 - *Lovsamling for Island* 21 (`lovsamling-island-bd21`), s. 691 (image).
 - Christensen, register 1873–1954 (`christensen-1954-moentlove-1873-1954`), years 1873–76.
+- *Statistisk Aarbog* 1914 (`statistisk-aarbog-1914`), Tabel 84, s. 98 (page image).
 - Galster 1973 (`galster-1973-moent`) p. 43 — «27. maj 1873 … Norge 16. oct. 1875», in agreement
   with the prints.
 - refs_pool keys: `algreen-ussing-1873-s294-moentlov-par-1-guld-grundlag`,
@@ -384,4 +418,5 @@ the first gold. `dk_kronefod_1873_research.md` carries the same «5 May 1873 (St
   `danske-traktater-2-s384-konvention-27-mai-1873-titel`,
   `danske-traktater-2-s363-konvention-1872-storthinget-bortfaldt`,
   `danske-traktater-2-s458-norge-tiltraedelse-1-april-1876`,
-  `christensen-1954-register-1873-lov-nr-66-bek-nr-88`.
+  `christensen-1954-register-1873-lov-nr-66-bek-nr-88`,
+  `statistisk-aarbog-1914-s98-tabel-84-udmoentning-1873-1914`.
