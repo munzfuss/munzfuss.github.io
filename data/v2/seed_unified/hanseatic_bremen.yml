@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_bremen`.
-# Generated 2026-11-07 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_bremen.yml across all sources.
 #
-# Input: 104 per-source seed entries.
-# Output: 104 unified entries (one per physical coin).
+# Input: 105 per-source seed entries.
+# Output: 105 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_bremen
-generated_at: '2026-11-07'
+generated_at: '2026-11-24'
 coins:
   - id: c-923ddf8b
     class_id: c-923ddf8b
@@ -468,6 +468,45 @@ coins:
     issuing_entity: hanseatic_bremen
     composed_of:
       - dk-numista-20409
+  - id: c-3689fda1
+    class_id: c-3689fda1
+    label: unified-dk-numista-20410
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Marks
+    year_first: 1904
+    year_last: 1904
+    year_label: '1904'
+    mint: Hamburg
+    catalog:
+      km: '250'
+      numista: '20410'
+      others:
+        - J# 59
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.9
+        source: numista
+    weight_rough_g:
+      - value: 11.111
+        source: numista
+    diameter_mm:
+      - value: 28.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/20410
+        ref: Numista N#20410 — 2 Mark - City of Bremen
+    issuing_entity: hanseatic_bremen
+    composed_of:
+      - dk-numista-20410
   - id: c-9671470a
     class_id: c-9671470a
     label: unified-dk-numista-20411

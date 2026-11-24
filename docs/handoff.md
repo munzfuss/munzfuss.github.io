@@ -30,6 +30,10 @@
   scheide (classification decision on Hede 151); merger/absorb keep a KM volume a member names (1197 finals change
   shape only, values identical) — the false «inferred» tooltip is gone from 312 rows; 6 genuinely inferred remain
   (Norway 250 / 243, Rantzau 1 / 2, Schpin 130 — all verified).
+- **Also 2026-11-24:** Numista issuer decides over mint for Plön, Gottorp, Bremen, Lauenburg (a coin struck at another
+  state's mint belongs to the issuer — curator); Plön Thaler 1761 / Ducat 1760 and Gottorp Thaler 1673 joined their
+  finals; Bremen 2 Mark 1904 moved from hanseatic_hamburg to hanseatic_bremen, and the German Empire page now consumes
+  hanseatic_bremen 1871-1914 (Bremen has no state page); six Bremen medals excluded as exonumia.
 - **Open:** the merged KM 55 row shows nominal «⅛ Thaler» (Numista) where Hede has «6 Skilling Lybsk», coin «VIII
   EINEN REICHS DALER»; five .812 fractions (1/16 Speciedaler 1658-1680) sit in 9_thaler II by the 2026-05-29
   automatic placement, which that phase's text does not cover; Plön Thaler 1761 (c-92d54f70, KM 28 PLOEN) routed to

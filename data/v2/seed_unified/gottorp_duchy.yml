@@ -2,7 +2,7 @@
 # Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 549 per-source seed entries.
+# Input: 550 per-source seed entries.
 # Output: 224 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -941,7 +941,8 @@ coins:
       bruun_collection_id: '14417'
       sieg: '7.1'
       lange: '374'
-      dav: '3703'
+      numista: '313829'
+      dav: EC II 3703
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -965,6 +966,9 @@ coins:
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14219, p. 272
       - type: literature
+        url: https://en.numista.com/313829
+        ref: Numista N#313829 — 1 Thaler - Christian Albert
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-thaler-km-118-1673-1674-cuid-1157530-duid-1387387
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
@@ -973,6 +977,7 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-bruun-14417
+      - dk-numista-313829
       - ngc-1157530
       - schleswig_holstein-numismaster-99462
   - id: c-1438a9f4
