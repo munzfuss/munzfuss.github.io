@@ -16,6 +16,29 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-24 — focused-euclid merged into blissful-kirch; Bruun page test fixed (local, unpushed)
+
+- **Shipped:** 95452de merges claude/focused-euclid-55f15c (f241e8e, the two entries below) into this branch.
+  Conflicts only in generated files (class_registry, seed_unified, finals danish_realm / danish_norway); taken
+  from this branch, then a full merger + absorb with the merged seeds / decisions / code, so the Hede-base rule
+  (D57) and the child's Numista / ucoin / Krause / Rendsborg / Bremen rules all apply. Seed-keyed diff against
+  both parents: no seed vanished, no final lost sources; verify_reflow vs HEAD and vs f241e8e clean. The child
+  branch and its worktree are deleted.
+- **Shipped:** 8c471f4 — the KM 76 suspect-mark reason on the Bruun seed cited Bruun Part II lot 14063 by PDF
+  page 219 (printed 193); healed with heal_bruun_printed_pages.py. Full unittest suite now OK (2102).
+- **Open (curator):** three superseded shells in royal_holstein that absorb keeps («KEPT because they carry
+  curation», monotonic guard) — each is a self-only class whose seed lives in another final, so the coin
+  renders twice. Present on `main` too (not from this merge):
+  - c-ff5dd463 Hede 124, 3 Skilling Lybsk 1680, 9_25_thaler I — real class c-5e81b057 «1⁄16 Thaler», 9_thaler II
+    (its own note says «у 9¼-Fuß»); both rows render.
+  - c-ab298d00 Hede 44, 1/24 Speciedaler 1787–1801, 9_25_thaler II — real class c-1d4f183a, 9_25_thaler III;
+    both render on the 9_25_thaler page.
+  - c-92d54f70 Numista 41864 Plön Thaler 1761, seed_unsorted (not rendered) — real final km-28-fr-karl-plon-1761
+    in norburg_plon_duchy.
+  Fix is `_recorded_removals.yml` `kind: shell` per shell, after the curator settles the Fuß / phase of the real
+  class and whether the shells' notes move.
+- **Push order:** harvest cache commits up to e9912b1bb first, then this branch.
+
 ## 2026-11-24 — Rendsborg routing (B) and Numista «Denmark» KMs on S-H entities (A) (same branch, local, unpushed)
 
 - **Shipped:** d2cd5c5 + 617563b (B: NGC / NumisMaster Rendsborg records route to royal_holstein, no final change);
