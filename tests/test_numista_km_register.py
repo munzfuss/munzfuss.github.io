@@ -138,9 +138,14 @@ class TestDenmarkIssuerOnSHEntity(unittest.TestCase):
     def test_mixed_base_list_left_as_printed(self):
         self.assertEqual(self._apply(["260", "645"], "royal_holstein"), ["260", "645"])
 
-    def test_joint_list_led_by_danish_realm_unchanged(self):
-        # bare value already reads in the Denmark volume
-        self.assertEqual(self._apply("758", ["danish_realm", "royal_holstein"]), "758")
+    def test_joint_list_with_sh_entity_goes_to_dk(self):
+        # N#132002-type: the seed may sit in royal_holstein while the builder
+        # gives [danish_realm, royal_holstein]; name the volume either way
+        self.assertEqual(self._apply("758", ["danish_realm", "royal_holstein"]),
+                         {"dk": "758"})
+
+    def test_danish_realm_alone_unchanged(self):
+        self.assertEqual(self._apply("758", "danish_realm"), "758")
 
     def test_other_issuer_on_sh_entity_unchanged(self):
         self.assertEqual(self._apply("651", "royal_holstein", issuer="Norway"), "651")
