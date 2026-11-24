@@ -539,6 +539,13 @@ merges:
       - kmk-317575                # KMM, Hede 13, «1 Speciemønt»
       - ngc-1050724                   # home: danish_realm  (NGC, km 654, 1799-1799)
       - dk-bruun-7928                 # Bruun II lot 11295, KM 651.1 + Hede 13A + Sieg 25.1
+      - denmark-numismaster-65502     # home: danish_realm  (MC_65502 DENMARK «KM# 651.1», rows 1795/1797/1801 MF; B = Hede 13A). 2026-11-24
+      - ngc-1050294                   # home: danish_realm  (NGC «Denmark Speciedaler KM# 651.1», 1795/1797/1801 MF; B = Hede 13A). 2026-11-24
+      - denmark-numismaster-65504     # home: danish_realm  (MC_65504 DENMARK «KM# 651.2», rows 1796/1797 CHL; B = Hede 13B). 2026-11-24
+      - ngc-1050697                   # home: danish_realm  (NGC «KM# 651.2», 1796/1797 CHL; B = Hede 13B). 2026-11-24
+      - denmark-numismaster-65505     # home: danish_realm  (MC_65505 DENMARK «KM# 651.3», rows 1798/1799 HIAB; B = Hede 13C). 2026-11-24
+      - ngc-1069043                   # home: danish_realm  (NGC «KM# 651.3», 1798/1799 HIAB; B = Hede 13C). 2026-11-24
+      - dk-tid-79169                  # home: danish_realm  (ucoin tid 79169 «KM# 651», 1795-1801, 28.89 g, .875). 2026-11-24
     excludes:
       # Curator 2026-09-12 — EXCLUDED, deliberately not merged. KMM prints the type as
       # «Hede 13 ell. 39» and the mint as «København ell. Altona»: the museum declines
@@ -551,7 +558,10 @@ merges:
       - kmk-317571
       - kmk-317572
       - kmk-317574
-    reason: 'Curator 2026-06-28: c7h13 «1 Speciedaler» Christian VII 1795-1801 (Altona+Kopenhagen) is ONE coin = Hede 13, catalogued in two Krause volumes — KM 651 (Schleswig-Holstein/German volume, royal_holstein) and KM 654 (Denmark volume, danish_realm km-654/bruun-7940). The DK-volume cluster was bucketed into danish_realm; pull it into royal_holstein (the SH∩Denmark overlap home, so the coin renders on both pages) and union with the Hede-13 cluster. Final keeps the KM provenance split via dict-form km {sh:[651,651.1], dk:[654]} so the two Krause traditions are not conflated (as c5h125).'
+    reason: |-
+      Curator 2026-06-28: c7h13 «1 Speciedaler» Christian VII 1795-1801 (Altona+Kopenhagen) is ONE coin = Hede 13, catalogued in two Krause volumes — KM 651 (Schleswig-Holstein/German volume, royal_holstein) and KM 654 (Denmark volume, danish_realm km-654/bruun-7940). The DK-volume cluster was bucketed into danish_realm; pull it into royal_holstein (the SH∩Denmark overlap home, so the coin renders on both pages) and union with the Hede-13 cluster. Final keeps the KM provenance split via dict-form km {sh:[651,651.1], dk:[654]} so the two Krause traditions are not conflated (as c5h125).
+
+      CORRECTION, curator 2026-11-24: the volume reading above is wrong. KM 651 is NOT a Schleswig-Holstein-section number; Krause numbers this type in the DENMARK volume under both 651 and 654. NumisMaster (country DENMARK) has KM# 651.1 = 1795/1797/1801 «MF; B», 651.2 = 1796/1797 «CHL; B», 651.3 = 1798/1799 «HIAB; B», 654 = 1799 «HIAB; PG» — exactly Hede 13A / 13B / 13C / 13D as danskmoent c7h13 separates them (bagside MF / CHL / HIAB; 13D forside PG); NGC lists the same four as «Denmark Speciedaler». Bruun III lot 11295 prints «DENMARK … KM-651.1; … Hede-13A», Bruun I lot 1155 «DENMARK … KM-654; … Hede-13D». No KM 651 in any other section exists in the NumisMaster or NGC caches. The coin stays one (Hede 13) and stays homed in royal_holstein; its KM is {dk: [651…, 654]}. The seven danish_realm records of KM 651.1-651.3 join; they had sat in three seed_unsorted classes because the bare 651 of the members was read in the S-H section.
   - target_entity: royal_holstein
     members:
       - dk-hede-c7h25
@@ -1044,6 +1054,9 @@ merges:
       - dk-numista-83069
       - dk-bruun-8095               # home: royal_holstein  (Bruun V lot 14211 p. 78, KM 701, Hede 4B, Sieg 33, Schou 2, Altona 1834). Curator 2026-10-18
       - dk-bruun-8074               # home: royal_holstein  (Bruun V lot 14209 p. 78, KM 699, Hede 4A, Sieg 32, Schou 2, 1828, 6.63 g). Already in the class; listed once its metal read gold, 2026-11-10
+      - denmark-numismaster-66099   # home: danish_realm    (NumisMaster MC_66099, DENMARK «KM# 701», rows 1829-1831 / 1833-1835 / 1837-1838 FA//FF, 6.642 g, .896). 2026-11-24
+      - dk-tid-132804               # home: danish_realm    (ucoin tid 132804, «KM# 701», 1829-1838, 6.64 g, .896). 2026-11-24
+      - ngc-1050449                 # home: danish_realm    (NGC cuid 1050449 «Denmark Fr(Ederiks) D'or KM# 701», rows 1829-1838 FA//FF, .896). 2026-11-24
     reason: |-
       One coin — Frederik VI 1 Frederik d'Or, Hede 4 (sub-variants 4A/4B),
       struck 1828 at København and 1829-1838 at Altona.
@@ -1070,6 +1083,8 @@ merges:
       Curator-approved 2026-07-29 (Serhii).
 
       Bruun Part III lot 11303 p. 134 joins the group 2026-09-21: it prints «Fr-287; KM-701; Hede-4B; Sieg-33; Schou-2; Bruun-8101» on an Altona 1835 specimen weighing 6.62 g, so hede 4 / schou 2 / sieg 33 unify it with dk-hede-f6h4b and no field conflicts. It is the only member carrying KM 701 — the 4B side had no KM at all, the rest carry KM 699 for the 1828 København sub-variant. Surfaced when the completeness guard stopped comparing nominals with a whitespace-strip that read «1 Frederik d'Or» and «Frederik d'Or» as different coins. Adding it surfaced dk-numista-83069 on the same KM 701: Numista's own 4B entry, Altona, .896, 6.642 g, years 1829-1831 / 1833-1835 / 1837-1838 — the year set dk-hede-f6h4b prints, exactly. The group already held Numista's 1828 sibling 83067 under KM 699, so it spans 4A and 4B as its first line says.
+
+      Curator 2026-11-24: NumisMaster MC_66099, NGC cuid 1050449 and ucoin tid 132804 join. All three are Krause Denmark KM 701 and print the 4B year set (NumisMaster and NGC rows «1829 FA//FF» … «1838 FA//FF» — medaillør FA, mintmaster FF, exactly danskmoent f6h4 B). They stood as a separate danish_realm class (c-5219f66c) because Numista 83069's bare KM 701 was read in the S-H section; once Numista issuer «Denmark» KMs read in the Denmark volume the completeness guard named them.
 
   # ─────────────────────────────────────────────────────────────────────
   # 2026-07-29 (second batch) — Hede pages whose letters name DIFFERENT

@@ -108,3 +108,40 @@ Full re-flow: seed_unified, final and class_registry byte-identical to HEAD;
 trace_coin diff 0 changes; validate_decisions --check-members clean. The
 four _cross_entity groups stay (they record the 2026-07-29 ruling); their
 member «home» notes updated.
+
+## A — DONE 2026-11-24
+
+Rule as written above, with the entity test «any entity of the coin (or of a
+joint list) in the S-H group». A first cut that looked only at the FIRST entity
+caught 39 records and missed the joint-list ones whose seed sits in
+royal_holstein (N#132002 / 131337 / 148504 — the 651 / 600 / 635 finals); the
+29 joint-list records were checked one by one against NumisMaster / NGC
+«DENMARK» by KM base + years + denomination (29 / 29). Builder comparison over
+the whole cache: exactly 68 records change, only `catalog.km` (66 → dk, N#88660
+/ 89702 → hgr). Re-seed drift (308265 km, 427643 hede, 40843 sieg,
+mint_verified, entity_classified_via) kept out.
+
+The trial re-flow stopped twice on the cross-entity completeness guard and once
+split a class; each was a fragment of a coin already in a group, verified from
+the caches before the curator's yes (2026-11-24):
+
+- KM 701 — NumisMaster MC_66099, NGC 1050449, ucoin 132804 (Denmark KM 701, rows
+  1829-1838 FA//FF = danskmoent f6h4 B) were a separate danish_realm final
+  c-5219f66c (rendered, pistolenfuss I) → into the Hede 4 group.
+- KM 651 — the 2026-06-28 Hede 13 reason read KM 651 as the S-H section; every
+  cache says Denmark volume (651.1 / .2 / .3 / 654 = Hede 13A / B / C / D by
+  mintmark). Seven danish_realm records of 651.x (three seed_unsorted classes)
+  → into the Hede 13 group; correction written into the group's reason.
+- KM 661 — ucoin 79557 (4 Skilling 1807 Altona) had only a bare KM 661 shared
+  with Numista; recorded as a royal_holstein merge (the curator's 2026-10-22
+  shell-review call).
+
+Re-flow: 0 losses (trace_coin, verify_reflow, audit_lost_citations), 7 seeds
+promoted out of seed_unsorted, 4 danish_realm finals folded. KM labels fixed:
+c-2a9ecadd {dk: 651…, 654}, c-9397f1cf {dk: 699, 701}, c-7116ef28 600,
+km-625-chr-v-1771 625, c-05bdb1ab 635, c-9224ec83 757 — all now dk.
+
+Still bare Denmark-volume numbers on royal_holstein finals, from Bruun / ucoin
+only (the out-of-scope item below): c-5703ae73 629, c-062a2554 689,
+c-5cd784ac 690.1. Related, not done: NGC 1050288 and KMM 78473 (Hede 36, KM 661)
+sit in danish_realm seed_unsorted classes, outside the Hede 36 class.

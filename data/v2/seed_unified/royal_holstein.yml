@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1500 per-source seed entries.
+# Input: 1510 per-source seed entries.
 # Output: 254 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-23'
+generated_at: '2026-11-24'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -391,7 +391,8 @@ coins:
     mintmaster: Caspar Henrik Wolff
     mint: Altona
     catalog:
-      km: '625'
+      km:
+        dk: '625'
       bruun_collection_id: '7779'
       sieg: '28'
       schou: '1'
@@ -452,11 +453,11 @@ coins:
     catalog:
       km:
         dk:
+          - '641'
           - '641.1'
           - '641.3'
           - '641.4'
           - '641.2'
-          - '641'
       bruun_collection_id:
         - '7837'
         - '7838'
@@ -6620,11 +6621,11 @@ coins:
     catalog:
       km:
         dk:
+          - '634'
+          - '632'
           - '632.1'
           - '632.2'
           - '623'
-          - '634'
-          - '632'
       hede:
         - 11A
         - 11B
@@ -6915,9 +6916,9 @@ coins:
     catalog:
       km:
         dk:
-          - '633.1'
           - '633.2'
           - '633'
+          - '633.1'
       hede:
         - '12'
         - 12B
@@ -7013,10 +7014,12 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        dk: '654'
-        sh:
-          - '651.1'
+        dk:
           - '651'
+          - '651.1'
+          - '651.2'
+          - '654'
+          - '651.3'
       hede:
         - '13'
         - 13A
@@ -7070,10 +7073,32 @@ coins:
         specimen: dk-hede-c7h13d
       - value: 0.875
         source: ngc
+        specimen: ngc-1050294
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050697
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1050724
+      - value: 0.875
+        source: ngc
+        specimen: ngc-1069043
       - value: 0.875
         source: numismaster
+        specimen: denmark-numismaster-65502
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65504
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65505
+      - value: 0.875
+        source: numismaster
+        specimen: denmark-numismaster-65508
       - value: 0.875
         source: numista
+      - value: 0.875
+        source: ucoin
     weight_rough_g:
       - value: 28.79
         source: kmk
@@ -7081,6 +7106,8 @@ coins:
         source: bruun
       - value: 28.87
         source: bruun
+      - value: 28.89
+        source: ucoin
       - value: 28.893
         source: hede
         specimen: dk-hede-c7h13a
@@ -7095,13 +7122,35 @@ coins:
         specimen: dk-hede-c7h13d
       - value: 28.893
         source: ngc
+        specimen: ngc-1050294
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050697
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1050724
+      - value: 28.893
+        source: ngc
+        specimen: ngc-1069043
       - value: 28.893
         source: numismaster
+        specimen: denmark-numismaster-65502
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-65504
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-65505
+      - value: 28.893
+        source: numismaster
+        specimen: denmark-numismaster-65508
       - value: 28.9
         source: numista
     diameter_mm:
       - value: 40.0
         source: numista
+      - value: 40.05
+        source: ucoin
     uncertainty:
       metal:
         - kind: inferred
@@ -7118,6 +7167,15 @@ coins:
           seed: dk-bruun-7940
     sources:
       - type: literature
+        url: https://numismaster.com/MC_65502
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65504
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65505
+        ref: NumisMaster
+      - type: literature
         url: https://numismaster.com/MC_65508
         ref: NumisMaster
       - type: auction
@@ -7132,11 +7190,23 @@ coins:
       - type: literature
         url: https://en.numista.com/132002
         ref: Numista N#132002 — 1 Speciedaler - Christian VII (Bauert portrait)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1795-1801/?tid=79169
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148165
         ref: KMM 148165 (Inv. KP 1656.2148)
       - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.1-1795-1801-cuid-1050294-duid-1237529
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.2-1796-1797-cuid-1050697-duid-1237532
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-654-1799-cuid-1050724-duid-1237536
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.3-1798-1799-cuid-1069043-duid-1237534
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity:
       - danish_realm
@@ -7147,6 +7217,9 @@ coins:
       basis: fin
       unit_raw: speciedalere
     composed_of:
+      - denmark-numismaster-65502
+      - denmark-numismaster-65504
+      - denmark-numismaster-65505
       - denmark-numismaster-65508
       - dk-bruun-7928
       - dk-bruun-7940
@@ -7155,8 +7228,12 @@ coins:
       - dk-hede-c7h13c
       - dk-hede-c7h13d
       - dk-numista-132002
+      - dk-tid-79169
       - kmk-148165
+      - ngc-1050294
+      - ngc-1050697
       - ngc-1050724
+      - ngc-1069043
   - id: c-1f34e6b5
     class_id: c-1f34e6b5
     label: unified-dk-hede-c7h15
@@ -7766,8 +7843,9 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        - '635.1'
-        - '635'
+        dk:
+          - '635'
+          - '635.1'
       hede:
         - '28'
         - 28A
@@ -7886,10 +7964,10 @@ coins:
     catalog:
       km:
         dk:
+          - '631'
           - '631.2'
           - '631.1'
           - '631.3'
-          - '631'
       hede:
         - '33'
         - 33A
@@ -8080,9 +8158,9 @@ coins:
     catalog:
       km:
         dk:
+          - '660'
           - '660.1'
           - '660.2'
-          - '660'
       hede: '35'
       hede_volume: c7h
       schou:
@@ -8279,12 +8357,12 @@ coins:
     catalog:
       km:
         dk:
+          - '616.1'
+          - '616.3'
           - '616.8'
           - '616.2'
-          - '616.3'
           - '616.6'
           - '616.5'
-          - '616.1'
           - '616.7'
           - '616.4'
           - '616'
@@ -10522,9 +10600,9 @@ coins:
     catalog:
       km:
         dk:
+          - '726'
           - '726.2'
           - '726.1'
-          - '726'
       hede:
         - 11A
         - 11B
@@ -10733,10 +10811,10 @@ coins:
     catalog:
       km:
         dk:
+          - '722'
           - '722.2'
           - '722.3'
           - '722.1'
-          - '722'
       hede:
         - '1'
         - 1A
@@ -11062,11 +11140,11 @@ coins:
     catalog:
       km:
         dk:
+          - '720'
           - '720.1'
           - '720.2'
           - '741'
           - '720.3'
-          - '720'
       hede:
         - 3A
         - 3B
@@ -11408,9 +11486,9 @@ coins:
     catalog:
       km:
         dk:
+          - '735'
           - '735.2'
           - '735.1'
-          - '735'
       hede:
         - 4A
         - 4B
@@ -11908,10 +11986,10 @@ coins:
     catalog:
       km:
         dk:
+          - '721'
           - '721.2'
           - '721.3'
           - '721.1'
-          - '721'
       hede:
         - '8'
         - 8A
@@ -12114,8 +12192,8 @@ coins:
     catalog:
       km:
         dk:
-          - '729'
           - A730
+          - '729'
       hede:
         - '9'
         - 9A
@@ -15473,12 +15551,12 @@ coins:
     catalog:
       km:
         dk:
+          - '683'
           - '683.4'
           - '683.5'
           - '683.3'
           - '683.1'
           - '683.2'
-          - '683'
       hede:
         - '24'
         - 24A
@@ -15844,11 +15922,11 @@ coins:
     catalog:
       km:
         dk:
+          - '695'
           - '695.2'
           - '695.3'
           - '695.1'
           - '695.4'
-          - '695'
       hede:
         - '26'
         - 26A
@@ -16138,13 +16216,13 @@ coins:
     catalog:
       km:
         dk:
+          - '696'
+          - '706'
           - '696.1'
           - '706.3'
           - '696.2'
           - '706.1'
           - '706.2'
-          - '696'
-          - '706'
       hede:
         - 27A
         - 27B
@@ -16922,8 +17000,9 @@ coins:
       - Kopenhagen
     catalog:
       km:
-        dk: '699'
-        sh: '701'
+        dk:
+          - '699'
+          - '701'
       hede:
         - 4A
         - 4B
@@ -16958,8 +17037,16 @@ coins:
         specimen: dk-hede-f6h4b
       - value: 0.896
         source: ngc
+        specimen: ngc-1050449
+      - value: 0.896
+        source: ngc
+        specimen: ngc-1060682
       - value: 0.896
         source: numismaster
+        specimen: denmark-numismaster-66098
+      - value: 0.896
+        source: numismaster
+        specimen: denmark-numismaster-66099
       - value: 0.896
         source: numista
         specimen: dk-numista-83067
@@ -16968,6 +17055,10 @@ coins:
         specimen: dk-numista-83069
       - value: 0.896
         source: ucoin
+        specimen: dk-tid-132803
+      - value: 0.896
+        source: ucoin
+        specimen: dk-tid-132804
     weight_rough_g:
       - value: 6.6
         source: bruun
@@ -16977,6 +17068,10 @@ coins:
         source: bruun
       - value: 6.64
         source: ucoin
+        specimen: dk-tid-132803
+      - value: 6.64
+        source: ucoin
+        specimen: dk-tid-132804
       - value: 6.642
         source: hede
         specimen: dk-hede-f6h4a
@@ -16985,8 +17080,16 @@ coins:
         specimen: dk-hede-f6h4b
       - value: 6.642
         source: ngc
+        specimen: ngc-1050449
+      - value: 6.642
+        source: ngc
+        specimen: ngc-1060682
       - value: 6.642
         source: numismaster
+        specimen: denmark-numismaster-66098
+      - value: 6.642
+        source: numismaster
+        specimen: denmark-numismaster-66099
       - value: 6.642
         source: numista
         specimen: dk-numista-83067
@@ -16994,6 +17097,9 @@ coins:
         source: numista
         specimen: dk-numista-83069
     diameter_mm:
+      - value: 23.0
+        source: ucoin
+        specimen: dk-tid-132804
       - value: 23.5
         source: numista
         specimen: dk-numista-83069
@@ -17002,6 +17108,7 @@ coins:
         specimen: dk-numista-83067
       - value: 24.0
         source: ucoin
+        specimen: dk-tid-132803
     uncertainty:
       metal:
         - kind: inferred
@@ -17013,6 +17120,9 @@ coins:
     sources:
       - type: literature
         url: https://numismaster.com/MC_66098
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_66099
         ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -17035,6 +17145,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dor-1828/?tid=132803
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dor-1829-1838/?tid=132804
+        ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-frederiks-dor-km-701-1829-1838-cuid-1050449-duid-1238374
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-frederiks-dor-km-699-1828-cuid-1060682-duid-1238373
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -17043,6 +17159,7 @@ coins:
       - royal_holstein
     composed_of:
       - denmark-numismaster-66098
+      - denmark-numismaster-66099
       - dk-bruun-8074
       - dk-bruun-8095
       - dk-bruun-8101
@@ -17051,6 +17168,8 @@ coins:
       - dk-numista-83067
       - dk-numista-83069
       - dk-tid-132803
+      - dk-tid-132804
+      - ngc-1050449
       - ngc-1060682
   - id: c-7d941e50
     class_id: c-7d941e50
@@ -17206,8 +17325,8 @@ coins:
     catalog:
       km:
         dk:
-          - '670'
           - '663'
+          - '670'
       hede: '9'
       hede_volume: f6h
       schou:
@@ -17312,9 +17431,9 @@ coins:
     catalog:
       km:
         dk:
+          - '758'
           - '758.1'
           - '758.2'
-          - '758'
       hede:
         - '11'
         - 11A
@@ -17873,11 +17992,11 @@ coins:
     catalog:
       km:
         dk:
+          - '750'
           - '750.3'
           - '750.2'
           - '750.4'
           - '750.1'
-          - '750'
       hede:
         - 1A
         - 1B
@@ -18104,7 +18223,8 @@ coins:
     mintmaster: Johan Friedrich Freund (FF)
     mint: Altona
     catalog:
-      km: '757'
+      km:
+        dk: '757'
       hede: '2'
       hede_volume: f7h
       schou: '2'
@@ -18174,9 +18294,9 @@ coins:
     catalog:
       km:
         dk:
+          - '744'
           - '744.2'
           - '744.1'
-          - '744'
       hede:
         - 4A
         - 4B
@@ -18354,10 +18474,10 @@ coins:
     catalog:
       km:
         dk:
+          - '761'
           - '761.3'
           - '761.2'
           - '761.1'
-          - '761'
       hede:
         - 6A
         - 6B
@@ -18581,9 +18701,9 @@ coins:
     catalog:
       km:
         dk:
+          - '760'
           - '760.2'
           - '760.1'
-          - '760'
       hede:
         - '8'
         - 8A
@@ -19120,7 +19240,8 @@ coins:
       - Altona
       - Kopenhagen
     catalog:
-      km: '600'
+      km:
+        dk: '600'
       numista: '131337'
       dav: EC III 1302
       sieg: '18'
@@ -19172,9 +19293,9 @@ coins:
     catalog:
       km:
         dk:
-          - '640.2'
           - '640'
           - '640.1'
+          - '640.2'
       numista: '131730'
       dav: EC III 1310
       sieg: '18.2'

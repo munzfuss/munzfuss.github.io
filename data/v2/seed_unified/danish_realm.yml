@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-23 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 8226 per-source seed entries.
-# Output: 1455 unified entries (one per physical coin).
+# Input: 8216 per-source seed entries.
+# Output: 1451 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-23'
+generated_at: '2026-11-24'
 coins:
   - id: c-529e21da
     class_id: c-529e21da
@@ -105780,9 +105780,9 @@ coins:
     mint: Altona
     catalog:
       km:
+        - '690'
         - '690.2'
         - '690.1'
-        - '690'
       hede:
         - '29'
         - 29B
@@ -129475,68 +129475,6 @@ coins:
     composed_of:
       - denmark-numismaster-65494
       - ngc-1050293
-  - id: c-9a93ce8c
-    class_id: c-9a93ce8c
-    label: unified-ngc-1050294
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1795
-    year_last: 1801
-    year_ranges:
-      -   - 1795
-          - 1795
-      -   - 1797
-          - 1797
-      -   - 1801
-          - 1801
-    year_label: 1795, 1797, 1801
-    ruler: Christian VII
-    catalog:
-      km:
-        - '651.1'
-        - '651'
-      dav: '1313'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.89
-        source: ucoin
-      - value: 28.893
-        source: ngc
-      - value: 28.893
-        source: numismaster
-    diameter_mm:
-      - value: 40.05
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65502
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1795-1801/?tid=79169
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.1-1795-1801-cuid-1050294-duid-1237529
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65502
-      - dk-tid-79169
-      - ngc-1050294
   - id: c-6f37ca9a
     class_id: c-6f37ca9a
     label: unified-ngc-1050308
@@ -130126,66 +130064,6 @@ coins:
     composed_of:
       - denmark-numismaster-65971
       - ngc-1050443
-  - id: c-5219f66c
-    class_id: c-5219f66c
-    label: unified-ngc-1050449
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Frederiks D'or
-    year_first: 1829
-    year_last: 1838
-    year_ranges:
-      -   - 1829
-          - 1831
-      -   - 1833
-          - 1835
-      -   - 1837
-          - 1838
-    year_label: 1829-1831, 1833-1835, 1837-1838
-    ruler: Frederik VI
-    catalog:
-      km: '701'
-      bruun_collection_id: '8101'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.896
-        source: ngc
-      - value: 0.896
-        source: numismaster
-      - value: 0.896
-        source: ucoin
-    weight_rough_g:
-      - value: 6.64
-        source: ucoin
-      - value: 6.642
-        source: ngc
-      - value: 6.642
-        source: numismaster
-    diameter_mm:
-      - value: 23.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_66099
-        ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dor-1829-1838/?tid=132804
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-frederiks-dor-km-701-1829-1838-cuid-1050449-duid-1238374
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-66099
-      - dk-tid-132804
-      - ngc-1050449
   - id: c-c6fdd6a6
     class_id: c-c6fdd6a6
     label: unified-ngc-1050450
@@ -130808,50 +130686,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1050692
-  - id: c-b2565836
-    class_id: c-b2565836
-    label: unified-ngc-1050697
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1796
-    year_last: 1797
-    year_ranges:
-      -   - 1796
-          - 1797
-    year_label: 1796-1797
-    ruler: Christian VII
-    catalog:
-      km: '651.2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 28.893
-        source: ngc
-      - value: 28.893
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65504
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.2-1796-1797-cuid-1050697-duid-1237532
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65504
-      - ngc-1050697
   - id: c-d3d86520
     class_id: c-d3d86520
     label: unified-ngc-1050715
@@ -132759,50 +132593,6 @@ coins:
       - denmark-numismaster-65184
       - dk-tid-99096
       - ngc-1069027
-  - id: c-fee29dd2
-    class_id: c-fee29dd2
-    label: unified-ngc-1069043
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1798
-    year_last: 1799
-    year_ranges:
-      -   - 1798
-          - 1799
-    year_label: 1798-1799
-    ruler: Christian VII
-    catalog:
-      km: '651.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 28.893
-        source: ngc
-      - value: 28.893
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65505
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-651.3-1798-1799-cuid-1069043-duid-1237534
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65505
-      - ngc-1069043
   - id: c-9d343666
     class_id: c-9d343666
     label: unified-ngc-1069057

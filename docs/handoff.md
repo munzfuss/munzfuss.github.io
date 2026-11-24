@@ -16,6 +16,17 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-24 — Rendsborg routing (B) and Numista «Denmark» KMs on S-H entities (A) (same branch, local, unpushed)
+
+- **Shipped:** d2cd5c5 + 617563b (B: NGC / NumisMaster Rendsborg records route to royal_holstein, no final change);
+  A: Numista issuer «Denmark» on an S-H-group entity → `{dk: …}`, mint Rendsburg → `{hgr: …}` (68 seeds), with
+  three curator-approved group additions it surfaced — KM 701 (Hede 4), KM 651 (Hede 13, the 2026-06-28 «KM 651 =
+  S-H volume» reading corrected in the group reason), KM 661 (Hede 36 merge for ucoin 79557). Detail:
+  `docs/plans/km_numista_denmark_and_hgr_routing.md` §«A — DONE».
+- **Open:** Bruun / ucoin bare KMs on royal_holstein coins (629, 689, 690.1 still bare); Hede 36 fragments NGC
+  1050288 / KMM 78473 in danish_realm seed_unsorted; c-9397f1cf mixes KM 699 (1828 København) and 701 (Altona) by
+  design (Hede 4A/4B); marker.km_sh wording.
+
 ## 2026-11-23 — Numista builder fixes + Krause S-H section registers (branch claude/focused-euclid-55f15c on top of blissful-kirch, local, unpushed)
 
 - **Shipped:** a24acea Numista Hede «C4 80.C» → «80C» (+ seed_merge `_drop_prefixed_superseded`) and a single bare KM
