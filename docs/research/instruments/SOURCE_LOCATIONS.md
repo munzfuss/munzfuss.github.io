@@ -20,10 +20,10 @@ domain) · **IA:** `<id>` = `https://archive.org/details/<id>` · **GB:** `<id>`
 
 | Work | Tier | Where | State |
 |---|---|---|---|
-| Hanserecesse I/1 (1256–1370) | 0 | IA: `bub_gb_ReFSAAAAcAAJ` | metadata checked |
-| Hanserecesse I/3 (1387–1390) | 0 | IA: `hanserecesse00roppgoog` | checked (title page) |
-| Hanserecesse II/4 · II/5 · II/7 | 0 | IA: `hanserecesse08roppgoog` · `hanserecesse02roppgoog` · `hanserecesse10roppgoog` | checked |
-| Hanserecesse III/2 · III/6 · III/7 | 0 | IA: `hanserecesse00germgoog` · `12021973bsb` · `hanserecesse01hansgoog` | III/7 checked; III/2 by preface; III/6 metadata |
+| Hanserecesse I/1 (1256–1370) | 0 | IA: `bub_gb_ReFSAAAAcAAJ` | in the corpus since 2026-11-25 (`hanserecesse-1-1`) |
+| Hanserecesse I/3 (1387–1390) | 0 | IA: `hanserecesse00roppgoog` | in the corpus since 2026-11-25 (`hanserecesse-1-3`); three printed pages missing from the scan |
+| Hanserecesse II/4 · II/5 · II/7 | 0 | IA: `hanserecesse08roppgoog` · `hanserecesse02roppgoog` · `hanserecesse10roppgoog` | in the corpus since 2026-11-25 (`hanserecesse-2-4`, `-2-5`, `-2-7`); **II/5 OCR poor** — a search miss there means nothing |
+| Hanserecesse III/2 · III/6 · III/7 | 0 | IA: `hanserecesse00germgoog` · `12021973bsb` · `hanserecesse01hansgoog` | in the corpus since 2026-11-25 (`hanserecesse-3-2`, `-3-6`, `-3-7`); **III/2 OCR almost absent**, pages before pdf 436 not mapped; III/6 cached as the IA text-PDF derivative |
 | Hanserecesse III/8 · III/9 | 0 | HathiTrust `mdp.35112102550326` · `mdp.35112102550334` | unverified; probably US-only |
 | Lübeckisches UB 1 · 2,1 · 2,2 · 3 | 0 | IA: `urkundenbuchder01gescgoog` · `urkundenbuchder02gescgoog` · `urkundenbuchder01techgoog` · `bub_gb_EkE4AQAAMAAJ` | items exist; volume per de.wikisource |
 | Lübeckisches UB 4 (to 1400) | 0 | MDZ `bsb11135439`; possibly IA: `bub_gb_HcJZAAAAcAAJ` | unverified |
