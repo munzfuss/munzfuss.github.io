@@ -202,5 +202,45 @@ class OriginalsResolutionTest(unittest.TestCase):
         self.assertEqual(got, {"w/both.pdf": b"L", "w/cache_only.pdf": b"C"})
 
 
+
+class KbImagePdfLookupTest(unittest.TestCase):
+    """kb.py image maps a hit's TEXT file to the library PDF and page. Three
+    text layouts and the split-part pieces (made for GitHub's old 100 MB
+    limit) each need their own rule; a wrong rule renders a wrong page, which
+    reads as «the scan agrees with the OCR» — so every rule is pinned."""
+
+    def setUp(self):
+        from lib import paths
+        self.paths = paths
+        self.saved = (paths.LIBRARY_ROOT, paths.HARVEST_ROOT)
+        self.td = tempfile.TemporaryDirectory()
+        b = Path(self.td.name)
+        paths.LIBRARY_ROOT, paths.HARVEST_ROOT = b / "lib", b / "cache"
+        for rel in ("a/w.pdf",                                  # extract beside
+                    "b/v.pdf",                                  # pages/<name>.txt
+                    "c/bd1/c_bd1.pdf",                          # pages/NNNN.txt
+                    "s/_pdf/bd2.pdf",                           # Secher-like sibling
+                    "d/x_part1_pdf001-080.pdf", "d/x_part2_pdf081-160.pdf"):
+            f = paths.LIBRARY_ROOT / rel
+            f.parent.mkdir(parents=True, exist_ok=True)
+            f.write_bytes(b"%PDF")
+        sys.path.insert(0, str(ROOT / "scripts" / "kb"))
+        import kb
+        self.kb = kb
+
+    def tearDown(self):
+        self.paths.LIBRARY_ROOT, self.paths.HARVEST_ROOT = self.saved
+        self.td.cleanup()
+
+    def test_layouts(self):
+        f = self.kb._pdf_for_text
+        self.assertEqual(f("a/w.extract.txt", 5), ("a/w.pdf", 5))
+        self.assertEqual(f("b/pages/v.txt", 7), ("b/v.pdf", 7))
+        self.assertEqual(f("c/bd1/pages/0012.txt", 12), ("c/bd1/c_bd1.pdf", 12))
+        self.assertEqual(f("s/bd2/pages/0003.txt", 3), ("s/_pdf/bd2.pdf", 3))
+        self.assertEqual(f("d/x.extract.txt", 100), ("d/x_part2_pdf081-160.pdf", 20))
+        self.assertIsNone(f("z/none.extract.txt", 1))
+
+
 if __name__ == "__main__":
     unittest.main()

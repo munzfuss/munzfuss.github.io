@@ -18,6 +18,10 @@ Subcommands
   page PDF N       one PDF page as pdftotext prints it in each mode (layout / raw /
                    plain) — check a table, a contents page or marginal notes, where
                    the plain extract may interleave columns (layout_extract.py)
+  image WORK P     the ORIGINAL page as a PNG (from the research library) for a
+                   printed page P of WORK — to check doubtful OCR against the
+                   scan; --crop x0,y0,x1,y1 (fractions of the page) cuts a region;
+                   `image --pdf REL N` renders PDF page N of a library PDF directly
 
 Layout
 ------
@@ -792,6 +796,101 @@ def cmd_page(args) -> int:
     return 0
 
 
+# ---------------------------------------------------------------------------
+
+_PART_RE = re.compile(r"_pdf(\d+)-(\d+)\.pdf$", re.I)
+
+
+def _pdf_for_text(text_rel: str, pdf_page: int) -> tuple[str, int] | None:
+    """The library PDF (relative path) and its page number for PDF page
+    ``pdf_page`` of the work whose text layer is ``text_rel``. Three text
+    layouts: ``x.extract.txt`` beside ``x.pdf``; ``pages/<name>.txt`` (one file
+    per PDF, form feeds) with ``<name>.pdf`` one level up; ``pages/NNNN.txt``
+    (one file per page) whose volume directory — or a ``_pdf/<voldir>.pdf``
+    sibling (Secher) — holds the PDF, possibly split into ``_partK_pdfAAA-BBB``
+    pieces, in which case the page is shifted into the piece."""
+    from lib.originals import iter_originals
+    t = Path(text_rel)
+    pdfs = [rel for rel, _ in iter_originals(".pdf")]
+    cands: list[str] = []
+    if t.name.endswith(".extract.txt"):
+        cands = [t.with_name(t.name[: -len(".extract.txt")] + ".pdf").as_posix()]
+    elif t.parent.name == "pages" and not t.stem.isdigit():
+        cands = [(t.parent.parent / (t.stem + ".pdf")).as_posix()]
+    elif t.parent.name == "pages":
+        vol = t.parent.parent
+        cands = [r for r in pdfs if Path(r).parent == vol]
+        if not cands:
+            cands = [r for r in pdfs if Path(r).stem == vol.name
+                     and Path(r).parts[0] == vol.parts[0]]
+    # a work stored in pieces under GitHub's old 100 MB limit:
+    # <stem>.pdf → <stem>_part<K>_pdf<AAA>-<BBB>.pdf beside it
+    for base in list(cands):
+        b = Path(base)
+        cands += [r for r in pdfs if Path(r).parent == b.parent
+                  and Path(r).name.startswith(b.stem + "_part") and _PART_RE.search(r)]
+    cands = [c for c in dict.fromkeys(cands) if c in pdfs]
+    if not cands:
+        return None
+    if len(cands) == 1 and not _PART_RE.search(cands[0]):
+        return cands[0], pdf_page
+    for c in sorted(cands):
+        m = _PART_RE.search(c)
+        if m and int(m.group(1)) <= pdf_page <= int(m.group(2)):
+            return c, pdf_page - int(m.group(1)) + 1
+    return None
+
+
+def cmd_image(args) -> int:
+    """Render one ORIGINAL page (research library PDF) to PNG and print its path."""
+    import subprocess
+    import tempfile
+    from lib.originals import MissingOriginal, original
+    if args.pdf:
+        rel, page = args.pdf, int(args.page)
+    else:
+        con = sqlite3.connect(args.db)
+        q = "SELECT DISTINCT volume, path, pdf_page FROM passage WHERE work = ? AND printed = ?"
+        prm: list = [args.work, str(args.page)]
+        if args.volume:
+            q += " AND volume = ?"
+            prm.append(args.volume)
+        rows = [r for r in con.execute(q, prm).fetchall() if r[2] is not None]
+        if not rows:
+            raise SystemExit(f"no indexed page «{args.page}» of {args.work}"
+                             + (f" vol. {args.volume}" if args.volume else "")
+                             + " (printed page not established there? use --pdf REL N)")
+        if len({(r[0], r[1], r[2]) for r in rows}) > 1:
+            listing = "\n".join(f"  vol. {r[0]} · {r[1]} · pdf p. {r[2]}" for r in rows)
+            raise SystemExit(f"page «{args.page}» of {args.work} is ambiguous — pass --volume:\n{listing}")
+        _vol, text_rel, pdf_page = rows[0]
+        hit = _pdf_for_text(text_rel, int(pdf_page))
+        if not hit:
+            raise SystemExit(f"no library PDF found for {text_rel} (pdf p. {pdf_page}); "
+                             "render it with --pdf REL N")
+        rel, page = hit
+    try:
+        pdf = original(rel)
+    except MissingOriginal as e:
+        raise SystemExit(str(e))
+    out_dir = Path(args.out or tempfile.gettempdir())
+    out_dir.mkdir(parents=True, exist_ok=True)
+    stem = out_dir / f"kb_{Path(rel).stem}_p{page}"
+    subprocess.run(["pdftoppm", "-f", str(page), "-l", str(page), "-r", str(args.dpi),
+                    "-png", "-singlefile", str(pdf), str(stem)], check=True)
+    png = stem.with_suffix(".png")
+    if args.crop:
+        from PIL import Image
+        x0, y0, x1, y1 = (float(v) for v in args.crop.split(","))
+        im = Image.open(png)
+        w, h = im.size
+        png = stem.with_name(stem.name + "_crop.png")
+        im.crop((int(x0 * w), int(y0 * h), int(x1 * w), int(y1 * h))).save(png)
+    print(f"{rel} · pdf p. {page}")
+    print(png)
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="kb", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -827,10 +926,19 @@ def main(argv=None) -> int:
     s.add_argument("--print", action="store_true", help="print the keys each work's refs_match finds")
     s.set_defaults(fn=cmd_refkeys)
     s = sub.add_parser("page")
-    s.add_argument("pdf", help="path of the PDF (absolute, or relative to scripts/cache)")
+    s.add_argument("pdf", help="library path of the PDF (absolute, or relative to the library; the old scripts/cache/ spelling works)")
     s.add_argument("n", type=int, help="PDF page number (1-based)")
     s.add_argument("--mode", choices=["layout", "raw", "plain", "all"], default="layout")
     s.set_defaults(fn=cmd_page)
+    s = sub.add_parser("image", help="render an original page from the research library")
+    s.add_argument("work", nargs="?", help="work id (kb.py works); omit with --pdf")
+    s.add_argument("page", help="printed page (as kb search reports it); with --pdf the PDF page")
+    s.add_argument("--volume", help="volume, when the work has several")
+    s.add_argument("--pdf", help="library PDF path: render its PDF page directly")
+    s.add_argument("--crop", help="x0,y0,x1,y1 as fractions of the page, e.g. 0,0.5,1,1")
+    s.add_argument("--dpi", type=int, default=150)
+    s.add_argument("--out", help="output directory (default: the system temp dir)")
+    s.set_defaults(fn=cmd_image)
     args = ap.parse_args(argv)
     return args.fn(args)
 

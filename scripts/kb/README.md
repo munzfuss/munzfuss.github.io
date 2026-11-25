@@ -63,8 +63,9 @@ The working recipe — used by the `research-dossier`, `fuss-description`,
    --kind catalogue` → Hede 105A and the ¼ Krone 1618 page.
 6. **Read, never quote the snippet.** Open `path:line`, read the whole page,
    copy verbatim; check every figure of an OCR'd work on the page image
-   (`pdftoppm -f N -l N -png "$(.venv/bin/python scripts/library/library.py path <rel>.pdf)" p`
-   — PDFs are in the research library, not in the cache, since 2026-11-25). Cite the printed page the hit reports; Bruun as
+   — `kb.py image <work> <printed page> [--volume V] [--crop x0,y0,x1,y1]` renders
+   the original page from the research library (PDFs are not in the cache since
+   2026-11-25) and prints the PNG path; `--pdf <rel> <n>` renders a PDF page. Cite the printed page the hit reports; Bruun as
    lot + printed page (`docs/SOURCES.md` §1.3).
 7. **No hit ≠ no source.** Not indexed: rigsarkivet TK 160 (handwriting), the
    Bruun 1928 catalogue, paper-only works (Lange, Sieg, the printed Hede
@@ -126,6 +127,10 @@ whose author is Michael Märcher; `-layout` and `-raw` both read it right.
 - `layout_extract.py` writes `pdftotext -layout` of every PDF in the research
   library to `scripts/cache/_derived/layout/<pdf path>.layout.txt` (form feed per page). Not in
   the manifest, so never indexed: a hit does not appear twice.
+- `kb.py image <work> <printed page>` maps the page to its library PDF (the
+  text file → `x.pdf` beside an extract, `<name>.pdf` above `pages/<name>.txt`, the
+  volume's PDF for `pages/NNNN.txt`, a `_partK_pdfAAA-BBB` piece when the work is
+  split) and renders it; `--crop` cuts a region (fractions of the page).
 - `kb.py page <pdf> <n> [--mode layout|raw|plain|all]` prints one PDF page in each
   mode — the PDF path relative to the library root (the old `scripts/cache/…`
   spelling works too), the PDF page (not the printed one). The PDF is read from

@@ -30,7 +30,14 @@ EVAL = Path(__file__).resolve().parent / "eval_set.yml"
 GREP_ROOTS = ["secher", "schou", "wilcke", "danskmoent", "munro", "bobzin", "coingallery"]
 
 
-def quote_of(pool: dict, key: str) -> str:
+def quote_of(pool: dict, key: str, case: dict | None = None) -> str:
+    """The gold quote: the case's own `quote` when it has one (its refs_pool
+    key was removed — the case keeps measuring the same passage), else the
+    first «<i>…</i>» quote of the refs_pool entry."""
+    if case and case.get("quote"):
+        return str(case["quote"])
+    if key not in pool:
+        raise LookupError(f"refs_pool key {key!r} is gone and the case has no `quote`")
     entry = pool[key]
     s = entry.get("da") or entry.get("de") or entry.get("en") or ""
     m = re.findall(r"«<i>(.*?)</i>»", s)
@@ -104,7 +111,7 @@ def main() -> int:
     n_err = 0
     for i, c in enumerate(cases, 1):
         try:
-            gold = gold_passages(con, c, quote_of(pool, c["key"]))
+            gold = gold_passages(con, c, quote_of(pool, c["key"], c))
         except LookupError as e:
             print(f"| {i} | `{c['key']}` | GOLD ERROR: {e} | | | | | | |")
             n_err += 1

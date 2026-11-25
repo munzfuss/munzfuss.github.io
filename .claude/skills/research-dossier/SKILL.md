@@ -126,7 +126,7 @@ full-text search with old spellings and OCR slips folded. Full recipe: `scripts/
 - Order for a Fuß: the instrument (`--kind source`) → who read it and with which
   figures (`literature`, per work) → the coins (`catalogue`). That order is C3 → C4 → C6.
 - A hit is `work · p. N · path:line`: open the file there, read the page, quote it
-  verbatim; check OCR'd figures on the page image (`pdftoppm -r 150 -f N -l N -png "$(.venv/bin/python scripts/library/library.py path <rel>.pdf)" p` — PDFs are in the research library `~/munzfuss-library`, not in `scripts/cache`). p. N is the printed page.
+  verbatim; check OCR'd figures on the page image (`.venv/bin/python scripts/kb/kb.py image <work> <printed page> [--volume V] [--crop x0,y0,x1,y1]` renders the original page from the research library and prints the PNG path; `--pdf <rel> <n>` for a PDF page). p. N is the printed page.
 - **No hit ≠ no source** — not indexed: rigsarkivet scans (handwriting), Bruun 1928,
   paper-only works (Lange, Sieg, printed Hede). Name such a gap in the dossier (C2/C5)
   and go to the web chain (CLAUDE.md «Tool fallback chain»).

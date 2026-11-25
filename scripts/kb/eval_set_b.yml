@@ -101,6 +101,10 @@ cases:
   probe: sösling
 
 - key: holst-norges-mynter-hamar-ingen-mynt
+  # The refs_pool entry was removed 2026-10-27 (935545d, cited nowhere); the
+  # quote it carried is kept here so the case measures the same passage
+  # (verbatim in danskmoent/hans_1481_1513/holst_1936.extract.txt).
+  quote: Det er hittil ikke funnet noen mynt som er slått på Hamar efter det myntebrev biskop Magnus fikk. Derimot har Vincents Lunge efter kongelig ordre skullet holde sig det efterrettelig
   query: Hamar biskop Magnus myntbrev Vincents Lunge
   grep: Vincents Lunge
   work: holst-1936

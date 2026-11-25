@@ -198,7 +198,7 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
   then find the page on the scan, never compute one.
 - **Never quote the snippet.** It is normalised context; open the file at `path:line`, read the
   whole passage, copy it verbatim (rule 3). For OCR'd works check doubtful letters and every
-  figure against the page image (`ocr` note in `_corpus.yml`; `pdftoppm -r 150 -f N -l N -png "$(.venv/bin/python scripts/library/library.py path <rel>.pdf)" p` — PDFs are in the research library `~/munzfuss-library`, not in `scripts/cache`).
+  figure against the page image (`ocr` note in `_corpus.yml`; `.venv/bin/python scripts/kb/kb.py image <work> <printed page> [--volume V] [--crop x0,y0,x1,y1]` renders the original page from the research library and prints the PNG path; `--pdf <rel> <n>` for a PDF page).
 - Secher prints the SOURCE's page breaks in brackets («[s. 161]») — those are not Secher's
   page; cite the page the hit reports (Secher's own pagination).
 - AUDIT mode: `kb search` with a distinctive phrase of a key's quote shows whether the quote
