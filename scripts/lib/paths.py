@@ -44,9 +44,10 @@ from pathlib import Path
 PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
 
 
-def _local_env_override() -> str:
-    """``MUNZFUSS_HARVEST_DIR`` from ``<repo>/local.env``, or "" — that key
-    only; the rest of the file is left to ``lib.env.load_local_env()``."""
+def _local_env_override(key: str = "MUNZFUSS_HARVEST_DIR") -> str:
+    """``key`` (default ``MUNZFUSS_HARVEST_DIR``) from ``<repo>/local.env``,
+    or "" — that key only; the rest of the file is left to
+    ``lib.env.load_local_env()``."""
     f = PROJECT_ROOT / "local.env"
     try:
         lines = f.read_text().splitlines()
@@ -54,9 +55,9 @@ def _local_env_override() -> str:
         return ""
     for raw in lines:
         line = raw.strip()
-        if line.startswith("MUNZFUSS_HARVEST_DIR") and "=" in line:
+        if line.startswith(key) and "=" in line:
             k, v = line.split("=", 1)
-            if k.strip() == "MUNZFUSS_HARVEST_DIR":
+            if k.strip() == key:
                 return v.strip().strip('"').strip("'")
     return ""
 
@@ -113,6 +114,27 @@ def _resolve_harvest_root() -> Path:
 # Eagerly compute the default at import-time AND expose a refresh hook
 # for callers that load local.env after first import.
 HARVEST_ROOT: Path = _resolve_harvest_root()
+
+
+def _resolve_outside_root(key: str, default_name: str) -> Path:
+    """A root that lives OUTSIDE every checkout, shared by all worktrees and
+    sessions: ``$key`` → ``key`` in ``local.env`` → ``~/<default_name>``.
+
+    Used for the research library (originals: PDF, scans, ALTO — never in
+    git, sha256 manifest + release backup) and the corpus repo (derived
+    text layers). Plan: docs/plans/research_library_split.md."""
+    override = os.environ.get(key, "").strip() or _local_env_override(key)
+    if override:
+        return Path(override).expanduser().resolve()
+    return Path.home() / default_name
+
+
+# Research originals (PDF, scans, ALTO XML), outside git.
+LIBRARY_ROOT: Path = _resolve_outside_root("MUNZFUSS_LIBRARY_DIR",
+                                           "munzfuss-library")
+# Corpus repo (text layers, page maps, _corpus.yml, library manifest).
+CORPUS_ROOT: Path = _resolve_outside_root("MUNZFUSS_CORPUS_DIR",
+                                          "munzfuss-corpus")
 
 # Per-source cache directories. Stay in sync with the directory structure
 # in the munzfuss-harvest submodule.
@@ -195,7 +217,10 @@ def refresh() -> None:
     """
     global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE, KONKORDANS_CACHE, NUMISMASTER_CACHE, KMK_CACHE, NGC_CACHE
     global MORD_CACHE, SECHER_CACHE, SCHOU_CACHE, MB_CACHE
+    global LIBRARY_ROOT, CORPUS_ROOT
     HARVEST_ROOT = _resolve_harvest_root()
+    LIBRARY_ROOT = _resolve_outside_root("MUNZFUSS_LIBRARY_DIR", "munzfuss-library")
+    CORPUS_ROOT = _resolve_outside_root("MUNZFUSS_CORPUS_DIR", "munzfuss-corpus")
     MORD_CACHE = HARVEST_ROOT / "danskmoent" / "mord"
     SECHER_CACHE = HARVEST_ROOT / "secher"
     SCHOU_CACHE = HARVEST_ROOT / "schou"

@@ -93,7 +93,7 @@ the six local hashes match those records, checked 2026-11-25).
 | `_pdf--bd5.pdf` | 212927328 | `73e96cd7832110339d961f61018bf214cf5179e34d0c115ee48c4b124471c599` |
 | `_pdf--bd6.pdf` | 152090443 | `378a18982da155ddbb327ff73de9c252c8af49ecca8832d75cdd9250d499e0cb` |
 
-### 1. Tool + `LIBRARY_ROOT`
+### 1. Tool + `LIBRARY_ROOT` — ✅ 2026-11-25
 
 - `LIBRARY_ROOT` / `CORPUS_ROOT` in `scripts/lib/paths.py`, resolved like
   `HARVEST_ROOT` (env → `local.env` → default `~/munzfuss-library`,
@@ -101,7 +101,12 @@ the six local hashes match those records, checked 2026-11-25).
 - `scripts/library/library.py` with the five commands; unittest on a temp
   library (add without URL, verify catches a changed byte, fetch order,
   status lists single-copy files).
-- **Check:** tests green; `library.py status` on an empty root runs clean.
+- **Check:** tests green; `library.py status` on an empty root runs clean —
+  passed (`tests/test_library.py`, 9 tests; `GhBackend.assets('secher')`
+  reads the six live digests).
+- Manifest default: `CORPUS_ROOT/library_manifest.yml`. Until step 5 makes
+  `~/munzfuss-corpus` a repo, init it as a local git repo in step 2 so the
+  manifest is versioned from its first record.
 
 ### 2. Build the library by COPYING (not moving) the originals
 
@@ -188,3 +193,5 @@ Mac, not only the library.
 
 - 2026-11-25 — plan written; munzfuss-library created (private); Secher
   upload done, all six asset digests equal the local sha256.
+- 2026-11-25 — step 1: `LIBRARY_ROOT` / `CORPUS_ROOT` in `paths.py`,
+  `scripts/library/library.py`, `tests/test_library.py`.
