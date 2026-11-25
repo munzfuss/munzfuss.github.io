@@ -16,6 +16,22 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-25 — research originals moved out of munzfuss-harvest (local main unpushed)
+
+- **Shipped (plan `docs/plans/research_library_split.md`, all 8 steps ✅):** PDFs, ALTO and rigsarkivet
+  scans now live in `~/munzfuss-library` (396 records, 17.39 GB), manifest `scripts/cache/_library_manifest.yml`,
+  every record backed up as a release asset in the private repo `munzfuss/munzfuss-library` (digests verified).
+  Tool `scripts/library/library.py` (add / backup / fetch / verify / status / path); readers via
+  `scripts/lib/originals.py`; fetchers register with `library.register()`; harvest `.githooks/pre-commit`
+  refuses originals (run `scripts/install_hooks.sh` per clone).
+- **munzfuss-harvest history rewritten and force-pushed** (main `723a4936a`, pack 12.63 GiB → 202 MiB; merged
+  `feat/v2-pipeline` deleted). Old history: local mirror `~/munzfuss-harvest-archive-2026-11-25.git` (13 GB) —
+  delete only on the curator's word. GitHub still reports 13 GB until its own GC (or a Support request).
+- **Unpushed:** superproject `main` has the migration commits (code, docs, pointer bumps); the harvest
+  submodule's README commit `bd964d9b1` is local too. Push both on «пуш» (submodule first).
+- **Open, unrelated to the migration:** `scripts/kb/eval_set_b.yml` case 14 gives GOLD ERROR — its refs_pool key
+  `holst-norges-mynter-hamar-ingen-mynt` was removed in 935545d (2026-10-27).
+
 ## 2026-11-24 — focused-euclid merged into blissful-kirch; Bruun page test fixed (local, unpushed)
 
 - **Shipped:** 95452de merges claude/focused-euclid-55f15c (f241e8e, the two entries below) into this branch.
