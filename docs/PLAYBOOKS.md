@@ -1405,7 +1405,7 @@ What it does: a final is dropped when its own unified id OR any
 `seed_unified` **survive** — that is the audit trail, and it is why
 excluding is not data loss.
 
-`id` is a SEED id. `category` vocab: `pattern` · `off_strike` ·
+`id` is a SEED id. **Two blocks, do not confuse them:** `exclusions:` (`id: kmk-<n>`) removes a whole seed; `specimens:` (`kmm: <n>`) only strips one KMM object's citation inside a multi-object seed and never touches a record with a weight / photo or a coin's last source — a lone KMM record written there changes nothing. Executable form: the `coin-exclusion` skill. `category` vocab: `pattern` · `off_strike` ·
 `off_nominal` · `exonumia` · `undocumented_stub` · `out_of_scope` ·
 `duplicate_noise`.
 
