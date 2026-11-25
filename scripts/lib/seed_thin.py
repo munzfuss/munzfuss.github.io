@@ -107,9 +107,20 @@ def _subvariant_key(coin: dict) -> tuple:
         normalise_nominal(coin.get("nominal")),
         normalise_ruler_key(coin.get("ruler")),
         coin.get("year_first"),
-        str(coin.get("mint")), coin.get("metal"),
+        str(coin.get("mint")), _key_metal(coin),
         extra,
     )
+
+
+def _key_metal(coin: dict):
+    """The metal as type identity — only when a source attests it. A metal the
+    pipeline or the curator inferred (`metal_verified: false`: by analogy, from
+    the denomination name) cannot tell two types apart, as in the merger (§4).
+    Keyed, it split a bucket on the inference alone: the curator's billon by
+    analogy on kmk-427529 (2026-11-08) took that record out of the bucket of
+    its 31 metal-less find-mates, and a re-seed turned one Hans Skilling class
+    into four (measured 2026-11-25)."""
+    return coin.get("metal") if coin.get("metal_verified") is not False else None
 
 
 # Catalogue keys that identify a SPECIMEN (auction lot, museum part), not a
@@ -398,11 +409,18 @@ def thin_safe(coins: list, max_weightless: int = 3,
             else:
                 seen_w.add(k)
                 keep.append(c)
-        if len(weightless) > max_weightless:
+        # Curated weightless records are kept, and they fill the quota too:
+        # left out of the count, a curator hold on records of a bucket put
+        # `max_weightless` more weightless specimens back beside them (the six
+        # Hans Skilling records given billon by analogy on 2026-11-08 brought
+        # three find-mates back as new classes; measured 2026-11-25).
+        n_cur_wl = sum(1 for c in curated if _weight(c) is None)
+        quota = max(max_weightless - n_cur_wl, 0)
+        if len(weightless) > quota:
             wl_sorted = sorted(weightless, key=lambda c: (c.get("id") not in protected,
                                                           str(c.get("id"))))
             n_prot = sum(1 for c in wl_sorted if c.get("id") in protected)
-            cap = max(max_weightless, n_prot)   # protected are never dropped
+            cap = max(quota, n_prot)   # protected are never dropped
             keep.extend(wl_sorted[:cap])
             dropped.extend(wl_sorted[cap:])
         else:
