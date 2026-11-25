@@ -31,6 +31,8 @@ import argparse
 import html
 import json
 import re
+import shutil
+import subprocess
 import sys
 import time
 import urllib.request
@@ -69,7 +71,65 @@ VOLUMES = {
     23: "URN:NBN:no-nb_digibok_2008091003012",  # 1839-1843
     24: "URN:NBN:no-nb_digibok_2012041238001",  # 1844-1847
     25: "URN:NBN:no-nb_digibok_2009091403004",  # 1848-1849
+    # Registers and supplements (nb.no catalogue API, 2026-11-25; the last from
+    # the lokalhistoriewiki list only). Directory = the key itself.
+    "reg1795": "URN:NBN:no-nb_digibok_2015061048075",       # Alphabetisk Register 1795
+    "reg1812": "URN:NBN:no-nb_digibok_2009100803005",       # Alphabetisk Register 1812
+    "reg1823": "URN:NBN:no-nb_digibok_2022103128001",       # Alphabetisk Register 1823
+    "reg1823_1849": "URN:NBN:no-nb_digibok_2022103128002",  # Alphabetisk Register 1823-1849 (1851)
+    "anhang1793_1822": "URN:NBN:no-nb_digibok_2014050824001",  # Anhang 1793-1822
+    "anhang_1udg_1_10": "URN:NBN:no-nb_digibok_2014050824010",  # Anhang to the 1st ed., 1-10
 }
+# Other nb.no collections fetched the same way (--collection). Catalogue API
+# checked 2026-11-24: every title, period and «accessAllowedFrom: EVERYWHERE».
+# Fogtman, Kongelige Rescripter, Resolutioner og Collegialbreve 1660-1813.
+FOGTMAN = {
+    "d1": "URN:NBN:no-nb_digibok_2015060948112",      # 1660-1670
+    "d2": "URN:NBN:no-nb_digibok_2009101603008",      # 1670-1699
+    "d3": "URN:NBN:no-nb_digibok_2015060948105",      # 1699-1730
+    "d4_1": "URN:NBN:no-nb_digibok_2020050448519",    # 1730-1739
+    "d4_2": "URN:NBN:no-nb_digibok_2015060948130",    # 1740-1746
+    "d5_1": "URN:NBN:no-nb_digibok_2010020403009",    # 1746-1754
+    "d5_2": "URN:NBN:no-nb_digibok_2010011503005",    # 1754-1765
+    "d6_01": "URN:NBN:no-nb_digibok_2010020203025",   # 1766-1776
+    "d6_02": "URN:NBN:no-nb_digibok_2010020203011",   # 1777-1784
+    "d6_03": "URN:NBN:no-nb_digibok_2010020403005",   # 1785-1786
+    "d6_04": "URN:NBN:no-nb_digibok_2010020403004",   # 1787-1788
+    "d6_05": "URN:NBN:no-nb_digibok_2009101603029",   # 1789-1790
+    "d6_06": "URN:NBN:no-nb_digibok_2015060948131",   # 1791-1792
+    "d6_07": "URN:NBN:no-nb_digibok_2010020503012",   # 1793-1794
+    "d6_08": "URN:NBN:no-nb_digibok_2010020403001",   # 1795-1796
+    "d6_09": "URN:NBN:no-nb_digibok_2010020203033",   # 1797-1798
+    "d6_10": "URN:NBN:no-nb_digibok_2010020203024",   # 1799-1800
+    "d6_11": "URN:NBN:no-nb_digibok_2010011803006",   # 1801-1802
+    "d6_12": "URN:NBN:no-nb_digibok_2009101603019",   # 1803-1804
+    "d6_13": "URN:NBN:no-nb_digibok_2013070108089",   # 1805-1806
+    "d7_1": "URN:NBN:no-nb_digibok_2015070848045",    # 1808 (from 13 March)
+    "d7_2": "URN:NBN:no-nb_digibok_2023012348012",    # D. 7, B. 2
+    "d7_3": "URN:NBN:no-nb_digibok_2023012348011",    # 1811-1812
+    "d7_4": "URN:NBN:no-nb_digibok_2023012348010",    # 1813
+}
+# Norske Rigs-Registranter, tildeels i Uddrag, B. 1-12 (1523-1660).
+NRR = {
+    "b01": "URN:NBN:no-nb_digibok_2017061207087",  # 1523-1571
+    "b02": "URN:NBN:no-nb_digibok_2018062548003",  # 1572-1588
+    "b03": "URN:NBN:no-nb_digibok_2019121948004",  # 1588-1602
+    "b04": "URN:NBN:no-nb_digibok_2019121948008",  # 1603-1618
+    "b05": "URN:NBN:no-nb_digibok_2013060508001",  # 1619-1627
+    "b06": "URN:NBN:no-nb_digibok_2019121948006",  # 1628-1634
+    "b07": "URN:NBN:no-nb_digibok_2015120808053",  # 1635-1640
+    "b08": "URN:NBN:no-nb_digibok_2019121948005",  # 1641-1648
+    "b09": "URN:NBN:no-nb_digibok_2015110407053",  # 1648-1649
+    "b10": "URN:NBN:no-nb_digibok_2011051604046",  # 1650-1653
+    "b11": "URN:NBN:no-nb_digibok_2019121948007",  # 1653-1656
+    "b12": "URN:NBN:no-nb_digibok_2008121603025",  # 1657-1660
+}
+COLLECTIONS = {  # name -> (volumes, cache directory, PDF file prefix)
+    "schou": (VOLUMES, CACHE_DIR, "schou"),
+    "fogtman": (FOGTMAN, CACHE_DIR.parent / "fogtman", "fogtman"),
+    "nrr": (NRR, CACHE_DIR.parent / "norske_rigsregistranter", "nrr"),
+}
+PDF_PREFIX = "schou"
 API = "https://api.nb.no/catalog/v1"
 USER_AGENT = "Mozilla/5.0 (research; non-commercial scholarly register)"
 SLEEP_SECS = 0.25
@@ -77,7 +137,13 @@ SLEEP_SECS = 0.25
 
 def _get(url: str) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    return urllib.request.urlopen(req, timeout=60).read()
+    for attempt in range(1, 4):      # nb.no drops a connection now and then
+        try:
+            return urllib.request.urlopen(req, timeout=60).read()
+        except Exception:  # noqa: BLE001
+            if attempt == 3:
+                raise
+            time.sleep(10 * attempt)
 
 
 def _alto_to_text(xml: str) -> str:
@@ -91,9 +157,17 @@ def _alto_to_text(xml: str) -> str:
     return "\n".join(lines)
 
 
-def fetch_volume(bd: int, force: bool) -> None:
+def _key(bd: str):
+    return int(bd) if str(bd).isdigit() else bd
+
+
+def _dir(bd) -> Path:
+    return CACHE_DIR / (f"bd{bd}" if isinstance(bd, int) else bd)
+
+
+def fetch_volume(bd, force: bool) -> None:
     urn = VOLUMES[bd]
-    vol_dir = CACHE_DIR / f"bd{bd}"
+    vol_dir = _dir(bd)
     alto_dir, pages_dir = vol_dir / "alto", vol_dir / "pages"
     alto_dir.mkdir(parents=True, exist_ok=True)
     pages_dir.mkdir(parents=True, exist_ok=True)
@@ -125,8 +199,75 @@ def fetch_volume(bd: int, force: bool) -> None:
     print(f"bd{bd}: done — {len(list(pages_dir.glob('*.txt')))} page texts")
 
 
-def retext_volume(bd: int) -> None:
-    vol_dir = CACHE_DIR / f"bd{bd}"
+def fetch_pdf(bd, force: bool, tmp_dir: Path, keep_original: bool = False) -> None:
+    """The library's own PDF (page images only, colour, c. 0.5 MB a page)
+    reduced to grey at half the linear resolution — legible down to the
+    fractions and footnotes (tested 2026-11-25 on Bd 2 s. 420, 519) and
+    under GitHub's 100 MB file limit. The original stays on nb.no."""
+    urn = VOLUMES[bd]
+    vol_dir = _dir(bd)
+    vol_dir.mkdir(parents=True, exist_ok=True)
+    out = vol_dir / f"{PDF_PREFIX}_{vol_dir.name}.pdf"
+    if (out.exists() or list(vol_dir.glob(f"{PDF_PREFIX}_{vol_dir.name}_part*.pdf"))) and not force:
+        print(f"{vol_dir.name}: PDF already stored")
+        return
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+    src = tmp_dir / f"{vol_dir.name}_original.pdf"
+    if not src.exists():
+        # Download to a .part name and rename only when the whole body arrived:
+        # a read timeout must never leave a truncated file under the final name.
+        req = urllib.request.Request(f"https://www.nb.no/services/downloader?urn={urn}",
+                                     headers={"User-Agent": USER_AGENT})
+        dl = src.with_suffix(".download")
+        for attempt in range(1, 5):
+            try:
+                with urllib.request.urlopen(req, timeout=900) as r, open(dl, "wb") as f:
+                    shutil.copyfileobj(r, f)
+                    want = r.headers.get("Content-Length")
+                if want and int(want) != dl.stat().st_size:
+                    raise OSError(f"short body: {dl.stat().st_size} of {want} bytes")
+                dl.rename(src)
+                break
+            except Exception as exc:  # noqa: BLE001 — retry, then give the volume up
+                print(f"{vol_dir.name}: download attempt {attempt}: {type(exc).__name__}: {exc}",
+                      file=sys.stderr)
+                dl.unlink(missing_ok=True)
+                time.sleep(60 * attempt)
+        else:
+            print(f"{vol_dir.name}: PDF NOT fetched", file=sys.stderr)
+            return
+    if src.read_bytes()[:5] != b"%PDF-":
+        print(f"{vol_dir.name}: downloader did not return a PDF", file=sys.stderr)
+        src.unlink()
+        return
+    part = out.with_suffix(".part.pdf")
+    subprocess.run(
+        ["gs", "-q", "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",
+         "-sColorConversionStrategy=Gray", "-dProcessColorModel=/DeviceGray",
+         "-dDownsampleColorImages=true", "-dDownsampleGrayImages=true",
+         "-dColorImageResolution=200", "-dGrayImageResolution=200",
+         "-dColorImageDownsampleType=/Bicubic", "-dGrayImageDownsampleType=/Bicubic",
+         "-dColorImageDownsampleThreshold=1.0", "-dGrayImageDownsampleThreshold=1.0",
+         f"-sOutputFile={part}", str(src)], check=True)
+    part.rename(out)
+    print(f"{vol_dir.name}: {src.stat().st_size / 1e6:.0f} MB -> {out.stat().st_size / 1e6:.0f} MB")
+    if out.stat().st_size > 95e6:          # GitHub refuses files over 100 MB
+        n = int(subprocess.run(["qpdf", "--show-npages", str(out)], check=True,
+                               capture_output=True, text=True).stdout)
+        parts = -(-out.stat().st_size // int(90e6))
+        step = -(-n // parts)
+        for i in range(parts):
+            a, b = i * step + 1, min(n, (i + 1) * step)
+            piece = vol_dir / f"{PDF_PREFIX}_{vol_dir.name}_part{i + 1}_pdf{a:03d}-{b:03d}.pdf"
+            subprocess.run(["qpdf", str(out), "--pages", ".", f"{a}-{b}", "--", str(piece)], check=True)
+        out.unlink()
+        print(f"{vol_dir.name}: split into {parts} parts of <= {step} pages")
+    if not keep_original:
+        src.unlink()
+
+
+def retext_volume(bd) -> None:
+    vol_dir = _dir(bd)
     manifest = json.loads((vol_dir / "_manifest.json").read_text())
     labels = {cv["@seeAlso"]["@id"].rsplit("/", 1)[-1]: cv.get("label", "")
               for cv in manifest["sequences"][0]["canvases"]}
@@ -141,13 +282,23 @@ def retext_volume(bd: int) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--bd", type=int, action="append", required=True)
+    ap.add_argument("--collection", choices=sorted(COLLECTIONS), default="schou")
+    ap.add_argument("--bd", type=_key, action="append",
+                    help="volume key; omit for every volume of the collection")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--retext", action="store_true",
                     help="re-render pages/*.txt from the cached ALTO, no network")
+    ap.add_argument("--pdf", action="store_true",
+                    help="fetch the library's PDF and store a reduced grey copy (page images)")
+    ap.add_argument("--tmp", type=Path, default=Path("/tmp/schou_pdf"),
+                    help="where the full-size PDF is kept while it is reduced")
     args = ap.parse_args()
-    for bd in args.bd:
-        if args.retext:
+    global VOLUMES, CACHE_DIR, PDF_PREFIX
+    VOLUMES, CACHE_DIR, PDF_PREFIX = COLLECTIONS[args.collection]
+    for bd in args.bd or list(VOLUMES):
+        if args.pdf:
+            fetch_pdf(bd, args.force, args.tmp)
+        elif args.retext:
             retext_volume(bd)
         else:
             fetch_volume(bd, args.force)
