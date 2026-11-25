@@ -16,6 +16,17 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-26 — source collection, period 1558–1700 (local, unpushed)
+
+- **In the corpus now:** Hirsch, Münz-Archiv Theil 1–9 complete; Corpus Constitutionum Regio-Holsaticarum
+  Bd 1–3 + Repertorium (`ccrh-*`, MDZ OCR; PDFs in the research library, backed up) and its Nebenband
+  (`corpus-statutorum-provincialium-holsatiae-1750`). State per work: `docs/research/instruments/SOURCE_LOCATIONS.md` §2.
+- **MDZ OCR API** (`api.digitale-sammlungen.de/ocr/<bsb>/<n>`) is rate-limited (429, limit 5001); it refills
+  within hours, not once a day. 14 CCRH pages are still missing from the text (noted in each record's `ocr`).
+- **Next in the period:** Corpus Statutorum Slesvicensium (Google Books ids in SOURCE_LOCATIONS, browser only);
+  the 1620–1623 edicts for the duchies were not seen in CCRH Bd 1 (Repertorium «Münze» read in OCR only).
+- `~/Downloads/bsb105092*.pdf` (the unreduced MDZ downloads, 2.5 GB) — delete only on the curator's word.
+
 ## 2026-11-25 — research originals moved out of munzfuss-harvest (local main unpushed)
 
 - **Shipped (plan `docs/plans/research_library_split.md`, all 8 steps ✅):** PDFs, ALTO and rigsarkivet
