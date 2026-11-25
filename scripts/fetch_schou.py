@@ -124,10 +124,19 @@ NRR = {
     "b11": "URN:NBN:no-nb_digibok_2019121948007",  # 1653-1656
     "b12": "URN:NBN:no-nb_digibok_2008121603025",  # 1657-1660
 }
+# Norges gamle Love, Anden Række (1388-1604). Catalogue API checked 2026-11-25:
+# these three are «accessAllowedFrom: EVERYWHERE»; B. 3:1 (1483-1513,
+# 2014110708117) and B. 4:1 (1513-1536, 2012110208030) are NORWAY only.
+NGL = {
+    "r2_b1_1": "URN:NBN:no-nb_digibok_2010110806011",    # 1388-1447, 1a I
+    "r2_b1_2_3": "URN:NBN:no-nb_digibok_2017091507090",  # 1388-1447, 1a II-III
+    "r2_b2": "URN:NBN:no-nb_digibok_2018101748001",      # 1448-1482
+}
 COLLECTIONS = {  # name -> (volumes, cache directory, PDF file prefix)
     "schou": (VOLUMES, CACHE_DIR, "schou"),
     "fogtman": (FOGTMAN, CACHE_DIR.parent / "fogtman", "fogtman"),
     "nrr": (NRR, CACHE_DIR.parent / "norske_rigsregistranter", "nrr"),
+    "ngl": (NGL, CACHE_DIR.parent / "norges_gamle_love", "ngl"),
 }
 PDF_PREFIX = "schou"
 API = "https://api.nb.no/catalog/v1"

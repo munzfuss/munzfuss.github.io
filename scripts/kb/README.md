@@ -74,6 +74,25 @@ The working recipe — used by the `research-dossier`, `fuss-description`,
 8. **Checking existing citations.** `audit_pages.py` scores every `refs_pool`
    key's quote against its page (a report; each MISMATCH needs the page read).
 
+## Works we could not obtain — `external:` (2026-11-25)
+
+Some works exist online only as «search only» (HathiTrust «Limited View»):
+no page images, no download, but the host runs a full-text search over them.
+They are recorded in `scripts/cache/_corpus.yml` under the top-level key
+`external:` — nothing of theirs is indexed.
+
+    kb.py works --kind external                 # which ones
+    kb.py search "<words>" --work <external id>  # prints the host's search URL per volume
+
+The query is not run locally: open the printed URL in a browser (HathiTrust
+refuses automated access, and its result page did not render in an automated
+tab either). A hit there gives the PAGE on which the word stands, not the
+text — it says where to look once a copy is at hand, and it is never a
+source for a quote. An ordinary `kb.py search` without `--work` names the
+external works on stderr, as a reminder that they were not searched.
+Add a work here when its host offers a search and no full view; say in
+`access` what the host showed and when.
+
 ## Parts
 
 | Path | What |

@@ -601,7 +601,37 @@ def _stale_reason(con) -> str | None:
     return None
 
 
+def external_works(man: dict) -> list[dict]:
+    """Works we could NOT obtain but whose host offers a full-text search:
+    `_corpus.yml` top-level `external:` (id, title, citation, access,
+    search_url with {id} and {q}, volumes: {label: host id})."""
+    return list(man.get("external") or [])
+
+
+def _print_external(ext: dict, query: str) -> None:
+    from urllib.parse import quote
+    print(f"\n{ext['id']} — NOT in the corpus: {ext.get('title', '')}")
+    print(f"  access: {ext.get('access', '')}")
+    for label, hid in (ext.get("volumes") or {}).items():
+        print(f"  {label:10s} {ext['search_url'].format(id=hid, q=quote(query))}")
+    if ext.get("note"):
+        print(f"  note: {ext['note']}")
+
+
 def cmd_search(args) -> int:
+    man = load_manifest()
+    exts = external_works(man)
+    ext_ids = {e["id"] for e in exts}
+    asked_ext = [e for e in exts if e["id"] in (args.work or [])]
+    if asked_ext:
+        # an external work has no local text: hand back the host's own search
+        print("external work(s): the query is NOT run locally — open the URL(s) in a browser "
+              "(the host may refuse automated access)")
+        for e in asked_ext:
+            _print_external(e, args.query)
+        args.work = [w for w in args.work if w not in ext_ids]
+        if not args.work:
+            return 0
     db = Path(args.db)
     if not db.exists():
         print(f"no index at {db}; run `kb.py build` first", file=sys.stderr)
@@ -616,6 +646,9 @@ def cmd_search(args) -> int:
                          split=not args.no_split, per_work=args.per_work,
                          kind=args.kind)
     print(f"query terms (normalised): {' '.join(terms)}")
+    if exts and not args.work:
+        print("not searched (online-only, see `kb.py works --kind external`): "
+              + ", ".join(e["id"] for e in exts), file=sys.stderr)
     if not rows:
         print("no hits")
         return 1
@@ -639,6 +672,10 @@ def cmd_works(args) -> int:
         methods = {(u.get("printed_page") or {}).get("method", "none") for u in w["text_layers"]}
         anchored = "yes" if methods - {"none"} else ("range" if any(u.get("layout") == "section" for u in w["text_layers"]) else ("section" if w.get("kind") == "dossier" else "no"))
         print(f"{w['id']:36s} {w.get('kind', ''):10s} {'+'.join(w.get('languages', [])):8s} {anchored:12s}  {w.get('title', '')[:70]}")
+    for e in external_works(man):
+        if kinds and "external" not in kinds:
+            continue
+        print(f"{e['id']:36s} {'external':10s} {'+'.join(e.get('languages', [])):8s} {'online only':12s}  {e.get('title', '')[:70]}")
     return 0
 
 

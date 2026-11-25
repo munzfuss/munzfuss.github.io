@@ -6,9 +6,8 @@ Companion to `PLAN.md` §4. Result of a web search for each collection named the
 
 **How far to trust a row.** «checked» = the host's landing page, catalogue record or OCR was
 opened and gave the stated title or volume; it does not mean a title page or a table was read.
-«unverified» = seen only in a search result or a third-party list. MDZ
-(digitale-sammlungen.de), HathiTrust, deutsche-digitale-bibliothek.de, bibliotek.slaegt.dk,
-folketingstidende.dk and dst.dk refused automated access — their rows need a browser.
+«unverified» = seen only in a search result or a third-party list. HathiTrust, deutsche-digitale-bibliothek.de, bibliotek.slaegt.dk,
+folketingstidende.dk and dst.dk refused automated access — their rows need a browser. MDZ (digitale-sammlungen.de): the viewer refuses automated access, but the PDF download works in a browser after accepting the NoC-NC rights notice, and the IIIF / OCR interface (`api.digitale-sammlungen.de`) answers directly.
 Before any download: `add-source-work` (duplicate check, text layer, page mapping) and the
 curator's yes.
 
@@ -24,20 +23,20 @@ domain) · **IA:** `<id>` = `https://archive.org/details/<id>` · **GB:** `<id>`
 | Hanserecesse I/3 (1387–1390) | 0 | IA: `hanserecesse00roppgoog` | in the corpus since 2026-11-25 (`hanserecesse-1-3`); three printed pages missing from the scan |
 | Hanserecesse II/4 · II/5 · II/7 | 0 | IA: `hanserecesse08roppgoog` · `hanserecesse02roppgoog` · `hanserecesse10roppgoog` | in the corpus since 2026-11-25 (`hanserecesse-2-4`, `-2-5`, `-2-7`); **II/5 OCR poor** — a search miss there means nothing |
 | Hanserecesse III/2 · III/6 · III/7 | 0 | IA: `hanserecesse00germgoog` · `12021973bsb` · `hanserecesse01hansgoog` | in the corpus since 2026-11-25 (`hanserecesse-3-2`, `-3-6`, `-3-7`); **III/2 OCR almost absent**, pages before pdf 436 not mapped; III/6 cached as the IA text-PDF derivative |
-| Hanserecesse III/8 · III/9 | 0 | HathiTrust `mdp.35112102550326` · `mdp.35112102550334` | unverified; probably US-only |
+| Hanserecesse III/8 · III/9 | — | HathiTrust `mdp.35112102550326` · `mdp.35112102550334` | opened in the curator's browser 2026-11-25: both «Limited View» (search only) — not readable; the host's full-text search is wired into the corpus search as external work `hanserecesse-3-8-9-hathitrust` (`kb.py search "<q>" --work hanserecesse-3-8-9-hathitrust` prints the URLs) |
 | Lübeckisches UB 1 · 2,1 · 2,2 · 3 | 0 | IA: `urkundenbuchder01gescgoog` · `urkundenbuchder02gescgoog` · `urkundenbuchder01techgoog` · `bub_gb_EkE4AQAAMAAJ` | volumes confirmed on the title pages; in the corpus since 2026-11-25 (`luebeck-ub-1`, `-2-1`, `-2-2`, `-3`) |
 | Lübeckisches UB 4 (to 1400) | 0 | IA: `bub_gb_HcJZAAAAcAAJ` (title page: Vierter Theil, 1873); MDZ `bsb11135439` | in the corpus since 2026-11-25 (`luebeck-ub-4`) |
-| Lübeckisches UB 6 · 7 · 8 · 9 · 10 · 11 | 0 | IA: `urkundenbuchder06altegoog` · `bub_gb_OfsDAAAAYAAJ` · `urkundenbuchder04unkngoog` · `urkundenbuchder03unkngoog` · `bub_gb_lPsDAAAAYAAJ` · `urkundenbuchder00gescgoog` | volumes confirmed on the title pages; in the corpus since 2026-11-25 (`luebeck-ub-6` … `-11`). **Theil 6 is a defective scan** — about 57 printed pages missing throughout; a better copy is wanted |
+| Lübeckisches UB 6 · 7 · 8 · 9 · 10 · 11 | 0 | IA: `urkundenbuchder06altegoog` · `bub_gb_OfsDAAAAYAAJ` · `urkundenbuchder04unkngoog` · `urkundenbuchder03unkngoog` · `bub_gb_lPsDAAAAYAAJ` · `urkundenbuchder00gescgoog` | volumes confirmed on the title pages; in the corpus since 2026-11-25 (`luebeck-ub-6` … `-11`). Theil 6 from `codexdiplomatic02lbgoog` (complete; the first item, `urkundenbuchder06altegoog`, lacked about 57 printed pages and was dropped; MDZ has no Theil 6) |
 | Diplomatarium Norvegicum I–XXIII | 0 | <https://www.dokpro.uio.no/dipl_norv/diplom_field_eng.html> (searchable) | checked; abbreviations expanded silently in I–XX |
-| Norges gamle Love, 2. række | 0 | NB: `2010110806011` (1:1a, 1388–1447) · `2017091507090` (1:2–3) · `2018101748001` (2, 1448–1482) · `2014110708117` (3:1, 1483–1513) · `2012110208030` (4:1, 1513–1536) | unverified; 20th-century volumes, access may be limited to Norway |
+| Norges gamle Love, 2. række | 0 | NB: `2010110806011` (1:1a I, 1388–1447) · `2017091507090` (1:1a II–III) · `2018101748001` (2, 1448–1482) · `2014110708117` (3:1, 1483–1513) · `2012110208030` (4:1, 1513–1536) | B. 1 and 2 in the corpus since 2026-11-25 (`norges-gamle-love-2-raekke`); **3:1 and 4:1 are open from Norway only** (catalogue API) |
 | Repertorium diplomaticum, 1. række 1–4 | 0 | IA: `repertoriumdiplo01ersl` … `04ersl` | in the corpus since 2026-11-25 (`repertorium-diplomaticum-1-1` … `-1-4`; Bd 1 1085–1350, 2 1351–1400, 3 1401–1450, 4 Arkivoversigt and registers) |
-| Repertorium diplomaticum, 2. række (1451–1513) | 0 | HathiTrust record 006782806 | unverified; listed US-only |
-| Kolderup-Rosenvinge IV (1824) | 0 | DDB item `5O7ABU3E3Z7TISEWSD5CWBGFUB3XAPYY` → BSB scan | unverified |
-| Paus, Samling af gamle norske Love, 1,1 | 0 | DDB item `Q3NPGFORBA6TCVNLPMGVBGWIEOK7K3CJ` → BSB scan | unverified; vol. 2 not found; nb.no not searched |
+| Repertorium diplomaticum, 2. række (1451–1513) | — | HathiTrust record 006782806 | opened in the curator's browser 2026-11-25: all 9 volumes «Limited (search only)» — not readable; the host's full-text search is wired into the corpus search as external work `repertorium-diplomaticum-2-hathitrust` (`kb.py search "<q>" --work repertorium-diplomaticum-2-hathitrust` prints the URLs) |
+| Kolderup-Rosenvinge IV (1824) | 0 | MDZ `bsb10518901` (the DDB item resolves to it) | in the corpus since 2026-11-25 (`kolderup-rosenvinge-1824-recesser`) |
+| Paus, Samling af gamle norske Love, 1,1 | 0 | MDZ `bsb10518939` (the DDB item resolves to it) | in the corpus since 2026-11-25 (`paus-1751-gamle-norske-love-1-1`); three paginations; vol. 2 not found |
 | Danske Kancelliregistranter 1535–1550 | 0 | IA: `danskekancellire00denm` | in the corpus since 2026-11-24 as `danske-kancelliregistranter-1535-1550` |
 | Kong Frederik den Førstes danske Registranter | 0 | IA: `kongfrederikden00fredgoog` | in the corpus since 2026-11-24 as `frederik-i-danske-registranter` |
 | Schleswig-Holstein-Lauenburgische Regesten und Urkunden 1–3 | 0 | MDZ `bsb00073266` · `bsb00073267` · `bsb00073263` | unverified; **end at 1340** — nothing for 1390–1558 |
-| Diplomatarium Flensborgense 2 | 0 | MDZ `bsb11159317` | unverified; vol. 1 not found |
+| Diplomatarium Flensborgense 2 | 0 | MDZ `bsb11159317` | in the corpus since 2026-11-25 (`diplomatarium-flensborgense-2`, 1501–1559); vol. 1 not found |
 | Aarsberetninger fra Geheimearchivet 2–7 | 0 | IA: `aarsberetninger00rigsgoog` · `aarsberetninger02wegegoog` | Bd 2–7 in the corpus since 2026-11-25 (`aarsberetninger-geheimearchivet-2` … `-7`), volumes read from the title pages: 2 = `aarsberetninger05wegegoog`, 3 = `00rigsgoog` (`03wegegoog` is a second copy, not cached), 4 = `04wegegoog`, 5 = `01wegegoog`, 6 = `02wegegoog`, 7 = `00wegegoog`. **The Haandfæstninger are in Bd 2** («Danske Kongers Haandfæstninger og andre lignende Acter», s. 1–150). Bd 1 not located |
 
 ## 2. 1558–1700
