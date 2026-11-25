@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `gotland`.
-# Generated 2026-11-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gotland.yml across all sources.
 #
-# Input: 28 per-source seed entries.
-# Output: 10 unified entries (one per physical coin).
+# Input: 27 per-source seed entries.
+# Output: 9 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gotland
-generated_at: '2026-11-10'
+generated_at: '2026-11-25'
 coins:
   - id: c-3a4c6dbd
     class_id: c-3a4c6dbd
@@ -1082,34 +1082,3 @@ coins:
     composed_of:
       - dk-bruun-4503
       - dk-hede-f2h35
-  - id: c-27b95413
-    class_id: c-27b95413
-    label: unified-kmk-150299
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1449
-    year_last: 1480
-    year_ranges:
-      -   - 1449
-          - 1480
-    year_label: 1449-1480
-    ruler: Christian 1
-    mint: Visby
-    catalog:
-      schou: '130'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.62
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150299
-        ref: KMM 150299 (Inv. KP 1656.14)
-    issuing_entity: gotland
-    composed_of:
-      - kmk-150299
