@@ -190,8 +190,16 @@ class GhBackend:
             link = Path(td) / asset
             os.symlink(src.resolve(), link)
             self._gh("release", "upload", tag, str(link))
-        self._assets.pop(tag, None)
-        return (self.assets(tag) or {}).get(asset, "")
+        # GitHub computes the digest asynchronously: right after an upload it
+        # can still be empty (seen on a 42 MB PDF, 2026-11-25). Poll briefly.
+        import time
+        for wait in (0, 2, 4, 8, 16):
+            time.sleep(wait)
+            self._assets.pop(tag, None)
+            got = (self.assets(tag) or {}).get(asset, "")
+            if got:
+                return got
+        return ""
 
     def download(self, tag: str, asset: str, dest: Path) -> None:
         with tempfile.TemporaryDirectory() as td:

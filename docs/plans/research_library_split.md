@@ -140,11 +140,17 @@ the six local hashes match those records, checked 2026-11-25).
   rigsarkivet). Enriching these is optional — after step 3 every file has a
   release copy.
 
-### 3. Back up everything
+### 3. Back up everything — ✅ 2026-11-25
 
 - `library.py backup` — per-directory releases, ALTO bundles.
 - **Check:** `status` reports zero single-copy files; a spot `fetch` of three
-  files from release into a temp root matches sha256.
+  files from release into a temp root matches sha256 — passed: 396/396
+  backed up; fetched into an empty root `schou/bd1904/alto` (77 files),
+  a rigsarkivet jpg and «Jesse side 99-104.pdf», all sha256-checked.
+- Two first-pass misses, both fixed: the Jesse name with spaces (asset names
+  made safe, the misnamed asset deleted and re-uploaded) and an empty digest
+  right after upload (Hirsch Theil 9 — GitHub computes it asynchronously;
+  `upload` now polls).
 
 ### 4. Point the code at the library — ✅ 2026-11-25 (readers)
 
@@ -177,7 +183,7 @@ the six local hashes match those records, checked 2026-11-25).
   (PDF → `secher/_pdf/`), `fetch_schou.py` (ALTO), and the fogtman /
   norske_rigsregistranter / norges_gamle_love ALTO fetchers.
 
-### 5. Manifest into munzfuss-harvest
+### 5. Manifest into munzfuss-harvest — ✅ 2026-11-25
 
 - After step 3: move `~/munzfuss-corpus/library_manifest.yml` to
   `scripts/cache/_library_manifest.yml`, add the danskmoent `source_url`s
@@ -189,7 +195,8 @@ the six local hashes match those records, checked 2026-11-25).
   under their Stack's Bowers file names (404).
 - Commit in the submodule, bump the pointer; delete `~/munzfuss-corpus`.
 - **Check:** `library.py status` reads the manifest from the cache;
-  `verify` clean.
+  `verify` clean — passed: harvest commit `bee5d87bc`, 396 records, 37 with a
+  byte-identical origin URL (6 Secher + 31 danskmoent), `verify` 396 ok.
 
 ### 6. Guard
 
@@ -238,3 +245,5 @@ Mac, not only the library.
 - 2026-11-25 — step 4 (readers) done; step 3 backup running.
 - 2026-11-25 — revision: no munzfuss-corpus repo; manifest goes into
   munzfuss-harvest. Asset names made GitHub-safe.
+- 2026-11-25 — steps 3 and 5 done: all originals backed up, manifest in
+  munzfuss-harvest. Next: step 6 (guard, fetchers, skill text).
