@@ -238,7 +238,7 @@ is one of:
 - `{"url": …}` — danskmoent Zinck GIF (`danskmoent.dk/zinck/zinckN/<file>.gif`;
   grep the cached Hede page for `IMG SRC`). The helper sends a browser
   User-Agent, which danskmoent requires.
-- `{"pdf": "scripts/cache/bruun/partN.pdf", "page": P, "crop60": [x0,y0,x1,y1]}`
+- `{"pdf": "bruun/partN.pdf", "page": P, "crop60": [x0,y0,x1,y1]}` (a library path; the old `scripts/cache/…` form still works)
   — a Bruun catalogue plate. Render the page once at 60 dpi
   (`pdftoppm -f P -l P -r 60 -png …`), read the box off it; the helper
   re-renders at 160 dpi and crops.
