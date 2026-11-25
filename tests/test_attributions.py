@@ -25,6 +25,16 @@ class Attributions(unittest.TestCase):
                     "catalog": {"galster": "27A", "schou": "2"}}]
         self.assertTrue(M._attribution_matches(ATTR, members, "danish_realm"))
 
+    def test_hede_type_scoped_by_ruler_in_type(self):
+        # Members key Hede by their ruler («hede/christian iii»); a type that
+        # names the ruler meets them, the bare volume code alone does not.
+        members = [{"id": "dk-hede-c3h24", "ruler": "Christian III",
+                    "catalog": {"hede": "24", "hede_volume": "c3h"}}]
+        with_ruler = dict(ATTR, type={"hede": "24", "ruler": "Christian III"})
+        self.assertTrue(M._attribution_matches(with_ruler, members, "royal_slesvig"))
+        other = dict(ATTR, type={"hede": "24", "ruler": "Christian IV"})
+        self.assertFalse(M._attribution_matches(other, members, "royal_slesvig"))
+
     def test_other_volume_does_not_match(self):
         members = [{"id": "x", "ruler": "Christian III",
                     "catalog": {"galster": "27", "galster_volume": "c3g"}}]

@@ -5829,7 +5829,13 @@ def _attribution_matches(attr: dict, member_coins: list[dict], entity_id: str) -
     same type-level number, by some member of the class."""
     # fresh: the spec dict is transient, so its id() may be one the memo
     # already holds for a freed coin — a cached hit would be another coin's refs.
-    spec = _catalog_refs({"catalog": dict(attr["type"])}, entity_id, fresh=True)
+    # `ruler` in the type is not a register: it scopes the reign-numbered
+    # ones (Hede, Sieg, Schou), which the members key by their ruler
+    # («hede/christian iii»), not by the volume code («hede/c3h»).
+    cat = dict(attr["type"])
+    ruler = cat.pop("ruler", None)
+    spec = _catalog_refs({"catalog": cat, **({"ruler": ruler} if ruler else {})},
+                         entity_id, fresh=True)
     if not spec:
         return False
     member_refs = [_catalog_refs(m, entity_id) for m in member_coins]
@@ -5877,7 +5883,12 @@ def apply_attribution(unified: dict, attr: dict) -> None:
         e["seed"] = "attribution"
         entries.append(e)
     unc = unified.setdefault("uncertainty", {})
-    unc["year"] = entries + [e for e in unc.get("year") or [] if e.get("seed") != "attribution"]
+    # A plain dating replaces the year the members only inferred (a reign
+    # span for an undated coin): their «[ ]» entry explained a year the class
+    # no longer shows (Hede c3h24, Nöbbe 1546; curator 2026-11-25).
+    kept = [e for e in unc.get("year") or [] if e.get("seed") != "attribution"
+            and not (plain and e.get("kind") == "inferred")]
+    unc["year"] = entries + kept
     if not unc["year"]:
         unc.pop("year")
     # The works are NOT added to `sources`: that column lists the sources of
