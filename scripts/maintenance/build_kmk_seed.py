@@ -1427,6 +1427,10 @@ def build_entry(src) -> dict | None:
     # Era scope gate (mission lower bound 1481 / upper 1914). Undated kept —
     # finer dual-anchor (DK 1514 / German 1559) left to Phase 4.
     if yf is not None and (yf < _EARLY_YEAR_FROM or yf > 1914):
+        # In the scope ledger like a stub: an unrecorded None left a record a
+        # run before the gate had written in the seed for good (merge_seed
+        # keeps what the builder no longer emits; curator 2026-11-25).
+        _STUB_DROPPED[f"kmk-{rid}"] = "era"
         return None
 
     mint, mintmaster = _split_place(src)
@@ -1542,6 +1546,7 @@ def build_entry(src) -> dict | None:
     if routed_ent != entry["issuing_entity"]:
         entry["issuing_entity"] = routed_ent
     if _early_out_of_scope(yf, entry["issuing_entity"]):
+        _STUB_DROPPED[entry["id"]] = "early_entity"     # see the era gate
         return None
     if hint is not None:
         entry["_entity_routing_hint"] = hint
@@ -1634,7 +1639,10 @@ def _write_scope_dropped() -> None:
         "rule": ("KMM stub (curator 2026-11-05): a forgery; no weight and no "
                  "image; or a weight with no image and no catalogue index. "
                  "exonumia (§9.2; ledger since curator 2026-11-07): a medal, "
-                 "jeton, token, banknote or other non-coin object."),
+                 "jeton, token, banknote or other non-coin object. "
+                 "era / early_entity (curator 2026-11-25): dated before 1370 "
+                 "or after 1914, or before 1481 under an entity outside the "
+                 "early scope."),
         "dropped": {k: _STUB_DROPPED[k] for k in sorted(_STUB_DROPPED)},
     }
     _erroneous_marks()
