@@ -8,9 +8,13 @@ rendering, so the register can be grepped for coinage instruments and a
 page can be quoted with its printed page label.
 
     scripts/cache/schou/bd<N>/_manifest.json       IIIF manifest as served
-    scripts/cache/schou/bd<N>/alto/<urn>_<page>.xml raw ALTO
+    <LIBRARY_ROOT>/schou/bd<N>/alto/<urn>_<page>.xml raw ALTO (an original:
+                                                   outside git, recorded as
+                                                   one bundle in
+                                                   _library_manifest.yml)
     scripts/cache/schou/bd<N>/pages/<page>.txt     one line per TextLine,
                                                    header line = printed label
+    <LIBRARY_ROOT>/schou/bd<N>/schou_bd<N>[_partK…].pdf  with --pdf
 
 The OCR is Fraktur and noisy (lex.dk warns searches miss); keep the page
 images reachable via the manifest's IIIF image service when a quote must
@@ -39,7 +43,9 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lib.paths import SCHOU_CACHE as CACHE_DIR  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent / "library"))
+from lib.paths import HARVEST_ROOT, LIBRARY_ROOT, SCHOU_CACHE as CACHE_DIR  # noqa: E402
+import library  # noqa: E402
 
 VOLUMES = {
     1: "URN:NBN:no-nb_digibok_2014050824003",
@@ -171,13 +177,31 @@ def _key(bd: str):
 
 
 def _dir(bd) -> Path:
+    """Text side of a volume (manifest, pages) — the harvest cache."""
     return CACHE_DIR / (f"bd{bd}" if isinstance(bd, int) else bd)
+
+
+def _rel(bd) -> str:
+    return _dir(bd).relative_to(HARVEST_ROOT).as_posix()
+
+
+def _lib_dir(bd) -> Path:
+    """Originals of a volume (ALTO, PDF) — the research library."""
+    return LIBRARY_ROOT / _rel(bd)
+
+
+def _alto_dir(bd) -> Path:
+    """Where the ALTO is read from: the library, or the cache while a volume
+    has not been moved yet (plan step 7 removes the cache copies)."""
+    lib = _lib_dir(bd) / "alto"
+    old = _dir(bd) / "alto"
+    return old if (old.is_dir() and not lib.is_dir()) else lib
 
 
 def fetch_volume(bd, force: bool) -> None:
     urn = VOLUMES[bd]
     vol_dir = _dir(bd)
-    alto_dir, pages_dir = vol_dir / "alto", vol_dir / "pages"
+    alto_dir, pages_dir = _alto_dir(bd), vol_dir / "pages"
     alto_dir.mkdir(parents=True, exist_ok=True)
     pages_dir.mkdir(parents=True, exist_ok=True)
     man_path = vol_dir / "_manifest.json"
@@ -205,19 +229,26 @@ def fetch_volume(bd, force: bool) -> None:
         txt_path.write_text(f"[label {cv.get('label', '')}]\n" + _alto_to_text(xml) + "\n",
                             encoding="utf-8")
         time.sleep(SLEEP_SECS)
+    if alto_dir.is_relative_to(LIBRARY_ROOT):
+        library.register(f"{_rel(bd)}/alto", bundle=True)
     print(f"bd{bd}: done — {len(list(pages_dir.glob('*.txt')))} page texts")
 
 
 def fetch_pdf(bd, force: bool, tmp_dir: Path, keep_original: bool = False) -> None:
     """The library's own PDF (page images only, colour, c. 0.5 MB a page)
     reduced to grey at half the linear resolution — legible down to the
-    fractions and footnotes (tested 2026-11-25 on Bd 2 s. 420, 519) and
-    under GitHub's 100 MB file limit. The original stays on nb.no."""
+    fractions and footnotes (tested 2026-11-25 on Bd 2 s. 420, 519). The
+    split into < 100 MB parts was for GitHub's file limit while PDFs were
+    committed; it is kept so new volumes match the stored ones. Written to
+    the research library and recorded in the manifest (work_url = the nb.no
+    item; the reduced file is not re-downloadable byte for byte)."""
     urn = VOLUMES[bd]
-    vol_dir = _dir(bd)
+    vol_dir = _lib_dir(bd)
     vol_dir.mkdir(parents=True, exist_ok=True)
     out = vol_dir / f"{PDF_PREFIX}_{vol_dir.name}.pdf"
-    if (out.exists() or list(vol_dir.glob(f"{PDF_PREFIX}_{vol_dir.name}_part*.pdf"))) and not force:
+    stored = [d for d in (vol_dir, _dir(bd))
+              if (d / out.name).exists() or list(d.glob(f"{PDF_PREFIX}_{vol_dir.name}_part*.pdf"))]
+    if stored and not force:
         print(f"{vol_dir.name}: PDF already stored")
         return
     tmp_dir.mkdir(parents=True, exist_ok=True)
@@ -271,6 +302,9 @@ def fetch_pdf(bd, force: bool, tmp_dir: Path, keep_original: bool = False) -> No
             subprocess.run(["qpdf", str(out), "--pages", ".", f"{a}-{b}", "--", str(piece)], check=True)
         out.unlink()
         print(f"{vol_dir.name}: split into {parts} parts of <= {step} pages")
+    for f in sorted(vol_dir.glob(f"{PDF_PREFIX}_{vol_dir.name}*.pdf")):
+        library.register(f.relative_to(LIBRARY_ROOT).as_posix(),
+                         fetched=time.strftime("%Y-%m-%d"))
     if not keep_original:
         src.unlink()
 
@@ -280,7 +314,7 @@ def retext_volume(bd) -> None:
     manifest = json.loads((vol_dir / "_manifest.json").read_text())
     labels = {cv["@seeAlso"]["@id"].rsplit("/", 1)[-1]: cv.get("label", "")
               for cv in manifest["sequences"][0]["canvases"]}
-    for xml_path in sorted((vol_dir / "alto").glob("*.xml")):
+    for xml_path in sorted(_alto_dir(bd).glob("*.xml")):
         page_id = xml_path.stem
         txt_path = vol_dir / "pages" / f"{page_id.rsplit('_', 1)[-1]}.txt"
         txt_path.write_text(f"[label {labels.get(page_id, '')}]\n"

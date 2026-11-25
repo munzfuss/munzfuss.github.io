@@ -8,10 +8,12 @@ for Udgivelse af Kilder til dansk Historie (kildeskriftselskabet.dk,
 «kan downloades gratis», ~50 kB/s on 2026-10-13) and Wikimedia Commons
 (the same scans re-uploaded for da.wikisource, ~2 MB/s; the «_gl.pdf»
 files there are the KB originals byte-for-byte in size, the plain ones a
-smaller re-encoding). Commons is the default. 150-400 MB each, so the
-PDFs are NOT committed; only the text layer is:
+smaller re-encoding). Commons is the default. 150-400 MB each; the PDF is
+an original and goes to the research library (outside git, recorded in
+``_library_manifest.yml`` with its URL — scripts/library/library.py); only
+the text layer is committed:
 
-    scripts/cache/secher/_pdf/bd<N>.pdf          gitignored download
+    <LIBRARY_ROOT>/secher/_pdf/bd<N>.pdf         the download
     scripts/cache/secher/bd<N>/pages/<NNNN>.txt  pdftotext -layout, one
                                                  file per PDF page
     scripts/cache/secher/bd<N>/_index.json       page count, source URL,
@@ -41,7 +43,10 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lib.paths import SECHER_CACHE as CACHE_DIR  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent / "library"))
+from lib.paths import HARVEST_ROOT, LIBRARY_ROOT, SECHER_CACHE as CACHE_DIR  # noqa: E402
+from lib.originals import MissingOriginal, original  # noqa: E402
+import library  # noqa: E402
 
 KB_URL = "https://kildeskriftselskabet.dk/images/Pdf-filer/1887_Secher_1300166350{code}.pdf"
 VOLUMES = {1: "66", 2: "74", 3: "82", 4: "90", 5: "104", 6: "112"}
@@ -80,14 +85,15 @@ def _split_pages(pdf: Path, pages_dir: Path) -> int:
 
 
 def fetch_volume(bd: int, archive_org: bool, kb: bool = False) -> None:
-    pdf = CACHE_DIR / "_pdf" / f"bd{bd}.pdf"
+    rel = (CACHE_DIR / "_pdf" / f"bd{bd}.pdf").relative_to(HARVEST_ROOT).as_posix()
     url = KB_URL.format(code=VOLUMES[bd]) if kb else COMMONS_URL[bd]
-    if not pdf.exists():
+    try:
+        pdf = original(rel)
+    except MissingOriginal:
+        pdf = LIBRARY_ROOT / rel
         print(f"bd{bd}: downloading {url}")
         _download(url, pdf)
-    gi = CACHE_DIR / "_pdf" / ".gitignore"
-    if not gi.exists():
-        gi.write_text("*.pdf\n")
+        library.register(rel, url=url, fetched=date.today().isoformat())
     vol_dir = CACHE_DIR / f"bd{bd}"
     n = _split_pages(pdf, vol_dir / "pages")
     index = {

@@ -418,6 +418,18 @@ def cmd_status(lib: Library, listing: bool) -> int:
     return 0
 
 
+def default_library() -> Library:
+    return Library(paths.LIBRARY_ROOT, paths.HARVEST_ROOT / MANIFEST_NAME)
+
+
+def register(rel: str, *, url: str | None = None, fetched: str | None = None,
+             bundle: bool = False) -> None:
+    """For fetchers: record a just-written original (or ALTO tree) in the
+    manifest. A changed file/tree replaces its record (a re-fetch or a tree
+    that grew); the old backup entry is dropped so ``backup`` uploads anew."""
+    cmd_add(default_library(), [rel], url, fetched, bundle, force=True)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--root", type=Path, default=None, help="library root")

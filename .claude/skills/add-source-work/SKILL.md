@@ -2,12 +2,13 @@
 name: add-source-work
 description: >-
   Bring a printed work (a PDF — monograph, journal article, offprint, catalogue,
-  ordinance edition) into the harvest cache so the corpus search finds it:
-  check it is not already cached, download it, check the text layer (a scan
-  without OCR indexes empty), write the plain-text extract, establish the
-  PDF → printed page mapping from the running heads, add the `_corpus.yml`
-  record, rebuild and test the index, commit the cache submodule and bump its
-  pointer. Use for «збережи цю працю до нас», «додай PDF у кеш / корпус»,
+  ordinance edition) into the corpus so the search finds it: check it is not
+  already held, download the PDF into the research library (outside git,
+  recorded with its URL in `_library_manifest.yml`, backed up as a release
+  asset), check the text layer (a scan without OCR indexes empty), write the
+  plain-text extract into the harvest cache, establish the PDF → printed page
+  mapping from the running heads, add the `_corpus.yml` record, rebuild and
+  test the index, commit the cache submodule and bump its pointer. Use for «збережи цю працю до нас», «додай PDF у кеш / корпус»,
   «зроби текстову копію для пошуку», «чи є в нас ця книга / стаття»,
   «add this PDF to the corpus», «save this work», or whenever a useful PDF
   turns up during research and is not yet in `scripts/cache`. Helper
@@ -15,17 +16,25 @@ description: >-
   work afterwards is the `cite-source` skill.
 ---
 
-# add-source-work — a PDF into the cache and the corpus search
+# add-source-work — a PDF into the library, its text into the corpus search
 
 The corpus search (`scripts/kb/kb.py`, CLAUDE.md «Tool fallback chain», tier 0)
-reads only what `scripts/cache/_corpus.yml` lists. A PDF lying in the cache
-without a record is invisible to it; a record with a wrong page mapping makes
+reads only what `scripts/cache/_corpus.yml` lists. A PDF without a record is
+invisible to it; a record with a wrong page mapping makes
 every later citation of that work cite the wrong page, and nothing flags it.
 This skill is the one procedure for doing it right. Read `scripts/kb/README.md`
 (record format) and `docs/PLAYBOOKS.md` PB-10 (cache commits) once.
 
+**Where things go** (since 2026-11-25, docs/plans/research_library_split.md):
+the PDF is an ORIGINAL — it lives in the research library (`LIBRARY_ROOT`,
+default `~/munzfuss-library`), never in git; the harvest repo's pre-commit
+refuses it. The extract, the page mapping and the `_corpus.yml` record are
+TEXT — they live in the harvest cache. Both use the same relative path
+(`danskmoent/<topic>/<name>.pdf` in the library, `…/<name>.extract.txt` in
+the cache).
+
 Helper: `.venv/bin/python .claude/skills/add-source-work/add_work.py <cmd> …`
-— paths are relative to `scripts/cache/`.
+— a PDF path is a library path, a text path is relative to `scripts/cache/`.
 
 ## When NOT to use
 
@@ -39,7 +48,7 @@ Helper: `.venv/bin/python .claude/skills/add-source-work/add_work.py <cmd> …`
 
 1. **Is it already here?** `add_work.py dupes <author> <title word>` lists
    corpus records that match; after the download, `dupes … --pdf <file>`
-   also finds the same file cached under another name. A different copy of a
+   also finds the same file held under another name. A different copy of a
    work already present (journal volume vs offprint, another scan) gets its
    OWN record that names the other in `basis` / `ocr` (the `hauberg-1886` /
    `hauberg-1886-saertryk` pair) — never overwrite the existing one.
@@ -47,9 +56,13 @@ Helper: `.venv/bin/python .claude/skills/add-source-work/add_work.py <cmd> …`
 2. **Where it goes.** Beside the works it belongs with, in the source's tree:
    danskmoent PDFs under `danskmoent/<topic>/`, Wilcke under `wilcke/…`, etc.
    File name `<author>_<year>_<short_title>.pdf`, ASCII, lower case.
-   `add_work.py fetch <url> <dest>` downloads with a browser User-Agent
-   (danskmoent answers bots with a challenge page), refuses to overwrite and
-   refuses anything that is not a PDF. Downloading a file from a link the
+   `add_work.py fetch <url> <dest>` downloads into the library with a browser
+   User-Agent (danskmoent answers bots with a challenge page), refuses to
+   overwrite and refuses anything that is not a PDF, and records the file
+   with its URL in `_library_manifest.yml` (`library.py add`). When the
+   challenge blocks it, the in-app Browser fetch + Chrome save of
+   `docs/SOURCES.md` (Part V note) applies; then put the file under
+   `~/munzfuss-library/<dest>` and run `library.py add <dest> --url <url>`. Downloading a file from a link the
    curator gave, or from the source the research is already reading, needs no
    extra confirmation; any other download is asked first (filename, source,
    size).
@@ -58,14 +71,14 @@ Helper: `.venv/bin/python .claude/skills/add-source-work/add_work.py <cmd> …`
    without text.
    - Every page empty → a scan without OCR. Stop: tesseract / ocrmypdf are not
      installed here. Ask the curator whether to OCR it (install, then
-     `ocrmypdf -l dan+deu --skip-text in.pdf out.pdf`) or to cache it without
+     `ocrmypdf -l dan+deu --skip-text in.pdf out.pdf`) or to keep it without
      a corpus record — and say plainly that a search miss in it means nothing.
    - Some pages empty → plates, title or blank pages, or pages the OCR missed.
      Look at them (`pdftoppm -f N -l N -r 90 -png`); if they are plates, say so
      in `ocr`.
 
-4. **Extract.** `add_work.py extract <pdf>` writes `<name>.extract.txt` beside
-   the PDF with one form feed per page (`layout: formfeed`) and checks the
+4. **Extract.** `add_work.py extract <pdf>` writes `<name>.extract.txt` into
+   the cache at the PDF's relative path, with one form feed per page (`layout: formfeed`) and checks the
    count equals the page count. Never hand-edit an extract.
 
 5. **Page mapping.** `add_work.py offsets <name>.extract.txt` scans the running
@@ -98,9 +111,12 @@ Helper: `.venv/bin/python .claude/skills/add-source-work/add_work.py <cmd> …`
    the regex finds, and searches the phrase in the work. The hit must report
    the printed page you read the phrase on. If not, step 5 is wrong.
 
-8. **Commit — cache first, then the pointer** (PB-10, Git safety protocol).
-   Inside `scripts/cache`, commit ONLY your files by explicit path (the PDF,
-   the extract, `_corpus.yml`); other sessions leave untracked files there.
+8. **Back up, then commit — cache first, then the pointer** (PB-10, Git
+   safety protocol). `library.py backup <dest>` uploads the PDF to the
+   release (asks nothing more: the backup repo is the project's own private
+   store). Inside `scripts/cache`, commit ONLY your files by explicit path
+   (the extract, `_corpus.yml`, `_library_manifest.yml` — never the PDF);
+   other sessions leave untracked files there.
    Then in the main repo `git commit scripts/cache -m "chore: bump cache - …"`
    (background, no trailing `&`). Push only on the curator's «пуш».
 
@@ -112,8 +128,9 @@ Helper: `.venv/bin/python .claude/skills/add-source-work/add_work.py <cmd> …`
 ## Hard rules
 
 - Never record an offset you have not checked against the page heads.
-- Never overwrite a cached PDF or extract; a second copy is a second file and
+- Never overwrite a held PDF or extract; a second copy is a second file and
   a second record.
+- The PDF never goes into git — library + `library.py add` + `backup`.
 - A scan without a text layer is not indexed silently: OCR it or say it is
   unsearchable.
 - `_corpus.yml` lives in the submodule: commit there by path, then bump the
@@ -122,6 +139,7 @@ Helper: `.venv/bin/python .claude/skills/add-source-work/add_work.py <cmd> …`
 
 ## Worked example — Hauberg 1891 (2026-10-27)
 
+(Before the library split: the PDF then still went into the cache.)
 `https://www.danskmoent.dk/pdf2/Hauberg%20Gulland.pdf` → `dupes hauberg` found
 the two 1886 records, no 1891 → saved as
 `danskmoent/hans_1481_1513/hauberg_1891_gullands_myntvaesen.pdf` (73 pages,

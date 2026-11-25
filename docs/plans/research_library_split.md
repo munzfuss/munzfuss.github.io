@@ -198,7 +198,7 @@ the six local hashes match those records, checked 2026-11-25).
   `verify` clean — passed: harvest commit `bee5d87bc`, 396 records, 37 with a
   byte-identical origin URL (6 Secher + 31 danskmoent), `verify` 396 ok.
 
-### 6. Guard
+### 6. Guard — ✅ 2026-11-25
 
 - pre-commit in munzfuss-harvest: refuse `*.pdf`,
   `alto/*.xml`, and any file > 50 MB; message points to `library.py add`.
@@ -207,7 +207,22 @@ the six local hashes match those records, checked 2026-11-25).
   step 4; the SKILL.md text still describes the old flow).
 - Fetchers that still write originals into the cache (see step 4) write
   into the library and call `library.py add`.
-- **Check:** a test commit with a dummy PDF is refused.
+- **Check:** a test commit with a dummy PDF is refused — passed on a
+  throwaway repo with the hook: PDF (upper-case suffix too), ALTO XML with a
+  space in the name, rigsarkivet jpg and a 21 MB file refused; text edits,
+  a rename and a PDF deletion pass.
+- Done: harvest `.githooks/pre-commit` + `.gitignore` (`*.pdf`, `*.PDF`,
+  `alto/`), harvest commit `e9dab36f9`; `scripts/install_hooks.sh` sets
+  `core.hooksPath` in the submodule too (run once per clone).
+- Fetchers: `fetch_secher.py` downloads into the library and registers the
+  PDF with its URL; `fetch_schou.py` (all nb.no collections: schou,
+  fogtman, nrr, ngl) writes ALTO into the library and registers the tree as
+  a bundle, `--pdf` writes the reduced PDF there (split kept so new volumes
+  match the stored ones), `--retext` reads ALTO from the library — checked
+  on schou bd1904: 77 pages re-rendered, zero diff in the cache.
+  `library.register()` is the helper fetchers call.
+- `add-source-work` SKILL.md rewritten for the library flow (PDF → library
+  + manifest + backup; extract → cache).
 
 ### 7. Rewrite munzfuss-harvest history
 
@@ -247,3 +262,5 @@ Mac, not only the library.
   munzfuss-harvest. Asset names made GitHub-safe.
 - 2026-11-25 — steps 3 and 5 done: all originals backed up, manifest in
   munzfuss-harvest. Next: step 6 (guard, fetchers, skill text).
+- 2026-11-25 — step 6 done. Next: step 7 (history rewrite) — needs the
+  curator's explicit yes.
