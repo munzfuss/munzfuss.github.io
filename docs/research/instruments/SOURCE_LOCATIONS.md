@@ -30,7 +30,7 @@ domain) · **IA:** `<id>` = `https://archive.org/details/<id>` · **GB:** `<id>`
 | Lübeckisches UB 6 · 7 · 8 · 9 · 10 · 11 | 0 | IA: `urkundenbuchder06altegoog` · `bub_gb_OfsDAAAAYAAJ` · `urkundenbuchder04unkngoog` · `urkundenbuchder03unkngoog` · `bub_gb_lPsDAAAAYAAJ` · `urkundenbuchder00gescgoog` | volumes confirmed on the title pages; in the corpus since 2026-11-25 (`luebeck-ub-6` … `-11`). **Theil 6 is a defective scan** — about 57 printed pages missing throughout; a better copy is wanted |
 | Diplomatarium Norvegicum I–XXIII | 0 | <https://www.dokpro.uio.no/dipl_norv/diplom_field_eng.html> (searchable) | checked; abbreviations expanded silently in I–XX |
 | Norges gamle Love, 2. række | 0 | NB: `2010110806011` (1:1a, 1388–1447) · `2017091507090` (1:2–3) · `2018101748001` (2, 1448–1482) · `2014110708117` (3:1, 1483–1513) · `2012110208030` (4:1, 1513–1536) | unverified; 20th-century volumes, access may be limited to Norway |
-| Repertorium diplomaticum, 1. række 1–4 | 0 | IA: `repertoriumdiplo01ersl` … `04ersl` | metadata |
+| Repertorium diplomaticum, 1. række 1–4 | 0 | IA: `repertoriumdiplo01ersl` … `04ersl` | in the corpus since 2026-11-25 (`repertorium-diplomaticum-1-1` … `-1-4`; Bd 1 1085–1350, 2 1351–1400, 3 1401–1450, 4 Arkivoversigt and registers) |
 | Repertorium diplomaticum, 2. række (1451–1513) | 0 | HathiTrust record 006782806 | unverified; listed US-only |
 | Kolderup-Rosenvinge IV (1824) | 0 | DDB item `5O7ABU3E3Z7TISEWSD5CWBGFUB3XAPYY` → BSB scan | unverified |
 | Paus, Samling af gamle norske Love, 1,1 | 0 | DDB item `Q3NPGFORBA6TCVNLPMGVBGWIEOK7K3CJ` → BSB scan | unverified; vol. 2 not found; nb.no not searched |
@@ -38,7 +38,7 @@ domain) · **IA:** `<id>` = `https://archive.org/details/<id>` · **GB:** `<id>`
 | Kong Frederik den Førstes danske Registranter | 0 | IA: `kongfrederikden00fredgoog` | in the corpus since 2026-11-24 as `frederik-i-danske-registranter` |
 | Schleswig-Holstein-Lauenburgische Regesten und Urkunden 1–3 | 0 | MDZ `bsb00073266` · `bsb00073267` · `bsb00073263` | unverified; **end at 1340** — nothing for 1390–1558 |
 | Diplomatarium Flensborgense 2 | 0 | MDZ `bsb11159317` | unverified; vol. 1 not found |
-| Aarsberetninger fra Geheimearchivet 3 · 6 | 0 | IA: `aarsberetninger00rigsgoog` · `aarsberetninger02wegegoog` | checked; **the volume with the Haandfæstninger (reported as Bd. 2) not identified** — candidates `aarsberetninger0{0,1,3,4,5}wegegoog` |
+| Aarsberetninger fra Geheimearchivet 2–7 | 0 | IA: `aarsberetninger00rigsgoog` · `aarsberetninger02wegegoog` | Bd 2–7 in the corpus since 2026-11-25 (`aarsberetninger-geheimearchivet-2` … `-7`), volumes read from the title pages: 2 = `aarsberetninger05wegegoog`, 3 = `00rigsgoog` (`03wegegoog` is a second copy, not cached), 4 = `04wegegoog`, 5 = `01wegegoog`, 6 = `02wegegoog`, 7 = `00wegegoog`. **The Haandfæstninger are in Bd 2** («Danske Kongers Haandfæstninger og andre lignende Acter», s. 1–150). Bd 1 not located |
 
 ## 2. 1558–1700
 
