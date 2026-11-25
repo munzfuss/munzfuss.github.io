@@ -155,6 +155,12 @@ class LibraryTest(unittest.TestCase):
         L.make_tar(d, b)
         self.assertEqual(L.sha256_file(a), L.sha256_file(b))
 
+    def test_asset_name_is_github_safe(self):
+        # «Jesse side 99-104.pdf»: GitHub stored it as «Jesse.side.99-104.pdf»
+        # and the digest lookup by the original name found nothing.
+        self.assertEqual(L.asset_location({"path": "danskmoent/jesse_1927/Jesse side 99-104.pdf"}),
+                         ("danskmoent", "jesse_1927--Jesse_side_99-104.pdf"))
+
     def test_top_level_file_has_no_release(self):
         (self.root / "loose.pdf").write_bytes(b"x")
         quiet(L.cmd_add, self.lib, ["loose.pdf"], None, None, False, False)

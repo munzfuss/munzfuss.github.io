@@ -1,4 +1,4 @@
-# Research library split: originals out of git, corpus text apart from coin data
+# Research library split: originals out of git
 
 Curator direction 2026-11-25. The harvest repo (`scripts/cache`, submodule
 `munzfuss/munzfuss-harvest`, private) holds 13.8 GiB of tracked files, a
@@ -12,17 +12,25 @@ Constraints set by the curator:
 - any second copy must be free; nothing paid;
 - rewriting the munzfuss-harvest history (filter-repo + force-push) is agreed.
 
-## Target layout — three tiers, split by artifact type
+## Target layout — split by artifact type
 
 | Tier | What | Where | In git? |
 |---|---|---|---|
 | Originals | PDF, scans, ALTO XML — anything re-downloadable or irreplaceable but never edited | `~/munzfuss-library/` (`LIBRARY_ROOT`), same relative paths as today (`fogtman/d1/…pdf`) | no — manifest only |
-| Corpus | text layers (`pages/*.txt`), page maps, `_index.json` / `_manifest.json`, READMEs, `_corpus.yml` | new private repo `munzfuss/munzfuss-corpus` (`CORPUS_ROOT`) | yes |
-| Harvest | coin-source caches: parsed json/htm of Hede, Numista, KMM, Bruun lots, … | `munzfuss/munzfuss-harvest` (`HARVEST_ROOT`), as now | yes |
+| Harvest | coin-source caches AND corpus text (text layers, page maps, `_index.json` / `_manifest.json`, READMEs, `_corpus.yml`, `_library_manifest.yml`) | `munzfuss/munzfuss-harvest` (`HARVEST_ROOT`), as now | yes |
 | Index | kb SQLite | local, rebuilt by `kb.py build` | no |
 
-Split by type, not by use: Bruun and danskmoent are mixed — their PDFs go to
-the library, their parsed json/htm stay in harvest.
+Split by type, not by use: a directory keeps its text and json in harvest
+and only its PDF / ALTO / scans move to the library.
+
+**Revision 2026-11-25 (curator): no separate corpus repo.** The first
+version put corpus text into a new `munzfuss/munzfuss-corpus`. Measured
+without originals, the tracked tree is ≈ 1.2 GB (coin data ≈ 0.6 GB, corpus
+text ≈ 0.6 GB) against ≈ 17 GB of originals; a text layer is a small fraction
+of its PDF, so even a 50 GB library adds only a few GB of text. One repo
+stays far below GitHub's 5 GB, and `kb.py` keeps reading one root. Dropped:
+`CORPUS_ROOT`, old step 5, the local `~/munzfuss-corpus` repo (it held only
+the manifest during steps 2–3).
 
 ### Second copy of the originals
 
@@ -34,7 +42,9 @@ nor bandwidth usage». Third fallback: the recorded origin URL.
 - One release per top-level library directory; tag = that directory name
   (`secher`, `fogtman`, …).
 - Asset name = the path below that directory with `/` → `--`
-  (`secher/_pdf/bd1.pdf` → release `secher`, asset `_pdf--bd1.pdf`).
+  (`secher/_pdf/bd1.pdf` → release `secher`, asset `_pdf--bd1.pdf`); any
+  other character outside `[A-Za-z0-9._-]` → `_` (GitHub rewrites a space
+  to «.», which broke the digest lookup for «Jesse side 99-104.pdf»).
 - ALTO XML (44 093 files) cannot be one asset per file (1000-asset cap): it is
   backed up as one `.tar.gz` per volume directory (`fogtman/d1/alto/` →
   asset `d1--alto.tar.gz`); the library keeps the unpacked directory.
@@ -46,8 +56,8 @@ nor bandwidth usage». Third fallback: the recorded origin URL.
 
 ### Manifest
 
-`library_manifest.yml` in munzfuss-corpus, one record per file (or per ALTO
-bundle):
+`_library_manifest.yml` in munzfuss-harvest (next to `_corpus.yml`), one
+record per file (or per ALTO bundle):
 
 ```yaml
 - path: secher/_pdf/bd1.pdf
@@ -95,18 +105,18 @@ the six local hashes match those records, checked 2026-11-25).
 
 ### 1. Tool + `LIBRARY_ROOT` — ✅ 2026-11-25
 
-- `LIBRARY_ROOT` / `CORPUS_ROOT` in `scripts/lib/paths.py`, resolved like
-  `HARVEST_ROOT` (env → `local.env` → default `~/munzfuss-library`,
-  `~/munzfuss-corpus`), so every worktree and session shares one copy.
+- `LIBRARY_ROOT` in `scripts/lib/paths.py`, resolved like `HARVEST_ROOT`
+  (env `MUNZFUSS_LIBRARY_DIR` → `local.env` → default `~/munzfuss-library`),
+  so every worktree and session shares one copy.
 - `scripts/library/library.py` with the five commands; unittest on a temp
   library (add without URL, verify catches a changed byte, fetch order,
   status lists single-copy files).
 - **Check:** tests green; `library.py status` on an empty root runs clean —
   passed (`tests/test_library.py`, 9 tests; `GhBackend.assets('secher')`
   reads the six live digests).
-- Manifest default: `CORPUS_ROOT/library_manifest.yml`. Until step 5 makes
-  `~/munzfuss-corpus` a repo, init it as a local git repo in step 2 so the
-  manifest is versioned from its first record.
+- Manifest default: `HARVEST_ROOT/_library_manifest.yml` (was
+  `~/munzfuss-corpus/library_manifest.yml` until the revision; moved after
+  step 3).
 
 ### 2. Build the library by COPYING (not moving) the originals — ✅ 2026-11-25
 
@@ -123,7 +133,7 @@ the six local hashes match those records, checked 2026-11-25).
   `tk_160_diverse_moentsager/pages`, three loose jpg). Result: 396 records,
   17.39 GB — 324 files (315 tracked PDFs + 6 Secher + 3 scans) and 72 bundles
   (71 ALTO trees, 46 336 XML; 1 scan tree, 219 jpg). `verify`: 396 ok.
-  `~/munzfuss-corpus` is a local git repo holding only the manifest for now.
+  The manifest sat in a local `~/munzfuss-corpus` repo until the revision.
 - URLs: `source_url` (re-downloadable byte for byte) 6 — Secher only;
   `work_url` (the work's page, informational) 167; no `_corpus.yml` work 42
   (Bruun auction PDFs and LEB 1928, Wilcke 1919 PDF, wayback PDFs,
@@ -167,41 +177,44 @@ the six local hashes match those records, checked 2026-11-25).
   (PDF → `secher/_pdf/`), `fetch_schou.py` (ALTO), and the fogtman /
   norske_rigsregistranter / norges_gamle_love ALTO fetchers.
 
-### 5. Create munzfuss-corpus
+### 5. Manifest into munzfuss-harvest
 
-- Proposed per-directory split (to confirm before moving):
-  - corpus: `fogtman`, `schou`, `hanse`, `kancelliets_brevboeger`, `secher`,
-    `norske_rigsregistranter`, `literature`, `rigslovgivning`, `wilcke`,
-    `norges_gamle_love`, `munro`, `wayback` (PDF part), `_corpus.yml`;
-  - harvest: `hede`, `numista`, `kmk`, `numismaster`, `ucoin`, `ikmk`, `bruun`
-    (lots json), `danskmoent` (htm/json), `auctions`, and every other
-    coin-source cache;
-  - each mixed directory listed with its file-type split before the move.
-- New repo with the corpus text (no PDF, no ALTO); `kb.py` reads works from
-  `CORPUS_ROOT`, coin catalogues still from `HARVEST_ROOT`.
-- **Check:** `kb.py build` gives the same work count (173) and the same hit
-  set on five fixed test queries as before the split.
+- After step 3: move `~/munzfuss-corpus/library_manifest.yml` to
+  `scripts/cache/_library_manifest.yml`, add the danskmoent `source_url`s
+  verified on 2026-11-25 (31 PDFs: LEB 1928 sections, Bruun Parts II, III, V,
+  Wilcke 1919, 1927, 1950 vol. 1–8; each sha256 computed in the browser pane
+  on the served file equals the record — danskmoent answers curl with a 454
+  challenge, so `library.py fetch` from those URLs may fail; the release copy
+  is the working second copy). Bruun Parts I and IV: not found on danskmoent
+  under their Stack's Bowers file names (404).
+- Commit in the submodule, bump the pointer; delete `~/munzfuss-corpus`.
+- **Check:** `library.py status` reads the manifest from the cache;
+  `verify` clean.
 
 ### 6. Guard
 
-- pre-commit in munzfuss-harvest and munzfuss-corpus: refuse `*.pdf`,
+- pre-commit in munzfuss-harvest: refuse `*.pdf`,
   `alto/*.xml`, and any file > 50 MB; message points to `library.py add`.
 - `add-source-work` skill: download into `LIBRARY_ROOT`, `library.py add`
-  with the URL, text into the corpus repo.
+  with the URL, text into the harvest cache (the helper does this since
+  step 4; the SKILL.md text still describes the old flow).
+- Fetchers that still write originals into the cache (see step 4) write
+  into the library and call `library.py add`.
 - **Check:** a test commit with a dummy PDF is refused.
 
 ### 7. Rewrite munzfuss-harvest history
 
 - Before: a bare mirror clone of munzfuss-harvest archived locally
   (`git clone --mirror`, tar) and kept until step 8 is verified.
-- `git filter-repo` removing every path that moved to the library or the
-  corpus; force-push.
+- `git filter-repo` removing every PDF, every `alto/` tree and the
+  rigsarkivet scans (the paths in `_library_manifest.yml`) from all history;
+  force-push.
 - Consequence to accept: commits of the main repo before the rewrite point at
   harvest commits that no longer exist in the rewritten repo; old checkouts
   resolve the cache only from the archived mirror.
 - Re-clone the submodule in the main checkout, bump the pointer, commit.
 - **Check:** pack size on GitHub (`gh api repos/munzfuss/munzfuss-harvest
-  --jq .size`) roughly 1.3–2 GB; `audit_health.py --fast` clean; a full build
+  --jq .size`) roughly 1.2–2 GB; `audit_health.py --fast` clean; a full build
   identical to before.
 
 ### 8. Docs
@@ -223,3 +236,5 @@ Mac, not only the library.
   `scripts/library/library.py`, `tests/test_library.py`.
 - 2026-11-25 — step 2: library built, 396 records, verify clean.
 - 2026-11-25 — step 4 (readers) done; step 3 backup running.
+- 2026-11-25 — revision: no munzfuss-corpus repo; manifest goes into
+  munzfuss-harvest. Asset names made GitHub-safe.

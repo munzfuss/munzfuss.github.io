@@ -12,7 +12,8 @@ Three copies, in the order ``fetch`` tries them:
 3. the origin URL, when one is known. A missing URL is normal, never an
    error — ``status`` only reports which files have a single copy.
 
-The manifest (``CORPUS_ROOT/library_manifest.yml`` by default) holds one
+The manifest (``HARVEST_ROOT/_library_manifest.yml``, versioned in the
+munzfuss-harvest repo next to ``_corpus.yml``) holds one
 record per file, or per BUNDLE — a directory of many small files (ALTO XML)
 that is backed up as one ``.tar.gz`` because a release takes at most 1000
 assets. A bundle's ``sha256`` is a tree hash over its files' relative paths
@@ -35,6 +36,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -50,7 +52,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lib import paths  # noqa: E402
 
 DEFAULT_REPO = "munzfuss/munzfuss-library"
-MANIFEST_NAME = "library_manifest.yml"
+MANIFEST_NAME = "_library_manifest.yml"
 CHUNK = 1 << 20
 
 
@@ -138,7 +140,9 @@ def asset_location(rec: dict) -> tuple[str, str]:
     if len(parts) < 2:
         raise SystemExit(f"✗ {rec['path']}: a library file must sit in a "
                          "top-level directory (that directory is the release)")
-    name = "--".join(parts[1:])
+    # GitHub rewrites asset names (a space becomes «.»), so the name is made
+    # safe here, deterministically: anything outside [A-Za-z0-9._-] → «_».
+    name = re.sub(r"[^A-Za-z0-9._-]", "_", "--".join(parts[1:]))
     if rec.get("kind") == "bundle":
         name += ".tar.gz"
     return parts[0], name
@@ -177,8 +181,8 @@ class GhBackend:
             return
         self._gh("release", "create", tag, "--title", tag, "--notes",
                  f"Originals for library path {tag}/. Asset name = path below "
-                 f"{tag}/ with '/' -> '--'. Manifest: library_manifest.yml in "
-                 "munzfuss-corpus.")
+                 f"{tag}/ with '/' -> '--'. Manifest: _library_manifest.yml in "
+                 "munzfuss-harvest.")
         self._assets[tag] = {}
 
     def upload(self, tag: str, asset: str, src: Path) -> str:
@@ -424,7 +428,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     root = (args.root or paths.LIBRARY_ROOT).expanduser()
-    lib = Library(root, (args.manifest or paths.CORPUS_ROOT / MANIFEST_NAME).expanduser())
+    lib = Library(root, (args.manifest or paths.HARVEST_ROOT / MANIFEST_NAME).expanduser())
     if args.cmd == "add":
         return cmd_add(lib, args.paths, args.url, args.fetched, args.bundle, args.force)
     if args.cmd == "backup":

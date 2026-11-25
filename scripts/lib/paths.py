@@ -121,8 +121,8 @@ def _resolve_outside_root(key: str, default_name: str) -> Path:
     sessions: ``$key`` → ``key`` in ``local.env`` → ``~/<default_name>``.
 
     Used for the research library (originals: PDF, scans, ALTO — never in
-    git, sha256 manifest + release backup) and the corpus repo (derived
-    text layers). Plan: docs/plans/research_library_split.md."""
+    git; sha256 manifest ``_library_manifest.yml`` in the harvest cache,
+    release backup). Plan: docs/plans/research_library_split.md."""
     override = os.environ.get(key, "").strip() or _local_env_override(key)
     if override:
         return Path(override).expanduser().resolve()
@@ -132,9 +132,6 @@ def _resolve_outside_root(key: str, default_name: str) -> Path:
 # Research originals (PDF, scans, ALTO XML), outside git.
 LIBRARY_ROOT: Path = _resolve_outside_root("MUNZFUSS_LIBRARY_DIR",
                                            "munzfuss-library")
-# Corpus repo (text layers, page maps, _corpus.yml, library manifest).
-CORPUS_ROOT: Path = _resolve_outside_root("MUNZFUSS_CORPUS_DIR",
-                                          "munzfuss-corpus")
 
 # Per-source cache directories. Stay in sync with the directory structure
 # in the munzfuss-harvest submodule.
@@ -217,10 +214,9 @@ def refresh() -> None:
     """
     global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE, KONKORDANS_CACHE, NUMISMASTER_CACHE, KMK_CACHE, NGC_CACHE
     global MORD_CACHE, SECHER_CACHE, SCHOU_CACHE, MB_CACHE
-    global LIBRARY_ROOT, CORPUS_ROOT
+    global LIBRARY_ROOT
     HARVEST_ROOT = _resolve_harvest_root()
     LIBRARY_ROOT = _resolve_outside_root("MUNZFUSS_LIBRARY_DIR", "munzfuss-library")
-    CORPUS_ROOT = _resolve_outside_root("MUNZFUSS_CORPUS_DIR", "munzfuss-corpus")
     MORD_CACHE = HARVEST_ROOT / "danskmoent" / "mord"
     SECHER_CACHE = HARVEST_ROOT / "secher"
     SCHOU_CACHE = HARVEST_ROOT / "schou"

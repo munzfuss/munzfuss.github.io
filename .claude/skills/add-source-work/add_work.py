@@ -4,7 +4,7 @@ the harvest cache with a searchable text layer and a `_corpus.yml` record.
 
 Subcommands. A PDF path is a library path (`LIBRARY_ROOT`, the same relative
 path as in the cache; read from the cache as long as the library lacks it);
-a text path is relative to the corpus text root (the harvest cache for now).
+a text path is relative to the harvest cache.
 
   dupes WORDS…          corpus records whose id / title / author / url match
                         every word; cached PDFs of the same size + md5 as
@@ -37,7 +37,7 @@ REPO = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO / "scripts"))
 from lib.originals import TEXT_ROOT, MissingOriginal, iter_originals, original, rel_of  # noqa: E402
 from lib.paths import LIBRARY_ROOT  # noqa: E402
-CACHE = TEXT_ROOT          # derived text and _corpus.yml; originals go to LIBRARY_ROOT
+CACHE = TEXT_ROOT          # text layers, _corpus.yml, _library_manifest.yml; originals go to LIBRARY_ROOT
 MANIFEST = CACHE / "_corpus.yml"
 LIBRARY = REPO / "scripts" / "library" / "library.py"
 KB = REPO / "scripts" / "kb" / "kb.py"
@@ -47,7 +47,7 @@ sys.path.insert(0, str(REPO / "scripts" / "kb"))
 
 
 def _path(p: str) -> Path:
-    """A text-layer path (relative to the corpus text root)."""
+    """A text-layer path (relative to the harvest cache)."""
     q = Path(p)
     return q if q.is_absolute() else CACHE / q
 

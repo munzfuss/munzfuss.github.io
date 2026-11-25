@@ -12,8 +12,8 @@ restore it (``library.py fetch``), because after step 7 a fresh checkout or
 a new machine has the manifest but not the bytes.
 
 Derived text (extracts, ``pages/*.txt``, layout text) is NOT an original and
-is never written to the library; ``TEXT_ROOT`` is where it goes (the harvest
-cache today, the corpus repo after plan step 5).
+is never written to the library; ``TEXT_ROOT`` is where it goes — the
+harvest cache, which keeps coin data and corpus text alike.
 """
 from __future__ import annotations
 

@@ -37,7 +37,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "scripts" / "library"))
-from lib.paths import CORPUS_ROOT, HARVEST_ROOT, LIBRARY_ROOT  # noqa: E402
+from lib.paths import HARVEST_ROOT, LIBRARY_ROOT  # noqa: E402
 import library as L  # noqa: E402
 
 
@@ -112,11 +112,7 @@ def main() -> int:
     if a.dry_run:
         return 0
 
-    if not (CORPUS_ROOT / ".git").exists():
-        CORPUS_ROOT.mkdir(parents=True, exist_ok=True)
-        subprocess.run(["git", "init", "-q", "-b", "main", str(CORPUS_ROOT)], check=True)
-
-    lib = L.Library(lib_root, CORPUS_ROOT / L.MANIFEST_NAME)
+    lib = L.Library(lib_root, cache / L.MANIFEST_NAME)
     recs = {r["path"]: r for r in lib.load()}
     wd = work_dirs(cache)
     pf = per_file_urls(cache)
