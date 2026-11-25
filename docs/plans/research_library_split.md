@@ -108,7 +108,7 @@ the six local hashes match those records, checked 2026-11-25).
   `~/munzfuss-corpus` a repo, init it as a local git repo in step 2 so the
   manifest is versioned from its first record.
 
-### 2. Build the library by COPYING (not moving) the originals
+### 2. Build the library by COPYING (not moving) the originals — ✅ 2026-11-25
 
 - Copy every PDF and ALTO tree out of `scripts/cache` into `LIBRARY_ROOT`,
   same relative paths. The cache stays intact until step 7.
@@ -118,6 +118,17 @@ the six local hashes match those records, checked 2026-11-25).
 - **Check:** `library.py verify` clean; file count and byte total equal the
   cache's (`git ls-files` PDFs: 309 today; ALTO: 44 093); `status` lists how
   many have no URL.
+- Done with `scripts/library/import_from_cache.py` (APFS clones,
+  `cp -c`, so no extra disk). Also taken: rigsarkivet scans (one bundle for
+  `tk_160_diverse_moentsager/pages`, three loose jpg). Result: 396 records,
+  17.39 GB — 324 files (315 tracked PDFs + 6 Secher + 3 scans) and 72 bundles
+  (71 ALTO trees, 46 336 XML; 1 scan tree, 219 jpg). `verify`: 396 ok.
+  `~/munzfuss-corpus` is a local git repo holding only the manifest for now.
+- URLs: `source_url` (re-downloadable byte for byte) 6 — Secher only;
+  `work_url` (the work's page, informational) 167; no `_corpus.yml` work 42
+  (Bruun auction PDFs and LEB 1928, Wilcke 1919 PDF, wayback PDFs,
+  rigsarkivet). Enriching these is optional — after step 3 every file has a
+  release copy.
 
 ### 3. Back up everything
 
@@ -195,3 +206,4 @@ Mac, not only the library.
   upload done, all six asset digests equal the local sha256.
 - 2026-11-25 — step 1: `LIBRARY_ROOT` / `CORPUS_ROOT` in `paths.py`,
   `scripts/library/library.py`, `tests/test_library.py`.
+- 2026-11-25 — step 2: library built, 396 records, verify clean.

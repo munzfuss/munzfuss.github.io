@@ -388,7 +388,7 @@ def cmd_status(lib: Library, listing: bool) -> int:
         for p in sorted(lib.root.rglob("*")):
             if not p.is_file() or p.name.startswith("."):
                 continue
-            if any(c == p or c in p.parents for c in covered):
+            if p in covered or any(a in covered for a in p.parents):
                 continue
             unrecorded.append(p.relative_to(lib.root).as_posix())
     size = sum(r.get("bytes", 0) for r in recs)
