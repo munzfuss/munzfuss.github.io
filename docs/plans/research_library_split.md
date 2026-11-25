@@ -224,7 +224,7 @@ the six local hashes match those records, checked 2026-11-25).
 - `add-source-work` SKILL.md rewritten for the library flow (PDF → library
   + manifest + backup; extract → cache).
 
-### 7. Rewrite munzfuss-harvest history
+### 7. Rewrite munzfuss-harvest history — ✅ 2026-11-25
 
 - Before: a bare mirror clone of munzfuss-harvest archived locally
   (`git clone --mirror`, tar) and kept until step 8 is verified.
@@ -264,3 +264,22 @@ Mac, not only the library.
   munzfuss-harvest. Next: step 6 (guard, fetchers, skill text).
 - 2026-11-25 — step 6 done. Next: step 7 (history rewrite) — needs the
   curator's explicit yes.
+- 2026-11-25 — step 7 done. Checks before: CI never checks the submodule out
+  (build, tests, danskmoent jobs), full unittest suite 2120/2120 OK on both
+  the current cache and the rewritten clone, audit_health equal but for
+  mtimes, kb index byte-identical, harvest routine clone absent and both
+  scheduled harvest tasks disabled. Archive: `~/munzfuss-harvest-archive-2026-11-25.git`
+  (bare mirror, old history incl. two then-unpushed commits; 13 GB; keep until
+  the curator says otherwise). The merged branch `feat/v2-pipeline` deleted on
+  GitHub (0 commits not in main) instead of rewritten. `git filter-repo
+  --invert-paths` on `*.pdf`, `*.PDF`, `(^|/)alto/`, rigsarkivet images:
+  46 873 files removed (315 PDF, 46 336 ALTO, 222 jpg), the other 166 491
+  blob-identical; 1557 → 1556 commits (the only commit lost: «harvest: Norges
+  gamle Love 2. R. B. 2 - reduced PDF», PDF-only). Pack 12.63 GiB → 202 MiB.
+  Force-pushed main `5079610c0 → 723a4936a`; local submodule reset to it
+  (6 untracked `_derived` files of other sessions kept), local-only branch
+  `claude/hede-uar-year` replaced by its rewritten copy, the six gitignored
+  Secher PDFs removed from the cache after a sha256 match with the library,
+  reflog expired + gc: submodule git dir 13 GB → 239 MB. After: library
+  status 396/396 backed up, kb build 141 184 passages, `kb.py page` from the
+  library.
