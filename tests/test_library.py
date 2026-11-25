@@ -193,6 +193,8 @@ class OriginalsResolutionTest(unittest.TestCase):
         from lib.originals import MissingOriginal, iter_originals, original
         self.assertEqual(original("w/both.pdf").read_bytes(), b"L")
         self.assertEqual(original("w/cache_only.pdf").read_bytes(), b"C")
+        # the repo-relative spelling used before the library existed
+        self.assertEqual(original(self.paths.LEGACY_CACHE_PREFIX + "w/both.pdf").read_bytes(), b"L")
         with self.assertRaises(MissingOriginal) as cm:
             original("w/none.pdf")
         self.assertIn("library.py fetch w/none.pdf", str(cm.exception))

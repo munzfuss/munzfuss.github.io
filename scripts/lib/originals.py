@@ -43,7 +43,8 @@ def rel_of(p: str | Path) -> str:
             except ValueError:
                 continue
         return q.as_posix()
-    return q.as_posix()
+    # the older repo-relative spelling «scripts/cache/<rel>» still works
+    return q.as_posix().removeprefix("./").removeprefix(paths.LEGACY_CACHE_PREFIX)
 
 
 def original(p: str | Path) -> Path:

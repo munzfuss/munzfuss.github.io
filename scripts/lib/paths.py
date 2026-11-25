@@ -129,6 +129,10 @@ def _resolve_outside_root(key: str, default_name: str) -> Path:
     return Path.home() / default_name
 
 
+# The repo-relative spelling of a harvest path used before the research
+# library existed («scripts/cache/bruun/part1.pdf»); lib.originals accepts it.
+LEGACY_CACHE_PREFIX = "scripts/cache/"
+
 # Research originals (PDF, scans, ALTO XML), outside git.
 LIBRARY_ROOT: Path = _resolve_outside_root("MUNZFUSS_LIBRARY_DIR",
                                            "munzfuss-library")
