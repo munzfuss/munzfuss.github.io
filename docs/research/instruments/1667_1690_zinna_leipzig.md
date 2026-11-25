@@ -24,7 +24,7 @@
 > (no. CXXVII, S. 274–275) and the 1691 recess after § 7 are read in the tesseract text only;
 > the Torgau convention of 1690 (Register: «*Torgau, alda errichtetes Münz-Reglement, p. 291.
 > 296*») not read; the imperial decrees of 1692 and 1738 on the Leipzig standard not followed.
-> Written 2026-11-19 from `scripts/cache/literature/hirsch_1756_muenz_archiv/hirsch_1759_muenz_archiv_theil5.pdf`
+> Written 2026-11-19 from `~/munzfuss-library/literature/hirsch_1756_muenz_archiv/hirsch_1759_muenz_archiv_theil5.pdf`
 > (pdf 42, 278–288, 327–330, 439–440; corpus id `hirsch-1759-5`, added with this dossier).
 
 ## 1. Identification
@@ -318,7 +318,7 @@ Rows for the cards are in `FUSS_REVIEW_FINDINGS.md` (§E). No data was changed.
 ## 9. Sources consulted
 
 - Hirsch, *Des Teutschen Reichs Münz-Archiv*, Fünfter Theil (Nürnberg 1759) —
-  `scripts/cache/literature/hirsch_1756_muenz_archiv/hirsch_1759_muenz_archiv_theil5.pdf`
+  `~/munzfuss-library/literature/hirsch_1756_muenz_archiv/hirsch_1759_muenz_archiv_theil5.pdf`
   (corpus `hirsch-1759-5`; pdf 19–377 = S. 1–359, offset −18; pdf 378–473 = S. 362–457,
   offset −16; the leaf S. 360–361 is not in the scan). Read on the page images: S. 24, 260–265,
   269, 309–312, 423–424.

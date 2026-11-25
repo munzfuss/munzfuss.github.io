@@ -24,7 +24,7 @@
 > of the Valvation report's tables are located but not transcribed; the long list of valued gold
 > (S. 354–362) is read only for the groups named above; reception and the Saxon refusal are taken
 > from Jesse, not from documents. Written 2026-11-19 from
-> `scripts/cache/literature/hirsch_1756_muenz_archiv/hirsch_1756_muenz_archiv_theil1.pdf`
+> `~/munzfuss-library/literature/hirsch_1756_muenz_archiv/hirsch_1756_muenz_archiv_theil1.pdf`
 > (pdf 368–412; corpus id `hirsch-1756-1`).
 
 ## 1. Identification

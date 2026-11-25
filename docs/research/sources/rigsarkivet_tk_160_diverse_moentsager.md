@@ -22,7 +22,7 @@
 > manuscripts of Christian III's complete monetary-reform arc — the
 > ultimate primary source that Wilcke 1950, Galster 1965, and every
 > later writer cited indirectly. Wilcke 1950 (cached at
-> `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`)
+> `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`)
 > transcribed the 1541 Preamble + specification tables from these
 > same images. Until 2026-05-15 our project depended on Wilcke's
 > modernised-Danish transcription; today we have the chancery-hand

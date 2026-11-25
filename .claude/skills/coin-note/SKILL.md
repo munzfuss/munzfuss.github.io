@@ -50,7 +50,7 @@ Further rules:
 - **No invention (§0)**, hedges attributed to their source (§2a: «за Nöbbe, імовірно»).
 - **Every claim cited** with `<sup>[ref:KEY]</sup>`; keys made with the `cite-source`
   skill (one passage = one key, verbatim quote, page, translation, archive copy).
-- **Legends from the scan**, not from OCR: open the page image (`pdftoppm -r 150 -f N -l N`)
+- **Legends from the scan**, not from OCR: open the page image (`pdftoppm -r 150 -f N -l N -png "$(.venv/bin/python scripts/library/library.py path <rel>.pdf)" p` — PDFs are in the research library `~/munzfuss-library`, not in `scripts/cache`)
   and read the letters; OCR of medieval Lombardic legends is unreliable.
 - **Four languages together** (de / en / uk / da), same claims and same keys in each.
   uk: «данськ-», never «датськ-»; city names in the form of the power ruling them then.

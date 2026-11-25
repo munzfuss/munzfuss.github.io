@@ -378,7 +378,7 @@ grid values to the gram — «(§)» candidates on the readings sourced «hede»
 - **Secher V** nr. 337 (s. 545–546), nr. 339 (s. 546–547): keys `secher-ccd-5-337-1647-indledning-guld`,
   `secher-ccd-5-337-1647-jacobus-rixdaler`, `secher-ccd-5-339-1648-indledning`,
   `secher-ccd-5-339-1648-guld`, `secher-ccd-5-339-1648-soelv-smaamoent` — `scripts/cache/secher/bd5/pages/0558–0560.txt`,
-  `scripts/cache/secher/_pdf/bd5.pdf` pages 558–560 (rendered).
+  `~/munzfuss-library/secher/_pdf/bd5.pdf` pages 558–560 (rendered).
 - **Wilcke II** afsn. II A.3 (s. 82–101): keys `wilcke-1924-kap2a3-hebraeer-formel-21-stkr`,
   `-tabel-1644-48-markstykker`, `-tabel-1644-48-specie`, `-udmoentning-1644-48-ialt`,
   `-kongen-tjent-22-pct`, `-landkommissarier-1647-eftermyntis`, `-rigsraad-1647-27-juli`,

@@ -73,7 +73,7 @@ Mints active in the window (per Wilcke 1950 + Bruun lot data):
 
 ### 2. Bruun PDFs — Stack's Bowers L. E. Bruun Collection 2024-2026
 
-- **Local cache**: `scripts/cache/bruun/part{1,2,3,4}.pdf` + parsed `scripts/cache/bruun/lots/part{1-4}.json` + page-text `scripts/cache/bruun/pages/part{1-4}.txt`.
+- **Local cache**: `~/munzfuss-library/bruun/part{1,2,3,4}.pdf` + parsed `scripts/cache/bruun/lots/part{1-4}.json` + page-text `scripts/cache/bruun/pages/part{1-4}.txt`.
 - **Coverage 1514-1541**: **38 distinct lots** in the realm (DK + Norge + S-H + Sweden under C-II + Gotland):
   - Christian II: 13 lots (DK + Visby + Aarhus civil-war + S-H peripheral)
   - Frederik I: 13 lots (DK Goldgulden 1527 × 2, Husum 1514 Mark + ½M, Gottorp Goldgulden, Roskilde 1523 Skilling, Ribe 1524, Copenhagen ¼ Sølvgylden 1532)

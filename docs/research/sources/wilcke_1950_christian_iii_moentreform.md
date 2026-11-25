@@ -8,7 +8,7 @@
 >   Universitets-Bogtrykkeri, MCML = 1950).
 > - **Chapter**: «FJERDE KAPITEL: Christian III's Møntreform»,
 >   printed pp. 259–308 (PDF pp. 1–51 in `wilcke_7-4.pdf`).
-> - **Local cache path**: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf).
+> - **Local cache path**: `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
 >   pypdf text extraction at `pages/wilcke_7-4.txt` of the same dir.
 > - **Original URL**: <https://www.danskmoent.dk/pdf2/Wilcke%207-4.pdf>
 >   (public-domain re-scan hosted by danskmoent.dk).
@@ -481,7 +481,7 @@ references:
 
 For the broader Wilcke 7-4 chapter content beyond the 1541 + 1544
 Møntordninger themselves: open
-[`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf)
+`~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`
 in any PDF viewer. The full chapter (51 PDF pages = printed 259-308)
 also covers: the Norwegian Gimsø mint operation 1543-1546
 (pp. 5-15, printed 262-272); the Flensborg mint operation 1544-1547

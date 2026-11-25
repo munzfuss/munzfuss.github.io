@@ -369,7 +369,7 @@ question (§ 8, Q1; FINDINGS §C).
 
 - **Secher IV** (1897) nr. 538 (s. 646, regest) — key `secher-ccd-4-538-1635-ungarske-dukater`.
 - **Secher V** (1903) nr. 31 (s. 36–37), nr. 41 (s. 47), nr. 56 (s. 56–57), nr. 451 (s. 637,
-  regest) — Commons PDF `scripts/cache/secher/_pdf/bd5.pdf` (printed = PDF − 13); page images
+  regest) — Commons PDF `~/munzfuss-library/secher/_pdf/bd5.pdf` (printed = PDF − 13); page images
   rendered 2026-11-04. Keys: `secher-ccd-5-31-1639-guldmoent-indledning`, `-portugaleux-rosenobel`,
   `-ducat-goldgylden`, `-krone-guldkrone`, `-betalling`, `secher-ccd-5-41-1639-goltgylden-8-mark`,
   `secher-ccd-5-56-1640-nedsaettelse`, `secher-ccd-5-451-1650-dukater-11-1-2-mark`.

@@ -1107,6 +1107,12 @@ fixed, the design decision is made and implemented).
 > - **Hourly harvest routine** — uses the BRANCH-MODEL variant: commits to `harvest/auto` (never `main`), pushes autonomously to submodule `main` + superproject `harvest/auto`. See `docs/HARVEST_ROUTINE.md` §0.1 + §3. Do NOT apply the main-branch push steps below in the routine.
 > - **This PB-10 (below) is for the CURATION clone / ad-hoc interactive cache work** (a parser regen, a one-off fetch) — those still commit cache → bump the pointer on `main` → push `main`, with explicit user push-permission.
 
+> **Originals are never committed here** (since 2026-11-25). A PDF, an ALTO
+> tree or an archive scan goes to the research library (`library.py add <rel>
+> [--url …]`, then `library.py backup`); only its text, the manifests and
+> `_library_manifest.yml` are committed. The harvest pre-commit refuses
+> originals and any file over 20 MB — `docs/ARCHITECTURE.md` §«Research library».
+
 **When this fires.** A session touched files under `scripts/cache/`
 (usual triggers: `parse_hede.py --force` after a parser fix updates
 100+ Hede JSONs; `fetch_ikmk.py` adds new museum records; ucoin

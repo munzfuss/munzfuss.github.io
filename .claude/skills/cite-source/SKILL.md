@@ -198,7 +198,7 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
   then find the page on the scan, never compute one.
 - **Never quote the snippet.** It is normalised context; open the file at `path:line`, read the
   whole passage, copy it verbatim (rule 3). For OCR'd works check doubtful letters and every
-  figure against the page image (`ocr` note in `_corpus.yml`).
+  figure against the page image (`ocr` note in `_corpus.yml`; `pdftoppm -r 150 -f N -l N -png "$(.venv/bin/python scripts/library/library.py path <rel>.pdf)" p` — PDFs are in the research library `~/munzfuss-library`, not in `scripts/cache`).
 - Secher prints the SOURCE's page breaks in brackets («[s. 161]») — those are not Secher's
   page; cite the page the hit reports (Secher's own pagination).
 - AUDIT mode: `kb search` with a distinctive phrase of a key's quote shows whether the quote
@@ -213,7 +213,8 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
   interleave columns: the Denar til daler (2018) contents page put chapter 4's author under
   chapter 6's heading (2026-10-27). A figure from a table, an author or attribution from a
   contents page or a caption, a word beside a marginal note — check it with
-  `kb.py page <pdf> <n> --mode layout` (or `--mode all`); every cached PDF also has a
+  `kb.py page <pdf> <n> --mode layout` (or `--mode all`; the PDF comes from the research
+  library); every library PDF also has a
   `-layout` copy under `scripts/cache/_derived/layout/` (`scripts/kb/layout_extract.py`,
   not indexed). `fuss_cite_audit.py --verbatim` flags a quote found only in that copy.
 - No hit ≠ no passage: the rigsarkivet scans (handwriting, no text layer) and the 1928 Bruun

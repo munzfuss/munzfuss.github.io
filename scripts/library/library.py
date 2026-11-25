@@ -27,6 +27,9 @@ Commands::
     library.py fetch  <path>… | --all [--dest DIR]
     library.py verify [<path>…]
     library.py status [--list]
+    library.py path   <path>        print the readable file (library, else the
+                                    old cache copy) — for pdftoppm / pypdf:
+                                    pdftoppm -f 5 -l 5 -png "$(library.py path secher/_pdf/bd3.pdf)" p
 
 Paths are relative to LIBRARY_ROOT (an absolute path inside it is accepted).
 """
@@ -445,6 +448,7 @@ def main(argv: list[str] | None = None) -> int:
     f.add_argument("--all", action="store_true"); f.add_argument("--dest", type=Path)
     v = sub.add_parser("verify"); v.add_argument("paths", nargs="*")
     s = sub.add_parser("status"); s.add_argument("--list", action="store_true")
+    pa = sub.add_parser("path"); pa.add_argument("path")
     args = ap.parse_args(argv)
 
     root = (args.root or paths.LIBRARY_ROOT).expanduser()
@@ -457,6 +461,14 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_fetch(lib, GhBackend(args.repo), args.paths, args.all, args.dest)
     if args.cmd == "verify":
         return cmd_verify(lib, args.paths)
+    if args.cmd == "path":
+        from lib.originals import MissingOriginal, original
+        try:
+            print(original(args.path))
+        except MissingOriginal as e:
+            print(f"✗ {e}", file=sys.stderr)
+            return 1
+        return 0
     return cmd_status(lib, args.list)
 
 

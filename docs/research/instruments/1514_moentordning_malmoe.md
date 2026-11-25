@@ -32,7 +32,7 @@
 |---|---|---|---|
 | Original | Rigsarkivet, Christian II's Registre 1513–23, fol. 189 | the register copy of the king's letter | not seen |
 | Printed | Suhm, *Ny Samling til den danske Historie* II, 1 (1793), p. 141 | first print | not seen |
-| **Reproduction (act text)** | **Wilcke, J.**, *Renæssancens Mønt- og Pengeforhold 1481–1588* (1950), Andet Kapitel, **s. 153** | prints the grid of the letter line by line, with the «partzeler» and the remedium clause | `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-2.pdf`, PDF p. 8 (= printed 153); text `pages/wilcke_7-2.txt` |
+| **Reproduction (act text)** | **Wilcke, J.**, *Renæssancens Mønt- og Pengeforhold 1481–1588* (1950), Andet Kapitel, **s. 153** | prints the grid of the letter line by line, with the «partzeler» and the remedium clause | `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-2.pdf`, PDF p. 8 (= printed 153); text `pages/wilcke_7-2.txt` |
 | Reproduction (companions) | Wilcke 7-2 s. 149–150 (Haandfæstning clause, Blicher letter quoted), s. 156–157 (Norway summarised; Sjælland letter quoted) | | same file, PDF pp. 4–5, 11–12 |
 | Recomputation | Wilcke 7-2 **s. 154** (table at the 233,855-g mark) | Wilcke's own conversion of the grid | PDF p. 9 — the table is an image; OCR has only its last line. Rendered: scratchpad `w72_p154-09.png` (read 2026-10-13) |
 | Retelling + recomputation | Galster, G., *Danmarks Mønter* (Nordisk Kultur XXIX, 1936), danskmoent «galkult» | summary of the letter and a table at the 230-g mark | `scripts/cache/danskmoent/galster/galster_galkult.htm` |

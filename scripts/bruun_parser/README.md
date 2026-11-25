@@ -24,7 +24,7 @@ downstream artifacts.
 
 ## Adding a new Bruun part (Part V or beyond)
 
-1. Download the PDF, store it as `scripts/cache/bruun/partN.pdf` and symlink it
+1. Download the PDF, store it as `~/munzfuss-library/bruun/partN.pdf` and symlink it
    to `/tmp/bruun_pdfs/partN.pdf` (stage 01's input dir). A danskmoent.dk-hosted
    part (II, V) answers curl with a 454 JS challenge — use Claude in Chrome
    (`docs/SOURCES.md` §13.3 «Part V download»). URLs are listed on

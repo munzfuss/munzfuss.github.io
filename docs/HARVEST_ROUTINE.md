@@ -1,5 +1,15 @@
 # Hourly autonomous harvest routine
 
+> **State 2026-11-25.** Both scheduled harvest tasks are disabled (last run
+> 2026-06-14) and the routine clone named below
+> (`/Users/serg/Documents/GitHub/munzfuss.github.io`) no longer exists. The
+> munzfuss-harvest history was REWRITTEN on 2026-11-25 (originals removed,
+> force-push): before re-enabling, make a FRESH clone — never revive an old
+> one, whose `pull` would merge the pre-rewrite history (12 GB) back in.
+> Originals (PDF, ALTO, scans) now go to the research library, not the cache
+> (`docs/ARCHITECTURE.md` §«Research library»); run `scripts/install_hooks.sh`
+> in the new clone so the harvest pre-commit guard is on.
+
 > **Purpose.** Self-contained operational manual for an hourly cron-fired
 > Claude session that executes ONE Numista batch + ONE ucoin batch per
 > run, commits each, and reports updated coverage tables. Designed to

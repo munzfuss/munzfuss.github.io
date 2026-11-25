@@ -773,7 +773,7 @@ Grevefejde. Free on danskmoent (listed in its literature page
 
 | URL | Size | Cached (harvest submodule) |
 |---|---|---|
-| <https://www.danskmoent.dk/pdf2/ReinhJunge.pdf> | 16.5 MB, 249 PDF pp. | `scripts/cache/danskmoent/galster_junge_1934/ReinhJunge.pdf` + `ReinhJunge.extract.txt` (pypdf text layer, one block per PDF page) |
+| <https://www.danskmoent.dk/pdf2/ReinhJunge.pdf> | 16.5 MB, 249 PDF pp. | `~/munzfuss-library/danskmoent/galster_junge_1934/ReinhJunge.pdf` + `ReinhJunge.extract.txt` (pypdf text layer, one block per PDF page) |
 
 The PDF carries an OCR text layer (usable; expect OCR noise such as «M ønter»).
 
@@ -1063,7 +1063,7 @@ Hamburg, Lübeck and Schleswig-Holstein sections. Auktion 110 (17 December
 (<https://www.yumpu.com/de/document/view/7817078/auktion-110-auktionshaus-tietjen-co>);
 yumpu sends the PDF only to an e-mail address (the curator downloaded it)
 and blocks scripted fetches. Cached at
-`scripts/cache/auctions/tietjen/tietjen_2012_auktion_110.pdf` with a text
+`~/munzfuss-library/auctions/tietjen/tietjen_2012_auktion_110.pdf` with a text
 layer and corpus record `tietjen-2012-auktion-110`: the coin section has no
 printed page numbers — cite the LOT; the literature section's printed page =
 PDF page. Lot «N*» = illustrated on the plate pages.
@@ -1178,7 +1178,7 @@ digitised and harvested or harvestable; fetchers under `scripts/`.
 
 | Source | Period | Digital copy | Our cache | Notes |
 |---|---|---|---|---|
-| **Secher, V. A. (ed.)**, *Corpus constitutionum Daniæ. Forordninger, Recesser og andre kongelige Breve, Danmarks Lovgivning vedkommende 1558-1660*, 6 Bd. (Kbh. 1887-1918) | 1558-1660 | KB digitisation: [kildeskriftselskabet.dk](https://kildeskriftselskabet.dk/index.php/kildeudgaver/1500-tallet/165-corpus-constitutionum-daniae-forordninger-recesser-og-andre-kongelige-breve-danmarks-lovgivning-vedkommende-1558-1660-bd-1-8) (≈50 kB/s) and the same scans on Wikimedia Commons for [da.wikisource](https://da.wikisource.org/wiki/Corpus_constitutionum_Dani%C3%A6_Forordninger,_Recesser_og_andre_kongelige_Breve,_Danmarks_Lovgivning_vedkommende_1558-1660) (≈2 MB/s; the `_gl.pdf` files are the KB originals). archive.org has Google scans of Bd 2, Bd 4 and one Hæfte of Bd 3. HathiTrust: 403 to our tools. | `scripts/cache/secher/bd<N>/pages/<NNNN>.txt` (pdftotext of the Commons PDF; PDFs themselves gitignored) — `scripts/fetch_secher.py` | Bd 1 1558-75 · 2 1576-95 · 3 1596-1621 · 4 1622-38 · 5 1639-50 · 6 1651-60. Each Bd has a chronological register at the front — read that first to list candidates. Wikisource's per-page transcription is mostly raw OCR (bind 1: 399 pages at quality 1, 94 proofread at 3) — a second reading, not a better one. **The pdftotext layer garbles the superscript fractions of Secher's print** (2026-10-13: Krone count of III nr. 487 read «6 237/1400», the page says 6 257/1400) — verify every pieces-per-mark fraction against the page image (`pdftoppm -f N -l N -r 200 -png scripts/cache/secher/_pdf/bd<N>.pdf`). |
+| **Secher, V. A. (ed.)**, *Corpus constitutionum Daniæ. Forordninger, Recesser og andre kongelige Breve, Danmarks Lovgivning vedkommende 1558-1660*, 6 Bd. (Kbh. 1887-1918) | 1558-1660 | KB digitisation: [kildeskriftselskabet.dk](https://kildeskriftselskabet.dk/index.php/kildeudgaver/1500-tallet/165-corpus-constitutionum-daniae-forordninger-recesser-og-andre-kongelige-breve-danmarks-lovgivning-vedkommende-1558-1660-bd-1-8) (≈50 kB/s) and the same scans on Wikimedia Commons for [da.wikisource](https://da.wikisource.org/wiki/Corpus_constitutionum_Dani%C3%A6_Forordninger,_Recesser_og_andre_kongelige_Breve,_Danmarks_Lovgivning_vedkommende_1558-1660) (≈2 MB/s; the `_gl.pdf` files are the KB originals). archive.org has Google scans of Bd 2, Bd 4 and one Hæfte of Bd 3. HathiTrust: 403 to our tools. | `scripts/cache/secher/bd<N>/pages/<NNNN>.txt` (pdftotext of the Commons PDF; the PDFs are in the research library, `~/munzfuss-library/secher/_pdf/`) — `scripts/fetch_secher.py` | Bd 1 1558-75 · 2 1576-95 · 3 1596-1621 · 4 1622-38 · 5 1639-50 · 6 1651-60. Each Bd has a chronological register at the front — read that first to list candidates. Wikisource's per-page transcription is mostly raw OCR (bind 1: 399 pages at quality 1, 94 proofread at 3) — a second reading, not a better one. **The pdftotext layer garbles the superscript fractions of Secher's print** (2026-10-13: Krone count of III nr. 487 read «6 237/1400», the page says 6 257/1400) — verify every pieces-per-mark fraction against the page image (`pdftoppm -f N -l N -r 200 -png ~/munzfuss-library/secher/_pdf/bd<N>.pdf`). |
 | **Schou, J. H.**, *Chronologisk Register over de Kongelige Forordninger og aabne Breve samt andre trykte Anordninger som fra Aar 1670 af ere udkomne* | 1670-1849 (Danmark-Norge to 1813) | nb.no digibok, public domain, `accessAllowedFrom: EVERYWHERE`; volume URNs listed on [lokalhistoriewiki.no «Schous forordninger»](https://lokalhistoriewiki.no/wiki/Schous_forordninger). Per-page ALTO OCR at `api.nb.no/catalog/v1/metadata/<urn>/altos/<urn>_<page>`; page images via the IIIF manifest. | `scripts/cache/schou/bd<N>/{alto,pages}/` — `scripts/fetch_schou.py` | Fraktur OCR, noisy (lex.dk warns that searches miss) — grep for several spellings and check the image before quoting. Bd 1 = Christian V 1670-1699 «samt nogle før Hans Tid udkomne Anordninger». Schou prints digests of most acts and the full text of the important ones. |
 | **Mordhorst, Kirsten**, «Forordninger m.v. vedr. Møntvæsenet under Enevælden», *Dansk Pengehistorie* III: Bilag (Nationalbanken 1968), pp. 159-264 | 1661-1849 | danskmoent.dk `artikler/<reign>mord.htm`, transcribed to Christian 7. (1808); Frederik 6. / Christian 8. / Frederik 7. pages are placeholders | `scripts/cache/danskmoent/mord/` — `scripts/fetch_danskmoent_mord.py` | A DIGEST with quotations and footnotes («Findes ikke i forordningssamlingen, men hos Schou»), not the act. Cite as `Mordhorst` in the register's «text seen» column; quote the act from Schou / Secher when the wording matters. |
 | **Kolderup-Rosenvinge, J. L. A.**, *Samling af gamle danske Love* IV: *Danske Recesser og Ordinantser* (1824) | to 1558 | Google Books (link in `docs/research/moentordning_1541.md` §9.3) | not cached | Does NOT contain the 1541 Møntordning (its p. 513 note points to Paus); has the Recesser 1536-47. |
@@ -1492,7 +1492,7 @@ The seed builder had no medal filter because Parts I–IV carry no medal titles.
 
 **Printed Bruun collection-ids collide across and within parts (2026-10-16).**
 The seed id is `dk-bruun-<Bruun-collection-id>`, assumed unique. Part V breaks that four times: Bruun-4632 = Part II lot 13079 (Speciedaler 1597, 29.81 g) AND Part V lot 14085 (2 Speciedaler 1600, 69.63 g); Bruun-9764 = Part III lot 12079 (2 Speciedaler 1658-FG, Hede-27, 57.41 g) AND Part V lot 15041 (2 Speciedaler 1658, Hede-31, 57.41 g — same weight, re-attributed; whether it is the same specimen re-offered is unverified); Bruun-12937 = Part V lots 15162/15163 (Swedish Ducats 1748/7 and 1749); Bruun-15599 = Part V medals 15236/15278. The first three reach the seed builder and would emit duplicate seed ids, two of them colliding with existing curated seeds. Part V was therefore held out of the seed (`_SEEDED_PARTS`) until the collisions were resolved; seeded 2026-10-18.
-*Resolved from the printed 1928 catalogue (2026-10-17).* danskmoent.dk publishes *L. E. Bruuns Mønt- og Medaillesamling* (1928) split into sections at `https://www.danskmoent.dk/LEB%201928.htm` (`pdf2/LEB 1928-NN <section>.pdf`, image + text layer); cached as `scripts/cache/bruun/bruun_1928/LEB_1928-*.pdf`. (The archive.org copy `lebruunsmntogmed00bruu` is access-restricted — only its search-inside endpoint answers, from a logged-in tab — use the danskmoent sections instead.) Columns per row: Bruun no., description, provenance mark, condition, «1791» (Beskrivelsen) and «1926» (Schou 1926) numbers. Read from the page images:
+*Resolved from the printed 1928 catalogue (2026-10-17).* danskmoent.dk publishes *L. E. Bruuns Mønt- og Medaillesamling* (1928) split into sections at `https://www.danskmoent.dk/LEB%201928.htm` (`pdf2/LEB 1928-NN <section>.pdf`, image + text layer); cached as `~/munzfuss-library/bruun/bruun_1928/LEB_1928-*.pdf`. (The archive.org copy `lebruunsmntogmed00bruu` is access-restricted — only its search-inside endpoint answers, from a logged-in tab — use the danskmoent sections instead.) Columns per row: Bruun no., description, provenance mark, condition, «1791» (Beskrivelsen) and «1926» (Schou 1926) numbers. Read from the page images:
 - **4632** — C4 section p. 150: 4631 «Dobbelt Speciedaler» 1597 (Schou 1), **4632 «Speciedaler» 1597 (Schou 2)** = Part II lot 13079; **4633 «Dobbelt Speciedaler-Afslag. Vejer 69,63 gr.» 1600 (Schou 1)** = Part V lot 14085 (Stack's printed 4632).
 - **12937** — Sverige section p. 389: **12928 «1748. Dukat»** = Part V lot 15162; **12937 «1749. Dukat. … Siökrona»** = Part V lot 15163 (its provenance line names J. Siökrona).
 - **9764** — Norge section p. 297, 1658: 9762 «Tredobbelt Speciedaler. G.» (Schou 6), 9763 «Dobbelt Speciedaler. B-B.» (Schou 7), **9764 «— —» (Schou 10)**, **9765 «— — G.» (Schou 12)**. danskmoent's Galster page (`galster/2daler.htm`, cached) gives Hede Norge 27 = 1658 «Schou … 7-10» and Hede Norge 31 = «Schou 11-12». So 9764 is the Hede-27 coin = Part III lot 12079; Part V lot 15041 (Hede-31) is **9765**, and its printed «Schou-10» is wrong too (Schou 12). Corroborating: «G.» marks the Guildal provenance — 9762 and 9765 are Part V lots 15040 and 15041, published as Guildal 1338 and 1339 (reading of «G.» / «B-B.» = Guildal / Bille-Brahe is inferred from these matches, not stated in the catalogue). The 57.41 g printed on BOTH 12079 and 15041 is probably copied onto 15041 with the number — unverified; the 1928 catalogue gives no weight for these rows.
@@ -2323,7 +2323,7 @@ final must be written in absorb's key order (or by re-running absorb), and a
 
 Wilcke I (1919) s. 74 prints the contemporary gold:silver ratio of England as
 **10,90** («I England var Tallet paa det Tidspunkt 10,90»; checked on the page
-image of `scripts/cache/wilcke/christian_iv_moentpolitik_1919/wilcke_1.pdf`, PDF 73).
+image of `~/munzfuss-library/wilcke/christian_iv_moentpolitik_1919/wilcke_1.pdf`, PDF 73).
 The danskmoent transcription w1d.htm gives «paa Tidspunkt 11,90» — the digit
 changed and «det» dropped. The project had carried 11,90 from the transcription
 into `fuesse.yml`, a refs_pool scope note and two dossiers; corrected to 10,90.
@@ -2529,3 +2529,16 @@ eller Zellerfeld», «Serridslev/Roskilde», «Hamar/Oslo», «København ell. A
   keeps only that town: Bruun's «Altona/Poppenbüttel» becomes Altona on the
   9¼- and 11⅓-Thaler classes, and «Reinfeldt or Sonderburg» becomes Sønderborg.
   Where every source says «or», the class keeps both towns, unverified.
+
+### 13.31 Research originals moved out of the cache (2026-11-25)
+
+- **Symptom.** A note or dossier names `scripts/cache/<work>/….pdf` (or
+  `…/alto/`) and the file is not there.
+- **Cause.** Since 2026-11-25 PDFs, ALTO trees and archive scans live in the
+  research library `~/munzfuss-library/` under the same relative path; the
+  harvest history was rewritten without them. Living docs were updated to
+  `~/munzfuss-library/…`; the immutable `docs/notes/` keep the old spelling.
+- **Fix.** `.venv/bin/python scripts/library/library.py path <rel>` prints the
+  file (the old `scripts/cache/` prefix is accepted); `library.py fetch <rel>`
+  restores a missing one from the release backup or the origin. Text layers
+  (`pages/*.txt`, `*.extract.txt`) are still in the cache.

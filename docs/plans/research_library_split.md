@@ -239,7 +239,7 @@ the six local hashes match those records, checked 2026-11-25).
   --jq .size`) roughly 1.2–2 GB; `audit_health.py --fast` clean; a full build
   identical to before.
 
-### 8. Docs
+### 8. Docs — ✅ 2026-11-25
 
 CLAUDE.md «Harvest cache», `docs/ARCHITECTURE.md` §«Harvest cache
 (submodule)», `docs/PLAYBOOKS.md` PB-10, `scripts/kb/README.md`, the
@@ -283,3 +283,19 @@ Mac, not only the library.
   reflog expired + gc: submodule git dir 13 GB → 239 MB. After: library
   status 396/396 backed up, kb build 141 184 passages, `kb.py page` from the
   library.
+- 2026-11-25 — step 8 done. CLAUDE.md «Harvest cache» + tier 0,
+  ARCHITECTURE §«Research library», HARVEST_GUIDE (tree, new-harvester rule),
+  PB-10, HARVEST_ROUTINE (state banner: tasks disabled, routine clone gone,
+  fresh clone required), SOURCES §13.31, `scripts/kb/README.md`, harvest
+  README; old `scripts/cache/…pdf|alto` paths in 42 living docs rewritten to
+  `~/munzfuss-library/…` (docs/notes untouched); page-image instructions in
+  the coin-note / cite-source / research-dossier skills use the new
+  `library.py path`. Checks: kb search over every kind, `--work`, `--fts`
+  NEAR, spelling fold, printed page; hit text == library PDF page
+  (secher bd3 p. 591); `kb.py page` with library / legacy / absolute paths
+  and a missing one; a fresh worktree (empty submodule) builds the index and
+  reads the library; layout_extract up to date; measure.py set a 22/22
+  within-work, set b 14/14 (case 14 GOLD ERROR is old: its refs_pool key was
+  removed 2026-10-27 in 935545d); add-source-work end to end in an isolated
+  library + cache (fetch → library + manifest with URL, extract → cache,
+  offsets, backup dry-run, the guard refuses the PDF in the cache).

@@ -41,7 +41,7 @@
 > reachable via **Wilcke 1950 — *Renæssancens Mønt- og Pengeforhold
 > 1481-1588* (København 1950), Chapter IV «Christian III's
 > Møntreform»**, locally cached at
-> [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf).
+> `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
 > Verbatim transcription with archive citation, full ordinance
 > Preamble, complete specification tables for both the 1541 act and
 > the 27 September 1544 supplement, all primary actors named
@@ -122,7 +122,7 @@
 
 | Source | Coverage of the 20 September 1541 Møntordning | Quote-level | Online access |
 |---|---|---|---|
-| **Wilcke 1950** (Chapter IV, *Renæssancens Mønt- og Pengeforhold 1481-1588*) | **Verbatim Danish transcription** + archive citation + complete specification tables for 1541 + 1544 + 1547 acts + identifies all mintmasters | **Verbatim** (modernised 1950 spelling) | Local cache: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf) (18 MB, 51 pp) + structured local capture [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md). Public-domain hosted by danskmoent.dk |
+| **Wilcke 1950** (Chapter IV, *Renæssancens Mønt- og Pengeforhold 1481-1588*) | **Verbatim Danish transcription** + archive citation + complete specification tables for 1541 + 1544 + 1547 acts + identifies all mintmasters | **Verbatim** (modernised 1950 spelling) | Local cache: `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf` (18 MB, 51 pp) + structured local capture [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md). Public-domain hosted by danskmoent.dk |
 | **Rigsarkivet — Tyske Kancelli, Slesvig-Holsten-Lauenburgske Kancelli, I.A.A. (-1670), Diverse Møntsager, nr. 160** | Original ordinance manuscripts (Wilcke's primary source) — full 219-page folio **now locally cached 2026-05-15** | Verbatim chancery-hand (image-scan) | **LOCAL CACHE**: [`scripts/cache/rigsarkivet/tk_160_diverse_moentsager/`](../../scripts/cache/rigsarkivet/tk_160_diverse_moentsager/) (219 pages, ~110 MB JPEG, 150 DPI 3345×2440). Source-capture analysis: [`sources/rigsarkivet_tk_160_diverse_moentsager.md`](sources/rigsarkivet_tk_160_diverse_moentsager.md). Original web access: [arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028](https://arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028) |
 | **Christian den Tredies Historie Vol. II** (anonymous, Kbhvn 1778, p. 108 ff.) | 18th-c. printed transcription cited by Wilcke | Verbatim (period orthography) | Print only; would need ILL |
 | **Paus 1752** (Vol. 2 p. 305) | Does NOT contain the 20 September Møntordning — contains the 20 March 1541 «Om Maal og Vægt» companion Forordning at this page | Verbatim of the companion (captured locally at [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md)) | Google Books id `nZZFAAAAcAAJ` partial preview; downloaded full PDF confirmed lacks the September Møntordning |
@@ -142,7 +142,7 @@ cross-confirms the Wilcke specifications cell-by-cell.
 
 ## 3. Verbatim ordinance text — Wilcke 1950 (the primary verbatim source)
 
-> **Local cache**: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf).
+> **Local cache**: `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
 > Structured local capture with full transcription + archive
 > coordinates: [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
 
@@ -809,7 +809,7 @@ data work for Phase A1 (1541–1543 København baseline) needs:
 
 > **Status as of 2026-05-15** (after three successive search passes):
 > Wilcke 1950 Chapter IV is the primary verbatim source, **already
-> in our local cache** at `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
+> in our local cache** at `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
 > No remote fetch is needed for routine project work. The four
 > remaining paths below are documented for completeness, paleographic
 > fidelity (Rigsarkivet manuscript), and the companion 20 March 1541
@@ -817,7 +817,7 @@ data work for Phase A1 (1541–1543 København baseline) needs:
 
 ### 9.0 Wilcke 1950, Chapter IV (LOCAL CACHE — PRIMARY PATH)
 
-**Local file**: `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`
+**Local file**: `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`
 (18 MB, 51 pages, ABBYY FineReader OCR'd, text-searchable via
 `pages/wilcke_7-4.txt`).
 
@@ -1088,7 +1088,7 @@ For the **20 September 1541 Møntordning text itself**: **§9.0
 Wilcke 1950, Chapter IV** is the recommended path — verbatim text +
 archive coordinate + full specification tables + analytical
 commentary all in one document, already in our local cache at
-`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf` and
+`~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf` and
 structured locally at
 [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
 
@@ -1209,7 +1209,7 @@ monetary-reform trio is now project-internal-sourced.
   source: verbatim transcription of the 1541 Møntordning Preamble,
   full specification tables for the 1541 + 1544 + 1547 acts,
   archive coordinates, and all actors named.
-  - **Local cache PDF**: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf).
+  - **Local cache PDF**: `~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
   - **Structured local capture**: [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
   - **Online (public domain)**: <https://www.danskmoent.dk/pdf2/Wilcke%207-4.pdf>.
 

@@ -270,7 +270,7 @@ as the reason the 1658–60 output is not the king's).
 
 - **Secher VI** nr. 313 (s. 365), 319 (s. 368): keys `secher-ccd-6-313-1658-dukat-12-mark`,
   `secher-ccd-6-319-1658-fri-udmoentning` — `scripts/cache/secher/bd6/pages/0390.txt`, `0393.txt`;
-  `scripts/cache/secher/_pdf/bd6.pdf` pages 390, 393 (rendered).
+  `~/munzfuss-library/secher/_pdf/bd6.pdf` pages 390, 393 (rendered).
 - **Wilcke II** afsn. II A.5 (s. 113–133): keys `wilcke-1924-kap2a5-antegnelser-1657-60-ingen-profit`,
   `-koehler-svar-betraengte`, `-ordre-1657-2-aug`, `-frdg-1658-dukat-fri-udmoentning`,
   `-fri-udmoentning-ikke-specier`, `-1660-24-marts-soelvkoeb`, `-rixdaler-ducater-raritet`,

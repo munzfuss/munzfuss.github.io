@@ -402,7 +402,7 @@ to the gram (18,909 · 16,250; 22,272 · 14,964; 11,136 · 7,482; 1,218 · 0,343
   `secher-ccd-6-16-1651-ordre-9-maj`, `secher-ccd-6-42-1651-pajement`, `secher-ccd-6-45-1651-stuck-von-achten`,
   `secher-ccd-6-70-1652-slette-daler-norge`, `secher-ccd-6-130-1653-to-enskillinger`,
   `secher-ccd-6-130-1653-ducater-guldkroner` — `scripts/cache/secher/bd6/pages/0024.txt`, `0091–0092.txt`,
-  `0106.txt`, `0158–0159.txt`; `scripts/cache/secher/_pdf/bd6.pdf` page 158 (rendered).
+  `0106.txt`, `0158–0159.txt`; `~/munzfuss-library/secher/_pdf/bd6.pdf` page 158 (rendered).
 - **Wilcke II** afsn. II A.4 (s. 101–113): keys `wilcke-1924-kap2a4-rescript-1651-9-marts-kobber`,
   `-missive-1652-19-febr-kobber`, `-ordre-1651-9-maj`, `-kronedaler-24-375`, `-tabel-1648-52-krone`,
   `-tabel-1648-52-smaamoent`, `-udmoentning-1648-51-ialt`, `-kroning-1648-24-sk`; existing

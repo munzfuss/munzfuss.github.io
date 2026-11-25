@@ -526,7 +526,7 @@ with the act in its phase text, is a classification question for the curator (FI
 ## 9. Sources consulted
 
 - **Secher IV** (1897) nr. 312 (s. 477–478), nr. 331 (s. 489–493), nr. 347 (s. 504–505) —
-  Commons PDF `scripts/cache/secher/_pdf/bd4.pdf` (printed = PDF − 13), djvu text
+  Commons PDF `~/munzfuss-library/secher/_pdf/bd4.pdf` (printed = PDF − 13), djvu text
   `scripts/cache/secher/bd4/pages/`; page images rendered 2026-11-03 for pp. 490–491, 502–505,
   517–518. Keys: `secher-ccd-4-312-1629-fremmed-moent`, `secher-ccd-4-331-1629-indledning`,
   `-otteskillinger`, `-fire-to-skillinger`, `-enlige-skillinger`, `-syslinger-hvider`,

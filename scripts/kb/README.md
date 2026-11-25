@@ -63,7 +63,8 @@ The working recipe — used by the `research-dossier`, `fuss-description`,
    --kind catalogue` → Hede 105A and the ¼ Krone 1618 page.
 6. **Read, never quote the snippet.** Open `path:line`, read the whole page,
    copy verbatim; check every figure of an OCR'd work on the page image
-   (`pdftoppm -f N -l N`). Cite the printed page the hit reports; Bruun as
+   (`pdftoppm -f N -l N -png "$(.venv/bin/python scripts/library/library.py path <rel>.pdf)" p`
+   — PDFs are in the research library, not in the cache, since 2026-11-25). Cite the printed page the hit reports; Bruun as
    lot + printed page (`docs/SOURCES.md` §1.3).
 7. **No hit ≠ no source.** Not indexed: rigsarkivet TK 160 (handwriting), the
    Bruun 1928 catalogue, paper-only works (Lange, Sieg, the printed Hede
@@ -122,11 +123,13 @@ interleave them. Found on the Denar til daler (2018) contents page: plain mode p
 «Jens Christian Moesgaard» (chapter 4, left column) under «KAPITEL 6» (right column),
 whose author is Michael Märcher; `-layout` and `-raw` both read it right.
 
-- `layout_extract.py` writes `pdftotext -layout` of every cached PDF to
-  `scripts/cache/_derived/layout/<pdf path>.layout.txt` (form feed per page). Not in
+- `layout_extract.py` writes `pdftotext -layout` of every PDF in the research
+  library to `scripts/cache/_derived/layout/<pdf path>.layout.txt` (form feed per page). Not in
   the manifest, so never indexed: a hit does not appear twice.
 - `kb.py page <pdf> <n> [--mode layout|raw|plain|all]` prints one PDF page in each
-  mode — the PDF path relative to `scripts/cache/`, the PDF page (not the printed one).
+  mode — the PDF path relative to the library root (the old `scripts/cache/…`
+  spelling works too), the PDF page (not the printed one). The PDF is read from
+  `~/munzfuss-library`; a missing one prints the `library.py fetch` command.
 - `fuss_cite_audit.py --verbatim` checks each quote in both layers; a quote found
   only in the layout copy marks a page the plain extract interleaves.
 

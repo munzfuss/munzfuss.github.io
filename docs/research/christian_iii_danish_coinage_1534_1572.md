@@ -79,7 +79,7 @@ single-ordinance reference.
 2026-05-15 after three search passes): **Wilcke, J.**, *Renæssancens
 Mønt- og Pengeforhold 1481–1588* (København 1950), Chapter IV
 «Christian III's Møntreform» — locally cached at
-[`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf)
+`~/munzfuss-library/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`
 + structured capture
 [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
 Wilcke transcribes the ordinance Preamble verbatim, gives the full

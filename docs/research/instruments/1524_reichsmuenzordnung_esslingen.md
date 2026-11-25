@@ -20,7 +20,7 @@
 > Reihe* III–IV (the negotiations of 1522–24, cited by Wilcke) and the *Neue Sammlung der
 > Reichsabschiede* are not in the cache; coins struck to the ordinance are not surveyed (none of
 > our entities is concerned). Written 2026-11-19 from
-> `scripts/cache/literature/hirsch_1756_muenz_archiv/hirsch_1756_muenz_archiv_theil1.pdf`
+> `~/munzfuss-library/literature/hirsch_1756_muenz_archiv/hirsch_1756_muenz_archiv_theil1.pdf`
 > (pdf 288–297; corpus id `hirsch-1756-1`).
 
 ## 1. Identification

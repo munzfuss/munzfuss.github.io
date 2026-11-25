@@ -17,7 +17,7 @@
 Source: B. W. Luxdorph, (A) «Anledning og Veiviisning til Myntens Udregning her i Landene, i det Fiortende
 Aar-Hundrede, og fremdeles under Kong Eric af Pommeren …», *Skrifter … Kiøbenhavnske Selskab* IX (1765)
 s. 613–712; (B) «Indberetning om nogle gamle Danske Mynters Prøvelse i Aaret 1764», s. 713–718.
-Cache: `scripts/cache/literature/luxdorph_1765/…_part2_pdf378-754.pdf`. Page images read at 150 / 300 / 400 / 500 dpi
+Cache: `~/munzfuss-library/literature/luxdorph_1765/…_part2_pdf378-754.pdf`. Page images read at 150 / 300 / 400 / 500 dpi
 (volume pdf = printed page + 28 for all pages cited here, checked on every image).
 
 Units: Luxdorph reckons the Cologne mark = 16 Lod = 4352 Es and, for weighings, = 65 536 Richtpfennig (Rpf).

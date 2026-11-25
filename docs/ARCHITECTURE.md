@@ -790,7 +790,29 @@ After every bulk-import or manual coin addition, re-run the categoriser; the dro
 
 ## Harvest cache (submodule)
 
-`scripts/cache/` is a **git submodule** pointing at a separate **private** repo (`munzfuss/munzfuss-harvest`). The submodule carries the regenerable artefacts of network fetches and PDF parses (Hede HTML+JSON, IKMK JSON, Numista JSON, Bruun parsed lots, ucoin URL index). The main repo stays slim; the build pipeline doesn't read this cache — only fetchers / parsers / audits / maintenance scripts do.
+`scripts/cache/` is a **git submodule** pointing at a separate **private** repo (`munzfuss/munzfuss-harvest`). The submodule carries the regenerable artefacts of network fetches and PDF parses (Hede HTML+JSON, IKMK JSON, Numista JSON, Bruun parsed lots, ucoin URL index) and the corpus text layers. The main repo stays slim; the build pipeline doesn't read this cache — only fetchers / parsers / audits / maintenance scripts do.
+
+### Research library — originals outside git (since 2026-11-25)
+
+PDFs, ALTO XML and archive scans are ORIGINALS: never edited, large, and either
+re-downloadable or irreplaceable. They are not in any git repo.
+
+| Copy | Where |
+|---|---|
+| Primary | `LIBRARY_ROOT` = `~/munzfuss-library/` (override `MUNZFUSS_LIBRARY_DIR` in `local.env`), same relative path as the text beside it in the cache (`schou/bd1/alto/`, `bruun/part1.pdf`) — shared by every worktree and session |
+| Backup | release assets in the private repo `munzfuss/munzfuss-library`: one release per top-level directory, asset = the path below it with `/` → `--`; an ALTO tree is one `.tar.gz` |
+| Third | the origin URL, where `source_url` is recorded (byte-identical; not every original has one, and that is not an error) |
+
+`scripts/cache/_library_manifest.yml` holds sha256, size, `source_url` /
+`work_url` / `work`, and the backup location of each record.
+`scripts/library/library.py` — `add`, `backup`, `fetch` (local → release →
+origin, sha256-checked), `verify`, `status`, `path`. Code reads an original
+through `scripts/lib/originals.py` (`original()`, `iter_originals()`; library
+first, `MissingOriginal` names the restore command); fetchers register what
+they write with `library.register()`. The harvest repo's `.githooks/pre-commit`
+(enabled by `scripts/install_hooks.sh`) refuses PDF, ALTO, rigsarkivet scans and
+files over 20 MB. Plan, checks and the history rewrite:
+`docs/plans/research_library_split.md`.
 
 ### First clone on a new machine
 

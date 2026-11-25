@@ -210,7 +210,7 @@ See PB-10 for full diagnosis when `git status` shows `modified: scripts/cache (n
 
 - Parsed: `scripts/cache/bruun/lots/part{1..5}.json`
 - Page text: `scripts/cache/bruun/pages/part{1..5}.txt`
-- Raw PDFs: `scripts/cache/bruun/part{1..5}.pdf` (pypdf; the pdf-viewer MCP times out on these sizes — SOURCES §13.3)
+- Raw PDFs: `~/munzfuss-library/bruun/part{1..5}.pdf` (pypdf; the pdf-viewer MCP times out on these sizes — SOURCES §13.3)
 - Adding a part: `scripts/bruun_parser/README.md` § «Adding a new Bruun part». A danskmoent-hosted PDF needs the Claude-in-Chrome download route (SOURCES §13.3 «Part V download»); stage 01 takes a part slug (`01_extract_text.py part5`) so existing page dumps are not re-extracted.
 
 **Seed builder pattern**: `scripts/maintenance/build_bruun_denmark_seed.py` reads JSON, filters by year/region, normalises to project seed shape. Mirror for new scopes.
@@ -1069,12 +1069,12 @@ scripts/cache/   ← git submodule (munzfuss-harvest private repo)
 │   ├── c<N>h<NUM>.htm + .json                # per coin
 │   └── norge/                                # Norway sub-folder
 ├── bruun/
-│   ├── part{1,2,3,4}.pdf                     # raw
+│   ├── (part{1..5}.pdf — research library, not here)
 │   ├── lots/part{1,2,3,4}.json               # parsed
 │   └── pages/part{1,2,3,4}.txt               # page text
 ├── wilcke/
 │   └── renaessancens_moent_1950/
-│       ├── wilcke_7-{1..8}.pdf
+│       ├── (wilcke_7-{1..8}.pdf — research library, not here)
 │       └── pages/wilcke_7-{1..8}.txt
 ├── ikmk/
 │   └── <id>.json                             # IKMK Berlin
@@ -1186,7 +1186,8 @@ Document negative findings in the source survey for future-session reference —
 - **Hardcoded base URL in three places**: keep BASE constant in fetcher, reuse via import in parser + seed-builder if they need it (mostly they don't).
 - **Single big script**: split into fetch + parse + seed-builder so each step is rerunable in isolation.
 - **No manifest**: write `_manifest.json` listing discovered URLs so re-runs can verify completeness.
-- **Mixed cache shapes**: per-source cache dir + consistent `.html`/`.pdf` + `.json` sidecar pattern. Don't mix raw and parsed into the same file.
+- **Mixed cache shapes**: per-source cache dir + consistent `.html` + `.json` sidecar pattern. Don't mix raw and parsed into the same file.
+- **Originals go to the research library, not the cache** (since 2026-11-25): a harvester that downloads a PDF, an ALTO tree or a scan writes it under `LIBRARY_ROOT` at the path its text will have in the cache and calls `library.register(rel, url=…, fetched=…)` (`bundle=True` for an ALTO tree); `fetch_secher.py` / `fetch_schou.py` are the references. The harvest pre-commit refuses originals. `docs/ARCHITECTURE.md` §«Research library».
 - **Trusting `lot.year` blindly**: always validate against `meta_line` / context (Bruun parser sets year=stray-catalog-ref-token on medieval Penny lots).
 - **Trusting `lot.ruler` blindly**: re-parse from `meta_line` body when source has «Hans Seyer» mintmaster vs «Hans» king ambiguity.
 - **Latin-1 User-Agent**: ASCII-only UA strings or all fetches silently fail.
