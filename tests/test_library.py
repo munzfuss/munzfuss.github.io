@@ -162,5 +162,37 @@ class LibraryTest(unittest.TestCase):
             quiet(L.cmd_backup, self.lib, self.be, [], False)
 
 
+
+class OriginalsResolutionTest(unittest.TestCase):
+    """lib.originals: during the move the library wins, the cache is the
+    fallback, and a missing file names the command that restores it."""
+
+    def setUp(self):
+        from lib import paths
+        self.paths = paths
+        self.saved = (paths.LIBRARY_ROOT, paths.HARVEST_ROOT)
+        self.td = tempfile.TemporaryDirectory()
+        b = Path(self.td.name)
+        paths.LIBRARY_ROOT, paths.HARVEST_ROOT = b / "lib", b / "cache"
+        for r, body in ((b / "lib", b"L"), (b / "cache", b"C")):
+            (r / "w").mkdir(parents=True)
+            (r / "w" / "both.pdf").write_bytes(body)
+        (b / "cache" / "w" / "cache_only.pdf").write_bytes(b"C")
+
+    def tearDown(self):
+        self.paths.LIBRARY_ROOT, self.paths.HARVEST_ROOT = self.saved
+        self.td.cleanup()
+
+    def test_resolution(self):
+        from lib.originals import MissingOriginal, iter_originals, original
+        self.assertEqual(original("w/both.pdf").read_bytes(), b"L")
+        self.assertEqual(original("w/cache_only.pdf").read_bytes(), b"C")
+        with self.assertRaises(MissingOriginal) as cm:
+            original("w/none.pdf")
+        self.assertIn("library.py fetch w/none.pdf", str(cm.exception))
+        got = {r: f.read_bytes() for r, f in iter_originals(".pdf")}
+        self.assertEqual(got, {"w/both.pdf": b"L", "w/cache_only.pdf": b"C"})
+
+
 if __name__ == "__main__":
     unittest.main()

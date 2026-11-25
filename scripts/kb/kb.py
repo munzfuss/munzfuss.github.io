@@ -773,11 +773,13 @@ def cmd_page(args) -> int:
     order. Read the page here before taking a figure from a table or an
     author from a contents page."""
     import subprocess
+    from lib.originals import MissingOriginal, original
     pdf = Path(args.pdf)
-    if not pdf.is_absolute() and not pdf.exists():
-        pdf = CACHE / args.pdf
-    if not pdf.exists():
-        raise SystemExit(f"no such PDF: {args.pdf}")
+    if not (pdf.is_absolute() and pdf.exists()):
+        try:
+            pdf = original(args.pdf)
+        except MissingOriginal as e:
+            raise SystemExit(str(e))
     modes = ["layout", "raw", "plain"] if args.mode == "all" else [args.mode]
     for m in modes:
         cmd = ["pdftotext", "-f", str(args.n), "-l", str(args.n)]

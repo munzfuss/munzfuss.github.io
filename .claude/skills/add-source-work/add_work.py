@@ -2,13 +2,16 @@
 """Helper for the add-source-work skill: bring one printed work (PDF) into
 the harvest cache with a searchable text layer and a `_corpus.yml` record.
 
-Subcommands (paths are relative to scripts/cache/ unless absolute):
+Subcommands. A PDF path is a library path (`LIBRARY_ROOT`, the same relative
+path as in the cache; read from the cache as long as the library lacks it);
+a text path is relative to the corpus text root (the harvest cache for now).
 
   dupes WORDS…          corpus records whose id / title / author / url match
                         every word; cached PDFs of the same size + md5 as
                         --pdf (an already-cached copy under another name)
-  fetch URL DEST        download URL to scripts/cache/DEST (never overwrites),
-                        then `inspect`
+  fetch URL DEST        download URL to the research library at DEST (never
+                        overwrites), record it in the library manifest with
+                        the URL, then `inspect`
   inspect PDF           pages, text characters per page, pages without text
                         (a scan without OCR), producer
   extract PDF           pdftotext → <same name>.extract.txt (one form feed per
@@ -31,8 +34,12 @@ import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
-CACHE = REPO / "scripts" / "cache"
+sys.path.insert(0, str(REPO / "scripts"))
+from lib.originals import TEXT_ROOT, MissingOriginal, iter_originals, original, rel_of  # noqa: E402
+from lib.paths import LIBRARY_ROOT  # noqa: E402
+CACHE = TEXT_ROOT          # derived text and _corpus.yml; originals go to LIBRARY_ROOT
 MANIFEST = CACHE / "_corpus.yml"
+LIBRARY = REPO / "scripts" / "library" / "library.py"
 KB = REPO / "scripts" / "kb" / "kb.py"
 UA = "Mozilla/5.0 (Macintosh)"   # danskmoent answers a bot challenge without it
 
@@ -40,8 +47,17 @@ sys.path.insert(0, str(REPO / "scripts" / "kb"))
 
 
 def _path(p: str) -> Path:
+    """A text-layer path (relative to the corpus text root)."""
     q = Path(p)
     return q if q.is_absolute() else CACHE / q
+
+
+def _pdf(p: str) -> Path:
+    """An original PDF: library first, then the cache (plan step 4)."""
+    try:
+        return original(p)
+    except MissingOriginal as e:
+        raise SystemExit(str(e))
 
 
 def _md5(p: Path) -> str:
@@ -61,14 +77,14 @@ def cmd_dupes(a) -> int:
         if words and all(x in hay for x in words):
             print(f"corpus: {w['id']}  {w.get('title')}  ({w.get('source_url')})")
     if a.pdf:
-        pdf = _path(a.pdf)
+        pdf = _pdf(a.pdf)
         size, digest = pdf.stat().st_size, None
-        for other in CACHE.rglob("*.pdf"):
+        for _rel, other in iter_originals(".pdf"):
             if other.resolve() == pdf.resolve() or other.stat().st_size != size:
                 continue
             digest = digest or _md5(pdf)
             if _md5(other) == digest:
-                print(f"same file already cached: {other.relative_to(CACHE)}")
+                print(f"same file already in the library: {_rel}")
     return 0
 
 
@@ -78,13 +94,13 @@ def _pdfinfo(pdf: Path) -> dict:
 
 
 def cmd_inspect(a) -> int:
-    pdf = _path(a.pdf)
+    pdf = _pdf(a.pdf)
     info = _pdfinfo(pdf)
     pages = int(info.get("Pages", "0").strip())
     text = subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True, text=True).stdout
     per = [len(re.sub(r"\s", "", t)) for t in text.split("\f")][:pages]
     empty = [i + 1 for i, n in enumerate(per) if n < 40]
-    print(f"{pdf.relative_to(CACHE) if pdf.is_relative_to(CACHE) else pdf}: {pages} pages, "
+    print(f"{rel_of(pdf)}: {pages} pages, "
           f"{pdf.stat().st_size / 1e6:.1f} MB, producer {info.get('Producer', '?').strip()}")
     print(f"text characters per page: median {sorted(per)[len(per) // 2] if per else 0}")
     if len(empty) == pages:
@@ -97,7 +113,7 @@ def cmd_inspect(a) -> int:
 
 
 def cmd_fetch(a) -> int:
-    dest = _path(a.dest)
+    dest = LIBRARY_ROOT / a.dest
     if dest.exists():
         raise SystemExit(f"exists, not overwritten: {dest}")
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -108,13 +124,17 @@ def cmd_fetch(a) -> int:
     if not data.startswith(b"%PDF"):
         raise SystemExit(f"not a PDF ({ctype}, {len(data)} bytes) — nothing written")
     dest.write_bytes(data)
-    print(f"saved {dest.relative_to(CACHE)} ({len(data) / 1e6:.1f} MB)")
-    return cmd_inspect(argparse.Namespace(pdf=str(dest)))
+    print(f"saved {a.dest} in the library ({len(data) / 1e6:.1f} MB)")
+    subprocess.run([sys.executable, str(LIBRARY), "add", a.dest, "--url", a.url,
+                    "--fetched", __import__("datetime").date.today().isoformat()], check=True)
+    print("  → back it up: .venv/bin/python scripts/library/library.py backup " + a.dest)
+    return cmd_inspect(argparse.Namespace(pdf=a.dest))
 
 
 def cmd_extract(a) -> int:
-    pdf = _path(a.pdf)
-    out = pdf.with_suffix(".extract.txt")
+    pdf = _pdf(a.pdf)
+    out = (CACHE / rel_of(pdf)).with_suffix(".extract.txt")
+    out.parent.mkdir(parents=True, exist_ok=True)
     if out.exists():
         raise SystemExit(f"exists, not overwritten: {out}")
     subprocess.run(["pdftotext", str(pdf), str(out)], check=True)

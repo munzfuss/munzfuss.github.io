@@ -27,22 +27,21 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "scripts"))
-from lib.paths import HARVEST_ROOT  # noqa: E402
-CACHE = HARVEST_ROOT
-OUT = CACHE / "_derived" / "layout"
+from lib.originals import TEXT_ROOT, iter_originals  # noqa: E402
+OUT = TEXT_ROOT / "_derived" / "layout"
 
 
-def layout_path(pdf: Path) -> Path:
-    return OUT / (str(pdf.relative_to(CACHE)) + ".layout.txt")
+def layout_path(rel: str) -> Path:
+    """Layout text of the original at library path ``rel``."""
+    return OUT / (rel + ".layout.txt")
 
 
 def main(argv: list[str]) -> int:
     needle = argv[0] if argv else ""
-    pdfs = sorted(p for p in CACHE.rglob("*.pdf")
-                  if needle in str(p) and OUT not in p.parents)
+    pdfs = [(rel, p) for rel, p in iter_originals(".pdf") if needle in rel]
     done = skipped = failed = 0
-    for pdf in pdfs:
-        out = layout_path(pdf)
+    for rel, pdf in pdfs:
+        out = layout_path(rel)
         if out.exists() and out.stat().st_mtime >= pdf.stat().st_mtime:
             skipped += 1
             continue
@@ -50,7 +49,7 @@ def main(argv: list[str]) -> int:
         r = subprocess.run(["pdftotext", "-layout", str(pdf), str(out)],
                            capture_output=True, text=True)
         if r.returncode:
-            print(f"  ✗ {pdf.relative_to(CACHE)}: {r.stderr.strip()[:200]}", file=sys.stderr)
+            print(f"  ✗ {rel}: {r.stderr.strip()[:200]}", file=sys.stderr)
             failed += 1
             continue
         done += 1

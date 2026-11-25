@@ -15,7 +15,7 @@ spec.json:
        "caption": "Zinck 8B 1649 | Bruun 9616, 1650: KM-37; Dav-3588; Hede-8B",
        "images": [
          {"url": "https://www.danskmoent.dk/zinck/zinck5/5z290nf3h8b.gif"},
-         {"pdf": "scripts/cache/bruun/part1.pdf", "page": 259,
+         {"pdf": "bruun/part1.pdf", "page": 259,
           "crop60": [40, 95, 460, 345]},
          {"path": "/abs/path/numista.png"}
        ]}
@@ -56,8 +56,12 @@ def _load(spec: dict) -> Image.Image:
         with urllib.request.urlopen(req, timeout=60) as r:
             return Image.open(io.BytesIO(r.read()))
     if "pdf" in spec:
-        pdf = Path(spec["pdf"])
-        pdf = pdf if pdf.is_absolute() else REPO / pdf
+        # A library path («bruun/part1.pdf»); the older «scripts/cache/…» form
+        # is accepted too. Resolved through lib.originals (library, then cache).
+        sys.path.insert(0, str(REPO / "scripts"))
+        from lib.originals import original
+        rel = str(spec["pdf"]).removeprefix("scripts/cache/")
+        pdf = original(rel)
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "p"
             subprocess.run(["pdftoppm", "-f", str(spec["page"]), "-l", str(spec["page"]),

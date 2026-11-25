@@ -136,7 +136,7 @@ the six local hashes match those records, checked 2026-11-25).
 - **Check:** `status` reports zero single-copy files; a spot `fetch` of three
   files from release into a temp root matches sha256.
 
-### 4. Point the code at the library
+### 4. Point the code at the library — ✅ 2026-11-25 (readers)
 
 - Inventory of code that opens a local PDF / ALTO (candidates from a grep on
   2026-11-25, to be read one by one — many only mention a `.pdf` URL):
@@ -151,6 +151,21 @@ the six local hashes match those records, checked 2026-11-25).
   «run `library.py fetch <path>`», not a bare FileNotFoundError.
 - **Check:** `kb.py page <pdf> <n> --mode layout` works with the cache's PDFs
   renamed away; unittest suite green.
+- Done: `scripts/lib/originals.py` (`original()`, `iter_originals()`,
+  `TEXT_ROOT`; library first, cache fallback, `MissingOriginal` names the
+  `library.py fetch` command). Readers switched: `kb.py page`,
+  `kb/layout_extract.py` (layout text stays under `TEXT_ROOT/_derived`),
+  `parse_tietjen.py`, `add_work.py` (dupes / inspect / extract; `fetch`
+  now saves into the library and runs `library.py add --url`),
+  `compose_images.py`. Check passed with `MUNZFUSS_HARVEST_DIR` pointed at an
+  empty dir: `kb.py page bruun/part1.pdf 3`, `add_work.py inspect`, tietjen
+  listing all resolve from the library.
+- Not readers of the cache: `bruun_parser/01_extract_text.py` reads
+  `/tmp/bruun_pdfs` (stale, untouched); `build_lindahl_1955_seed.py`,
+  `build_metallanalyser_seed.py` only cite PDF URLs.
+- Writers still into the cache — move in step 6: `fetch_secher.py`
+  (PDF → `secher/_pdf/`), `fetch_schou.py` (ALTO), and the fogtman /
+  norske_rigsregistranter / norges_gamle_love ALTO fetchers.
 
 ### 5. Create munzfuss-corpus
 
@@ -207,3 +222,4 @@ Mac, not only the library.
 - 2026-11-25 — step 1: `LIBRARY_ROOT` / `CORPUS_ROOT` in `paths.py`,
   `scripts/library/library.py`, `tests/test_library.py`.
 - 2026-11-25 — step 2: library built, 396 records, verify clean.
+- 2026-11-25 — step 4 (readers) done; step 3 backup running.

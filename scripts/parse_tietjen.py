@@ -107,7 +107,10 @@ def parse_catalogue(pdf: Path) -> list[dict]:
 
 
 def main() -> int:
-    for pdf in sorted(CACHE.glob("tietjen_*_auktion_*.pdf")):
+    from lib.originals import iter_originals
+    pdfs = [f for rel, f in iter_originals(".pdf", "auctions/tietjen")
+            if re.fullmatch(r"tietjen_\d+_auktion_\d+\.pdf", f.name)]
+    for pdf in pdfs:
         n = re.search(r"auktion_(\d+)", pdf.stem).group(1)
         lots = parse_catalogue(pdf)
         out = CACHE / f"auktion_{n}_lots.json"
