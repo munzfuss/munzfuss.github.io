@@ -116,6 +116,7 @@ Every new dossier gets a row here in the same commit (`tests/test_research_index
 | [`mint_year_transitions.md`](mint_year_transitions.md) | mint year-aware classification dates |
 | [`numismaster_dk_sh_1514_1914_harvest_surface.md`](numismaster_dk_sh_1514_1914_harvest_surface.md) | NumisMaster harvest surface DK / SH |
 | [`ordinances_register.md`](ordinances_register.md) | register of every coinage act (not a dossier, see above) |
+| [`sammlung_1773_muenzsachen.md`](sammlung_1773_muenzsachen.md) | the fourteen coin acts of the duchies 1616–1673 as printed in the Sammlung der gemeinschaftlichen Verordnungen (1773): what each sets, the 1620 weight table, differences against the register |
 
 ## How it differs from other doc surfaces
 
