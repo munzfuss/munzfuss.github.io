@@ -26,6 +26,7 @@
 - **Corpus Statutorum Slesvicensium** Bd 1, 2, 3/1, 3/2 in the corpus (`css-*`, MDZ OCR; PDFs in the library as
   served, cover sheet = pdf 1, backed up). It holds no coin ordinance (its own Sachregister «Münze» checked) —
   see the row in SOURCE_LOCATIONS §2.
+- **Wilcke II (1924) scan** found at Danskernes Historie Online and in the corpus as `wilcke-1924-scan` (printed pages mapped; the danskmoent HTML `wilcke-1924` stays). First use: Ulfeldt's order of 14 Jan 1648 quoted at s. 101 — register row and `1643_muentzordnung_christiania.md` §3 amended; the order was never printed (R. A. copy). Wilcke V (1930) is print-only at DHO — still no scan. §2 rows 1660–1699 re-searched: no new texts; next is §3 (1700–1848).
 - **Sammlung der … gemeinschaftlichen Verordnungen (1773)** found at SUB Hamburg; selected pages (724 of 1365
   scans, own tesseract OCR) in the corpus as `sammlung-gemeinschaftlichen-verordnungen-1773`, originals as three
   JPEG bundles in the library. It prints the four edicts for the duchies 1620–1623 and ten more coin acts

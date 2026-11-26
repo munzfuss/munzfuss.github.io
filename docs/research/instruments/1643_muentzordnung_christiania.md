@@ -33,7 +33,7 @@
 | A0 | 2 July 1641 (to Statholder Christoffer Urne, Bergenhus); 16 Oct 1641 (with «indlagte Mønt Ordinance paa Skrod og Lod»); 11 March 1642 | the king's Befalinger — «af det huid Sølff, Som os Aff Sølffberget tilkommer Smaa mynt lader mynte … udi Rixdalers Verdt»; «2 ß, 4 ß og 8 ß … efter indlagte Mønt Ordinance» | Christian IV | Statholder Urne; NO | R. A. Norske Tegnelser VII 1640–48 f. 76, 84, 98 b (Wilcke II n. 1) |
 | P | 9 Dec 1642 | Grüner's Memorial to Hannibal Sehested «wegen der müntze in Christiania», with a second proposal appended | Peter Grüner (petitioner) | Statholder Sehested | R. A. Norske Mønt- og Bjergværkssager indtil 1660 (Wilcke II n. 7) |
 | R | 27 Feb 1643 | Christian IV's store Reces, II. bog, 3. kap. «Kiøbstederne anlangende», § 17 «Borgemestere oc raads tilsiun», nr. 1 «med mynten» | Christian IV | DK (Secher's index files it under Møntvæsen) | Secher V nr. 143, s. 244 |
-| S | 14 Jan 1648 | Corfits Ulfeldt's reduction of the København 2 ß and 1 ß weights (Wilcke II kap. II B.7) | Rigshofmester Ulfeldt | DK (København mint) | not seen; Wilcke's statement only |
+| S | 14 Jan 1648 | Corfits Ulfeldt's reduction of the København 2 ß and 1 ß weights (Wilcke II kap. II B.7) | Rigshofmester Ulfeldt | DK (København mint) | not seen; not printed — Wilcke quotes the order's operative words from an archive copy (s. 101) and retells it (kap. II B.7) |
 
 ## 2. Source chain
 
@@ -116,6 +116,22 @@ Marken brutto. Herved blev den københavnske Skillingsmønt staaende i Kong Fred
 Переклад: «14 січня 1648 р. Corfits Ulfeldt знизив вагу цих монет до 192 штук 2 ß, або 4
 ріксдалерів, і 256 штук 1 ß, або 4 слетдалерів, на марку брутто. На цьому копенгагенська
 скілінгова монета лишилася за часів короля Frederik III».
+
+The order's own words, as Wilcke quotes them at s. 101 (scan `wilcke-1924-scan`, page image read
+2026-11-26): «*Den 14. Januar 1648 gav Corfits Ulfeldt Møntmester H. Köhler Ordre til at*» «*mynte smaa Mynt paa Kgl. Majt.s Mynte Cammer paa Slottit, Nemblig Tou skilling stycker som skall være halffemtelødig och skall hver marck lødig veye 192 Stycker, saa skall och myntes En Skillingstycker, som skall være halftredielødig og skall hver marck lødig veye 256 Stycker*».
+Переклад: «14 січня 1648 р. Corfits Ulfeldt дав монетному майстрові H. Köhler наказ „карбувати
+дрібну монету в монетній камері Його Королівської Величності в замку, а саме двоскілінгові
+штуки, що мають бути 4½-лотовими, і кожна лігатурна марка має важити 192 штуки; також
+карбувати односкілінгові штуки, що мають бути 2½-лотовими, і кожна лігатурна марка має важити
+256 штук“». Recomputed at 233,855 g: 2 ß 1,218 g · 281,25 ‰ · 0,343 g fine; 1 ß 0,913 g ·
+156,25 ‰ · 0,143 g fine. Wilcke's source (n. 1): «*Kgl. Resl. og Rescr. vedr. Møntvæsenet i Alm.
+samt Mønten i Kbhvn. og i Holsten i Særdeleshed 1681—1735. Copi, bekræftet af Hendrik Köhler.
+R. A. 2. Afd. Akkorder og gamle danske Møntreglementer*» (переклад: «Королівські резолюції та
+рескрипти щодо монетної справи загалом і монетних дворів у København і Holstein зокрема
+1681—1735. Копія, засвідчена Hendrik Köhler. Rigsarkivet, 2-й відділ, Akkorder og gamle danske
+Møntreglementer») — the order was not printed. Wilcke adds: «*Vægten af 2 ß gik ned fra 180 til
+192 Stkr. paa Marken og af 1 ß fra 254 til 256 Stkr. paa Marken brutto*» (переклад: «Вага 2 ß
+знизилася зі 180 до 192 штук на марку, а 1 ß — з 254 до 256 штук на марку брутто»).
 
 ## 4. Parameters (TARGET)
 
