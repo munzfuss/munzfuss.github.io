@@ -26,7 +26,12 @@
 - **Corpus Statutorum Slesvicensium** Bd 1, 2, 3/1, 3/2 in the corpus (`css-*`, MDZ OCR; PDFs in the library as
   served, cover sheet = pdf 1, backed up). It holds no coin ordinance (its own Sachregister «Münze» checked) —
   see the row in SOURCE_LOCATIONS §2.
-- **Next in the period:** the remaining 0-rows of SOURCE_LOCATIONS §2;
+- **Sammlung der … gemeinschaftlichen Verordnungen (1773)** found at SUB Hamburg; selected pages (724 of 1365
+  scans, own tesseract OCR) in the corpus as `sammlung-gemeinschaftlichen-verordnungen-1773`, originals as three
+  JPEG bundles in the library. It prints the four edicts for the duchies 1620–1623 and ten more coin acts
+  1616–1673 (list in SOURCE_LOCATIONS §2) — **texts not read yet, register and the 1620 dossier not updated**.
+  Kancelliets Brevbøger 1648: the king's letter of 3 Jan 1648 on 2 ß / 1 ß is not in the register.
+- **Next in the period:** ordinances 1660–1699, Myndt-Ordning 1671 (Norges Bank page), Wilcke II scan;
   the 1620–1623 edicts for the duchies were not seen in CCRH Bd 1 (Repertorium «Münze» read in OCR only).
 - `~/Downloads/bsb105092*.pdf` (the unreduced MDZ downloads, 2.5 GB) — delete only on the curator's word.
 
