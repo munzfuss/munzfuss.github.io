@@ -23,7 +23,10 @@
   (`corpus-statutorum-provincialium-holsatiae-1750`). State per work: `docs/research/instruments/SOURCE_LOCATIONS.md` §2.
 - **MDZ OCR API** (`api.digitale-sammlungen.de/ocr/<bsb>/<n>`) is rate-limited (429, limit 5001); it refills
   within hours, not once a day. 14 CCRH pages are still missing from the text (noted in each record's `ocr`).
-- **Next in the period:** Corpus Statutorum Slesvicensium (Google Books ids in SOURCE_LOCATIONS, browser only);
+- **Corpus Statutorum Slesvicensium** Bd 1, 2, 3/1, 3/2 in the corpus (`css-*`, MDZ OCR; PDFs in the library as
+  served, cover sheet = pdf 1, backed up). It holds no coin ordinance (its own Sachregister «Münze» checked) —
+  see the row in SOURCE_LOCATIONS §2.
+- **Next in the period:** the remaining 0-rows of SOURCE_LOCATIONS §2;
   the 1620–1623 edicts for the duchies were not seen in CCRH Bd 1 (Repertorium «Münze» read in OCR only).
 - `~/Downloads/bsb105092*.pdf` (the unreduced MDZ downloads, 2.5 GB) — delete only on the curator's word.
 
