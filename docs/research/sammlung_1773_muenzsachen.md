@@ -153,6 +153,9 @@ here.
   The small fractions in the Orth column are tiny in the print; ¾, 3½, 3, 2⅛,
   1¼, ¼, 1½, ½, 2¼, 2½, 3¼, 3½, 1¾ are read with confidence, «3 1/12»,
   «2 1/12» and «3 1/16» are the likeliest reading and may be other fractions.
+- **Rate per pound, computed:** the same four rows give 26,006 ℳ l. per pound
+  (208 Doppelschillinge) — 13 Sletdaler, the rate of the realm's by-weight
+  tariff of 20 Aug 1620 / 20 Feb 1621 (our arithmetic; `instruments/1620_…` §4.2).
 - **Computed here** (assuming 1 ℔ = 32 Loth, 1 Loth = 4 Quent, 1 Quent =
   4 Orth — the act does not state the divisions, nor which pound): the 100-,
   80-, 70- and 60-Mark rows all give **1,2305 Loth per Mark of value**
@@ -193,8 +196,10 @@ here.
 ### 2.6 Num. LIV — Mandat wegen der kleinen Münzen, 25 October 1622 (S. 329–331)
 
 - **Issuers:** «Wir Christian der Vierte … Und von deßelben Gnaden Wir
-  Friderich» **[ocr]**; given «auf Unserm, Herzog Friderichs, Schloß Gottorf am
-  25ten Oct. Ao. 1622» **[ocr]**.
+  Friderich» **[img, S. 329]**; addressed to the subjects «Unserer Herzogthümer
+  Schleswig, Holstein» **[img, S. 329]**; given «auf Unserm, Herzog Friderichs,
+  Schloß Gottorf am 25ten Oct. Ao. 1622» **[img, S. 331]**. Marginal summary of
+  the editors: «respective auf 3½ Schillinge und 21 ₰ reducirt».
 - ⚠ **Against the register.** The row named Christian IV alone and `SH-k`. The
   print is a joint act of king and duke, sealed at Gottorp. The register's
   reading comes from Wilcke I / II; where it took a royal act from is not

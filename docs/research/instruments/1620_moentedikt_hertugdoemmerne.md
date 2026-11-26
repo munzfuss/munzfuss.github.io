@@ -39,19 +39,27 @@
 > the page images), Wilcke II (1924) afsn. I notes 57–59, 67–88 and afsn. III «C. Glückstadts
 > Mønt» (danskmoent `w2ref.htm`, `w2c1.htm`), Jensen 1971 p. 74, Gaedechens 1854 II p. 192–193.
 
+> **Update 2026-11-26 — the acts are in hand as reprinted.** The *Sammlung der hauptsächlichsten
+> Schleswig-Holsteinischen gemeinschaftlichen Verordnungen* (Glückstadt 1773; page images, SUB
+> Hamburg) prints C (Num. XLV), E with its «Designatio des Gewichts» (Num. XLVII), M (Num. LII),
+> N (Num. LIV) and G (Num. LXII). Reading record, with image / OCR level per statement:
+> [`sammlung_1773_muenzsachen.md`](../sammlung_1773_muenzsachen.md) §2.3–2.7. Entered below: E's
+> weight table (§3, §4.2), the print's readings of C's date (D1) and of N's issuers (D10). It is
+> a reprint of 1773, not the patents; Collin's Bilag remain unseen.
+
 ## 1. Identification
 
 | Act | Date, place | Name as the sources give it | Issuer | Jur. | Signature / print |
 |---|---|---|---|---|---|
 | **C** | **2 Oct 1619** ⚠ (Wilcke II: 6, 12, 18 Oct) | «Constitution for Hertugdømmerne mod den udenlandske Smaamønt» (Wilcke I); «Kong Christian og Hertug Frederiks Forordninger af 6., 12. og 18. Oktober 1619» on the Dobbeltskillinge (Wilcke II) | Christian IV (and Duke Frederik III) | SH-k (+ SH-d) | Collin, *Om Rigsmønt og Courant* (1855) Bilag 3 (Bilag 1 dates it 2 Oct); T. Kanc. Registr., Konc. til Patenter 1615–30; Schleswig Staatsarchiv A XX Fasc. 922 |
-| **E** | **20 July 1620** (signed; the king's letter to Gert Rantzau 21 July) · **24 July 1620** (issued as Fællesforordning with Duke Frederik III) | «Münz-Edict af 20. Juli 1620» / «Møntedikt mod Dobbeltskillingerne» with a «Specifikation» of weights | Christian IV + Frederik III | SH-k + SH-d | Collin Bilag 5 (Wilcke I s. 187 n. 2); Schleswig A XX Fasc. 922 Vol. II «Acta … Münzsachen 1620–27» (Wilcke II n. 71); *Sammlung der gemeinschaftlichen Verordnungen* nr. XLVII; Niedersächs. Münzarchiv IV s. 469 (Jensen n. 33) |
+| **E** | **20 July 1620** (signed; the king's letter to Gert Rantzau 21 July) · **24 July 1620** (issued as Fællesforordning with Duke Frederik III) | «Münz-Edict af 20. Juli 1620» / «Møntedikt mod Dobbeltskillingerne» with a «Specifikation» of weights | Christian IV + Frederik III | SH-k + SH-d | Collin Bilag 5 (Wilcke I s. 187 n. 2); Schleswig A XX Fasc. 922 Vol. II «Acta … Münzsachen 1620–27» (Wilcke II n. 71); *Sammlung der gemeinschaftlichen Verordnungen* nr. XLVII, S. 302–305 (**read**: «L. S. R. Christian», «L. S. D. Friderich» under the table, S. 305 image); Niedersächs. Münzarchiv IV s. 469 (Jensen n. 33) |
 | K | Nov 1621, Kiel (report 4 Nov 1621) | «Forlig» in 12 points between the king's and the duke's councillors and the deputies of Lübeck and Hamburg, «under Forbehold af fornøden Ratification» | royal + ducal Raader ↔ Lübeck, Hamburg | SH-k + SH-d (+ Hanse) | Gert Rantzau's report 4 Nov 1621, Danske Samlinger Myntvæsen 581 c. 15 (Wilcke I s. 196 n. 5); Fyrstelig Gottorpsk Arkiv Møntsager 1704–05 (the «Referat») |
 | H | 11–14 March 1622, Hamburg · 8 April 1622 (Hamburg Müntzedikt, in force 6 May) | the Hamburg «Vereinigung» / «Overenskomst af 14. Marts 1622» (Pommern's Møntordning 10 May 1622) | the king «als Herzog von Holstein», Pommern, Mecklenburg, Holstein (Gottorp), Lauenburg, Hamburg, Lübeck, Bremen | HRE (Lower-Saxon estates «paa Søkanten») | Dähnert III p. 656, 661; Langermann p. 463 ff.; Gaedechens II p. 193; Evers p. 92–93 |
 | F | 29 March 1622 | «Forordning om Møntvæsenet i Slesvig-Holsten» — «*sikkert aldrig blevet publiceret eller kommet til Udførelse*» | Christian IV | SH-k | T. Kanc. I. A. Patenten 1622 Jan.–Mai (Wilcke II n. 78) |
 | **M** | **13 April 1622** | «et foreløbigt Møntedikt» (Wilcke I); «Christian IV's og Frederik III's møntedikt af 13. april 1622» (Jensen) | Christian IV + Frederik III | SH-k + SH-d | Collin Bilag 6 (Wilcke I s. 199 n. 5); communicated to Hans the Younger, præs. København 10 May 1622 (Jensen bilag) |
 | P | 9 July 1622 | Duke Frederik's «Befaling og Instruktion» to his mintmaster Heinrich Puls: no 2, «1½» ⚠ and ⅓ ß l. before communication with the king | Frederik III → Puls | SH-d | Schleswig Staatsarchiv (Wilcke II n. 81) |
 | R | 18 Sept 1622 | Gert Rantzau's proposal to the king after consulting the councillors (the Hamburg agreement for the dalers; Skillinge and Søslinge as «Scheide Pfennige»; only king and duke to mint) | Statholder → Christian IV | SH-k | Indkomne Breve til Danske Kancelli (Wilcke I s. 211 n. 1) |
-| **N** | **25 Oct 1622** | «Mandat wegen der kleinen Münzen» | Christian IV | SH-k | Collin Bilag 7 (Wilcke I s. 204 n. 1); Jensen n. 66 |
+| **N** | **25 Oct 1622** | «Mandat wegen der kleinen Münzen» | Christian IV (Wilcke) ⚠ — the 1773 print: **Christian IV + Frederik III**, given at Gottorp (D10) | SH-k (Wilcke) ⚠ — print: SH-k + SH-d | Collin Bilag 7 (Wilcke I s. 204 n. 1); Jensen n. 66; *Sammlung* 1773 Num. LIV, S. 329–331 (**read**, images) |
 | **G** | **28 Feb 1623** | «Münz-Edict» (German; quoted s. 210) | Christian IV | SH-k | Collin Bilag 8; Laffert's report 14 March 1625 (Niedersächs. Crays Acta 19) |
 | X | 14 Dec 1623 | «Patent» — «Münz-Calada» (a three-month term for handing in the Kipper coin; 2–2½ Gulden = 20 Kreuzer of the new coin …) | **Emperor Ferdinand II** | **HRE (Austria)** — NOT SH-k | Wilcke I s. 30 (Num. Zeitschrift XIII p. 128) — register §4 |
 
@@ -60,13 +68,17 @@
 | Layer | Source | What it is | Our copy |
 |---|---|---|---|
 | Archive / editions | Collin, *Om Rigsmønt og Courant* (1855) Bilag 1, 3, 5, 6, 7, 8 — the texts of C, E, M, N, G; *Sammlung der gemeinschaftlichen Verordnungen* nr. XLVII (E); Niedersächs. Münzarchiv IV s. 425–426, 469; Dähnert III (Pommern 10 May 1622, 1 March 1623); Langermann p. 463 ff. (Hamburg 8 April 1622); Schleswig A XX Fasc. 922 (the duchies' Münzsachen 1620–27, the complaints f. 84–137) | the acts | **not in hand** |
+| **Act, as reprinted 1773** | *Sammlung der hauptsächlichsten Schleswig-Holsteinischen gemeinschaftlichen Verordnungen* (Glückstadt 1773): Num. XLV (C, S. 300–301), **Num. XLVII (E, S. 302–305, with the «Designatio des Gewichts»)**, Num. LII (M, S. 325–327), Num. LIV (N, S. 329–331), Num. LXII (G, S. 347–354) | the editors' reprint of the joint acts, 150 years after issue; headings and marginal summaries are the editors' | corpus `sammlung-gemeinschaftlichen-verordnungen-1773` (own tesseract OCR; printed page = scan − 102); page images in the research library, `rigslovgivning/sammlung_gemeinschaftlichen_verordnungen_1773_acts/`; reading record `../sammlung_1773_muenzsachen.md` |
 | **Reading 1** | **Wilcke I** (1919): **s. 186** the Hanse–Mecklenburg interim valvation of Wismar (Rdl. 3 ℳ l.; Danish 4 and 2 ß «helt forbudte»; silver 25 / 22 / 24 ß the lod); **s. 187 C and E** (image); s. 187–189 the Odense expert opinion 20 Aug 1620 and the Raad's Betænkning 28 Aug 1620 (realm; by-weight for foreign 4 ß); s. 190 the correspondence king – duke – Rantzau on E, the threat to Lütjenburg 2 Jan 1621; **s. 196–197 K** (image); s. 197–198 the Rigsraad 23 Nov 1621 («2 eller 3 mark lubsk») and **Braunschweig 21 Sept 1621** (Rdl. 32 ß l.; 16 Doppelschilling = 1 Dlr. = 2 lod); **s. 199 H and M** (image), s. 200 M's clauses; s. 200–201 Minden's letter 6 Feb 1622; **s. 204 N and G, Pommern 1 March 1623** (image); **s. 205 N's content** (image: Rdl. 3 ℳ 6 ß l.); **s. 210 G quoted** (image), **R**; s. 211 the Generalwardeine's reports and the Glückstadt specie; **s. 30 X** | the only reading of C, E, K, N in our cache | `~/munzfuss-library/wilcke/christian_iv_moentpolitik_1919/wilcke_1.pdf` (printed = PDF + 1); Wayback 20250916070455 |
 | **Reading 2** | **Wilcke II** (1924) afsn. I, text at notes 57–59 (the 1616 Forordning for the duchies at 80 ß d. = 40 ß l.; Frederik III's Forordning 25 Oct 1617; Rantzau's 17 Dec 1617 letter; the Forordninger 6, 12, 18 Oct 1619), 67–71 (the complaints of June 1620; the king's letter 24 June 1620; E signed 21 July, issued 24 July as Fællesforordning), 75–81 (Ejderstedt 28 Sept 1621; the duke's letter 9 May 1621; Kiel Nov 1621 «3 Mark l. á 16 ß = 48 ß l.»; Braunschweig 32 ß l.; Hamburg March 1622; **F**; M; N «fra Mark 4 ß eller 3 Mark 6 ß l. … til 3 Mark l.»; the king to Frederik 3 Jan 1623 and to Hamburg 6 Jan / 4 March 1623; **P**), 83–88 (16 Aug 1622; Husum 4 Oct, Ejderstedt / Slesvig 15 and 19 Oct 1622; the duke's promise 17 Oct of a matching edict; Ekernførde spring 1625); afsn. III «C. Glückstadts Mønt» s. 207–208 (the c. 1623 union for specie; the Dütken; **6 Aug 1625** reduction of the king's coin in the duchies) | dates, F, P, the complaints | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2ref.txt`, `w2c1.txt` (danskmoent `w2ref.htm`, `w2c1.htm`) |
 | Reading 3 | **Jensen, J. S.**, *Hertug Hans den Yngre* (1971) p. 74: M «ophævede dels betaling med dobbeltskillinge efter vægt, dels … gjorde fremmed småmønt — incl. den der var præget i Hertugdømmerne — ugyldig»; the ban repeated 25 Oct 1622; the realm's 16 Aug 1622 / 22 Jan 1625 / 4 May 1625 values; p. 150 n. 33 (E in the *Sammlung* nr. XLVII) | the Sønderborg side; M's content | `scripts/cache/danskmoent/jensen_hdy_1971/JSJ_HdY.extract.txt` (PDF page 80 = printed 74) |
 | Reading 4 | **Gaedechens, O. C.**, *Hamburgische Münzen und Medaillen* II (1854) p. 192–193: the Reichsthaler risen to 54 ß; Hamburg 11 March 1622 (Denmark for Holstein, Pommern, Mecklenburg, Lauenburg, Lübeck, Bremen) sets the Thaler at 48 ß; Hamburg's wish for 40 ß dropped; from 1623 Doppelschillinge «zu 8 Loth fein und 108⅓ Stück auf die gemischte Mark» per the Lüneburg Kreisabschied 12 June 1622; Thaler to ⅛ at the Reichsfuß | the Hamburg view; the Kreis grid for the 2 ß | `scripts/cache/hanse/gaedechens/gaedechens_1854_hamburgische_muenzen_2.extract.txt` |
 | Earlier dossiers | `1619_privilegium_dionis_glueckstadt.md` (the Rytterpenge's grid; Wilcke I s. 215's «1/13½, 1/27, 1/54 Dalere, jfr. Møntmandat af 25. Oktober 1622»), `1619_kroneskilling_instruks.md` (16 Nov 1619: Rdl. 96 ß d.), `1624_moentordning_kobenhavn.md` §4–6 (16 Aug 1622 § 1; 22 Jan / 4 May 1625; G of 22 Nov 1624), `1610_forordninger_gottorp.md` (the ducal chain to 1611), `1616_contract_schauenburg_altona.md` (Altona; the Hanse mandate 12 Dec 1618) | | |
 
-Act vs reading: **none of C, E, F, M, N, G is in hand** — every figure is Wilcke's paraphrase
+**Since 2026-11-26** C, E, M, N and G are in hand in the 1773 reprint (row above); F, K, P, R
+remain Wilcke's paraphrase only, and the paragraph below describes the state of 2026-11-03.
+
+Act vs reading (2026-11-03): **none of C, E, F, M, N, G is in hand** — every figure is Wilcke's paraphrase
 (I or II), two of them with the image checked (E's 3 ℳ 4 ß l.; N's 3 ℳ 6 ß l.), plus G's one
 German sentence (s. 210) and Jensen's two clauses on M. The Specifikation attached to E (the
 by-weight scale) is not described anywhere in our cache. K is Rantzau's report as Wilcke
@@ -91,6 +103,38 @@ angivet i en tilføjet Specifikation, og at Daleren ikke maa udgives og modtages
 які належить брати за повну вартість, зрештою приймалися лише за вагою, як зазначено в доданій
 специфікації, і щоб далер не видавався й не приймався дорожче ніж за 3 марки 4 ß л., тобто 104
 ß д. „Так ми серйозно вважаємо“!»
+
+**E — the act as reprinted** (Sammlung 1773 Num. XLVII; S. 303 from the OCR, S. 305 from the
+image): the Doppelschillinge to be taken «*anders nicht, alß am Gewichte nach zu Endts
+angefügter Specification, die alten vndt gestempelten aber für voll*» (S. 303, OCR); the table
+is headed «*Designatio des Gewichts, nach welchem die doppelte Schillinge … hinfüro genommen
+werden sollen*» (S. 305, image). Переклад: «не інакше, як за вагою згідно з доданою наприкінці
+специфікацією, а старі й штемпльовані — за повну вартість»; «Зазначення ваги, за якою подвійні
+шилінги … надалі слід приймати». Columns: Mark (the sum in Doppelschillinge) · ℔ · Loth · Quent
+· Orth.
+
+| Mark | ℔ | Loth | Quent | Orth |
+|---|---|---|---|---|
+| 100 | 3 | 27 | 0 | ¾ |
+| 90 | 3 | 14 | 2 | 3½ |
+| 80 | 3 | 2 | 1 | 3 |
+| 70 | 2 | 22 | 0 | 2⅛ |
+| 60 | 2 | 9 | 3 | 1¼ |
+| 50 | 1 | 29 | 2 | ¼ |
+| 40 | 1 | 17 | 0 | 3 1/12 ⚠ |
+| 30 | 1 | 4 | 3 | 2 1/12 ⚠ |
+| 20 | 0 | 24 | 2 | 1½ |
+| 10 | 0 | 12 | 1 | ½ |
+| 5 | 0 | 6 | 0 | 2¼ |
+| 4 | 0 | 4 | 3 | 2½ |
+| 3 | 0 | 3 | 2 | 3 1/16 ⚠ |
+| 2 | 0 | 2 | 1 | 3¼ |
+| 1 | 0 | 1 | 0 | 3½ |
+| ½ | 0 | 0 | 2 | 1¾ |
+
+⚠ The three fractions marked are tiny in the print and are the likeliest reading only. The act
+does not say which pound and Loth are meant, nor how the pound divides. Under the table: «L. S.
+R. Christian», «L. S. D. Friderich» (image).
 
 **The Forordninger of October 1619** (Wilcke II, text at n. 57–59): «*Efterat Rigsdalerens
 Skillingstal ved Frdg. af 12. Marts 1616 for Hertugdømmerne var forhøjet til 80 ß d. = 40 ß l.
@@ -330,6 +374,18 @@ tilsvarende Nedsættelse af Kongens Mønt i Hertugdømmerne.*» Переклад
 рейхсорти»; «6 серпня того ж року [1625] проведено … відповідне зниження королівської монети в
 герцогствах».
 
+**N — the act as reprinted** (Sammlung 1773 Num. LIV, S. 329–331, images): «*Wir Christian der
+Vierte von Gottes Gnaden ꝛc. ꝛc. Und von deßelben Gnaden Wir Friderich &c. &c. Entbieten …
+allen und ieden Unterthanen und Eingeseßenen Unserer Herzogthümer Schleswig, Holstein*» (S. 329);
+«*… sondern auch Unsere bis herzu gemünzete 4 ßl. und 2 ßl. nicht höher oder auch geringer als
+resp. vor 3½ ßl. und 21 ₰ auszahlet oder einnehmet … Geben auf Unserm, Herzog Friderichs, Schloß
+Gottorf am 25ten Oct. Ao. 1622*» (S. 331). Переклад: «Ми, Christian Четвертий, з Божої ласки
+тощо. І з тієї ж ласки Ми, Friderich, тощо. Оголошуємо … всім і кожному підданим і мешканцям
+Наших герцогств Шлезвіг, Гольштейн»; «… а також Наші досі карбовані 4 ßl. і 2 ßl. не вище і не
+нижче ніж відповідно за 3½ ßl. і 21 ₰ видавайте чи приймайте … Дано в Нашому, герцога
+Friderich, замку Gottorf 25 жовтня 1622 року». The act speaks of «Unsere» coins in the joint
+voice of both lords; it does not single out the king's (cf. Wilcke: «de af Kongen … slagne»).
+
 ## 4. Parameters
 
 Cöln mark 233,855 g; the Danish-Lübeck pound = 2 marks = 467,71 g; lod = 1/16; 14 4/18 lod =
@@ -342,7 +398,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 |---|---|---|---|
 | Frdg. 12 March 1616 (duchies; Wilcke II n. 57) | 40 | 80 | the 1616 level the Rytterpenge were later measured against |
 | Wismar / Lübeck / Hamburg / Mecklenburg interim valvation 1620 (6 April · 23 April · 10 June) | 48 | 96 | 8-real 2 ℳ 14 ß l. (46 ß); Rigsgylden 2 ℳ 10 ß l. (42 ß); small coin by weight; Danish 4 / 2 ß banned; silver 25 ℳ l. the fine mark |
-| **E — 20/24 July 1620** | **max 3 ℳ 4 ß l. = 52** | **104** | Dobbeltskillinge by weight (Specifikation — not in hand); old stamped pieces at full value |
+| **E — 20/24 July 1620** | **max 3 ℳ 4 ß l. = 52** | **104** | Dobbeltskillinge by weight per the «Designatio des Gewichts» (§3; computed ≈ 26 ℳ l. the pound, §4.2); old stamped pieces at full value |
 | Odense Raad 28 Aug 1620 (realm; `1619_kroneskilling_instruks.md` chain) | 96 ß d. kept | 96 | 4 ß of payement 3 ß d., 2 ß 1½, 1 ß 1; Mark 21 ß d. |
 | Braunschweig Kreisabschied 21 Sept 1621 (majority) | 32 | 64 | 16 Doppelschilling = 1 Dlr. = 2 lod of daler silver |
 | **K — Kiel, Nov 1621** (in force 11 March 1622) | **3 ℳ l. = 48** | 96 | 2 ß of Rigsdaler silver at 25 ℳ l. per gross mark; ½ ß payement; ⅓ ß, Pf. copper; no 1 ß; foreign small coin by weight 24 ℳ l. the pound (towns only) |
@@ -351,7 +407,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 | **M — 13 April 1622** | **48** | 96 | ≤ 6 ß l. small coin from 6 May; debts in 1 / ½ / ¼ / ⅛ dalers; 4 and 2 ß l. of daler silver; foreign small coin (incl. the duchies') void |
 | Lüneburg Kreisabschied 12 June 1622 (Gaedechens) | — | — | Doppelschillinge 8 lod, 108⅓ to the mixed mark (Hamburg from 1623) |
 | 16 Aug 1622 (realm, Secher IV nr. 20) | 6 ℳ d. = 48 | 96 | Rytterpenge 4 ß d. → 3½ ß d. (21 Pf. l.), 8 ß d. → 7 ß d. (3 ß 6 Pf. l.) |
-| **N — 25 Oct 1622** | **48** (the Rytterpenge had been struck at **3 ℳ 6 ß l. = 54**) | 96 | neighbours' light sorts banned; the king's 2 / 4 ß l. re-valued from the 54-ß to the 48-ß daler |
+| **N — 25 Oct 1622** | **48** (the Rytterpenge had been struck at **3 ℳ 6 ß l. = 54**) | 96 | neighbours' light sorts banned; the king's 2 / 4 ß l. (Wilcke; the print: the lords' — «Unsere» — in a joint act, D10) re-valued from the 54-ß to the 48-ß daler: **4 ßl. → 3½ ßl., 2 ßl. → 21 ₰** (act, image) |
 | **G — 28 Feb 1623** | **48**, «nicht … über die 3 ℳ l.» | 96 | full Reichsthaler per Reich and Kreis edicts; export ban; corn in these dalers; coast-town stocks; ≤ 6 ß l. small coin |
 | Pommern 1 March 1623; the king to Hamburg 4 March 1623 | 48 kept (the 40-ß step dropped) | 96 | |
 | 6 Aug 1625 (duchies) | — | — | «tilsvarende Nedsættelse af Kongens Mønt» after the realm's 4 May 1625 (Wilcke II kap. III) — a later dossier |
@@ -365,7 +421,8 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 | H: light 2 ß l. by weight 23 ℳ 4 ß l. the pound | s. 199 (image) | 372 ß l. per pound = 186 pieces → 93 per gross mark | 233,855 / 93 = 2,515 g per 2 ß l. taken — a weight tariff for the Kipper Doppelschillinge; = 3,875 Rdl. per gross mark, the daler being 8 → 48,4 % |
 | Braunschweig: 16 Doppelschilling = 1 Dlr. = 2 lod | s. 198 | at the 32-ß daler | 2 lod = 29,232 g → 1,827 g per 2 ß l. of daler silver (128 per mark) |
 | Lüneburg 1622 / Hamburg 1623 Doppelschilling | Gaedechens II p. 193 | 8 lod, 108⅓ to the mixed mark | 233,855 / 108,333 = **2,1587 g**, 500 ‰ → 1,0794 g fine; 54⅙ per fine mark; the mark fine → 108⅓ ß l. = 2,257 Rdl. … no: 54,17 fine-mark pieces × 2 ß = 108⅓ ß l. per **mixed** mark ÷ 48 = 2,257 Rdl. per gross mark, i.e. 4,51 Rdl. per fine mark — see D7 |
-| N: the Rytterpenge from the 54-ß to the 48-ß daler | s. 205 (image); s. 215 (`1619_…` §4.1) | 4 ß l. as 1/13½ Rdl. → 1/12 | 4 ß l. × 48/54 = **3,556 ß l. = 7,11 ß d.**; 2 ß l. → 1,778 ß l. = 3,56 ß d. — the realm's 16 Aug 1622 values 7 / 3½ ß d. are the same reduction rounded down |
+| N: the Rytterpenge from the 54-ß to the 48-ß daler | s. 205 (image); s. 215 (`1619_…` §4.1) | 4 ß l. as 1/13½ Rdl. → 1/12 | 4 ß l. × 48/54 = **3,556 ß l. = 7,11 ß d.**; 2 ß l. → 1,778 ß l. = 3,56 ß d. — the realm's 16 Aug 1622 values 7 / 3½ ß d. are the same reduction rounded down; the act itself (Sammlung 1773 S. 331, image) sets **3½ ßl. and 21 ₰** (= 1,75 ß l.) — the proportion rounded down, and exactly the realm's 7 / 3½ ß d. |
+| **E: the «Designatio des Gewichts»** | Sammlung 1773 S. 305 (image) | 100 ℳ of Doppelschillinge = 3 ℔ 27 Loth 0 Quent ¾ Orth … ½ ℳ = 2 Quent 1¾ Orth (16 rows, §3) | ASSUMING 1 ℔ = 32 Loth, 1 Loth = 4 Quent, 1 Quent = 4 Orth (not stated in the act): the 100-, 80-, 70- and 60-Mark rows each give 123 3/64 Loth per 100 ℳ = **1,2305 Loth per Mark** = **26,006 ℳ l. per pound**; the rows from 20 ℳ down are rounded (26,06–26,26). 1 ℳ = 8 Doppelschillinge → **208 pieces per pound = 104,0 per 16-Loth mark**; at 233,855 g **2,248 g** each. 26 ℳ l. = 13 Sletdaler: the same rate as the realm's by-weight tariff «13 slette daler the pound» (Odense 20 Aug 1620; Frdg. 20 Feb 1621 — register §1) and as the 104-to-the-mark count of the royal 4 ß d. of 1616–18 — a concordance of our arithmetic, not a statement of the act. Against the Kreis's 90 per mark (1617): 13,5 % lighter. Against H's 23 ℳ 4 ß l. the pound (1622): the pound of Doppelschillinge is taken 10,6 % lower there (23,25 / 26,006). Weight only — the act gives no fineness. |
 | E: Rdl. max 3 ℳ 4 ß l. | s. 187 (image) | 52 ß l. = 104 ß d. | ✓ 52 × 2 = 104 |
 | G: the Glückstadt Reichsthaler | s. 211; Laffert / Braun 1624–25 | 8 to the 14 4/18-lot mark | 29,232 g · 25,984 g fine — `1619_…` §4.2 |
 
@@ -373,7 +430,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 
 | # | Figure | Reading A | Reading B | Status |
 |---|---|---|---|---|
-| D1 | **Date of C** | Wilcke I s. 187: «den 2. Oktober 1619 … en Constitution» (n. 1: Collin Bilag 3); Wilcke II n. 58: Collin Bilag 1 dates it 2 Oct | Wilcke II text: «Kong Christian og Hertug Frederiks Forordninger af 6., 12. og 18. Oktober 1619» (n. 58–59: T. Kanc. Konc. til Patenter 1615–30; Schleswig A XX Fasc. 922) | one act in Collin, three in the registrants — or a royal act of 2 Oct and joint / ducal issues of 6, 12, 18 Oct; unresolved without Collin and the patents; the register carries both dates in one row |
+| D1 | **Date of C** | Wilcke I s. 187: «den 2. Oktober 1619 … en Constitution» (n. 1: Collin Bilag 3); Wilcke II n. 58: Collin Bilag 1 dates it 2 Oct | Wilcke II text: «Kong Christian og Hertug Frederiks Forordninger af 6., 12. og 18. Oktober 1619» (n. 58–59: T. Kanc. Konc. til Patenter 1615–30; Schleswig A XX Fasc. 922) | one act in Collin, three in the registrants — or a royal act of 2 Oct and joint / ducal issues of 6, 12, 18 Oct; unresolved without Collin and the patents; the register carries both dates in one row **2026-11-26:** the 1773 print (Num. XLV) carries both days itself — heading «vom 2ten Oct. 1619» (S. 300, image), dating clause «Den 12ten Oct. Ao. 1619» (S. 301, image), contents list «12ten Octobr.»; the act's own clause says 12 Oct, the «2ten» is the editors' heading. Whether Collin's «2 Oct» goes back to that heading is not established; 6 and 18 Oct are not in the Sammlung. |
 | D2 | **Date of E** | 20 July 1620 (Wilcke I s. 187; the king's letter 21 July: signed and sealed) | «udgik under 24 s. M.» as Fællesforordning co-signed by Frederik III (Wilcke II n. 71) | one act: dated 20, issued 24 July — not a conflict; listed so the two dates are not read as two edicts |
 | D3 | **E's daler ceiling** | former register row: «33¼ ß l. = 104 ß d.» | the page image: «3 ℳ 4 ß l. ɔ: 104 ß d.» (= 52 ß l.) | an OCR misreading («3 3 1 4 ß 1») in the earlier row — corrected in this commit |
 | D4 | **N's striking course of the Rytterpenge** | former register row: «a Rigsdaler of 36 ß l.»; Wilcke II (w2ref): «fra Mark 4 ß eller 3 Mark 6 ß l.» and «3 Mark 4 ß l. eller 3 Mark 6 ß l.» | the page image s. 205: «3 ℳ 6 ß l.» (= 54 ß l.); Wilcke I s. 215: «1/13½, 1/27 og 1/54 Dalere, jfr. Møntmandat af 25. Oktober 1622» (= 54) | 54 ß l. is Wilcke I's figure twice; Wilcke II hedges between E's 52 and 54; the «36 ß l.» was the OCR — corrected |
@@ -382,6 +439,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 | D7 | **Hamburg's 1623 Doppelschilling at Gaedechens' 108⅓ per mixed mark, 8 lod** | Gaedechens II p. 193 | K's 2 ß «af godt Rigsdalersølv» 200/M at 14 4/18 lod (1,039 g fine); the Kreis figure gives 1,079 g fine | two different norms for the same coin in 1621–23 (Kiel's and Lüneburg's); Gaedechens' «108⅓» read from the page image (PDF 206 = S. 193) — the OCR «108}» resolved |
 | D8 | **The Hamburg meeting's date** | Wilcke I s. 199: summoned for 11 March 1622; Gaedechens: «am 11. März 1622» | Pommern's ordinance: «Overenskomst af 14. Marts 1622» | opening vs conclusion of one meeting |
 | D9 | **The reduction step after Gregorii 1623** | Hamburg edict 8 April 1622: «2 ℳ 8 ß l.» | F: «2½ Mark l.»; Gaedechens: Hamburg «wollte … den Thaler auf 40 ß setzen» | the same value (2 ℳ 8 ß = 40 ß = 2½ ℳ) — no conflict |
+| D10 | **Issuer and jurisdiction of N** | Wilcke I s. 204: «Kong Christian udstedte for Hertugdømmerne et Mandat wegen der kleinen Münzen» (n. 1: Collin Bilag 7); s. 205: the 2 and 4 ß «af Kongen … slagne» → Christian IV, SH-k (register row, §1 above) | the 1773 print, Num. LIV (S. 329, 331, images): «Wir Christian der Vierte … Und … Wir Friderich», «Unserer Herzogthümer Schleswig, Holstein», «Unsere bis herzu gemünzete 4 ßl. und 2 ßl.», given «auf Unserm, Herzog Friderichs, Schloß Gottorf» | the reprint gives a joint act of king and duke for both shares, like E and M; Wilcke's wording names the king only. Both kept; Collin Bilag 7 (the text Wilcke cites) is unseen, so whether Wilcke shortened a joint act or read a separate royal one is open. Bears on open question 4 (the duke's «matching edict» promised 17 Oct 1622): HYPOTHESIS — it is this joint mandate; not shown. |
 
 ## 5. Mints and mintmasters
 
@@ -451,7 +509,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
   in the mint field — anti-pattern 6; Timpff is Wilcke II's Gottorp mintmaster of 1626),
   `c-e3095552` / `-219c31a1` / `-c5be8064` / `-889272b6` / `-d9b398cd` 3 Skilling lybsk 1623–24,
   `c-72b86ae6` / `-ab07bdce` «1/26 Rigsdaler» 1623 (a nominal to check), `c-8490a93a` 1/96 Thaler
-  1621–24. The Doppelschillinge of 1619–20 are the coins E tariffs by weight; the 2 ß of K (200/M
+  1621–24. The Doppelschillinge of 1619–20 are the coins E tariffs by weight — at ≈ 2,248 g to the piece of 2 ß l. as computed from E's table (§4.2), so the three IKMK pieces at 1,64 / 1,84 / 2,01 g would pass for 73 % / 82 % / 89 % of face by that scale (our arithmetic; fineness not regarded by the act); if N is a joint act (D10) its reduction of the 4 ß l. to 3½ ß l. also covers `c-33873bae`; the 2 ß of K (200/M
   of daler silver) and the 3 ß l. of 1623–24 (the Dütken's ducal twin, G of 22 Nov 1624) have no
   act of their own in our cache.
 - **Altona 1619–20** (`schauenburg_pinneberg`): c. 30 `hs-ikmk-182857xx` Doppelschillinge
@@ -463,12 +521,17 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 
 ## 8. Open questions
 
-1. **The texts** — Collin (1855) Bilag 1, 3, 5–8 would give C, E (with its weight
+1. **The texts** — PARTLY CLOSED 2026-11-26: C, E (with the weight table), M, N, G read in the
+   1773 reprint (`../sammlung_1773_muenzsachen.md`); G's S. 350 and parts of C, E, G are OCR-only
+   there. Still: Collin (1855) Bilag 1, 3, 5–8 would give C, E (with its weight
    Specifikation), M, N, G verbatim; the *Sammlung der gemeinschaftlichen Verordnungen* nr.
    XLVII (E) and the Niedersächsisches Münzarchiv IV s. 425–426, 469; none in hand. They settle
    D1 (2 vs 6/12/18 Oct 1619), D6 (P's «1½»), and whether N repeats M's voiding of the duchies'
    foreign small coin (Jensen) or only re-values the Rytterpenge (Wilcke).
-2. **E's Specifikation** — the by-weight scale for the Dobbeltschillinge: at what ß l. per
+2. **E's Specifikation** — IN HAND 2026-11-26 (§3; ≈ 26 ℳ l. the pound as computed, not
+   Hamburg's 23 ℳ 4 ß l.). Left open: which pound and Loth the table means and how it divides
+   (our figure assumes 32 Loth · 4 Quent · 4 Orth); the three doubtful fractions; whether the
+   scale is the Hanse one of 1620. Formerly: the by-weight scale for the Dobbeltschillinge: at what ß l. per
    pound or mark; whether it is the Hanse scale of 1620 or Hamburg's 23 ℳ 4 ß l. the pound.
 3. **K's 12 points** — Rantzau's report (Danske Samlinger 581 c. 15) and the Gottorp «Referat»
    would give the full list and whether K was ratified before H superseded it.
@@ -495,6 +558,10 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 - Gaedechens, O. C.: *Hamburgische Münzen und Medaillen* II (Hamburg 1854), p. 192–193; cache
   `scripts/cache/hanse/gaedechens/gaedechens_1854_hamburgische_muenzen_2.{pdf,extract.txt}`
   (PDF = printed + 13; S. 193 read from the page image) — <https://archive.org/details/hamburgischemnz00gaedgoog>.
+- *Sammlung der hauptsächlichsten Schleswig-Holsteinischen gemeinschaftlichen Verordnungen*
+  (Glückstadt 1773), Num. XLV, XLVII, LII, LIV, LXII, S. 300–305, 325–331, 347–354 — SUB Hamburg,
+  PPN88268664X; corpus `sammlung-gemeinschaftlichen-verordnungen-1773`; read 2026-11-26 (S. 300,
+  301, 305, 327, 329, 330, 331 on the page images). No refs_pool key yet.
 - Keys added (see the commit): `wilcke-1919-hertugdoemmerne-1619-constitution-2-okt`,
   `wilcke-1919-moentedikt-1620-20-juli-vaegt`, `wilcke-1919-wismar-1620-interimsvalvation`,
   `wilcke-1919-kiel-1621-forlig-12-punkter`, `wilcke-1919-kiel-1621-forlig-ikrafttraeden`,
@@ -513,8 +580,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 - Earlier dossiers: `1619_privilegium_dionis_glueckstadt.md`, `1619_kroneskilling_instruks.md`,
   `1624_moentordning_kobenhavn.md`, `1616_contract_schauenburg_altona.md`,
   `1610_forordninger_gottorp.md`.
-- Cited, not seen: Collin, *Om Rigsmønt og Courant* (1855) Bilag 1–8; *Sammlung der
-  gemeinschaftlichen Verordnungen* nr. XLVII; Niedersächs. Münzarchiv IV; Dähnert III p.
+- Cited, not seen: Collin, *Om Rigsmønt og Courant* (1855) Bilag 1–8; Niedersächs. Münzarchiv IV; Dähnert III p.
   656–673; Langermann p. 460–470; Evers p. 76–96; Erslev I p. 276–338; Secher IV nr. 20, 33, 36;
   Schleswig Staatsarchiv A XX Fasc. 922; Danske Samlinger Myntvæsen 581 c. 15; Num. Zeitschrift
   XIII (1881) p. 128; Lange I–II.
@@ -525,3 +591,6 @@ four agreements tabulated as the tariff chain they are; the four grid-shaped fig
 recomputed; E's Specifikation and K's full list labelled gaps) · C3 2.0 · C4 1.5 (no act in
 hand — Wilcke I / II paraphrase, Jensen, Gaedechens; nine discrepancies tabled; the imperial
 «Münz-Calada» taken out of the SH-k rows) · C5 1.0 · C6 1.0 = **9.0/10**.
+
+Update 2026-11-26: E's Specifikation and the reprinted texts of C, E, M, N, G entered; the score
+above is that of 2026-11-03 and has not been re-assessed.

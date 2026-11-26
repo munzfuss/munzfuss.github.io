@@ -31,8 +31,8 @@
   JPEG bundles in the library. It prints the four edicts for the duchies 1620–1623 and ten more coin acts
   1616–1673. **All fourteen read**: `docs/research/sammlung_1773_muenzsachen.md` (image / OCR level marked per
   statement); register rows amended, five added. Open ⚠: 1619 day (2 / 12 Oct in the print itself), issuer of
-  25 Oct 1622, «Reichsthaler in specie» vs Wilcke's Kurantdaler on 12 Aug 1629. **Not done:** the 1620 dossier
-  (the Designatio table is now in hand), refs_pool keys, the [ocr] lines read on the images.
+  25 Oct 1622, «Reichsthaler in specie» vs Wilcke's Kurantdaler on 12 Aug 1629. The 1620 dossier now carries the Designatio table (≈ 26 ℳ l. the
+  pound, computed) and D10: the 25 Oct 1622 mandate is a joint act in the print (images). **Not done:** refs_pool keys, the [ocr] lines read on the images.
   Kancelliets Brevbøger 1648: the king's letter of 3 Jan 1648 on 2 ß / 1 ß is not in the register.
 - **Next in the period:** ordinances 1660–1699, Myndt-Ordning 1671 (Norges Bank page), Wilcke II scan;
   the 1620–1623 edicts for the duchies were not seen in CCRH Bd 1 (Repertorium «Münze» read in OCR only).
