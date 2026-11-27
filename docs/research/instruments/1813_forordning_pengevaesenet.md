@@ -20,16 +20,18 @@
 > coins in Rigsbank money. **Scope:** the unit, its coin and the tariffs 1813–19. **Excluded:**
 > the Rigsbank's and Nationalbank's history, the courses of the notes (Wilcke IV Tredje Kapitel),
 > Norway after 1814, the Scheidemünze of 1836 and the coins of 1841–44 (PLAN §1e, next row), the
-> gold. **The act's own text was not found** (2026-11-23); every clause below is Wilcke's
+> gold. **The act's own text is in hand since 2026-11-27**: Collegial-Tidende 1813, No. 3 of 16
+> Jan 1813, s. 33–56 (record `collegial-tidende-1813`); the title, §§ 5, 8–10, 12–13, the closing
+> and table A were read from the page image (§3.6). Every other clause below is still Wilcke's
 > rendering unless marked as quoted. Written 2026-11-23 from Wilcke IV s. 298–310, 339–364 (nine
-> pages read from the image), Hede F6 17–30.
+> pages read from the image), Hede F6 17–30; re-read against the print 2026-11-27.
 
 ## 1. Identification
 
 | Act | Date | What the sources give | Issuer | Text |
 |---|---|---|---|---|
 | Prep | 25 Aug · 13 Nov · 23 Nov · 3 Dec · 13 · 18 · 24 Dec 1812 · 1 Jan 1813 | Resolutions and the Finanskollegium's proposals: the ratio Courant : new money 4 : 1, then 5 : 1, last **6 : 1**; Ørsted's principle of the debt's age; ½ Specie as the unit; copper 1 ß of 96 to the pound; «Banktegn» of copper; the king for 11–12-lot silver | Frederik VI; Finanskollegium (Schimmelmann); A. S. Ørsted | Wilcke IV s. 298–300, 340–342 (from R. A. Forhandlinger ang. Forandringen i Pengevæsenet 1812–13) |
-| **F13** | **5 Jan 1813** | «Forordning om Forandringer i Pengevæsenet for Danmark og Norge samt Slesvig og Holsten» — 62 §§; the preamble; § 5 the standard; § 8 the notes reserved for the finances; § 10 the course of 1200; §§ 11–12 Courant notes pass meanwhile at 6 : 1; § 13 the older copper; with the «Fundation for Rigsbanken» of the same day (§§ 3, 5, 8–9) | Frederik VI | printed (not seen); the **preamble quoted** by Wilcke «*efter Originalerne*» (s. 300–301), the rest rendered (s. 301–306, 342) |
+| **F13** | **5 Jan 1813** | «Forordning om Forandringer i Pengevæsenet for Danmark og Norge samt Slesvig og Holsten» — 62 §§; the preamble; § 5 the standard; § 8 the notes reserved for the finances; § 10 the course of 1200; §§ 11–12 Courant notes pass meanwhile at 6 : 1; § 13 the older copper; with the «Fundation for Rigsbanken» of the same day (§§ 3, 5, 8–9) | Frederik VI | **printed: Collegial-Tidende 1813, No. 3 (16 Jan 1813), s. 33–53, tables A–C s. 54–56** (§3.6); the Fundation in No. 5 (30 Jan 1813), from s. 73 (heading read from the image, the paragraphs not read). The **preamble quoted** by Wilcke «*efter Originalerne*» (s. 300–301), the rest rendered (s. 301–306, 342) |
 | B13 | 13 · 18 · **23 Jan 1813** | Bekendtgørelse: the ⅙ Rigsdaler of 1808 to pass for ⅙ Rbdlr. — against the Kollegium (struck at 19 R. the mark fine) | Frederik VI | Wilcke IV s. 342–343 |
 | A13 | 15 Feb 1813 · 31 July 1813 | Cancelli-Plakat: provisional 12-month Anvisninger of 100, 250, 500 Rbdlr.; Forordning on the notes of 1, 5, 10, 50, 100 Rbdlr. | Frederik VI | Wilcke IV s. 308 |
 | **P13** | **28 April 1813** | Plakat: the Skillemønt is the copper 1 ß, «*96 Stkr. paa 1 ℔*», at Navneværdi, not above 95 ß at a time; 1 ß 1771, S.-H. Sechslinge and Danish 12 ß 1812 = 2 Rb. ß, 2 ß 1809–12 = 1 Rb. ß, 3 ß = ½ Rb. ß, 1 ß = ⅙ Rb. ß | Finanskollegium | Wilcke IV s. 343 |
@@ -44,7 +46,7 @@
 | Layer | Source | What it is | Our copy |
 |---|---|---|---|
 | Archive | R. A. Forhandlinger ang. Forandringen i Pengevæsenet 1812–13; Finanskollegiets Rel.- og Resl. Prot. 1813 I A No. 19, 25, 190, 220, 251; II A No. 18, 75, 85, 103, 113, 158, 166; 1814 A Nr. 23; Finansdep. Forest. 1816 Nr. 2, 1818 No. 141, 147 | the deliberations and resolutions | not seen |
-| Printed | The Forordning and the Fundation of 5 Jan 1813; the Plakate; Ørsted's anonymous *Oplysninger om Grundsætningerne i Frdg. ang. en Forandring i Pengevæsenet* (n. d.), «*der næsten ordret gengiver*» his secret opinion; Collegial-Tidende | the acts | **not in hand**; not found online (danmarkshistorien.dk's page for the act returns «gone», 2026-11-23) |
+| Printed | The Forordning and the Fundation of 5 Jan 1813; the Plakate; Ørsted's anonymous *Oplysninger om Grundsætningerne i Frdg. ang. en Forandring i Pengevæsenet* (n. d.), «*der næsten ordret gengiver*» his secret opinion; Collegial-Tidende | the acts | **the Forordning and the Fundation in hand since 2026-11-27**: Collegial-Tidende 1813 (Google Books `QNA_AQAAMAAJ`; record `collegial-tidende-1813`, s. 2–177 = pdf − 77; Fraktur, Google OCR — quote from the image only). The Plakate and Ørsted's *Oplysninger* not in hand |
 | **Reading** | **Wilcke IV** (1929) Andet Afsnit, Første Kapitel 1 «Rigsbanken» (s. 291–322) and Andet Kapitel 1 «Mønten i København» (s. 339–364): the preamble quoted from the originals; §§ 5, 8, 10, 11–13 rendered; the tariff of 1818 as a table; the table of standards s. 363 and of output s. 364 | the only reading in hand | `scripts/cache/wilcke/specie_kurant_rigsbankdaler_1788_1845_1929/` (record `wilcke-1929`; s. 291–429 = pdf − 1 … i.e. pdf = s. + 1) |
 | Catalogue | **Hede f6h17** (1 Rigsbankskilling 1813: copper 4,872 g), **f6h18–23** (Rigsbanktegn 16, 12, 6, 4, 3, 2 ß: «*Tegnene foregiver altså ikke at indeholde den indre værdi, som pålydende angiver*»), **f6h24** (Rigsbankdaler 1813, 1818, 1819: 14,447 · 0,875 · 12,641 · «18,500 rigsbankdaler»), f6h26 (Speciedaler), f6h29–30 (32, 16 Rb. ß) | derived from Wilcke IV (named in the literature lists) and Sømod | `scripts/cache/_derived/hede/` |
 | Literature named by Wilcke, not seen | M. Rubin, *1807–14*; Nathanson 1862; Ørsted, *Eunomia* I; Wedel Jarlsberg 1816; Sømod, *1813* | | |
@@ -146,6 +148,51 @@ Rigsbankdaler за кожні 100 рд. куранта і так далі … У
 розпорядженням пущено в обіг згадані 32, 16 і 8 Rb. ß, 11-, 8- і 6-лотові, 18½ Rigsbankdaler з
 чистої марки, а також мідні 2 і 1 ß, 32 і 64 штуки з 1 фунта міді».
 
+### 3.6 The print — Collegial-Tidende 1813, No. 3, s. 33–56 (page images read 2026-11-27)
+
+Title (s. 33): «*Forordning om Forandring i Pengevæsenet for Kongerigerne Danmark og Norge, samt
+Hertugdømmerne Slesvig og Holsteen*». Part A, «*Almindelige Bestemmelser for Kongerigerne og
+Hertugdømmerne*», begins with § 1 on s. 34; the 62 paragraphs are numbered without the sign §;
+the act closes (s. 53) «*Givet i Vor Kongelige Residentsstad Kjøbenhavn, den 5te Januar 1813*»,
+signed Frederik R.; Kaas; Cold, Knudsen, Bülow, Monrad.
+
+§ 5 (s. 35), whole:
+
+> Myntfoden for Statens nye Penge bestemmes saaledes, at 18½ Rigsbankdaler udpræges af 1 Mark
+> fiint Sølv, Cøllnsk Vægt. En Rigsbankdaler inddeles i 6 Mark eller 96 Skilling.
+
+Переклад: «Монетну стопу нових державних грошей визначено так, що 18½ Rigsbankdaler карбують з
+1 марки чистого срібла кельнської ваги. Один Rigsbankdaler поділяється на 6 марок, або 96
+скілінгів».
+
+The paragraph names neither the Specie nor Hamburg Banco, and gives no alloy, gross weight or
+remedy. § 8 (s. 36): the notes limited to 46 mill. Rigsbankdaler Navneværdie, of which 27 mill.
+for the redemption of the old notes. § 10 (s. 36–37): «*Alle Danske Courantsedler … indløses
+efter en Cours af 1200 Rdlr. D. C. for 100 Rdlr. Banco, saa at for hver 6 Rdlr. D. C. faaes en
+Rigsbankdaler*» («усі данські курантні банкноти … викуповуються за курсом 1200 Rdlr. данського
+куранта за 100 Rdlr. Banco, так що за кожні 6 Rdlr. данського куранта дають один
+Rigsbankdaler»); the same paragraph redeems the Slesvig-Holsten Speciesbank notes half in silver
+and half in bonds «*2 Rbdal. for 1 Species*». § 12 (s. 38): in the duchies, meanwhile, «*1
+Species for 2 Rbdal.*». § 13 (s. 38) agrees with Wilcke's rendering in §3.2: 12 ß and
+Sechslinge 2 Rb. ß each, the called-in 2 ß 1 Rb. ß, the Danish 3 ß ½ Rb. ß; the 1 ß is not named
+(D7 stands).
+
+Table A (s. 54), «*Tabel over skyldige Capitalers Omskrivning fra Dansk Courant til
+Rigsbankpenge*» — 100 Rdlr. Dansk Courant by a bond older than 11 Sept 1807 is written to 100
+Rbdal.; younger than 10 Sept and older than 11 Dec 1807 to 95; then by quarters (10 Dec – 11
+March, 10 March – 11 June, 10 June – 11 Sept, 10 Sept – 11 Dec):
+
+| Quarter beginning | 10 Dec | 10 March | 10 June | 10 Sept |
+|---|---|---|---|---|
+| 1807 | — | — | — | 95 |
+| 1808 (from 10 Dec 1807) | 90 | 85 | 80 | 75 |
+| 1809 (from 10 Dec 1808) | 70 | 65 | 60 | 55 |
+| 1810 (from 10 Dec 1809) | 50 | 50 | 45 | 45 |
+| 1811 (from 10 Dec 1810) | 40 | 35 | 35 | 30 |
+| 1812 (from 10 Dec 1811) | 30 | 30 | 25 | 25 |
+
+«*og yngre end 10 December 1812 omskrives til 20*». Tables B and C (s. 54–56) not read.
+
 ## 4. Parameters
 
 ### 4.1 The unit and its coin recomputed (Cologne mark 233,855 g; pound 467,71 g; Wilcke IV table s. 363, read from the image)
@@ -216,7 +263,8 @@ Tokens in all 1 288 644 Rbdlr. (sum checked). Whole Specier follow from 1822 (27
 | D4 | Wilcke IV s. 343 | the ⅙ Rdlr. of 1808 «*udmøntet 19 R. ℳ f. eller efter Kurs 207, altsaa 1/38 pr. Stk. slettere end Rbdlr.*» | 19 / 9¼ × 100 = 205,4; (19 − 18½) / 19 = 1/38 ✓ | the «Kurs 207» does not follow from 19 R.; 1/38 does |
 | D5 | Wilcke IV s. 301 n. 2 | 6 R. K. = «123,816 g f. S.» | 6 × 20,634 = 123,804 | 0,012 g; the 10,21 % is unaffected |
 | D6 | Wilcke IV s. 341 against s. 343 | proposal: «96 Stkr. = 1 Rbdlr. af c. 1 ℔ Kobber» | Plakat: «96 Stkr. paa 1 ℔» | agree |
-| D7 | Wilcke IV s. 343 | P13: «1 ß for 1/6 Rb. ß» (the old silver-less copper 1 ß) | § 13 (s. 342) does not name the 1 ß | the Plakat adds a rate the act did not have |
+| D7 | Wilcke IV s. 343 | P13: «1 ß for 1/6 Rb. ß» (the old silver-less copper 1 ß) | § 13 (s. 342) does not name the 1 ß | the Plakat adds a rate the act did not have — confirmed on the print (§ 13, Collegial-Tidende s. 38) |
+| D8 | The act's title | this dossier's heading and §1, after Wilcke: «om **Forandringer** i Pengevæsenet for Danmark og Norge samt Slesvig og Holsten» | the print (s. 33): «om **Forandring** i Pengevæsenet for Kongerigerne Danmark og Norge, samt Hertugdømmerne Slesvig og Holsteen» | ⚠ both kept; the print's form is the instrument's own. Where Wilcke's wording comes from (his s. 300–306) not re-checked |
 | D8 | F18 | 1 Rigsort = 38 ß; 5 Rigsorter = 2 Rbdlr. | 5 × 38 = 190, not 192 | the single piece is rounded down from 38,4 |
 
 ## 5. Mints and mintmasters
@@ -250,22 +298,24 @@ Tokens in all 1 288 644 Rbdlr. (sum checked). Whole Specier follow from 1822 (27
 | `royal_holstein` `c-6e9b368e` (Rigsbanktegn 12 ß 1813, Hede 19) — `18_5_thaler` I | T13: a token «*uden nogen bestemt Vægt*» — Hede: «*betalingstegn og ikke mønter i egentlig forstand*»; whether tokens belong in the coin table is the curator's call (§9.2 names tokens without a denomination; these carry one) |
 | `danish_realm` `c-e8645e7a` (Hede F6 29, seed in `hede/royal_holstein.yml`) — `18_5_thaler` I | F18: 32 Rb. ß, 11 lod |
 | Rigsbankdaler 1813–19 (Hede 24), Speciedaler (Hede 26) | no seed under `dk-hede-f6h24` / `f6h26` by that id — not traced further |
-| `denmark.yml` phase text of `18_5_thaler` | «Rigsbankdaler nach Forordning 5. Januar 1813 … §10 der Forordning verankert 1 Speciedaler …» — the standard is § 5 in Wilcke's rendering; § 10 is cited by Wilcke for the course of 1200 (s. 302). To check against the act when it is in hand |
+| `denmark.yml` phase text of `18_5_thaler` | «Rigsbankdaler nach Forordning 5. Januar 1813 … §10 der Forordning verankert 1 Speciedaler …» — checked against the print 2026-11-27: the standard (18½ from the mark fine) is **§ 5**, which does not name the Specie; «2 Rbdal. for 1 Species» stands in **§ 10** as the rate at which Speciesbank notes are redeemed (s. 36–37), in § 12 as the provisional rate of specie coin in the duchies (s. 38) and in § 16 for the state debt in specie (s. 39, text layer only). The page's «§10 … verankert ausdrücklich 1 Speciedaler = 2 Rigsbankdaler» holds as a redemption rate, not as the clause that sets the standard; a wording change there is the curator's call |
 
 ## 8. Open questions
 
-1. **The act's text** — §§ 1–62 and the Fundation; the wording of § 5 (does it name the Specie,
-   Hamburg Banco, a remedy?), § 10 and § 13. A print: Collegial-Tidende 1813, Schous Forordninger
-   XVI, or Ørsted's *Oplysninger*.
-2. **No remedy** is given for the Rigsbankdaler or the small silver in the pages read.
+1. **The act's text** — in hand since 2026-11-27 (§3.6): § 5, §§ 8–10, 12–13, the closing and
+   table A read from the image. Still unread: the other paragraphs of the 62, tables B and C,
+   and the Fundation (Collegial-Tidende No. 5, from s. 73).
+2. **No remedy** — § 5 of the print names none, nor an alloy or a gross weight; none is given
+   for the Rigsbankdaler or the small silver in the pages of Wilcke read.
 3. **The Rigsbankdaler dated 1813** (D3) — struck when, at which alloy; Altona's account for
    1813–14 (table s. 398–399, not read cell by cell here).
-4. **The scale of the debts' revaluation** — only the first two steps are given (100, 95 …);
-   the act's table.
+4. **The scale of the debts' revaluation** — settled: table A of the print, 100 down to 20
+   (§3.6).
 5. **The 16 and 8 Rb. ß of 1816** — the Plakat of 10 July 1816 is rendered in one clause; its
    limits and area.
 6. **Tokens in the coin table** (§7) — a curator decision.
-7. **`denmark.yml`'s «§10»** (§7) — to verify.
+7. **`denmark.yml`'s «§10»** (§7) — verified against the print; whether the page should name § 5
+   for the standard is a curator decision.
 
 ## 9. Sources consulted
 
@@ -276,11 +326,16 @@ Tokens in all 1 288 644 Rbdlr. (sum checked). Whole Specier follow from 1822 (27
 - Hede (via danskmoent.dk): f6h17–24, 26, 29, 30 — <https://www.danskmoent.dk/fr/f6h24.htm> ….
 - Earlier dossiers: `1768_1788_altona_rethwisch_speciesbank.md`;
   `../danish_denomination_grids_1403_1914.md`.
-- Not in hand: the Forordning and Fundation of 5 Jan 1813; Rubin, *1807–14*; Ørsted; Nathanson;
+- *Collegial-Tidende for Danmark og Norge* 1813 (udg. Chr. Knudsen og P. J. Monrad), No. 3 (16
+  Jan 1813), s. 33–56 — <https://books.google.com/books?id=QNA_AQAAMAAJ> (record
+  `collegial-tidende-1813`); s. 33, 35, 36, 37, 38, 53, 54 and the head of No. 5 (s. 73) read
+  from the page image 2026-11-27.
+- Not in hand: the Plakate of 1813–14; Rubin, *1807–14*; Ørsted; Nathanson;
   Mordhorst's Bilag for Frederik VI.
 
 ---
 
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 1,5 (no remedy; the debt scale
 incomplete) · C3 instruments 1,5 (dated and named, but through one retelling) · C4 provenance 1 (a
-single witness; the act not seen) · C5 open questions 2 · C6 recomputation 2 → **8/10**. Commit: `b7e4030`.*
+single witness; the act not seen) · C5 open questions 2 · C6 recomputation 2 → **8/10**. Commit: `b7e4030`.
+The print was read on 2026-11-27 (§3.6); the score has not been re-run since.*

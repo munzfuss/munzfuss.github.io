@@ -45,7 +45,7 @@
 | **P86** | Forslag 14 March · **Resl. 15 March 1786** · contract **19 April 1786** | Purchase of Olde's silver refinery and copper rolling mill at Poppenbüttel for 40 000 R. grov Kurant; the Altona (and Poppenbüttel) mint leased to Olde for 800 R. a year and ¼ % of the coin struck | Christian VII | Wilcke III s. 206–207; Wilcke IV s. 24–25 |
 | **S86** | plan 12 Sept · Resl. 18 Oct · Forestilling 7 Nov · **Resl. 8 Nov 1786** · Resl. 29 Nov 1786 | «*Oprettelsen af en Speciebank i Altona og en til sammes Fornødenhed udfordrende Myntning af 14 lødige Specier, 9 1/4 R. ℳ fin til et Beløb af 1,100,000 R. Spr.*»; the coin's distribution (§4.2); personnel: Liebst Møntkommissær, Michael Flor mintmaster, Høy Guardein | Christian VII (the Crown Prince) | Wilcke III s. 200–201, 207; Wilcke IV s. 25–28 |
 | 2S87 | Forestilling 27 Nov · **Resl. 28 Nov 1787** | A silver 2 Sechsling between the 1/24 and the copper Sechsling: «*4 lødig, 13 R. K. … ℳ fin*» | Christian VII | Wilcke IV s. 51–52 |
-| **V88** | Resl. 20 Feb · **29 Feb 1788** | Verordnung Nr. 20 «*wegen Einführung einer neuen Speciesmünze in den Herzogthümern Schleswig und Holstein*» (+ Herrschaft Pinneberg, Grafschaft Ranzau, Stadt Altona) and Nr. 21 for a Schleswig-Holsteinische Species-Bank in Altona | Christian VII | printed (Chronologische Sammlung 1788 — not seen); Wilcke IV s. 28–30 (two passages quoted); Mordhorst c7 (digest, two passages quoted) |
+| **V88** | Resl. 20 Feb · **29 Feb 1788** | Verordnung Nr. 20 «*wegen Einführung einer neuen Speciesmünze in den Herzogthümern Schleswig und Holstein*» (+ Herrschaft Pinneberg, Grafschaft Ranzau, Stadt Altona) and Nr. 21 for a Schleswig-Holsteinische Species-Bank in Altona | Christian VII | **printed: Chronologische Sammlung 1788, Nr. 20 S. 44–60 with Tabellen S. 61–71, Nr. 21 from S. 72** (§3.7; in hand since 2026-11-27); Wilcke IV s. 28–30 (two passages quoted); Mordhorst c7 (digest, two passages quoted) |
 | Pl88 | **19 March** · 10 Sept · 29 Oct · 5 Nov 1788 · 12 Feb · 5 March 1790 | The new coin and the Species-Sedler not current in Denmark and Norway as Dansk Courant, F76 repealed there; an allowance of 4 ß per Speciedaler on taxes to Jan 1789, exchange offices; 100 000 R. Sp. more in ⅙ and 1/12 and 15 000 R. 2 Sechsling; copper legal tender to 5 ß; contracts to be in specie or S.-H. Courant | Christian VII | Mordhorst c7; Wilcke IV s. 53–54 |
 
 ## 2. Source chain
@@ -53,7 +53,7 @@
 | Layer | Source | What it is | Our copy |
 |---|---|---|---|
 | Archive | R. A. Dokumenter ang. Speciesmønten i Rethwisch 1768–70; Rethwischer Møntprotokol; Mynteprotokol D; Møntakter til Møntjournal 1771; Finance Collegii Mynt-Protocol 1773–76; Altona Møntprotokoller A–C; Finanskollegiets Rel. og Resl. Protokol 1786 I Nr. 53, II Nr. 211, 220, 237; 1787 II Nr. 177; 1788 II Nr. 179, 206; Zoëgas Embedspapirer | the acts | not seen |
-| Printed | The Verordnungen of 29 Feb 1788 with their tables of weights; the Verordnung of 11 Oct 1776; Zoëga, *Versuch …* / *Forsøg …* (1787) | the printed acts | not in the cache; not found online (2026-11-19) |
+| Printed | The Verordnungen of 29 Feb 1788 with their tables of weights; the Verordnung of 11 Oct 1776; Zoëga, *Versuch …* / *Forsøg …* (1787) | the printed acts | **the two Verordnungen of 1788 in hand since 2026-11-27**: Chronologische Sammlung 1788 (Google Books `ib9QAAAAcAAJ`; record `chronologische-sammlung-1788`, S. 18–183 = pdf − 11; Fraktur, Google OCR — quote from the image only). The Verordnung of 11 Oct 1776 and Zoëga not in hand |
 | **Reading** | **Wilcke III** (1927) Andet Kapitel 3 «Mønten paa Rethwisch Slot» (s. 167–178), 4 «Mønten i Altona 1771–1788» (s. 179–208), 5 «Mønten i Poppenbüttel» (s. 209) — orders dated and partly quoted, output tables s. 168, 178, 208, the table of two new standards s. 207 | the only reading of the archive for 1761–86 | `scripts/cache/wilcke/kurantmoenten_1726_1788_1927/` (printed = pdf + 3) |
 | **Reading** | **Wilcke IV** (1929) Første Kapitel 1 «Mønten i Altona—Poppenbüttel» (s. 17–70): the two commissions of 1784–85, the plan, V88 summarised with two quotations, the 2 Sechsling, the Indstillinger of Sept 1788–Jan 1789, the output table 1787–1812 (s. 68–69) and the table of standards (s. 70) | the reading for 1784–88; a continuation of the same author's vol. III | `scripts/cache/wilcke/specie_kurant_rigsbankdaler_1788_1845_1929/` (record `wilcke-1929`; s. 17–160 = pdf + 2) |
 | **Digest** | **Mordhorst c7**: 11 Oct 1776; 5 Jan 1778; **29 Feb 1788** (both Verordnungen, §-less paraphrase in Danish with German clauses quoted); 19 March, 10 Sept, 5 Nov 1788; 12 Feb 1790 | the printed acts, independent of Wilcke | `scripts/cache/_derived/danskmoent/mord/c7mord.txt` |
@@ -191,6 +191,48 @@ at «*100 rd. specier = 132 1/2 rd. kurant*»; Kroner at «*100 rd. specier = 11
 old coin exchanged at Altona by weight to the end of 1788; a loan of 500 000 rd. specie at 3½ %
 for Kurantbank notes at 125; the notes not to circulate in the duchies.
 
+### 3.7 V88 in print — Chronologische Sammlung 1788, Nr. 20 (page images read 2026-11-27)
+
+Heading (S. 44, text layer): «20. Verordnung, wegen Einführung einer neuen Speciesmünze in den
+Herzogthümern Schleswig und Holstein etc.»; it closes (S. 60, image) «*Gegeben auf Unserm
+Schlosse Christiansburg den 29sten Febr. 1788*», signed Christian Rex; Schimmelmann, Reventlow,
+Brandt, Agerskow, Wendt, Zoëga; Lange. The preamble (S. 45, image) has the specie «*nach dem mittelst Unserer Verordnung vom
+2ten Jan. 1776 festgesetzten Münzfuß, zu 9¼ Thaler die Mark fein ausgemünzt, folglich nach ihrem
+innern Gehalte dem Hamburger Banco gleich*».
+
+§ 1 (S. 46, image):
+
+> Ausser den 14 löthigen, zu 9¼ Stück die Mark fein ausgemünzten ganzen Speciesthalern, die 48
+> Schilling Species, jeden zu 12 Pfenning Species ausmachen, sollen auch ⅔ und ⅓ Speciesthaler
+> von 14 löthigem, ⅙ von 11 löthigem, 1/12 von 8 löthigen, und 1/24 von 6 löthigem Gehalt, alle
+> nach demselben Münzfuß, nämlich zu 9¼ Speciesthalern die Mark fein; wie auch ferner eine in
+> Zwey-Sechsling-Stücken bestehende von 4 löthigem Gehalte zu 13 Thaler die Mark fein ausgemünzte
+> silberne Courant Scheide-Münze, nebst einer, den gegenwärtig circulirenden kupfernen dänischen
+> Schillingen und halben Schillingen gleichen Kupfernen, unter der Benennung, jene von
+> Zwey-Sechsling, und diese von Ein-Sechsling und Ein-Dreyling Schleswig-Holsteinisches Courant
+> … in Circulation gesetzt werden.
+
+Переклад: «Крім 14-лотових цілих Speciesthaler, карбованих по 9¼ штуки з чистої марки, що
+становлять 48 Schilling Species, кожен по 12 Pfenning Species, мають також ⅔ і ⅓ Speciesthaler
+14-лотової, ⅙ — 11-лотової, 1/12 — 8-лотової і 1/24 — 6-лотової проби, усі за тією самою
+монетною стопою, а саме по 9¼ Speciesthaler з чистої марки; а також срібна курантна розмінна
+монета у двосекслінгових штуках 4-лотової проби, карбована по 13 талерів з чистої марки, разом
+із мідною, рівною мідним данським скілінгам і півскілінгам, що нині в обігу, під назвою: перша —
+Zwey-Sechsling, а друга — Ein-Sechsling та Ein-Dreyling Schleswig-Holsteinisches Courant … бути
+пущені в обіг».
+
+The paragraph gives the 2 Sechsling only as «13 Thaler die Mark fein»; no specie figure stands
+beside it (D1: Wilcke's «10 2/3 R. Sp.» is not from this paragraph). § 2 (S. 46–47, image): the
+specie is stamped «*mittelst eines … für immer festgesetzten Agio von 25 pro Cent zu Courant*»;
+the whole Speciesthaler is to pass for 60, ⅔ for 40, ⅓ for 20, ⅙ for 10, 1/12 for 5 and 1/24
+for 2½ Schillinge Schleswig-Holsteinisches Courant. The end of § 4 (S. 51, image): nobody is
+bound to take more of the new silver and copper Scheidemünze at once than «*das doppelte der
+kleinsten Species-Münze, oder als fünf Schilling Schleswig-Holsteinisch Courant*». § 5 (S. 51, image): single pieces of whole Species that weigh
+2½ Eschen, ⅔ that weigh 2 Eschen and ⅓ that weigh 1½ Eschen less than Tabelle A are refused —
+a limit for acceptance at the royal chests, not a mint remedy. The two passages Wilcke quotes
+(§3.6) stand on S. 45 (image) and S. 48 (text layer); his spelling differs from the print's
+(«ausgesetz», «Fusz gesetz», «kønne» against «ausgesetzt», «Fuß gesetzt», «könne»).
+
 ## 4. Parameters
 
 ### 4.1 The coin of 1787–88 recomputed (Cologne mark 233,855 g; Wilcke IV table s. 70, read from the image)
@@ -280,7 +322,7 @@ All column sums recomputed; all agree with the printed totals.
 | D10 | Hede c7h42 | ⅙: «Finhed: 0,687» | 11 lod = 0,6875 | truncated; our readings carry 0,687 |
 | D11 | Wilcke III s. 189 | Knoph 1773: Albertsdaler «brutto ℳ … 8 9/16 Stkr. og ℳ fin 9 51/83» at 13 lod 15 gren (read from the image; the small numerator may be a 5) | 9 51/83 × 0,86458 = 8 5/16 | 8 5/16 satisfies the passage; a proposal, never struck |
 | D12 | Wilcke III s. 200 against s. 208 | 1784: «c. 50,000 Stkr. Albertsdalere» | table 54 001 | text rounds |
-| D13 | Titles of V88 | Wilcke IV s. 28: «wegen **Einrichtung** einer … Speciesbank»; Mordhorst: «wegen **Errichtung** einer … Species-Bank» | — | the print not seen |
+| D13 | Titles of V88 | Wilcke IV s. 28: «wegen **Einrichtung** einer … Speciesbank»; Mordhorst: «wegen **Errichtung** einer … Species-Bank» | — | the print has both: the heading of Nr. 21 (S. 72, image read) «Verordnung wegen **Einrichtung** einer Schleswig-Holsteinischen Species-Bank in der Stadt Altona»; the volume's list of contents (pdf 5, text layer only) «wegen **Errichtung**» |
 
 ## 5. Mints and mintmasters
 
@@ -330,10 +372,10 @@ and no decision is recorded. The rows below are placements read off `data/v2/fin
 
 ## 8. Open questions
 
-1. **The print of V88** — the paragraphs, the tables of weights and the wording of the Courant
-   clause are known only through Wilcke IV and Mordhorst. The *Chronologische Sammlung der im
-   Jahre 1788 ergangenen Verordnungen* (Kiel) or the Danish Forordningssamling for 1788 would
-   settle D1, D13 and the remedy, which neither reading gives.
+1. **The print of V88** — in hand since 2026-11-27 (§3.7): §§ 1, 2 and 5 of Nr. 20 and the
+   heading of Nr. 21 read from the image; D1 and D13 settled as far as the act goes. No mint
+   remedy is given in the paragraphs read — § 5 sets only the underweight at which a piece is
+   refused. Still unread: §§ 6–8 in full, Tabellen A–D (S. 61–71) and Nr. 21 beyond its heading.
 2. **The concession of 18 April 1768** — its text is not quoted; «tysk Møntfod» is the
    Rentekammer's reading (9 or 9¼?). The copy sent to the Rentekammer in Aug 1769 (R. A.
    Møntakter til Møntjournal 1771) would settle it.
@@ -364,7 +406,12 @@ and no decision is recorded. The rows below are placements read off `data/v2/fin
 - Hede (via danskmoent.dk): c7h6–13, c7h39–47 — <https://www.danskmoent.dk/chr/c7h39.htm> ….
 - Earlier dossiers: `1764_1787_speciemoent_tilloeb.md`, `1671_myndt_ordning.md`,
   `1667_1690_zinna_leipzig.md`; `../altona.md`.
-- Cited, not seen: the prints of 1776 and 1788; Zoëga 1787; Lange 1908–12; Pedersen 2006, 2017;
+- *Chronologische Sammlung der im Jahre 1788 ergangenen Verordnungen und Verfügungen für die
+  Herzogthümer Schleswig und Holstein …*, Nr. 20 (S. 44–71) and Nr. 21 (from S. 72) —
+  <https://books.google.com/books?id=ib9QAAAAcAAJ> (record `chronologische-sammlung-1788`);
+  S. 45, 46, 47, 51, 60, 72 read from the page image 2026-11-27, S. 44, 48–50, 52–59 from the
+  text layer.
+- Cited, not seen: the print of 1776; Zoëga 1787; Lange 1908–12; Pedersen 2006, 2017;
   Märcher 2006; Collin 1855; Nathanson 1862.
 
 ---
@@ -372,4 +419,5 @@ and no decision is recorded. The rows below are placements read off `data/v2/fin
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 1,5 (no remedy; the 1768
 concession's standard and the copper of 1771 without figures) · C3 instruments 1,5 · C4 provenance
 1,5 (V88 by one reading and one digest of the print) · C5 open questions 2 · C6 recomputation 2 →
-**8,5/10**. Commit: `0a00a2a`.*
+**8,5/10**. Commit: `0a00a2a`.
+The print of V88 was read on 2026-11-27 (§3.7); the score has not been re-run since.*
