@@ -208,8 +208,19 @@ therefore set at c. 1495/97 (it was written «c. 1481» in the first version of 
     Lübeck Schillinge or Danish Skillinger struck to that reckoning. So the deed attests a 24-ß Gylden
     in lybsk money of account in Sjælland in 1449, between two private parties; it is not evidence of a
     Danish Skilling coin tariffed at 24 per Gylden. Would settle it: the full text of the deed (RA,
-    «Ringsted H. 94»; a copy in Langebeks Diplomatarium) — only if it names the coin; or a Lübeck
-    Gulden rate for 1449 to compare with 24 ß (not looked up).
+    «Ringsted H. 94»; a copy in Langebeks Diplomatarium) — only if it names the coin.
+  - **Lübeck's own Gulden rate in 1449 (looked up 2026-11-27).** Jesse 1928, Tabelle 7, S. 216 (page
+    image read): Rheinischer Gulden «Im Verkehr» 1446–48 22 ß; **1449 «22 ß 7 pf u. 23 ß»**; 1450 21 ß
+    (and 21 ß in the recess of that year); 1451 23 ß; 1452 24 ß — the first 24 in the table. The
+    Lübeckischer Gulden stood at 32 ß in 1449. Which document carries Jesse's 1449 figures is not
+    established (his n. 471 names the Hamburg Kämmereirechnungen and Lüb. U. B. VIII 72 for 1441 only).
+    So the deed's 24 ß per Gylden is **above** Lübeck's market of the same year by 1 ß to 1 ß 5 pf
+    (24 / 23 = +4,3 %; 24 / 22 ß 7 pf = +6,3 %, recomputed). The sources do not say why. Two readings,
+    both HYPOTHESES: the Skillinger current in Sjælland were lighter than Lübeck's Schillinge, so more
+    of them went to the Gulden; or 24 is a rate agreed between the parties for the case the clause
+    names (copper or worse coin becoming current) and not a market price. Would settle it: a second
+    Sjælland deed of 1445–52 with a Gylden rate in lybsk reckoning (Rep. dipl. 1. R. III), or an assay
+    / standard for the Malmø Skilling of 1448 against Lübeck's 1441 Schilling.
 - **The 1513–14 contact is a return of B to the trunk's ratio,** not a third grid: the Blicher letter
   sets ß = 3 Hvide again («*Forholdet til den lybske ß ophævet*», Wilcke s. 151), and the 1514 grid puts
   ß 0,997 g = 3,00 Hvide (0,332) — the trunk relation restored for one act.
