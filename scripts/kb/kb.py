@@ -325,7 +325,23 @@ def iter_passages(work: dict):
                 elif pp.get("method") == "label":
                     m = re.match(pp.get("regex", r"\[label (\S+)\]"), lines[0] if lines else "")
                     printed = m.group(1) if m else None
-                yield Passage(wid, vol, rel, pdf, printed, _locator(printed, pdf, page_label),
+                # A volume bound from parts with separate paginations: a file
+                # inside a section takes that section's volume name, and its
+                # printed page is the file number + the section's `offset`;
+                # without `offset` the unit's own method stays; `unpaged: true`
+                # (half-titles, blanks between the parts) reports no printed page.
+                pvol = vol
+                if fp.stem.isdigit():
+                    for sec in unit.get("sections", []):
+                        if sec["from"] <= int(fp.stem) <= sec["to"]:
+                            pvol = sec.get("volume", vol)
+                            if sec.get("unpaged"):
+                                printed = None
+                            elif "offset" in sec:
+                                n = int(fp.stem) + int(sec["offset"])
+                                printed = str(n) if sec.get("first", 1) <= n <= sec.get("last", n) else None
+                            break
+                yield Passage(wid, pvol, rel, pdf, printed, _locator(printed, pdf, page_label),
                               1, len(lines), lang, text)
             elif layout in ("markers", "formfeed"):
                 pages = []  # (pdf, printed_from_marker, first_line, chunk_lines)

@@ -160,6 +160,18 @@ except Schou Bd 14, 15, 16 and 18 (1, no cover scan) — and was confirmed on tw
 page images per volume (running head = label). A new nb.no volume gets its N
 the same way, never by copying a neighbour's. Secher (offset method, PDFs
 under `secher/_pdf/`) has no shift.
+
+A `file-per-page` layer may also carry `sections` for a volume bound from parts
+with separate paginations, where the nb.no label goes on counting through the
+whole volume and is not the printed page: `{from, to, volume, offset}` (file
+numbers; printed = file number + offset, reported under that volume name) and
+`{from, to, unpaged: true}` for half-titles and blanks. Three volumes have them,
+each boundary read on the page images (2026-11-27): Schou's register of 1823
+(I. Part / II. Part), Fogtman 1. Deel (main text / «Rettelser og Tillæg») and
+the Anhang to Schou's 1st edition (five sections by reign). The other nb.no
+volumes were sampled on two page images each (near 15 % and 85 % of the
+volume), head = label on both; a part with its own pagination lying wholly
+outside those two points would not have been seen.
 | `markers` (Wilcke 1919, 1950; Denar til daler; Galster 1934, 1973; Bruun I–V) | text between page markers | offset segments, the marker's own printed number, or a running-head label (Bruun «Page 94 Stack's Bowers …») |
 | `formfeed` (Munro, Hauberg, DCH 1904, Jensen, Eriksson, …) | form-feed page | offset segments |
 | `section` (Wilcke II 1924) | ~25-line window, capped at ~1 500 characters (`chunk_chars`) — one line is one paragraph | the section's printed range only — the HTML has no page breaks |
