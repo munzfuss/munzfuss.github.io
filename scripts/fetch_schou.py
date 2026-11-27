@@ -138,11 +138,22 @@ NGL = {
     "r2_b1_2_3": "URN:NBN:no-nb_digibok_2017091507090",  # 1388-1447, 1a II-III
     "r2_b2": "URN:NBN:no-nb_digibok_2018101748001",      # 1448-1482
 }
+# Wessel Berg, Kongelige Rescripter, Resolutioner og Collegial-Breve for Norge
+# i Tidsrummet 1660-1813 (Christiania 1841-1847). Catalogue API checked
+# 2026-11-27: every title and «accessAllowedFrom: EVERYWHERE», public domain.
+WESSEL_BERG = {
+    "b1": "URN:NBN:no-nb_digibok_2008111103067",   # 1660-1746
+    "b2": "URN:NBN:no-nb_digibok_2008100703002",   # 1746-1780
+    "b3": "URN:NBN:no-nb_digibok_2008091603025",   # 1781-1796
+    "b4": "URN:NBN:no-nb_digibok_2010022412001",   # 1797-1813
+    "register": "URN:NBN:no-nb_digibok_2010021712005",  # Register (1847)
+}
 COLLECTIONS = {  # name -> (volumes, cache directory, PDF file prefix)
     "schou": (VOLUMES, CACHE_DIR, "schou"),
     "fogtman": (FOGTMAN, CACHE_DIR.parent / "fogtman", "fogtman"),
     "nrr": (NRR, CACHE_DIR.parent / "norske_rigsregistranter", "nrr"),
     "ngl": (NGL, CACHE_DIR.parent / "norges_gamle_love", "ngl"),
+    "wessel_berg": (WESSEL_BERG, CACHE_DIR.parent / "wessel_berg", "wessel_berg"),
 }
 PDF_PREFIX = "schou"
 API = "https://api.nb.no/catalog/v1"
@@ -234,7 +245,8 @@ def fetch_volume(bd, force: bool) -> None:
     print(f"bd{bd}: done — {len(list(pages_dir.glob('*.txt')))} page texts")
 
 
-def fetch_pdf(bd, force: bool, tmp_dir: Path, keep_original: bool = False) -> None:
+def fetch_pdf(bd, force: bool, tmp_dir: Path, keep_original: bool = False,
+              as_served: bool = False) -> None:
     """The library's own PDF (page images only, colour, c. 0.5 MB a page)
     reduced to grey at half the linear resolution — legible down to the
     fractions and footnotes (tested 2026-11-25 on Bd 2 s. 420, 519). The
@@ -279,6 +291,15 @@ def fetch_pdf(bd, force: bool, tmp_dir: Path, keep_original: bool = False) -> No
     if src.read_bytes()[:5] != b"%PDF-":
         print(f"{vol_dir.name}: downloader did not return a PDF", file=sys.stderr)
         src.unlink()
+        return
+    if as_served:
+        # Stored byte for byte as the host serves it (curator 2026-11-26): the
+        # sha256 in the manifest is then reproducible from the download URL.
+        shutil.move(str(src), str(out))
+        library.register(out.relative_to(LIBRARY_ROOT).as_posix(),
+                         url=f"https://www.nb.no/services/downloader?urn={urn}",
+                         fetched=time.strftime("%Y-%m-%d"))
+        print(f"{vol_dir.name}: {out.stat().st_size / 1e6:.0f} MB stored as served")
         return
     part = out.with_suffix(".part.pdf")
     subprocess.run(
@@ -333,6 +354,8 @@ def main() -> int:
                     help="re-render pages/*.txt from the cached ALTO, no network")
     ap.add_argument("--pdf", action="store_true",
                     help="fetch the library's PDF and store a reduced grey copy (page images)")
+    ap.add_argument("--as-served", action="store_true",
+                    help="with --pdf: store the library's PDF unchanged (no reduction, no split)")
     ap.add_argument("--tmp", type=Path, default=Path("/tmp/schou_pdf"),
                     help="where the full-size PDF is kept while it is reduced")
     args = ap.parse_args()
@@ -340,7 +363,7 @@ def main() -> int:
     VOLUMES, CACHE_DIR, PDF_PREFIX = COLLECTIONS[args.collection]
     for bd in args.bd or list(VOLUMES):
         if args.pdf:
-            fetch_pdf(bd, args.force, args.tmp)
+            fetch_pdf(bd, args.force, args.tmp, as_served=args.as_served)
         elif args.retext:
             retext_volume(bd)
         else:

@@ -315,7 +315,9 @@ def iter_passages(work: dict):
                         loc = f"{fp.stem} {page_label} {heading[:70]}"
                         yield Passage(wid, None, rel, None, None, loc, a, b, lang, body)
             elif layout == "file-per-page":
-                pdf = int(re.sub(r"\D", "", fp.stem) or 0)
+                # nb.no volumes: covers / inserts precede file 0001 in the PDF,
+                # so PDF page = file number + pdf_page_shift (0 when absent).
+                pdf = int(re.sub(r"\D", "", fp.stem) or 0) + int(unit.get("pdf_page_shift", 0))
                 printed = None
                 pp = unit.get("printed_page", {})
                 if pp.get("method") == "offset":

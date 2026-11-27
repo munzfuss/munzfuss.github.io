@@ -150,6 +150,12 @@ Rigslovgivning, Denar til daler and the Metallanalyser reports.
 | Layout | Unit | Printed page |
 |---|---|---|
 | `file-per-page` (Secher, Schou) | one PDF page file | offset segments (Secher) / IIIF label (Schou) |
+
+A `file-per-page` layer may carry `pdf_page_shift: N`: the PDF page is then the
+file number + N (nb.no PDFs put covers and inserts before file `0001`). Set for
+Wessel Berg (2, seen on the page images); Fogtman, Schou, Norske
+Rigs-Registranter and Norges gamle Love do not carry it yet, so `kb.py image`
+opens their PDFs a few pages early — their READMEs give the difference.
 | `markers` (Wilcke 1919, 1950; Denar til daler; Galster 1934, 1973; Bruun I–V) | text between page markers | offset segments, the marker's own printed number, or a running-head label (Bruun «Page 94 Stack's Bowers …») |
 | `formfeed` (Munro, Hauberg, DCH 1904, Jensen, Eriksson, …) | form-feed page | offset segments |
 | `section` (Wilcke II 1924) | ~25-line window, capped at ~1 500 characters (`chunk_chars`) — one line is one paragraph | the section's printed range only — the HTML has no page breaks |
