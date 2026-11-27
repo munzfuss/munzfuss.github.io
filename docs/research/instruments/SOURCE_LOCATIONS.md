@@ -66,36 +66,37 @@ domain) · **IA:** `<id>` = `https://archive.org/details/<id>` · **GB:** `<id>`
 | Wessel Berg (Norway) 1–5 | 0 | NB: `2008111103067` · `2008100703002` · `2008091603025` · `2010022412001` · `2010021712005` | B. 1 checked |
 | Chronologische Sammlung (duchies), yearly | 0 | Google Books, c. 66 volumes 1756–1847 in full view; e.g. 1776 GB: `lrpQAAAAcAAJ` · 1788 `ib9QAAAAcAAJ` · 1808 `wbhQAAAAcAAJ` · 1813 `QLRQAAAAcAAJ` · 1836 `P7lQAAAAcAAJ` · 1844 `PcNQAAAAcAAJ` · 1846 `Q7pQAAAAcAAJ` · 1847 `c7pQAAAAcAAJ` | feed-checked; many years not checked one by one |
 | Systematische Sammlung (Kiel 1827–1841), Bd 1–9 and Anhänge | 0 | DDB items: 1 `CEE3F3XZKKZSQX2KZJPFH4JSCCNESSYQ` · 2,1 `QBKCUXBWBLZUQFKQK6IIY5V6POCAD4TH` · 2,2 `YYJTHMCOG7AWXHHUCPN62DAC2NJIYQGI` · 3 `IHJ4LXLN7JRLZ57GTTCVURL4LAK74FPS` · 4 `RTGMDUIJQUF2Y32CF76MYUMPH4EWJFBF` · 5 `2CHJDI22LK6ZCM2JKD5XCD7FRKGTI6DT` · 6 `HINQSKLYPVD3PL7K5YLOFTPADBAX4YPF` · 7 `VRAUQLYVKMRPHDLYA2F57EHZJLODRUYN` · 8 `BH5VWU6TH5LH7C2OFCCJJRV7AAP4YQJL` · 9 `F2ASV4ZRMPMSHFMP5P3ETMAL6ZNPKZMF` | DDB search result list read 2026-11-26 (through a fetch agent); the items themselves, their holding library and whether a scan is attached are unverified |
-| **Forordning 5 Jan 1813** (Danish) | 0 | Collegial-Tidende 1813, GB: `QNA_AQAAMAAJ`, p. 34 | search-inside checked |
-| **Verordnung 5 Jan 1813** (German, duchies) | 0 | Chronologische Sammlung 1813, GB: `QLRQAAAAcAAJ`, from p. 3 | search-inside checked |
-| **Verordnungen 29 Feb 1788** | 0 | Chronologische Sammlung 1788, GB: `ib9QAAAAcAAJ`, c. pp. 47–52 | search-inside checked; start pages not fixed |
-| Forordning 2 Jan 1776 | 1 | Schou B. 6 (abstract) | no original print found |
-| Plakat and Forordning 24 Dec 1808 | — | candidates: Schou B. 14 / 15; Chron. Sammlung 1808 | text not confirmed |
-| Collegial-Tidende 1798–1813 | 0 | nb.no, one item per issue (`URN:NBN:no-nb_digitidsskrift_2025011680002_…` to `…80011_…`) | sample checked; 1814–1848 not found |
+| **Forordning 5 Jan 1813** (Danish) | 0 | Collegial-Tidende 1813, GB: `QNA_AQAAMAAJ`, No. 3 of 16 Jan 1813, from s. 33 | **in the corpus** (`collegial-tidende-1813`; pdf 110 = s. 33 read on the image); the dossier `1813_forordning_pengevaesenet.md` still says the act's text was not found and has not been re-read against it (checked 2026-11-27) |
+| **Verordnung 5 Jan 1813** (German, duchies) | 0 | Chronologische Sammlung 1813, GB: `QLRQAAAAcAAJ`, Nr. 3, from S. 3 | **in the corpus** (`chronologische-sammlung-1813`; pdf 28 = S. 3 read on the image) |
+| **Verordnungen 29 Feb 1788** | 0 | Chronologische Sammlung 1788, GB: `ib9QAAAAcAAJ`: Nr. 20 (Speciesmünze) from S. 47, Nr. 21 (Species-Bank in Altona) from S. 72 | **in the corpus** (`chronologische-sammlung-1788`; S. 47 read on the image, S. 72 from the text layer's page heads only, 2026-11-27); the dossier `1768_1788_altona_rethwisch_speciesbank.md` still lists the prints as not in the cache |
+| Forordning 2 Jan 1776 | 1 | Schou B. 6, s. 140–142 (extract; `schou-2-25`, text layer read 2026-11-27, pages by the layer's labels) | no original print in hand; the German text would be in Chronologische Sammlung 1776 (GB: `lrpQAAAAcAAJ`), not downloaded and not looked into |
+| Plakat and Forordning 24 Dec 1808 | 1 | Schou B. 15, s. 138–139 (extracts of both; `schou-2-25`, text layer read 2026-11-27, pages by the layer's labels); listed in that volume's register s. 159 under «Myndtvæsenet» | no original print in hand; Fogtman VII:1 searched for the date, nothing found; Chronologische Sammlung 1808 (GB: `wbhQAAAAcAAJ`) not downloaded and not looked into |
+| Collegial-Tidende 1798–1813 | 0 | nb.no, one item per issue (`URN:NBN:no-nb_digitidsskrift_2025011680002_…` to `…80011_…`); 1813 also GB: `QNA_AQAAMAAJ` | sample checked; **1813 in the corpus** (`collegial-tidende-1813`); 1814–1848 not found |
 | Mordhorst, Dansk Pengehistorie III Bilag | — | not found | |
 
 ## 4. 1849–1914 and the territories
 
 | Work | Tier | Where | State |
 |---|---|---|---|
-| Departementstidenden 1848 · 1853 · 1857 · 1860 | 0 | IA: `departementstid00denmgoog` · `departementstid01denmgoog` · GB: `EMsoAAAAYAAJ` · IA: `bub_gb_hMkoAAAAYAAJ_2` | metadata; **1855 and 1856 not found** |
-| Love og Anordninger (Algreen-Ussing) 1851 | 0 | GB: `k2IrAQAAMAAJ` | unverified; 1854–1857 not found |
+| Departementstidenden 1848 · 1853 · 1857 · 1860 | 0 | IA: `departementstid00denmgoog` · `departementstid01denmgoog` · GB: `EMsoAAAAYAAJ` · IA: `bub_gb_hMkoAAAAYAAJ_2` | metadata; **1855 and 1856 not found**; 1854 is in the corpus (`departementstidenden-1854`, GB: `DijU-vaYhCYC`) |
+| Love og Anordninger (Algreen-Ussing) 1851 | 0 | GB: `k2IrAQAAMAAJ` | unverified; 1854–1857 not found; the volume for 1873 (XVIII Deel) is in the corpus (`algreen-ussing-1873`, GB: `LkgrAQAAMAAJ`) |
 | Lovtidende 1871–1914 | — | not found | HathiTrust not reachable |
-| Gesetz- und Ministerialblatt 1852 · 1857 · 1859 · 1861 · 1862 | 0 | IA: `bub_gb_BNRCAAAAcAAJ` · `bub_gb_WdJCAAAAcAAJ` · `bub_gb_g9JCAAAAcAAJ` · `bub_gb_yNNCAAAAcAAJ` · GB: `19NCAAAAcAAJ` | metadata |
+| Gesetz- und Ministerialblatt 1852 · 1857 · 1859 · 1861 · 1862 | 0 | IA: `bub_gb_BNRCAAAAcAAJ` · `bub_gb_WdJCAAAAcAAJ` · `bub_gb_g9JCAAAAcAAJ` · `bub_gb_yNNCAAAAcAAJ` · GB: `19NCAAAAcAAJ` | metadata; 1854 is in the corpus (`gesetz-ministerialblatt-holstein-lauenburg-1854`, GB: `BtJCAAAAcAAJ`) |
 | Chronologisk Samling for Slesvig | 0 | IA: `10518932bsb`, `10518938bsb`; DDB items for 1854 and 1856 | which years each holds not established |
 | Wilcke V (1930), scan | — | not found | danskmoent's `Wilcke_V_Anm_Ernst.pdf` is **Ernst's review**, not the book (checked 2026-11-25) |
 | Collin, Om Rigsmønt og Courant (1855) | — | not found | |
 | Rigsdagstidende | 0 | folketingstidende.dk `/ebog/…` | unverified; 1853–54 not confirmed online |
-| Lovsamling for Island 1–21 | 0 | IA: `LovsamlingforIsl000195669v{N}IslaReyk`, N = 1…21 | identifiers checked |
+| Lovsamling for Island 1–21 | 0 | IA: `LovsamlingforIsl000195669v{N}IslaReyk`, N = 1…21 | identifiers checked; Bd 15 (1851–1854) and Bd 21 (1871–1874) in the corpus (`lovsamling-island-bd15`, `lovsamling-island-bd21`) |
 | Danish West Indies coin ordinances | 3 | Wikipedia «Danish West Indian daler»; Rigsarkivet file «The coinage case (1830–1919)» | no text found; Tranquebar: nothing |
 | Officielles Wochenblatt für das Herzogthum Lauenburg; Sammlung der Verordnungen 1816–1830 | 0 | DDB records (Staatsbibliothek zu Berlin; BSB) | unverified |
 | Corpus Constitutionum Oldenburgicarum | 0 | <https://digi.ub.uni-heidelberg.de/diglit/corpus_constitutionum_oldenburgicarum_selectarum> | unverified; scope not decided |
-| Statistisk Aarbog 1904 · 1905 · 1907 · 1910 · 1911 · 1913 | 0 | `https://dst.dk/pubfile/<n>/hele`: 12690 · 12691 · 12700 · 12709 · 13161 · 13163 | unverified; other years not located |
+| Statistisk Aarbog 1904 · 1905 · 1907 · 1910 · 1911 · 1913 | 0 | `https://dst.dk/pubfile/<n>/hele`: 12690 · 12691 · 12700 · 12709 · 13161 · 13163 | unverified; other years not located; 1914 is in the corpus (`statistisk-aarbog-1914`, `https://slaegtsbibliotek.dk/2024/946060.pdf`) |
 
 ## 5. Not found at any tier
 
-Full texts of the ordinances of
-1660–1670 · Ulfeldt's order of 1648 · scans of Wilcke II and Wilcke V · Mordhorst's Bilag ·
+State of 2026-11-27. Original prints of the ordinances of 1660–1670 (quarto edition) · the 4to
+print of the Myndt-Ordning of 22 March 1671 · Ulfeldt's order of 14 Jan 1648 (unprinted; known
+from Wilcke II s. 101) · scan of Wilcke V · Mordhorst's Bilag ·
 Departementstidenden 1855–1856 · Love og Anordninger 1854–1857 · Lovtidende ·
 Collegial-Tidende after 1813 · Collin 1855 · charters of Slesvig and Holstein after 1340 ·
 ordinance texts for the West Indies and Tranquebar.
