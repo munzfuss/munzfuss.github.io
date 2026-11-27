@@ -113,6 +113,83 @@ Open: the 1406 recess's internal contradiction (Danish penny 2 Pf l. but Lübeck
 — settled by the HR I 5 Nr. 310 text and assays read afresh; the value of the copper sterling (1 Pf,
 Hb s. 170, or 3 Pf, M s. 385).
 
+## 3b. 1350 – c. 1497 from the deeds and the coins: town coinage, the royal restart, the common coin (curator question 2026-11-27)
+
+Questions: where the 1402 quote comes from; which year can mark the start (1400, 1402, 1403); how
+period 0 (1350–1392, town coinage of Flensborg and Ribe) relates to c. 1400–1424 — same grid or not;
+and whether 1424 ff. changes in 1448, 1481 or only c. 1495/97.
+
+**Source of the 1402 quote.** Galster, «Næstved Mønt» (1966; danskmoent `galster/nestved.htm`, cached):
+«*De findes med sikkerhed første gang nævnt i et københavnsk pantebrev af 1. oktober 1402: "32 mark
+sølv i hvid, lovlig og gængse Sjællands mønt"*» («they are first mentioned with certainty in a København
+pledge deed of 1 October 1402»). The deed is Rep. dipl. 1. R. III nr. 4529 (1402 Okt. 1), regest only
+«*Beg. *3792*» (= begins like nr. 3792), printed in *Kjøbenhavns Diplomatarium* II nr. 30 (not in our
+corpus). Nr. 3792 (Rep. II, c. 1391–93) has the formula «*in 23 mr. argenti in albis denariis*» — so
+Galster's Danish words are his rendering of a Latin «marks of silver in white pennies» formula with a
+Zealand-coin clause; the Latin wording of the 1402 deed itself is not read (would be settled by Kbh.
+Dipl. II 30). ⚠ The Repertorium figures below are from the OCR text layer of Erslev's regests, years
+from the running heads; not page-image-checked.
+
+**What the deeds pay in (Rep. dipl. 1. R. II 1351–1400 and III 1401–1450, corpus `repertorium-diplomaticum-1-2/-3`):**
+
+| Date | Formula (regest) | Reading |
+|---|---|---|
+| 1350s–1390s, many | «*mr. argenti, videl. in grossis, sterlingis et lybicensibus*»; «*in turonensibus, sterlingis, lybicensibus*»; «*puro argento, videl. grossis, turonensibus, sterlingis sive libicensibus vel denariis scaniensibus*»; «*lødige Mk. Sølv i kølniske Vægt*» (1366) | silver by weight, paid in FOREIGN coin: gros tournois, English sterlings, Lübeck pennies |
+| c. 1391–93 (nr. 3792) | «*23 mr. argenti in albis denariis*» | white pennies (Witten) as the coin of payment |
+| 1395, Lund (nr. 4013) | «*600 lødige Mk. hvide Engelske, 4 Engelske i hver Skill. og 45 Skill. i hver lødig Mk., og 400 lødige Mk. andre Penninge, som i Skåne er gæve*» | English sterling = ¼ ß, lødig mark = 45 ß — the reckoning (4 sterlings to the ß) is in use BEFORE any royal coin |
+| 1 Oct 1402 (nr. 4529) | «*32 mark sølv i hvid, lovlig og gængse Sjællands mønt*» (Galster) | first «Sjællands mønt» |
+| 1410 (nr. 5125) | «*20 lødige Mk. i hvide Penninge, hver regnet for 4 gode Lybeske*» | Hvid = 4 good Lübeck pennies |
+| 1410–1417, many | «*lødige Mk. i saadanne Penge, som i Siæland / Falster / Fyn er gænge*» | the realm's own current coin, by region |
+| 1413 (nr. 5264) | «*1000 lødige Mk., i hver 45 Skill. lybsk*» | the 45 ß of the lødig mark are Lübeck ß (cf. Galster's 1398 «*45 skilling lybsk*») |
+| 1420 (nr. 5853) | «*30 lybske Mk. engilske Sølvmønt*» | sterlings counted in Lübeck marks |
+| 6 Feb 1422 (nr. 5956) | «*300 lødige Mk. i gamle hvide Penninge og kronede ængliska*» | «old» Hvide beside Erik's crowned sterlings |
+| 1422 (or 1417), Flensborg (nr. 5967) | «*8 lødige Mk. rede saadant mynt, som er ænghliske og hvide lybiiske*» | sterlings and Lübeck Witten side by side |
+| c. 1425 (nr. 6205) | «*200 lødige Mk. i hvide Engelska, som gænge var i Scone og Siæland nu over 4 Vintre*» | payment in the silver sterlings current four winters earlier, i.e. before the copper sterling of 1422–23 |
+| 1438 (nr. 6949) | «*20 lødige Mk., gænge i Syæland, Kobberpenge undtagne, om de vorder gængse*» | copper excluded by contract |
+| 1440 (nr. 7100) | «*8 lødige Mk. rede Penge, 6 Grosser i hver Skilling og 45 Skilling i hver lødig Mk.*» | the gros = ⅙ ß = 2 Pf — the value of Christopher's tariff (RL nr. 11 «*for ii lybske*») |
+| 1445 (nr. 7499–7500) | «*saadan Mønt, at læt gullen gælder 12 Skill.*» | a light gulden = 12 ß |
+| 1448 | «*40 lybske Mk., danske Penge gænge i Fyn*»; «*rynsk Guld, hver Gylden saa god som 24 Skill.*» | Danish coin reckoned in Lübeck marks |
+
+**Period 0 (1350–1392) against c. 1400–1424.** Period 0 has no royal coin (the old royal penning
+coinage ran to c. 1377, last mint Lund, Hauberg 1886 s. 136): payment in foreign coin by silver weight,
+with two local Witten copies — Ribe (town, 1373 – c. 1377, 1,19 g × 800 ‰ ≈ 88 % of the Lübeck Witten
+1375) and Flensborg («MONETA HOLSACIE», ≈ 93 %; «*Lybækker og Flensborger denarii argentei (Witten)
+betegnes 1360 som af samme Værd*», Nöbbe 1930 s. 2) — `luebischer_muenzfuss.md` §3.11, §3.13. The
+royal coin of c. 1400 copies the same Lübeck Witten (Galster: Næstved Hvid 1,10 g against the Lübeck
+Witten of the 1398 recess, 193 / mark = 1,21 g), and the reckoning of 1395 (4 sterlings = 1 ß, 45 ß =
+1 lødig mark) is the one the royal coin enters. Reading [C]:
+- **same grid** — the Lübeck set (Pf, sterling 3, Witten / Hvid 4, ß 12, Mark 16) is the unit system of
+  period 0 (in foreign and local coin) and of c. 1400–1424 (in royal coin);
+- **different tie** — in period 0 the local Witten passed at the Lübeck value (1360: same value), i.e.
+  the Danish lattice was the Lübeck one; from c. 1400 the royal coin is a separate Danish currency rated
+  below Lübeck (complaints 1403–04; 1406, 1410 rates);
+- **no institutional link** — town coinage (Ribe; Flensborg under the Holstein counts) against royal
+  coinage, a gap 1393–1402 with no coin, different issuers and territory. The link is the common model
+  (the Lübeck Witten) and the common reckoning, not continuity of a coin line.
+
+**Start year.** Decision to restart: 24 Jan 1396 (Viborg levy, no coin named). First royal coins:
+«*1400-tallets allerførste år*» (Moesgaard). First mention in a deed: 1 Oct 1402. First certain
+production and the first Hanseatic complaint: 1403 (Märcher s. 379; HR I 5 S. 107, 6 Dec 1403). The
+curator's working date for the card is **c. 1400** (2026-10-27, `luebischer_muenzfuss.md` §3.11);
+1402 is a terminus ante quem, 1403 the first certain year — neither is the start of striking.
+
+**1424 – c. 1497: changes in the repertoire, not in the grid.**
+
+| Stage | Struck | Of account only | Source |
+|---|---|---|---|
+| before 1424 | Hvid, sterling, hollow penny (copper sterling 1422–23) | Mark, Skilling, Søsling | Galster «*Mark, skilling og søsling (indtil 1424) var regningsmønt*» |
+| 1424 – c. 1440 | Søsling, Lebard (1 Pf), Gros (1430s, cut to 2 Pf) | Mark, Skilling | Lindahl s. 82–83; deed 1440 «6 Grosser i hver Skilling» |
+| 1440 – 1448 | Skilling (Christoffer 1440–42, Rigsråd 1448), Søsling, Sterling 1444, Hvid 1444 | Mark | finals (Galster 17, 18, 20, 21) |
+| 1448 – c. 1497 | Hvid only (Christian I; Rigsråd 1481–83; Hans 1483–97) | Mark, Skilling, Søsling | chains §2; `hans_rates` §3 (Gribshunden 1495) |
+| c. 1495/97 → | Hans' Skilling and Søsling at the Lübeck level, 4 → 5 Hvide | — | §4a |
+
+The units and their ratios (Hvid ⅓ ß, Søsling ½ ß, ß 12 Pf, Mark 16 ß) hold through 1424 – c. 1497;
+what changes is which of them are coins. 1440 is the first striking of the Skilling, 1448 the return to
+a Hvid-only coinage; 1481 changes nothing (the Rigsråd and Hans strike the same Hvid and the rates
+1483–1495 stay at G = 2 M d.). The only change of GRID is c. 1495/97 (§4a). Whether 1440–1448 (the one
+stretch when the whole set was coin) deserves a phase of its own is a question of the card's
+phasing, not of the grid.
+
 ## 4. c. 1495/97 – 1536: two grids
 
 **Grid A (Hvid):** Hvid; Blaffert = ½ Hvid (Galster's reading for 1514; SET only 1602); Mark dansk =
