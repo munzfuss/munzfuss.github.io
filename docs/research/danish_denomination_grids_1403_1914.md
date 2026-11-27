@@ -197,6 +197,19 @@ therefore set at c. 1495/97 (it was written «c. 1481» in the first version of 
   Gylden are the same count, so B may revive the trunk's 1440s Skilling-Gylden link (24) rather than its
   coin. Not shown: whether the «gode Sølvpenge» of 1449 are Christoffer's / the Rigsråd's Skillinger or
   Lübeck money. Would be settled by the 1449 source (R6 in hans_rates) read in full.
+  - **The 1449 source read (2026-11-27) — the hypothesis loses its only support as a Danish rate, and
+    stays open.** The item is a private pledge deed, not an act: København, Palm Sunday 6 April 1449,
+    Anders Troelssøn of Næstved owes **50 Mark lybsk** «*i gode Sølvpenge eller rynsk Guld at betale og
+    Gyldenen for 24 Skill., om nogen Kobbermønt eller anden argere Mønt blev gænge i Siæland efter denne
+    Tid*» (Rep. dipl. 1. R. III s. 759, nr. 7877, a regest; page image read; full row in hans_rates §3).
+    What it shows: the 24 Skilling per Gylden are counted in the reckoning of the debt, Mark lybsk
+    (G = 1½ M lybsk), and «gode Sølvpenge» is good silver coin as opposed to copper or worse coin — no
+    coin type, mint or issuer is named. What it does not show: whether the silver handed over would be
+    Lübeck Schillinge or Danish Skillinger struck to that reckoning. So the deed attests a 24-ß Gylden
+    in lybsk money of account in Sjælland in 1449, between two private parties; it is not evidence of a
+    Danish Skilling coin tariffed at 24 per Gylden. Would settle it: the full text of the deed (RA,
+    «Ringsted H. 94»; a copy in Langebeks Diplomatarium) — only if it names the coin; or a Lübeck
+    Gulden rate for 1449 to compare with 24 ß (not looked up).
 - **The 1513–14 contact is a return of B to the trunk's ratio,** not a third grid: the Blicher letter
   sets ß = 3 Hvide again («*Forholdet til den lybske ß ophævet*», Wilcke s. 151), and the 1514 grid puts
   ß 0,997 g = 3,00 Hvide (0,332) — the trunk relation restored for one act.
