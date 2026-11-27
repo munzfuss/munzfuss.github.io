@@ -37,7 +37,7 @@
 
 | Period | Grids | Seam (the floating link) | Ends with |
 |---|---|---|---|
-| 1403/1424 – c. 1495/97 | **one** Lübeck-set grid: Pf – sterling (3) – Hvid (4) – Søsling (6) – ß (12); 1448 – c. 1497 Hvid only struck, ß dansk (3 Hvide) and Mark dansk (48 Hvide) as units of account | none inside; Danish ↔ Lübeck money by non-integer rates (1406: 12 ß d. = 16 ß l.; Christian I – 1495: G = 2 M d. = 20–24 ß l.) | Hans' Skilling coin enters at 4 Hvide (§4a) |
+| 1403/1424 – c. 1495/97 (split at 1424 proposed, §3a) | **one** Lübeck-set grid: Pf – sterling (3) – Hvid (4) – Søsling (6) – ß (12); 1448 – c. 1497 Hvid only struck, ß dansk (3 Hvide) and Mark dansk (48 Hvide) as units of account | none inside; Danish ↔ Lübeck money by non-integer rates (1406: 12 ß d. = 16 ß l.; Christian I – 1495: G = 2 M d. = 20–24 ß l.) | Hans' Skilling coin enters at 4 Hvide (§4a) |
 | c. 1495/97 – 1536 | **two:** (A) Hvid – Blaffert – Mark dansk (48 Hvid) – Mark pieces; (B) Pf – Søsling – ß – 2/4/8 ß – Gylden / Sølvgylden (24 ß l.) | ß : Hvid = 4 → 5 (obs.), 3 (1513, 1514), 6 old (1515), 4 (1523, 1524), G : M = 2 → 2½ (obs.; SET Oslo 1525) | 1537 tariff / 1541 ordinance |
 | 1537/1541 – 1601 | **one:** Pf – Hvid – ß – M – Daler (12 / 3 / 16 / 3, then 2 and 4 M) | none set; 1563–71 the Klipping grid beside the round coin | the Mark piece leaves the ß in 1602 |
 | 1602 – Nov 1619 | **two:** (C) Rdl – ½ – Ort – Mark piece (¼ Rdl to 1617) – Krone (1½ Rdl, 1618–19); (D) Blaffert – Hvid – Søsling – ß – 2/4/8 ß – Mark of account (16 ß) | Rdl : ß = 66 → 68 → 74 → 80 → 84; Apr–Nov 1619 a third: Kron-ß grid (Krone = 96 Kron-ß) | Frdg. 16 Nov 1619 (Rdl = 96 ß = 6 M), Frdg. 4 May 1625 |
@@ -69,6 +69,49 @@ Metal [C]: Søsling 1424 0,979 g fine (= 1,957 g/ß). Christopher's Skilling 144
 sterling-Hvid metal parity contradicts 3 vs 4 Pf; our medians, assays of debased coin). Inside the
 realm there is no floating link: every denomination sits on the Lübeck set 1-3-4-6-12. **One grid.**
 The gros at 9 Pf (¾ ß) is the only off-set value and was cut to 2 Pf — a tariff, not a second grid.
+
+## 3a. Before 1424 — a period of its own? (curator question 2026-11-27)
+
+Why «1403/1424»: 1403 is the start of the curator's research window and the first certain royal
+production (Næstved sterlings, `danish_standard_chronology_1396_1541.md` §2a, M s. 379); 1424 is the
+first act that sets a Danish chain. The double year mixed two criteria. The royal coinage itself
+restarts c. 1400–1403 (Næstved Witten; first mention 1 Oct 1402 «*32 mark sølv i hvid, lovlig og
+gængse Sjællands mønt*»); before that the Danish deeds of 1380–1410 reckon «hvide» = 4 Lübeck hollow
+pence, i.e. on Lübeck coin (Hb s. 136 n. 2), and Margrete's forordning of 1396 names no coin.
+
+**c. 1400/1403 – 1424, what the sources give (chronology §2a, chains §1):**
+- coins: Witten / Hvid (Næstved, crown / crozier), crown hollow penny, Erik's sterling (Næstved,
+  Lund, c. 1403–1412/13), copper «Kobbersterling» c. 1422 – Whitsun 1423; no Søsling, no Skilling coin;
+- internal set: sterling = 3 Pf (M s. 381 «*sterling (=tre penninge)*»), Hvid = 4 Pf, ß = 12 — the
+  Lübeck set 1-3-4-12 without the 6;
+- tie to Lübeck: not par, not integer, contested. The towns complain 1403–1404 that the queen's
+  officials pay the Danish coin out «*vor vul*» and refuse it «*vor vul*» (HR I 5 S. 107, 119, 124);
+  the 1406 recess rates the Danish penny at 2 Pf l. and the Lübeck mark at 12 Danish ß (the editor:
+  «*mir nicht verständlich*», ⚠ chains §1); 1410 the sterling (3 Pf) at 2 Lübeck Pf, the crown hollow
+  penny at ½ (M s. 381). Level [C]: sterling 6,1–9,8 Mark per fine mark against Lübeck 5,4 (1406).
+
+**8 Oct 1424 changes three things at once:**
+1. the old Danish coin is re-based by half — «*old Danish 4-Pf pieces cut to 2 new Pf, crown hollow
+   pennies to ½*» (Jesse via `mark_lybsk_mark_dansk.md` §4): a SET integer conversion (2 : 1), the
+   names kept, the unit's value halved;
+2. the Danish coin becomes the common coin with the four towns, «*in allen drei Reichen außer in Bergen
+   gleichmäßig*» (Sechsling 168 / 11¼ lot, level 7,47 = Lübeck 7,47): the Danish lattice and the
+   Lübeck lattice coincide for the first time;
+3. the 6-Pf piece (Søsling) enters the Danish repertoire, completing the set 1-3-4-6-12.
+
+**Reading [C, «можна вважати»].** By the internal criterion of §1 the two stretches are ONE grid: the
+same set of units, and the 1424 conversion is integer (like the renaming of 1572, §5), not a floating
+seam. By the Danish : Lübeck criterion of §9 they differ: before 1424 a separate Danish currency on
+the Lübeck set, joined to Lübeck money at non-integer, disputed rates; from 1424 one coin with Lübeck
+(the par soon lapsed — «*Nur die Anlehnung des dänischen Münzwesens an das der Städte blieb
+bestehen*», Jesse — but no new internal seam opened). So **c. 1400/1403 – 1424 can be counted a period
+of its own**: same grid, separated from the next by a re-basing (×½), by the change from an
+incommensurable to a common tie with Lübeck, and by a new denomination. Whether to split §3 at 1424 is
+the curator's call; the start would then be c. 1400–1403 (royal coinage), not 1403 as a fixed year.
+
+Open: the 1406 recess's internal contradiction (Danish penny 2 Pf l. but Lübeck mark = 12 Danish ß)
+— settled by the HR I 5 Nr. 310 text and assays read afresh; the value of the copper sterling (1 Pf,
+Hb s. 170, or 3 Pf, M s. 385).
 
 ## 4. c. 1495/97 – 1536: two grids
 
