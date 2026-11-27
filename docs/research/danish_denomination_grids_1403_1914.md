@@ -37,8 +37,8 @@
 
 | Period | Grids | Seam (the floating link) | Ends with |
 |---|---|---|---|
-| 1403/1424 – c. 1481 | **one** Lübeck-set grid: Pf – sterling (3) – Hvid (4) – Søsling (6) – ß (12) | none inside; Danish ↔ Lübeck money by a non-integer recess rate (1406: 12 ß d. = 16 ß l.) | Hvid falls away from the ß under Hans |
-| c. 1481/1497 – 1536 | **two:** (A) Hvid – Blaffert – Mark dansk (48 Hvid) – Mark pieces; (B) Pf – Søsling – ß – 2/4/8 ß – Gylden / Sølvgylden (24 ß l.) | ß : Hvid = 4 → 5 (obs.), 3 (1513, 1514), 6 old (1515), 4 (1523, 1524), G : M = 2 → 2½ (obs.; SET Oslo 1525) | 1537 tariff / 1541 ordinance |
+| 1403/1424 – c. 1495/97 | **one** Lübeck-set grid: Pf – sterling (3) – Hvid (4) – Søsling (6) – ß (12); 1448 – c. 1497 Hvid only struck, ß dansk (3 Hvide) and Mark dansk (48 Hvide) as units of account | none inside; Danish ↔ Lübeck money by non-integer rates (1406: 12 ß d. = 16 ß l.; Christian I – 1495: G = 2 M d. = 20–24 ß l.) | Hans' Skilling coin enters at 4 Hvide (§4a) |
+| c. 1495/97 – 1536 | **two:** (A) Hvid – Blaffert – Mark dansk (48 Hvid) – Mark pieces; (B) Pf – Søsling – ß – 2/4/8 ß – Gylden / Sølvgylden (24 ß l.) | ß : Hvid = 4 → 5 (obs.), 3 (1513, 1514), 6 old (1515), 4 (1523, 1524), G : M = 2 → 2½ (obs.; SET Oslo 1525) | 1537 tariff / 1541 ordinance |
 | 1537/1541 – 1601 | **one:** Pf – Hvid – ß – M – Daler (12 / 3 / 16 / 3, then 2 and 4 M) | none set; 1563–71 the Klipping grid beside the round coin | the Mark piece leaves the ß in 1602 |
 | 1602 – Nov 1619 | **two:** (C) Rdl – ½ – Ort – Mark piece (¼ Rdl to 1617) – Krone (1½ Rdl, 1618–19); (D) Blaffert – Hvid – Søsling – ß – 2/4/8 ß – Mark of account (16 ß) | Rdl : ß = 66 → 68 → 74 → 80 → 84; Apr–Nov 1619 a third: Kron-ß grid (Krone = 96 Kron-ß) | Frdg. 16 Nov 1619 (Rdl = 96 ß = 6 M), Frdg. 4 May 1625 |
 | 1625 – 1647 | **one:** Hvid (⅓) – Søsling (½) – ß – M (16) – Sletdaler (64) – Rdl (96) – Krone (128); the 1628–30 coin integer fractions of the Rdl | old pieces tariffed off-grid (13⅓, 6⅔, 5⅓ ß) | the Hebræer coin 1644, Frdg. 10 Dec 1647 |
@@ -53,7 +53,7 @@ currencies before 1541, one lattice at the exact factor 2 from 1602 (SET) to the
 century; in 1788 the duchies re-divide the Speciedaler 60 instead of 48, and the factor 2 passes to the
 S.-H. Courant (ß S.-H. = 2 ß d.).
 
-## 3. 1403/1424 – c. 1481: one grid
+## 3. 1403/1424 – c. 1495/97: one grid
 
 | Link | Ratio | Status | Source |
 |---|---|---|---|
@@ -70,7 +70,7 @@ sterling-Hvid metal parity contradicts 3 vs 4 Pf; our medians, assays of debased
 realm there is no floating link: every denomination sits on the Lübeck set 1-3-4-6-12. **One grid.**
 The gros at 9 Pf (¾ ß) is the only off-set value and was cut to 2 Pf — a tariff, not a second grid.
 
-## 4. c. 1481/1497 – 1536: two grids
+## 4. c. 1495/97 – 1536: two grids
 
 **Grid A (Hvid):** Hvid; Blaffert = ½ Hvid (Galster's reading for 1514; SET only 1602); Mark dansk =
 16 ß à 3 Hvide = 48 Hvid (Wilcke 7-2 s. 149, obs. under Hans; Oslo 1525 SET: G = 120 Hvid = 2½ M);
@@ -104,6 +104,63 @@ loose (30 such ß = 2½ M).
 **Placement of the early-grid denominations under the split:** Søsling → B; sterling (3 Pf, ¼ ß) → B if
 assigned at all (¾ Hvid non-integer); Penning → B (12 per ß; 3 or 4 per Hvid floats); gros → none (a
 tariffed episode); Skærv → no tariff known.
+
+## 4a. The transition into §4 — when, and which branch continues the trunk (2026-11-27)
+
+Curator question: when exactly does the one grid of §3 become the two of §4, and is grid A or B the
+continuation of §3, or are both separate from it.
+
+**Coin lines in our data (finals under `luebischer_muenzfuss`):**
+
+| Line | Struck | Gap | Fine g (medians / implied) |
+|---|---|---|---|
+| Hvid | Christoffer III 1444 (Galster 20); interregnum 1448; Christian I 1448–81 (Galster 23); Rigsråd 1481–83 (Galster 22); Hans 1483–1513 | none | 0,328 (1444) → 0,267 (1448) → 0,206 (Hans, Malmø) |
+| Skilling | Christoffer III 1440–42 Lund (Galster 18); Rigsråd 1448 Malmø (Galster 21); Hans from c. 1497 | **1448 → c. 1497**: Christian I struck Hvide only (chains §2) | 1,066 (1440) → 0,961 (1448) ‖ Hans 9 lod ≈ 1,27 (`danish_small_coin_lines_1497_1660.md` §3) → 0,82–1,04 (1512) |
+| Søsling | Christoffer III 1440–42 (Galster 17); Hans 1497 ff. | 1442 → 1497 | 0,699 (1440) ‖ 0,405–0,507 (1497–1506) |
+
+Dating of Hans' first Skilling (`hans_rates_1481_1513.md` §3): the Gribshunden purse (June 1495) holds
+Hvide only («*may indicate that these nominals were not minted before June 1495, but the sample size …
+is too small*»); the Møllegården hoard, 190 Skillinger of Hans, «*may indicate … that skilling also was
+issued late in the 1490s*»; the first rate «*4 Hvide ß, som Kong Hans mønte lod*» is of 1497 (Wilcke 7-2
+s. 142). The rates 1483–1495 show one Danish level only — G = 2 M d. (1483, 1485 «*12 og 20 ß*» in
+Hvide, 1487, «bis etwa 1500»), Hvid = 3 Pf lübisch (1495) — which at Gulden silver ≈ 30,5 g give the
+same Hvid, 0,318 g (hans_rates §4, recomputed).
+
+**When.** Inside the realm the split begins when a Skilling coin is again struck and passes at more
+than 3 Hvide: **c. 1495–1497**. 1481 (accession of Hans) is a change of reign, not of grid: 1481–1495
+the Danish coin is the Hvid and the reckoning is the Hvid one, as under Christian I. The split is
+complete c. 1500–1501, when the Gulden moves from 2 to 2½ M d. (= 96 → 120 Hvide) while staying 24 ß
+in the Skilling count (hans_rates §3; `mark_lybsk_mark_dansk.md` §4). The boundary of §3 / §4 is
+therefore set at c. 1495/97 (it was written «c. 1481» in the first version of this dossier).
+
+**Which branch continues the trunk.**
+- **Grid A is the trunk.** The Hvid is the one denomination struck without a break from the 14th c. to
+  1513, with a gradual fall of fine weight (0,328 → 0,267 → 0,206 g) — the inertial continuity of the
+  same denomination that the curator's definition of a Fuß requires (`danish_small_coin_lines_1497_1660.md`
+  §1). The account of grid A is the trunk's own: ß dansk = 3 Hvide, Mark dansk = 16 ß dansk = 48 Hvide
+  (Wilcke 7-2 s. 149 «*M dansk à 16 ß à 3 Hvide*»), and under Christian I, with no Skilling coin struck,
+  the realm already reckoned only in this Hvid mark (G = 2 M d., Viken rent). From 1448 the trunk is,
+  in practice, grid A.
+- **Grid B is not a continuation of the trunk's Skilling coin.** (a) Fifty years without a Danish
+  Skilling (1448 → c. 1497). (b) Hans' Skilling starts heavier than the last trunk Skilling (≈ 1,27 g
+  against 0,961 g of 1448) — at the level of the Lübeck Schilling of 1468/92 (1,271 g, hans_rates §4),
+  not on the trunk's falling line. (c) It is counted in the Lübeck mark: Wilcke 7-2 s. 149 «*delt
+  Valutaen i M lybsk à 16 ß lybske eller danske Skillinger og M dansk à 16 ß à 3 Hvide*» («divided the
+  currency into the Mark lybsk of 16 Lübeck or Danish ß and the Mark dansk of 16 ß of 3 Hvide»). Grid B
+  is a new line pegged to the Lübeck Schilling, joined to the Danish Hvid at a floating rate. The
+  Søsling follows it (½ ß, struck again from 1497 after a 55-year gap).
+- **What B does inherit — hypothesis.** The trunk's ß-to-Gulden relation: Sjælland 1449 «*1 Rhinsk
+  Gylden skal regnes til 24 Skilling gode Sølvpenge*» (hans_rates §3, R6) and the 1514 act's 24 ß per
+  Gylden are the same count, so B may revive the trunk's 1440s Skilling-Gylden link (24) rather than its
+  coin. Not shown: whether the «gode Sølvpenge» of 1449 are Christoffer's / the Rigsråd's Skillinger or
+  Lübeck money. Would be settled by the 1449 source (R6 in hans_rates) read in full.
+- **The 1513–14 contact is a return of B to the trunk's ratio,** not a third grid: the Blicher letter
+  sets ß = 3 Hvide again («*Forholdet til den lybske ß ophævet*», Wilcke s. 151), and the 1514 grid puts
+  ß 0,997 g = 3,00 Hvide (0,332) — the trunk relation restored for one act.
+
+**Answer in one line:** the one grid of §3 narrows to the Hvid and its account under Christian I
+(1448 – c. 1497) and continues as grid A; grid B is a separate line opened by Hans' Skilling c. 1495–97,
+pegged to Lübeck, inheriting at most the trunk's 24-ß Gylden count.
 
 ## 5. 1537/1541 – 1601: one grid
 
@@ -387,7 +444,8 @@ Danish kurant.
 | Year | Transition | Kind |
 |---|---|---|
 | 1424 | common Sechsling; Danish = Lübeck coin | grids one |
-| c. 1481–1497 | Skilling coin at 4, then 5 Hvide; Mark dansk stays 48 Hvide | **split** A / B |
+| 1448 – c. 1497 | Christian I strikes Hvide only; reckoning in the Hvid mark (G = 2 M d.) | trunk narrows to grid A |
+| c. 1495–1497 | Hans' Skilling coin at 4, then 5 Hvide (§4a); Mark dansk stays 48 Hvide | **split** A / B |
 | 1513–14 | ß = 3 Hvide (SET), one silver level (GRID 1514) | contact |
 | 1515 | 6 old Hvide per new ß | split again |
 | 1523 | full set chain, not executed | attempted merge |
