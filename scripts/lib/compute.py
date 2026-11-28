@@ -337,6 +337,19 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
     return segs
 
 
+def _assays_lend_no_fineness(raw, fineness_pairs) -> bool:
+    """True when the coin's fineness readings are a source's assays of the
+    TYPE (`uncertainty.fineness` how `type_assay`) giving two or more
+    different values. Which of them belongs to a weight from another source
+    is not known, so such a weight borrows none of them (curator 2026-11-28,
+    the skærv Galster 6: Galster 1966's assays 334 and 413 are not lent to the
+    Lindahl and Numista weights)."""
+    ent = (getattr(raw, "uncertainty", None) or {}).get("fineness") or []
+    if not any(getattr(e, "how", None) == "type_assay" for e in ent):
+        return False
+    return len({round(v, 5) for v, _ in fineness_pairs if v is not None}) >= 2
+
+
 def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) -> None:
     """Populate cc.msr_* — per-specimen measurement sub-rows + per-column
     run-length segments. Only meaningful (and rendered) when msr_n > 1.
@@ -358,6 +371,8 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     # More than two distinct readings → a weight-only row shows no проба
     # (same rule as the fallback in compute_coin).
     if len({round(v, 5) for v, _ in fineness_pairs if v is not None}) > 2:
+        pf = None
+    if _assays_lend_no_fineness(cc.raw, fineness_pairs):
         pf = None
     # Canonical fineness readings (deduped values) to snap each row's derived
     # fineness onto — keeps the displayed value clean (.750, not .74999 float
@@ -1604,7 +1619,8 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     # stay empty instead of guessing (curator 2026-10-22). Two or fewer keep
     # the borrow.
     _fin_distinct = {round(v, 5) for v, _ in fineness_pairs if v is not None}
-    if fineness_pairs and len(_fin_distinct) <= 2:
+    if (fineness_pairs and len(_fin_distinct) <= 2
+            and not _assays_lend_no_fineness(cc.raw, fineness_pairs)):
         _fb = max(fineness_pairs, key=lambda p: _fin_authority(p[1]))
         fallback_f, fallback_f_src = _fb[0], _fb[1]
     else:
