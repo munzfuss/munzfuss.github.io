@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-11-28T12:11:27Z'
+generated_at: '2026-11-28T13:31:20Z'
 entity: danish_realm
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -243,6 +243,16 @@ coins:
       - value: 0.413
         source: danskmoent.dk (Galster 1966, Næstved mønt)
     weight_rough_g:
+      - value: 0.145
+        source: danskmoent.dk (Galster 1966, Næstved mønt)
+        approximate:
+          de: '[b]Galster 1966 (Næstved mønt)[/b] gibt das Durchschnittsgewicht der zwölf Skærve des Fundes von Nakskov: [i]«De tolv skærve vejer i gennemsnit 0,145 g»[/i] (dt.: «Die zwölf Skærve wiegen
+            durchschnittlich 0,145 g»).'
+          en: '[b]Galster 1966 (Næstved mønt)[/b] gives the average weight of the twelve skærve of the Nakskov hoard: [i]«De tolv skærve vejer i gennemsnit 0,145 g»[/i] (transl.: «The twelve skærve weigh
+            0.145 g on average»).'
+          uk: '[b]Galster 1966 (Næstved mønt)[/b] подає середню вагу дванадцяти скервів зі скарбу з Nakskov: [i]«De tolv skærve vejer i gennemsnit 0,145 g»[/i] (перекл.: «Дванадцять скервів важать у середньому
+            0,145 г»).'
+          da: '[b]Galster 1966 (Næstved mønt)[/b] angiver gennemsnitsvægten af de tolv skærve fra Nakskov-fundet: [i]«De tolv skærve vejer i gennemsnit 0,145 g»[/i].'
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
@@ -255,12 +265,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/halvpenn.htm
         ref: danskmoent.dk halvpenn.htm
-    weight_range_g:
-      - min: 0.14
-        max:
-        approx: true
-        source: danskmoent.dk halvpenn.htm
-        url: https://www.danskmoent.dk/gif/epomg6.gif
     diameter_mm:
       - value: 12.0
         source: danskmoent.dk halvpenn.htm
@@ -297,6 +301,10 @@ coins:
         the twelve pieces of the Nakskov Gåsetorvet hoard (1959) - most likely assays of those pieces, not of the specimens whose weights this record carries (Bruun 3751, Numista). Same treatment as the
         Wilcke type assay on dk-bruun-3839 (2026-11-03). The page halvpenn.htm that the builder parses gives no fineness, so a regen would clear it.'
       fineness_verified: false - an assay of the type, not of the specimens in this record (type_assay).
+      weight_rough_g: '0,145 g (curator 2026-11-28): the average weight of the twelve Nakskov skærve, printed by Galster 1966 «Næstved mønt» in the same sentence as the two assays («De tolv skærve vejer
+        i gennemsnit 0,145 g, to prøver viste 334 og 413 tusinddele»), so it pairs with both assays; marked approximate «(~)» because it is a mean of twelve pieces, not one weighing. halvpenn.htm, which
+        the builder parses, gives no such weight, so a regen would clear it.'
+      weight_rough_verified: true - printed by the source (Galster 1966).
   - id: dk-galster-epomg-2
     fuss: seed_unsorted
     phase: galster
