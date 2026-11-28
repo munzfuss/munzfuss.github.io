@@ -151,6 +151,11 @@ def _metal(fins: list[int], note) -> str | None:
     return kinds.pop() if kinds else None
 
 
+# Types whose average Lindahl prints without the unit (s. 79 «gn. 0,29.»,
+# s. 85 «gn. 2,11.»).
+_AVG_NO_UNIT = {"hulpenning", "skilling-christopher"}
+
+
 def _label(page: int) -> str:
     return f"{CITE}, s. {page}"
 
@@ -195,6 +200,15 @@ def collect() -> list[dict]:
         }
         if rng:
             entry["weight_range_g"] = [{"min": rng[0], "max": rng[1], "source": label}]
+            if rng[2] is not None and not single:
+                # Lindahl's average («gn.»): a weight reading marked
+                # approximate «(~)», the one her finenesses pair with; the
+                # range bounds then take none (curator 2026-11-28).
+                from lib.weight_range import average_reason
+                printed = ("gn. " + f"{rng[2]:.2f}".replace(".", ",")
+                           + ("" if key in _AVG_NO_UNIT else " g"))
+                entry["weight_rough_g"] = [{"value": rng[2], "source": label,
+                                            "approximate": average_reason(label, printed, rng[2])}]
         if note is _TRACES:
             # an assay without a figure: the fineness column shows it
             # (curator 2026-10-31), so no note repeating it

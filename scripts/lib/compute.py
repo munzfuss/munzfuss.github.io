@@ -1557,12 +1557,22 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         return [j for j, (fv, fsrc) in enumerate(fineness_pairs)
                 if fsrc and wt & _toks(fsrc) and _same_spec(w_spec, fineness_specs[j])]
 
+    # A range bound whose source ALSO gives a weight reading of its own (its
+    # average of the type, «gennemsnitligt 0,70g» / «gn. 0,70 g») takes no
+    # fineness: the source's finenesses pair with that reading, the bounds
+    # stay as weights only (curator 2026-11-28, Galster 4).
+    _spec_toks = set().union(*(_toks(weight_pairs[i][1]) for i in range(n_specimen_w))) \
+        if n_specimen_w else set()
+    _bare = {i for i in range(n_specimen_w, len(weight_pairs))
+             if _toks(weight_pairs[i][1]) & _spec_toks}
+
     def _w_idx_for(f_src, f_spec=None) -> list[int]:
         ft = _toks(f_src)
         if not ft:
             return []
         return [i for i, (wv, wsrc) in enumerate(weight_pairs)
-                if wsrc and ft & _toks(wsrc) and _same_spec(f_spec, weight_specs[i])]
+                if i not in _bare
+                and wsrc and ft & _toks(wsrc) and _same_spec(f_spec, weight_specs[i])]
 
     def _fineness_for(w_src, w_spec=None):
         js = _fin_idx_for(w_src, w_spec)
@@ -1578,6 +1588,8 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         both bounds (curator 2026-11-05: Galster 172's 1532 column 6,45 g ×
         0,970-0,980). Returns the indices beyond the first. With several
         weights in one group the first fineness alone stays, as before."""
+        if i_w in _bare:
+            return []
         w_src, w_spec = weight_pairs[i_w][1], weight_specs[i_w]
         js = _fin_idx_for(w_src, w_spec)
         if len(js) < 2:
@@ -1826,8 +1838,11 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     for i_w, (w, w_src) in enumerate(weight_pairs[1:], start=1):
         ca = ComputedAlt(source=w_src or "")
         ca.weight_rough_g = w
-        own_f, own_f_src = _fineness_for(w_src, weight_specs[i_w])
-        if own_f is not None:
+        own_f, own_f_src = ((None, None) if i_w in _bare
+                            else _fineness_for(w_src, weight_specs[i_w]))
+        if i_w in _bare:
+            f_used, f_used_src = None, None
+        elif own_f is not None:
             ca.fineness = own_f
             f_used, f_used_src = own_f, own_f_src
             if own_f_src:

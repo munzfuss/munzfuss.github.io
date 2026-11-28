@@ -94,6 +94,22 @@ def approx_reason(source: str, printed: str | None = None) -> dict:
     return out
 
 
+def average_reason(source: str, printed: str, value: float) -> dict:
+    """The reason of the `approximate` «(~)» mark on a source's AVERAGE weight
+    of a type («gennemsnitligt 0,70g», Lindahl's «gn. 0,70 g»; curator
+    2026-11-28): not a weighing of one piece. The source in bold, its words
+    in italics, a translation outside Danish (tooltip-text skill)."""
+    v_c = f"{value:.2f}".replace(".", ",")
+    v_p = f"{value:.2f}"
+    q = printed.strip()
+    return {
+        "de": f"[b]{source}[/b] gibt das Durchschnittsgewicht des Typs: [i]«{q}»[/i] (dt.: «durchschnittlich {v_c} g»).",
+        "en": f"[b]{source}[/b] gives the average weight of the type: [i]«{q}»[/i] (transl.: «on average {v_p} g»).",
+        "uk": f"[b]{source}[/b] подає середню вагу типу: [i]«{q}»[/i] (перекл.: «у середньому {v_c} г»).",
+        "da": f"[b]{source}[/b] angiver typens gennemsnitsvægt: [i]«{q}»[/i].",
+    }
+
+
 def range_pairs(ranges) -> list[tuple[float, str]]:
     """Expand `weight_range_g` into (value, source-label) weight readings:
     a range → lower bound + upper bound; a single figure → one reading.

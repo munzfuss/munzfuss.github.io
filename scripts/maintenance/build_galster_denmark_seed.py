@@ -1072,7 +1072,8 @@ def build_entry(data: dict) -> dict | None:
     #                   page gives no «Finhed» (curator: an assay of one
     #                   sub-type stands in only where nothing else does);
     #   the Assens-find table (hansg31) → each group's fineness, labelled by
-    #                   its Schou number. Average weights are not carried.
+    #                   its Schou number.
+    #   average weight → a weight reading marked «(~)» (below).
     gnum = data.get("galster_number")
     label = f"danskmoent.dk (Galster {gnum})"
     if specs.get("bruttovaegt_range_g"):
@@ -1088,6 +1089,17 @@ def build_entry(data: dict) -> dict | None:
         entry["weight_rough_g"] = [{"value": float(entry["weight_rough_g"]),
                                     "source": label,
                                     "approximate": approx_reason(label)}]
+        entry["weight_rough_verified"] = True
+    if specs.get("bruttovaegt_avg_g") and not entry.get("weight_rough_g"):
+        # The page's average weight of the type («gennemsnitligt 0,70g»): a
+        # weight reading marked approximate «(~)», the one the source's
+        # finenesses pair with; the range bounds then take none (curator
+        # 2026-11-28).
+        from lib.weight_range import average_reason
+        avg = float(specs["bruttovaegt_avg_g"])
+        entry["weight_rough_g"] = [{"value": avg, "source": label,
+                                    "approximate": average_reason(
+                                        label, _avg_printed(data, avg), avg)}]
         entry["weight_rough_verified"] = True
     if specs.get("finhed_range"):
         entry["fineness"] = [{"value": v, "source": label}
@@ -1366,6 +1378,24 @@ def _captions_for(entry: dict, captions: dict[str, list[dict]]) -> list[dict]:
 def _caption_source(cap: dict) -> str:
     return f"danskmoent.dk {cap['page']}"
 
+
+
+def _avg_printed(data: dict, avg: float) -> str:
+    """The page's own words for the average weight («gennemsnitligt 0,70g»,
+    «gennemsnit: 2,11g»), read from the cached page; a reconstruction when
+    the page cannot be read."""
+    import html as _html
+    from lib.galster_parsers.common import _WEIGHT_AVG_RE
+    src = data.get("source_file")
+    if src:
+        p = Path(__file__).resolve().parents[1] / "cache" / "danskmoent" / "galster" / src
+        if p.exists():
+            raw = p.read_bytes().decode("latin-1")
+            text = _html.unescape(re.sub(r"<[^>]+>", " ", raw))
+            m = _WEIGHT_AVG_RE.search(text)
+            if m:
+                return re.sub(r"[ \t]+", " ", m.group(0))
+    return f"gennemsnit {avg:.2f} g".replace(".", ",")
 
 def _cite_caption_page(entry: dict, cap: dict) -> None:
     """A caption reading taken from ANOTHER page than the coin's own puts that
