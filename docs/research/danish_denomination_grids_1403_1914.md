@@ -198,17 +198,26 @@ phasing, not of the grid.
 |---|---|---|---|
 | Viborg levy «*een hielpp till then mynt*» | 24 Jan 1396 (Fyn: to be paid before Walpurgis 1396) | terminus post quem for money to start; Märcher: «*blev det formentlig ikke umiddelbart til noget*» | Kr nr. 35–36; M s. 379 |
 | Gert Comhaer leaves the bishop of Utrecht after the settlement of 16 Nov 1397, goes to Denmark, «*muligvis så betids, at han har kunnet indrette møntsmedjen i Næstved*» | after Nov 1397; first named «*muntmester to Nestwede*» 27 May 1407 | earliest plausible date for organising the Næstved mint is 1398; Galster offers this as a possibility, not as a fact | Galster «Næstved Mønt»; M s. 380 («*senest fra år 1407*») |
-| Nakskov, Gåsetorvet hoard (1959): 12 Danish skærve (½ Pf, high silver) + 929 foreign | «*Ca. 1400-1405*» (M tab. 6.4, DMS 241); Lindahl 1960 «*Et Nakskov-møntfund fra dronning Margrethes tid*» | the earliest hoard with royal coin; the skærv «*sandsynligvis kun præget i begyndelsen af Eriks udmøntning*» (Moesgaard). The hoard's dating basis (the foreign coins' t.p.q.) is not in our corpus — open, settled by DMS 241 / Lindahl 1960 | M s. 378; Moesgaard NNUM 2005 |
-| Ribe was «*den eneste [udmøntning] i riget før ca. 1403*» | before c. 1403 | Märcher sees no royal coin before c. 1403 | M s. 368 |
+| Nakskov, Gåsetorvet hoard (1959): 12 Danish skærve (½ Pf, high silver) + 929 foreign — **no Hvid**: «*De 12 danske mønter er samme type*» (M tab. 6.4) | «*Ca. 1400-1405*» (M tab. 6.4, DMS 241); Lindahl 1960 «*Et Nakskov-møntfund fra dronning Margrethes tid*» | the earliest hoard with royal coin; the skærv «*sandsynligvis kun præget i begyndelsen af Eriks udmøntning*» (Moesgaard). The hoard's dating basis (the foreign coins' t.p.q.) is not in our corpus — open, settled by DMS 241 / Lindahl 1960 | M s. 378; Moesgaard NNUM 2005 |
+| Ribe was «*den eneste [udmøntning] i riget før ca. 1403*» | before c. 1403 | Märcher's «ca. 1403» rests on his s. 379: «*Først i 1403 er der med sikkerhed møntproduktion i gang i riget, for i det år begyndte en længere række hanseatiske klager*» — the first CERTAIN year (the complaints, «formentlig» about the sterling), not a start. Märcher does not cite the 1402 deed (no «1402» / «pantebrev» in the whole book) | M s. 368, 379 |
 | Næstved Hvid (Witten) + crown hollow penny «*1400-tallets allerførste år*» | c. 1400 | the earliest royal types | Moesgaard NNUM 2005 |
-| first deed mention «*Sjællands mønt*» | 1 Oct 1402 | terminus ante quem | Galster; Rep. III nr. 4529 |
+| order of the two Hvide: crozier (Galster 3, unique, 1,15 g) «*Den muligvis ældste Næstved-mønt*»; cross (Galster 2, 4 ex. from Stege 1898, «*nedlagt omved 1420*») «*lidt yngre*» (L n. 8); the sterling has «*ganske samme præg og omskrifter som den sidst nævnte hvid*» and the Hvid was «*ret snart opgivet … til fordel for sterlingen*» | crozier → cross → sterling | the cross Hvid is the immediate predecessor of the same-type sterling, so the change crozier → cross falls at the start of the sterling (c. 1403). L n. 8 ties the change to the queen's grant of 1411 to the Roskilde bishop only with «*Måske*» — that would put the cross Hvid beside a mass sterling of the same look, against Galster's «ret snart» and Moesgaard's «allerførste år» | Galster «Næstved Mønt»; L s. 77; Moesgaard NNUM 2005 |
+| first deed mention «*32 mark sølv i hvid, lovlig og gængse Sjællands mønt*» (Galster's Danish; the Latin not read) | 1 Oct 1402 | terminus ante quem for the Hvid (Hvide were struck only in Næstved, M s. 368); which of the two types is not identifiable from the deed | Galster; Rep. III nr. 4529; Kbh. Dipl. II nr. 30 |
 | Hanseatic complaint after the Skåne market of autumn 1403 | 6 Dec 1403 | certain circulation, in quantity, by summer–autumn 1403 | HR I 5 S. 107; M s. 379 |
 
-Reading [C, «можна вважати»]: nothing attests royal striking before 1400. The window is 1398 (Comhaer
-free, levy collected) – 1402 (first mention); the hoard evidence (Nakskov «ca. 1400–1405»; the Hvid and
-the skærv as the earliest types, both rare) fits a small first issue c. 1400–1402, the sterling in
-quantity from c. 1403. A start in 1398–99 is possible but rests only on Galster's «muligvis»; the
-working date **c. 1400** stands, «c. 1400–1402» for the first issue being the narrowest the sources allow.
+Reading [C, «можна вважати»] (revised 2026-11-28; the first version read Märcher's «ca. 1403» as the
+mint's start and put Hvid and skærv together in the Nakskov hoard — both wrong). **The start lies between
+1397 and 1 October 1402.** Lower bound: the coin was struck «*i kong Eriks navn, efter at han 1397 var
+blevet kronet i Kalmar*» (Galster); Comhaer's arrival after Nov 1397 is only Galster's «muligvis» and binds
+nothing. Upper bound: the 1402 deed already reckons in Hvide. «1403» (Märcher, Stefke) is the first
+certain year, not the start. The first issue was the Hvid with the crozier and the skærv (Nakskov
+«ca. 1400–1405» holds skærve only; the two skærv assays, 334 and 413 ‰ (Galster), are better than any
+hollow penny, 0–212 ‰ (L s. 79) — Moesgaard draws «*kun præget i begyndelsen*» from them). From the start
+of the sterling, c. 1403, the Hvid with the cross replaced the crozier type and soon gave way to the
+sterling. No royal coin before 1397 is attested. Adopted on the coin tables (curator 2026-11-28):
+Galster 3 1397–1403, Galster 2 1403–1405, Galster 6 skærv 1397–1405, Næstved only (danskmoent's «Næstved og
+Lund» for the skærv rests on the hollow penny's indistinguishable mints, against M s. 368 «*kun i
+Næstved*»).
 
 **(2) Silver content 1400 – c. 1500.** Level = Danish Mark (16 ß) per fine Cologne mark (233,856 g)
 [C]; fine g per ß = 14,616 / level. Like is compared with like: small coin always sits worse per unit
@@ -259,7 +268,10 @@ candidate phase boundaries of a standard, the curator's call.
 Caveats: the 1440 Søsling and the 1448 Skilling are single pieces; XRF surface readings run above the alloy
 for blanched billon (chronology §2i (3) 4); undated types give the dates only to within a reign or a mint's
 active years; the 1406 level rests on SH's emendation of the count (chronology §4). Open: the dating basis of
-the Nakskov hoard (DMS 241, Lindahl 1960 — not in the corpus); whether Galster's «9¾ lod» (1410) and «4 Pf»
+the Nakskov hoard (DMS 241, Lindahl 1960 — not in the corpus); the Latin text of the 1402 deed (Kbh. Dipl.
+II nr. 30) and Hauberg 1899 on the Stege hoard; Galster 1971 «Skærv» (NNUM 1971 s. 222–225 — Moesgaard's
+n. 11 for the assays) and Galster 1972, whose note after 9A gives danskmoent's Lund skærv (would settle
+whether any piece is attributed to Lund on its own evidence); whether Galster's «9¾ lod» (1410) and «4 Pf»
 revaluation come from a recess text (his source is not given — would be settled by HR I 5–6).
 
 ## 4. c. 1495/97 – 1536: two grids
