@@ -338,16 +338,16 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
 
 
 def _assays_lend_no_fineness(raw, fineness_pairs) -> bool:
-    """True when the coin's fineness readings are a source's assays of the
-    TYPE (`uncertainty.fineness` how `type_assay`) giving two or more
-    different values. Which of them belongs to a weight from another source
-    is not known, so such a weight borrows none of them (curator 2026-11-28,
-    the skærv Galster 6: Galster 1966's assays 334 and 413 are not lent to the
-    Lindahl and Numista weights)."""
-    ent = (getattr(raw, "uncertainty", None) or {}).get("fineness") or []
-    if not any(getattr(e, "how", None) == "type_assay" for e in ent):
-        return False
-    return len({round(v, 5) for v, _ in fineness_pairs if v is not None}) >= 2
+    """True when ONE source gives all of the coin's fineness readings and they
+    differ (a printed range, or several assays of the type). Which of them
+    belongs to a weight from another source is not known, so such a weight
+    borrows none of them (curator 2026-11-28: the skærv Galster 6, Galster
+    1966's assays 334 / 413 against the Lindahl and Numista weights; the
+    Flensburg Dreiling, Lindahl's «675/1000—759/1000» against the Numista
+    weight). A weight of that same source still pairs with its readings.
+    The `raw` argument is kept for the call sites."""
+    pairs = [(round(v, 5), s) for v, s in fineness_pairs if v is not None]
+    return len({v for v, _ in pairs}) >= 2 and len({s for _, s in pairs}) == 1
 
 
 def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) -> None:
