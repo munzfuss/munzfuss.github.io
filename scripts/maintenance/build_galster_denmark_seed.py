@@ -216,8 +216,8 @@ _NAESTVED_HVID_REASON = {
     "da": "Året strider mod den tid, møntstedet var i drift.\nMøntsiden på [b]danskmoent.dk[/b] angiver [i]«ca. 1424»[/i], samme websteds oversigter [i]«ca. 1400»[/i], ligesom [b]Bruun[/b]-kataloget.\n[b]Stefke 1995[/b]: Næstved mønt fandtes kun [i]«1403-1412/13 und 1422/23»[/i] (overs.: «1403–1412/13 og 1422/23»); i 1422/23 blev der kun slået kobbersterlinge dér.\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]: hvide blev slået [i]«kun i Næstved»[/i]; efter [b]s. 380[/b] blev møntstedet i Næstved lukket, da møntstedet i Lund åbnede omkring 1412–1413.",
 }
 _PAGE_YEAR_MARKS = {
-    "epomg2.htm": {"years": (1403, 1413), "printed": "1424", "kind": "erroneous", "reason": _NAESTVED_HVID_REASON},
-    "epomg3.htm": {"years": (1403, 1413), "printed": "1424", "kind": "erroneous", "reason": _NAESTVED_HVID_REASON},
+    "epomg2.htm": {"years": (1403, 1405), "printed": "1424", "kind": "erroneous", "reason": _NAESTVED_HVID_REASON},
+    "epomg3.htm": {"years": (1397, 1403), "printed": "1424", "kind": "erroneous", "reason": _NAESTVED_HVID_REASON},
 }
 
 

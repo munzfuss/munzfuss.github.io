@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-11-05T17:55:07Z'
+generated_at: '2026-11-28T12:11:27Z'
 entity: danish_norway
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -1088,11 +1088,18 @@ coins:
       galster_volume: f1g
     metal: billon
     fineness:
-    weight_rough_g: 0.73
+    weight_rough_g:
+      - value: 0.73
+        source: danskmoent.dk (Galster 171)
+        approximate:
+          de: '[b]danskmoent.dk (Galster 171)[/b] gibt den Wert als ungefähr an: [i]«ca.»[/i].'
+          en: '[b]danskmoent.dk (Galster 171)[/b] gives the value as approximate: [i]«ca.»[/i] (transl.: «circa»).'
+          uk: '[b]danskmoent.dk (Galster 171)[/b] подає значення як приблизне: [i]«ca.»[/i] (перекл.: «близько»).'
+          da: '[b]danskmoent.dk (Galster 171)[/b] angiver værdien som omtrentlig: [i]«ca.»[/i].'
     issuing_entity: danish_norway
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -1101,11 +1108,6 @@ coins:
     sub_realm: norway
     metal_verified: false
     uncertainty:
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '0.73'
       metal:
         - kind: inferred
           how: from_name

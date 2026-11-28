@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-11-19T19:27:31Z'
+generated_at: '2026-11-28T12:12:22Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -3724,16 +3724,16 @@ coins:
     _source_note:
       da: 'Forside: elefant, bagsideindskrift: VIII SOLIDI. Møntmærke trekløver: . (Hede 74, Schou 8-9, Sieg 55) Der har fra gammel tid været tvivl om formålet med 4 og 8 solidi 1603. Hede skriver (side
         25): "Nr. 74 og 75 er ikke slået til omsætningen, men antagelig i anledning af hyldningen i Hamborg, måske som kastemønt." Denne opfattelse imødegås af Jørgen Sømod (se'
-    weight_rough_g: 3.0
+    weight_rough_g:
+      - value: 3.0
+        source: danskmoent.dk (Hede 74)
+        approximate:
+          da: '[b]danskmoent.dk (Hede 74)[/b]: [i]«Vægt ca. 3 g»[/i].'
+          uk: '[b]danskmoent.dk (Hede 74)[/b]: [i]«Vægt ca. 3 g»[/i] (перекл.: «вага: близько 3 г»).'
+          en: '[b]danskmoent.dk (Hede 74)[/b]: [i]«Vægt ca. 3 g»[/i] (transl.: «weight: c. 3 g»).'
+          de: '[b]danskmoent.dk (Hede 74)[/b]: [i]«Vægt ca. 3 g»[/i] (dt.: «Gewicht: ca. 3 g»).'
     metal_verified: true
-    uncertainty:
-      weight:
-        - kind: hedged
-          how: circa
-          source: hede
-          as_printed: Vægt ca. 3 g
-          value: '3.0'
-    weight_rough_verified: false
+    weight_rough_verified: true
   - id: dk-hede-c4h75
     fuss: seed_unsorted
     phase: hede
@@ -3760,16 +3760,16 @@ coins:
     _source_note:
       da: 'Forside: elefant, bagsideindskrift: IIII SOLIDI. Møntmærke trekløver: . (Hede 75, Schou 10-12, Sieg 54) Der har fra gammel tid været tvivl om formålet med 4 og 8 solidi 1603. Hede skriver (side
         25): "Nr. 74 og 75 er ikke slået til omsætningen, men antagelig i anledning af hyldningen i Hamborg, måske som kastemønt." Denne opfattelse imødegås af Jørgen Sømod (se'
-    weight_rough_g: 1.5
+    weight_rough_g:
+      - value: 1.5
+        source: danskmoent.dk (Hede 75)
+        approximate:
+          da: '[b]danskmoent.dk (Hede 75)[/b]: [i]«Vægt ca. 1,5 g»[/i].'
+          uk: '[b]danskmoent.dk (Hede 75)[/b]: [i]«Vægt ca. 1,5 g»[/i] (перекл.: «вага: близько 1,5 г»).'
+          en: '[b]danskmoent.dk (Hede 75)[/b]: [i]«Vægt ca. 1,5 g»[/i] (transl.: «weight: c. 1.5 g»).'
+          de: '[b]danskmoent.dk (Hede 75)[/b]: [i]«Vægt ca. 1,5 g»[/i] (dt.: «Gewicht: ca. 1,5 g»).'
     metal_verified: true
-    uncertainty:
-      weight:
-        - kind: hedged
-          how: circa
-          source: hede
-          as_printed: Vægt ca. 1,5 g
-          value: '1.5'
-    weight_rough_verified: false
+    weight_rough_verified: true
   - id: dk-hede-c4h79a
     fuss: seed_unsorted
     phase: hede
@@ -4646,21 +4646,21 @@ coins:
       schou: '1'
       sieg: '150'
     metal: gold
-    weight_rough_g: 10.0
+    weight_rough_g:
+      - value: 10.0
+        source: danskmoent.dk (Hede 19)
+        approximate:
+          da: '[b]danskmoent.dk (Hede 19)[/b]: [i]«Bruttovægt: ca. 10,0g»[/i].'
+          uk: '[b]danskmoent.dk (Hede 19)[/b]: [i]«Bruttovægt: ca. 10,0g»[/i] (перекл.: «вага брутто: близько 10,0 г»).'
+          en: '[b]danskmoent.dk (Hede 19)[/b]: [i]«Bruttovægt: ca. 10,0g»[/i] (transl.: «gross weight: c. 10.0 g»).'
+          de: '[b]danskmoent.dk (Hede 19)[/b]: [i]«Bruttovægt: ca. 10,0g»[/i] (dt.: «Rauhgewicht: ca. 10,0 g»).'
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h19.htm
         ref: danskmoent.dk (Hede c4h19)
     issuing_entity: danish_realm
     verified: false
-    weight_rough_verified: false
-    uncertainty:
-      weight:
-        - kind: hedged
-          how: circa
-          source: hede
-          as_printed: 'Bruttovægt: ca. 10,0g'
-          value: '10.0'
+    weight_rough_verified: true
     metal_verified: true
     mint_verified: true
     _source_note:

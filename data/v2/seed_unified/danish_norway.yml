@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-24 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-28 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 2784 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-24'
+generated_at: '2026-11-28'
 coins:
   - id: c-aad58b83
     class_id: c-aad58b83
@@ -1898,7 +1898,12 @@ coins:
     year_verified: false
     weight_rough_g:
       - value: 0.73
-        source: galster
+        source: danskmoent.dk (Galster 171)
+        approximate:
+          de: '[b]danskmoent.dk (Galster 171)[/b] gibt den Wert als ungefähr an: [i]«ca.»[/i].'
+          en: '[b]danskmoent.dk (Galster 171)[/b] gives the value as approximate: [i]«ca.»[/i] (transl.: «circa»).'
+          uk: '[b]danskmoent.dk (Galster 171)[/b] подає значення як приблизне: [i]«ca.»[/i] (перекл.: «близько»).'
+          da: '[b]danskmoent.dk (Galster 171)[/b] angiver værdien som omtrentlig: [i]«ca.»[/i].'
       - value: 0.76
         source: bruun
     uncertainty:
@@ -1926,12 +1931,6 @@ coins:
           source: galster
           as_printed: hvid
           value: billon
-          seed: dk-galster-f1g-171
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '0.73'
           seed: dk-galster-f1g-171
     sources:
       - type: auction
