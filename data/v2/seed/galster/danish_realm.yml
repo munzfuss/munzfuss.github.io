@@ -238,6 +238,10 @@ coins:
       galster_volume: galster1972-erik7
     metal: billon
     fineness:
+      - value: 0.334
+        source: danskmoent.dk (Galster 1966, Næstved mønt)
+      - value: 0.413
+        source: danskmoent.dk (Galster 1966, Næstved mønt)
     weight_rough_g:
     issuing_entity: danish_realm
     verified: false
@@ -278,6 +282,21 @@ coins:
           how: circa
           source: galster
           value: 1400-1420
+      fineness:
+        - kind: inferred
+          how: type_assay
+          source: danskmoent.dk (Galster 1966, Næstved mønt)
+          as_printed: De tolv skærve vejer i gennemsnit 0,145 g, to prøver viste 334 og 413 tusinddele
+          value: 334, 413 ‰
+          translation:
+            de: Die zwölf Skærve wiegen durchschnittlich 0,145 g, zwei Proben ergaben 334 und 413 Tausendstel
+            en: The twelve skærve weigh 0.145 g on average; two assays showed 334 and 413 thousandths
+            uk: Дванадцять скервів важать у середньому 0,145 г; дві проби показали 334 і 413 тисячних
+    _curation_holds:
+      fineness: '0,334 and 0,413 (curator 2026-11-28): Galster 1966 «Næstved mønt» (danskmoent.dk galster/nestved.htm) reports two assays of the skærv, «to prøver viste 334 og 413 tusinddele», right after
+        the twelve pieces of the Nakskov Gåsetorvet hoard (1959) - most likely assays of those pieces, not of the specimens whose weights this record carries (Bruun 3751, Numista). Same treatment as the
+        Wilcke type assay on dk-bruun-3839 (2026-11-03). The page halvpenn.htm that the builder parses gives no fineness, so a regen would clear it.'
+      fineness_verified: false - an assay of the type, not of the specimens in this record (type_assay).
   - id: dk-galster-epomg-2
     fuss: seed_unsorted
     phase: galster
