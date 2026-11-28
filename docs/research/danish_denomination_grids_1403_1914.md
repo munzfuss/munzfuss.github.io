@@ -190,6 +190,78 @@ a Hvid-only coinage; 1481 changes nothing (the Rigsråd and Hans strike the same
 stretch when the whole set was coin) deserves a phase of its own is a question of the card's
 phasing, not of the grid.
 
+## 3c. Start of the royal coinage; silver content 1400 – c. 1500 — one decline or steps? (curator question 2026-11-28)
+
+**(1) When did royal striking begin — c. 1400/03 or earlier?**
+
+| Evidence | Date | Bears on the start | Source |
+|---|---|---|---|
+| Viborg levy «*een hielpp till then mynt*» | 24 Jan 1396 (Fyn: to be paid before Walpurgis 1396) | terminus post quem for money to start; Märcher: «*blev det formentlig ikke umiddelbart til noget*» | Kr nr. 35–36; M s. 379 |
+| Gert Comhaer leaves the bishop of Utrecht after the settlement of 16 Nov 1397, goes to Denmark, «*muligvis så betids, at han har kunnet indrette møntsmedjen i Næstved*» | after Nov 1397; first named «*muntmester to Nestwede*» 27 May 1407 | earliest plausible date for organising the Næstved mint is 1398; Galster offers this as a possibility, not as a fact | Galster «Næstved Mønt»; M s. 380 («*senest fra år 1407*») |
+| Nakskov, Gåsetorvet hoard (1959): 12 Danish skærve (½ Pf, high silver) + 929 foreign | «*Ca. 1400-1405*» (M tab. 6.4, DMS 241); Lindahl 1960 «*Et Nakskov-møntfund fra dronning Margrethes tid*» | the earliest hoard with royal coin; the skærv «*sandsynligvis kun præget i begyndelsen af Eriks udmøntning*» (Moesgaard). The hoard's dating basis (the foreign coins' t.p.q.) is not in our corpus — open, settled by DMS 241 / Lindahl 1960 | M s. 378; Moesgaard NNUM 2005 |
+| Ribe was «*den eneste [udmøntning] i riget før ca. 1403*» | before c. 1403 | Märcher sees no royal coin before c. 1403 | M s. 368 |
+| Næstved Hvid (Witten) + crown hollow penny «*1400-tallets allerførste år*» | c. 1400 | the earliest royal types | Moesgaard NNUM 2005 |
+| first deed mention «*Sjællands mønt*» | 1 Oct 1402 | terminus ante quem | Galster; Rep. III nr. 4529 |
+| Hanseatic complaint after the Skåne market of autumn 1403 | 6 Dec 1403 | certain circulation, in quantity, by summer–autumn 1403 | HR I 5 S. 107; M s. 379 |
+
+Reading [C, «можна вважати»]: nothing attests royal striking before 1400. The window is 1398 (Comhaer
+free, levy collected) – 1402 (first mention); the hoard evidence (Nakskov «ca. 1400–1405»; the Hvid and
+the skærv as the earliest types, both rare) fits a small first issue c. 1400–1402, the sterling in
+quantity from c. 1403. A start in 1398–99 is possible but rests only on Galster's «muligvis»; the
+working date **c. 1400** stands, «c. 1400–1402» for the first issue being the narrowest the sources allow.
+
+**(2) Silver content 1400 – c. 1500.** Level = Danish Mark (16 ß) per fine Cologne mark (233,856 g)
+[C]; fine g per ß = 14,616 / level. Like is compared with like: small coin always sits worse per unit
+than large (Scheidemünze), so Hvid is compared with Hvid, Skilling with Skilling. Lübeck from chronology §2h.
+
+| Stage | Danish coin and its level | Lübeck | Danish / Lübeck | Source of the Danish figure |
+|---|---|---|---|---|
+| c. 1403–1406 | sterling 10 lod, 296 / mark (1406 assay, SH emendation), at 3 Pf → **7,4** (1,98 g per ß) | 5,1–5,44 | 1,36–1,45 (rated «*12 skilling*» per Lübeck mark = 4 : 3) | HR I 5 Nr. 310; chronology §2j (5); Galster |
+| 1410 | sterling 9¾ lod; «*en mark i danske sterlinge er 1410 kun 11 lybske skilling værd*» → **8,1–8,4** | 5,6–5,8 | 1,45 | Galster |
+| c. 1416–1422 | sterling 9 lod and «*forhøjet i værdi til at skulle gå for fire penninge*» → at the same weight **11,0** (8,2 if still 3 Pf) | 5,8–7,1 | 1,6–1,9 | Galster; Rigsråd 1439 § 17 «*saa vejen mark holt 9 lod*» |
+| c. 1422 – 1423 | copper sterling, «*spor af sølv*» | 7,1 | — (collapse) | L s. 80; Hj |
+| 8 Oct 1424 | Søsling 168 / 11¼ lot → **7,47** (T); assays 703 / 762–798 ‰ — held | 7,47 | **1,00** | J; L; Hj |
+| 1430s | Gros (9 Pf) 232–415 ‰ → 20,8–37,2; cut to 2 Pf by tariff (1440–48) | 9,2 | 2,3–4,0 at 9 Pf | chronology §2b |
+| 1440/42 | Søsling 9,37 (one piece); **Skilling 13,9**; **Hvid 17,3** | 9,2–9,6 | Skilling 1,5; Hvid 1,8 | chronology §2b |
+| 1448 | Rigsråd Skilling 15,3 (one piece, XRF) | ~10 | 1,5 | Hj G 21 |
+| 1448–1481 | Hvid 8 → 5 lod: **20,2 → 24,4** | 10 → 11,5 | 2,0 → 2,1 | M s. 407; Hb; E |
+| 1481–83 | Hvid 5 lod: 20,3–27,1 | 11,5 | 1,8–2,4 | chronology §2c |
+| 1483–97 | Hvid 6 lod: **16,2–18,0** | 11,5 | 1,4–1,6 | chronology §2c |
+| c. 1495/97 | Hans' Skilling 9 lod: **11,5–11,8** | 11,5 | **1,00** | chronology §2c; §4a |
+
+**Reading [C, «можна вважати»].** Lübeck declines in small, regular steps (5,1 → 13 over the century).
+The Danish coin does not follow it smoothly; its distance from Lübeck jumps, and the jumps fall where
+the repertoire or the tie changes:
+
+1. **c. 1403 – 1422: one gradual decline, then a break.** 7,4 (1406) → 8,1–8,4 (1410) → ~11 (c. 1416–22,
+   the 9 lod plus the revaluation from 3 to 4 Pf, the one sharp step inside the stretch) → copper 1422–23.
+   Within the sterling type Hj reads the same: from c. 13–14 lod down to c. 9 lod in several reductions
+   (chronology §2i). Distance to Lübeck widens steadily, 1,4 → 1,9.
+2. **1424: a reset.** The common formula puts the Danish coin at Lübeck's level (ratio 1,00) — a jump of
+   about a third in silver per Pf against the 9-lod sterling at 4 Pf, and the end of the copper. This
+   is the sharpest transition of the century and coincides with the re-basing (§3a).
+3. **1430s – 1440/42: a second drop.** The 9-Pf Gros (billon) and then Christopher's coin: Skilling 13,9,
+   Hvid 17,3 against Lübeck 9,2–9,6 — ratio back to 1,5–1,8. The step lies between 1424–30 and the 1430s;
+   the 1424 level held only a few years (the Søsling assays 1424 are the last Danish coin at par).
+4. **1448 – 1481: the Hvid alone, slow drift.** 20,2 → 24,4 (8 → 5 lod), ratio ~2,0 — the worst
+   stretch relative to Lübeck, a gradual decline without a datable step.
+5. **1483: a step back up.** The Hvid at 6 lod (16,2–18,0, ratio 1,4–1,6) is better than both Christian I's
+   late Hvid and the Rigsråd's of 1481–83 — 1481 itself is no step, 1483 is.
+6. **c. 1495/97: a second reset.** Hans' Skilling at the Lübeck level (ratio 1,00), the new line of §4a.
+
+So silver content is **not** one smooth fall: two resets to par (1424, c. 1495/97) cut it, and between
+them come stretches of drift (1403–22, 1448–81) and two steps down (c. 1416, 1430s–1440/42) and one
+up (1483). By metal, candidate boundaries are c. 1416 (weak — inside one type), **1422/24**, **1430s/1440**,
+1448 (repertoire, not level: Christopher's Hvid 17,3 and Christian I's first Hvid 20,2 differ by ~15 %),
+**1483**, **c. 1495/97**. On the grid criterion of §1 only c. 1495/97 is a break (§3b); the others are
+candidate phase boundaries of a standard, the curator's call.
+
+Caveats: the 1440 Søsling and the 1448 Skilling are single pieces; XRF surface readings run above the alloy
+for blanched billon (chronology §2i (3) 4); undated types give the dates only to within a reign or a mint's
+active years; the 1406 level rests on SH's emendation of the count (chronology §4). Open: the dating basis of
+the Nakskov hoard (DMS 241, Lindahl 1960 — not in the corpus); whether Galster's «9¾ lod» (1410) and «4 Pf»
+revaluation come from a recess text (his source is not given — would be settled by HR I 5–6).
+
 ## 4. c. 1495/97 – 1536: two grids
 
 **Grid A (Hvid):** Hvid; Blaffert = ½ Hvid (Galster's reading for 1514; SET only 1602); Mark dansk =
