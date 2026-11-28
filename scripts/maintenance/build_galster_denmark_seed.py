@@ -1362,6 +1362,24 @@ def _caption_source(cap: dict) -> str:
     return f"danskmoent.dk {cap['page']}"
 
 
+def _cite_caption_page(entry: dict, cap: dict) -> None:
+    """A caption reading taken from ANOTHER page than the coin's own puts that
+    page into `sources` (curator 2026-11-28). A denomination overview stays out
+    of `sources` as long as it is only navigation (curator 2026-06-03, see
+    `_build_sources`); once one of its drawing captions gives this coin's
+    weight or diameter, it is the source of that value and is cited (Galster 6:
+    pommgals.htm row + halvpenn.htm caption «ca. 0,14 gr, 12 mm»)."""
+    page = cap["page"].lstrip("/")
+    srcs = entry.setdefault("sources", [])
+    for s in srcs:
+        url = s.get("url") or ""
+        if url.split("danskmoent.dk/", 1)[-1].lstrip("/").lower() == page.lower():
+            return
+    srcs.append({"type": "literature",
+                 "url": f"https://www.danskmoent.dk/{page}",
+                 "ref": f"danskmoent.dk {page}"})
+
+
 def _held_fields() -> dict[str, set[str]]:
     """Fields each existing Galster seed entry freezes in `_curation_holds`.
     merge_seed restores those values AFTER this builder runs, so a caption
@@ -1419,6 +1437,9 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]],
         if not out:
             continue
         e["weight_range_g"] = text_ranges + out
+        for cap in _captions_for(e, captions):
+            if any(r["url"] == f"https://www.danskmoent.dk/{cap['image']}" for r in out):
+                _cite_caption_page(e, cap)
         # The caption is a source printing the weight: attested, unless it
         # is a «ca.» figure (same rule as a text «Bruttovægt: ca.»).
         e["weight_rough_verified"] = not all(r["approx"] for r in text_ranges + out)
@@ -1442,6 +1463,7 @@ def apply_caption_diameters(entries: list[dict], captions: dict[str, list[dict]]
             if cap.get("diameter_mm") and cap.get("diameter_use") is not False:
                 e["diameter_mm"] = [{"value": float(cap["diameter_mm"]),
                                      "source": _caption_source(cap)}]
+                _cite_caption_page(e, cap)
                 n += 1
                 break
     return n
