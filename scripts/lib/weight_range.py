@@ -58,18 +58,69 @@ def collect_fineness_traces(members: list[dict]) -> list[dict]:
     return out
 
 
+import re
+
+# «Bruttovægt: ca. 35g» / «Vægt ca. 3 g» — the forms Hede prints.
+_PRINTED_CA_RE = re.compile(
+    r"^(?P<w>Bruttovægt|Vægt):?\s*ca\.?\s*(?P<v>\d+(?:[.,]\d+)?)\s*g$")
+_PRINTED_TR = {
+    "uk": ("перекл.", {"Bruttovægt": "вага брутто", "Vægt": "вага"}, "близько", "г"),
+    "en": ("transl.", {"Bruttovægt": "gross weight", "Vægt": "weight"}, "c.", "g"),
+    "de": ("dt.", {"Bruttovægt": "Rauhgewicht", "Vægt": "Gewicht"}, "ca.", "g"),
+}
+
+
+def approx_reason(source: str, printed: str | None = None) -> dict:
+    """The reason of an `approximate` «(~)» mark on a reading a source gives
+    with «ca.» (curator 2026-11-28: «(~)» replaces the «(?)» and the «ca.»
+    in the label). The source in bold, its own words in italics, with a
+    translation outside Danish (tooltip-text skill)."""
+    m = _PRINTED_CA_RE.match((printed or "").strip())
+    if not m:
+        return {
+            "de": f"[b]{source}[/b] gibt den Wert als ungefähr an: [i]«ca.»[/i].",
+            "en": f"[b]{source}[/b] gives the value as approximate: [i]«ca.»[/i] (transl.: «circa»).",
+            "uk": f"[b]{source}[/b] подає значення як приблизне: [i]«ca.»[/i] (перекл.: «близько»).",
+            "da": f"[b]{source}[/b] angiver værdien som omtrentlig: [i]«ca.»[/i].",
+        }
+    q = printed.strip()
+    out = {"da": f"[b]{source}[/b]: [i]«{q}»[/i]."}
+    for lang, (lab, words, ca, unit) in _PRINTED_TR.items():
+        v = m.group("v").replace(".", ",") if lang != "en" else m.group("v").replace(",", ".")
+        w = words[m.group("w")]
+        if lang == "de":
+            w = w[0].upper() + w[1:]
+        out[lang] = f"[b]{source}[/b]: [i]«{q}»[/i] ({lab}: «{w}: {ca} {v} {unit}»)."
+    return out
+
+
 def range_pairs(ranges) -> list[tuple[float, str]]:
     """Expand `weight_range_g` into (value, source-label) weight readings:
     a range → lower bound + upper bound; a single figure → one reading.
-    «ca.» is kept in the label."""
+    A «ca.» range is marked «(~)» by `range_marks`, not in the label."""
     out: list[tuple[float, str]] = []
     for r in ranges or []:
         get = (lambda k: r.get(k)) if isinstance(r, dict) else (lambda k: getattr(r, k, None))
         lo, hi, src = get("min"), get("max"), get("source") or ""
-        ca = (" " + ui_key("weight_range.approx")) if get("approx") else ""
         if hi is not None and hi != lo:
-            out.append((float(lo), f"{src} ({ui_key('weight_range.lower')}{ca})"))
-            out.append((float(hi), f"{src} ({ui_key('weight_range.upper')}{ca})"))
+            out.append((float(lo), f"{src} ({ui_key('weight_range.lower')})"))
+            out.append((float(hi), f"{src} ({ui_key('weight_range.upper')})"))
         else:
-            out.append((float(lo), f"{src} ({ui_key('weight_range.approx')})" if ca else src))
+            out.append((float(lo), src))
+    return out
+
+
+def range_marks(ranges) -> dict[str, tuple[str, object]]:
+    """`approximate` marks for the readings `range_pairs` makes of a «ca.»
+    range, keyed by the same labels (compute.marker_reasons shape)."""
+    from .schema import I18nText
+    out: dict[str, tuple[str, object]] = {}
+    for r in ranges or []:
+        get = (lambda k: r.get(k)) if isinstance(r, dict) else (lambda k: getattr(r, k, None))
+        if not get("approx"):
+            continue
+        src = get("source") or ""
+        why = I18nText(**approx_reason(src))
+        for _v, label in range_pairs([r]):
+            out[label] = ("approximate", why)
     return out

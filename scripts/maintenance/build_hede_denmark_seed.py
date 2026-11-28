@@ -1456,9 +1456,15 @@ def _build_coin(
         cm["weight_rough_verified"] = True   # Hede page directly publishes
         circa = spec.get("bruttovægt_circa") if spec else None
         if circa:
-            # Hede's own «ca.»: the weight is Hede's, hedged by Hede.
-            cm["weight_rough_verified"] = False
-            unc.add(cm, "weight", "circa", "hede", as_printed=circa, value=brutto)
+            # Hede's own «ca.»: a printed figure, marked approximate «(~)»
+            # instead of hedged «(?)» (curator 2026-11-28). Labelled by the
+            # page, not «hede»: the mark is keyed by the label, and another
+            # Hede member of the class may give a plain weight (c4h1 / c4h5).
+            from lib.weight_range import approx_reason
+            hnum = (cm.get("catalog") or {}).get("hede")
+            label = f"danskmoent.dk (Hede {hnum})" if hnum else (src.get("ref") or "hede")
+            cm["weight_rough_g"] = [{"value": float(brutto), "source": label,
+                                     "approximate": approx_reason(label, circa)}]
     # metal_verified: when Hede publishes fineness or weight on the page,
     # the metal is IMPLICITLY attested by the same source (a .985 reading
     # on a Dukat page is the source telling us the coin is gold; a .875

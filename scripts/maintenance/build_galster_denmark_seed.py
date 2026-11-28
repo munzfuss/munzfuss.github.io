@@ -1081,9 +1081,14 @@ def build_entry(data: dict) -> dict | None:
                                     "source": label,
                                     "url": data.get("source_url_hint")}]
         entry["weight_rough_verified"] = True
-    if specs.get("bruttovaegt_approx") and entry.get("weight_rough_g") is not None:
-        unc.add(entry, "weight", "circa", "galster",
-                value=f"{entry['weight_rough_g']}")
+    if specs.get("bruttovaegt_approx") and isinstance(entry.get("weight_rough_g"), (int, float)):
+        # «ca.» on the page: a printed figure, marked approximate «(~)»
+        # instead of hedged «(?)» (curator 2026-11-28).
+        from lib.weight_range import approx_reason
+        entry["weight_rough_g"] = [{"value": float(entry["weight_rough_g"]),
+                                    "source": label,
+                                    "approximate": approx_reason(label)}]
+        entry["weight_rough_verified"] = True
     if specs.get("finhed_range"):
         entry["fineness"] = [{"value": v, "source": label}
                              for v in specs["finhed_range"]]
@@ -1440,13 +1445,10 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]],
         for cap in _captions_for(e, captions):
             if any(r["url"] == f"https://www.danskmoent.dk/{cap['image']}" for r in out):
                 _cite_caption_page(e, cap)
-        # The caption is a source printing the weight: attested, unless it
-        # is a «ca.» figure (same rule as a text «Bruttovægt: ca.»).
-        e["weight_rough_verified"] = not all(r["approx"] for r in text_ranges + out)
-        if not e["weight_rough_verified"]:
-            for r in out:
-                unc.add(e, "weight", "circa", "galster", value=(
-                    f"{r['min']}" if not r.get("max") else f"{r['min']}-{r['max']}"))
+        # The caption is a source printing the weight: attested. A «ca.»
+        # figure is marked approximate «(~)» at render (weight_range.
+        # range_marks), not hedged «(?)» (curator 2026-11-28).
+        e["weight_rough_verified"] = True
         n += 1
     return n
 

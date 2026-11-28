@@ -35,7 +35,7 @@ def _fin_authority_map() -> dict[str, int]:
         return {}
 
 
-from .weight_range import range_pairs, UI_KEY_MARK  # noqa: E402
+from .weight_range import range_pairs, range_marks, UI_KEY_MARK  # noqa: E402
 
 
 def normalise_field(v) -> list[tuple[float, str | None]]:
@@ -1485,6 +1485,9 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
 
     # Per-source markers — the readings themselves compute as normal.
     cc.weight_marks   = marker_reasons(coin.weight_rough_g)
+    # A «ca.» type range: «(~)» on its readings (curator 2026-11-28).
+    cc.weight_marks.update({k: v for k, v in range_marks(coin.weight_range_g).items()
+                            if k not in cc.weight_marks})
     cc.fineness_marks = marker_reasons(coin.fineness)
     # A derived value is anchored to its weight source AND to «fin:<source>» of
     # the fineness it used, so both readings' marks reach it (see `_anch`).
